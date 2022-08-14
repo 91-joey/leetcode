@@ -52,26 +52,28 @@
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数组</li><li>矩阵</li></div></div><br><div><li>👍 212</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 //286.墙与门
 //开题时间：2022-08-14 17:21:17
-//1.自解
-public class WallsAndGates {
+//2.官解一（暴力）
+public class WallsAndGates2 {
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution solution = new WallsAndGates2().new Solution();
         solution.wallsAndGates(new int[][]{{2147483647, -1, 0, 2147483647}, {2147483647, 2147483647, 2147483647, -1}, {2147483647, -1, 2147483647, -1}, {0, -1, 2147483647, 2147483647}});
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
-    static class Solution {
+    class Solution {
 
-        public static final String COMMA = ",";
-        public static final int ROOM = Integer.MAX_VALUE;
-        public static final int GATE = 0;
-        public static final int WALL = -1;
-        public final int[][] DIRECTIONS = {
+        private static final int ROOM = Integer.MAX_VALUE;
+        private static final int GATE = 0;
+        private static final int WALL = -1;
+        private final int[][] DIRECTIONS = {
                 {0, 1},
                 {0, -1},
                 {1, 0},
@@ -82,42 +84,42 @@ public class WallsAndGates {
             int m = rooms.length;
             int n = rooms[0].length;
             for (int i = 0; i < m; i++) {
-                second:
                 for (int j = 0; j < n; j++) {
                     if (rooms[i][j] == ROOM) {
-                        Queue<String> queue = new LinkedList<>();
-                        Set<String> used = new HashSet<>();
-                        int step = 0;
+                        rooms[i][j] = distanceToNearestGate(rooms, m, n, i, j);
+                    }
+                }
+            }
+        }
 
-                        String root = i + COMMA + j;
-                        queue.offer(root);
-                        used.add(root);
+        private int distanceToNearestGate(int[][] rooms, int m, int n, int i, int j) {
+            Queue<int[]> queue = new LinkedList<>();
+            int[][] distancesFromOne = new int[m][n];
 
-                        while (!queue.isEmpty()) {
-                            int size = queue.size();
-                            for (int k = 0; k < size; k++) {
-                                String head = queue.poll();
-                                int x = Integer.parseInt(head.split(COMMA)[0]);
-                                int y = Integer.parseInt(head.split(COMMA)[1]);
-                                if (rooms[x][y] == GATE) {
-                                    rooms[i][j] = step;
-                                    continue second;
-                                }
-                                for (int[] direction : DIRECTIONS) {
-                                    int xChild = x + direction[0];
-                                    int yChild = y + direction[1];
-                                    String child = xChild + COMMA + yChild;
-                                    if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n && rooms[xChild][yChild] != WALL && !used.contains(child)) {
-                                        queue.offer(child);
-                                        used.add(child);
-                                    }
-                                }
+            queue.offer(new int[]{i, j});
+
+            while (!queue.isEmpty()) {
+                int size = queue.size();
+                for (int k = 0; k < size; k++) {
+                    int[] head = queue.poll();
+                    int x = head[0];
+                    int y = head[1];
+                    for (int[] direction : DIRECTIONS) {
+                        int xChild = x + direction[0];
+                        int yChild = y + direction[1];
+                        if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
+                                rooms[xChild][yChild] != WALL &&
+                                xChild != x && yChild != y && distancesFromOne[xChild][yChild] == 0) {
+                            distancesFromOne[xChild][yChild] = distancesFromOne[x][y] + 1;
+                            if (rooms[xChild][xChild] == GATE) {
+                                return distancesFromOne[xChild][yChild];
                             }
-                            step++;
+                            queue.offer(new int[]{xChild, yChild});
                         }
                     }
                 }
             }
+            return ROOM;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
