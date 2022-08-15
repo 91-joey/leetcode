@@ -59,7 +59,7 @@ import java.util.Queue;
 
 //286.墙与门
 //开题时间：2022-08-14 17:21:17
-//2.官解一（暴力）
+//2.官解一（暴力） 求解每个房间到门的最短距离（有重复计算）    m^2*n^2 m*n
 public class WallsAndGates2 {
 
     public static void main(String[] args) {
@@ -99,23 +99,20 @@ public class WallsAndGates2 {
             queue.offer(new int[]{i, j});
 
             while (!queue.isEmpty()) {
-                int size = queue.size();
-                for (int k = 0; k < size; k++) {
-                    int[] head = queue.poll();
-                    int x = head[0];
-                    int y = head[1];
-                    for (int[] direction : DIRECTIONS) {
-                        int xChild = x + direction[0];
-                        int yChild = y + direction[1];
-                        if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
-                                rooms[xChild][yChild] != WALL &&
-                                xChild != x && yChild != y && distancesFromOne[xChild][yChild] == 0) {
-                            distancesFromOne[xChild][yChild] = distancesFromOne[x][y] + 1;
-                            if (rooms[xChild][xChild] == GATE) {
-                                return distancesFromOne[xChild][yChild];
-                            }
-                            queue.offer(new int[]{xChild, yChild});
+                int[] head = queue.poll();
+                int x = head[0];
+                int y = head[1];
+                for (int[] direction : DIRECTIONS) {
+                    int xChild = x + direction[0];
+                    int yChild = y + direction[1];
+                    if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
+                            rooms[xChild][yChild] != WALL &&
+                            !(xChild == i && yChild == j) && distancesFromOne[xChild][yChild] == 0) {
+                        distancesFromOne[xChild][yChild] = distancesFromOne[x][y] + 1;
+                        if (rooms[xChild][yChild] == GATE) {
+                            return distancesFromOne[xChild][yChild];
                         }
+                        queue.offer(new int[]{xChild, yChild});
                     }
                 }
             }
