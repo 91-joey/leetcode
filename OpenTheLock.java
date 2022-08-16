@@ -50,19 +50,22 @@
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数组</li><li>哈希表</li><li>字符串</li></div></div><br><div><li>👍 526</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Set;
 
 //752.打开转盘锁
 //开题时间：2022-08-16 11:42:37
-//1.自解（①int[] -> String②int[][][][] steps用于记录已访问节点和计算步数）
 public class OpenTheLock {
     public static void main(String[] args) {
-        Solution solution = new OpenTheLock().new Solution();
-        System.out.println(-1 % 10);
+//        Solution solution = new OpenTheLock().new Solution();
+        Solution2 solution = new OpenTheLock().new Solution2();
+        solution.openLock(new String[]{"0201", "0101", "0102", "1212", "2002"}, "0202");
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    //1.自解BFS（①int[] -> String②int[][][][] steps用于记录已访问节点和计算步数） r^n*n^2+m*n r^n*n
     class Solution {
         private final int[][] ROTATIONS = {
                 {1, 0, 0, 0},
@@ -79,10 +82,10 @@ public class OpenTheLock {
             int[][][][] steps = new int[10][10][10][10];
             Queue<int[]> queue = new LinkedList<>();
             int[] start = {0, 0, 0, 0};
-            if(isInDeadends(deadends,start)){
+            if (isInDeadends(deadends, start)) {
                 return -1;
             }
-            queue.add(start);
+            queue.offer(start);
             while (!queue.isEmpty()) {
                 int[] head = queue.poll();
                 String headString = "";
@@ -103,7 +106,7 @@ public class OpenTheLock {
                     int[] child = {a, b, c, d};
                     if (!(a == 0 && b == 0 && c == 0 && d == 0) && steps[a][b][c][d] == 0 && !isInDeadends(deadends, child)) {
                         steps[a][b][c][d] = steps[head[0]][head[1]][head[2]][head[3]] + 1;
-                        queue.add(child);
+                        queue.offer(child);
                     }
                 }
             }
@@ -128,4 +131,85 @@ public class OpenTheLock {
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
+
+//    2.官解一（BFS）：①char直接运算 ②Set记录已访问节点、int变量计算步数    r^n*n^2+m*n r^n*n+m
+    class Solution2 {
+        public static final int CANNOT_OPEN_LOCK = -1;
+
+        public int openLock(String[] deadends, String target) {
+            int steps = 0;
+
+            String start = "0000";
+            if (start.equals(target)) {
+                return steps;
+            }
+            if (isInDeadends(deadends, start)) {
+                return CANNOT_OPEN_LOCK;
+            }
+            Queue<String> queue = new LinkedList<>();
+            queue.offer(start);
+
+            Set<String> visited = new HashSet<>();
+            visited.add(start);
+
+            while (!queue.isEmpty()) {
+                steps++;
+                int size = queue.size();
+                for (int i = 0; i < size; i++) {
+                    String status = queue.poll();
+                    for (String nextStatus : getChildStatuses(status, 10, 4)) {
+                        if (!visited.contains(nextStatus) && !isInDeadends(deadends, nextStatus)) {
+                            if (nextStatus.equals(target)) {
+                                return steps;
+                            }
+                            queue.offer(nextStatus);
+                            visited.add(nextStatus);
+                        }
+                    }
+                }
+            }
+            return CANNOT_OPEN_LOCK;
+        }
+
+        private String[] getChildStatuses(String status, int radix, int num) {
+            String[] childStatuses = new String[num * 2];
+            int idx = 0;
+            for (int i = 0; i < num; i++) {
+                childStatuses[idx++] = getChildStatus(status, radix, i, 1);
+                childStatuses[idx++] = getChildStatus(status, radix, i, -1);
+            }
+            return childStatuses;
+        }
+
+        private String getChildStatus(String status, int radix, int i, int offset) {
+            char[] chars = status.toCharArray();
+
+            int offsetDigit = chars[i] + offset;
+            if (offsetDigit < '0') {
+                offsetDigit = '0' + (offsetDigit - '0') % radix + radix;
+            } else if (offsetDigit >= '0' + radix) {
+                offsetDigit = '0' + (offsetDigit - '0') % radix;
+            }
+            chars[i] = (char) offsetDigit;
+
+            return new String(chars);
+        }
+
+        private boolean isInDeadends(String[] deadends, String status) {
+            for (String deadend : deadends) {
+                if (status.equals(deadend)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    //    3.官解二：启发式搜索
+    //todo
+    class Solution3 {
+        public int openLock(String[] deadends, String target) {
+            return -1;
+        }
+    }
 }
