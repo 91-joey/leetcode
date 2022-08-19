@@ -46,6 +46,7 @@ package org.example.leetcode.problems;
 
 import java.util.LinkedList;
 import java.util.Queue;
+import java.util.Stack;
 
 //200.岛屿数量
 //开题时间：2022-08-15 18:12:27
@@ -53,6 +54,12 @@ public class NumberOfIslands {
 
     public static void main(String[] args) {
         Solution solution = new NumberOfIslands().new Solution();
+        System.out.println(solution.numIslands2(new char[][]{
+                {'1', '1', '1', '1', '0'},
+                {'1', '1', '0', '1', '0'},
+                {'1', '1', '0', '0', '0'},
+                {'0', '0', '0', '0', '0'}
+        }));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -66,6 +73,7 @@ public class NumberOfIslands {
                 {-1, 0}
         };
 
+        //1.BFS+队列
         public int numIslands(char[][] grid) {
             int cnt = 0;
             int m = grid.length;
@@ -93,6 +101,72 @@ public class NumberOfIslands {
                     }
                 }
             }
+            return cnt;
+        }
+
+        int m;
+        int n;
+
+        //2.DFS+递归（系统栈call stack）
+        public int numIslands2(char[][] grid) {
+            m = grid.length;
+            n = grid[0].length;
+            int cnt = 0;
+
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == LAND) {
+                        DFS(grid, i, j);
+                        cnt++;
+                    }
+                }
+            }
+
+            return cnt;
+        }
+
+        private void DFS(char[][] grid, int x, int y) {
+            for (int[] direction : DIRECTIONS) {
+                int xChild = x + direction[0];
+                int yChild = y + direction[1];
+                if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
+                        grid[xChild][yChild] == LAND) {
+                    grid[xChild][yChild] = Character.MAX_VALUE;
+                    DFS(grid, xChild, yChild);
+                }
+            }
+        }
+
+        //3.DFS+显示栈（解决递归太深导致的堆栈溢出问题）
+        public int numIslands3(char[][] grid) {
+            int m = grid.length;
+            int n = grid[0].length;
+            int cnt = 0;
+            Stack<int[]> stack=new Stack<>();
+
+            for (int i = 0; i < m; i++) {
+                for (int j = 0; j < n; j++) {
+                    if (grid[i][j] == LAND) {
+                        stack.push(new int[]{i,j});
+                        while (!stack.empty()){
+                            int[] pop = stack.pop();
+                            int x = pop[0];
+                            int y = pop[1];
+                            for (int[] direction : DIRECTIONS) {
+                                int xChild = x + direction[0];
+                                int yChild = y + direction[1];
+                                if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
+                                        grid[xChild][yChild] == LAND) {
+                                    grid[xChild][yChild] = Character.MAX_VALUE;
+                                    stack.push(new int[]{xChild, yChild});
+                                }
+                            }
+                        }
+                        cnt++;
+                    }
+                }
+            }
+
             return cnt;
         }
     }
