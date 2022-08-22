@@ -43,6 +43,7 @@ import java.util.*;
 
 //94.二叉树的中序遍历
 //开题时间：2022-08-21 08:11:32
+//中序遍历: 遍历顺序（左子树 -> 根节点 -> 右子树）
 public class BinaryTreeInorderTraversal {
     public static void main(String[] args) {
         TreeNode treeNode1 = new TreeNode(1);
@@ -57,7 +58,7 @@ public class BinaryTreeInorderTraversal {
         treeNode2.right = treeNode5;
         treeNode3.left = treeNode6;
         Solution solution = new BinaryTreeInorderTraversal().new Solution();
-        System.out.println(solution.inorderTraversal3(treeNode1));
+        System.out.println(solution.inorderTraversal4(treeNode1));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -94,7 +95,7 @@ public class BinaryTreeInorderTraversal {
             return list;
         }
 
-        //2.DFS+栈
+        //2.DFS+栈   n   n
         public List<Integer> inorderTraversal2(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             if (root == null) {
@@ -121,7 +122,7 @@ public class BinaryTreeInorderTraversal {
             return list;
         }
 
-        //3.官解二（DFS+栈）
+        //3.官解二（DFS+栈）  n   n
         public List<Integer> inorderTraversal3(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             if (root == null) {
@@ -140,6 +141,45 @@ public class BinaryTreeInorderTraversal {
             }
 
             return list;
+        }
+
+        //4.官解三：Morris中序遍历  n   1
+        public List<Integer> inorderTraversal4(TreeNode root) {
+            List<Integer> res = new ArrayList<>();
+            TreeNode predecessor;
+
+            while (root != null) {
+                if (root.left != null) {
+                    // predecessor 节点就是当前 root 节点向左走一步，然后一直向右走至无法走为止
+                    predecessor = root.left;
+                    //predecessor.right != root ->  第二次遍历（左子树已遍历完成），附加条件，防止进入死循环
+                    while (predecessor.right != null && predecessor.right != root) {
+                        predecessor = predecessor.right;
+                    }
+
+                    if (predecessor.right == null) {
+                        // 让 predecessor 的右指针指向 root
+                        predecessor.right = root;
+                        //继续遍历左子树
+                        root = root.left;
+                        // 第二次遍历（左子树已遍历完成）
+                    } else {
+                        //"遍历"根值
+                        res.add(root.val);
+                        //断开链接，释放空间
+                        predecessor.right = null;
+                        //开始遍历右子树
+                        root = root.right;
+                    }
+                    //没有左子树
+                } else {
+                    //"遍历"根值
+                    res.add(root.val);
+                    //开始遍历右子树
+                    root = root.right;
+                }
+            }
+            return res;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
