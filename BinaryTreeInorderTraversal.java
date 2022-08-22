@@ -89,6 +89,8 @@ public class BinaryTreeInorderTraversal {
             if (root == null) {
                 return list;
             }
+            //若root.left为null，返回空集合，空集合再添加到结果集合中
+            //这里可以优化：另起一个方法，若节点为空，则返回（参考3.官解一：DFS+递归）
             list.addAll(inorderTraversal(root.left));
             list.add(root.val);
             list.addAll(inorderTraversal(root.right));
@@ -122,8 +124,24 @@ public class BinaryTreeInorderTraversal {
             return list;
         }
 
-        //3.官解二（DFS+栈）  n   n
+
+        //3.官解一：DFS+递归
         public List<Integer> inorderTraversal3(TreeNode root) {
+            List<Integer> ans = new ArrayList<>();
+            traverse(root,ans);
+            return ans;
+        }
+
+        private void traverse(TreeNode root, List<Integer> ans) {
+            if(root!=null){
+                traverse(root.left,ans);
+                ans.add(root.val);
+                traverse(root.right,ans);
+            }
+        }
+
+        //4.官解二（DFS+栈）  n   n
+        public List<Integer> inorderTraversal4(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             if (root == null) {
                 return list;
@@ -143,8 +161,8 @@ public class BinaryTreeInorderTraversal {
             return list;
         }
 
-        //4.官解三：Morris中序遍历  n   1
-        public List<Integer> inorderTraversal4(TreeNode root) {
+        //5.官解三：Morris中序遍历  n   1
+        public List<Integer> inorderTraversal5(TreeNode root) {
             List<Integer> res = new ArrayList<>();
             TreeNode predecessor;
 
