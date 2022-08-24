@@ -44,9 +44,7 @@
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>广度优先搜索</li><li>并查集</li><li>数组</li><li>矩阵</li></div></div><br><div><li>👍 1851</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 //200.岛屿数量
 //开题时间：2022-08-15 18:12:27
@@ -142,13 +140,13 @@ public class NumberOfIslands {
             int m = grid.length;
             int n = grid[0].length;
             int cnt = 0;
-            Stack<int[]> stack=new Stack<>();
+            Deque<int[]> stack = new ArrayDeque<>();
 
             for (int i = 0; i < m; i++) {
                 for (int j = 0; j < n; j++) {
                     if (grid[i][j] == LAND) {
-                        stack.push(new int[]{i,j});
-                        while (!stack.empty()){
+                        stack.push(new int[]{i, j});
+                        while (!stack.isEmpty()) {
                             int[] pop = stack.pop();
                             int x = pop[0];
                             int y = pop[1];
