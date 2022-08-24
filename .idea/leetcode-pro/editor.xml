@@ -190,6 +190,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/Zero1Matrix.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/Zero1Matrix.md" />
+              <option name="frontendQuestionId" value="leetcode.cn542" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/Zero1Matrix.java" />
+              <option name="titleSlug" value="01-matrix" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/[346]数据流中的移动平均值.java">
           <value>
             <LeetcodeEditor>
