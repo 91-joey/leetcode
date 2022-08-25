@@ -91,6 +91,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/KeysAndRooms.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/KeysAndRooms.md" />
+              <option name="frontendQuestionId" value="leetcode.cn841" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/KeysAndRooms.java" />
+              <option name="titleSlug" value="keys-and-rooms" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinStack.java">
           <value>
             <LeetcodeEditor>
