@@ -32,7 +32,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>数组</li><li>单调栈</li></div></div><br><div><li>👍 1259</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
 import java.util.Arrays;
 import java.util.Stack;

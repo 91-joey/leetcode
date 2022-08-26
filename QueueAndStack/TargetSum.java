@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>动态规划</li><li>回溯</li></div></div><br><div><li>👍 1349</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
 import java.util.*;
 

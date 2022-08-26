@@ -58,7 +58,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>设计</li><li>队列</li></div></div><br><div><li>👍 734</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
 import java.util.*;
 

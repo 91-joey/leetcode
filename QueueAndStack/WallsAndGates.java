@@ -50,26 +50,28 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数组</li><li>矩阵</li></div></div><br><div><li>👍 212</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 //286.墙与门
 //开题时间：2022-08-14 17:21:17
-//2.官解二 求解每个门到每个房间的距离，再求出每个房间到门的最短距离。
-public class WallsAndGates3 {
+//1.自解  m^2*n^2 m*n
+public class WallsAndGates {
 
     public static void main(String[] args) {
-        Solution solution = new WallsAndGates3().new Solution();
+        Solution solution = new Solution();
         solution.wallsAndGates(new int[][]{{2147483647, -1, 0, 2147483647}, {2147483647, 2147483647, 2147483647, -1}, {2147483647, -1, 2147483647, -1}, {0, -1, 2147483647, 2147483647}});
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
+    static class Solution {
 
-        private static final int GATE = 0;
-        private final int[][] DIRECTIONS = {
+        public static final String COMMA = ",";
+        public static final int ROOM = Integer.MAX_VALUE;
+        public static final int GATE = 0;
+        public static final int WALL = -1;
+        public final int[][] DIRECTIONS = {
                 {0, 1},
                 {0, -1},
                 {1, 0},
@@ -80,33 +82,39 @@ public class WallsAndGates3 {
             int m = rooms.length;
             int n = rooms[0].length;
             for (int i = 0; i < m; i++) {
+                second:
                 for (int j = 0; j < n; j++) {
-                    if (rooms[i][j] == GATE) {
-                        getDistancesToRooms(rooms, m, n, i, j);
-                    }
-                }
-            }
-        }
+                    if (rooms[i][j] == ROOM) {
+                        Queue<String> queue = new LinkedList<>();
+                        Set<String> used = new HashSet<>();
+                        int step = 0;
 
-        private void getDistancesToRooms(int[][] rooms, int m, int n, int i, int j) {
-            Queue<int[]> queue = new LinkedList<>();
-            int[][] distancesFromGate = new int[m][n];
+                        String root = i + COMMA + j;
+                        queue.offer(root);
+                        used.add(root);
 
-            queue.offer(new int[]{i, j});
-
-            while (!queue.isEmpty()) {
-                int[] head = queue.poll();
-                int x = head[0];
-                int y = head[1];
-                for (int[] direction : DIRECTIONS) {
-                    int xChild = x + direction[0];
-                    int yChild = y + direction[1];
-                    if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
-                            rooms[xChild][yChild] > 0 &&
-                            !(xChild == i && yChild == j) && distancesFromGate[xChild][yChild] == 0) {
-                        distancesFromGate[xChild][yChild] = distancesFromGate[x][y] + 1;
-                        rooms[xChild][yChild] = Math.min(rooms[xChild][yChild], distancesFromGate[xChild][yChild]);
-                        queue.offer(new int[]{xChild, yChild});
+                        while (!queue.isEmpty()) {
+                            int size = queue.size();
+                            for (int k = 0; k < size; k++) {
+                                String head = queue.poll();
+                                int x = Integer.parseInt(head.split(COMMA)[0]);
+                                int y = Integer.parseInt(head.split(COMMA)[1]);
+                                if (rooms[x][y] == GATE) {
+                                    rooms[i][j] = step;
+                                    continue second;
+                                }
+                                for (int[] direction : DIRECTIONS) {
+                                    int xChild = x + direction[0];
+                                    int yChild = y + direction[1];
+                                    String child = xChild + COMMA + yChild;
+                                    if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n && rooms[xChild][yChild] != WALL && !used.contains(child)) {
+                                        queue.offer(child);
+                                        used.add(child);
+                                    }
+                                }
+                            }
+                            step++;
+                        }
                     }
                 }
             }

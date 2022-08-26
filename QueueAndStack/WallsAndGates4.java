@@ -50,28 +50,27 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数组</li><li>矩阵</li></div></div><br><div><li>👍 212</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.Queue;
 
 //286.墙与门
 //开题时间：2022-08-14 17:21:17
-//1.自解  m^2*n^2 m*n
-public class WallsAndGates {
+//2.官解二 从每个门同时开始BFS m*n m*n
+public class WallsAndGates4 {
 
     public static void main(String[] args) {
-        Solution solution = new Solution();
+        Solution solution = new WallsAndGates4().new Solution();
         solution.wallsAndGates(new int[][]{{2147483647, -1, 0, 2147483647}, {2147483647, 2147483647, 2147483647, -1}, {2147483647, -1, 2147483647, -1}, {0, -1, 2147483647, 2147483647}});
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
-    static class Solution {
+    class Solution {
 
-        public static final String COMMA = ",";
-        public static final int ROOM = Integer.MAX_VALUE;
-        public static final int GATE = 0;
-        public static final int WALL = -1;
-        public final int[][] DIRECTIONS = {
+        private static final int ROOM = Integer.MAX_VALUE;
+        private static final int GATE = 0;
+        private final int[][] DIRECTIONS = {
                 {0, 1},
                 {0, -1},
                 {1, 0},
@@ -81,40 +80,27 @@ public class WallsAndGates {
         public void wallsAndGates(int[][] rooms) {
             int m = rooms.length;
             int n = rooms[0].length;
+            Queue<int[]> queue = new LinkedList<>();
+
             for (int i = 0; i < m; i++) {
-                second:
                 for (int j = 0; j < n; j++) {
-                    if (rooms[i][j] == ROOM) {
-                        Queue<String> queue = new LinkedList<>();
-                        Set<String> used = new HashSet<>();
-                        int step = 0;
+                    if (rooms[i][j] == GATE) {
+                        queue.offer(new int[]{i, j});
+                    }
+                }
+            }
 
-                        String root = i + COMMA + j;
-                        queue.offer(root);
-                        used.add(root);
-
-                        while (!queue.isEmpty()) {
-                            int size = queue.size();
-                            for (int k = 0; k < size; k++) {
-                                String head = queue.poll();
-                                int x = Integer.parseInt(head.split(COMMA)[0]);
-                                int y = Integer.parseInt(head.split(COMMA)[1]);
-                                if (rooms[x][y] == GATE) {
-                                    rooms[i][j] = step;
-                                    continue second;
-                                }
-                                for (int[] direction : DIRECTIONS) {
-                                    int xChild = x + direction[0];
-                                    int yChild = y + direction[1];
-                                    String child = xChild + COMMA + yChild;
-                                    if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n && rooms[xChild][yChild] != WALL && !used.contains(child)) {
-                                        queue.offer(child);
-                                        used.add(child);
-                                    }
-                                }
-                            }
-                            step++;
-                        }
+            while (!queue.isEmpty()) {
+                int[] head = queue.poll();
+                int x = head[0];
+                int y = head[1];
+                for (int[] direction : DIRECTIONS) {
+                    int xChild = x + direction[0];
+                    int yChild = y + direction[1];
+                    if (0 <= xChild && xChild < m && 0 <= yChild && yChild < n &&
+                            rooms[xChild][yChild] == ROOM) {
+                        rooms[xChild][yChild] = rooms[x][y] + 1;
+                        queue.offer(new int[]{xChild, yChild});
                     }
                 }
             }

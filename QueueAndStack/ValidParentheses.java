@@ -53,7 +53,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>字符串</li></div></div><br><div><li>👍 3456</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
 import java.util.HashMap;
 import java.util.Map;

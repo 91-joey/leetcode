@@ -51,7 +51,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>递归</li><li>字符串</li></div></div><br><div><li>👍 1269</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>广度优先搜索</li><li>图</li></div></div><br><div><li>👍 268</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.QueueAndStack;
 
 import java.util.*;
 
