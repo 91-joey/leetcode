@@ -149,7 +149,7 @@ public class DesignLinkedList {
 //        用哨兵节点作为伪头，简化插入和删除真头时真头指针的变化
     class MyLinkedList2 {
         private int size;
-        private MyLinkedListNode head;
+        private final MyLinkedListNode head;
 
         public MyLinkedList2() {
             size = 0;
