@@ -113,6 +113,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LinkedListCycle.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LinkedListCycle.md" />
+              <option name="frontendQuestionId" value="leetcode.cn141" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LinkedListCycle.java" />
+              <option name="titleSlug" value="linked-list-cycle" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinStack.java">
           <value>
             <LeetcodeEditor>

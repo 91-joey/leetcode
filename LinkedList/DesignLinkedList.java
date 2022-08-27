@@ -40,7 +40,7 @@ package org.example.leetcode.problems.LinkedList;
 //开题时间：2022-08-26 12:21:24
 public class DesignLinkedList {
     public static void main(String[] args) {
-        MyLinkedList linkedList = new MyLinkedList();
+        MyLinkedList3 linkedList = new MyLinkedList3();
 //        linkedList.addAtHead(7);
 //        linkedList.addAtHead(2);
 //        linkedList.addAtHead(1);
@@ -53,9 +53,26 @@ public class DesignLinkedList {
 //        linkedList.addAtHead(4);
 //        linkedList.addAtIndex(5, 0);
 //        linkedList.addAtHead(6);
-        linkedList.addAtTail(1);
+
+//        linkedList.addAtTail(1);
+//        linkedList.addAtTail(3);
+//        System.out.println(linkedList.get(1));
+
+
+//["MyLinkedList","addAtHead","addAtTail","addAtIndex","get","deleteAtIndex","get","get","deleteAtIndex","deleteAtIndex","get","deleteAtIndex","get"]
+//[[],[1],[3],[1,2],[1],[1],[1],[3],[3],[0],[0],[0],[0]]
+        linkedList.addAtHead(1);
         linkedList.addAtTail(3);
+        linkedList.addAtIndex(1, 2);
         System.out.println(linkedList.get(1));
+        linkedList.deleteAtIndex(1);
+        System.out.println(linkedList.get(1));
+        System.out.println(linkedList.get(3));
+        linkedList.deleteAtIndex(3);
+        linkedList.deleteAtIndex(0);
+        System.out.println(linkedList.get(0));
+        linkedList.deleteAtIndex(0);
+        System.out.println(linkedList.get(0));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -147,6 +164,7 @@ public class DesignLinkedList {
     //    总结两点：
 //        链表是链表节点的集合，所以链表和链表节点应该分开定义，我之前给定义在一块了。
 //        用哨兵节点作为伪头，简化插入和删除真头时真头指针的变化
+    //2.官解一：单链表
     class MyLinkedList2 {
         private int size;
         private final MyLinkedListNode head;
@@ -204,7 +222,7 @@ public class DesignLinkedList {
         }
     }
 
-    class MyLinkedListNode {
+    static class MyLinkedListNode {
         int val;
         MyLinkedListNode next;
 
@@ -213,6 +231,71 @@ public class DesignLinkedList {
 
         public MyLinkedListNode(int val) {
             this.val = val;
+        }
+    }
+
+
+    //3.单链表（无哨兵节点）
+    static class MyLinkedList3 {
+        private int size;
+        private MyLinkedListNode head;
+
+        public MyLinkedList3() {
+            size = 0;
+        }
+
+        public int get(int index) {
+            if (index < 0 || index >= size) {
+                return -1;
+            } else {
+                MyLinkedListNode target = head;
+                for (int i = 0; i < index; i++) {
+                    target = target.next;
+                }
+                return target.val;
+            }
+        }
+
+        public void addAtHead(int val) {
+            MyLinkedListNode newNode = new MyLinkedListNode(val);
+            newNode.next = head;
+            head = newNode;
+            size++;
+        }
+
+        public void addAtTail(int val) {
+            addAtIndex(size, val);
+        }
+
+        public void addAtIndex(int index, int val) {
+            if (index <= 0) {
+                addAtHead(val);
+            } else if (index <= size) {
+                MyLinkedListNode newNode = new MyLinkedListNode(val);
+                MyLinkedListNode prevNewNode = head;
+                for (int i = 0; i < index - 1; i++) {
+                    prevNewNode = prevNewNode.next;
+                }
+                newNode.next = prevNewNode.next;
+                prevNewNode.next = newNode;
+                size++;
+            }
+        }
+
+        public void deleteAtIndex(int index) {
+            if (index < size) {
+                if (index == 0) {
+                    head = head.next;
+                    size--;
+                } else if (0 < index) {
+                    MyLinkedListNode prevDeletedNode = head;
+                    for (int i = 0; i < index - 1; i++) {
+                        prevDeletedNode = prevDeletedNode.next;
+                    }
+                    prevDeletedNode.next = prevDeletedNode.next.next;
+                    size--;
+                }
+            }
         }
     }
 
