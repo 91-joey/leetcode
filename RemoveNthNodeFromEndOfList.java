@@ -43,25 +43,115 @@ package org.example.leetcode.problems;
 
 //19.删除链表的倒数第 N 个结点
 //开题时间：2022-08-28 10:39:31
-public class RemoveNthNodeFromEndOfList{
-  public static void main(String[] args) {
-       Solution solution = new RemoveNthNodeFromEndOfList().new Solution();
-  }
-//leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
-class Solution {
-    public ListNode removeNthFromEnd(ListNode head, int n) {
-
+public class RemoveNthNodeFromEndOfList {
+    public static void main(String[] args) {
+        Solution solution = new RemoveNthNodeFromEndOfList().new Solution();
     }
-}
+//leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+        //1.计算链表长度（单指针） n   1
+        public ListNode removeNthFromEnd(ListNode head, int n) {
+            int size = getSize(head);
+
+            if (n == size) {
+                return head.next;
+            } else {
+                ListNode pointer = head;
+                for (int i = 0; i < size - n - 1; i++) {
+                    pointer = pointer.next;
+                }
+                pointer.next = pointer.next.next;
+
+                return head;
+            }
+        }
+
+        //2.双指针 n   1
+        public ListNode removeNthFromEnd2(ListNode head, int n) {
+            ListNode fast = head;
+            for (int i = 0; i < n; i++) {
+                fast = fast.next;
+            }
+
+            if (fast == null) {
+                return head.next;
+            } else {
+                ListNode slow = head;
+                while (fast.next != null) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                slow.next = slow.next.next;
+                return head;
+            }
+        }
+
+        //GJ1.计算链表长度（单指针） n   1
+        //要点：使用哨兵节点（哑结点dummy node)
+        public ListNode removeNthFromEndGJ1(ListNode head, int n) {
+            int size = getSize(head);
+
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+
+            ListNode pointer = dummy;
+            for (int i = 0; i < size - n; i++) {
+                pointer = pointer.next;
+            }
+            pointer.next = pointer.next.next;
+
+            return dummy.next;
+        }
+
+        //GJ2.双指针 n   1
+        //要点：使用哨兵节点（哑结点dummy node)
+        public ListNode removeNthFromEndGJ2(ListNode head, int n) {
+            ListNode fast = head;
+            for (int i = 0; i < n; i++) {
+                fast = fast.next;
+            }
+
+            ListNode dummy = new ListNode(0);
+            dummy.next = head;
+            ListNode slow = dummy;
+            while (fast != null) {
+                slow = slow.next;
+                fast = fast.next;
+            }
+            slow.next = slow.next.next;
+            return dummy.next;
+        }
+
+        private int getSize(ListNode head) {
+            int size = 0;
+            ListNode pointer = head;
+            while (pointer != null) {
+                size++;
+                pointer = pointer.next;
+            }
+            return size;
+        }
+    }
 //leetcode submit region end(Prohibit modification and deletion)
+
+    class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode(int x) {
+            val = x;
+            next = null;
+        }
+    }
 }
