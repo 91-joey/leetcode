@@ -43,11 +43,13 @@
 //<div><div>Related Topics</div><div><li>递归</li><li>链表</li></div></div><br><div><li>👍 2725</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
+import org.example.leetcode.problems.LinkedList.common.ListNode;
+
 //206.反转链表
 //开题时间：2022-08-29 11:33:22
 public class ReverseLinkedList {
     public static void main(String[] args) {
-        Solution solution = new ReverseLinkedList().new Solution();
+        Solution solution = new Solution();
         ListNode listNode5 = new ListNode(5);
         ListNode listNode4 = new ListNode(4, listNode5);
         ListNode listNode3 = new ListNode(3, listNode4);
@@ -57,7 +59,7 @@ public class ReverseLinkedList {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
+    public static class Solution {
         //1.迭代+哨兵节点 n   1
         public ListNode reverseList(ListNode head) {
             if (head == null) {
@@ -113,7 +115,7 @@ public class ReverseLinkedList {
         }
 
         //☆☆☆☆☆GJ1.迭代   n   1
-        public ListNode reverseListGJ1(ListNode head) {
+        public static ListNode reverseListGJ1(ListNode head) {
             ListNode prev = null;
             ListNode curr = head;
             while (curr != null) {
@@ -158,20 +160,4 @@ public class ReverseLinkedList {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }

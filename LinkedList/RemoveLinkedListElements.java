@@ -36,6 +36,8 @@
 //<div><div>Related Topics</div><div><li>递归</li><li>链表</li></div></div><br><div><li>👍 1008</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
+import org.example.leetcode.problems.LinkedList.common.ListNode;
+
 //203.移除链表元素
 //开题时间：2022-08-30 08:51:18
 public class RemoveLinkedListElements {
@@ -82,20 +84,4 @@ public class RemoveLinkedListElements {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }

@@ -35,7 +35,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>链表</li></div></div><br><div><li>👍 638</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.LinkedList;
+
+import org.example.leetcode.problems.LinkedList.common.ListNode;
 
 //328.奇偶链表
 //开题时间：2022-08-30 10:01:59
@@ -78,20 +80,4 @@ public class OddEvenLinkedList {
     }
 
     //leetcode submit region end(Prohibit modification and deletion)
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 }
