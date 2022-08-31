@@ -36,6 +36,9 @@
 //<div><div>Related Topics</div><div><li>设计</li><li>链表</li></div></div><br><div><li>👍 539</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
+import org.example.leetcode.problems.LinkedList.common.DoublyListNode;
+import org.example.leetcode.problems.LinkedList.common.ListNode;
+
 //707.设计链表
 //开题时间：2022-08-26 12:21:24
 public class DesignLinkedList {
@@ -76,6 +79,7 @@ public class DesignLinkedList {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    //1.单链表(自解)
     static class MyLinkedList {
         private int val;
         private MyLinkedList head;
@@ -166,23 +170,17 @@ public class DesignLinkedList {
 //        用哨兵节点作为伪头，简化插入和删除真头时真头指针的变化
     //2.官解一：单链表
     class MyLinkedList2 {
-        private int size;
-        private final MyLinkedListNode head;
+        private int size = 0;
+        private final ListNode head = new ListNode();
 
         public MyLinkedList2() {
-            size = 0;
-            head = new MyLinkedListNode();
         }
 
         public int get(int index) {
             if (index < 0 || index >= size) {
                 return -1;
             } else {
-                MyLinkedListNode target = head;
-                for (int i = 0; i <= index; i++) {
-                    target = target.next;
-                }
-                return target.val;
+                return getNode(index).val;
             }
         }
 
@@ -199,46 +197,33 @@ public class DesignLinkedList {
                 if (index < 0) {
                     index = 0;
                 }
-                MyLinkedListNode newNode = new MyLinkedListNode(val);
-                MyLinkedListNode prevNewNode = head;
-                for (int i = 0; i < index; i++) {
-                    prevNewNode = prevNewNode.next;
-                }
-                newNode.next = prevNewNode.next;
-                prevNewNode.next = newNode;
+                ListNode prev = getNode(index - 1);
+                prev.next = new ListNode(val, prev.next);
                 size++;
             }
         }
 
         public void deleteAtIndex(int index) {
             if (0 <= index && index < size) {
-                MyLinkedListNode prevDeletedNode = head;
-                for (int i = 0; i < index; i++) {
-                    prevDeletedNode = prevDeletedNode.next;
-                }
-                prevDeletedNode.next = prevDeletedNode.next.next;
+                ListNode prev = getNode(index - 1);
+                prev.next = prev.next.next;
                 size--;
             }
         }
-    }
 
-    static class MyLinkedListNode {
-        int val;
-        MyLinkedListNode next;
-
-        public MyLinkedListNode() {
-        }
-
-        public MyLinkedListNode(int val) {
-            this.val = val;
+        private ListNode getNode(int index) {
+            ListNode ans = head;
+            for (int i = 0; i <= index; i++) {
+                ans = ans.next;
+            }
+            return ans;
         }
     }
-
 
     //3.单链表（无哨兵节点）
     static class MyLinkedList3 {
         private int size;
-        private MyLinkedListNode head;
+        private ListNode head;
 
         public MyLinkedList3() {
             size = 0;
@@ -248,7 +233,7 @@ public class DesignLinkedList {
             if (index < 0 || index >= size) {
                 return -1;
             } else {
-                MyLinkedListNode target = head;
+                ListNode target = head;
                 for (int i = 0; i < index; i++) {
                     target = target.next;
                 }
@@ -257,7 +242,7 @@ public class DesignLinkedList {
         }
 
         public void addAtHead(int val) {
-            MyLinkedListNode newNode = new MyLinkedListNode(val);
+            ListNode newNode = new ListNode(val);
             newNode.next = head;
             head = newNode;
             size++;
@@ -271,8 +256,8 @@ public class DesignLinkedList {
             if (index <= 0) {
                 addAtHead(val);
             } else if (index <= size) {
-                MyLinkedListNode newNode = new MyLinkedListNode(val);
-                MyLinkedListNode prevNewNode = head;
+                ListNode newNode = new ListNode(val);
+                ListNode prevNewNode = head;
                 for (int i = 0; i < index - 1; i++) {
                     prevNewNode = prevNewNode.next;
                 }
@@ -288,7 +273,7 @@ public class DesignLinkedList {
                     head = head.next;
                     size--;
                 } else if (0 < index) {
-                    MyLinkedListNode prevDeletedNode = head;
+                    ListNode prevDeletedNode = head;
                     for (int i = 0; i < index - 1; i++) {
                         prevDeletedNode = prevDeletedNode.next;
                     }
@@ -296,6 +281,79 @@ public class DesignLinkedList {
                     size--;
                 }
             }
+        }
+    }
+
+    //双链表
+    class MyLinkedListA {
+        private int size = 0;
+        private final DoublyListNode head = new DoublyListNode();
+        private final DoublyListNode tail = new DoublyListNode();
+
+        public MyLinkedListA() {
+            head.next = tail;
+            tail.prev = head;
+        }
+
+        //同单链表↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        public int get(int index) {
+            if (index < 0 || index >= size) {
+                return -1;
+            } else {
+                return getNode(index).val;
+            }
+        }
+
+        public void addAtHead(int val) {
+            addAtIndex(0, val);
+        }
+
+        public void addAtTail(int val) {
+            addAtIndex(size, val);
+        }
+        //同单链表↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+        public void addAtIndex(int index, int val) {
+            if (index <= size) {
+                if (index < 0) {
+                    index = 0;
+                }
+                DoublyListNode prev = getNode(index - 1);
+                DoublyListNode succ = prev.next;
+                DoublyListNode toAdd = new DoublyListNode(val, prev, succ);
+                prev.next = toAdd;
+                succ.prev = toAdd;
+                size++;
+            }
+        }
+
+        public void deleteAtIndex(int index) {
+            if (0 <= index && index < size) {
+                DoublyListNode prev = getNode(index - 1);
+                DoublyListNode succ = prev.next.next;
+                succ.prev = prev;
+                prev.next = succ;
+                size--;
+            }
+        }
+
+        //利用双链表特性，加快获取节点
+        public DoublyListNode getNode(int index) {
+            DoublyListNode ans;
+
+            if (index < size / 2) {
+                ans = head;
+                for (int i = 0; i <= index; i++) {
+                    ans = ans.next;
+                }
+            } else {
+                ans = tail;
+                for (int i = 0; i < size - index; i++) {
+                    ans = ans.prev;
+                }
+            }
+
+            return ans;
         }
     }
 
