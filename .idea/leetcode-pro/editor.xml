@@ -80,6 +80,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FlattenAMultilevelDoublyLinkedList.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FlattenAMultilevelDoublyLinkedList.md" />
+              <option name="frontendQuestionId" value="leetcode.cn430" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FlattenAMultilevelDoublyLinkedList.java" />
+              <option name="titleSlug" value="flatten-a-multilevel-doubly-linked-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FloodFill.java">
           <value>
             <LeetcodeEditor>
