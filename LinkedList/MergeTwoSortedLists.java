@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>递归</li><li>链表</li></div></div><br><div><li>👍 2648</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.LinkedList;
 
 import org.example.leetcode.problems.LinkedList.common.ListNode;
 
