@@ -5,6 +5,7 @@ public class Node {
     public Node prev;
     public Node next;
     public Node child;
+    public Node random;
 
     public Node() {
     }
@@ -19,10 +20,10 @@ public class Node {
         next.prev = this;
     }
 
-    public Node(int val, Node next,Node child) {
+    public Node(int val, Node next, Node child) {
         this.val = val;
         this.next = next;
         next.prev = this;
-        this.child=child;
+        this.child = child;
     }
 };
