@@ -69,6 +69,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DesignHashmap.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DesignHashmap.md" />
+              <option name="frontendQuestionId" value="leetcode.cn706" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DesignHashmap.java" />
+              <option name="titleSlug" value="design-hashmap" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DesignHashset.java">
           <value>
             <LeetcodeEditor>
