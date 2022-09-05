@@ -78,7 +78,7 @@ public class IsomorphicStrings {
             return true;
         }
 
-        //高分解（数组）   n   1
+        //高分解（数组）   n   m
         public boolean isIsomorphic2(String s, String t) {
             int[] sArr = new int[128];
             int[] tArr = new int[128];
