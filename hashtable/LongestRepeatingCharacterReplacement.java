@@ -48,7 +48,7 @@ public class LongestRepeatingCharacterReplacement {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //双指针+哈希表   n   n
+        //滑动窗口（双指针+哈希表）   n   n
         public int characterReplacement(String s, int k) {
             Map<Character, Integer> map = new HashMap<>();
             int max = 1;
@@ -73,95 +73,33 @@ public class LongestRepeatingCharacterReplacement {
             return max;
         }
 
-        //双指针+数组   n   A
+        //滑动窗口（双指针+数组）   n   A
         public int characterReplacement2(String s, int k) {
             int length = s.length();
+//            char[] charInts = s.toCharArray();
+            int[] charInts = new int[length];
+            for (int i = 0; i < length; i++) {
+                charInts[i] = s.charAt(i) - 'A';
+            }
             int maxCharCnt = 1;
-            int max = 1;
+//            int max = 1;
             int[] freqs = new int[26];
             int l = 0;
-            char[] chars = s.toCharArray();
 
             for (int r = 0; r < length; r++) {
-                int freq = ++freqs[chars[r] - 'A'];
-                maxCharCnt = Math.max(maxCharCnt, freq);
+//                maxCharCnt = Math.max(maxCharCnt, ++freqs[charInts[r] - 'A']);
+                maxCharCnt = Math.max(maxCharCnt, ++freqs[charInts[r]]);
                 if (k <= r - l - maxCharCnt) {
-                    max = Math.max(max, r - l);
-                    freqs[chars[l] - 'A']--;
+//                    max = Math.max(max, r - l);
+//                    freqs[charInts[l] - 'A']--;
+                    freqs[charInts[l]]--;
                     l++;
                 }
             }
 
-            max = Math.max(max, length - l);
-            return max;
-        }
-
-        public int characterReplacement3(String s, int k) {
-            int length = s.length();
-            int max = 1;
-            if (k == 0) {
-                for (int i = 0, j = 1; j < length; j++) {
-                    if (max > length - 1 - i) {
-                        break;
-                    }
-                    if (s.charAt(j) != s.charAt(j - 1)) {
-                        max = Math.max(max, j - i);
-                        i = j;
-                    } else if (j == length - 1) {
-                        max = Math.max(max, j - i + 1);
-                    }
-                }
-                return max;
-            }
-
-            Entry[] entries = new Entry[2];
-            entries[0] = new Entry(s.charAt(0), 1);
-            int lastCommonLength = 1;
-            for (int i = 1; i < length; i++) {
-                char cPre = s.charAt(i - 1);
-                char c = s.charAt(i);
-
-                if (entries[0].c == c) {
-                    entries[0].cnt++;
-                } else if (entries[1] == null) {
-                    entries[1] = new Entry(c, 1);
-                } else if (entries[1].c == c) {
-                    entries[1].cnt++;
-                } else {
-                    max = Math.max(max, entries[0].cnt + entries[1].cnt);
-                    entries[0] = new Entry(cPre, lastCommonLength);
-                    entries[1] = new Entry(c, 1);
-                }
-
-                if (entries[1] != null && k == Math.min(entries[0].cnt, entries[1].cnt)) {
-                    max = Math.max(max, entries[0].cnt + entries[1].cnt);
-                    entries[0].cnt--;
-                }
-
-                if (c == cPre) {
-                    lastCommonLength++;
-                } else {
-                    lastCommonLength = 1;
-                }
-            }
-
-            if (entries[1] == null) {
-                return length;
-            }
-
-            max = Math.max(max, entries[0].cnt + entries[1].cnt);
-
-            return max;
-        }
-
-        class Entry {
-            public char c;
-            public int cnt;
-
-            public Entry(char c, int cnt) {
-                this.c = c;
-                this.cnt = cnt;
-            }
+//            max = Math.max(max, length - l);
+//            return max;
+            return length - l;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
