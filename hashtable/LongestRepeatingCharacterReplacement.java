@@ -43,7 +43,8 @@ import java.util.Map;
 public class LongestRepeatingCharacterReplacement {
     public static void main(String[] args) {
         Solution solution = new LongestRepeatingCharacterReplacement().new Solution();
-        System.out.println(solution.characterReplacement2("ABAB", 2));
+//        System.out.println(solution.characterReplacement2("ABAB", 2));
+        System.out.println(solution.characterReplacement2("AAABCDEFGHI", 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -82,7 +83,7 @@ public class LongestRepeatingCharacterReplacement {
                 charInts[i] = s.charAt(i) - 'A';
             }
             int maxCharCnt = 1;
-//            int max = 1;
+            int max = 1;
             int[] freqs = new int[26];
             int l = 0;
 
@@ -90,16 +91,16 @@ public class LongestRepeatingCharacterReplacement {
 //                maxCharCnt = Math.max(maxCharCnt, ++freqs[charInts[r] - 'A']);
                 maxCharCnt = Math.max(maxCharCnt, ++freqs[charInts[r]]);
                 if (k <= r - l - maxCharCnt) {
-//                    max = Math.max(max, r - l);
+                    max = Math.max(max, r - l);
 //                    freqs[charInts[l] - 'A']--;
                     freqs[charInts[l]]--;
                     l++;
                 }
             }
 
-//            max = Math.max(max, length - l);
-//            return max;
-            return length - l;
+            max = Math.max(max, length - l);
+            return max;
+//            return length - l;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
