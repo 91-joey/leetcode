@@ -58,7 +58,7 @@
 //<div><div>Related Topics</div><div><li>哈希表</li><li>链表</li></div></div><br><div><li>👍 978</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
-import org.example.leetcode.problems.LinkedList.common.Node;
+import org.example.leetcode.problems.common.Node;
 
 import java.util.*;
 

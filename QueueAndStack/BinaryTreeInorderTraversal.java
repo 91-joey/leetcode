@@ -39,6 +39,8 @@
 //<div><div>Related Topics</div><div><li>栈</li><li>树</li><li>深度优先搜索</li><li>二叉树</li></div></div><br><div><li>👍 1534</li><li>👎 0</li></div>
 package org.example.leetcode.problems.QueueAndStack;
 
+import org.example.leetcode.problems.common.TreeNode;
+
 import java.util.*;
 
 //94.二叉树的中序遍历
@@ -63,24 +65,6 @@ public class BinaryTreeInorderTraversal {
 
     //leetcode submit region begin(Prohibit modification and deletion)
 //Definition for a binary tree node.
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 
     class Solution {
         //1.DFS+递归

@@ -32,7 +32,7 @@
 //<div><div>Related Topics</div><div><li>栈</li><li>递归</li><li>链表</li><li>双指针</li></div></div><br><div><li>👍 1489</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
-import org.example.leetcode.problems.LinkedList.common.ListNode;
+import org.example.leetcode.problems.common.ListNode;
 
 import java.util.Deque;
 import java.util.LinkedList;

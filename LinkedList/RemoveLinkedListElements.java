@@ -36,7 +36,7 @@
 //<div><div>Related Topics</div><div><li>递归</li><li>链表</li></div></div><br><div><li>👍 1008</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
-import org.example.leetcode.problems.LinkedList.common.ListNode;
+import org.example.leetcode.problems.common.ListNode;
 
 //203.移除链表元素
 //开题时间：2022-08-30 08:51:18

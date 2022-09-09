@@ -44,6 +44,8 @@
 //<div><div>Related Topics</div><div><li>设计</li><li>数组</li><li>哈希表</li><li>链表</li><li>哈希函数</li></div></div><br><div><li>👍 320</li><li>👎 0</li></div>
 package org.example.leetcode.problems.hashtable;
 
+import org.example.leetcode.problems.common.Entry;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -59,20 +61,20 @@ public class DesignHashmap {
         private final LinkedList[] table = new LinkedList[base];
 
         public MyHashMap() {
-            Arrays.fill(table, new LinkedList<Entry>());
+            Arrays.fill(table, new LinkedList<Entry<Integer,Integer>>());
         }
 
         public void put(int key, int value) {
-            Entry entry = getEntry(key);
+            Entry<Integer, Integer> entry = getEntry(key);
             if (entry != null) {
                 entry.value = value;
             } else {
-                table[hash(key)].offer(new Entry(key, value));
+                table[hash(key)].offer(new Entry<>(key, value));
             }
         }
 
         public int get(int key) {
-            Entry entry = getEntry(key);
+            Entry<Integer,Integer> entry = getEntry(key);
             if (entry != null) {
                 return entry.value;
             } else {
@@ -81,15 +83,15 @@ public class DesignHashmap {
         }
 
         public void remove(int key) {
-            Entry entry = getEntry(key);
+            Entry<Integer, Integer> entry = getEntry(key);
             if (entry != null) {
                 table[hash(key)].remove(entry);
             }
         }
 
-        private Entry getEntry(int key) {
-            LinkedList<Entry> bucket = table[hash(key)];
-            for (Entry entry : bucket) {
+        private Entry<Integer,Integer> getEntry(int key) {
+            LinkedList<Entry<Integer,Integer>> bucket = table[hash(key)];
+            for (Entry<Integer,Integer> entry : bucket) {
                 if (entry.key == key) {
                     return entry;
                 }
@@ -102,17 +104,7 @@ public class DesignHashmap {
         }
     }
 
-    public class Entry {
-        public int key;
-        public int value;
-
-        public Entry(int key, int value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
-/**
+    /**
  * Your MyHashMap object will be instantiated and called as such:
  * MyHashMap obj = new MyHashMap();
  * obj.put(key,value);

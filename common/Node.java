@@ -1,4 +1,4 @@
-package org.example.leetcode.problems.LinkedList.common;
+package org.example.leetcode.problems.common;
 
 public class Node {
     public int val;

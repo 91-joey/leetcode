@@ -41,7 +41,7 @@
 //<div><div>Related Topics</div><div><li>链表</li><li>双指针</li></div></div><br><div><li>👍 2189</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
-import org.example.leetcode.problems.LinkedList.common.ListNode;
+import org.example.leetcode.problems.common.ListNode;
 
 //19.删除链表的倒数第 N 个结点
 //开题时间：2022-08-28 10:39:31
