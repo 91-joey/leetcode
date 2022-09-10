@@ -256,6 +256,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/JewelsAndStones.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/JewelsAndStones.md" />
+              <option name="frontendQuestionId" value="leetcode.cn771" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/JewelsAndStones.java" />
+              <option name="titleSlug" value="jewels-and-stones" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/KeysAndRooms.java">
           <value>
             <LeetcodeEditor>
