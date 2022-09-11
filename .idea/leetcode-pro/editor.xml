@@ -234,6 +234,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/InsertDeleteGetrandomO1.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/InsertDeleteGetrandomO1.md" />
+              <option name="frontendQuestionId" value="leetcode.cn380" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/InsertDeleteGetrandomO1.java" />
+              <option name="titleSlug" value="insert-delete-getrandom-o1" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/IntersectionOfTwoArrays.java">
           <value>
             <LeetcodeEditor>
