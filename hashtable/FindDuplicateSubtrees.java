@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>哈希表</li><li>二叉树</li></div></div><br><div><li>👍 625</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.hashtable;
 
 import org.example.leetcode.problems.common.Entry;
 import org.example.leetcode.problems.common.TreeNode;

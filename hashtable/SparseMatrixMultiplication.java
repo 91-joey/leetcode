@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>矩阵</li></div></div><br><div><li>👍 71</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.hashtable;
 
 import java.util.ArrayList;
 import java.util.List;

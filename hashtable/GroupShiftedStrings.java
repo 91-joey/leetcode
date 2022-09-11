@@ -19,7 +19,7 @@
 //<strong>解释：</strong>可以认为字母表首尾相接，所以 'z' 的后续为 'a'，所以 ["az","ba"] 也满足 “移位” 操作规律。</pre>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>字符串</li></div></div><br><div><li>👍 93</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.hashtable;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -29,7 +29,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>字符串</li></div></div><br><div><li>👍 715</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.hashtable;
 
 import java.util.HashSet;
 import java.util.Set;
