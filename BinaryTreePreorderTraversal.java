@@ -78,7 +78,7 @@ public class BinaryTreePreorderTraversal {
         }
 
         //DFS+栈 n   n
-        public List<Integer> preorderTraversal2(TreeNode root) {
+        public List<Integer> preorderTraversal_stack(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             if (root == null)
                 return list;
@@ -98,7 +98,7 @@ public class BinaryTreePreorderTraversal {
         }
 
         //Morris解法  n   1
-        public List<Integer> preorderTraversal3(TreeNode root) {
+        public List<Integer> preorderTraversal_morris(TreeNode root) {
             List<Integer> list = new ArrayList<>();
             if (root == null)
                 return list;
