@@ -94,8 +94,9 @@ public class SymmetricTree {
         //DFS+栈
         public boolean isSymmetric_stack(TreeNode root) {
             Deque<TreeNode> stack = new LinkedList<>();
-            stack.push(root.left);
             stack.push(root.right);
+            stack.push(root.left);
+
             while (!stack.isEmpty()) {
                 TreeNode l = stack.pop();
                 TreeNode r = stack.pop();
@@ -114,58 +115,36 @@ public class SymmetricTree {
             return true;
         }
 
+        //DFS+queue
+        public boolean isSymmetric_queue(TreeNode root) {
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root.left);
+            queue.offer(root.right);
+
+            while (!queue.isEmpty()) {
+                TreeNode l = queue.poll();
+                TreeNode r = queue.poll();
+                if (l == null ^ r == null) {
+                    return false;
+                } else if (l != null) {
+                    if ((l.val != r.val))
+                        return false;
+                    queue.offer(l.left);
+                    queue.offer(r.right);
+                    queue.offer(l.right);
+                    queue.offer(r.left);
+                }
+            }
+
+            return true;
+        }
+
         //Morris
         public boolean isSymmetric_morris(TreeNode root) {
             TreeNode curL = root.left;
             TreeNode curR = root.right;
-            if (curL == null ^ curR == null)
-                return false;
-            TreeNode l;
-            TreeNode r;
+
             while (curL != null && curR != null) {
-                l = curL.left;
-                r = curR.right;
-                if (l != null && r != null) {
-                    while (l.right != null && l.right != curL &&
-                            r.left != null && r.left != curR) {
-                        l = l.right;
-                        r = r.left;
-                    }
-                    if (l.right == null && r.left == null) {
-                        if (curL.val != curR.val)
-                            return false;
-                        l.right = curL;
-                        r.left = curR;
-                        curL = curL.left;
-                        curR = curR.right;
-                    } else if (l.right == curL && r.left == curR) {
-                        l.right = null;
-                        r.left = null;
-                        curL = curL.right;
-                        curR = curR.left;
-                    } else {
-                        return false;
-                    }
-                } else if (l == null && r == null) {
-                    if (curL.val != curR.val)
-                        return false;
-                    curL = curL.right;
-                    curR = curR.left;
-                } else {
-                    return false;
-                }
-            }
-
-            return curL == null && curR == null;
-        }
-
-        //Morris2
-        public boolean isSymmetric_morris2(TreeNode root) {
-            TreeNode curL = root;
-            TreeNode curR = root;
-            boolean first = true;
-            while (curL != null && curR != null && curL != curR || first) {
-                first = false;
                 TreeNode l = curL.left;
                 TreeNode r = curR.right;
                 if (l != null && r != null) {
@@ -175,6 +154,7 @@ public class SymmetricTree {
                         r = r.left;
                     }
                     if (l.right == null && r.left == null) {
+                        //节点值不同
                         if (curL.val != curR.val)
                             return false;
                         l.right = curL;
@@ -186,20 +166,26 @@ public class SymmetricTree {
                         r.left = null;
                         curL = curL.right;
                         curR = curR.left;
+                    //结构不同
                     } else {
                         return false;
                     }
                 } else if (l == null && r == null) {
+                    //节点值不同
                     if (curL.val != curR.val)
                         return false;
                     curL = curL.right;
                     curR = curR.left;
+                //结构不同
                 } else {
                     return false;
                 }
             }
 
-            return curL == curR;
+            //根节点的左右子树全空：true  -> root.left == null && root.right == null
+            //根节点的左右子树单空：false -> root.left == null ^  root.right == null
+            //遍历完成：          true  -> curL == null && curR == null
+            return curL == null && curR == null;
         }
 
         //BFS+queue
@@ -209,7 +195,7 @@ public class SymmetricTree {
             queueL.offer(root.left);
             queueR.offer(root.right);
 
-            while (!queueL.isEmpty() && !queueR.isEmpty()) {
+            while (!queueL.isEmpty()) {
                 int size = queueL.size();
                 for (int i = 0; i < size; i++) {
                     TreeNode pollL = queueL.poll();
@@ -226,7 +212,6 @@ public class SymmetricTree {
                         queueR.offer(pollR.left);
                     }
                 }
-
             }
 
             return true;
