@@ -19,9 +19,7 @@ package org.example.leetcode.problems;
 
 import org.example.leetcode.problems.common.TreeNode;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 //104.二叉树的最大深度
