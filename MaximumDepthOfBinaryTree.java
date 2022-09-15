@@ -42,7 +42,7 @@ public class MaximumDepthOfBinaryTree {
         private void DFS(TreeNode node, int depth) {
             if (node == null)
                 return;
-        //叶节点时，更新最大深度
+            //叶节点时，更新最大深度
             if (node.left == null && node.right == null) {
                 max = Math.max(max, depth);
                 return;
