@@ -104,19 +104,19 @@ public class BinaryTreePreorderTraversal {
                 return list;
 
             TreeNode cur = root;
-            TreeNode left;
+            TreeNode l;
             while (cur != null) {
-                left = cur.left;
-                if (left != null) {
-                    while (left.right != null && left.right != cur) {
-                        left = left.right;
+                l = cur.left;
+                if (l != null) {
+                    while (l.right != null && l.right != cur) {
+                        l = l.right;
                     }
-                    if (left.right == null) {
-                        left.right = cur;
+                    if (l.right == null) {
+                        l.right = cur;
                         list.add(cur.val);
                         cur = cur.left;
                     } else {
-                        left.right = null;
+                        l.right = null;
                         cur = cur.right;
                     }
                 } else {

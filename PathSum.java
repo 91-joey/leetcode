@@ -45,10 +45,7 @@ package org.example.leetcode.problems;
 
 import org.example.leetcode.problems.common.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 //112.路径总和
 //开题时间：2022-09-14 18:05:02
@@ -62,24 +59,58 @@ public class PathSum {
         //DFS+递归
         public boolean hasPathSum(TreeNode root, int targetSum) {
             if (root == null) return false;
-            if (root.left == null && root.right == null && root.val == targetSum) return true;
+            if (root.left == null && root.right == null) return root.val == targetSum;
             return hasPathSum(root.left, targetSum - root.val) ||
                     hasPathSum(root.right, targetSum - root.val);
         }
 
-        //DFS+栈 n   n
+        //DFS+栈
         public boolean hasPathSum_stack(TreeNode root, int targetSum) {
             if (root == null) return false;
             Deque<TreeNode> stack = new LinkedList<>();
             stack.push(root);
 
-            //todo
             while (!stack.isEmpty()) {
                 TreeNode pop = stack.pop();
-                if (pop.right != null)
-                    stack.push(pop.right);
-                if (pop.left != null)
-                    stack.push(pop.left);
+                if (pop.left == null && pop.right == null) {
+                    if (pop.val == targetSum)
+                        return true;
+                } else {
+                    if (pop.right != null) {
+                        pop.right.val += pop.val;
+                        stack.push(pop.right);
+                    }
+                    if (pop.left != null) {
+                        pop.left.val += pop.val;
+                        stack.push(pop.left);
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        //BFS+queue
+        public boolean hasPathSum_BFS(TreeNode root, int targetSum) {
+            if (root == null) return false;
+            Queue<TreeNode> queue = new LinkedList<>();
+            queue.offer(root);
+
+            while (!queue.isEmpty()) {
+                TreeNode poll = queue.poll();
+                if (poll.left == null && poll.right == null) {
+                    if (poll.val == targetSum)
+                        return true;
+                } else {
+                    if (poll.left != null) {
+                        poll.left.val += poll.val;
+                        queue.offer(poll.left);
+                    }
+                    if (poll.right != null) {
+                        poll.right.val += poll.val;
+                        queue.offer(poll.right);
+                    }
+                }
             }
 
             return false;
