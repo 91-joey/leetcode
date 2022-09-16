@@ -43,7 +43,7 @@
 package org.example.leetcode.problems.hashtable;
 
 import org.example.leetcode.problems.common.Entry;
-import org.example.leetcode.problems.common.TreeNode;
+import org.example.leetcode.problems.common.tree.TreeNode;
 
 import java.util.*;
 

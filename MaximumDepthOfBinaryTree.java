@@ -17,7 +17,7 @@
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>广度优先搜索</li><li>二叉树</li></div></div><br><div><li>👍 1371</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
-import org.example.leetcode.problems.common.TreeNode;
+import org.example.leetcode.problems.common.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

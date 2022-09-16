@@ -36,7 +36,7 @@
 //<div><div>Related Topics</div><div><li>递归</li><li>链表</li></div></div><br><div><li>👍 2648</li><li>👎 0</li></div>
 package org.example.leetcode.problems.LinkedList;
 
-import org.example.leetcode.problems.common.ListNode;
+import org.example.leetcode.problems.common.linkedlist.ListNode;
 
 //21.合并两个有序链表
 //开题时间：2022-08-31 14:40:02
