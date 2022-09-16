@@ -25,6 +25,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PopulatingNextRightPointersInEachNodeIi.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/PopulatingNextRightPointersInEachNodeIi.md" />
+              <option name="frontendQuestionId" value="leetcode.cn117" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/PopulatingNextRightPointersInEachNodeIi.java" />
+              <option name="titleSlug" value="populating-next-right-pointers-in-each-node-ii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

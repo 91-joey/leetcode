@@ -85,7 +85,7 @@ public class PopulatingNextRightPointersInEachNode {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //BFS+递归    n   1
+        //BFS+迭代    n   1
         public Node connectGJ2(Node root) {
             if (root == null) return null;
             Node leftMost = root;
