@@ -45,7 +45,8 @@ import java.util.Map;
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
     public static void main(String[] args) {
         Solution solution = new ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();
-        System.out.println(solution.buildTree2(new int[]{9,3,15,20,7},new int[]{9,15,7,20,3}));
+//        System.out.println(solution.buildTree2(new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3}));
+        System.out.println(solution.buildTree2(new int[]{15, 9, 10, 3, 20, 5, 7, 8, 4}, new int[]{15, 10, 9, 5, 4, 8, 7, 20, 3}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -79,29 +80,42 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
             return root;
         }
 
+/*
+             3
+            / \
+           9  20
+          / \   \
+         15 10   7
+                / \
+               5   8
+                    \
+                     4
+        inorder   = [15, 9, 10, 3, 20, 5, 7, 8, 4]
+        postorder = [15, 10, 9, 5, 4, 8, 7, 20, 3]
+*/
+        //迭代
         public TreeNode buildTree2(int[] inorder, int[] postorder) {
-            if (postorder == null || postorder.length == 0) {
-                return null;
-            }
-            TreeNode root = new TreeNode(postorder[postorder.length - 1]);
+            int length = postorder.length;
+            int inIdx = length - 1;
+            TreeNode root = new TreeNode(postorder[length - 1]);
             Deque<TreeNode> stack = new LinkedList<>();
             stack.push(root);
-            int inorderIndex = inorder.length - 1;
-            for (int i = postorder.length - 2; i >= 0; i--) {
-                int postorderVal = postorder[i];
-                TreeNode node = stack.peek();
-                if (node.val != inorder[inorderIndex]) {
-                    node.right = new TreeNode(postorderVal);
-                    stack.push(node.right);
+
+            for (int i = length - 2; i >= 0; i--) {
+                TreeNode peek = stack.peek();
+                TreeNode node = new TreeNode(postorder[i]);
+                if (peek.val != inorder[inIdx]) {
+                    peek.right = node;
                 } else {
-                    while (!stack.isEmpty() && stack.peek().val == inorder[inorderIndex]) {
-                        node = stack.pop();
-                        inorderIndex--;
+                    while (!stack.isEmpty() && stack.peek().val == inorder[inIdx]) {
+                        peek = stack.pop();
+                        inIdx--;
                     }
-                    node.left = new TreeNode(postorderVal);
-                    stack.push(node.left);
+                    peek.left = node;
                 }
+                stack.push(node);
             }
+
             return root;
         }
     }
