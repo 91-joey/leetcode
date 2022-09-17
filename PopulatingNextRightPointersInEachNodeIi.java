@@ -59,6 +59,19 @@ import java.util.Queue;
 public class PopulatingNextRightPointersInEachNodeIi {
     public static void main(String[] args) {
         Solution solution = new PopulatingNextRightPointersInEachNodeIi().new Solution();
+        Node node1 = new Node(1);
+        Node node2 = new Node(2);
+        Node node3 = new Node(3);
+        Node node4 = new Node(4);
+        Node node5 = new Node(5);
+        Node node6 = new Node(6);
+        Node node7 = new Node(7);
+        node1.left = node2;
+        node1.right = node3;
+        node2.left = node4;
+        node2.right = node5;
+        node3.right = node7;
+        System.out.println(solution.connect2(node1));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -85,22 +98,21 @@ public class PopulatingNextRightPointersInEachNodeIi {
             return root;
         }
 
+        //BFS（递归）
         public Node connect2(Node root) {
             if (root == null) return null;
 
             Node start = null;
-            for (Node tierFirst = root; tierFirst != null; tierFirst = tierFirst.next) {
+            for (Node tierFirst = root; tierFirst != null; ) {
                 if (tierFirst.left != null) {
-                    start = tierFirst.left;
                     helper(tierFirst, true);
-                    break;
+                    tierFirst = tierFirst.left;
                 } else if (tierFirst.right != null) {
-                    start = tierFirst.right;
                     helper(tierFirst, false);
-                    break;
+                    tierFirst = tierFirst.right;
+                } else {
+                    tierFirst = tierFirst.next;
                 }
-                //todo
-                tierFirst = start;
             }
 
             return root;
@@ -115,7 +127,7 @@ public class PopulatingNextRightPointersInEachNodeIi {
                 }
             }
             if (start.next == null) {
-                for (Node tmp = node.next; tmp != null; tmp = node.next) {
+                for (Node tmp = node.next; tmp != null; tmp = tmp.next) {
                     if (tmp.left != null) {
                         start.next = tmp.left;
                         helper(tmp, true);
@@ -126,7 +138,36 @@ public class PopulatingNextRightPointersInEachNodeIi {
                         break;
                     }
                 }
+            } else {
+                helper(node, false);
             }
+        }
+
+
+        //☆☆☆☆☆链表法（哑结点！！）
+        public Node connect3(Node root) {
+            if (root == null) return null;
+            //引入哑结点，不用算计每一层的头结点
+            Node dummy = new Node();
+            Node cur = root;
+            while (cur != null) {
+                Node pre = dummy;
+                while (cur != null) {
+                    if (cur.left != null) {
+                        pre.next = cur.left;
+                        pre = pre.next;
+                    }
+                    if (cur.right != null) {
+                        pre.next = cur.right;
+                        pre = pre.next;
+                    }
+                    cur = cur.next;
+                }
+                cur = dummy.next;
+                dummy.next = null;
+            }
+
+            return root;
         }
 
     }
