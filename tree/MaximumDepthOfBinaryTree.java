@@ -15,7 +15,7 @@
 //<p>返回它的最大深度&nbsp;3 。</p>
 //
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>广度优先搜索</li><li>二叉树</li></div></div><br><div><li>👍 1371</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.tree;
 
 import org.example.leetcode.problems.common.tree.TreeNode;
 

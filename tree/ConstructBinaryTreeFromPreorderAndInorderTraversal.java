@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>树</li><li>数组</li><li>哈希表</li><li>分治</li><li>二叉树</li></div></div><br><div><li>👍 1727</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.tree;
 
 import org.example.leetcode.problems.common.tree.TreeNode;
 

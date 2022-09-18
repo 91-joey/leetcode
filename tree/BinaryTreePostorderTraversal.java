@@ -37,7 +37,7 @@
 //<p><strong>进阶：</strong>递归算法很简单，你可以通过迭代算法完成吗？</p>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>树</li><li>深度优先搜索</li><li>二叉树</li></div></div><br><div><li>👍 921</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems.tree;
 
 import org.example.leetcode.problems.common.tree.TreeNode;
 
