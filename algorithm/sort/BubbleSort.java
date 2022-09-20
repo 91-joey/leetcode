@@ -2,15 +2,13 @@ package org.example.leetcode.problems.algorithm.sort;
 
 import java.util.Arrays;
 
-public class BubbleSortTest {
+//稳定
+public class BubbleSort {
     //6 2 1 3 5 4
     //2 1 3 5 4 6
     //1 2 3 4 5 6
     public static void main(String[] args) {
-        int[] arr = {6, 2, 1, 3, 5, 4};
-        System.out.println(Arrays.toString(arr));
-        bubble3(arr);
-        System.out.println(Arrays.toString(arr));
+        Swap.sort(BubbleSort::bubble3);
     }
 
     //不优化：

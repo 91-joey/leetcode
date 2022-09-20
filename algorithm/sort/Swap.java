@@ -1,6 +1,11 @@
 package org.example.leetcode.problems.algorithm.sort;
 
+import java.util.Arrays;
+import java.util.function.Consumer;
+
 public class Swap {
+    public static final int[] arr = {6, 2, 1, 3, 5, 4};
+
     public static void main(String[] args) {
         int a = 1;
         int b = 2;
@@ -80,5 +85,11 @@ public class Swap {
         T tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+
+    public static void sort(Consumer<int[]> consumer){
+        System.out.println(Arrays.toString(arr));
+        consumer.accept(arr);
+        System.out.println(Arrays.toString(arr));
     }
 }
