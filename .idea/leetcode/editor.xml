@@ -91,6 +91,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RelativeRanks.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RelativeRanks.md" />
+              <option name="frontendQuestionId" value="leetcode.cn506" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RelativeRanks.java" />
+              <option name="titleSlug" value="relative-ranks" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SerializeAndDeserializeBinaryTree.java">
           <value>
             <LeetcodeEditor>
