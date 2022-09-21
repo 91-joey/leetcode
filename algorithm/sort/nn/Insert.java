@@ -1,9 +1,11 @@
-package org.example.leetcode.problems.algorithm.sort;
+package org.example.leetcode.problems.algorithm.sort.nn;
 
-public class InsertSort {
+import org.example.leetcode.problems.algorithm.sort.Swap;
+
+public class Insert {
     public static void main(String[] args) {
 //        Swap.sort(InsertSort::insertSort_swap);
-        Swap.sort(InsertSort::insertSort_shift);
+        Swap.sort(Insert::insertSort_shift);
     }
 
     public static void insertSort_swap(int[] arr) {

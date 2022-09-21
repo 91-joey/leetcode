@@ -1,14 +1,14 @@
-package org.example.leetcode.problems.algorithm.sort;
+package org.example.leetcode.problems.algorithm.sort.nn;
 
-import java.util.Arrays;
+import org.example.leetcode.problems.algorithm.sort.Swap;
 
 //稳定
-public class BubbleSort {
+public class Bubble {
     //6 2 1 3 5 4
     //2 1 3 5 4 6
     //1 2 3 4 5 6
     public static void main(String[] args) {
-        Swap.sort(BubbleSort::bubble3);
+        Swap.sort(Bubble::bubble3);
     }
 
     //不优化：
