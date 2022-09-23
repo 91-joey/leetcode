@@ -98,10 +98,8 @@ public class ZuiXiaoDeKgeShuLcof {
                     swap(arr, 0, heapSize);
                     minHeapify(arr, 0, heapSize);
                 }
-                if (k > 0) {
                     kMins[0] = arr[0];
                     if (k > 1) System.arraycopy(arr, length - k + 1, kMins, 1, k - 1);
-                }
                 //若 k 大于数组长度一半，排 length + 1 - k 个最大值
             } else {
                 buildMaxHeap(arr);
@@ -110,7 +108,7 @@ public class ZuiXiaoDeKgeShuLcof {
                     swap(arr, 0, heapSize);
                     maxHeapify(arr, 0, heapSize);
                 }
-                if (k > 0) System.arraycopy(arr, 1, kMins, 0, k);
+                System.arraycopy(arr, 1, kMins, 0, k);
             }
             return kMins;
         }
