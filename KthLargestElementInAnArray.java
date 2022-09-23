@@ -59,19 +59,83 @@ public class KthLargestElementInAnArray {
                     int maxIdx = i;
                     for (int j = i + 1; j < length; j++)
                         if (nums[maxIdx] < nums[j]) maxIdx = j;
-                    Swap.swap(nums, i, maxIdx);
+                    swap(nums, i, maxIdx);
                 }
                 return nums[k - 1];
-            //若 k 大于数组长度一半，排 length + 1 - k 个最小值
+                //若 k 大于数组长度一半，排 length + 1 - k 个最小值
             } else {
                 for (int i = 0; i <= length - k; i++) {
                     int minIdx = i;
                     for (int j = i + 1; j < length; j++)
                         if (nums[minIdx] > nums[j]) minIdx = j;
-                    Swap.swap(nums, i, minIdx);
+                    swap(nums, i, minIdx);
                 }
                 return nums[length - k];
             }
+        }
+
+        public int findKthLargest_heapSort(int[] nums, int k) {
+            int length = nums.length;
+            //若 k 小于数组长度一半，排 k 个最大值
+            if (k < length / 2) {
+                buildMaxHeap(nums);
+                for (int heapSize = length - 1; heapSize > length - k; heapSize--) {
+                    swap(nums, 0, heapSize);
+                    maxHeapify(nums, 0, heapSize);
+                }
+                //若 k 大于数组长度一半，排 length + 1 - k 个最小值
+            } else {
+                buildMinHeap(nums);
+                for (int heapSize = nums.length - 1; heapSize >= k; heapSize--) {
+                    swap(nums, 0, heapSize);
+                    minHeapify(nums, 0, heapSize);
+                }
+            }
+            return nums[0];
+        }
+
+        private static void buildMaxHeap(int[] arr) {
+            int length = arr.length;
+            for (int i = length / 2 - 1; i >= 0; i--) maxHeapify(arr, i, length);
+        }
+
+        private static void maxHeapify(int[] arr, int root, int heapSize) {
+            int l = 2 * root + 1;
+            int r = l + 1;
+            int maxIdx = root;
+            if (l < heapSize) {
+                if (arr[maxIdx] < arr[l]) maxIdx = l;
+                if (r < heapSize && arr[maxIdx] < arr[r]) maxIdx = r;
+            }
+            if (maxIdx != root) {
+                swap(arr, root, maxIdx);
+                maxHeapify(arr, maxIdx, heapSize);
+            }
+        }
+
+        private static void buildMinHeap(int[] arr) {
+            int length = arr.length;
+            for (int i = length / 2 - 1; i >= 0; i--) minHeapify(arr, i, length);
+        }
+
+        private static void minHeapify(int[] arr, int root, int heapSize) {
+            int l = 2 * root + 1;
+            int r = l + 1;
+            int minIdx = root;
+            if (l < heapSize) {
+                if (arr[minIdx] > arr[l]) minIdx = l;
+                if (r < heapSize && arr[minIdx] > arr[r]) minIdx = r;
+            }
+            if (minIdx != root) {
+                swap(arr, root, minIdx);
+                minHeapify(arr, minIdx, heapSize);
+            }
+        }
+
+        public static void swap(int[] arr, int i, int j) {
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
