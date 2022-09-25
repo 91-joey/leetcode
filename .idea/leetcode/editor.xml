@@ -135,6 +135,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SortedMergeLcci.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SortedMergeLcci.md" />
+              <option name="frontendQuestionId" value="leetcode.cn面试题 10.01" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SortedMergeLcci.java" />
+              <option name="titleSlug" value="sorted-merge-lcci" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ZuiXiaoDeKgeShuLcof.java">
           <value>
             <LeetcodeEditor>
