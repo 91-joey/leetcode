@@ -124,6 +124,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ShuZuZhongDeNiXuDuiLcof.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ShuZuZhongDeNiXuDuiLcof.md" />
+              <option name="frontendQuestionId" value="leetcode.cn剑指 Offer 51" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ShuZuZhongDeNiXuDuiLcof.java" />
+              <option name="titleSlug" value="shu-zu-zhong-de-ni-xu-dui-lcof" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SortAnArray.java">
           <value>
             <LeetcodeEditor>
