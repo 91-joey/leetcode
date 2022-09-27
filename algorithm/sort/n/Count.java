@@ -9,6 +9,7 @@ public class Count {
 //        Swap.sort(Count::countSort2);
         Swap.sort(Count::countSort3);
     }
+
     //伪计数排序
     public static void countSort(int[] arr) {
 
@@ -84,11 +85,11 @@ public class Count {
     //计数
     public static CountingAndMin count(int[] arr) {
         //确定计数范围
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
+        int min = arr[0];
+        int max = arr[0];
         for (int i : arr) {
-            min = Math.min(min, i);
-            max = Math.max(max, i);
+            if (i < min) min = i;
+            else if (max < i) max = i;
         }
         int[] counting = new int[max - min + 1];
 
