@@ -3,6 +3,17 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/ArrayPartition.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ArrayPartition.md" />
+              <option name="frontendQuestionId" value="leetcode.cn561" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ArrayPartition.java" />
+              <option name="titleSlug" value="array-partition" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/BaShuZuPaiChengZuiXiaoDeShuLcof.java">
           <value>
             <LeetcodeEditor>
