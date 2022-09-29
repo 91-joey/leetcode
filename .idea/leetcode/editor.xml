@@ -168,6 +168,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SmallestRangeI.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SmallestRangeI.md" />
+              <option name="frontendQuestionId" value="leetcode.cn908" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SmallestRangeI.java" />
+              <option name="titleSlug" value="smallest-range-i" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SortAnArray.java">
           <value>
             <LeetcodeEditor>
