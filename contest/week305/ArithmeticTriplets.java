@@ -49,7 +49,7 @@ public class ArithmeticTriplets {
         int cnt = 0;
 
         int length = nums.length;
-        for (int i = 0, j = 1, k = 2; j < length - 1; i++) {
+        for (int i = 0, j = 1, k; j < length - 1; i++) {
             while (j < length - 1 && nums[j] - nums[i] < diff) j++;
             if (j < length - 1 && nums[j] - nums[i] == diff) {
                 k = j + 1;
