@@ -37,6 +37,7 @@ import java.util.Arrays;
 public class MaximumGap {
     public static void main(String[] args) {
         Solution solution = new MaximumGap().new Solution();
+        System.out.println(solution.maximumGap_bucket2(new int[]{1, 3, 100}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -55,6 +56,92 @@ public class MaximumGap {
             }
 
             return max;
+        }
+
+        /*
+         * 基于桶的算法
+         * 恒成立： maximum gap >=(max -min)/(length -1)
+         * 可以推导出：元素之间的最大间距一定不会出现在某个桶的内部，而一定会出现在不同桶当中。
+         *      故，maximum gap = max(min(buckets[i + 1]) - max(buckets[i]))
+         */
+        public int maximumGap_bucket(int[] nums) {
+            int length = nums.length;
+            if (length < 2) return 0;
+
+            //获取值区间
+            int min = nums[0];
+            int max = nums[0];
+            for (int e : nums) {
+                if (e < min) min = e;
+                else if (max < e) max = e;
+            }
+
+            double gap = 1.0 * (max - min) / (length - 1);
+            int[][] buckets = new int[length][2];
+            int dft = -1;
+            for (int i = 0; i < length; i++)
+                Arrays.fill(buckets[i], dft);
+
+            //落桶
+            for (int e : nums) {
+                int i = (int) ((e - min) / gap);
+                if (buckets[i][0] == dft)
+                    buckets[i][0] = buckets[i][1] = e;
+                else {
+                    if (e < buckets[i][0]) buckets[i][0] = e;
+                    else if (buckets[i][1] < e) buckets[i][1] = e;
+                }
+            }
+
+            int maxGap = 0;
+            for (int i = 0, prev = -1; i < length; i++)
+                if (buckets[i][0] != dft) {
+                    if (prev != -1)
+                        maxGap = Math.max(maxGap, buckets[i][0] - buckets[prev][1]);
+                    prev = i;
+                }
+
+            return maxGap;
+        }
+
+        //基于桶的算法_优化
+        public int maximumGap_bucket2(int[] nums) {
+            int length = nums.length;
+            if (length < 2) return 0;
+
+            //获取值区间
+            int min = nums[0];
+            int max = nums[0];
+            for (int e : nums) {
+                if (e < min) min = e;
+                else if (max < e) max = e;
+            }
+
+            //数组中均为相同元素，相邻元素间差值均为 0
+            if (max == min)
+                return 0;
+
+            int gap = (int) Math.ceil((double) (max - min) / (length - 1));
+            int bucketCnt = (max - min) / gap + 1;
+            int[] bucketsMin = new int[bucketCnt];
+            int[] bucketsMax = new int[bucketCnt];
+            Arrays.fill(bucketsMin, Integer.MAX_VALUE);
+            Arrays.fill(bucketsMax, Integer.MIN_VALUE);
+
+            //落桶
+            for (int e : nums) {
+                int i = (e - min) / gap;
+                bucketsMin[i] = Math.min(bucketsMin[i], e);
+                bucketsMax[i] = Math.max(bucketsMax[i], e);
+            }
+
+            for (int i = 1, prevMax = bucketsMax[0]; i < bucketCnt; i++)
+                if (bucketsMin[i] != Integer.MAX_VALUE) {
+                    gap = Math.max(gap, bucketsMin[i] - prevMax);
+                    prevMax = bucketsMax[i];
+                }
+
+            return gap;
         }
 
         public static void radixSort_LSD(int[] arr) {
