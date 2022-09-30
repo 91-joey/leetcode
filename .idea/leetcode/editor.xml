@@ -190,6 +190,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SortColors.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SortColors.md" />
+              <option name="frontendQuestionId" value="leetcode.cn75" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SortColors.java" />
+              <option name="titleSlug" value="sort-colors" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SortedMergeLcci.java">
           <value>
             <LeetcodeEditor>
