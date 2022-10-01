@@ -1,4 +1,4 @@
-package org.example.leetcode.problems.dataStructure.arrayAndString;
+package org.example.leetcode.problems.algorithm.doublePointer;
 
 //26. 删除有序数组中的重复项
 public class RemoveDuplicatesOfArray {

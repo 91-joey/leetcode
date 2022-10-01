@@ -1,4 +1,4 @@
-package org.example.leetcode.problems.dataStructure.arrayAndString;
+package org.example.leetcode.problems.algorithm.doublePointer;
 
 //27. 移除元素
 public class RemoveElement {
@@ -13,14 +13,12 @@ public class RemoveElement {
         return slow;
     }
 
-    //    2.快慢指针(增强for)  n*1   1
+    //2.双指针(增强for)  n(val元素较多时，效率高)   1
     public int removeElement2(int[] nums, int val) {
         int idx = 0;
-        for (int num : nums) {
-            if (num != val) {
+        for (int num : nums)
+            if (num != val)
                 nums[idx++] = num;
-            }
-        }
         return idx;
     }
 
@@ -28,7 +26,7 @@ public class RemoveElement {
 //    71230067
 //    71236067
 //    71236
-//    3.双指针优化  n   1
+//    3.双指针优化  n(val元素较少时，效率高)   1
     public int removeElement3(int[] nums, int val) {
         //  all in [r,length) are same val
         int l = 0;
