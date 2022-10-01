@@ -10,7 +10,7 @@ public class Count {
         Swap.sort(Count::countSort3);
     }
 
-    //伪计数排序
+    //伪计数排序（这里会遍历计数数组，当元素负载率低时，效率低）
     public static void countSort(int[] arr) {
 
         CountingAndMin countingAndMin = count(arr);
@@ -100,9 +100,9 @@ public class Count {
         return new CountingAndMin(counting, min);
     }
 
-    static class CountingAndMin {
-        int[] counting;
-        int min;
+    public static class CountingAndMin {
+        public int[] counting;
+        public int min;
 
         public CountingAndMin(int[] counting, int min) {
             this.counting = counting;

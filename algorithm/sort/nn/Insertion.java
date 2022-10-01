@@ -2,10 +2,10 @@ package org.example.leetcode.problems.algorithm.sort.nn;
 
 import org.example.leetcode.problems.algorithm.sort.Swap;
 
-public class Insert {
+public class Insertion {
     public static void main(String[] args) {
 //        Swap.sort(InsertSort::insertSort_swap);
-        Swap.sort(Insert::insertSort_shift);
+        Swap.sort(Insertion::insertSort_shift);
     }
 
     public static void insertSort_swap(int[] arr) {

@@ -1,6 +1,7 @@
 package org.example.leetcode.problems.algorithm.sort;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Consumer;
 
 public class Swap {
@@ -92,19 +93,26 @@ public class Swap {
         System.out.println(Arrays.toString(arr));
         consumer.accept(arr);
         System.out.println(Arrays.toString(arr));
-        System.out.println("isSortedNaturally = "+isSortedNaturally(arr));
+        System.out.println("isSortedNaturally = " + isSortedNaturally(arr));
     }
 
     public static void sortHard(Consumer<int[]> consumer) {
         System.out.println(Arrays.toString(shuffled));
         consumer.accept(shuffled);
         System.out.println(Arrays.toString(shuffled));
-        System.out.println("isSortedNaturally = "+isSortedNaturally(shuffled));
+        System.out.println("isSortedNaturally = " + isSortedNaturally(shuffled));
     }
 
     public static boolean isSortedNaturally(int[] arr) {
         for (int i = 0; i < arr.length - 1; i++)
             if (arr[i] > arr[i + 1])
+                return false;
+        return true;
+    }
+
+    public static boolean isSortedNaturally(List<Integer> list) {
+        for (int i = 0; i < list.size() - 1; i++)
+            if (list.get(i) > list.get(i + 1))
                 return false;
         return true;
     }
