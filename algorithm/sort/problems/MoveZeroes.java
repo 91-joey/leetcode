@@ -36,11 +36,15 @@ package org.example.leetcode.problems.algorithm.sort.problems;
 
 import org.example.leetcode.problems.algorithm.sort.algorithm.Swap;
 
+import java.util.Arrays;
+import java.util.List;
+
 //283.移动零
 //开题时间：2022-09-19 14:28:58
 public class MoveZeroes {
     public static void main(String[] args) {
         Solution solution = new MoveZeroes().new Solution();
+        solution.moveZeroes4(new int[]{0, 1, 0, 3, 12});
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -88,6 +92,50 @@ public class MoveZeroes {
             //补零
             for (int i = idx; i < length; i++)
                 nums[i] = 0;
+        }
+
+        //快慢指针
+        public void moveZeroes4(int[] nums) {
+            //  all in [idx,i) = 0
+            int i = 0;
+            int length = nums.length;
+            while (i < length && nums[i] != 0)
+                i++;
+            for (int idx = i++; i < length; i++)
+                if (nums[i] != 0) {
+                    nums[idx++] = nums[i];
+                    nums[i] = 0;
+                }
+        }
+
+        //快慢指针
+        public void moveZeroes5(int[] nums) {
+            //  all in (idx,i) = 0
+            int i = 0;
+            int length = nums.length;
+            while (i < length && nums[i] != 0)
+                i++;
+            for (int idx = i++ - 1; i < length; i++)
+                if (nums[i] != 0) {
+                    nums[++idx] = nums[i];
+                    nums[i] = 0;
+                }
+        }
+
+        //自定义排序
+        public void moveZeroes6(int[] nums) {
+            List<Integer> list = Arrays.stream(nums).boxed().sorted((o1, o2) -> {
+                if (o1.equals(0) ^ o2.equals(0)) return o1.equals(0) ? 1 : -1;
+                return 0;
+            }).toList();
+            for (int i = 0; i < list.size(); i++)
+                nums[i] = list.get(i);
+        }
+
+        public static void swap(int[] arr, int i, int j) {
+            int tmp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = tmp;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
