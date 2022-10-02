@@ -35,6 +35,9 @@ package org.example.leetcode.problems.algorithm.sort.problems;
 import org.example.leetcode.problems.algorithm.sort.algorithm.Swap;
 
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
+import java.util.Random;
 
 //215.数组中的第K个最大元素
 //开题时间：2022-09-20 11:09:28
@@ -46,11 +49,13 @@ public class KthLargestElementInAnArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //API选手
         public int findKthLargest(int[] nums, int k) {
             Arrays.parallelSort(nums);
             return nums[nums.length - k];
         }
 
+        //选择排序  n^2
         public int findKthLargest_selectionSort(int[] nums, int k) {
             int length = nums.length;
             //若 k 小于数组长度一半，排 k 个最大值
@@ -74,6 +79,7 @@ public class KthLargestElementInAnArray {
             }
         }
 
+        //堆排序   nlogn
         public int findKthLargest_heapSort(int[] nums, int k) {
             int length = nums.length;
             //若 k 小于数组长度一半，排 k 个最大值
@@ -92,6 +98,63 @@ public class KthLargestElementInAnArray {
                 }
             }
             return nums[0];
+        }
+
+        //partition减治   n
+        public int findKthLargest_quickSort(int[] nums, int k) {
+            int length = nums.length;
+            int start = 0;
+            int end = length - 1;
+            int target = length - k;
+            while (true) {
+                int pivotIdx = partition(nums, start, end);
+                if (pivotIdx == target)
+                    return nums[pivotIdx];
+                else if (pivotIdx < target)
+                    start = pivotIdx + 1;
+                else
+                    end = pivotIdx - 1;
+            }
+        }
+
+        //优先队列
+        public int findKthLargest_minHeap(int[] nums, int k) {
+            PriorityQueue<Integer> minHeap = new PriorityQueue<>(k, Integer::compareTo);
+            for (int i = 0; i < k; i++)
+                minHeap.offer(nums[i]);
+            for (int i = k; i < nums.length; i++) {
+                Integer peek = minHeap.peek();
+                if (peek < nums[i]) {
+                    minHeap.poll();
+                    minHeap.offer(nums[i]);
+                }
+            }
+            return minHeap.peek();
+        }
+
+        private static int partition(int[] arr, int start, int end) {
+            if (start >= end)
+                return start;
+            //region 分区优化1（随机选择基数）
+            int rndIdx = new Random().nextInt(start, end + 1);
+            swap(arr, start, rndIdx);
+            //endregion
+            //  all in [start+1,l) <= pivot
+            //  all in (r,end] > pivot
+            int pivot = arr[start];
+            int l = start + 1;
+            int r = end;
+            while (l < r) {
+                if (arr[l] > pivot) {
+                    while (l < r && arr[r] > pivot) r--;
+                    if (l != r) swap(arr, l++, r--);
+                } else {
+                    l++;
+                }
+            }
+            if (l == r && arr[l] > pivot) r--;
+            swap(arr, start, r);
+            return r;
         }
 
         private static void buildMaxHeap(int[] arr) {

@@ -53,6 +53,8 @@ public class Quick {
 
     //简单分区
     private static int partition(int[] arr, int start, int end) {
+        //  all in [start+1,l) <= pivot
+        //  all in (r,end] > pivot
         int pivot = arr[start];
         int l = start + 1;
         int r = end;
@@ -71,6 +73,8 @@ public class Quick {
         int rndIdx = new Random().nextInt(start, end + 1);
         Swap.swap(arr, start, rndIdx);
         //endregion
+        //  all in [start+1,l) <= pivot
+        //  all in (r,end] > pivot
         int pivot = arr[start];
         int l = start + 1;
         int r = end;
