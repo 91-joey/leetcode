@@ -124,6 +124,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumNumberOfVowelsInASubstringOfGivenLength.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumNumberOfVowelsInASubstringOfGivenLength.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1456" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumNumberOfVowelsInASubstringOfGivenLength.java" />
+              <option name="titleSlug" value="maximum-number-of-vowels-in-a-substring-of-given-length" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumPointsYouCanObtainFromCards.java">
           <value>
             <LeetcodeEditor>

@@ -59,8 +59,8 @@ public class MaximumAverageSubarrayI {
             int sumMax = 0;
             for (int i = 0; i < k; i++)
                 sumMax += nums[i];
-            for (int r = k, sumCur = sumMax; r < nums.length; r++) {
-                sumCur += nums[r] - nums[r - k];
+            for (int i = k, sumCur = sumMax; i < nums.length; i++) {
+                sumCur += nums[i] - nums[i - k];
                 sumMax = Math.max(sumMax, sumCur);
             }
             return (double) sumMax / k;
