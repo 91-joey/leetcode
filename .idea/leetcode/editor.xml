@@ -124,6 +124,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumPointsYouCanObtainFromCards.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumPointsYouCanObtainFromCards.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1423" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumPointsYouCanObtainFromCards.java" />
+              <option name="titleSlug" value="maximum-points-you-can-obtain-from-cards" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MoveZeroes.java">
           <value>
             <LeetcodeEditor>
