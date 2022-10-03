@@ -34,6 +34,8 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>滑动窗口</li></div></div><br><div><li>👍 268</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
+import org.example.leetcode.problems.common.tool.Tools;
+
 //643.子数组最大平均数 I
 //开题时间：2022-10-02 17:05:41
 public class MaximumAverageSubarrayI {
@@ -56,13 +58,7 @@ public class MaximumAverageSubarrayI {
         }
 
         public double findMaxAverage2(int[] nums, int k) {
-            int sumMax = 0;
-            for (int i = 0; i < k; i++)
-                sumMax += nums[i];
-            for (int i = k, sumCur = sumMax; i < nums.length; i++) {
-                sumCur += nums[i] - nums[i - k];
-                sumMax = Math.max(sumMax, sumCur);
-            }
+            int sumMax = Tools.maxWindow(nums, k);
             return (double) sumMax / k;
         }
     }

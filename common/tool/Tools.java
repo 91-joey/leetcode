@@ -19,4 +19,17 @@ public class Tools {
     public static int[] toArray(List<Integer> list) {
         return list.stream().mapToInt(Integer::valueOf).toArray();
     }
+    
+    public static int maxWindow(int[] arr,int k){
+        int sumMax = 0;
+        for (int i = 0; i < k; i++)
+            sumMax += arr[i];
+
+        for (int i = k, sumCur = sumMax; i < arr.length; i++) {
+            sumCur += arr[i] - arr[i - k];
+            sumMax = Math.max(sumMax, sumCur);
+        }
+
+        return sumMax;
+    } 
 }
