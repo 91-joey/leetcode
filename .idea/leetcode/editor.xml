@@ -146,6 +146,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinimumOperationsToReduceXToZero.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinimumOperationsToReduceXToZero.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1658" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinimumOperationsToReduceXToZero.java" />
+              <option name="titleSlug" value="minimum-operations-to-reduce-x-to-zero" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MoveZeroes.java">
           <value>
             <LeetcodeEditor>
