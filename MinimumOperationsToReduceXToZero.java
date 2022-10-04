@@ -235,7 +235,13 @@ public class MinimumOperationsToReduceXToZero {
         //☆☆☆☆☆ 滑动窗口：转换题意 -> 求和为 sum - x 的最长子数组
         public int minOperations7(int[] nums, int x) {
             int length = nums.length;
-            int target = Arrays.stream(nums).sum() - x;
+
+//            int target = Arrays.stream(nums).sum() - x;
+            int sumNums = 0;
+            for (int num : nums)
+                sumNums += num;
+            int target = sumNums - x;
+
             if (target < 0) return -1;
             else if (target == 0) return length;
 
@@ -243,11 +249,10 @@ public class MinimumOperationsToReduceXToZero {
             //sum([l,r)) <target
             for (int l = 0, r = 0, sum = 0; r < length; ) {
                 sum += nums[r++];
-                while (sum >= target) {
-                    if (sum == target)
-                        maxLen = Math.max(maxLen, r - l);
+                while (sum > target)
                     sum -= nums[l++];
-                }
+                if (sum == target)
+                    maxLen = Math.max(maxLen, r - l);
             }
 
             return maxLen == 0 ? -1 : length - maxLen;
