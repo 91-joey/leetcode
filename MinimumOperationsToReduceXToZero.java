@@ -241,7 +241,7 @@ public class MinimumOperationsToReduceXToZero {
 
             int maxLen = 0;
             //sum([l,r)) <target
-            for (int l = 0, r = 0, sum = 0; r <= length; ) {
+            for (int l = 0, r = 0, sum = 0; r < length; ) {
                 sum += nums[r++];
                 while (sum >= target) {
                     if (sum == target)
