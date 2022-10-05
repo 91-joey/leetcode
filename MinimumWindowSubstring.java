@@ -57,6 +57,7 @@ public class MinimumWindowSubstring {
 
     public static void main(String[] args) {
         Solution solution = new MinimumWindowSubstring().new Solution();
+        System.out.println(solution.minWindow2("ADOBECODEBANC", "ABC"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -100,41 +101,84 @@ public class MinimumWindowSubstring {
         public String minWindow2(String s, String t) {
             int lengthS = s.length();
             int lengthT = t.length();
+            //长度不足，直接返回空串
             if (lengthS < lengthT)
                 return EMPTY;
 
-            int[] cntS = new int[SZ];
-            int[] cntT = new int[SZ];
-            for (int i = 0; i < s.length(); i++)
-                cntS[s.charAt(i) - 'A']++;
+            //65~90 97~122
+            //所需字符计数
+            int[] need = new int[123];
             for (int i = 0; i < lengthT; i++)
-                cntT[t.charAt(i) - 'A']++;
-            if (!contains(cntS, cntT))
-                return EMPTY;
-            Arrays.fill(cntS, 0);
+                need[t.charAt(i)]++;
 
-            //[l,r) not contain t
-            int cntValid = 0;
-            int minLen = Integer.MAX_VALUE;
-            String minS = EMPTY;
-            for (int l = 0, r = 0; r < lengthS; ) {
-                int i = s.charAt(r++) - 'A';
-                if (cntT[i] > 0)
-                    cntValid++;
-                cntS[i]++;
-                while (cntValid >= lengthT && contains(cntS, cntT)) {
-                    if (minLen > r - l) {
-                        minLen = r - l;
-                        minS = s.substring(l, r);
+            //beginIndex – the beginning index, inclusive.
+            int start = 0;
+            //endIndex – the ending index, exclusive.
+            int end = Integer.MAX_VALUE;
+            //循环不变量： [l,r) not contain t
+            for (int l = 0, r = 0, cnt = 0; r < lengthS; ) {
+                //若是需要字符，则总计数递增
+                if (need[s.charAt(r++)]-- > 0)
+                    cnt++;
+                //子串 涵盖 t 中所有字符
+                if (cnt == lengthT) {
+                    //削减不必要字符，窗口收缩
+                    char c;
+                    while (l < r && need[(c = s.charAt(l))] < 0) {
+                        need[c]++;
+                        l++;
                     }
-                    int j = s.charAt(l++) - 'A';
-                    if (cntT[j] > 0)
-                        cntValid--;
-                    cntS[j]--;
+                    //若是更小子串，更小起始索引
+                    if (r - l < end - start) {
+                        start = l;
+                        end = r;
+                    }
+                    //窗口收缩一单位
+                    need[s.charAt(l++)]++;
+                    cnt--;
                 }
             }
 
-            return minS;
+            return end == Integer.MAX_VALUE ? EMPTY : s.substring(start, end);
+        }
+
+        public String minWindow3(String s, String t) {
+            int lengthS = s.length();
+            int lengthT = t.length();
+            //长度不足，直接返回空串
+            if (lengthS < lengthT)
+                return EMPTY;
+
+            //65~90 97~122
+            //所需字符计数
+            int[] need = new int[123];
+            for (int i = 0; i < lengthT; i++)
+                need[t.charAt(i)]++;
+
+            //beginIndex + 1 – the beginning index, inclusive.
+            int start = 0;
+            //endIndex – the ending index, exclusive.
+            int end = Integer.MAX_VALUE;
+            //循环不变量： [l,r) not contain t
+            for (int l = 0, r = 0, cnt = 0; r < lengthS; ) {
+                //若是需要字符，则总计数递增
+                if (need[s.charAt(r++)]-- > 0)
+                    cnt++;
+                //子串 涵盖 t 中所有字符
+                if (cnt == lengthT) {
+                    //削减不必要字符，窗口收缩
+                    while (l < r && need[s.charAt(l++)]++ < 0) {
+                    }
+                    //若是更小子串，更小起始索引
+                    if (r - l < end - start) {
+                        start = l;
+                        end = r;
+                    }
+                    cnt--;
+                }
+            }
+
+            return end == Integer.MAX_VALUE ? EMPTY : s.substring(start - 1, end);
         }
 
         public static boolean contains(int[] cntS, int[] cntT) {
