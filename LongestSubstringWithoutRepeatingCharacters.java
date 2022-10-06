@@ -49,6 +49,7 @@ public class LongestSubstringWithoutRepeatingCharacters {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         /*
+         * [l,r) not duplicate?
          * r++
          * if duplicate,l++,r++
          */
