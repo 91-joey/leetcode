@@ -47,6 +47,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/GetEqualSubstringsWithinBudget.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/GetEqualSubstringsWithinBudget.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1208" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/GetEqualSubstringsWithinBudget.java" />
+              <option name="titleSlug" value="get-equal-substrings-within-budget" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/GrumpyBookstoreOwner.java">
           <value>
             <LeetcodeEditor>
