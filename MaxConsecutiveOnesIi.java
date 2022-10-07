@@ -45,7 +45,7 @@ public class MaxConsecutiveOnesIi {
     class Solution {
         /*
          * 1.r++ until 'second' 0 comes
-         * 2.l++ r++ until r - l >= sum + 2
+         * 2.l++ r++ until r - l > sum + 1
          * 3.run step 1
          */
         public int findMaxConsecutiveOnes(int[] nums) {
