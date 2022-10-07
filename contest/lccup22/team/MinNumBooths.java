@@ -1,35 +1,60 @@
 package org.example.leetcode.problems.contest.lccup22.team;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+//LCP 66. 最小展台数量
 public class MinNumBooths {
     public static void main(String[] args) {
         System.out.println(minNumBooths(new String[]{"acd", "bed", "accd"}));
-        System.out.println(minNumBooths(new String[]{"abc","ab","ac","b"}));
+        System.out.println(minNumBooths(new String[]{"abc", "ab", "ac", "b"}));
     }
 
+    //元素范围较小时，就不要用哈希表了，直接用数组好了！！
     public static int minNumBooths(String[] demand) {
-        Map<Character, Integer> char2cnt = new HashMap<>();
+        Map<Character, Integer> cnts = new HashMap<>();
+        Map<Character, Integer> cntsCur = new HashMap<>(36);
         for (String s : demand) {
-            Map<Character, Integer> char2cnt2 = new HashMap<>();
-            for (int i = 0; i < s.length(); i++) {
-                char2cnt2.merge(s.charAt(i), 1, Integer::sum);
-            }
-            for (Map.Entry<Character, Integer> entry : char2cnt2.entrySet()) {
+            for (int i = 0; i < s.length(); i++)
+                cntsCur.merge(s.charAt(i), 1, Integer::sum);
+            for (Map.Entry<Character, Integer> entry : cntsCur.entrySet()) {
                 Character key = entry.getKey();
-                Integer value = entry.getValue();
-                if (!char2cnt.containsKey(key)) {
-                    char2cnt.put(key, value);
-                } else if (value.compareTo(char2cnt.get(key)) > 0) {
-                    char2cnt.put(key, value);
-                }
+                Integer valCur = entry.getValue();
+                Integer val = cnts.get(key);
+                if (val == null || valCur.compareTo(val) > 0)
+                    cnts.put(key, valCur);
             }
+            cntsCur.clear();
         }
-        int min = 0;
-        for (Integer value : char2cnt.values()) {
-            min += value;
+
+        int sum = 0;
+        for (Integer value : cnts.values())
+            sum += value;
+        return sum;
+    }
+
+    public static int minNumBooths2(String[] demand) {
+        int start = 97;
+        int len = 123;
+        int[] cnts = new int[len];
+        int[] cntsCur = new int[len];
+        for (String s : demand) {
+            //字符计数
+            for (int i = 0; i < s.length(); i++)
+                cntsCur[s.charAt(i)]++;
+            //每个字符，取最大计数
+            for (int i = start; i < len; i++) {
+                if (cntsCur[i] > cnts[i])
+                    cnts[i] = cntsCur[i];
+            }
+            //重新初始化计数数组
+            Arrays.fill(cntsCur, start, len, 0);
         }
-        return min;
+
+        //求字符数之和
+        for (int i = start + 1; i < len; i++)
+            cnts[start] += cnts[i];
+        return cnts[start];
     }
 }
