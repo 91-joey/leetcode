@@ -48,7 +48,7 @@ public class BeautifulBouquet {
         return sum % mod;
     }
 
-    //滑动窗口
+    //☆☆☆☆☆ 滑动窗口
     public static int beautifulBouquet2(int[] flowers, int cnt) {
 //        int mod = 1000000007;
 //        int len = flowers.length;
