@@ -47,6 +47,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindKLengthSubstringsWithNoRepeatedCharacters.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindKLengthSubstringsWithNoRepeatedCharacters.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1100" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindKLengthSubstringsWithNoRepeatedCharacters.java" />
+              <option name="titleSlug" value="find-k-length-substrings-with-no-repeated-characters" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/GetEqualSubstringsWithinBudget.java">
           <value>
             <LeetcodeEditor>
