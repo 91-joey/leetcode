@@ -146,6 +146,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LongestSubstringWithAtMostKDistinctCharacters.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LongestSubstringWithAtMostKDistinctCharacters.md" />
+              <option name="frontendQuestionId" value="leetcode.cn340" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LongestSubstringWithAtMostKDistinctCharacters.java" />
+              <option name="titleSlug" value="longest-substring-with-at-most-k-distinct-characters" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LongestSubstringWithAtMostTwoDistinctCharacters.java">
           <value>
             <LeetcodeEditor>
