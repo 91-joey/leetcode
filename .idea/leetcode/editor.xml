@@ -377,6 +377,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfSubarraysWithBoundedMaximum.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfSubarraysWithBoundedMaximum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn795" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfSubarraysWithBoundedMaximum.java" />
+              <option name="titleSlug" value="number-of-subarrays-with-bounded-maximum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PermutationInString.java">
           <value>
             <LeetcodeEditor>
