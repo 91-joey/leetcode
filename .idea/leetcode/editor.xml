@@ -36,6 +36,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DietPlanPerformance.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DietPlanPerformance.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1176" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DietPlanPerformance.java" />
+              <option name="titleSlug" value="diet-plan-performance" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FindAllAnagramsInAString.java">
           <value>
             <LeetcodeEditor>
