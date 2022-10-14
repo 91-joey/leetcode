@@ -520,6 +520,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SubarraysWithKDifferentIntegers.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SubarraysWithKDifferentIntegers.md" />
+              <option name="frontendQuestionId" value="leetcode.cn992" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SubarraysWithKDifferentIntegers.java" />
+              <option name="titleSlug" value="subarrays-with-k-different-integers" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ZiFuChuanDePaiLieLcof.java">
           <value>
             <LeetcodeEditor>
