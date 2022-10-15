@@ -399,6 +399,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfSubstringsContainingAllThreeCharacters.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfSubstringsContainingAllThreeCharacters.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1358" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfSubstringsContainingAllThreeCharacters.java" />
+              <option name="titleSlug" value="number-of-substrings-containing-all-three-characters" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PermutationInString.java">
           <value>
             <LeetcodeEditor>
