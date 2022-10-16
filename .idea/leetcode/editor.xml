@@ -520,6 +520,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SlidingWindowMedian.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SlidingWindowMedian.md" />
+              <option name="frontendQuestionId" value="leetcode.cn480" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SlidingWindowMedian.java" />
+              <option name="titleSlug" value="sliding-window-median" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SmallestRangeI.java">
           <value>
             <LeetcodeEditor>
