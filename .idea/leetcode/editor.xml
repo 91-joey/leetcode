@@ -69,6 +69,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindKThSmallestPairDistance.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindKThSmallestPairDistance.md" />
+              <option name="frontendQuestionId" value="leetcode.cn719" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindKThSmallestPairDistance.java" />
+              <option name="titleSlug" value="find-k-th-smallest-pair-distance" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FruitIntoBaskets.java">
           <value>
             <LeetcodeEditor>
@@ -495,6 +506,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/ShuZuZhongDeNiXuDuiLcof.java" />
               <option name="titleSlug" value="shu-zu-zhong-de-ni-xu-dui-lcof" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/SlidingWindowMaximum.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SlidingWindowMaximum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn239" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SlidingWindowMaximum.java" />
+              <option name="titleSlug" value="sliding-window-maximum" />
             </LeetcodeEditor>
           </value>
         </entry>
