@@ -37,13 +37,17 @@
 package org.example.leetcode.problems;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 //220.存在重复元素 III
 //开题时间：2022-10-16 17:49:52
 public class ContainsDuplicateIii {
     public static void main(String[] args) {
         Solution solution = new ContainsDuplicateIii().new Solution();
-        System.out.println(solution.containsNearbyAlmostDuplicate2(new int[]{0, 10, 22, 15, 0, 5, 22, 12, 1, 5}, 3, 3));
+//        System.out.println(solution.containsNearbyAlmostDuplicate2(new int[]{0, 10, 22, 15, 0, 5, 22, 12, 1, 5}, 3, 3));
+        System.out.println(solution.containsNearbyAlmostDuplicate4(new int[]{-3, 3, -6}, 2, 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -68,6 +72,7 @@ public class ContainsDuplicateIii {
             return false;
         }
 
+        //二分查找  nk
         public boolean containsNearbyAlmostDuplicate2(int[] nums, int k, int t) {
             int len = nums.length;
             if (k == 0 || len < 2)
@@ -101,6 +106,49 @@ public class ContainsDuplicateIii {
             }
 
             return false;
+        }
+
+        //有序集合
+        public boolean containsNearbyAlmostDuplicate3(int[] nums, int k, int t) {
+            int len = nums.length;
+            if (k == 0 || len < 2)
+                return false;
+            TreeSet<Long> set = new TreeSet<Long>();
+            for (int i = 0; i < len; i++) {
+                Long ceiling = set.ceiling((long) nums[i] - (long) t);
+                if (ceiling != null && ceiling <= (long) nums[i] + (long) t)
+                    return true;
+                set.add((long) nums[i]);
+                if (i >= k)
+                    set.remove((long) nums[i - k]);
+            }
+            return false;
+        }
+
+        // ☆☆☆☆☆ 桶
+        public boolean containsNearbyAlmostDuplicate4(int[] nums, int k, int t) {
+            int len = nums.length;
+            if (k == 0 || len < 2)
+                return false;
+
+            long w = (long) t + 1;
+            HashMap<Long, Long> buckets = new HashMap<>();
+            for (int i = 0; i < len; i++) {
+                Long neighbor;
+                long id = getId(nums[i], w);
+                if (buckets.put(id, (long) nums[i]) != null ||
+                        ((neighbor = buckets.get(id - 1)) != null && nums[i] - neighbor <= t) ||
+                        ((neighbor = buckets.get(id + 1)) != null && neighbor - nums[i] <= t))
+                    return true;
+                if (i >= k)
+                    buckets.remove(getId(nums[i - k], w));
+            }
+
+            return false;
+        }
+
+        private long getId(int num, long w) {
+            return num >= 0 ? num / w : (num + 1) / w - 1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
