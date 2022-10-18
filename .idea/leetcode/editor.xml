@@ -135,6 +135,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/KEmptySlots.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/KEmptySlots.md" />
+              <option name="frontendQuestionId" value="leetcode.cn683" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/KEmptySlots.java" />
+              <option name="titleSlug" value="k-empty-slots" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/KthLargestElementInAnArray.java">
           <value>
             <LeetcodeEditor>
