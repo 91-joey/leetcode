@@ -53,6 +53,7 @@ import java.util.TreeSet;
 public class KEmptySlots {
     public static void main(String[] args) {
         Solution solution = new KEmptySlots().new Solution();
+        System.out.println(solution.kEmptySlots2(new int[]{1, 2, 3}, 1));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -72,13 +73,97 @@ public class KEmptySlots {
                 Integer neighbor;
                 int e = bulbs[i];
                 if (((neighbor = set.floor(e)) != null && t == e - neighbor) ||
-                        ((neighbor = set.ceiling(e)) != null && t == neighbor - e)) {
+                        ((neighbor = set.ceiling(e)) != null && t == neighbor - e))
                     return i + 1;
-                }
                 set.add(e);
             }
 
             return -1;
+        }
+
+        //桶（二维数组）
+        public int kEmptySlots2(int[] bulbs, int k) {
+            int len = bulbs.length;
+            if (len - 2 < k)
+                return -1;
+
+            int size = k + 1;
+            int[][] buckets = new int[len / size + 1][2];
+            for (int i = 0; i < bulbs.length; i++) {
+                int e = bulbs[i];
+                int id = e / size;
+
+                if (buckets[id][0] == 0) {
+                    buckets[id][0] = buckets[id][1] = e;
+                    if (isKWithPrev2(id, buckets, size, e) ||
+                            isKWithNext2(id, buckets, size, e))
+                        return i + 1;
+                } else {
+                    if (e < buckets[id][0]) {
+                        buckets[id][0] = e;
+                        if (isKWithPrev2(id, buckets, size, e))
+                            return i + 1;
+                    } else if (e > buckets[id][1]) {
+                        buckets[id][1] = e;
+                        if (isKWithNext2(id, buckets, size, e))
+                            return i + 1;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+        private boolean isKWithPrev2(int id, int[][] buckets, int t, int e) {
+            return id > 0 && buckets[id - 1][1] != 0 && t == e - buckets[id - 1][1];
+        }
+
+        private boolean isKWithNext2(int id, int[][] buckets, int t, int e) {
+            return id < buckets.length - 1 && buckets[id + 1][0] != 0 && t == buckets[id + 1][0] - e;
+        }
+
+
+        // ☆☆☆☆☆ 桶（2个一维数组）
+        public int kEmptySlots3(int[] bulbs, int k) {
+            int len = bulbs.length;
+            if (len - 2 < k)
+                return -1;
+
+            int[] bucketsMin = new int[len / ++k + 1];
+            int[] bucketsMax = new int[bucketsMin.length];
+
+            for (int i = 0; i < bulbs.length; ) {
+                int e = bulbs[i++];
+                int id = e / k;
+
+                if (bucketsMin[id] == 0) {
+                    bucketsMin[id] = bucketsMax[id] = e;
+                    if (isKWithPrev(id, bucketsMax, k, e) ||
+                            isKWithNext(id, bucketsMin, k, e))
+                        return i;
+                } else {
+                    if (e < bucketsMin[id]) {
+                        bucketsMin[id] = e;
+                        if (isKWithPrev(id, bucketsMax, k, e))
+                            return i;
+                    } else if (e > bucketsMax[id]) {
+                        bucketsMax[id] = e;
+                        if (isKWithNext(id, bucketsMin, k, e))
+                            return i;
+                    }
+                }
+            }
+
+            return -1;
+        }
+
+
+        private boolean isKWithPrev(int id, int[] buckets, int t, int e) {
+            return id > 0 && buckets[id - 1] != 0 && t == e - buckets[id - 1];
+        }
+
+        private boolean isKWithNext(int id, int[] buckets, int t, int e) {
+            return id < buckets.length - 1 && buckets[id + 1] != 0 && t == buckets[id + 1] - e;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
