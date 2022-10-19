@@ -168,6 +168,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1438" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit.java" />
+              <option name="titleSlug" value="longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LongestRepeatingCharacterReplacement.java">
           <value>
             <LeetcodeEditor>
