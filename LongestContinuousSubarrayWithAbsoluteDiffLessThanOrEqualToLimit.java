@@ -60,14 +60,14 @@ public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //单调队列
+        //双单调队列
         public int longestSubarray(int[] nums, int limit) {
             if (limit >= 1E9 - 1)
                 return 0;
 
             LinkedList<Integer> qIncre = new LinkedList<>();
-            qIncre.offer(nums[0]);
             LinkedList<Integer> qDecre = new LinkedList<>();
+            qIncre.offer(nums[0]);
             qDecre.offer(nums[0]);
             int l = 0;
             int r = 1;
