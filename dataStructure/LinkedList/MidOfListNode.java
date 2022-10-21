@@ -38,15 +38,12 @@ public class MidOfListNode {
 
     //    3.快慢指针法
     public ListNode middleNode3(ListNode head) {
-        ListNode step1 = head;
-        ListNode step2 = head;
-
-        while (step2 != null && step2.next != null) {
-            step1=step1.next;
-            step2=step2.next.next;
+        ListNode mid = head, fast = head;
+        while (fast != null && fast.next != null) {
+            mid = mid.next;
+            fast = fast.next.next;
         }
-
-        return step1;
+        return mid;
     }
 
 }
