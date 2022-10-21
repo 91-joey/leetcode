@@ -119,19 +119,22 @@ public class RemoveNthNodeFromEndOfList {
         //GJ2.双指针 n   1
         //要点：使用哨兵节点（哑结点dummy node)
         public ListNode removeNthFromEndGJ2(ListNode head, int n) {
-            ListNode fast = head;
-            for (int i = 0; i < n; i++) {
-                fast = fast.next;
+            //先行节点
+            ListNode right = head;
+            for (int i = 0; i < n; i++)
+                right = right.next;
+
+            //哑结点
+            ListNode dummy = new ListNode(-1, head);
+            //获得待删节点的前节点
+            ListNode pre = dummy;
+            while (right != null) {
+                pre = pre.next;
+                right = right.next;
             }
 
-            ListNode dummy = new ListNode(0);
-            dummy.next = head;
-            ListNode slow = dummy;
-            while (fast != null) {
-                slow = slow.next;
-                fast = fast.next;
-            }
-            slow.next = slow.next.next;
+            //将「待删节点的前节点」指针指向「待删节点的后节点」
+            pre.next = pre.next.next;
             return dummy.next;
         }
 

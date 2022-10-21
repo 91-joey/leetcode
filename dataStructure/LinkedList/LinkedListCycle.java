@@ -53,6 +53,8 @@
 //<div><div>Related Topics</div><div><li>哈希表</li><li>链表</li><li>双指针</li></div></div><br><div><li>👍 1592</li><li>👎 0</li></div>
 package org.example.leetcode.problems.dataStructure.LinkedList;
 
+import org.example.leetcode.problems.common.linkedlist.ListNode;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -98,14 +100,4 @@ public class LinkedListCycle {
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
-
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
-        }
-    }
 }

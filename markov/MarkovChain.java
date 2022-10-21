@@ -1,18 +1,21 @@
 package org.example.leetcode.problems.markov;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 //1024小游戏
 public class MarkovChain {
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(2, 9, 1, 26, 22, 33, 29, 2);
-        List<Character> operators = Arrays.asList(MOD, ADD, AND, MOD, ADD, MULTIPLY);
-        max1024s(nums, operators);
-        System.out.println(8 * 7 * 6 * 5 * 6 * 5 * 4);
-        //1400=7*5*8*5
+        List<Integer> nums = Arrays.asList(32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        List<Character> operators = Arrays.asList(OR, EXPO, AND, AND, AND, MINUS, MOD, ADD, AND, MOD, ADD, MULTIPLY);
+        String syms[] = {"|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+//        max1024s(nums, operators);
+
+        /*
+        29 & 33 & 26 | 1024
+        22 & 2 ** 9 * 2
+        2 - 18 & 996 + 32
+        */
     }
 
     public static final char ADD = '+';
@@ -29,57 +32,88 @@ public class MarkovChain {
     public static final char LEFT = '<';
     public static final char RIGHT = '>';
 
-    public static String[] max1024s(List<Integer> nums, List<Character> operators) {
+
+    public static void max1024s2(List<Integer> nums, List<Character> operators) {
+        int m = nums.size();
+        int n = operators.size();
+        limit = Math.min(m / 4, n / 3) * 7;
+        dfs(nums, operators, 0);
+    }
+
+    List<String> res = new ArrayList<>();
+    static int limit;
+
+    private static void dfs(List<Integer> nums, List<Character> operators, int i) {
+        //新一轮计算
+        if (i % 7 == 0) {
+
+            //数字
+        } else if (i % 2 == 0) {
+
+            //运算符
+        } else {
+
+        }
+    }
+
+    public static void max1024s(List<Integer> nums, List<Character> operators) {
         int m = nums.size();
         int n = operators.size();
         int cnt = Math.min(m / 4, n / 3);
-        int total = 0;
-//        for (int ordinal = 0; ordinal < cnt; ordinal++) {
-        for (int i1 = 0; i1 < m; i1++) {
-            for (int i2 = 0; i2 < m; i2++) {
-                if (i2 == i1) continue;
-                for (int i3 = 0; i3 < m; i3++) {
-                    if (i3 == i2 || i3 == i1) continue;
-                    for (int i4 = 0; i4 < m; i4++) {
-                        if (i4 == i1 || i4 == i2 || i4 == i3) continue;
+        int success = 0;
+        ArrayList<String> plans = new ArrayList<>();
+        for (int ordinal = 0; ordinal < cnt; ordinal++) {
+            List<Integer> copy = new ArrayList<>(nums);
+            for (int i1 = 0; i1 < m; i1++) {
+                for (int i2 = 0; i2 < m; i2++) {
+                    if (i2 == i1) continue;
+                    for (int i3 = 0; i3 < m; i3++) {
+                        if (i3 == i2 || i3 == i1) continue;
+                        for (int i4 = 0; i4 < m; i4++) {
+                            if (i4 == i1 || i4 == i2 || i4 == i3) continue;
 
-                        for (int j1 = 0; j1 < n; j1++) {
-                            for (int j2 = 0; j2 < n; j2++) {
-                                if (j2 == j1) continue;
-                                for (int j3 = 0; j3 < n; j3++) {
-                                    if (j3 == j2 || j3 == j1) continue;
-                                    Integer num1 = nums.get(i1);
-                                    Integer num2 = nums.get(i2);
-                                    Integer num3 = nums.get(i3);
-                                    Integer num4 = nums.get(i4);
-                                    Character op1 = operators.get(j1);
-                                    Character op2 = operators.get(j2);
-                                    Character op3 = operators.get(j3);
-                                    int result = getResult(op1, num1, num2);
-                                    result = getResult(op2, result, num3);
-                                    result = getResult(op3, result, num4);
-                                    if (result == 1024)
-                                        System.out.printf("%d %s %d %s %d %s %d = %d\n", num1, op1, num2, op2, num3, op3, num4, result);
-                                    total++;
+                            for (int j1 = 0; j1 < n; j1++) {
+                                for (int j2 = 0; j2 < n; j2++) {
+                                    if (j2 == j1) continue;
+                                    for (int j3 = 0; j3 < n; j3++) {
+                                        if (j3 == j2 || j3 == j1) continue;
+                                        Integer num1 = copy.get(i1);
+                                        Integer num2 = copy.get(i2);
+                                        Integer num3 = copy.get(i3);
+                                        Integer num4 = copy.get(i4);
+                                        Character op1 = operators.get(j1);
+                                        Character op2 = operators.get(j2);
+                                        Character op3 = operators.get(j3);
+                                        int result = getResult(op1, num1, num2);
+                                        result = getResult(op2, result, num3);
+                                        result = getResult(op3, result, num4);
+                                        if (result == 1024) {
+                                            String format = String.format("%d %s %d %s %d %s %d = %d", num1, op1, num2, op2, num3, op3, num4, result);
+                                            System.out.println(format);
+//                                            plans.add(format);
+//                                            if (++success == cnt) {
+//                                                plans.forEach(System.out::println);
+//                                                return;
+//                                            }
+                                        }
+                                    }
                                 }
                             }
-                        }
 
+                        }
                     }
                 }
             }
         }
-//        }
 
-        System.out.println("total = " + total);
 
 //        for (int i = 0; i < m - 1; i++) {
 //            for (int j = i + 1; j < m; j++) {
 //                for (int k = 0; k < n; k++) {
 //                    //todo 运算结果的取值范围为 32 位有符号整数，超过此范围将提示报错。
-//                    int result = getResult(operators.get(k), nums.get(i), nums.get(j));
+//                    int result = getResult(operators.get(k), copy.get(i), copy.get(j));
 //
-//                    LinkedList<Integer> numsNew = new LinkedList<>(nums);
+//                    LinkedList<Integer> numsNew = new LinkedList<>(copy);
 //                    numsNew.remove(i);
 //                    numsNew.remove(j);
 //                    LinkedList<Character> operatorsNew = new LinkedList<>(operators);
@@ -88,8 +122,6 @@ public class MarkovChain {
 //                }
 //            }
 //        }
-
-        return new String[]{};
     }
 
     private static int calculate(LinkedList<Integer> nums, LinkedList<Character> operators, int result) {
