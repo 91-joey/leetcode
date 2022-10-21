@@ -6,16 +6,61 @@ import java.util.*;
 public class MarkovChain {
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
-        List<Character> operators = Arrays.asList(OR, EXPO, AND, AND, AND, MINUS, MOD, ADD, AND, MOD, ADD, MULTIPLY);
-        String syms[] = {"|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        List<Integer> nums = Arrays.asList(3, 7, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+//        List<Character> operators = Arrays.asList(OR, EXPO, AND, AND, AND, MINUS, MOD, ADD, AND, MOD, ADD, MULTIPLY);
+        String operators[] = {"|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        int m = nums.size();
+        int n = operators.length;
+        limit = Math.min(m / 4, n / 3);
+        int numsNeeded = ++limit * 4 - m;
+        int operatorsNeeded = limit * 3 - n;
+        System.out.println("m = " + m);
+        System.out.println("n = " + n);
+        System.out.println("需要数字牌： " + numsNeeded + "张");
+        System.out.println("需要符号牌： " + operatorsNeeded + "张");
 //        max1024s(nums, operators);
 
         /*
-        29 & 33 & 26 | 1024
-        22 & 2 ** 9 * 2
-        2 - 18 & 996 + 32
+        26 & 22 & 9 | 1024
+        18 & 1 + 32 * 32
+        996 | 29 % 1 + 3
+        2 % 2 - 33 ** 2
         */
+        TreeMap<Integer, Integer> val2cnt = new TreeMap<>();
+        nums.forEach(integer -> val2cnt.merge(integer, 1, Integer::sum));
+        TreeMap<String, Integer> op2cnt = new TreeMap<>();
+        Arrays.asList(operators).forEach(s -> op2cnt.merge(s, 1, Integer::sum));
+        String plans = "        26 & 22 & 9 | 1024\n" +
+                "        18 & 1 + 32 * 32\n" +
+                "        996 | 29 % 1 + 3\n" +
+                "        2 % 2 - 33 ** 2";
+        String[] split = plans.split("\n+");
+        for (String s : split) {
+            String[] strings = s.stripLeading().split("\s+");
+            for (int i = 0; i < strings.length; i++) {
+                if ((i & 1) == 0) {
+                    Integer integer = Integer.valueOf(strings[i]);
+                    val2cnt.compute(integer, (k, v) -> v - 1);
+                } else
+                    op2cnt.compute(strings[i], (k, v) -> v - 1);
+            }
+        }
+        System.out.println("\n手里可用的牌：");
+        remove(val2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
+        remove(op2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
+
+        System.out.println(((7 & 2) << 2) << 7);
+    }
+
+    private static <T> Map<T, Integer> remove(Map<T, Integer> map) {
+        Map<T, Integer> ret = new TreeMap<>();
+        for (Map.Entry<T, Integer> e : map.entrySet()) {
+            Integer value = e.getValue();
+            if (value != 0) {
+                ret.put(e.getKey(), value);
+            }
+        }
+        return ret;
     }
 
     public static final char ADD = '+';
