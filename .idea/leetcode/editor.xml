@@ -36,6 +36,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ContainerWithMostWater.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ContainerWithMostWater.md" />
+              <option name="frontendQuestionId" value="leetcode.cn11" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ContainerWithMostWater.java" />
+              <option name="titleSlug" value="container-with-most-water" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ContainsDuplicateIii.java">
           <value>
             <LeetcodeEditor>
