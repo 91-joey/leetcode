@@ -6,9 +6,9 @@ import java.util.*;
 public class MarkovChain {
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(3, 7, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        List<Integer> nums = Arrays.asList(1024, 3, 7, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
 //        List<Character> operators = Arrays.asList(OR, EXPO, AND, AND, AND, MINUS, MOD, ADD, AND, MOD, ADD, MULTIPLY);
-        String operators[] = {"|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        String operators[] = {"<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
         int m = nums.size();
         int n = operators.length;
         limit = Math.min(m / 4, n / 3);
