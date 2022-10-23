@@ -6,9 +6,12 @@ import java.util.*;
 public class MarkovChain {
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(7, 34, 2, 1024, 3, 7, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        List<Integer> nums = Arrays.asList(28, 34, 2, 1024, 3, 7, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        var num2cnt = new HashMap<Integer, Integer>();
+        nums.forEach(val -> num2cnt.merge(val, 1, Integer::sum));
+        num2cnt.forEach((k, v) -> System.out.println(k + " : " + v + "张"));
 //        List<Character> operators = Arrays.asList(OR, EXPO, AND, AND, AND, MINUS, MOD, ADD, AND, MOD, ADD, MULTIPLY);
-        String operators[] = {"|", ">>", "<<", "+", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        String operators[] = {"<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
         int m = nums.size();
         int n = operators.length;
         limit = Math.min(m / 4, n / 3);
@@ -34,7 +37,8 @@ public class MarkovChain {
                 "        18 & 1 + 32 * 32\n" +
                 "        996 | 29 % 1 + 3\n" +
                 "        7 & 2 << 2 << 7\n" +
-                "        34 + 2 >> 7 | 1024\n" +
+//                "        34 + 2 >> 7 | 1024\n" +
+                "        34 << 2 >> 28 | 1024\n" +
                 "        2 % 2 - 33 ** 2";
         String[] split = plans.split("\n+");
         for (String s : split) {
@@ -51,7 +55,7 @@ public class MarkovChain {
         remove(val2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
         remove(op2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
 
-        System.out.println(((34 + 2) >> 7) | 1024);
+        System.out.println(((34 << 2) >> 28) | 1024);
     }
 
     private static <T> Map<T, Integer> remove(Map<T, Integer> map) {
