@@ -60,6 +60,7 @@ public class ThreeSum {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //哈希去重
         public List<List<Integer>> threeSum(int[] nums) {
             Set<List<Integer>> res = new HashSet<>();
             Arrays.sort(nums);
@@ -78,22 +79,58 @@ public class ThreeSum {
             return res.stream().toList();
         }
 
+        //手动比较去重（繁琐版）
         public List<List<Integer>> threeSum2(int[] nums) {
             List<List<Integer>> res = new ArrayList<>();
             Arrays.sort(nums);
             int len = nums.length;
             for (int i = 0; i < len; i++) {
+                if (nums[i] > 0)
+                    break;
                 if (i > 0 && nums[i - 1] == nums[i])
                     continue;
-                for (int l = i + 1, r = len - 1; l < r; ) {
-                    //todo
-                    if ((l > i + 1 && nums[l - 1] == nums[l]) ||
-                            (r < len - 1 && nums[r + 1] == nums[r]))
+                for (int l = i + 1, r = len - 1, target = -nums[i]; l < r; ) {
+                    if (l > i + 1 && nums[l - 1] == nums[l]) {
+                        l++;
                         continue;
+                    }
+                    if (r < len - 1 && nums[r + 1] == nums[r]) {
+                        r--;
+                        continue;
+                    }
                     int sum = nums[l] + nums[r];
-                    if (nums[i] + sum == 0)
-                        res.add(List.of(nums[i], nums[l++], nums[r--]));
-                    else if (nums[i] + sum < 0)
+                    if (sum == target) {
+//                        res.add(List.of(nums[i], nums[l++], nums[r--]));
+                        ArrayList<Integer> list = new ArrayList<>();
+                        list.add(nums[i]);
+                        list.add(nums[l++]);
+                        list.add(nums[r--]);
+                        res.add(list);
+                    } else if (sum < target)
+                        l++;
+                    else
+                        r--;
+                }
+            }
+            return res;
+        }
+
+
+        //手动比较去重（精简版）
+        public List<List<Integer>> threeSum3(int[] nums) {
+            List<List<Integer>> res = new ArrayList<>();
+            Arrays.sort(nums);
+            int len = nums.length;
+            for (int i = 0; i < len - 2 && nums[i] <= 0; i++) {
+                if (i > 0 && nums[i - 1] == nums[i])
+                    continue;
+                for (int l = i + 1, r = len - 1, target = -nums[i]; l < r; ) {
+                    int sum = nums[l] + nums[r];
+                    if (sum == target) {
+                        res.add(Arrays.asList(nums[i], nums[l], nums[r]));
+                        while (l < r && nums[l] == nums[++l]) ;
+                        while (l < r && nums[r] == nums[--r]) ;
+                    } else if (sum < target)
                         l++;
                     else
                         r--;
