@@ -45,6 +45,7 @@ public class ThreeSumClosest {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //排序+双指针
         public int threeSumClosest(int[] nums, int target) {
             Arrays.sort(nums);
             int min = nums[0] + nums[1] + nums[2];
@@ -53,27 +54,27 @@ public class ThreeSumClosest {
             int max = nums[len - 1] + nums[len - 2] + nums[len - 3];
             if (target >= max) return max;
 
-            int res = max + min > target * 2 ? min : max;
-            for (int i = 0; i < len - 2; i++) {
+            int res = 0, curDiff;
+            for (int i = 0, diff = Integer.MAX_VALUE; i < len - 2; ) {
                 int t = target - nums[i];
-//                res = max + min > target * 2 ? min : max;
                 for (int l = i + 1, r = len - 1; l < r; ) {
-                    if (nums[l] + nums[r] == t)
+                    int sum = nums[l] + nums[r];
+                    if (sum == t)
                         return target;
+                    else if (sum < t) {
+                        curDiff = t - sum;
+                        while (l < r && nums[l] == nums[++l]) l++;
+                    } else {
+                        curDiff = sum - t;
+                        while (l < r && nums[r] == nums[--r]) r--;
+                    }
 
+                    if (diff > curDiff) {
+                        res = sum + nums[i];
+                        diff = curDiff;
+                    }
                 }
-//                int l = i + 1;
-//                int r = len - 1;
-//                if (nums[l] + nums[r] > t) {
-//                    while (l < r) {
-//                        int tl = t - nums[r];
-//                        while (l < r && nums[l] < tl) l++;
-//                        if (l < r && nums[l] == tl)
-//                            return target;
-//                    }
-//                } else {
-//
-//                }
+                while (i < len - 2 && nums[i] == nums[++i]) i++;
             }
 
             return res;
