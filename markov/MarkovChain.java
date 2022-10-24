@@ -6,12 +6,39 @@ import java.util.*;
 public class MarkovChain {
 
     public static void main(String[] args) {
-        List<Integer> nums = Arrays.asList(28, 34, 2, 1024, 3, 7, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        int[] allNums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 955, 996, 1075, 1024, 1337};
+        String[] allOperators = {"+", "-", "*", "//", "%", "**", ">>", "<<", "^", "&", "|"};
+
+        List<Integer> nums = Arrays.asList(2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        String operators[] = {"|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+
+        List<Integer> numsXiaohao = Arrays.asList(955, 1075, 1337, 14, 2, 26, 23, 33, 0, 1024, 7, 2, 0, 1024);
+        String operatorsXiaohao[] = {"//"};
+
+        System.out.println("allNums.length = " + allNums.length);
+        System.out.println("allOperators.length = " + allOperators.length);
+        HashSet<Integer> setNums = new HashSet<>(nums);
+        HashSet<String> setOperators = new HashSet<>(Arrays.asList(operators));
+        HashSet<Integer> setNumsXiaohao = new HashSet<>(numsXiaohao);
+        HashSet<String> setOperatorsXiaohao = new HashSet<>(Arrays.asList(operatorsXiaohao));
+        int[] numsWaitedToBeCollected = Arrays.stream(allNums).filter(value -> !setNums.contains(value)).toArray();
+        String[] operatorsWaitedToBeCollected = Arrays.stream(allOperators).filter(value -> !setOperators.contains(value)).toArray(String[]::new);
+        int lenAll = numsWaitedToBeCollected.length + operatorsWaitedToBeCollected.length;
+        System.out.println("集齐还需要 " + lenAll + "张卡，最多 " + (lenAll + 2) / 3 + " 天");
+        System.out.println("numsWaitedToBeCollected = " + Arrays.toString(numsWaitedToBeCollected));
+        System.out.println("operatorsWaitedToBeCollected = " + Arrays.toString(operatorsWaitedToBeCollected));
+        int[] numsAbleToGetFromXiaohao = Arrays.stream(numsWaitedToBeCollected).filter(setNumsXiaohao::contains).toArray();
+        System.out.println("numsAbleToGetFromXiaohao = " + Arrays.toString(numsAbleToGetFromXiaohao));
+        int[] numsDisableToGetFromXiaohao = Arrays.stream(numsWaitedToBeCollected).filter(value -> !setNumsXiaohao.contains(value)).toArray();
+        System.out.println("numsDisableToGetFromXiaohao = " + Arrays.toString(numsDisableToGetFromXiaohao));
+        String[] operatorsAbleToGetFromXiaohao = Arrays.stream(allOperators).filter(setOperatorsXiaohao::contains).toArray(String[]::new);
+        System.out.println("operatorsAbleToGetFromXiaohao = " + Arrays.toString(operatorsAbleToGetFromXiaohao));
+
+
         var num2cnt = new HashMap<Integer, Integer>();
         nums.forEach(val -> num2cnt.merge(val, 1, Integer::sum));
         num2cnt.forEach((k, v) -> System.out.println(k + " : " + v + "张"));
 //        List<Character> operators = Arrays.asList(OR, EXPO, AND, AND, AND, MINUS, MOD, ADD, AND, MOD, ADD, MULTIPLY);
-        String operators[] = {"<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
         int m = nums.size();
         int n = operators.length;
         limit = Math.min(m / 4, n / 3);
@@ -39,6 +66,7 @@ public class MarkovChain {
                 "        7 & 2 << 2 << 7\n" +
 //                "        34 + 2 >> 7 | 1024\n" +
                 "        34 << 2 >> 28 | 1024\n" +
+                "        2 ^ 2 >> 35 | 1024\n" +
                 "        2 % 2 - 33 ** 2";
         String[] split = plans.split("\n+");
         for (String s : split) {
@@ -55,7 +83,8 @@ public class MarkovChain {
         remove(val2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
         remove(op2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
 
-        System.out.println(((34 << 2) >> 28) | 1024);
+        System.out.println(((2 ^ 2) >> 35) | 1024);
+
     }
 
     private static <T> Map<T, Integer> remove(Map<T, Integer> map) {
