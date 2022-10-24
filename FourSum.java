@@ -55,6 +55,7 @@ public class FourSum {
         System.out.println("[-2147483648,-1294967296]");
         System.out.println("[+1294967296,+2147483648]");
         System.out.println((-2147483648 + 1000000000) / 2);
+        System.out.println(-573741825 * 2 - 1000_000_000);
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
