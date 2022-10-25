@@ -762,6 +762,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ThreeSumSmaller.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ThreeSumSmaller.md" />
+              <option name="frontendQuestionId" value="leetcode.cn259" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ThreeSumSmaller.java" />
+              <option name="titleSlug" value="3sum-smaller" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/TrappingRainWater.java">
           <value>
             <LeetcodeEditor>
