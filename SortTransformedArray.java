@@ -90,6 +90,17 @@ public class SortTransformedArray {
 
             return ans;
         }
+
+        public int[] sortTransformedArray2(int[] nums, int a, int b, int c) {
+            for (int i = 0; i < nums.length; i++)
+                nums[i] = a * nums[i] * nums[i] + b * nums[i] + c;
+            Arrays.sort(nums);
+            return nums;
+        }
+
+        public int[] sortTransformedArray3(int[] nums, int a, int b, int c) {
+            return Arrays.stream(nums).map(e -> a * e * e + b * e + c).sorted().toArray();
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
