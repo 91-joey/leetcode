@@ -45,10 +45,12 @@ import java.util.Arrays;
 public class ThreeSumSmaller {
     public static void main(String[] args) {
         Solution solution = new ThreeSumSmaller().new Solution();
+        System.out.println(solution.threeSumSmaller(new int[]{-2, 0, 1, 3}, 2));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //双指针
         public int threeSumSmaller(int[] nums, int target) {
             int len = nums.length;
             if (len < 3)
@@ -57,12 +59,16 @@ public class ThreeSumSmaller {
             Arrays.sort(nums);
             if (nums[0] + nums[1] + nums[2] >= target)
                 return 0;
-             else if (nums[len - 1] + nums[len - 2] + nums[len - 3] < target)
+            else if (nums[len - 1] + nums[len - 2] + nums[len - 3] < target)
                 return len * (len - 1) * (len - 2) / 6;
+
             int cnt = 0;
             for (int i = 0; i < len - 2; i++) {
-                for (int l = i + 1, r = len - 1, t = target - nums[i]; l < r; ) {
-                    //todo 二分查找
+                int t = target - nums[i];
+                if (nums[i + 1] + nums[i + 2] >= t)
+                    break;
+
+                for (int l = i + 1, r = len - 1; l < r; ) {
                     if (nums[l] + nums[r] < t)
                         cnt += r - l++;
                     else
