@@ -25,6 +25,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BackspaceStringCompare.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BackspaceStringCompare.md" />
+              <option name="frontendQuestionId" value="leetcode.cn844" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BackspaceStringCompare.java" />
+              <option name="titleSlug" value="backspace-string-compare" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ConstructBinaryTreeFromPreorderAndInorderTraversal.java">
           <value>
             <LeetcodeEditor>
