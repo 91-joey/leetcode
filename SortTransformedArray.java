@@ -40,11 +40,13 @@ import java.util.Arrays;
 public class SortTransformedArray {
     public static void main(String[] args) {
         Solution solution = new SortTransformedArray().new Solution();
-        System.out.println(solution.sortTransformedArray(new int[]{-4, -2, 2, 4}, 1, 3, 5));
+        System.out.println(Arrays.toString(solution.sortTransformedArray4(new int[]{-4, -2, 2, 4}, 1, 3, 5)));
+//        System.out.println(Arrays.toString(solution.sortTransformedArray(new int[]{-4, -2, 2, 4}, -1, 3, 5)));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //双指针+二分查找  n / logn+n
         public int[] sortTransformedArray(int[] nums, int a, int b, int c) {
             int len = nums.length;
             int[] ans = new int[len];
@@ -56,25 +58,24 @@ public class SortTransformedArray {
                     for (int i = 0, j = len - 1; i < len; i++, j--)
                         ans[i] = b * nums[j] + c;
             else {
-                int mid = -b / (a * 2);
+                double mid = (double) -b / (a * 2);
                 int idx = 0;
                 if (a < 0) {
                     int l = 0, r = len - 1;
-                    for (; l < r; ) {
-                        //todo <=
-                        ans[idx++] = mid - nums[l] <= nums[r] - mid ?
+                    while (l < r) {
+                        ans[idx++] = mid * 2 < nums[r] + nums[l] ?
                                 (a * nums[r] * nums[r] + b * nums[r--] + c) :
                                 (a * nums[l] * nums[l] + b * nums[l++] + c);
                     }
                     ans[len - 1] = a * nums[r] * nums[r] + b * nums[r] + c;
                 } else {
-                    int search = Arrays.binarySearch(nums, mid);
+                    int search = Arrays.binarySearch(nums, (int) Math.ceil(mid));
                     if (search < 0)
                         search = -search - 1;
 
                     int l = search - 1, r = search;
-                    for (; l >= 0 && r < len; ) {
-                        ans[idx++] = mid - nums[l] <= nums[r] - mid ?
+                    while (l >= 0 && r < len) {
+                        ans[idx++] = mid - nums[l] < nums[r] - mid ?
                                 (a * nums[l] * nums[l] + b * nums[l--] + c) :
                                 (a * nums[r] * nums[r] + b * nums[r++] + c);
                     }
@@ -86,6 +87,36 @@ public class SortTransformedArray {
                             ans[idx++] = a * nums[l] * nums[l] + b * nums[l--] + c;
                     }
                 }
+            }
+
+            return ans;
+        }
+
+        //双指针  n
+        public int[] sortTransformedArray4(int[] nums, int a, int b, int c) {
+            int len = nums.length;
+            int[] ans = new int[len];
+            if (a == 0)
+                if (b >= 0)
+                    for (int i = 0; i < len; i++)
+                        ans[i] = b * nums[i] + c;
+                else
+                    for (int i = 0, j = len - 1; i < len; i++, j--)
+                        ans[i] = b * nums[j] + c;
+            else {
+                double mid = (double) -b / a;
+                int idx, incre;
+                if (a < 0) {
+                    idx = 0;
+                    incre = 1;
+                } else {
+                    idx = len - 1;
+                    incre = -1;
+                }
+                for (int i = 0, l = 0, r = len - 1; i < len; idx += incre, i++)
+                    ans[idx] = mid < nums[r] + nums[l] ?
+                            (a * nums[r] * nums[r] + b * nums[r--] + c) :
+                            (a * nums[l] * nums[l] + b * nums[l++] + c);
             }
 
             return ans;
@@ -104,4 +135,3 @@ public class SortTransformedArray {
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
-//-3,387,2895,5367,5275,5275,6255,7317,8577,11127,11127,10995,15411,15411,18765,20745,22447,22447,24607,28797,33315,33315,33315,33087,35697,38161,40707,40455,40455,48561,48561,54667,54375,73785,81267,80911,88737,88365,92215,100557,100161,104257,117037,117037,144811,150211,150211,150211,149727,154725,160305,170727,170211,170211,176061,175537,175537,203397,203397,221685,240147,252237,265267,271905,307017,314155,313455,320667,320667,328677,343527,342795,351075,350335,358705,366417,366417,365661,365661,382087,382087,390045
