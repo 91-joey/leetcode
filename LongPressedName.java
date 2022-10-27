@@ -126,5 +126,6 @@ public class LongPressedName {
 
             return j == len2;
         }
-//leetcode submit region end(Prohibit modification and deletion)
     }
+//leetcode submit region end(Prohibit modification and deletion)
+}
