@@ -36,6 +36,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BoatsToSavePeople.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BoatsToSavePeople.md" />
+              <option name="frontendQuestionId" value="leetcode.cn881" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BoatsToSavePeople.java" />
+              <option name="titleSlug" value="boats-to-save-people" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ConstructBinaryTreeFromPreorderAndInorderTraversal.java">
           <value>
             <LeetcodeEditor>

@@ -4,15 +4,14 @@ import java.util.*;
 
 //1024小游戏
 public class MarkovChain {
-
     public static void main(String[] args) {
         int[] allNums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 955, 965, 996, 1075, 1024, 1337};
         String[] allOperators = {"+", "-", "*", "//", "%", "**", ">>", "<<", "^", "&", "|"};
 
-        List<Integer> nums = Arrays.asList(0, 4, 8, 2, 2, 23, 955, 1075, 1337, 7, 24, 35, 2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
-        String operators[] = {"**", "^", "|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        List<Integer> nums = Arrays.asList(13, 11, 965, 2, 0, 4, 8, 4, 0, 2, 2, 23, 955, 1075, 1337, 7, 24, 35, 2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        String operators[] = {"^", "**", "^", "|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
 
-        List<Integer> numsXiaohao = Arrays.asList(8, 7, 955, 23, 9, 18, 27, 31, 4, 2, 16, 30, 955, 1075, 1337, 14, 2, 26, 23, 33, 0, 1024, 7, 2, 0, 1024);
+        List<Integer> numsXiaohao = Arrays.asList(11, 13, 19, 1, 2, 8, 7, 955, 23, 9, 18, 27, 31, 4, 2, 16, 30, 955, 1075, 1337, 14, 2, 26, 23, 33, 0, 1024, 7, 2, 0, 1024);
         String operatorsXiaohao[] = {"//"};
 
         System.out.println("allNums.length = " + allNums.length);
@@ -33,7 +32,6 @@ public class MarkovChain {
         System.out.println("numsDisableToGetFromXiaohao = " + Arrays.toString(numsDisableToGetFromXiaohao));
         String[] operatorsAbleToGetFromXiaohao = Arrays.stream(allOperators).filter(setOperatorsXiaohao::contains).toArray(String[]::new);
         System.out.println("operatorsAbleToGetFromXiaohao = " + Arrays.toString(operatorsAbleToGetFromXiaohao));
-
 
         var num2cnt = new HashMap<Integer, Integer>();
         nums.forEach(val -> num2cnt.merge(val, 1, Integer::sum));
