@@ -256,6 +256,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LongestMountainInArray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LongestMountainInArray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn845" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LongestMountainInArray.java" />
+              <option name="titleSlug" value="longest-mountain-in-array" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LongestRepeatingCharacterReplacement.java">
           <value>
             <LeetcodeEditor>
