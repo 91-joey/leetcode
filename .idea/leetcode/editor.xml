@@ -861,6 +861,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/TwoSumLessThanK.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/TwoSumLessThanK.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1099" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/TwoSumLessThanK.java" />
+              <option name="titleSlug" value="two-sum-less-than-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/UniqueSubstringsInWraparoundString.java">
           <value>
             <LeetcodeEditor>
