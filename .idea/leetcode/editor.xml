@@ -795,6 +795,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/Sqrtx.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/Sqrtx.md" />
+              <option name="frontendQuestionId" value="leetcode.cn69" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/Sqrtx.java" />
+              <option name="titleSlug" value="sqrtx" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SquaresOfASortedArray.java">
           <value>
             <LeetcodeEditor>
