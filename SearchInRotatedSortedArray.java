@@ -48,11 +48,12 @@ package org.example.leetcode.problems;
 public class SearchInRotatedSortedArray {
     public static void main(String[] args) {
         Solution solution = new SearchInRotatedSortedArray().new Solution();
+        System.out.println(solution.search3(new int[]{4, 5, 6, 7, 0, 1, 2}, 0));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //先查找旋转点，再二分查找
+        //朴素解法: 先查找旋转点，再二分查找
         public int search(int[] nums, int target) {
             int len = nums.length;
             int i = 0;
@@ -95,30 +96,82 @@ public class SearchInRotatedSortedArray {
         int l;
         int r;
         int ans = -1;
+        boolean found = false;
 
+        //奇葩脑洞法
         public int search3(int[] nums, int target) {
             int len = nums.length;
             l = 0;
             r = len - 1;
-            binarySearch(nums, target);
+            binarySearch(nums, target, l, r);
             if (ans != -1)
                 return ans;
 
+            while (l <= r) {
+                int mid = l + (r - l) / 2;
+                if (target == nums[mid])
+                    return mid;
+                else if (target < nums[mid])
+                    r = mid - 1;
+                else
+                    l = mid + 1;
+            }
             return -1;
         }
 
-        private void binarySearch(int[] nums, int target) {
-            if (nums[l] <= nums[r])
+        private void binarySearch(int[] nums, int target, int l, int r) {
+            if (found || l > r)
                 return;
+            if (nums[l] <= target && target <= nums[r]) {
+                this.l = l;
+                this.r = r;
+                found = true;
+                return;
+            }
 
             int mid = l + (r - l) / 2;
             if (target == nums[mid]) {
                 ans = mid;
-                return;
-            } else if (target < nums[mid]) {
+                found = true;
+            } else {
+                binarySearch(nums, target, l, mid - 1);
+                binarySearch(nums, target, mid + 1, r);
+            }
+        }
 
+        //分4种情况，最后二分查找
+        public int search4(int[] nums, int target) {
+            int l = 0, r = nums.length - 1;
+            while (l <= r) {
+                int mid = l + (r - l) / 2;
+                if (target == nums[mid])
+                    return mid;
+                if (nums[l] <= nums[mid]) {
+                    if (nums[l] <= target && target < nums[mid]) {
+                        r = mid - 1;
+                        break;
+                    } else
+                        l = mid + 1;
+                } else {
+                    if (nums[mid] < target && target <= nums[r]) {
+                        l = mid + 1;
+                        break;
+                    } else {
+                        r = mid - 1;
+                    }
+                }
             }
 
+            while (l <= r) {
+                int mid = l + (r - l) / 2;
+                if (target == nums[mid])
+                    return mid;
+                else if (target < nums[mid])
+                    r = mid - 1;
+                else
+                    l = mid + 1;
+            }
+            return -1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
