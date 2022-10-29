@@ -3,15 +3,19 @@ package org.example.leetcode.problems.markov;
 import java.util.*;
 
 //1024小游戏
+/*
+ * 剩下2天
+ *      0 张牌概率 0.35
+ */
 public class MarkovChain {
     public static void main(String[] args) {
         int[] allNums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 955, 965, 996, 1075, 1024, 1337};
         String[] allOperators = {"+", "-", "*", "//", "%", "**", ">>", "<<", "^", "&", "|"};
 
-        List<Integer> nums = Arrays.asList(14, 16, 17, 13, 15, 3, 13, 11, 965, 2, 0, 4, 8, 4, 0, 2, 2, 23, 955, 1075, 1337, 7, 24, 35, 2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
-        String operators[] = {"//", "^", "**", "^", "|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        List<Integer> nums = Arrays.asList(5, 19, 10, 6, 33, 6, 14, 16, 17, 13, 15, 3, 13, 11, 965, 2, 0, 4, 8, 4, 0, 2, 2, 23, 955, 1075, 1337, 7, 24, 35, 2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        String operators[] = {"%", "//", "^", "**", "^", "|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
 
-        List<Integer> numsXiaohao = Arrays.asList(17, 7, 20, 23, 7, 11, 13, 19, 1, 2, 8, 7, 955, 23, 9, 18, 27, 31, 4, 2, 16, 30, 955, 1075, 1337, 14, 2, 26, 23, 33, 0, 1024, 7, 2, 0, 1024);
+        List<Integer> numsXiaohao = Arrays.asList(10, 25, 21, 2, 5, 14, 12, 17, 7, 20, 23, 7, 11, 13, 19, 1, 2, 8, 7, 955, 23, 9, 18, 27, 31, 4, 2, 16, 30, 955, 1075, 1337, 14, 2, 26, 23, 33, 0, 1024, 7, 2, 0, 1024);
         String operatorsXiaohao[] = {"//"};
 
         System.out.println("allNums.length = " + allNums.length);
@@ -19,19 +23,13 @@ public class MarkovChain {
         HashSet<Integer> setNums = new HashSet<>(nums);
         HashSet<String> setOperators = new HashSet<>(Arrays.asList(operators));
         HashSet<Integer> setNumsXiaohao = new HashSet<>(numsXiaohao);
-        HashSet<String> setOperatorsXiaohao = new HashSet<>(Arrays.asList(operatorsXiaohao));
         int[] numsWaitedToBeCollected = Arrays.stream(allNums).filter(value -> !setNums.contains(value)).toArray();
         String[] operatorsWaitedToBeCollected = Arrays.stream(allOperators).filter(value -> !setOperators.contains(value)).toArray(String[]::new);
         int lenAll = numsWaitedToBeCollected.length + operatorsWaitedToBeCollected.length;
         System.out.println("集齐还需要 " + lenAll + "张卡，最多 " + (lenAll + 2) / 3 + " 天");
         System.out.println("numsWaitedToBeCollected = " + Arrays.toString(numsWaitedToBeCollected));
-        System.out.println("operatorsWaitedToBeCollected = " + Arrays.toString(operatorsWaitedToBeCollected));
         int[] numsAbleToGetFromXiaohao = Arrays.stream(numsWaitedToBeCollected).filter(setNumsXiaohao::contains).toArray();
         System.out.println("numsAbleToGetFromXiaohao = " + Arrays.toString(numsAbleToGetFromXiaohao));
-        int[] numsDisableToGetFromXiaohao = Arrays.stream(numsWaitedToBeCollected).filter(value -> !setNumsXiaohao.contains(value)).toArray();
-        System.out.println("numsDisableToGetFromXiaohao = " + Arrays.toString(numsDisableToGetFromXiaohao));
-        String[] operatorsAbleToGetFromXiaohao = Arrays.stream(allOperators).filter(setOperatorsXiaohao::contains).toArray(String[]::new);
-        System.out.println("operatorsAbleToGetFromXiaohao = " + Arrays.toString(operatorsAbleToGetFromXiaohao));
 
         var num2cnt = new HashMap<Integer, Integer>();
         nums.forEach(val -> num2cnt.merge(val, 1, Integer::sum));

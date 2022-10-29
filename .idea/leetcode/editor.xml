@@ -146,6 +146,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindPeakElement.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindPeakElement.md" />
+              <option name="frontendQuestionId" value="leetcode.cn162" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindPeakElement.java" />
+              <option name="titleSlug" value="find-peak-element" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FirstBadVersion.java">
           <value>
             <LeetcodeEditor>
