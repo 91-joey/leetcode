@@ -83,6 +83,20 @@ public class FindMinimumInRotatedSortedArray {
             }
             return nums[l];
         }
+
+
+        //☆☆☆☆☆ 优雅精简二分法
+        public int findMin3(int[] nums) {
+            int l = 0, r = nums.length - 1;
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (nums[mid] > nums[r])
+                    l = mid + 1;
+                else
+                    r = mid;
+            }
+            return nums[l];
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
