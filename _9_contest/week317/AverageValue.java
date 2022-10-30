@@ -1,5 +1,6 @@
 package org.example.leetcode.problems._9_contest.week317;
 
+//6220. 可被三整除的偶数的平均值
 public class AverageValue {
     public int averageValue(int[] nums) {
         int sum = 0;
