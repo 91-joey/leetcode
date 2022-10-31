@@ -12,8 +12,8 @@ public class MarkovChain {
         int[] allNums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 955, 965, 996, 1075, 1024, 1337};
         String[] allOperators = {"+", "-", "*", "//", "%", "**", ">>", "<<", "^", "&", "|"};
 
-        List<Integer> nums = Arrays.asList(21, 27, 31, 20, 6, 33, 5, 19, 10, 6, 33, 6, 14, 16, 17, 13, 15, 3, 13, 11, 965, 2, 0, 4, 8, 4, 0, 2, 2, 23, 955, 1075, 1337, 7, 24, 35, 2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
-        String operators[] = {"|", "%", "//", "^", "**", "^", "|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
+        List<Integer> nums = Arrays.asList(12, 25, 30, 11, 27, 6, 21, 27, 31, 20, 6, 33, 5, 19, 10, 6, 33, 6, 14, 16, 17, 13, 15, 3, 13, 11, 965, 2, 0, 4, 8, 4, 0, 2, 2, 23, 955, 1075, 1337, 7, 24, 35, 2, 35, 1024, 2, 28, 7, 34, 2, 1024, 3, 32, 7, 32, 2, 2, 1024, 996, 2, 1, 18, 2, 9, 1, 26, 22, 33, 29, 2);
+        String operators[] = {"*", "|", "%", "//", "^", "**", "^", "|", ">>", "^", "<<", "|", ">>", "<<", "<<", "|", "|", "**", "&", "&", "&", "-", "%", "+", "&", "%", "+", "*"};
 
         List<Integer> numsXiaohao = Arrays.asList(10, 25, 21, 2, 5, 14, 12, 17, 7, 20, 23, 7, 11, 13, 19, 1, 2, 8, 7, 955, 23, 9, 18, 27, 31, 4, 2, 16, 30, 955, 1075, 1337, 14, 2, 26, 23, 33, 0, 1024, 7, 2, 0, 1024);
         String operatorsXiaohao[] = {"//"};
@@ -58,12 +58,14 @@ public class MarkovChain {
         Arrays.asList(operators).forEach(s -> op2cnt.merge(s, 1, Integer::sum));
         String plans = "        26 & 22 & 9 | 1024\n" +
                 "        18 & 1 + 32 * 32\n" +
-                "        996 | 29 % 1 + 3\n" +
+                "        996 | 29 // 1 + 3\n" +
                 "        7 & 2 << 2 << 7\n" +
-//                "        34 + 2 >> 7 | 1024\n" +
                 "        34 << 2 >> 28 | 1024\n" +
                 "        2 ^ 2 >> 35 | 1024\n" +
-                "        2 % 2 - 33 ** 2";
+                "        16 * 2 ** 2 % 1337\n" +
+                "        1075 - 25 | 14 ^ 30\n" +
+                "        0 % 2 ^ 2 ** 10\n" +
+                "";
         String[] split = plans.split("\n+");
         for (String s : split) {
             String[] strings = s.stripLeading().split("\s+");
@@ -76,14 +78,40 @@ public class MarkovChain {
             }
         }
         System.out.println("\n手里可用的牌：");
-        remove(val2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
-        remove(op2cnt).forEach((k, v) -> System.out.println(k + " : " + v + "张"));
+        Map<Integer, Integer> removeVal = remove(val2cnt);
+        removeVal.forEach((k, v) -> System.out.println(k + " : " + v + "张"));
+        Map<String, Integer> removeOp = remove(op2cnt);
+        removeOp.forEach((k, v) -> System.out.println(k + " : " + v + "张"));
 
+//        System.out.println(((26 & 22) & 9) | 1024);
+//        System.out.println(((18 & 1) + 32) * 32);
+//        System.out.println((((996 | 29) / 1) + 3));
+//        System.out.println((7 & 2) << 2 << 7);
+//        System.out.println(((34 << 2) >> 28) | 1024);
         System.out.println(((2 ^ 2) >> 35) | 1024);
-        System.out.println(26 & 22 & 9 | 1024);
-        System.out.println(((18 & 1) + 32) * 32);
-        System.out.println(((996 | 29) % 1) + 3);
-        System.out.println(((2 % 2) - 33) * ((2 % 2) - 33));
+//        System.out.println((16 * 2) * (16 * 2) % 1337);
+//        System.out.println((((1075 - 25) | 14) ^ 30));
+//        System.out.println((((0 % 2) ^ 2) ));
+
+        removeVal.forEach((k, v) -> {
+            for (Integer integer = 0; integer < v; integer++) {
+                System.out.print(k + ",");
+            }
+        });
+        System.out.println();
+        removeOp.forEach((k, v) -> {
+            for (Integer integer = 0; integer < v; integer++) {
+                System.out.print(k + ",");
+            }
+        });
+
+        System.out.println("\n0" + Integer.toBinaryString(955));
+        System.out.println("0" + Integer.toBinaryString(965));
+        System.out.println(Integer.toBinaryString(1075));
+//        System.out.println(Integer.toBinaryString(1337));
+        System.out.println(1024 % 1075);
+        System.out.println((35 ^ 3) * (35 ^ 3) % 1075);
+        System.out.println(33 * 33);
 
     }
 
