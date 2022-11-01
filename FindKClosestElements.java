@@ -47,41 +47,23 @@ public class FindKClosestElements {
         Solution solution = new FindKClosestElements().new Solution();
 //        System.out.println(solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
 //        System.out.println(solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
-        System.out.println(solution.findClosestElements(new int[]{-2, -1, 1, 2, 3, 4, 5}, 7, 3));
+        System.out.println(solution.findClosestElements2(new int[]{-2, -1, 1, 2, 3, 4, 5}, 7, 3));
 //        System.out.println(solution.findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public List<Integer> findClosestElements(int[] arr, int k, int x) {
-            int len = arr.length;
-            int l = 0, r = len - 1;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (x <= arr[mid])
-                    r = mid;
+        //排除法   n-k
+        public List<Integer> findClosestElements3(int[] arr, int k, int x) {
+            int l = 0, r = arr.length - 1;
+            for (int i = 0; i < arr.length - k; i++) {
+                if (x - arr[l] <= arr[r] - x)
+                    r--;
                 else
-                    l = mid + 1;
+                    l++;
             }
-            /*
-             * l=0 [l,l]
-             *  [l-1,l-1] or [l,l]
-             */
-            if (l > 0)
-                if (x - arr[l - 1] <= arr[l] - x)
-                    r = --l;
-
-            for (int i = l > 0 ? k : k + 1; (i > 1 && (l >= 0 || r < len)); i--) {
-                if (r >= len || (l >= 0 && x - arr[l] <= arr[r] - x))
-                    l--;
-                else
-                    r++;
-            }
-
-            if (l < 0)
-                l = 0;
             ArrayList<Integer> ans = new ArrayList<>();
-            for (r = l + k; l < r; l++)
+            for (; l <= r; l++)
                 ans.add(arr[l]);
             return ans;
         }
@@ -99,6 +81,90 @@ public class FindKClosestElements {
             Collections.sort(ans);
 
             return ans;
+        }
+
+        //双重排序(Stream)  nlogn+klogk
+        public List<Integer> findClosestElements4(int[] arr, int k, int x) {
+            return Arrays.stream(arr)
+                    .boxed()
+                    //这里为什么没有做「绝对值相等时取较小索引」的逻辑，也能AC？
+                    .sorted(Comparator.comparingInt(o -> Math.abs(x - o)))
+                    .limit(k)
+                    .sorted()
+                    .toList();
+        }
+
+        //☆☆☆☆☆ 单二分 log(n-k)
+        public List<Integer> findClosestElements5(int[] arr, int k, int x) {
+            int l = 0, r = arr.length - k;
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (x - arr[mid] > arr[mid + k] - x)
+                    l = mid + 1;
+                else
+                    r = mid;
+            }
+
+//            ArrayList<Integer> ans = new ArrayList<>();
+//            for (int i = l; i < l + k; i++)
+//                ans.add(arr[i]);
+//            return ans;
+
+            int start = l;
+            return new AbstractList<>() {
+                @Override
+                public Integer get(int index) {
+                    return arr[start + index];
+                }
+
+                @Override
+                public int size() {
+                    return k;
+                }
+            };
+        }
+
+        //二分+双指针    logn+k
+        public List<Integer> findClosestElements6(int[] arr, int k, int x) {
+            //(l,r)
+            int r = binarySearch(arr, x);
+            int l = r - 1;
+            for (int i = 0; i < k; i++) {
+                if (l < 0)
+                    r++;
+                else if (r >= arr.length)
+                    l--;
+                else if (x - arr[l] <= arr[r] - x)
+                    l--;
+                else
+                    r++;
+            }
+
+            int start = l + 1;
+            return new AbstractList<>() {
+                @Override
+                public Integer get(int index) {
+                    return arr[start + index];
+                }
+
+                @Override
+                public int size() {
+                    return k;
+                }
+            };
+        }
+
+        private int binarySearch(int[] arr, int x) {
+            int len = arr.length;
+            int l = 0, r = len - 1;
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (x <= arr[mid])
+                    r = mid;
+                else
+                    l = mid + 1;
+            }
+            return r;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

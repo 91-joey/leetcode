@@ -148,7 +148,6 @@ public class FindKClosestElements {
                     .toList();
         }
 
-        //todo 二分查找最优区间的左边界 https://leetcode.cn/problems/find-k-closest-elements/solution/pai-chu-fa-shuang-zhi-zhen-er-fen-fa-python-dai-ma/
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
