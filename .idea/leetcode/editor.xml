@@ -58,6 +58,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckIfTwoStringArraysAreEquivalent.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1662" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java" />
+              <option name="titleSlug" value="check-if-two-string-arrays-are-equivalent" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ConstructBinaryTreeFromPreorderAndInorderTraversal.java">
           <value>
             <LeetcodeEditor>

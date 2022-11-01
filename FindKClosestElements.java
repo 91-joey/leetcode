@@ -46,7 +46,9 @@ public class FindKClosestElements {
     public static void main(String[] args) {
         Solution solution = new FindKClosestElements().new Solution();
 //        System.out.println(solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
-        System.out.println(solution.findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
+//        System.out.println(solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
+        System.out.println(solution.findClosestElements(new int[]{-2, -1, 1, 2, 3, 4, 5}, 7, 3));
+//        System.out.println(solution.findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -65,28 +67,23 @@ public class FindKClosestElements {
              * l=0 [l,l]
              *  [l-1,l-1] or [l,l]
              */
+            if (l > 0)
+                if (x - arr[l - 1] <= arr[l] - x)
+                    r = --l;
 
-            for (int i = k; i > 0 && l >= 0 || r < len; i--) {
-                if (x - arr[l - 1] <= arr[r] - x)
+            for (int i = l > 0 ? k : k + 1; (i > 1 && (l >= 0 || r < len)); i--) {
+                if (r >= len || (l >= 0 && x - arr[l] <= arr[r] - x))
                     l--;
                 else
                     r++;
             }
-            if (l < 0) {
-                l = 0;
-                r = k;
-            } else if (r >= len)
-                l = len - k;
 
+            if (l < 0)
+                l = 0;
             ArrayList<Integer> ans = new ArrayList<>();
-            for (; l <= r; l++)
+            for (r = l + k; l < r; l++)
                 ans.add(arr[l]);
             return ans;
-//            return Arrays.stream(arr)
-//                    .limit(r)
-//                    .skip(l)
-//                    .boxed()
-//                    .toList();
         }
 
         //双重排序  nlogn+klogk
