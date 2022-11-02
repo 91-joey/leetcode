@@ -57,6 +57,7 @@ package org.example.leetcode.problems;
 public class FindMinimumInRotatedSortedArray {
     public static void main(String[] args) {
         Solution solution = new FindMinimumInRotatedSortedArray().new Solution();
+        System.out.println(solution.findMin3(new int[]{3,4,5,1,2}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -83,7 +84,6 @@ public class FindMinimumInRotatedSortedArray {
             }
             return nums[l];
         }
-
 
         //☆☆☆☆☆ 优雅精简二分法
         public int findMin3(int[] nums) {
