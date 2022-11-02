@@ -795,6 +795,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SearchInASortedArrayOfUnknownSize.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SearchInASortedArrayOfUnknownSize.md" />
+              <option name="frontendQuestionId" value="leetcode.cn702" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SearchInASortedArrayOfUnknownSize.java" />
+              <option name="titleSlug" value="search-in-a-sorted-array-of-unknown-size" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SearchInRotatedSortedArray.java">
           <value>
             <LeetcodeEditor>
