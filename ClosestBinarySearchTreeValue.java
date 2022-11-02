@@ -32,7 +32,7 @@ import java.util.ArrayList;
 public class ClosestBinarySearchTreeValue {
     public static void main(String[] args) {
         Solution solution = new ClosestBinarySearchTreeValue().new Solution();
-        System.out.println(solution.closestValue(new TreeNode(5,
+        System.out.println(solution.closestValue3(new TreeNode(5,
                         new TreeNode(3,
                                 new TreeNode(2,
                                         new TreeNode(1),
@@ -44,35 +44,6 @@ public class ClosestBinarySearchTreeValue {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int closestValue(TreeNode root, double target) {
-            int ans = root.val;
-            TreeNode p = root;
-            for (; p.left != null || p.right != null; ) {
-                if (p.val == target) {
-                    return p.val;
-                } else if (p.val < target) {
-                    if (p.right == null)
-                        return ans;
-                    else {
-                        p = p.right;
-                        if (Math.abs(target - p.val) < target - ans)
-                            ans = p.val;
-                    }
-                } else {
-                    if (p.left == null)
-                        return ans;
-                    else {
-                        p = p.left;
-                        if (Math.abs(target - p.val) < ans - target)
-                            ans = p.val;
-                    }
-                }
-            }
-            if (Math.abs(target - p.val) < Math.abs(ans - target))
-                ans = p.val;
-            return ans;
-        }
-
         //中序遍历+二分
         public int closestValue2(TreeNode root, double target) {
             ArrayList<Integer> list = new ArrayList<>();
@@ -105,6 +76,35 @@ public class ClosestBinarySearchTreeValue {
             if (root.left != null) buildList(list, root.left);
             list.add(root.val);
             if (root.right != null) buildList(list, root.right);
+        }
+
+        //二分（迭代式）
+        public int closestValue3(TreeNode root, double target) {
+            int closest = root.val;
+            while (root != null) {
+                if (Math.abs(target - root.val) < Math.abs(target - closest))
+                    closest = root.val;
+                root = target < root.val ? root.left : root.right;
+            }
+            return closest;
+        }
+
+        //☆☆☆☆☆ 二分（迭代式）（维护区间端点）
+        public int closestValue4(TreeNode root, double target) {
+            int l = root.val;
+            int r = root.val;
+            while (root != null) {
+                if (target == root.val) {
+                    return root.val;
+                } else if (target < root.val) {
+                    r = root.val;
+                    root = root.left;
+                } else {
+                    l = root.val;
+                    root = root.right;
+                }
+            }
+            return Math.abs(target - l) < Math.abs(target - r) ? l : r;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
