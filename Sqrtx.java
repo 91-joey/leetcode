@@ -85,6 +85,19 @@ public class Sqrtx {
             }
             return r;
         }
+
+        public int mySqrt4(int x) {
+            int l = 0, r = x;
+            while (l < r) {
+                int mid = l + (r - l) / 2;
+                long product = (long) mid * mid;
+                if (x <= product)
+                    r = mid;
+                else
+                    l = mid + 1;
+            }
+            return l * l == x ? l : l - 1;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }

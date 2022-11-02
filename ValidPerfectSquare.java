@@ -41,8 +41,10 @@ public class ValidPerfectSquare {
     class Solution {
         //API
         public boolean isPerfectSquare(int num) {
-            int sqrt = (int) Math.sqrt(num);
-            return num == sqrt * sqrt;
+//            int sqrt = (int) Math.sqrt(num);
+//            return num == sqrt * sqrt;
+            double sqrt = Math.sqrt(num);
+            return sqrt == (int) sqrt;
         }
 
         //二分
