@@ -113,6 +113,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CoordinateWithMaximumNetworkQuality.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CoordinateWithMaximumNetworkQuality.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1620" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CoordinateWithMaximumNetworkQuality.java" />
+              <option name="titleSlug" value="coordinate-with-maximum-network-quality" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DietPlanPerformance.java">
           <value>
             <LeetcodeEditor>

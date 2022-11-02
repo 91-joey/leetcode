@@ -47,7 +47,8 @@ public class FindKClosestElements {
         Solution solution = new FindKClosestElements().new Solution();
 //        System.out.println(solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, 3));
 //        System.out.println(solution.findClosestElements(new int[]{1, 2, 3, 4, 5}, 4, -1));
-        System.out.println(solution.findClosestElements2(new int[]{-2, -1, 1, 2, 3, 4, 5}, 7, 3));
+//        System.out.println(solution.findClosestElements2(new int[]{-2, -1, 1, 2, 3, 4, 5}, 7, 3));
+        System.out.println(solution.findClosestElements5(new int[]{1, 1, 2, 2, 2, 2, 2, 3, 3}, 3, 3));
 //        System.out.println(solution.findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
     }
 
@@ -100,6 +101,7 @@ public class FindKClosestElements {
             while (l < r) {
                 int mid = l + r >> 1;
                 if (x - arr[mid] > arr[mid + k] - x)
+//                if (Math.abs(x - arr[mid]) > Math.abs(arr[mid + k] - x))
                     l = mid + 1;
                 else
                     r = mid;
