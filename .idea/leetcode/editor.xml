@@ -256,6 +256,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindTheDuplicateNumber.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindTheDuplicateNumber.md" />
+              <option name="frontendQuestionId" value="leetcode.cn287" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindTheDuplicateNumber.java" />
+              <option name="titleSlug" value="find-the-duplicate-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FirstBadVersion.java">
           <value>
             <LeetcodeEditor>
