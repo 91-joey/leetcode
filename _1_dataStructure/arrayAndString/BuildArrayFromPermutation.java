@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>模拟</li></div></div><br><div><li>👍 43</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 

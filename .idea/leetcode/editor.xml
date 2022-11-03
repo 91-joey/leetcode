@@ -608,6 +608,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumRepeatingSubstring.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumRepeatingSubstring.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1668" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumRepeatingSubstring.java" />
+              <option name="titleSlug" value="maximum-repeating-substring" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MeetingScheduler.java">
           <value>
             <LeetcodeEditor>
