@@ -13,11 +13,11 @@ public class Tools {
     }
 
     public static List<Integer> toList(int[] ints) {
-        return Arrays.stream(ints).boxed().collect(Collectors.toList());
+        return Arrays.stream(ints).boxed().toList();
     }
 
     public static int[] toArray(List<Integer> list) {
-        return list.stream().mapToInt(Integer::valueOf).toArray();
+        return list.stream().mapToInt(Integer::intValue).toArray();
     }
     
     public static int maxWindow(int[] arr,int k){
