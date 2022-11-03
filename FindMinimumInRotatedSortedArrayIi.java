@@ -50,24 +50,45 @@ package org.example.leetcode.problems;
 public class FindMinimumInRotatedSortedArrayIi {
     public static void main(String[] args) {
         Solution solution = new FindMinimumInRotatedSortedArrayIi().new Solution();
-        System.out.println(solution.findMin2(new int[]{4, 5, 6, 7, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4}));
-        System.out.println(solution.findMin2(new int[]{4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 0, 4, 4}));
+//        System.out.println(solution.findMin2(new int[]{4, 5, 6, 7, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4}));
+//        System.out.println(solution.findMin2(new int[]{4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 0, 4, 4}));
+//        System.out.println(solution.findMin(new int[]{10, 1, 10, 10, 10}));
+        System.out.println(solution.findMin(new int[]{2, 2, 2, 0, 2, 2}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int findMin(int[] nums) {
+        public int findMin2(int[] nums) {
             for (int i = 0; i < nums.length - 1; i++)
                 if (nums[i] > nums[i + 1])
                     return nums[i + 1];
             return nums[0];
         }
 
-        public int findMin2(int[] nums) {
+        public int findMin(int[] nums) {
+            int l = 0, r = nums.length - 1;
+            while (l < r && nums[l] == nums[r]) {
+                l++;
+            }
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (nums[mid] <= nums[r])
+                    r = mid;
+                else
+                    l = mid + 1;
+            }
+            return nums[r];
+        }
+
+        //☆☆☆☆☆ 直接二分，相等时不再折半缩小搜索区间、改为迭代。
+        public int findMin3(int[] nums) {
             int l = 0, r = nums.length - 1;
             while (l < r) {
                 int mid = l + r >> 1;
-                if (nums[mid] < nums[r])
+                if (nums[mid] == nums[r])
+                    //精髓之处
+                    r--;
+                else if (nums[mid] < nums[r])
                     r = mid;
                 else
                     l = mid + 1;
