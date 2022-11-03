@@ -58,6 +58,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BuildArrayFromPermutation.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BuildArrayFromPermutation.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1920" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BuildArrayFromPermutation.java" />
+              <option name="titleSlug" value="build-array-from-permutation" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java">
           <value>
             <LeetcodeEditor>
