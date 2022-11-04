@@ -38,17 +38,13 @@ public class BinarySearch {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int search(int[] nums, int target) {
+        public int search2(int[] nums, int target) {
             int search = Arrays.binarySearch(nums, target);
             return search >= 0 ? search : -1;
         }
 
-        public int search2(int[] nums, int target) {
-            int len = nums.length;
-            if (target < nums[0] || nums[len - 1] < target)
-                return -1;
-
-            for (int l = 0, r = len - 1; l <= r; ) {
+        public int search(int[] nums, int target) {
+            for (int l = 0, r = nums.length - 1; l <= r; ) {
                 int mid = l + (r - l) / 2;
                 if (target == nums[mid])
                     return mid;
@@ -57,7 +53,6 @@ public class BinarySearch {
                 else
                     l = mid + 1;
             }
-
             return -1;
         }
     }
