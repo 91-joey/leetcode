@@ -861,6 +861,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RemoveVowelsFromAString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RemoveVowelsFromAString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1119" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RemoveVowelsFromAString.java" />
+              <option name="titleSlug" value="remove-vowels-from-a-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ReverseString.java">
           <value>
             <LeetcodeEditor>
