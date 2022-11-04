@@ -45,7 +45,7 @@ import java.util.Arrays;
 public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
         Solution solution = new MedianOfTwoSortedArrays().new Solution();
-        System.out.println(solution.findMedianSortedArrays(new int[]{0,0,0,0,0},new int[]{-1,0,0,0,0,0,1}));
+        System.out.println(solution.findMedianSortedArrays(new int[]{0, 0, 0, 0, 0}, new int[]{-1, 0, 0, 0, 0, 0, 1}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -65,7 +65,7 @@ public class MedianOfTwoSortedArrays {
         }
 
         //双指针排序 m+n
-        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        public double findMedianSortedArrays8(int[] nums1, int[] nums2) {
             int size = nums1.length + nums2.length;
             int[] merged = new int[size];
             for (int i = 0, l = 0, r = 0; i < size; i++) {
@@ -85,6 +85,21 @@ public class MedianOfTwoSortedArrays {
                     merged[mid] :
                     //4 0,1,2,3
                     (merged[mid - 1] + merged[mid]) / 2.0;
+        }
+
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int m = nums1.length;
+            int n = nums2.length;
+            int target = (m + n >> 1) + 1;
+            int l = 0, r = Math.max(m - 1, target);
+            while (l <= r) {
+                int mid = l + r >> 1;
+                //target-mid=(m+n>>1)+1-mid  [(m+n>>1)-m+2,(m+n>>1)+1]
+                if ((nums2[target - mid] <= nums1[mid] && nums2[target - mid + 1] >= nums1[mid]) ||
+                        (nums2[target - mid] >= nums1[mid] && nums2[target - mid - 1] <= nums1[mid]))
+                    return 0;
+            }
+            return 0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
