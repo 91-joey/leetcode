@@ -45,12 +45,30 @@ package org.example.leetcode.problems;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Random;
 
 //287.寻找重复数
 //开题时间：2022-11-03 20:08:20
 public class FindTheDuplicateNumber {
     public static void main(String[] args) {
         Solution solution = new FindTheDuplicateNumber().new Solution();
+//        System.out.println(solution.findDuplicate6(new int[]{1, 3, 4, 2, 1}));
+//        System.out.println(solution.findDuplicate8(new int[]{1, 3, 4, 2, 2}));
+        int[] ints = new Random().ints(100, 1, 100).toArray();
+        System.out.println(Arrays.toString(ints));
+        System.out.println(solution.findDuplicate8(new int[]{20, 71, 99, 28, 55, 38, 45, 92, 88, 37, 12, 41, 81, 53, 53, 80, 18, 93, 5, 60, 36, 87, 36, 13, 12, 33, 43, 52, 10, 71, 20, 82, 57, 18, 23, 43, 22, 39, 91, 64, 83, 77, 8, 23, 94, 43, 26, 13, 41, 26, 42, 18, 12, 88, 11, 65, 58, 80, 20, 29, 79, 71, 67, 99, 25, 46, 58, 21, 80, 12, 29, 62, 66, 58, 52, 49, 52, 83, 79, 80, 45, 28, 99, 37, 98, 87, 99, 79, 66, 88, 37, 3, 14, 41, 78, 28, 6, 98, 71, 12}));
+//        for (int n = 1; n < 64; n++) {
+//            System.out.print(n + " : ");
+//            for (int mask = 1; mask <= 64; mask <<= 1) {
+//                int cnt = 0;
+//                for (int i = 1; i <= n; i++) {
+//                    if ((i & mask) == mask)
+//                        cnt++;
+//                }
+//                System.out.print(cnt + " , ");
+//            }
+//            System.out.println();
+//        }
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -95,6 +113,79 @@ public class FindTheDuplicateNumber {
                     return idx;
             }
             return -1;
+        }
+
+        //BS
+        public int findDuplicate5(int[] nums) {
+            int l = 1, r = nums.length - 1;
+            while (l < r) {
+                int mid = l + r >> 1;
+                if (mid < Arrays.stream(nums).filter(value -> value <= mid).count())
+                    r = mid;
+                else
+                    l = mid + 1;
+            }
+            return r;
+        }
+
+        //二进制
+        public int findDuplicate6(int[] nums) {
+            int ans = 0;
+            int n = nums.length - 1;
+            int bits = 0;
+            for (int i = n; i != 0; i >>= 1)
+                bits++;
+
+            for (int mask = 1; bits > 0; bits--, mask <<= 1) {
+                int y = 0;
+                for (int i = 1; i <= n; i++)
+                    if ((i & mask) == mask)
+                        y++;
+
+                int finalMask = mask;
+                if (Arrays.stream(nums).filter(value -> (value & finalMask) != 0).count() > y)
+                    ans += mask;
+            }
+            return ans;
+        }
+
+        /*
+         * 2 3 4 1 0
+         */
+        //☆☆☆☆☆ 快慢指针
+        public int findDuplicate7(int[] nums) {
+            int slow = 0, fast = 0;
+            do {
+                slow = nums[slow];
+                fast = nums[nums[fast]];
+            } while (slow != fast);
+            slow = 0;
+            while (slow != fast) {
+                slow = nums[slow];
+                fast = nums[fast];
+            }
+            return slow;
+        }
+
+        //哈希（不懂）
+        public int findDuplicate8(int[] nums) {
+            for (int i = 0; i < nums.length; ) {
+                int t = nums[i], idx = t - 1;
+                if (nums[idx] == t) {
+                    if (idx != i)
+                        return t;
+                    i++;
+                } else {
+                    swap(nums, idx, i);
+                }
+            }
+            return -1;
+        }
+
+        public void swap(int[] nums, int i, int j) {
+            int c = nums[i];
+            nums[i] = nums[j];
+            nums[j] = c;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
