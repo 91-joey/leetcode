@@ -927,6 +927,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RootEqualsSumOfChildren.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RootEqualsSumOfChildren.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2236" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RootEqualsSumOfChildren.java" />
+              <option name="titleSlug" value="root-equals-sum-of-children" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SearchInASortedArrayOfUnknownSize.java">
           <value>
             <LeetcodeEditor>
