@@ -817,6 +817,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ParsingABooleanExpression.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ParsingABooleanExpression.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1106" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ParsingABooleanExpression.java" />
+              <option name="titleSlug" value="parsing-a-boolean-expression" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PermutationInString.java">
           <value>
             <LeetcodeEditor>
