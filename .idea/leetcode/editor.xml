@@ -3,6 +3,17 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/AddTwoIntegers.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/AddTwoIntegers.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2235" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/AddTwoIntegers.java" />
+              <option name="titleSlug" value="add-two-integers" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ArrayPartition.java">
           <value>
             <LeetcodeEditor>
