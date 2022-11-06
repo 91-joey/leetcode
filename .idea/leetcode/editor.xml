@@ -674,6 +674,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumNumberOfWordsFoundInSentences.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumNumberOfWordsFoundInSentences.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2114" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumNumberOfWordsFoundInSentences.java" />
+              <option name="titleSlug" value="maximum-number-of-words-found-in-sentences" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumPointsYouCanObtainFromCards.java">
           <value>
             <LeetcodeEditor>
