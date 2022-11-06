@@ -355,6 +355,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/GoalParserInterpretation.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/GoalParserInterpretation.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1678" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/GoalParserInterpretation.java" />
+              <option name="titleSlug" value="goal-parser-interpretation" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/GrumpyBookstoreOwner.java">
           <value>
             <LeetcodeEditor>
