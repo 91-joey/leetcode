@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 16</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 //2114.句子中的最多单词数
 //开题时间：2022-11-06 09:14:34
