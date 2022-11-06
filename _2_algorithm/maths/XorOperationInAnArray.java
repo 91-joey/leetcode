@@ -43,7 +43,7 @@
 //</ul>
 //
 //<div><li>👍 117</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.maths;
 
 //1486.数组异或操作
 //开题时间：2022-11-06 09:37:51
@@ -62,10 +62,12 @@ public class XorOperationInAnArray {
             return ans;
         }
 
+        //☆☆☆☆☆ 数学
         public int xorOperation(int n, int start) {
             int s = start >> 1;
-            return ((sumXor(s - 1) ^ sumXor(s + n - 1)) << 1)
-                    + ((start & 1) == 1 && (n & 1) == 1 ? 1 : 0);
+            return (sumXor(s - 1) ^ sumXor(s + n - 1)) << 1
+                    | (start & n & 1);
+//                    + ((start & 1) == 1 && (n & 1) == 1 ? 1 : 0);
         }
 
         private int sumXor(int x) {
