@@ -45,9 +45,9 @@ public class ShuffleTheArray {
         Solution solution = new ShuffleTheArray().new Solution();
 //        System.out.println(solution.shuffle(new int[]{2, 5, 1, 3, 4, 7}, 3));
         System.out.println(Arrays.toString(solution.shuffle(new int[]{2, 5, 1, 8, 3, 4, 7, 10}, 4)));
-        for (int j = 0; j < 6; j++) {
-            System.out.println(((j % 3) << 1) + (j < 3 ? 0 : 1));
-        }
+//        for (int j = 0; j < 6; j++) {
+//            System.out.println(((j % 3) << 1) + (j < 3 ? 0 : 1));
+//        }
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -111,7 +111,7 @@ public class ShuffleTheArray {
         }
 
         //置换、取反（优化） n   1
-        public int[] shuffle(int[] nums, int n) {
+        public int[] shuffle4(int[] nums, int n) {
             for (int i = 0; i < nums.length; i++) {
                 if (nums[i] > 0)
                     for (int j = i; nums[i] > 0; ) {
@@ -119,6 +119,22 @@ public class ShuffleTheArray {
                         swap(nums, i, j);
                         nums[j] = ~nums[j];
                     }
+                nums[i] = ~nums[i];
+            }
+            return nums;
+        }
+
+        //☆☆☆☆☆ 置换、取反（再优化） n   1
+        public int[] shuffle(int[] nums, int n) {
+            for (int i = 0; i < nums.length; i++) {
+                if (nums[i] > 0) {
+                    int j = i;
+                    int tmp = ~nums[i];
+                    do {
+                        nums[j] = ~nums[(j = (j >> 1) + ((j & 1) == 0 ? 0 : n))];
+                    } while (j != i);
+                    nums[((i % n) << 1) + (i < n ? 0 : 1)] = tmp;
+                }
                 nums[i] = ~nums[i];
             }
             return nums;
