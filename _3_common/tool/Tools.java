@@ -19,6 +19,18 @@ public class Tools {
     public static int[] toArray(List<Integer> list) {
         return list.stream().mapToInt(Integer::intValue).toArray();
     }
+
+    public static void swap(int[] arr, int i, int j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
+
+    public static <T> void swap(T[] arr, int i, int j) {
+        T tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+    }
     
     public static int maxWindow(int[] arr,int k){
         int sumMax = 0;

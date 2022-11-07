@@ -31,6 +31,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 
@@ -72,7 +73,7 @@ public class BaShuZuPaiChengZuiXiaoDeShuLcof {
                 swapped = false;
                 for (int i = 0; i < endIdx; i++)
                     if ((arr[i] + arr[i + 1]).compareTo(arr[i + 1] + arr[i]) > 0) {
-                        Swap.swap(arr, i, i + 1);
+                        Tools.swap(arr, i, i + 1);
                         swapped = true;
                         lstSwappedIdx = i;
                     }

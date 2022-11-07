@@ -1,6 +1,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nn;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 //不稳定
 public class Selection {
@@ -16,7 +17,7 @@ public class Selection {
             int minIdx = i;
             for (int j = i + 1; j < length; j++)
                 if (arr[minIdx] > arr[j]) minIdx = j;
-            Swap.swap(arr, i, minIdx);
+            Tools.swap(arr, i, minIdx);
         }
     }
 
@@ -32,10 +33,10 @@ public class Selection {
             }
             // arr[i] 后面的所有数字都与 arr[i] 相等，排序完成
             if (minIdx == maxIdx) break;
-            Swap.swap(arr, i, minIdx);
+            Tools.swap(arr, i, minIdx);
             //若最大值的下标刚好是 i ，由于 arr[i] 和 arr[minIndex] 已经交换了，所以这里要更新 maxIndex 的值。
             if (maxIdx == i) maxIdx = minIdx;
-            Swap.swap(arr, length - 1 - i, maxIdx);
+            Tools.swap(arr, length - 1 - i, maxIdx);
         }
     }
 }

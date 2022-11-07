@@ -1,6 +1,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -59,11 +60,11 @@ public class Quick {
         int l = start + 1;
         int r = end;
         while (l < r) {
-            if (arr[l] > pivot) Swap.swap(arr, l, r--);
+            if (arr[l] > pivot) Tools.swap(arr, l, r--);
             else l++;
         }
         if (l == r && arr[l] > pivot) r--;
-        Swap.swap(arr, start, r);
+        Tools.swap(arr, start, r);
         return r;
     }
 
@@ -71,7 +72,7 @@ public class Quick {
     private static int partition2(int[] arr, int start, int end) {
         //region 分区优化1（随机选择基数）
         int rndIdx = new Random().nextInt(start, end + 1);
-        Swap.swap(arr, start, rndIdx);
+        Tools.swap(arr, start, rndIdx);
         //endregion
         //  all in [start+1,l) <= pivot
         //  all in (r,end] > pivot
@@ -81,13 +82,13 @@ public class Quick {
         while (l < r) {
             if (arr[l] > pivot) {
                 while (l < r && arr[r] > pivot) r--;
-                if (l != r) Swap.swap(arr, l++, r--);
+                if (l != r) Tools.swap(arr, l++, r--);
             } else {
                 l++;
             }
         }
         if (l == r && arr[l] > pivot) r--;
-        Swap.swap(arr, start, r);
+        Tools.swap(arr, start, r);
         return r;
     }
 }

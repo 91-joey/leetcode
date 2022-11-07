@@ -1,6 +1,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nn;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 //稳定
 public class Bubble {
@@ -17,7 +18,7 @@ public class Bubble {
         for (int i = 0; i < lst; i++)
             for (int j = 0; j < lst - i; j++)
                 if (arr[j] > arr[j + 1])
-                    Swap.swap(arr, j, j + 1);
+                    Tools.swap(arr, j, j + 1);
     }
 
     //优化（若当前轮次未交换，不再继续排序）
@@ -29,7 +30,7 @@ public class Bubble {
                 swapped = false;
                 for (int j = 0; j < lst - i; j++)
                     if (arr[j] > arr[j + 1]) {
-                        Swap.swap(arr, j, j + 1);
+                        Tools.swap(arr, j, j + 1);
                         swapped = true;
                     }
             }
@@ -45,7 +46,7 @@ public class Bubble {
             swapped = false;
             for (int i = 0; i < endIdx; i++)
                 if (arr[i] > arr[i + 1]) {
-                    Swap.swap(arr, i, i + 1);
+                    Tools.swap(arr, i, i + 1);
                     swapped = true;
                     lstSwappedIdx = i;
                 }

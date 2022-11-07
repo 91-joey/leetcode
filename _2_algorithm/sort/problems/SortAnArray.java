@@ -32,6 +32,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 
@@ -59,10 +60,10 @@ class Solution {
             }
             // nums[i] 后面的所有数字都与 nums[i] 相等，排序完成
             if (minIdx == maxIdx) break;
-            Swap.swap(nums, i, minIdx);
+            Tools.swap(nums, i, minIdx);
             //若最大值的下标刚好是 i ，由于 nums[i] 和 nums[minIndex] 已经交换了，所以这里要更新 maxIndex 的值。
             if (maxIdx == i) maxIdx = minIdx;
-            Swap.swap(nums, length - 1 - i, maxIdx);
+            Tools.swap(nums, length - 1 - i, maxIdx);
         }
         return nums;
     }

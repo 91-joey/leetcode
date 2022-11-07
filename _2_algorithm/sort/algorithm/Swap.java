@@ -77,18 +77,6 @@ public class Swap {
         System.out.println("b = " + b);
     }
 
-    public static void swap(int[] arr, int i, int j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
-
-    public static <T> void swap(T[] arr, int i, int j) {
-        T tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-    }
-
     public static void sort(Consumer<int[]> consumer) {
         System.out.println(Arrays.toString(arr));
         consumer.accept(arr);

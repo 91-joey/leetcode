@@ -34,6 +34,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.*;
 
@@ -107,7 +108,7 @@ public class MajorityElement {
         private static int partition2(int[] arr, int start, int end) {
             //region 分区优化1（随机选择基数）
             int rndIdx = new Random().nextInt(start, end + 1);
-            Swap.swap(arr, start, rndIdx);
+            Tools.swap(arr, start, rndIdx);
             //endregion
             int pivot = arr[start];
             int l = start + 1;
@@ -115,13 +116,13 @@ public class MajorityElement {
             while (l < r) {
                 if (arr[l] > pivot) {
                     while (l < r && arr[r] > pivot) r--;
-                    if (l != r) Swap.swap(arr, l++, r--);
+                    if (l != r) Tools.swap(arr, l++, r--);
                 } else {
                     l++;
                 }
             }
             if (l == r && arr[l] > pivot) r--;
-            Swap.swap(arr, start, r);
+            Tools.swap(arr, start, r);
             return r;
         }
     }

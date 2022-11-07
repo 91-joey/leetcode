@@ -35,6 +35,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.List;
@@ -58,7 +59,7 @@ public class MoveZeroes {
                 swapped = false;
                 for (int i = 0; i < endIdx; i++) {
                     if (nums[i] == 0) {
-                        Swap.swap(nums, i, i + 1);
+                        Tools.swap(nums, i, i + 1);
                         swapped = true;
                         lstSwappedIdx = i;
                     }
