@@ -179,6 +179,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountTheNumberOfConsistentStrings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountTheNumberOfConsistentStrings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1684" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountTheNumberOfConsistentStrings.java" />
+              <option name="titleSlug" value="count-the-number-of-consistent-strings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DecodeXoredArray.java">
           <value>
             <LeetcodeEditor>
