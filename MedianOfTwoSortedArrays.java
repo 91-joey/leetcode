@@ -46,11 +46,16 @@ public class MedianOfTwoSortedArrays {
     public static void main(String[] args) {
         Solution solution = new MedianOfTwoSortedArrays().new Solution();
 //        System.out.println(solution.findMedianSortedArrays(new int[]{0, 0, 0, 0, 0}, new int[]{-1, 0, 0, 0, 0, 0, 1}));
+//        System.out.println(solution.findMedianSortedArrays(new int[]{}, new int[]{1}));
 //        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{3, 4}));
 //        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{3}));
-        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2, 3}, new int[]{4}));
+//        System.out.println(solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2}));
+//        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2, 3}, new int[]{4}));
 //        System.out.println(solution.findMedianSortedArrays(new int[]{2}, new int[]{}));
-//        System.out.println(solution.findMedianSortedArrays(new int[]{1,3}, new int[]{2,7}));
+        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2, 5}, new int[]{3, 4, 6}));
+//        System.out.println(solution.findMedianSortedArrays(new int[]{1, 5, 6}, new int[]{2, 3, 4}));
+//        System.out.println(solution.findMedianSortedArrays(new int[]{1, 2}, new int[]{1, 1}));
+//        System.out.println(solution.findMedianSortedArrays(new int[]{1, 3}, new int[]{2, 7}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -109,7 +114,7 @@ public class MedianOfTwoSortedArrays {
                     (first + second) / 2.0;
         }
 
-        //二分    log((m+n)/2)  1
+        //☆☆☆ 二分    log((m+n)/2)  1
         public double findMedianSortedArrays6(int[] nums1, int[] nums2) {
             int m = nums1.length;
             int n = nums2.length;
@@ -177,29 +182,80 @@ public class MedianOfTwoSortedArrays {
             return Double.MIN_VALUE;
         }
 
+        public double findMedianSortedArrays4(int[] nums1, int[] nums2) {
+            int m = nums1.length;
+            int n = nums2.length;
+            if (m > n) return findMedianSortedArrays4(nums2, nums1);
+
+            boolean odd = ((m + n) & 1) == 1;
+            if (m == 0) {
+                return odd ?
+                        nums2[n >> 1] :
+                        (nums2[(n >> 1) - 1] + nums2[n >> 1]) * 0.5;
+            } else if (nums1[m - 1] <= nums2[(m + n + 1 >> 1) - m]) {
+                int second = (m + n + 1 >> 1) - m - 1 < 0 ? nums1[m - 1] : Math.max(nums1[m - 1], nums2[(m + n + 1 >> 1) - m - 1]);
+                return odd ?
+                        second :
+                        (second + nums2[(m + n + 1 >> 1) - m]) * 0.5;
+            } else if (nums2[(m + n + 1 >> 1) - 1] <= nums1[0]) {
+                return odd ?
+                        nums2[(m + n + 1 >> 1) - 1] :
+                        (nums2[(m + n + 1 >> 1) - 1] + (m + n + 1 >> 1 >= n ? nums1[0] : Math.min(nums1[0], nums2[m + n + 1 >> 1]))) * 0.5;
+            }
+
+            int l = 1, r = m - 1;
+            int mid = 1;
+            while (l <= r) {
+                mid = l + r >> 1;
+                if (nums1[mid - 1] > nums2[(m + n + 1 >> 1) - mid])
+                    r = mid - 1;
+                else if (nums1[mid] < nums2[(m + n + 1 >> 1) - mid - 1])
+                    l = mid + 1;
+                else
+                    break;
+            }
+            int second = Math.max(nums1[mid - 1], nums2[(m + n + 1 >> 1) - mid - 1]);
+            return odd ?
+                    second :
+                    (second + Math.min(nums1[mid], nums2[(m + n + 1 >> 1) - mid])) * 0.5;
+        }
+
+        //☆☆☆☆☆ 二分 log(min(m,n))
         public double findMedianSortedArrays(int[] nums1, int[] nums2) {
             int m = nums1.length;
             int n = nums2.length;
             if (m > n) return findMedianSortedArrays(nums2, nums1);
 
-            boolean odd = ((m + n) & 1) == 1;
-            if (nums1[m - 1] <= nums2[0]) {
-                int second = (m + n + 1 >> 1) - m;
-                return odd ?
-                        nums2[second] :
-                        m != n ?
-                                (nums2[second - 1] + nums2[second]) * 0.5 :
-                                (nums1[m - 1] + nums2[second]) * 0.5;
-            } else if (nums2[n - 1] <= nums1[0]) {
-                int second = m + n + 1 >> 1;
-                return odd ?
-                        nums2[second] :
-                        m != n ?
-                                (nums2[second - 1] + nums2[second]) * 0.5 :
-                                (nums2[second] + nums1[0]) * 0.5;
+            for (int l = 0, r = m; l <= r; ) {
+                int i = l + r >> 1;
+                int j = (m + n + 1 >> 1) - i;
+                if (i != 0 && j != n && nums1[i - 1] > nums2[j])
+                    r = i - 1;
+                else if (i != m && j != 0 && nums1[i] < nums2[j - 1])
+                    l = i + 1;
+                else {
+                    int leftMax;
+                    if (i == 0)
+                        leftMax = nums2[j - 1];
+                    else if (j == 0)
+                        leftMax = nums1[i - 1];
+                    else
+                        leftMax = Math.max(nums1[i - 1], nums2[j - 1]);
+                    if (((m + n) & 1) == 1)
+                        return leftMax;
+
+                    int rightMin;
+                    if (i == m)
+                        rightMin = nums2[j];
+                    else if (j == n)
+                        rightMin = nums1[i];
+                    else
+                        rightMin = Math.min(nums1[i], nums2[j]);
+                    return (leftMax + rightMin) * 0.5;
+                }
             }
 
-            int l = 0, r = odd ? m : m - 1;
+            return 0.0;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
