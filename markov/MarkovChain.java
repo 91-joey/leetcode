@@ -218,7 +218,6 @@ public class MarkovChain {
 //        for (int i = 0; i < m - 1; i++) {
 //            for (int j = i + 1; j < m; j++) {
 //                for (int k = 0; k < n; k++) {
-//                    //todo 运算结果的取值范围为 32 位有符号整数，超过此范围将提示报错。
 //                    int result = getResult(operators.get(k), copy.get(i), copy.get(j));
 //
 //                    LinkedList<Integer> numsNew = new LinkedList<>(copy);

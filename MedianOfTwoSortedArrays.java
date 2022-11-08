@@ -136,7 +136,7 @@ public class MedianOfTwoSortedArrays {
         }
 
         //自解二分（乱七八糟）    log(m+n)    1
-        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        public double findMedianSortedArrays5(int[] nums1, int[] nums2) {
             int m = nums1.length;
             int n = nums2.length;
             if (m < n) return findMedianSortedArrays8(nums2, nums1);
@@ -175,6 +175,31 @@ public class MedianOfTwoSortedArrays {
                 }
             }
             return Double.MIN_VALUE;
+        }
+
+        public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+            int m = nums1.length;
+            int n = nums2.length;
+            if (m > n) return findMedianSortedArrays(nums2, nums1);
+
+            boolean odd = ((m + n) & 1) == 1;
+            if (nums1[m - 1] <= nums2[0]) {
+                int second = (m + n + 1 >> 1) - m;
+                return odd ?
+                        nums2[second] :
+                        m != n ?
+                                (nums2[second - 1] + nums2[second]) * 0.5 :
+                                (nums1[m - 1] + nums2[second]) * 0.5;
+            } else if (nums2[n - 1] <= nums1[0]) {
+                int second = m + n + 1 >> 1;
+                return odd ?
+                        nums2[second] :
+                        m != n ?
+                                (nums2[second - 1] + nums2[second]) * 0.5 :
+                                (nums2[second] + nums1[0]) * 0.5;
+            }
+
+            int l = 0, r = odd ? m : m - 1;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

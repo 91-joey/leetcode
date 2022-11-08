@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class MinimumTotalDistance {
+    //todo DP https://leetcode.cn/problems/minimum-total-distance-traveled/solutions/1951952/by-tsreaper-3lm8/
     public long minimumTotalDistance(List<Integer> robot, int[][] factory) {
         int min = 0;
         Arrays.sort(factory, Comparator.comparingInt(o -> o[0]));
