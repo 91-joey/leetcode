@@ -91,6 +91,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CellsInARangeOnAnExcelSheet.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CellsInARangeOnAnExcelSheet.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2194" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CellsInARangeOnAnExcelSheet.java" />
+              <option name="titleSlug" value="cells-in-a-range-on-an-excel-sheet" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java">
           <value>
             <LeetcodeEditor>

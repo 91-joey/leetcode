@@ -53,6 +53,7 @@ import java.util.TreeMap;
 public class FindKThSmallestPairDistance {
     public static void main(String[] args) {
         Solution solution = new FindKThSmallestPairDistance().new Solution();
+        System.out.println(solution.smallestDistancePair4(new int[]{1, 6, 1}, 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -72,7 +73,7 @@ public class FindKThSmallestPairDistance {
         //计数排序
         public int smallestDistancePair2(int[] nums, int k) {
             int len = nums.length;
-            int[] cnt = new int[1000000];
+            int[] cnt = new int[100_0000];
             for (int i = 0; i < len - 1; i++)
                 for (int j = i + 1; j < len; j++)
                     cnt[Math.abs(nums[j] - nums[i])]++;
@@ -99,6 +100,41 @@ public class FindKThSmallestPairDistance {
                     return entry.getKey();
             }
             return -1;
+        }
+
+        //二分距离
+        public int smallestDistancePair4(int[] nums, int k) {
+            Arrays.sort(nums);
+
+            int l = -1, r = nums[nums.length - 1] - nums[0] - 1;
+            while (l < r) {
+                int mid = l + r + 1 >> 1;
+                int cnt = getNotGreaterThanPairCnt(nums, mid);
+                if (cnt < k)
+                    l = mid;
+                else
+                    r = mid - 1;
+            }
+
+            return r + 1;
+        }
+
+        private int getNotGreaterThanPairCnt(int[] nums, int distance) {
+            int cnt = 0;
+
+            for (int i = 0; i < nums.length - 1; i++) {
+                int l = i, r = nums.length - 1;
+                while (l < r) {
+                    int mid = l + r >> 1;
+                    if (distance < nums[mid] - nums[i])
+                        r = mid;
+                    else
+                        l = mid + 1;
+                }
+                cnt += r - 1 - i;
+            }
+
+            return cnt;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
