@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>二分查找</li><li>排序</li></div></div><br><div><li>👍 391</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -53,7 +53,9 @@ import java.util.TreeMap;
 public class FindKThSmallestPairDistance {
     public static void main(String[] args) {
         Solution solution = new FindKThSmallestPairDistance().new Solution();
-        System.out.println(solution.smallestDistancePair4(new int[]{1, 6, 1}, 3));
+        System.out.println(solution.smallestDistancePair5(new int[]{38,33,57,65,13,2,86,75,4,56}, 26));
+//        System.out.println(solution.smallestDistancePair4(new int[]{62, 100, 4}, 2));
+//        System.out.println(solution.smallestDistancePair4(new int[]{1, 6, 1}, 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -102,28 +104,28 @@ public class FindKThSmallestPairDistance {
             return -1;
         }
 
-        //二分距离
+        //二分距离+二分数对个数  logD * nlogn (D=max-min)    1
         public int smallestDistancePair4(int[] nums, int k) {
             Arrays.sort(nums);
 
-            int l = -1, r = nums[nums.length - 1] - nums[0] - 1;
+            int l = 0, r = nums[nums.length - 1] - nums[0];
             while (l < r) {
-                int mid = l + r + 1 >> 1;
-                int cnt = getNotGreaterThanPairCnt(nums, mid);
-                if (cnt < k)
-                    l = mid;
+                int mid = l + r >> 1;
+                int cnt = getNoGreaterThanPairCnt(nums, mid);
+                if (cnt >= k)
+                    r = mid;
                 else
-                    r = mid - 1;
+                    l = mid + 1;
             }
 
-            return r + 1;
+            return r;
         }
 
-        private int getNotGreaterThanPairCnt(int[] nums, int distance) {
+        private int getNoGreaterThanPairCnt(int[] nums, int distance) {
             int cnt = 0;
 
             for (int i = 0; i < nums.length - 1; i++) {
-                int l = i, r = nums.length - 1;
+                int l = i + 1, r = nums.length;
                 while (l < r) {
                     int mid = l + r >> 1;
                     if (distance < nums[mid] - nums[i])
@@ -131,10 +133,35 @@ public class FindKThSmallestPairDistance {
                     else
                         l = mid + 1;
                 }
-                cnt += r - 1 - i;
+                cnt += r - i - 1;
             }
 
             return cnt;
+        }
+
+
+        //☆☆☆☆☆ 二分距离+双指针数对个数   n *（logn+logD） (D=max-min)    1
+        public int smallestDistancePair5(int[] nums, int k) {
+            Arrays.sort(nums);
+
+            int l = 0, r = nums[nums.length - 1] - nums[0];
+            while (l < r) {
+                int mid = l + r >> 1;
+
+                int cnt = 0;
+                for (int i = 0, j = 1; j < nums.length; j++) {
+                    while (mid < nums[j] - nums[i])
+                        i++;
+                    cnt += j - i;
+                }
+
+                if (cnt >= k)
+                    r = mid;
+                else
+                    l = mid + 1;
+            }
+
+            return r;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
