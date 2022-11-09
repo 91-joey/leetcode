@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li></div></div><br><div><li>👍 2371</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 //33.搜索旋转排序数组
 //开题时间：2022-10-28 17:39:56

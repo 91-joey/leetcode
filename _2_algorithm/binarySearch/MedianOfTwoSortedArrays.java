@@ -36,7 +36,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li><li>分治</li></div></div><br><div><li>👍 6036</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.Arrays;
 

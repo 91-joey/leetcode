@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li><li>交互</li></div></div><br><div><li>👍 59</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 //702.搜索长度未知的有序数组
 //开题时间：2022-11-02 12:16:56

@@ -32,7 +32,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>二分查找</li><li>交互</li></div></div><br><div><li>👍 815</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.Random;
 

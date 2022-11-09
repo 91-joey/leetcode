@@ -43,7 +43,7 @@
 //<p><strong>进阶：</strong>这道题与 <a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/description/">寻找旋转排序数组中的最小值</a> 类似，但 <code>nums</code> 可能包含重复元素。允许重复会影响算法的时间复杂度吗？会如何影响，为什么？</p>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li></div></div><br><div><li>👍 554</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 //154.寻找旋转排序数组中的最小值 II
 //开题时间：2022-11-02 17:38:04
