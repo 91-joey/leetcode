@@ -509,6 +509,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LargestPlusSign.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LargestPlusSign.md" />
+              <option name="frontendQuestionId" value="leetcode.cn764" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LargestPlusSign.java" />
+              <option name="titleSlug" value="largest-plus-sign" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LinkedListCycle.java">
           <value>
             <LeetcodeEditor>
