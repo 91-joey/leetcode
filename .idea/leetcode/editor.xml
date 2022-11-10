@@ -80,6 +80,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BuYongJiaJianChengChuZuoJiaFaLcof.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BuYongJiaJianChengChuZuoJiaFaLcof.md" />
+              <option name="frontendQuestionId" value="leetcode.cn剑指 Offer 65" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BuYongJiaJianChengChuZuoJiaFaLcof.java" />
+              <option name="titleSlug" value="bu-yong-jia-jian-cheng-chu-zuo-jia-fa-lcof" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/BuildArrayFromPermutation.java">
           <value>
             <LeetcodeEditor>
