@@ -1015,6 +1015,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RecursiveMulitplyLcci.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RecursiveMulitplyLcci.md" />
+              <option name="frontendQuestionId" value="leetcode.cn面试题 08.05" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RecursiveMulitplyLcci.java" />
+              <option name="titleSlug" value="recursive-mulitply-lcci" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RelativeRanks.java">
           <value>
             <LeetcodeEditor>
