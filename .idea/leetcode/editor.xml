@@ -201,6 +201,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountOfSmallerNumbersAfterSelf.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountOfSmallerNumbersAfterSelf.md" />
+              <option name="frontendQuestionId" value="leetcode.cn315" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountOfSmallerNumbersAfterSelf.java" />
+              <option name="titleSlug" value="count-of-smaller-numbers-after-self" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CountTheNumberOfConsistentStrings.java">
           <value>
             <LeetcodeEditor>
@@ -440,6 +451,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/GuessNumberHigherOrLower.java" />
               <option name="titleSlug" value="guess-number-higher-or-lower" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/GuessNumbers.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/GuessNumbers.md" />
+              <option name="frontendQuestionId" value="leetcode.cnLCP 01" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/GuessNumbers.java" />
+              <option name="titleSlug" value="guess-numbers" />
             </LeetcodeEditor>
           </value>
         </entry>

@@ -68,9 +68,9 @@ public class ShortestPathToGetAllKeys {
     public static void main(String[] args) {
         Solution solution = new ShortestPathToGetAllKeys().new Solution();
         System.out.println(solution.shortestPathAllKeys(new String[]{
-                "@...a",
-                ".###A",
-                "b.BCc"}));
+"@...a",
+".###A",
+"b.BCc"}));
 //        System.out.println(solution.shortestPathAllKeys(new String[]{
 //                "@.a.#",
 //                "###.#",

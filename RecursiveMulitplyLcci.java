@@ -42,7 +42,7 @@ public class RecursiveMulitplyLcci {
             if (B == 1)
                 return A;
             int half = multiply9(A, B / 2);
-            return (B & 1) == 0 ? half + half : half + half + A;
+            return (B & 1) == 0 ? half << 1 : (half << 1) + A;
         }
 
         //☆☆☆☆☆ 迭代（快速幂）
@@ -53,7 +53,7 @@ public class RecursiveMulitplyLcci {
             while (B != 0) {
                 if ((B & 1) == 1)
                     ans += A;
-                A += A;
+                A <<= 1;
                 B >>= 1;
             }
             return ans;
