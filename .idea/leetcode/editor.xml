@@ -1125,6 +1125,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ShortestPathToGetAllKeys.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ShortestPathToGetAllKeys.md" />
+              <option name="frontendQuestionId" value="leetcode.cn864" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ShortestPathToGetAllKeys.java" />
+              <option name="titleSlug" value="shortest-path-to-get-all-keys" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ShuZuZhongDeNiXuDuiLcof.java">
           <value>
             <LeetcodeEditor>
