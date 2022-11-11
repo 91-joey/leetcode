@@ -1125,6 +1125,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ReversePairs.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReversePairs.md" />
+              <option name="frontendQuestionId" value="leetcode.cn493" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReversePairs.java" />
+              <option name="titleSlug" value="reverse-pairs" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ReverseString.java">
           <value>
             <LeetcodeEditor>
