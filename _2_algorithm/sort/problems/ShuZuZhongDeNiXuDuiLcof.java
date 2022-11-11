@@ -24,8 +24,9 @@ public class ShuZuZhongDeNiXuDuiLcof {
     public static void main(String[] args) {
         Solution solution = new ShuZuZhongDeNiXuDuiLcof().new Solution();
 //        System.out.println(solution.reversePairs(new int[]{7, 5, 6, 4}));
-        int[] merged = solution.merge(new int[]{1, 2, 3, 4, 5, 6}, new int[]{-2, -1, 0, 2, 3, 4});
-        System.out.println("Arrays.toString(merged) = " + Arrays.toString(merged));
+        System.out.println(solution.reversePairs(new int[]{4,5,6,7}));
+//        int[] merged = solution.merge(new int[]{1, 2, 3, 4, 5, 6}, new int[]{-2, -1, 0, 2, 3, 4});
+//        System.out.println("Arrays.toString(merged) = " + Arrays.toString(merged));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -46,7 +47,7 @@ public class ShuZuZhongDeNiXuDuiLcof {
         int cnt = 0;
 
         //分治（归并排序）nlogn n
-        public int reversePairs(int[] nums) {
+        public int reversePairs9(int[] nums) {
             int length = nums.length;
             if (length < 2) return 0;
 
@@ -100,6 +101,33 @@ public class ShuZuZhongDeNiXuDuiLcof {
             while (r < lengthR) merged[l + r] = right[r++];
 
             return merged;
+        }
+
+
+        public int reversePairs(int[] nums) {
+            mergeSort(nums, 0, nums.length - 1, new int[nums.length]);
+            return cnt;
+        }
+
+        private void mergeSort(int[] arr, int start, int end, int[] tmp) {
+            if (start >= end)
+                return;
+
+            int mid = start + end >> 1;
+            mergeSort(arr, start, mid, tmp);
+            mergeSort(arr, mid + 1, end, tmp);
+
+            System.arraycopy(arr, start, tmp, start, end - start + 1);
+            for (int i = start, l = start, r = mid + 1; i <= end; i++) {
+                if (l > mid)
+                    arr[i] = tmp[r++];
+                else if (r > end || tmp[l] <= tmp[r]) {
+                    arr[i] = tmp[l++];
+                    //关键一步，其实计数逻辑写在 r变动时 或者 l变动时 都是可以的。
+                    cnt += r - mid - 1;
+                } else
+                    arr[i] = tmp[r++];
+            }
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
