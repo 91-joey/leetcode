@@ -31,8 +31,23 @@ public class Tools {
         arr[i] = arr[j];
         arr[j] = tmp;
     }
-    
-    public static int maxWindow(int[] arr,int k){
+
+    public static boolean isVowelLowerAndUpper(char c) {
+        return switch (c) {
+            case 'a', 'e', 'i', 'o', 'u',
+                    'A', 'E', 'I', 'O', 'U' -> true;
+            default -> false;
+        };
+    }
+
+    public static boolean isVowelLowerOnly(char c) {
+        return switch (c) {
+            case 'a', 'e', 'i', 'o', 'u' -> true;
+            default -> false;
+        };
+    }
+
+    public static int maxWindow(int[] arr, int k) {
         int sumMax = 0;
         for (int i = 0; i < k; i++)
             sumMax += arr[i];
@@ -43,5 +58,5 @@ public class Tools {
         }
 
         return sumMax;
-    } 
+    }
 }

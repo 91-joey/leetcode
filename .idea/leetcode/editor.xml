@@ -245,6 +245,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DetermineIfStringHalvesAreAlike.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DetermineIfStringHalvesAreAlike.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1704" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DetermineIfStringHalvesAreAlike.java" />
+              <option name="titleSlug" value="determine-if-string-halves-are-alike" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DietPlanPerformance.java">
           <value>
             <LeetcodeEditor>
