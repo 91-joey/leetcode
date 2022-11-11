@@ -23,9 +23,7 @@ public class MergeSort {
         for (int i = start, l = start, r = mid + 1; i <= end; i++) {
             if (l > mid)
                 arr[i] = tmp[r++];
-            else if (r > end)
-                arr[i] = tmp[l++];
-            else if (tmp[l] <= tmp[r])
+            else if (r > end || tmp[l] <= tmp[r])
                 arr[i] = tmp[l++];
             else
                 arr[i] = tmp[r++];

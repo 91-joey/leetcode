@@ -49,6 +49,7 @@ import java.util.List;
 public class CountOfSmallerNumbersAfterSelf {
     public static void main(String[] args) {
         Solution solution = new CountOfSmallerNumbersAfterSelf().new Solution();
+        System.out.println(solution.countSmaller(new int[]{5, 2, 6, 1}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -65,7 +66,8 @@ public class CountOfSmallerNumbersAfterSelf {
             return Arrays.stream(nums).boxed().toList();
         }
 
-        public List<Integer> countSmaller(int[] nums) {
+        //暴力2 TLE
+        public List<Integer> countSmaller8(int[] nums) {
             for (int i = 0; i < nums.length; i++) {
                 int cnt = 0;
                 for (int j = i + 1; j < nums.length; j++)
@@ -82,6 +84,85 @@ public class CountOfSmallerNumbersAfterSelf {
             for (int num : nums)
                 ans.add(num);
             return ans;
+        }
+
+        int[] cnts;
+        int[] tmpNums;
+        int[] indices;
+        int[] tmpIndices;
+
+        //归并排序（排序元素和索引）
+        public List<Integer> countSmaller7(int[] nums) {
+            int len = nums.length;
+            cnts = new int[len];
+            tmpNums = new int[len];
+            indices = new int[len];
+            tmpIndices = new int[len];
+            for (int i = 0; i < len; i++)
+                indices[i] = i;
+
+            mergeSort(nums, 0, len - 1);
+            return Arrays.stream(cnts).boxed().toList();
+        }
+
+        private void mergeSort(int[] arr, int start, int end) {
+            if (start == end)
+                return;
+
+            int mid = start + end >> 1;
+            mergeSort(arr, start, mid);
+            mergeSort(arr, mid + 1, end);
+
+            System.arraycopy(arr, start, tmpNums, start, end - start + 1);
+            System.arraycopy(indices, start, tmpIndices, start, end - start + 1);
+            for (int i = start, l = start, r = mid + 1; i <= end; i++) {
+                if (l > mid) {
+                    arr[i] = tmpNums[r];
+                    indices[i] = tmpIndices[r++];
+                } else if (r > end || tmpNums[l] <= tmpNums[r]) {
+                    arr[i] = tmpNums[l];
+                    indices[i] = tmpIndices[l++];
+                    cnts[indices[i]] += r - mid - 1;
+                } else {
+                    arr[i] = tmpNums[r];
+                    indices[i] = tmpIndices[r++];
+                }
+            }
+        }
+
+        //☆☆☆☆☆ 归并排序（只排序索引）
+
+        public List<Integer> countSmaller(int[] nums) {
+            int len = nums.length;
+            cnts = new int[len];
+            indices = new int[len];
+            tmpIndices = new int[len];
+            for (int i = 0; i < len; i++)
+                indices[i] = i;
+
+            mergeSort2(nums, 0, len - 1);
+            return Arrays.stream(cnts).boxed().toList();
+        }
+
+        private void mergeSort2(int[] arr, int start, int end) {
+            if (start == end)
+                return;
+
+            int mid = start + end >> 1;
+            mergeSort2(arr, start, mid);
+            mergeSort2(arr, mid + 1, end);
+
+            System.arraycopy(indices, start, tmpIndices, start, end - start + 1);
+            for (int i = start, l = start, r = mid + 1; i <= end; i++) {
+                if (l > mid) {
+                    indices[i] = tmpIndices[r++];
+                } else if (r > end || arr[tmpIndices[l]] <= arr[tmpIndices[r]]) {
+                    indices[i] = tmpIndices[l++];
+                    cnts[indices[i]] += r - mid - 1;
+                } else {
+                    indices[i] = tmpIndices[r++];
+                }
+            }
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
