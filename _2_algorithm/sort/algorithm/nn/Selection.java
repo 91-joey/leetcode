@@ -1,13 +1,12 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 //不稳定
 public class Selection {
     public static void main(String[] args) {
 //        Swap.sort(SelectionSort::selectionSort1);
-        Swap.sort(Selection::selectionSort2);
+        Tools.sort(Selection::selectionSort2);
     }
 
     //选择排序

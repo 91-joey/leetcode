@@ -1,7 +1,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.others;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.n.Count;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import static org.example.leetcode.problems._2_algorithm.sort.algorithm.n.Count.count;
 
@@ -12,7 +12,7 @@ import static org.example.leetcode.problems._2_algorithm.sort.algorithm.n.Count.
  */
 public class Spaghetti {
     public static void main(String[] args) {
-        Swap.sortHard(Spaghetti::spaghettiSort);
+        Tools.sortHard(Spaghetti::spaghettiSort);
     }
 
     public static void spaghettiSort(int[] arr) {

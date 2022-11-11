@@ -1,11 +1,11 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 public class Heap {
     public static void main(String[] args) {
 //        Swap.sort(Heap::heapSort);
-        Swap.sort(Heap::heapSort2);
+        Tools.sort(Heap::heapSort2);
     }
 
     //region 大顶堆

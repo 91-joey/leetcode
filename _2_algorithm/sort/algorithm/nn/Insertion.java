@@ -1,12 +1,11 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 public class Insertion {
     public static void main(String[] args) {
 //        Swap.sort(InsertSort::insertSort_swap);
-        Swap.sort(Insertion::insertSort_shift);
+        Tools.sort(Insertion::insertSort_shift);
     }
 
     public static void insertSort_swap(int[] arr) {

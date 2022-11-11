@@ -1,6 +1,5 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
@@ -11,7 +10,7 @@ import java.util.stream.Collectors;
 
 public class Quick {
     public static void main(String[] args) {
-        Swap.sort(Quick::quickSort);
+        Tools.sort(Quick::quickSort);
 //        quickSort(new int[]{1,2,3,4});
 //        quickSort(new int[]{4,3,2,1});
     }

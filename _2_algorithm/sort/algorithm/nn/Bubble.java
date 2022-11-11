@@ -1,6 +1,5 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 //稳定
@@ -9,7 +8,7 @@ public class Bubble {
     //2 1 3 5 4 6
     //1 2 3 4 5 6
     public static void main(String[] args) {
-        Swap.sort(Bubble::bubble3);
+        Tools.sort(Bubble::bubble3);
     }
 
     //不优化：

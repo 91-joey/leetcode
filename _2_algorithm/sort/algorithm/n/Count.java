@@ -1,13 +1,13 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.n;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 //计数排序  n+range n+range
 public class Count {
     public static void main(String[] args) {
 //        Swap.sort(Count::countSort);
 //        Swap.sort(Count::countSort2);
-        Swap.sort(Count::countSort3);
+        Tools.sort(Count::countSort3);
     }
 
     //伪计数排序（这里会遍历计数数组，当元素负载率低时，效率低）

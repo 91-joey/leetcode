@@ -1,10 +1,10 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 public class Merge {
     public static void main(String[] args) {
-        Swap.sort(Merge::mergeSort);
+        Tools.sort(Merge::mergeSort);
     }
 
     //归并排序（即对2个已排序子数组递归合并）  nlogn   n

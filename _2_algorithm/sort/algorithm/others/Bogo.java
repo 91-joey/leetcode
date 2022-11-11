@@ -1,6 +1,5 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.others;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Collections;
@@ -10,14 +9,14 @@ import java.util.List;
 public class Bogo {
     public static void main(String[] args) {
 //        Swap.sort(Bogo::bogoSort);
-        Swap.sortHard(Bogo::bogoSort);
+        Tools.sortHard(Bogo::bogoSort);
     }
 
     public static void bogoSort(int[] arr) {
         List<Integer> list = Tools.toList(arr);
 
         while (true) {
-            if (Swap.isSortedNaturally(list)) break;
+            if (Tools.isSortedNaturally(list)) break;
             Collections.shuffle(list);
         }
 

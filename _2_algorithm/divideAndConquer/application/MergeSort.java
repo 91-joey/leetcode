@@ -1,12 +1,10 @@
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.application;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
-
-import java.util.Arrays;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 public class MergeSort {
     public static void main(String[] args) {
-        Swap.sortHard(MergeSort::sort);
+        Tools.sortHard(MergeSort::sort);
     }
 
     public static void sort(int[] arr) {

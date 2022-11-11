@@ -1,13 +1,13 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 //希尔排序
 public class Shell {
     public static void main(String[] args) {
 //        Swap.sort(Shell::shellSort1);
 //        Swap.sort(Shell::shellSort2);
-        Swap.sort(Shell::shellSort_Knuth);
+        Tools.sort(Shell::shellSort_Knuth);
     }
 
     public static void shellSort1(int[] arr) {

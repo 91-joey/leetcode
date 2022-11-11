@@ -1,6 +1,6 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.others;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,7 @@ import java.util.List;
 public class Sleep {
     public static void main(String[] args) {
 //        Swap.sort(Sleep::sleepSort);
-        Swap.sortHard(Sleep::sleepSort);
+        Tools.sortHard(Sleep::sleepSort);
     }
 
     public static List<Integer> sorted = new ArrayList<>();
@@ -28,7 +28,7 @@ public class Sleep {
         try {
             Thread.sleep((max - min) * 100L);
             sorted.forEach(System.out::println);
-            System.out.println(Swap.isSortedNaturally(sorted));
+            System.out.println(Tools.isSortedNaturally(sorted));
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }

@@ -32,7 +32,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;
@@ -43,7 +43,7 @@ import java.util.Random;
 public class KthLargestElementInAnArray {
     public static void main(String[] args) {
         Solution solution = new KthLargestElementInAnArray().new Solution();
-        System.out.println(solution.findKthLargest_selectionSort(Swap.arr, 1));
+        System.out.println(solution.findKthLargest_selectionSort(Tools.SHUFFLED_ARR_EASY, 1));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)

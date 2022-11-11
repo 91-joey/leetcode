@@ -1,7 +1,7 @@
 package org.example.leetcode.problems._2_algorithm.sort.algorithm.n;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn.Merge;
+import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 /*
@@ -14,8 +14,8 @@ import java.util.Arrays;
 
 public class Bucket {
     public static void main(String[] args) {
-        Swap.sort(Bucket::bucketSort);
-        Swap.sortHard(Bucket::bucketSort);
+        Tools.sort(Bucket::bucketSort);
+        Tools.sortHard(Bucket::bucketSort);
     }
 
     public static void bucketSort(int[] arr) {
