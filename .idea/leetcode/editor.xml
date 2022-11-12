@@ -278,6 +278,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FanZhuanLianBiaoLcof.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FanZhuanLianBiaoLcof.md" />
+              <option name="frontendQuestionId" value="leetcode.cn剑指 Offer 24" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FanZhuanLianBiaoLcof.java" />
+              <option name="titleSlug" value="fan-zhuan-lian-biao-lcof" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FinalValueOfVariableAfterPerformingOperations.java">
           <value>
             <LeetcodeEditor>
