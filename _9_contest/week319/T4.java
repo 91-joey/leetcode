@@ -5,5 +5,7 @@ public class T4 {
 
     }
 
-    
+    public int maxPalindromes(String s, int k) {
+        return 0;
+    }
 }

@@ -43,21 +43,26 @@ public class SwapNodesInPairs {
     public static void main(String[] args) {
         Solution solution = new SwapNodesInPairs().new Solution();
     }
-//leetcode submit region begin(Prohibit modification and deletion)
 
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
+    //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public ListNode swapPairs(ListNode head) {
+        public ListNode swapPairs9(ListNode head) {
+            for (ListNode p = head; p != null && p.next != null; p = p.next.next) {
+                int tmp = p.val;
+                p.val = p.next.val;
+                p.next.val = tmp;
+            }
             return head;
+        }
+
+        public ListNode swapPairs(ListNode head) {
+            if (head == null || head.next == null)
+                return head;
+            ListNode nextNext = head.next.next;
+            ListNode next = head.next;
+            next.next = head;
+            head.next = swapPairs(nextNext);
+            return next;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
