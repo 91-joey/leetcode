@@ -39,6 +39,8 @@ package org.example.leetcode.problems._2_algorithm.sort.problems;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 //791.自定义字符串排序
 //开题时间：2022-11-13 08:59:43
@@ -82,7 +84,7 @@ public class CustomSortString {
         }
 
         //计数排序  n+m m
-        public String customSortString(String order, String s) {
+        public String customSortString7(String order, String s) {
             int[] cnts = new int[26];
             int len = s.length();
             for (int i = 0; i < len; i++)
@@ -99,6 +101,35 @@ public class CustomSortString {
             for (int i = 0; i < 26; i++)
                 for (int j = 0; j < cnts[i]; j++)
                     sb.append((char) (i + 'a'));
+
+            return sb.toString();
+        }
+
+        public String customSortString6(String order, String s) {
+            int[] weights = new int[123];
+            for (int i = 0; i < order.length(); i++)
+                weights[order.charAt(i)] = i;
+
+            StringBuilder sb = new StringBuilder();
+            AtomicInteger i = new AtomicInteger();
+            Stream.generate(() -> s.charAt(i.getAndIncrement()))
+                    .limit(s.length())
+                    .sorted(Comparator.comparingInt(c -> weights[c]))
+                    .forEach(sb::append);
+
+            return sb.toString();
+        }
+
+        public String customSortString(String order, String s) {
+            int[] weights = new int[123];
+            for (int i = 0; i < order.length(); i++)
+                weights[order.charAt(i)] = i;
+
+            StringBuilder sb = new StringBuilder();
+            s.chars()
+                    .mapToObj(i -> (char) i)
+                    .sorted(Comparator.comparingInt(c -> weights[c]))
+                    .forEach(sb::append);
 
             return sb.toString();
         }
