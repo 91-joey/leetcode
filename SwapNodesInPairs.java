@@ -46,6 +46,7 @@ public class SwapNodesInPairs {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //交换值（不符合题目要求）
         public ListNode swapPairs9(ListNode head) {
             for (ListNode p = head; p != null && p.next != null; p = p.next.next) {
                 int tmp = p.val;
@@ -55,14 +56,31 @@ public class SwapNodesInPairs {
             return head;
         }
 
-        public ListNode swapPairs(ListNode head) {
+        //递归
+        public ListNode swapPairs8(ListNode head) {
             if (head == null || head.next == null)
                 return head;
-            ListNode nextNext = head.next.next;
-            ListNode next = head.next;
-            next.next = head;
-            head.next = swapPairs(nextNext);
-            return next;
+            ListNode newHead = head.next;
+            head.next = swapPairs8(newHead.next);
+            newHead.next = head;
+            return newHead;
+        }
+
+        //迭代
+        public ListNode swapPairs(ListNode head) {
+            ListNode dummy = new ListNode(0, head);
+
+            ListNode pre = dummy, cur = head;
+            while (cur != null && cur.next != null) {
+                ListNode next2 = cur.next.next;
+                pre.next = cur.next;
+                cur.next.next = cur;
+                pre = cur;
+                cur = next2;
+            }
+            pre.next = cur;
+
+            return dummy.next;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
