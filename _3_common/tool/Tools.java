@@ -101,4 +101,31 @@ public class Tools {
     public static int lcm(int a, int b) {
         return a * b / gcd(a, b);
     }
+
+    /**
+     * 返回 两数之合 = 目标值 的索引数组
+     *
+     * @param arr
+     * @param target
+     * @return
+     */
+
+    public static int[] searchSumOfTwo(int[] arr, int start, int end, int target) {
+        end--;
+        while (start < end) {
+            int sum = arr[start] + arr[end];
+            if (sum == target) {
+                return new int[]{start, end};
+            } else if (sum > target) {
+                end--;
+            } else {
+                start++;
+            }
+        }
+        return new int[]{};
+    }
+
+    public static int[] searchSumOfTwo(int[] arr, int target) {
+        return searchSumOfTwo(arr, 0, arr.length, target);
+    }
 }
