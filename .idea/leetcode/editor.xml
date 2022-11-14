@@ -1059,6 +1059,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NaYingBi.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NaYingBi.md" />
+              <option name="frontendQuestionId" value="leetcode.cnLCP 06" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NaYingBi.java" />
+              <option name="titleSlug" value="na-ying-bi" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfGoodPairs.java">
           <value>
             <LeetcodeEditor>
