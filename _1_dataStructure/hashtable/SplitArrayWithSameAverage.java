@@ -43,19 +43,21 @@
 //<div><li>👍 167</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.hashtable;
 
-import java.util.Arrays;
+import java.util.*;
 
 //805.数组的均值分割
 //开题时间：2022-11-14 11:08:36
 public class SplitArrayWithSameAverage {
     public static void main(String[] args) {
         Solution solution = new SplitArrayWithSameAverage().new Solution();
-        System.out.println(Solution.searchSumOfTwo(new int[]{1, 2, 3}, 100).length);
+//        System.out.println(solution.splitArraySameAverage(new int[]{3, 1}));
+        System.out.println(solution.splitArraySameAverage(new int[]{1, 2, 3, 4, 5, 6, 7, 8}));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public boolean splitArraySameAverage(int[] nums) {
+        //TLE
+        public boolean splitArraySameAverage9(int[] nums) {
             int len = nums.length;
             if (len == 1)
                 return false;
@@ -115,6 +117,42 @@ public class SplitArrayWithSameAverage {
 
         public static int[] searchSumOfTwo(int[] arr, int target) {
             return searchSumOfTwo(arr, 0, arr.length, target);
+        }
+
+        //折半搜索 + 二进制枚举 + 哈希表 + 数学
+        public boolean splitArraySameAverage(int[] nums) {
+            int len = nums.length;
+            int mid = len >> 1;
+            int total = Arrays.stream(nums).sum();
+            int totalLeft = Arrays.stream(nums).limit(mid).sum();
+            boolean[][] sumNcnt = new boolean[totalLeft + 1][mid + 1];
+            for (int i = 0; i < 1 << mid; i++) {
+                int sum = 0, cnt = 0;
+                for (int j = 0; j < mid; j++) {
+                    if ((i >> j & 1) == 1) {
+                        sum += nums[j];
+                        cnt++;
+                    }
+                }
+                sumNcnt[sum][cnt] = true;
+            }
+
+            for (int i = 0; i < 1 << (len - mid); i++) {
+                int sum = 0, cnt = 0;
+                for (int j = 0; j < len - mid; j++) {
+                    if ((i >> j & 1) == 1) {
+                        sum += nums[mid + j];
+                        cnt++;
+                    }
+                }
+                for (int k = Math.max(1, cnt); k < len; k++) {
+                    int sumTarget = (k * total / len) - sum;
+                    if (sumTarget >= 0 && sumTarget <= totalLeft && k - cnt <= mid && k * total % len == 0 && sumNcnt[sumTarget][k - cnt])
+                        return true;
+                }
+            }
+
+            return false;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
