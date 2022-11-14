@@ -13,6 +13,7 @@ public class Tools {
         System.out.println(list);
         int[] ints = toArray(list);
         System.out.println(Arrays.toString(ints));
+        System.out.println(lcm(25 * 2, 25 * 3));
     }
 
     public static List<Integer> toList(int[] ints) {
@@ -89,5 +90,15 @@ public class Tools {
             if (list.get(i) > list.get(i + 1))
                 return false;
         return true;
+    }
+
+    public static int gcd(int a, int b) {
+        return b != 0 ?
+                gcd(b, a % b) :
+                a;
+    }
+
+    public static int lcm(int a, int b) {
+        return a * b / gcd(a, b);
     }
 }
