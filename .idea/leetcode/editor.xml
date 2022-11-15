@@ -927,6 +927,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumUnitsOnATruck.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumUnitsOnATruck.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1710" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumUnitsOnATruck.java" />
+              <option name="titleSlug" value="maximum-units-on-a-truck" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MedianOfTwoSortedArrays.java">
           <value>
             <LeetcodeEditor>
