@@ -355,6 +355,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindAnagramMappings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindAnagramMappings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn760" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindAnagramMappings.java" />
+              <option name="titleSlug" value="find-anagram-mappings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FindFirstAndLastPositionOfElementInSortedArray.java">
           <value>
             <LeetcodeEditor>
