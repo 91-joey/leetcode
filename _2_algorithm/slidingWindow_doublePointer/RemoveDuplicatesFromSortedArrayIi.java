@@ -123,6 +123,15 @@ public class RemoveDuplicatesFromSortedArrayIi {
 
             return idx + 1;
         }
+
+        //极简
+        public int removeDuplicates5(int[] nums) {
+            int k = 0;
+            for (int num : nums)
+                if (num != nums[k])
+                    nums[++k] = num;
+            return k + 1;
+        }
         //endregion
     }
 //leetcode submit region end(Prohibit modification and deletion)
