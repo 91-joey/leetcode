@@ -1,0 +1,85 @@
+//给你单链表的头指针 <code>head</code> 和两个整数 <code>left</code> 和 <code>right</code> ，其中 <code>left <= right</code> 。请你反转从位置 <code>left</code> 到位置 <code>right</code> 的链表节点，返回 <strong>反转后的链表</strong> 。
+//
+//<p>&nbsp;</p>
+//
+//<p><strong>示例 1：</strong></p> 
+//<img alt="" src="https://assets.leetcode.com/uploads/2021/02/19/rev2ex2.jpg" style="width: 542px; height: 222px;" /> 
+//<pre>
+//<strong>输入：</strong>head = [1,2,3,4,5], left = 2, right = 4
+//<strong>输出：</strong>[1,4,3,2,5]
+//</pre>
+//
+//<p><strong>示例 2：</strong></p>
+//
+//<pre>
+//<strong>输入：</strong>head = [5], left = 1, right = 1
+//<strong>输出：</strong>[5]
+//</pre>
+//
+//<p>&nbsp;</p>
+//
+//<p><strong>提示：</strong></p>
+//
+//<ul> 
+// <li>链表中节点数目为 <code>n</code></li> 
+// <li><code>1 &lt;= n &lt;= 500</code></li> 
+// <li><code>-500 &lt;= Node.val &lt;= 500</code></li> 
+// <li><code>1 &lt;= left &lt;= right &lt;= n</code></li> 
+//</ul>
+//
+//<p>&nbsp;</p>
+//
+//<p><strong>进阶：</strong> 你可以使用一趟扫描完成反转吗？</p>
+//
+//<div><li>👍 1438</li><li>👎 0</li></div>
+package org.example.leetcode.problems;
+
+import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+
+//92.反转链表 II
+//开题时间：2022-11-15 12:02:24
+public class ReverseLinkedListIi {
+    public static void main(String[] args) {
+        Solution solution = new ReverseLinkedListIi().new Solution();
+//        System.out.println(solution.reverseBetween(new ListNode(3, new ListNode(5)), 1, 2));
+        System.out.println(773 * 613 * 11 * 8 * 103);
+    }
+//leetcode submit region begin(Prohibit modification and deletion)
+
+    /**
+     * Definition for singly-linked list.
+     * public class ListNode {
+     * int val;
+     * ListNode next;
+     * ListNode() {}
+     * ListNode(int val) { this.val = val; }
+     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     * }
+     */
+    class Solution {
+        public ListNode reverseBetween(ListNode head, int left, int right) {
+            if (left == right)
+                return head;
+
+            ListNode l = head;
+            for (int i = 2; i < left; i++)
+                l = l.next;
+            ListNode newRight = l.next;
+
+            ListNode pre = null;
+            ListNode cur = newRight;
+            for (int i = left; i <= right; i++) {
+                ListNode next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+
+            l.next = pre;
+            newRight.next = cur;
+
+            return left == 1 ? pre : head;
+        }
+    }
+//leetcode submit region end(Prohibit modification and deletion)
+}

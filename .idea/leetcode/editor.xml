@@ -1103,6 +1103,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfSubarraysWithGcdEqualToK.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfSubarraysWithGcdEqualToK.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2447" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfSubarraysWithGcdEqualToK.java" />
+              <option name="titleSlug" value="number-of-subarrays-with-gcd-equal-to-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfSubarraysWithLcmEqualToK.java">
           <value>
             <LeetcodeEditor>
@@ -1276,6 +1287,28 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/ReorderList.java" />
               <option name="titleSlug" value="reorder-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ReverseLinkedList.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReverseLinkedList.md" />
+              <option name="frontendQuestionId" value="leetcode.cn206" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReverseLinkedList.java" />
+              <option name="titleSlug" value="reverse-linked-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/ReverseLinkedListIi.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReverseLinkedListIi.md" />
+              <option name="frontendQuestionId" value="leetcode.cn92" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReverseLinkedListIi.java" />
+              <option name="titleSlug" value="reverse-linked-list-ii" />
             </LeetcodeEditor>
           </value>
         </entry>
