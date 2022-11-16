@@ -41,8 +41,7 @@ import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 public class ReverseLinkedListIi {
     public static void main(String[] args) {
         Solution solution = new ReverseLinkedListIi().new Solution();
-//        System.out.println(solution.reverseBetween(new ListNode(3, new ListNode(5)), 1, 2));
-        System.out.println(773 * 613 * 11 * 8 * 103);
+        System.out.println(solution.reverseBetween(new ListNode(3, new ListNode(5)), 1, 2));
     }
 //leetcode submit region begin(Prohibit modification and deletion)
 
@@ -57,12 +56,11 @@ public class ReverseLinkedListIi {
      * }
      */
     class Solution {
-        public ListNode reverseBetween(ListNode head, int left, int right) {
-            if (left == right)
-                return head;
-
-            ListNode l = head;
-            for (int i = 2; i < left; i++)
+        //一次遍历
+        public ListNode reverseBetween9(ListNode head, int left, int right) {
+            ListNode dummy = new ListNode(0, head);
+            ListNode l = dummy;
+            for (int i = 1; i < left; i++)
                 l = l.next;
             ListNode newRight = l.next;
 
@@ -78,7 +76,50 @@ public class ReverseLinkedListIi {
             l.next = pre;
             newRight.next = cur;
 
-            return left == 1 ? pre : head;
+            return dummy.next;
+        }
+
+        //二次遍历
+        public ListNode reverseBetween(ListNode head, int left, int right) {
+            //1.设置哑结点
+            ListNode dummy = new ListNode(0, head);
+            ListNode pre = dummy;
+
+            //2.找到反转链表的前驱节点pre和头结点newRight
+            for (int i = 1; i < left; i++)
+                pre = pre.next;
+            ListNode newRight = pre.next;
+
+            //3.找到反转链表的尾结点newLeft
+            ListNode newLeft = newRight;
+            for (int i = left; i < right; i++)
+                newLeft = newLeft.next;
+
+            //4.断开反转链表的尾结点newLeft 与 后继节点 的连接
+            ListNode suc = newLeft.next;
+            newLeft.next = null;
+
+            //5.反转链表
+            reverseListGJ1(newRight);
+
+            //6.拼接
+            pre.next = newLeft;
+            newRight.next = suc;
+
+            return dummy.next;
+        }
+
+        public static ListNode reverseListGJ1(ListNode head) {
+            ListNode pre = null;
+            ListNode cur = head;
+            while (cur != null) {
+                ListNode next = cur.next;
+                cur.next = pre;
+                pre = cur;
+                cur = next;
+            }
+
+            return pre;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
