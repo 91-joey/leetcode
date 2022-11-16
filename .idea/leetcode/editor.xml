@@ -190,6 +190,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountAsterisks.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountAsterisks.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2315" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountAsterisks.java" />
+              <option name="titleSlug" value="count-asterisks" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CountItemsMatchingARule.java">
           <value>
             <LeetcodeEditor>
