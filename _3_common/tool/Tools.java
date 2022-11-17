@@ -1,7 +1,11 @@
 package org.example.leetcode.problems._3_common.tool;
 
+import org.example.leetcode.problems._3_common.tree.TreeNode;
+
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 public class Tools {
@@ -9,11 +13,13 @@ public class Tools {
     public static final int[] SHUFFLED_ARR_HARD = {69, 54, 87, 27, 37, 56, 31, 76, 23, 47, 38, 44, 60, 86, 84, 96, 10, 73, 25, 19, 40, 30, 66, 65, 67, 4, 35, 12, 55, 0, 32, 8, 59, 33, 46, 97, 14, 91, 24, 71, 75, 89, 50, 92, 2, 90, 63, 64, 45, 39, 51, 52, 18, 94, 21, 5, 57, 3, 72, 61, 77, 53, 83, 13, 48, 9, 74, 16, 99, 6, 62, 93, 26, 58, 95, 98, 41, 15, 22, 49, 88, 81, 29, 42, 20, 70, 43, 79, 82, 85, 1, 11, 28, 7, 68, 80, 17, 34, 36, 78};
 
     public static void main(String[] args) {
-        List<Integer> list = toList(new int[]{1, 2, 3});
-        System.out.println(list);
-        int[] ints = toArray(list);
-        System.out.println(Arrays.toString(ints));
-        System.out.println(lcm(25 * 2, 25 * 3));
+//        List<Integer> list = toList(new int[]{1, 2, 3});
+//        System.out.println(list);
+//        int[] ints = toArray(list);
+//        System.out.println(Arrays.toString(ints));
+//        System.out.println(lcm(25 * 2, 25 * 3));
+        TreeNode treeNode = buildTree("[5,4,6,null,null,3,7]");
+        System.out.println(treeNode);
     }
 
     public static List<Integer> toList(int[] ints) {
@@ -127,5 +133,30 @@ public class Tools {
 
     public static int[] searchSumOfTwo(int[] arr, int target) {
         return searchSumOfTwo(arr, 0, arr.length, target);
+    }
+
+    public static TreeNode buildTree(String s) {
+        String[] split = s.substring(1, s.length() - 1).split(",");
+        if (split[0].equals("null"))
+            return null;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        TreeNode root = new TreeNode(Integer.parseInt(split[0]));
+        q.offer(root);
+        for (int i = 1; i < split.length; ) {
+            for (int j = q.size(); j > 0; j--) {
+                TreeNode poll = q.poll();
+                q.offer(poll.left = buildTreeWithSingleWord(split[i++]));
+                q.offer(poll.right = buildTreeWithSingleWord(split[i++]));
+            }
+        }
+        return root;
+    }
+
+    public static TreeNode buildTreeWithSingleWord(String s) {
+        if (s.equals("null"))
+            return null;
+        else
+            return new TreeNode(Integer.parseInt(s));
     }
 }
