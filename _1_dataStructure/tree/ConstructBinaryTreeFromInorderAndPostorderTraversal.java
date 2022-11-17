@@ -67,7 +67,7 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
             return helper(0, postIdx);
         }
 
-        //迭代
+        //递归
         private TreeNode helper(int l, int r) {
             if (l > r) return null;
 
