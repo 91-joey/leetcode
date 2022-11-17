@@ -36,7 +36,7 @@
 //<span style="display:block"><span style="height:0px"><span style="position:absolute">​​​​</span></span></span>
 //
 //<div><li>👍 243</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.*;
 
@@ -53,6 +53,7 @@ public class NumberOfMatchingSubsequences {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //二分
         public int numMatchingSubseq9(String s, String[] words) {
             Map<Integer, List<Integer>> char2indices = new HashMap<>();
             for (int i = 'a'; i <= 'z'; i++)
@@ -85,6 +86,7 @@ public class NumberOfMatchingSubsequences {
             return cnt;
         }
 
+        //二分优化
         public int numMatchingSubseq8(String s, String[] words) {
             List<Integer>[] char2indices = new List[27];
             for (int i = 0; i < 27; i++)
@@ -108,7 +110,8 @@ public class NumberOfMatchingSubsequences {
             return cnt;
         }
 
-        public int numMatchingSubseq(String s, String[] words) {
+        //TLE
+        public int numMatchingSubseq7(String s, String[] words) {
             int len = s.length();
             int idx = 0;
             for (int i = 0; i < words.length; i++) {
@@ -128,6 +131,55 @@ public class NumberOfMatchingSubsequences {
                             cnt++;
                         }
                     }
+                }
+            }
+            return cnt;
+        }
+
+        //分桶
+        public int numMatchingSubseq6(String s, String[] words) {
+            LinkedList<int[]>[] char2idxidx = new LinkedList[27];
+            for (int i = 0; i < 27; i++)
+                char2idxidx[i] = new LinkedList<>();
+
+            for (int i = 0; i < words.length; i++)
+                char2idxidx[words[i].charAt(0) & 31].add(new int[]{i, 0});
+
+            int cnt = 0;
+            for (int i = 0; i < s.length(); i++) {
+                LinkedList<int[]> list = char2idxidx[s.charAt(i) & 31];
+                for (int j = list.size() - 1; j >= 0; j--) {
+                    int[] idxidx = list.get(j);
+                    list.remove(j);
+                    if (idxidx[1] >= words[idxidx[0]].length() - 1)
+                        cnt++;
+                    else
+                        char2idxidx[words[idxidx[0]].charAt(idxidx[1] + 1) & 31].add(new int[]{idxidx[0], idxidx[1] + 1});
+                }
+            }
+            return cnt;
+        }
+
+        //分桶（优化）
+        public int numMatchingSubseq(String s, String[] words) {
+            Queue<int[]>[] char2idxidx = new Queue[26];
+            for (int i = 0; i < 26; i++)
+                char2idxidx[i] = new LinkedList<>();
+
+            for (int i = 0; i < words.length; i++)
+                char2idxidx[words[i].charAt(0) - 'a'].add(new int[]{i, 0});
+
+            int cnt = 0;
+            for (int i = 0; i < s.length(); i++) {
+                Queue<int[]> q = char2idxidx[s.charAt(i) - 'a'];
+                for (int j = q.size(); j > 0; j--) {
+                    int[] idxidx = q.poll();
+                    int idx1 = idxidx[0];
+                    int idx2 = idxidx[1] + 1;
+                    if (idx2 >= words[idx1].length())
+                        cnt++;
+                    else
+                        char2idxidx[words[idx1].charAt(idx2) - 'a'].offer(new int[]{idx1, idx2});
                 }
             }
             return cnt;
