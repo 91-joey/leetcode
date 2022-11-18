@@ -1675,6 +1675,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SumOfSubsequenceWidths.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SumOfSubsequenceWidths.md" />
+              <option name="frontendQuestionId" value="leetcode.cn891" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SumOfSubsequenceWidths.java" />
+              <option name="titleSlug" value="sum-of-subsequence-widths" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SwapNodesInPairs.java">
           <value>
             <LeetcodeEditor>
