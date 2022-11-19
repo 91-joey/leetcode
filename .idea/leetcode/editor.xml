@@ -993,6 +993,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumNestingDepthOfTheParentheses.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumNestingDepthOfTheParentheses.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1614" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumNestingDepthOfTheParentheses.java" />
+              <option name="titleSlug" value="maximum-nesting-depth-of-the-parentheses" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumNumberOfVowelsInASubstringOfGivenLength.java">
           <value>
             <LeetcodeEditor>
