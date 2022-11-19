@@ -59,8 +59,9 @@ public class RegularExpressionMatching {
             return s.matches(p);
         }
 
+        //todo DP
         public boolean isMatch(String s, String p) {
-
+            return true;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
