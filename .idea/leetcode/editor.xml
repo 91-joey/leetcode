@@ -520,6 +520,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindTheHighestAltitude.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindTheHighestAltitude.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1732" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindTheHighestAltitude.java" />
+              <option name="titleSlug" value="find-the-highest-altitude" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FirstBadVersion.java">
           <value>
             <LeetcodeEditor>
