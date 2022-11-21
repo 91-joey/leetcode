@@ -2,11 +2,9 @@ package org.example.leetcode.problems._3_common.tool;
 
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class Tools {
     public static final int[] SHUFFLED_ARR_EASY = {6, 2, 1, 3, 5, 4};
@@ -161,4 +159,123 @@ public class Tools {
         else
             return new TreeNode(Integer.parseInt(s));
     }
+
+    //region binary tree traversal
+    public static Collection<Integer> preorderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
+        Collection<Integer> coll = collectionSupplier.get();
+        if (root == null)
+            return coll;
+
+        TreeNode cur = root;
+        TreeNode l;
+        while (cur != null) {
+            l = cur.left;
+            if (l != null) {
+                while (l.right != null && l.right != cur) {
+                    l = l.right;
+                }
+                if (l.right == null) {
+                    l.right = cur;
+                    coll.add(cur.val);
+                    cur = cur.left;
+                } else {
+                    l.right = null;
+                    cur = cur.right;
+                }
+            } else {
+                coll.add(cur.val);
+                cur = cur.right;
+            }
+        }
+
+        return coll;
+    }
+
+    public static List<Integer> preorderTraversal(TreeNode root) {
+        return (List<Integer>) preorderTraversal(root, ArrayList::new);
+    }
+
+    public static Collection<Integer> postorderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
+        Collection<Integer> coll = collectionSupplier.get();
+        if (root == null)
+            return coll;
+
+        Deque<TreeNode> stack = new LinkedList<>();
+        stack.push(root);
+
+        while (!stack.isEmpty()) {
+            TreeNode pop = stack.pop();
+            coll.add(pop.val);
+            if (pop.left != null)
+                stack.push(pop.left);
+            if (pop.right != null)
+                stack.push(pop.right);
+        }
+
+        return coll;
+    }
+
+    public static List<Integer> postorderTraversal(TreeNode root) {
+        return (List<Integer>) postorderTraversal(root, ArrayList::new);
+    }
+
+    public static Collection<Integer> inorderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
+        Collection<Integer> coll = collectionSupplier.get();
+        if (root == null)
+            return coll;
+
+        TreeNode cur = root;
+        TreeNode left;
+        while (cur != null) {
+            left = cur.left;
+            if (left != null) {
+                while (left.right != null && left.right != cur) {
+                    left = left.right;
+                }
+                if (left.right == null) {
+                    left.right = cur;
+                    cur = cur.left;
+                } else {
+                    coll.add(cur.val);
+                    left.right = null;
+                    cur = cur.right;
+                }
+            } else {
+                coll.add(cur.val);
+                cur = cur.right;
+            }
+        }
+
+        return coll;
+    }
+
+    public static List<Integer> inorderTraversal(TreeNode root) {
+        return (List<Integer>) inorderTraversal(root, ArrayList::new);
+    }
+
+    public static Collection<Integer> levelOrderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
+        Collection<Integer> coll = collectionSupplier.get();
+        if (root == null)
+            return coll;
+
+        Queue<TreeNode> q = new LinkedList<>();
+        q.offer(root);
+
+        while (!q.isEmpty()) {
+            for (int i = q.size(); i > 0; i--) {
+                TreeNode poll = q.poll();
+                coll.add(poll.val);
+                if (poll.left != null) q.offer(poll.left);
+                if (poll.right != null) q.offer(poll.right);
+            }
+        }
+
+        return coll;
+    }
+
+    public static List<Integer> levelOrderTraversal(TreeNode root) {
+        return (List<Integer>) levelOrderTraversal(root, ArrayList::new);
+    }
+    //endregion
+
 }

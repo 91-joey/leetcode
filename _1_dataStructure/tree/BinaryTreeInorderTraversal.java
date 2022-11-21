@@ -62,13 +62,18 @@ public class BinaryTreeInorderTraversal {
         public List<Integer> inorderTraversal(TreeNode root) {
             List<Integer> list = new ArrayList<>();
 
-            if (root == null)
-                return list;
-            list.addAll(inorderTraversal(root.left));
-            list.add(root.val);
-            list.addAll(inorderTraversal(root.right));
+            inorderTraversal(root, list);
 
             return list;
+        }
+
+        public void inorderTraversal(TreeNode root, Collection<Integer> coll) {
+            if (root == null)
+                return;
+
+            inorderTraversal(root.left, coll);
+            coll.add(root.val);
+            inorderTraversal(root.right, coll);
         }
 
         //DFS+栈+哈希集和    n   n

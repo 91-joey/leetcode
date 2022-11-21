@@ -15,7 +15,7 @@
 //<p>返回它的最大深度&nbsp;3 。</p>
 //
 //<div><li>👍 1428</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 

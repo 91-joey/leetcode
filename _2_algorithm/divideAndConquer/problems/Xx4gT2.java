@@ -32,15 +32,11 @@
 // <meta charset="UTF-8" />注意：本题与主站 215&nbsp;题相同：&nbsp;<a href="https://leetcode-cn.com/problems/kth-largest-element-in-an-array/">https://leetcode-cn.com/problems/kth-largest-element-in-an-array/</a></p>
 //
 //<div><li>👍 52</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
-
-import org.example.leetcode.problems._3_common.tool.Tools;
+package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
 import java.util.Random;
-
-import static org.example.leetcode.problems._2_algorithm.divideAndConquer.application.QuickSort.quickSort;
 
 //剑指 Offer II 076.数组中的第 k 大的数字
 //开题时间：2022-11-11 13:43:16

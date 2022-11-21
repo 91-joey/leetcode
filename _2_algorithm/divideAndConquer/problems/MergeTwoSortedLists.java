@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 2781</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 

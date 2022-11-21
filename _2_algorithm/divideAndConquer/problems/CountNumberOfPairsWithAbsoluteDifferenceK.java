@@ -48,7 +48,7 @@
 //</ul>
 //
 //<div><li>👍 85</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import java.util.HashMap;
 

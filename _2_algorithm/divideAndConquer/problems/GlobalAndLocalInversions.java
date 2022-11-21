@@ -47,7 +47,7 @@
 //</ul>
 //
 //<div><li>👍 124</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 //775.全局倒置与局部倒置
 //开题时间：2022-11-16 10:23:52

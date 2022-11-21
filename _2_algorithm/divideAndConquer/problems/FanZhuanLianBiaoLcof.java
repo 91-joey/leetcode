@@ -18,7 +18,7 @@
 //<p><strong>注意</strong>：本题与主站 206 题相同：<a href="https://leetcode-cn.com/problems/reverse-linked-list/">https://leetcode-cn.com/problems/reverse-linked-list/</a></p>
 //
 //<div><li>👍 505</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 

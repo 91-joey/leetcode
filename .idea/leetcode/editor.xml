@@ -146,6 +146,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ChampagneTower.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ChampagneTower.md" />
+              <option name="frontendQuestionId" value="leetcode.cn799" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ChampagneTower.java" />
+              <option name="titleSlug" value="champagne-tower" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java">
           <value>
             <LeetcodeEditor>
@@ -836,6 +847,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit.java" />
               <option name="titleSlug" value="longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/LongestIncreasingSubsequence.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LongestIncreasingSubsequence.md" />
+              <option name="frontendQuestionId" value="leetcode.cn300" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LongestIncreasingSubsequence.java" />
+              <option name="titleSlug" value="longest-increasing-subsequence" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -1705,6 +1727,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/SortedMergeLcci.java" />
               <option name="titleSlug" value="sorted-merge-lcci" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/SoupServings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SoupServings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn808" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SoupServings.java" />
+              <option name="titleSlug" value="soup-servings" />
             </LeetcodeEditor>
           </value>
         </entry>
