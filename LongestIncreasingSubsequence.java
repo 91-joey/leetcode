@@ -44,6 +44,8 @@
 //<div><li>👍 2878</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
+import java.util.Arrays;
+
 //300.最长递增子序列
 //开题时间：2022-11-20 12:46:58
 public class LongestIncreasingSubsequence {
@@ -55,12 +57,15 @@ public class LongestIncreasingSubsequence {
     class Solution {
         public int lengthOfLIS(int[] nums) {
             int max = 1;
-            for (int i = 0; i < nums.length - 1; i++)
-                for (int j = i + 1; j < nums.length; j++)
-                    if (nums[i] >= nums[j]) {
-                        max = Math.max(max, j - i);
-                        break;
-                    }
+            int n = nums.length;
+            int[] dp = new int[n];
+            Arrays.fill(dp, 1);
+            for (int i = 1; i < n; i++) {
+                for (int j = 0; j < i; j++)
+                    if (nums[j] < nums[i])
+                        dp[i] = Math.max(dp[i], dp[j] + 1);
+                max = Math.max(max, dp[i]);
+            }
             return max;
         }
     }
