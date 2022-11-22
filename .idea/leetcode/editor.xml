@@ -1609,6 +1609,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RussianDollEnvelopes.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RussianDollEnvelopes.md" />
+              <option name="frontendQuestionId" value="leetcode.cn354" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RussianDollEnvelopes.java" />
+              <option name="titleSlug" value="russian-doll-envelopes" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SearchInASortedArrayOfUnknownSize.java">
           <value>
             <LeetcodeEditor>
