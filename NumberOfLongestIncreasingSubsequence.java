@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 688</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package org.example.leetcode.problems;
 
 import java.util.Arrays;
 
@@ -48,23 +48,37 @@ public class NumberOfLongestIncreasingSubsequence {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /*
+         * dp[i] 为以 nums[i] 结尾的上升子序列的最大长度。
+         * cnts[i] 为以 nums[i] 结尾的最长上升子序列的个数。
+        */
         public int findNumberOfLIS(int[] nums) {
-            int max = 1;
+            int max = 1, cnt = 1;
             int n = nums.length;
             int[] dp = new int[n];
-            int[] cnts = new int[n + 1];
-            cnts[1] = n;
+            int[] cnts = new int[n];
             Arrays.fill(dp, 1);
+            Arrays.fill(cnts, 1);
             for (int i = 1; i < n; i++) {
                 for (int j = 0; j < i; j++)
                     if (nums[j] < nums[i]) {
-                        dp[i] = Math.max(dp[i], dp[j] + 1);
-//                        cnts[dp[i]]++;
+                        if (dp[i] == dp[j] + 1) {
+                            cnts[i] += cnts[j];
+                        } else if (dp[i] < dp[j] + 1) {
+                            cnts[i] = cnts[j];
+                            dp[i] = dp[j] + 1;
+                        }
                     }
-                max = Math.max(max, dp[i]);
+
+                if (max == dp[i])
+                    cnt += cnts[i];
+                else if (max < dp[i]) {
+                    cnt = cnts[i];
+                    max = dp[i];
+                }
             }
 
-            return cnts[max];
+            return cnt;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
