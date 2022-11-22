@@ -542,6 +542,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindTheDistanceValueBetweenTwoArrays.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindTheDistanceValueBetweenTwoArrays.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1385" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindTheDistanceValueBetweenTwoArrays.java" />
+              <option name="titleSlug" value="find-the-distance-value-between-two-arrays" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FindTheDuplicateNumber.java">
           <value>
             <LeetcodeEditor>
