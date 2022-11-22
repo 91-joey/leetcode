@@ -1092,6 +1092,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumProductSubarray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumProductSubarray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn152" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumProductSubarray.java" />
+              <option name="titleSlug" value="maximum-product-subarray" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumRepeatingSubstring.java">
           <value>
             <LeetcodeEditor>
