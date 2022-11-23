@@ -7,10 +7,10 @@
           <value>
             <Statistics>
               <option name="easy" value="120" />
-              <option name="hard" value="26" />
+              <option name="hard" value="27" />
               <option name="medium" value="128" />
               <option name="questionTotal" value="2855" />
-              <option name="solvedTotal" value="274" />
+              <option name="solvedTotal" value="275" />
             </Statistics>
           </value>
         </entry>

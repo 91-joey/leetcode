@@ -1004,6 +1004,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaxSubmatrixLcci.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaxSubmatrixLcci.md" />
+              <option name="frontendQuestionId" value="leetcode.cn面试题 17.24" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaxSubmatrixLcci.java" />
+              <option name="titleSlug" value="max-submatrix-lcci" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumAverageSubarrayI.java">
           <value>
             <LeetcodeEditor>
