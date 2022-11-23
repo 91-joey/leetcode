@@ -1136,6 +1136,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumSumCircularSubarray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumSumCircularSubarray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn918" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumSumCircularSubarray.java" />
+              <option name="titleSlug" value="maximum-sum-circular-subarray" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumUnitsOnATruck.java">
           <value>
             <LeetcodeEditor>
