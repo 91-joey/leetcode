@@ -57,7 +57,7 @@ public class FindSmallestLetterGreaterThanTarget {
     class Solution {
         //w  xyz abc...w
         //手撕二分
-        public char nextGreatestLetter(char[] letters, char target) {
+        public char nextGreatestLetter9(char[] letters, char target) {
             int l = 0, r = letters.length;
             while (l < r) {
                 int mid = l + r >> 1;
@@ -74,6 +74,20 @@ public class FindSmallestLetterGreaterThanTarget {
         public char nextGreatestLetter2(char[] letters, char target) {
             int search = Arrays.binarySearch(letters, (char) (target + 1));
             return search >= 0 ? letters[search] : letters[(-search - 1) % letters.length];
+        }
+
+        public char nextGreatestLetter(char[] letters, char target) {
+            int l = 0, r = letters.length - 1;
+            if (letters[r] <= target)
+                return letters[l];
+            while (l < r) {
+                int mid = ((r - l) >> 1) + l;
+                if (target < letters[mid])
+                    r = mid;
+                else
+                    l = mid + 1;
+            }
+            return letters[r];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
