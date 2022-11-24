@@ -38,6 +38,9 @@
 //<div><li>👍 430</li><li>👎 0</li></div>
 package org.example.leetcode.problems;
 
+import java.util.Arrays;
+import java.util.TreeSet;
+
 //363.矩形区域不超过 K 的最大数值和
 //开题时间：2022-11-24 11:18:27
 public class MaxSumOfRectangleNoLargerThanK {
@@ -72,7 +75,8 @@ public class MaxSumOfRectangleNoLargerThanK {
             return k - min;
         }
 
-        public int maxSumSubmatrix(int[][] matrix, int k) {
+        //前缀和
+        public int maxSumSubmatrix9(int[][] matrix, int k) {
             int m = matrix.length;
             int n = matrix[0].length;
 
@@ -103,6 +107,88 @@ public class MaxSumOfRectangleNoLargerThanK {
                             if (sum <= k && sum > max)
                                 max = sum;
                         }
+
+            return max;
+        }
+
+        //滚动数组
+        public int maxSumSubmatrix8(int[][] matrix, int k) {
+            int m = matrix.length;
+            int n = matrix[0].length;
+
+            int max = Integer.MIN_VALUE;
+            //n*n
+            for (int l = 0; l < n; l++) {
+                int[] prefixLR = new int[m];
+                for (int r = l; r < n; r++) {
+                    for (int i = 0; i < m; i++)
+                        prefixLR[i] += matrix[i][r];
+                    max = Math.max(max, dpMax(prefixLR, k));
+                    if (max == k)
+                        return k;
+                }
+            }
+
+            return max;
+        }
+
+        //m*m
+        private int dpMax(int[] arr, int k) {
+            //优化：若 k 过大，直接返回最大子数组和
+            int max = maxSubArray(arr);
+            if (k >= max)
+                return max;
+
+            int n = arr.length;
+            max = Integer.MIN_VALUE;
+            for (int i = 0; i < n; i++) {
+                for (int j = i, sum = 0; j < n; j++) {
+                    sum += arr[j];
+                    if (sum <= k && sum > max)
+                        max = sum;
+                    if (max == k)
+                        return k;
+                }
+            }
+            return max;
+        }
+
+        public int maxSubArray(int[] nums) {
+            int max = nums[0];
+            for (int i = 1, maxPre = max; i < nums.length; i++) {
+                maxPre = Math.max(nums[i], maxPre + nums[i]);
+                max = Math.max(max, maxPre);
+            }
+            return max;
+        }
+
+        //有序集合
+        public int maxSumSubmatrix(int[][] matrix, int k) {
+            int m = matrix.length;
+            int n = matrix[0].length;
+
+            int max = Integer.MIN_VALUE;
+            for (int l = 0; l < n; l++) {
+                int[] sum = new int[m];
+                for (int r = l; r < n; r++) {
+                    for (int i = 0; i < m; i++)
+                        sum[i] += matrix[i][r];
+
+                    TreeSet<Integer> set = new TreeSet<>();
+                    int prefix = 0;
+                    set.add(prefix);
+                    for (int e : sum) {
+                        prefix += e;
+                        Integer ceiling = set.ceiling(prefix - k);
+                        if (ceiling != null) {
+                            max = Math.max(max, prefix - ceiling);
+                            if (k == max)
+                                return k;
+                        }
+                        set.add(prefix);
+                    }
+                }
+            }
 
             return max;
         }
