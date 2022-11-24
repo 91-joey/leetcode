@@ -333,6 +333,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CreateTargetArrayInTheGivenOrder.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CreateTargetArrayInTheGivenOrder.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1389" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CreateTargetArrayInTheGivenOrder.java" />
+              <option name="titleSlug" value="create-target-array-in-the-given-order" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CustomSortString.java">
           <value>
             <LeetcodeEditor>
@@ -1012,6 +1023,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/MaxSubmatrixLcci.java" />
               <option name="titleSlug" value="max-submatrix-lcci" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/MaxSumOfRectangleNoLargerThanK.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaxSumOfRectangleNoLargerThanK.md" />
+              <option name="frontendQuestionId" value="leetcode.cn363" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaxSumOfRectangleNoLargerThanK.java" />
+              <option name="titleSlug" value="max-sum-of-rectangle-no-larger-than-k" />
             </LeetcodeEditor>
           </value>
         </entry>
