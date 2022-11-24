@@ -89,8 +89,3 @@ public class FirstBadVersion {
 //leetcode submit region end(Prohibit modification and deletion)
 }
 
-class VersionControl {
-    public boolean isBadVersion(int version) {
-        return new Random().nextBoolean();
-    }
-}

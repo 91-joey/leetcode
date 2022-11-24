@@ -133,24 +133,24 @@ public class FindFirstAndLastPositionOfElementInSortedArray {
 
         //☆☆☆☆☆ 二重二分（开始位置=第一个 >= target 的索引，结束位置=第一个 >=target + 1 的索引 - 1）
         public int[] searchRange3(int[] nums, int target) {
-            int l = search(nums, target);
-            if (l == nums.length || nums[l] != target)
+            int n = nums.length;
+
+            int start = binarySearch(nums, 0, n, target);
+            if (start == n || nums[start] != target)
                 return new int[]{-1, -1};
 
-            int r = search(nums, target + 1);
-            return new int[]{l, r - 1};
+            return new int[]{start, binarySearch(nums, start, n, target + 1) - 1};
         }
 
-        private int search(int[] nums, int target) {
-            int l = 0, r = nums.length;
+        public static int binarySearch(int[] nums, int l, int r, int target) {
             while (l < r) {
-                int mid = l + r >> 1;
+                int mid = ((r - l) >> 1) + l;
                 if (target <= nums[mid])
                     r = mid;
                 else
                     l = mid + 1;
             }
-            return l;
+            return r;
         }
 
         //☆☆☆☆☆ 二重二分（开始位置=第一个 == target 的索引，结束位置=最后一个 ==target 的索引）
