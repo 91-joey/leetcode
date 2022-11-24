@@ -51,7 +51,7 @@ public class NumberOfSubarraysWithBoundedMaximum {
          * left<=x<=right   cnt+=r-l
          * right<x          cnt+=0
          */
-        public int numSubarrayBoundedMax(int[] nums, int left, int right) {
+        public int numSubarrayBoundedMax9(int[] nums, int left, int right) {
             int cnt = 0;
             for (int l = 0, r = 0, tmp = 0; r < nums.length; ) {
                 int num = nums[r++];
@@ -127,6 +127,21 @@ public class NumberOfSubarraysWithBoundedMaximum {
                     curL = 0;
                     curR = 0;
                 }
+            }
+            return cnt;
+        }
+
+        public int numSubarrayBoundedMax(int[] nums, int left, int right) {
+            return numSubarrayBoundedMax(nums, left) - numSubarrayBoundedMax(nums, right + 1);
+        }
+
+        private int numSubarrayBoundedMax(int[] nums, int min) {
+            int n = nums.length;
+            int cnt = 0;
+            for (int i = 0, cur = 0; i < n; i++) {
+                if (nums[i] >= min)
+                    cur = i + 1;
+                cnt += cur;
             }
             return cnt;
         }
