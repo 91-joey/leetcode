@@ -1378,6 +1378,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfRectanglesThatCanFormTheLargestSquare.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfRectanglesThatCanFormTheLargestSquare.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1725" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfRectanglesThatCanFormTheLargestSquare.java" />
+              <option name="titleSlug" value="number-of-rectangles-that-can-form-the-largest-square" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfSubarraysWithBoundedMaximum.java">
           <value>
             <LeetcodeEditor>
