@@ -421,6 +421,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ExpressiveWords.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ExpressiveWords.md" />
+              <option name="frontendQuestionId" value="leetcode.cn809" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ExpressiveWords.java" />
+              <option name="titleSlug" value="expressive-words" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FanZhuanLianBiaoLcof.java">
           <value>
             <LeetcodeEditor>
@@ -704,6 +715,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/HappyNumber.java" />
               <option name="titleSlug" value="happy-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/HouseRobber.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/HouseRobber.md" />
+              <option name="frontendQuestionId" value="leetcode.cn198" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/HouseRobber.java" />
+              <option name="titleSlug" value="house-robber" />
             </LeetcodeEditor>
           </value>
         </entry>
