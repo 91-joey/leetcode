@@ -1554,6 +1554,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ReachableNodesInSubdividedGraph.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReachableNodesInSubdividedGraph.md" />
+              <option name="frontendQuestionId" value="leetcode.cn882" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReachableNodesInSubdividedGraph.java" />
+              <option name="titleSlug" value="reachable-nodes-in-subdivided-graph" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RecursiveMulitplyLcci.java">
           <value>
             <LeetcodeEditor>
