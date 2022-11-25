@@ -828,6 +828,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/KthMissingPositiveNumber.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/KthMissingPositiveNumber.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1539" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/KthMissingPositiveNumber.java" />
+              <option name="titleSlug" value="kth-missing-positive-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LargestLocalValuesInAMatrix.java">
           <value>
             <LeetcodeEditor>
