@@ -42,8 +42,25 @@ public class HouseRobber {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int rob9(int[] nums) {
+            int a = 0, b = 0, c = 0;
+            for (int num : nums) {
+                int d = Math.max(a, b) + num;
+                a = b;
+                b = c;
+                c = d;
+            }
+            return Math.max(b, c);
+        }
+
         public int rob(int[] nums) {
-            return 0;
+            int pre = 0, cur = 0;
+            for (int num : nums) {
+                int tmp = Math.max(cur, pre + num);
+                pre = cur;
+                cur = tmp;
+            }
+            return cur;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
