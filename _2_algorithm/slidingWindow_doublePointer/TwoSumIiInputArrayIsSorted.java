@@ -78,8 +78,6 @@ public class TwoSumIiInputArrayIsSorted {
             }
             return new int[]{};
         }
-
-        //todo 双指针+二分查找
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }

@@ -1939,6 +1939,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SpecialArrayWithXElementsGreaterThanOrEqualX.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SpecialArrayWithXElementsGreaterThanOrEqualX.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1608" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SpecialArrayWithXElementsGreaterThanOrEqualX.java" />
+              <option name="titleSlug" value="special-array-with-x-elements-greater-than-or-equal-x" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SplitArrayLargestSum.java">
           <value>
             <LeetcodeEditor>
