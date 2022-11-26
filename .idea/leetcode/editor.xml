@@ -1532,6 +1532,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PizzaWith3nSlices.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/PizzaWith3nSlices.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1388" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/PizzaWith3nSlices.java" />
+              <option name="titleSlug" value="pizza-with-3n-slices" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PopulatingNextRightPointersInEachNode.java">
           <value>
             <LeetcodeEditor>
