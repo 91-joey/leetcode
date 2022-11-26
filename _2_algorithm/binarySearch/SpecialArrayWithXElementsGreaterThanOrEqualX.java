@@ -70,7 +70,7 @@ public class SpecialArrayWithXElementsGreaterThanOrEqualX {
             for (int i = 1000, tot = 0; i >= 0; i--) {
                 tot += freq[i];
                 if (i == tot)
-                    return i;1608.特殊数组的特征值
+                    return i;
             }
 
             return -1;
