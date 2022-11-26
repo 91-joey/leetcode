@@ -399,6 +399,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DeleteAndEarn.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DeleteAndEarn.md" />
+              <option name="frontendQuestionId" value="leetcode.cn740" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DeleteAndEarn.java" />
+              <option name="titleSlug" value="delete-and-earn" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DetermineIfStringHalvesAreAlike.java">
           <value>
             <LeetcodeEditor>
