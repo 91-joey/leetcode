@@ -168,6 +168,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckIfArrayIsSortedAndRotated.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckIfArrayIsSortedAndRotated.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1752" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckIfArrayIsSortedAndRotated.java" />
+              <option name="titleSlug" value="check-if-array-is-sorted-and-rotated" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java">
           <value>
             <LeetcodeEditor>

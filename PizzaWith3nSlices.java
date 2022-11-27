@@ -88,7 +88,7 @@ public class PizzaWith3nSlices {
             int choose = (n + 1) / 3;
             int[][] dp = new int[n + 1][choose + 1];
             for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= choose; j++) {
+                for (int j = 1; j <= Math.min(choose, i / 2 + 1); j++) {
                     dp[i][j] = Math.max(
                             (i >= 2 ? dp[i - 2][j - 1] : 0) + slices[i - 1],
                             dp[i - 1][j]);
