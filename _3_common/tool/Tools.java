@@ -13,18 +13,7 @@ public class Tools {
     public static final int MOD = 10_0000_0007;
 
     public static void main(String[] args) {
-//        List<Integer> list = toList(new int[]{1, 2, 3});
-//        System.out.println(list);
-//        int[] ints = toArray(list);
-//        System.out.println(Arrays.toString(ints));
-//        System.out.println(lcm(25 * 2, 25 * 3));
-        TreeNode treeNode = buildTree("[5,4,6,null,null,3,7]");
-        System.out.println(treeNode);
-        System.out.println(Arrays.toString(toIntArray("[2,3,8,3]")));
-        String s = "[[5,4],[6,4],[6,7],[2,3]]";
-//        String[] split = s.substring(1, s.length() - 1).split("(?<=]),");
-//        System.out.println(Arrays.deepToString(split));
-        System.out.println(Arrays.deepToString(to2DIntArray("[[5,4],[6,4],[6,7],[2,3]]")));
+
     }
 
     public static List<Integer> toList(int[] ints) {
