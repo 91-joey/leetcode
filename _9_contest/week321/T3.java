@@ -4,32 +4,35 @@ import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 
 import java.util.LinkedList;
 
+//6247. Remove Nodes From Linked List
 public class T3 {
     public static void main(String[] args) {
-
+        System.out.println(removeNodes(
+                        new ListNode(5,
+                                new ListNode(2,
+                                        new ListNode(13,
+                                                new ListNode(3,
+                                                        new ListNode(8))))
+                        )
+                )
+        );
     }
 
-    public ListNode removeNodesX(ListNode head) {
-        ListNode dummy = new ListNode(Integer.MAX_VALUE, head);
+    //递归
+    public ListNode removeNodes8(ListNode head) {
+        if (head.next == null)
+            return head;
 
-        helper(dummy, dummy.next);
+        ListNode node = removeNodes(head.next);
 
-        return dummy.next;
+        if (head.val < node.val)
+            return node;
+        head.next = node;
+        return head;
     }
 
-    private ListNode helper(ListNode pre, ListNode cur) {
-        if (cur == null)
-            return pre;
-
-        ListNode next = helper(cur, cur.next);
-
-        if (cur.val < next.val)
-            pre.next = next.next;
-
-        return pre;
-    }
-
-    public ListNode removeNodes(ListNode head) {
+    //栈
+    public ListNode removeNodes9(ListNode head) {
         ListNode dummy = new ListNode(Integer.MAX_VALUE, head);
 
         LinkedList<ListNode> stack = new LinkedList<>();
@@ -52,4 +55,27 @@ public class T3 {
         return dummy.next;
     }
 
+    //☆☆☆☆☆ 反转+迭代+反转
+    public static ListNode removeNodes(ListNode head) {
+        head = reverseList(head);
+        for (ListNode cur = head; cur.next != null; ) {
+            if (cur.next.val < cur.val)
+                cur.next = cur.next.next;
+            else
+                cur = cur.next;
+        }
+        return reverseList(head);
+    }
+
+    public static ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
 }

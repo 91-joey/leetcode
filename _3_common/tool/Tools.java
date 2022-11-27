@@ -1,5 +1,6 @@
 package org.example.leetcode.problems._3_common.tool;
 
+import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 
 import java.util.*;
@@ -280,4 +281,15 @@ public class Tools {
         return Arrays.stream(s.substring(1, s.length() - 1).split("(?<=]),")).map(Tools::toIntArray).toArray(int[][]::new);
     }
 
+    public static ListNode reverseList(ListNode head) {
+        ListNode pre = null;
+        ListNode cur = head;
+        while (cur != null) {
+            ListNode next = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = next;
+        }
+        return pre;
+    }
 }
