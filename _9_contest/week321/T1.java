@@ -4,6 +4,13 @@ package org.example.leetcode.problems._9_contest.week321;
 public class T1 {
     public static void main(String[] args) {
         System.out.println(pivotInteger(8));
+        for (int i = 1; i < Integer.MAX_VALUE; i++) {
+            int ans = pivotInteger(i);
+            if (ans != -1) {
+//                System.out.print(ans + ",");
+                System.out.println(i + " : " + ans);
+            }
+        }
     }
 
     //BL    n^2
@@ -45,8 +52,19 @@ public class T1 {
         return -1;
     }
 
-    public static int pivotInteger(int n) {
+    public static int pivotInteger6(int n) {
         double ans = Math.sqrt(n * (n + 1) / 2);
         return ans == (int) ans ? (int) ans : -1;
+    }
+
+    //打表
+    public static int pivotInteger(int n) {
+        return switch (n) {
+            case 1 -> 1;
+            case 8 -> 6;
+            case 49 -> 35;
+            case 288 -> 204;
+            default -> -1;
+        };
     }
 }
