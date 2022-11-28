@@ -42,12 +42,89 @@ package org.example.leetcode.problems;
 public class LargestSumOfAverages {
     public static void main(String[] args) {
         Solution solution = new LargestSumOfAverages().new Solution();
+        System.out.println(solution.largestSumOfAverages(new int[]{9, 1, 2, 3, 9}, 3));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        /*
+         * 题目说是「最多」k个子数组，事实上要求最大分数，只能是k个，不能跟小。
+         * 设dp[i][j]表示以索引j元素结尾的、划分i个子数组的最大分数
+         *      则有dp[i][j]=max(dp[i-1][x]+avg(x+1...j)),i-2<=x<=j-1
+         *      最终答案为dp[k][len-1]
+         */
+        public double largestSumOfAverages9(int[] nums, int k) {
+            int n = nums.length;
+            double[][] dp = new double[k + 1][n];
+            for (int i = 1, sum = 0; i <= k; i++) {
+                sum += nums[i - 1];
+                dp[i][i - 1] = sum;
+            }
+            for (int i = 0, sum = 0; i < n; i++) {
+                sum += nums[i];
+                dp[1][i] = (double) sum / (i + 1);
+            }
+
+            for (int i = 2; i <= k; i++) {
+                for (int j = i - 1; j < n; j++) {
+                    double suf = 0;
+                    for (int l = j - 1; l >= i - 2; l--) {
+                        suf += nums[l + 1];
+                        dp[i][j] = Math.max(dp[i][j], dp[i - 1][l] + suf / (j - l));
+                    }
+                }
+            }
+
+            return dp[k][n - 1];
+        }
+
+        /*
+         * 题目说是「最多」k个子数组，事实上要求最大分数，只能是k个，不能跟小。
+         * 设dp[i][j]表示以索引j元素结尾的、划分i+1个子数组的最大分数
+         *      则有dp[i][j]=max(dp[i-1][x]+avg(x+1...j)),i-1<=x<=j-1
+         *      最终答案为dp[k-1][len-1]
+         */
+        public double largestSumOfAverages8(int[] nums, int k) {
+            int n = nums.length;
+            double[][] dp = new double[k][n];
+            for (int i = 0, sum = 0; i <= n - k; i++) {
+                sum += nums[i];
+                dp[0][i] = (double) sum / (i + 1);
+            }
+
+            for (int i = 1; i < k; i++) {
+                for (int j = i; j < n; j++) {
+                    double suf = 0;
+                    for (int l = j - 1; l >= i - 1; l--) {
+                        suf += nums[l + 1];
+                        dp[i][j] = Math.max(dp[i][j], dp[i - 1][l] + suf / (j - l));
+                    }
+                }
+            }
+
+            return dp[k - 1][n - 1];
+        }
+
+        //DP+滚动数组
         public double largestSumOfAverages(int[] nums, int k) {
-            return 0.0;
+            int n = nums.length;
+            double[] dp = new double[n];
+            for (int i = 0, sum = 0; i <= n - k; i++) {
+                sum += nums[i];
+                dp[i] = (double) sum / (i + 1);
+            }
+
+            for (int i = 1; i < k; i++) {
+                for (int j = n - 1; j >= i; j--) {
+                    double suf = 0;
+                    for (int l = j - 1; l >= i - 1; l--) {
+                        suf += nums[l + 1];
+                        dp[j] = Math.max(dp[j], dp[l] + suf / (j - l));
+                    }
+                }
+            }
+
+            return dp[n - 1];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
