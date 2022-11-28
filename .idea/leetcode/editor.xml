@@ -916,6 +916,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LargestSumOfAverages.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LargestSumOfAverages.md" />
+              <option name="frontendQuestionId" value="leetcode.cn813" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LargestSumOfAverages.java" />
+              <option name="titleSlug" value="largest-sum-of-averages" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LinkedListCycle.java">
           <value>
             <LeetcodeEditor>
