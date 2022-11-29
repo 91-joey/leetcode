@@ -57,30 +57,13 @@ public class PizzaWith3nSlices {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int maxSizeSlices(int[] slices) {
+        //DP官解（拷贝数组）
+        public int maxSizeSlices9(int[] slices) {
             int n = slices.length;
-
-//            return Math.max(
-//                    getMax(slices, 0, n - 1),
-//                    getMax(slices, 1, n)
-//            );
             return Math.max(
                     getMax(Arrays.copyOfRange(slices, 0, n - 1)),
                     getMax(Arrays.copyOfRange(slices, 1, n))
             );
-        }
-
-        private int getMaxX(int[] slices, int start, int end) {
-            int n = slices.length;
-            int[][] dp = new int[n + 1][n / 3 + 1];
-            for (int i = start; i < end; i++) {
-                for (int j = 1; j <= (i - start) / 2; j++) {
-                    dp[i][j] = Math.max(
-                            (i >= 2 ? dp[i - 2][j - 1] : 0) + slices[i],
-                            i >= 1 ? dp[i - 1][j] : 0);
-                }
-            }
-            return dp[end][n / 3];
         }
 
         private int getMax(int[] slices) {
@@ -94,6 +77,28 @@ public class PizzaWith3nSlices {
                             dp[i - 1][j]);
                 }
             }
+            return dp[n][choose];
+        }
+
+        //DP官解（不拷贝数组）
+        public int maxSizeSlices(int[] slices) {
+            return Math.max(
+                    getMax(slices, 0),
+                    getMax(slices, 1)
+            );
+        }
+
+        private int getMax(int[] slices, int start) {
+            int n = slices.length;
+            int choose = n / 3;
+            int[][] dp = new int[n + 1][choose + 1];
+
+            for (int i = 2; i <= n; i++)
+                for (int j = 1; j <= choose; j++)
+                    dp[i][j] = Math.max(
+                            dp[i - 2][j - 1] + slices[start + i - 2],
+                            dp[i - 1][j]);
+
             return dp[n][choose];
         }
     }
