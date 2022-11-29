@@ -74,6 +74,15 @@ public class IntersectionOfTwoArraysIi {
             }).toArray();
         }
 
+        //数组计数
+        public int[] intersect9(int[] nums1, int[] nums2) {
+            int[] freq = new int[1001];
+            for (int e : nums1)
+                freq[e]++;
+
+            return Arrays.stream(nums2).filter(value -> freq[value]-- > 0).toArray();
+        }
+
         //排序+双指针    mlogm+nlogn 1
         public int[] intersect2(int[] nums1, int[] nums2) {
             Arrays.sort(nums1);
