@@ -2148,6 +2148,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SumOfSquareNumbers.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SumOfSquareNumbers.md" />
+              <option name="frontendQuestionId" value="leetcode.cn633" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SumOfSquareNumbers.java" />
+              <option name="titleSlug" value="sum-of-square-numbers" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SumOfSubsequenceWidths.java">
           <value>
             <LeetcodeEditor>
