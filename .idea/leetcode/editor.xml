@@ -949,6 +949,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LengthOfLongestFibonacciSubsequence.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LengthOfLongestFibonacciSubsequence.md" />
+              <option name="frontendQuestionId" value="leetcode.cn873" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LengthOfLongestFibonacciSubsequence.java" />
+              <option name="titleSlug" value="length-of-longest-fibonacci-subsequence" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LinkedListCycle.java">
           <value>
             <LeetcodeEditor>
