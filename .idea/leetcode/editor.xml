@@ -1246,6 +1246,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumFrequencyStack.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumFrequencyStack.md" />
+              <option name="frontendQuestionId" value="leetcode.cn895" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumFrequencyStack.java" />
+              <option name="titleSlug" value="maximum-frequency-stack" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumGap.java">
           <value>
             <LeetcodeEditor>
