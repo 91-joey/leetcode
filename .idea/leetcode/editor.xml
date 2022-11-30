@@ -1224,6 +1224,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumDistanceBetweenAPairOfValues.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumDistanceBetweenAPairOfValues.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1855" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumDistanceBetweenAPairOfValues.java" />
+              <option name="titleSlug" value="maximum-distance-between-a-pair-of-values" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumErasureValue.java">
           <value>
             <LeetcodeEditor>
