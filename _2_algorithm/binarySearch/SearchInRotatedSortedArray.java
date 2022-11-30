@@ -173,6 +173,41 @@ public class SearchInRotatedSortedArray {
             }
             return -1;
         }
+
+
+        public int search9(int[] nums, int target) {
+            int l = 0, r = nums.length - 1;
+            int lst = nums[nums.length - 1];
+            while (l <= r) {
+                int mid = ((r - l) >> 1) + l;
+                if (target == nums[mid])
+                    return mid;
+                else if (
+                        (target <= lst && nums[mid] <= lst && nums[mid] > target) ||
+                                (target > lst && (nums[mid] > target || nums[mid] <= lst))
+                )
+                    r = mid - 1;
+                else
+                    l = mid + 1;
+            }
+            return -1;
+        }
+
+        //☆☆☆☆☆ 极简异或
+        public int search8(int[] nums, int target) {
+            int l = 0, r = nums.length - 1;
+            int lst = nums[r];
+            while (l <= r) {
+                int mid = ((r - l) >> 1) + l;
+                if (target == nums[mid])
+                    return mid;
+                else if (target <= lst ^ nums[mid] <= lst ^ nums[mid] > target)
+                    r = mid - 1;
+                else
+                    l = mid + 1;
+            }
+            return -1;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
