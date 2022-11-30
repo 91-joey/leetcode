@@ -1983,6 +1983,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ShortestWayToFormString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ShortestWayToFormString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1055" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ShortestWayToFormString.java" />
+              <option name="titleSlug" value="shortest-way-to-form-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ShuZuZhongDeNiXuDuiLcof.java">
           <value>
             <LeetcodeEditor>

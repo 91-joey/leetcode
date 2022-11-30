@@ -53,6 +53,7 @@ import java.util.List;
 public class LongestArithmeticSubsequence {
     public static void main(String[] args) {
         Solution solution = new LongestArithmeticSubsequence().new Solution();
+        System.out.println(solution.longestArithSeqLength(new int[]{3, 6, 9, 12}));
 //        System.out.println(solution.longestArithSeqLength(new int[]{9, 4, 7, 2, 10}));
 //        System.out.println(solution.longestArithSeqLength(new int[]{0, 8, 45, 88, 48, 68, 28, 55, 17, 24}));
         int[] nums = {44, 46, 22, 68, 45, 66, 43, 9, 37, 30, 50, 67, 32, 47, 44, 11, 15, 4, 11, 6, 20, 64, 54, 54, 61, 63, 23, 43, 3, 12, 51, 61, 16, 57, 14, 12, 55, 17, 18, 25, 19, 28, 45, 56, 29, 39, 52, 8, 1, 21, 17, 21, 23, 70, 51, 61, 21, 52, 25, 28};
@@ -85,7 +86,7 @@ public class LongestArithmeticSubsequence {
          * dp[i][j]:以 nums[i]、nums[j]结尾的等差子序列最大长度
          * dp[i][j]=max(dp[k][i]+1),2*dp[i]=dp[k]+dp[j],k<i
          */
-        public int longestArithSeqLength9(int[] nums) {
+        public int longestArithSeqLength(int[] nums) {
             int max = 2;
 
             //求差值为 0 的等差子序列最大长度
@@ -115,25 +116,33 @@ public class LongestArithmeticSubsequence {
                 } else {
                     val2idx.get(distincts[i]).add(i);
                 }
-
             }
 
             int[][] dp = new int[n - 1][n];
+            for (int[] arr : dp) Arrays.fill(arr, 2);
             for (int i = 1; i < n - 1; i++) {
                 for (int j = i + 1; j < n; j++) {
                     List<Integer> list = val2idx.get(2 * distincts[i] - distincts[j]);
                     if (list == null)
                         continue;
-                    for (Integer idx : list) {
-                        if (idx < i) {
-                            dp[i][j] = Math.max(dp[idx][i] + 1, 3);
-                            max = Math.max(max, dp[i][j]);
-                        } else
-                            break;
+
+                    //二分查找「最后一个 < i 的索引」
+                    int l = -1, r = list.size() - 1;
+                    while (l < r) {
+                        int mid = ((r - l + 1) >> 1) + l;
+                        if (i <= list.get(mid))
+                            r = mid - 1;
+                        else
+                            l = mid;
+                    }
+
+                    if (r != -1) {
+                        dp[i][j] = dp[list.get(r)][i] + 1;
+                        max = Math.max(max, dp[i][j]);
                     }
                 }
-            }
 
+            }
             return max;
         }
 
@@ -158,7 +167,7 @@ public class LongestArithmeticSubsequence {
          * dp[i][j]=max(dp[k][i]+1),2*dp[i]=dp[k]+dp[j],k<i
          * 优化：一边遍历一边加入哈希表
          */
-        public int longestArithSeqLength(int[] nums) {
+        public int longestArithSeqLength9(int[] nums) {
             int max = 0;
             int n = nums.length;
 
