@@ -82,7 +82,7 @@ public class LongestArithmeticSubsequence {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         /*
-         * dp[i][j]:以nums[i]、nums[j]结尾的等差子序列最大长度
+         * dp[i][j]:以 nums[i]、nums[j]结尾的等差子序列最大长度
          * dp[i][j]=max(dp[k][i]+1),2*dp[i]=dp[k]+dp[j],k<i
          */
         public int longestArithSeqLength9(int[] nums) {
@@ -137,7 +137,8 @@ public class LongestArithmeticSubsequence {
             return max;
         }
 
-        public int longestArithSeqLength(int[] nums) {
+        //☆☆☆☆☆ dp[i][d]:以 arr[i] 结尾、等差为 d 的子序列最大长度
+        public int longestArithSeqLength8(int[] nums) {
             int n = nums.length;
             int[][] dp = new int[n][1001];
 
@@ -150,6 +151,31 @@ public class LongestArithmeticSubsequence {
                 }
             }
             return max + 1;
+        }
+
+        /*
+         * dp[i][j]:以 nums[i]、nums[j]结尾的等差子序列最大长度
+         * dp[i][j]=max(dp[k][i]+1),2*dp[i]=dp[k]+dp[j],k<i
+         * 优化：一边遍历一边加入哈希表
+         */
+        public int longestArithSeqLength(int[] nums) {
+            int max = 0;
+            int n = nums.length;
+
+            int[][] dp = new int[n - 1][n];
+            HashMap<Integer, Integer> val2lstIdxBeforeI = new HashMap<>();
+            val2lstIdxBeforeI.put(nums[0], 0);
+            for (int i = 1; i < n - 1; i++) {
+                for (int j = i + 1; j < n; j++) {
+                    Integer idx = val2lstIdxBeforeI.get(2 * nums[i] - nums[j]);
+                    if (idx != null) {
+                        dp[i][j] = dp[idx][i] + 1;
+                        max = Math.max(max, dp[i][j]);
+                    }
+                }
+                val2lstIdxBeforeI.put(nums[i], i);
+            }
+            return max + 2;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
