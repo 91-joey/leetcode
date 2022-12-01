@@ -630,6 +630,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindNearestPointThatHasTheSameXOrYCoordinate.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindNearestPointThatHasTheSameXOrYCoordinate.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1779" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindNearestPointThatHasTheSameXOrYCoordinate.java" />
+              <option name="titleSlug" value="find-nearest-point-that-has-the-same-x-or-y-coordinate" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FindPeakElement.java">
           <value>
             <LeetcodeEditor>
