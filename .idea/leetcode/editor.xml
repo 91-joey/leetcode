@@ -47,6 +47,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/AverageSalaryExcludingTheMinimumAndMaximumSalary.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/AverageSalaryExcludingTheMinimumAndMaximumSalary.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1491" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/AverageSalaryExcludingTheMinimumAndMaximumSalary.java" />
+              <option name="titleSlug" value="average-salary-excluding-the-minimum-and-maximum-salary" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/BaShuZuPaiChengZuiXiaoDeShuLcof.java">
           <value>
             <LeetcodeEditor>
