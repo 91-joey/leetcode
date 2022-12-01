@@ -938,6 +938,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LargestDivisibleSubset.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LargestDivisibleSubset.md" />
+              <option name="frontendQuestionId" value="leetcode.cn368" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LargestDivisibleSubset.java" />
+              <option name="titleSlug" value="largest-divisible-subset" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LargestLocalValuesInAMatrix.java">
           <value>
             <LeetcodeEditor>
