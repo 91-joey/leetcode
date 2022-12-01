@@ -1851,6 +1851,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ReshapeTheMatrix.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReshapeTheMatrix.md" />
+              <option name="frontendQuestionId" value="leetcode.cn566" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReshapeTheMatrix.java" />
+              <option name="titleSlug" value="reshape-the-matrix" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ReverseLinkedList.java">
           <value>
             <LeetcodeEditor>
