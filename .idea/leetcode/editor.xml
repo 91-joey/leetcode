@@ -2302,6 +2302,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SubtractTheProductAndSumOfDigitsOfAnInteger.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SubtractTheProductAndSumOfDigitsOfAnInteger.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1281" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SubtractTheProductAndSumOfDigitsOfAnInteger.java" />
+              <option name="titleSlug" value="subtract-the-product-and-sum-of-digits-of-an-integer" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SumOfAllOddLengthSubarrays.java">
           <value>
             <LeetcodeEditor>
