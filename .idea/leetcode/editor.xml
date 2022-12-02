@@ -25,6 +25,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ArithmeticSlices.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ArithmeticSlices.md" />
+              <option name="frontendQuestionId" value="leetcode.cn413" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ArithmeticSlices.java" />
+              <option name="titleSlug" value="arithmetic-slices" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ArrangingCoins.java">
           <value>
             <LeetcodeEditor>
