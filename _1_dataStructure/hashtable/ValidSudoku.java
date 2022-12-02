@@ -230,6 +230,45 @@ public class ValidSudoku {
             }
             return true;
         }
+
+        public static final char SPACE = '.';
+        public boolean isValidSudoku6(char[][] board) {
+            HashSet<Character> set = new HashSet<>();
+            int m = board.length;
+            int n = board[0].length;
+
+            for (char[] row : board) {
+                for (char ch : row)
+                    if (ch != SPACE && !set.add(ch))
+                        return false;
+                set.clear();
+            }
+
+            for (int c = 0; c < n; c++) {
+                for (char[] row : board)
+                    if (row[c] != SPACE && !set.add(row[c]))
+                        return false;
+                set.clear();
+            }
+
+            for (int r = 0, c = 0; r < m; ) {
+                for (int i = 0; i < 3; i++) {
+                    for (int j = 0; j < 3; j++) {
+                        char ch = board[r + i][c + j];
+                        if (ch != SPACE && !set.add(ch))
+                            return false;
+                    }
+                }
+                set.clear();
+                c += 3;
+                if (c >= n) {
+                    c = 0;
+                    r += 3;
+                }
+            }
+
+            return true;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
