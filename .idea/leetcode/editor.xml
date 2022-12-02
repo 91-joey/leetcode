@@ -1609,6 +1609,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOf1Bits.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOf1Bits.md" />
+              <option name="frontendQuestionId" value="leetcode.cn191" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOf1Bits.java" />
+              <option name="titleSlug" value="number-of-1-bits" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfGoodPairs.java">
           <value>
             <LeetcodeEditor>
