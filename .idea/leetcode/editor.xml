@@ -993,6 +993,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LargestPerimeterTriangle.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LargestPerimeterTriangle.md" />
+              <option name="frontendQuestionId" value="leetcode.cn976" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LargestPerimeterTriangle.java" />
+              <option name="titleSlug" value="largest-perimeter-triangle" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LargestPlusSign.java">
           <value>
             <LeetcodeEditor>
