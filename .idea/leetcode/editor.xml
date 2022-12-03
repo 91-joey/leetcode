@@ -2071,6 +2071,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SecondLargestDigitInAString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SecondLargestDigitInAString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1796" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SecondLargestDigitInAString.java" />
+              <option name="titleSlug" value="second-largest-digit-in-a-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SerializeAndDeserializeBinaryTree.java">
           <value>
             <LeetcodeEditor>
