@@ -2,7 +2,7 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 //383. 赎金信
 public class RansomNote {
-    public static boolean canConstruct(String ransomNote, String magazine) {
+    public static boolean canConstruct9(String ransomNote, String magazine) {
         if(ransomNote.length()>magazine.length()){
             return false;
         }
@@ -16,6 +16,19 @@ public class RansomNote {
                 return false;
             }
         }
+        return true;
+    }
+
+
+    public static boolean canConstruct(String ransomNote, String magazine) {
+        int[] freq = new int[123];
+        for (int i = 0; i < magazine.length(); i++)
+            freq[magazine.charAt(i)]++;
+
+        for (int i = 0; i < ransomNote.length(); i++)
+            if (freq[ransomNote.charAt(i)]-- <= 0)
+                return false;
+
         return true;
     }
 
