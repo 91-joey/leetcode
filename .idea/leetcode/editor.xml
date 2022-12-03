@@ -465,6 +465,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DecodeWays.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DecodeWays.md" />
+              <option name="frontendQuestionId" value="leetcode.cn91" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DecodeWays.java" />
+              <option name="titleSlug" value="decode-ways" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DecodeXoredArray.java">
           <value>
             <LeetcodeEditor>
