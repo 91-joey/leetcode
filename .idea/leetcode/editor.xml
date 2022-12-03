@@ -1752,6 +1752,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PalindromePartitioningIi.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/PalindromePartitioningIi.md" />
+              <option name="frontendQuestionId" value="leetcode.cn132" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/PalindromePartitioningIi.java" />
+              <option name="titleSlug" value="palindrome-partitioning-ii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ParsingABooleanExpression.java">
           <value>
             <LeetcodeEditor>
