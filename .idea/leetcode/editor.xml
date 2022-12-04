@@ -267,6 +267,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ClosestDessertCost.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ClosestDessertCost.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1774" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ClosestDessertCost.java" />
+              <option name="titleSlug" value="closest-dessert-cost" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ConcatenationOfArray.java">
           <value>
             <LeetcodeEditor>
