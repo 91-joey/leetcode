@@ -35,7 +35,7 @@ public class Bubble {
             }
     }
 
-    //再优化（下轮排序,以上轮「最后一次交换索引」为右边界）O()
+    //再优化（下轮排序,以上轮「最后一次交换索引」为右边界）
     public static void bubble3(int[] arr) {
         int lst = arr.length - 1;
         boolean swapped = true;

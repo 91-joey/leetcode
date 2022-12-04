@@ -43,6 +43,7 @@
 package org.example.leetcode.problems;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //132.分割回文串 II
@@ -51,14 +52,43 @@ public class PalindromePartitioningIi {
     public static void main(String[] args) {
         Solution solution = new PalindromePartitioningIi().new Solution();
 //        System.out.println(solution.minCut("aaabaa"));
+        System.out.println(solution.minCut("aab"));
 //        System.out.println(solution.minCut("ccaacabacb"));
-        System.out.println(solution.minCut("fifgbeajcacehiicccfecbfhhgfiiecdcjjffbghdidbhbdbfbfjccgbbdcjheccfbhafehieabbdfeigbiaggchaeghaijfbjhi"));
+//        System.out.println(solution.minCut("fifgbeajcacehiicccfecbfhhgfiiecdcjjffbghdidbhbdbfbfjccgbbdcjheccfbhafehieabbdfeigbiaggchaeghaijfbjhi"));
 //        System.out.println(solution.minCut("cabababcbc"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minCut(String s) {
+            char[] cs = s.toCharArray();
+            int n = cs.length;
+            boolean[][] isPalindrome = new boolean[n + 1][n + 1];
+
+            //isPalindrome[i][j]=true(if isPalindrome[i+1][j-1]==true && s[i]=s[j])
+            for (int l = n; l > 0; l--) {
+                isPalindrome[l][l] = true;
+                for (int r = l + 1; r <= n; r++)
+                    if (cs[l - 1] == cs[r - 1] && (l + 1 == r || isPalindrome[l + 1][r - 1]))
+                        isPalindrome[l][r] = true;
+            }
+
+            int[] dp = new int[n + 1];
+            for (int i = 1; i < n + 1; i++) {
+                if (isPalindrome[1][i])
+                    dp[i] = 0;
+                else {
+                    dp[i] = dp[i - 1] + 1;
+                    for (int j = 2; j < i; j++)
+                        if (isPalindrome[j][i])
+                            dp[i] = Math.min(dp[i], dp[j - 1] + 1);
+                }
+            }
+
+            return dp[n];
+        }
+
+        public int minCutX(String s) {
             List<String> list = new ArrayList<>();
             list.add(s.substring(0, 1));
 
