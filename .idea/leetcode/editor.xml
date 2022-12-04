@@ -234,6 +234,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckIfOneStringSwapCanMakeStringsEqual.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckIfOneStringSwapCanMakeStringsEqual.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1790" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckIfOneStringSwapCanMakeStringsEqual.java" />
+              <option name="titleSlug" value="check-if-one-string-swap-can-make-strings-equal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfTwoStringArraysAreEquivalent.java">
           <value>
             <LeetcodeEditor>
