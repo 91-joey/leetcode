@@ -1983,6 +1983,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RemoveDuplicatesFromSortedList.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RemoveDuplicatesFromSortedList.md" />
+              <option name="frontendQuestionId" value="leetcode.cn83" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RemoveDuplicatesFromSortedList.java" />
+              <option name="titleSlug" value="remove-duplicates-from-sorted-list" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RemoveLinkedListElements.java">
           <value>
             <LeetcodeEditor>
