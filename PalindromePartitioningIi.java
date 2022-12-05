@@ -60,7 +60,8 @@ public class PalindromePartitioningIi {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int minCut(String s) {
+        //三叶姐
+        public int minCut9(String s) {
             char[] cs = s.toCharArray();
             int n = cs.length;
             boolean[][] isPalindrome = new boolean[n + 1][n + 1];
@@ -86,6 +87,65 @@ public class PalindromePartitioningIi {
             }
 
             return dp[n];
+        }
+
+        public int minCut(String s) {
+            char[] cs = s.toCharArray();
+            int n = cs.length;
+            boolean[][] isPalindrome = new boolean[n + 1][n + 1];
+
+            //isPalindrome[i][j]=true(if isPalindrome[i+1][j-1]==true && s[i]=s[j])
+            for (int l = n; l > 0; l--) {
+                isPalindrome[l][l] = true;
+                for (int r = l + 1; r <= n; r++)
+                    if (cs[l - 1] == cs[r - 1] && (l + 1 == r || isPalindrome[l + 1][r - 1]))
+                        isPalindrome[l][r] = true;
+            }
+
+            int[] dp = new int[n + 1];
+            //哨兵思想
+            dp[0] = -1;
+            for (int i = 1; i < n + 1; i++) {
+                dp[i] = dp[i - 1] + 1;
+                for (int j = 1; j < i; j++)
+                    if (isPalindrome[j][i])
+                        dp[i] = Math.min(dp[i], dp[j - 1] + 1);
+            }
+
+            return dp[n];
+        }
+
+        /*
+         * ☆☆☆☆☆    n^2
+         * 1. 预处理出 isPalindrome[l][r]（子字符串是否回文）
+         * 2. 定义 dp[i] 为以 i 索引结尾的子字符串的最少分割次数
+         *       dp[i]=0,isPalindrome[0][i] == true;
+         *       dp[i]=min(dp[j - 1] + 1),1 <= j <= i && isPalindrome[j][i] == true
+         */
+        public int minCut8(String s) {
+            char[] cs = s.toCharArray();
+            int n = cs.length;
+            boolean[][] isPalindrome = new boolean[n][n];
+
+            for (int l = n - 1; l >= 0; l--) {
+                isPalindrome[l][l] = true;
+                for (int r = l + 1; r < n; r++)
+                    if (cs[l] == cs[r] && (l + 1 == r || isPalindrome[l + 1][r - 1]))
+                        isPalindrome[l][r] = true;
+            }
+
+            int[] dp = new int[n];
+            for (int i = 0; i < n; i++)
+                if (isPalindrome[0][i])
+                    dp[i] = 0;
+                else {
+                    dp[i] = i;
+                    for (int j = 1; j <= i; j++)
+                        if (isPalindrome[j][i])
+                            dp[i] = Math.min(dp[i], dp[j - 1] + 1);
+                }
+
+            return dp[n - 1];
         }
 
         public int minCutX(String s) {
