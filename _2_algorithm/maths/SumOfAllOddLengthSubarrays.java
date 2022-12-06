@@ -91,6 +91,17 @@ public class SumOfAllOddLengthSubarrays {
             }
             return sum;
         }
+
+        public int sumOddLengthSubarrays8(int[] arr) {
+            int sum = 0;
+            int n = arr.length;
+            for (int i = 0; i < n; i++) {
+                int evenL = (i + 2) / 2;
+                int evenR = (n - i + 1) / 2;
+                sum += arr[i] * (evenL * evenR + (i + 1 - evenL) * (n - i - evenR));
+            }
+            return sum;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
