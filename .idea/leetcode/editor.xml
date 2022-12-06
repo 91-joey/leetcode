@@ -960,6 +960,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ImplementQueueUsingStacks.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ImplementQueueUsingStacks.md" />
+              <option name="frontendQuestionId" value="leetcode.cn232" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ImplementQueueUsingStacks.java" />
+              <option name="titleSlug" value="implement-queue-using-stacks" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/InsertionSortList.java">
           <value>
             <LeetcodeEditor>

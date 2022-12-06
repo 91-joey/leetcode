@@ -118,6 +118,7 @@ public class ImplementQueueUsingStacks {
         public MyQueue2() {
         }
 
+        //值 → 入队栈 → 出队栈 → 入队栈 （有些冗余了）
         public void push(int x) {
             while (!stack1.isEmpty()) {
                 stack2.push(stack1.pop());
@@ -141,38 +142,36 @@ public class ImplementQueueUsingStacks {
         }
     }
 
-    //3.官解二（使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)）
+    //3.☆☆☆☆☆ 官解二（使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)）
     class MyQueue3 {
-        private final Deque<Integer> stack1 = new ArrayDeque<>();
-        private final Deque<Integer> stack2 = new ArrayDeque<>();
+        private final Deque<Integer> stackIn = new ArrayDeque<>();
+        private final Deque<Integer> stackOut = new ArrayDeque<>();
 
         public MyQueue3() {
         }
 
         public void push(int x) {
-            stack1.push(x);
+            stackIn.push(x);
         }
 
         public int pop() {
-            if (stack2.isEmpty()) {
-                while (!stack1.isEmpty()) {
-                    stack2.push(stack1.pop());
-                }
-            }
-            return stack2.pop();
+            in2out();
+            return stackOut.pop();
         }
 
         public int peek() {
-            if (stack2.isEmpty()) {
-                while (!stack1.isEmpty()) {
-                    stack2.push(stack1.pop());
-                }
-            }
-            return stack2.peek();
+            in2out();
+            return stackOut.peek();
         }
 
         public boolean empty() {
-            return stack1.isEmpty() && stack2.isEmpty();
+            return stackIn.isEmpty() && stackOut.isEmpty();
+        }
+
+        private void in2out() {
+            if (stackOut.isEmpty())
+                while (!stackIn.isEmpty())
+                    stackOut.push(stackIn.pop());
         }
     }
 /**
