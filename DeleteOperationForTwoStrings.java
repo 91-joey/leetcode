@@ -40,12 +40,40 @@ package org.example.leetcode.problems;
 public class DeleteOperationForTwoStrings {
     public static void main(String[] args) {
         Solution solution = new DeleteOperationForTwoStrings().new Solution();
+        System.out.println(solution.minDistance("dinitrophenylhydrazine", "acetylphenylhydrazine"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int minDistance(String word1, String word2) {
-            return 0;
+        public int minDistance(String a, String b) {
+            int m = a.length();
+            int n = b.length();
+
+            if (m > n) return minDistance(b, a);
+
+            int max = 0;
+            int size = m + 1;
+            int[] f = new int[size];
+            int[] g = new int[size];
+
+            for (int i = 1; i < size; i++) {
+                char c = a.charAt(i - 1);
+                int idx = b.lastIndexOf(c);
+                if (idx != -1) {
+                    f[i] = 1;
+                    g[i] = idx;
+                    for (int j = i - 1; j > 0; j--) {
+                        idx = b.indexOf(c, g[j] + 1);
+                        if (idx != -1 && (f[i] < f[j] + 1 || (f[i] == f[j] + 1 && idx < g[i]))) {
+                            f[i] = f[j] + 1;
+                            g[i] = idx;
+                        }
+                    }
+                }
+                max = Math.max(max, f[i]);
+            }
+
+            return m + n - max * 2;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
