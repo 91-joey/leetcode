@@ -4,16 +4,13 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 public class MoveZeroes {
 //    1.2次遍历(后补零) n   1
     public void moveZeroes(int[] nums) {
-        int length = nums.length;
-        int idx = 0;
-        for (int i = 0; i < length; i++) {
-            if (nums[i] != 0) {
-                nums[idx++] = nums[i];
-            }
-        }
-        for (int i = idx; i < length; i++) {
-            nums[i] = 0;
-        }
+        int i = 0;
+        for (int num : nums)
+            if (num != 0)
+                nums[i++] = num;
+
+        while (i < nums.length)
+            nums[i++] = 0;
     }
 
 //    2.双指针(移动零)   n   1
