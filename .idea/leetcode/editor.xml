@@ -2159,6 +2159,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RichestCustomerWealth.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RichestCustomerWealth.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1672" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RichestCustomerWealth.java" />
+              <option name="titleSlug" value="richest-customer-wealth" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RootEqualsSumOfChildren.java">
           <value>
             <LeetcodeEditor>
