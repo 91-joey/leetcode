@@ -1763,6 +1763,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfDifferentIntegersInAString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfDifferentIntegersInAString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1805" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfDifferentIntegersInAString.java" />
+              <option name="titleSlug" value="number-of-different-integers-in-a-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfGoodPairs.java">
           <value>
             <LeetcodeEditor>
