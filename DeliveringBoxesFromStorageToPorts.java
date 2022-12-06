@@ -138,12 +138,12 @@ public class DeliveringBoxesFromStorageToPorts {
             for (int i = 1; i < n; i++)
                 w[i] = w[i - 1] + boxes[i - 1][1];
 
-            //箱子子数组区间(以索引 0 开头，类似前缀和)内，相邻箱子的目标码头不同的次数
+            //箱子子数组区间(类似前缀和)内，相邻箱子的目标码头不同的次数
             int[] neg = new int[n];
             for (int i = 2; i < n; i++)
                 neg[i] = neg[i - 1] + (boxes[i - 2][0] == boxes[i - 1][0] ? 0 : 1);
 
-            //f[i]:以索引 i 结尾的最少行程次数
+            //f[i]:以索引 i + 1 结尾的最少行程次数
             //f[i]=min{f[j]-neg[j+1]}+neg[i]+2
             int[] f = new int[n];
             int[] g = new int[n];
