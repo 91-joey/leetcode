@@ -135,6 +135,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BinaryTreePreorderTraversal.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BinaryTreePreorderTraversal.md" />
+              <option name="frontendQuestionId" value="leetcode.cn144" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BinaryTreePreorderTraversal.java" />
+              <option name="titleSlug" value="binary-tree-preorder-traversal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/BinaryTreeRightSideView.java">
           <value>
             <LeetcodeEditor>
@@ -627,6 +638,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/DominoAndTrominoTiling.java" />
               <option name="titleSlug" value="domino-and-tromino-tiling" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/EqualSumArraysWithMinimumNumberOfOperations.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/EqualSumArraysWithMinimumNumberOfOperations.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1775" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/EqualSumArraysWithMinimumNumberOfOperations.java" />
+              <option name="titleSlug" value="equal-sum-arrays-with-minimum-number-of-operations" />
             </LeetcodeEditor>
           </value>
         </entry>
