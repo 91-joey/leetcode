@@ -64,12 +64,23 @@ public class MatrixDiagonalSum {
             return sum - (n % 2 == 1 ? mat[n / 2][n / 2] : 0);
         }
 
-        public int diagonalSum(int[][] mat) {
+        public int diagonalSum8(int[][] mat) {
             int sum = 0;
             int n = mat.length;
 
             for (int i = 0; i < n; i++)
                 sum += mat[i][i] + mat[i][n - 1 - i];
+
+            int mid = n / 2;
+            return sum - mat[mid][mid] * (n & 1);
+        }
+
+        public int diagonalSum(int[][] mat) {
+            int sum = 0;
+            int n = mat.length;
+
+            for (int i = 0; i < n; i++)
+                sum += mat[i][i] + mat[n - 1 - i][i];
 
             int mid = n / 2;
             return sum - mat[mid][mid] * (n & 1);
