@@ -608,6 +608,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DetermineColorOfAChessboardSquare.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DetermineColorOfAChessboardSquare.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1812" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DetermineColorOfAChessboardSquare.java" />
+              <option name="titleSlug" value="determine-color-of-a-chessboard-square" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DetermineIfStringHalvesAreAlike.java">
           <value>
             <LeetcodeEditor>
