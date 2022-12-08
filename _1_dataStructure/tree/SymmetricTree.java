@@ -60,7 +60,8 @@ public class SymmetricTree {
                                 null,
                                 new TreeNode(4)))));
     }
-//leetcode submit region begin(Prohibit modification and deletion)
+
+    //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         //DFS+递归
         public boolean isSymmetric(TreeNode root) {
@@ -150,7 +151,7 @@ public class SymmetricTree {
                         r.left = null;
                         curL = curL.right;
                         curR = curR.left;
-                    //结构不同
+                        //结构不同
                     } else {
                         return false;
                     }
@@ -160,7 +161,7 @@ public class SymmetricTree {
                         return false;
                     curL = curL.right;
                     curR = curR.left;
-                //结构不同
+                    //结构不同
                 } else {
                     return false;
                 }
@@ -199,6 +200,46 @@ public class SymmetricTree {
             }
 
             return true;
+        }
+
+        /*
+        * 奇葩法之哈希表比较
+        * 其实树中的每个节点都可以用一个键值唯一表示，比如 “llr” 表示根节点的左节点的左节点的右节点
+        * 我们以「左根右」的顺序遍历 root.left，以「右根左」的顺序遍历 root.right，比较俩次遍历得到的哈希表即可
+        */
+        public boolean isSymmetric_map(TreeNode root) {
+            return lmr(root.left).equals(rml(root.right));
+        }
+
+        Map<String, Integer> mapLmr = new HashMap<>();
+        Map<String, Integer> mapRml = new HashMap<>();
+
+        public Map<String, Integer> lmr(TreeNode root) {
+            dfsLmr(root, "");
+            return mapLmr;
+        }
+
+        public void dfsLmr(TreeNode root, String s) {
+            if (root == null)
+                return;
+
+            dfsLmr(root.left, s + "l");
+            mapLmr.put(s, root.val);
+            dfsLmr(root.right, s + "r");
+        }
+
+        public Map<String, Integer> rml(TreeNode root) {
+            dfsRml(root, "");
+            return mapRml;
+        }
+
+        public void dfsRml(TreeNode root, String s) {
+            if (root == null)
+                return;
+
+            dfsRml(root.right, s + "l");
+            mapRml.put(s, root.val);
+            dfsRml(root.left, s + "r");
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -67,14 +67,20 @@ public class BinaryTreePreorderTraversal {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         //DFS+递归    n   n
+        List<Integer> list = new ArrayList<>();
+
         public List<Integer> preorderTraversal(TreeNode root) {
-            if (root == null)
-                return new ArrayList<>();
-            List<Integer> list = new ArrayList<>();
-            list.add(root.val);
-            list.addAll(preorderTraversal(root.left));
-            list.addAll(preorderTraversal(root.right));
+            dfs(root);
             return list;
+        }
+
+        public void dfs(TreeNode root) {
+            if (root == null)
+                return;
+
+            dfs(root.left);
+            list.add(root.val);
+            dfs(root.right);
         }
 
         //DFS+栈 n   n
