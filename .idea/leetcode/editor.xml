@@ -1763,6 +1763,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinimumSumOfFourDigitNumberAfterSplittingDigits.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinimumSumOfFourDigitNumberAfterSplittingDigits.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2160" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinimumSumOfFourDigitNumberAfterSplittingDigits.java" />
+              <option name="titleSlug" value="minimum-sum-of-four-digit-number-after-splitting-digits" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumSwapsToGroupAll1sTogether.java">
           <value>
             <LeetcodeEditor>
