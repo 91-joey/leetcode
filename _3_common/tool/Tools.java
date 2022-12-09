@@ -16,7 +16,7 @@ public class Tools {
     public static final char CLOSE_BRACKET = ']';
     public static final int[] SHUFFLED_ARR_EASY = {6, 2, 1, 3, 5, 4};
     public static final int[] SHUFFLED_ARR_HARD = {69, 54, 87, 27, 37, 56, 31, 76, 23, 47, 38, 44, 60, 86, 84, 96, 10, 73, 25, 19, 40, 30, 66, 65, 67, 4, 35, 12, 55, 0, 32, 8, 59, 33, 46, 97, 14, 91, 24, 71, 75, 89, 50, 92, 2, 90, 63, 64, 45, 39, 51, 52, 18, 94, 21, 5, 57, 3, 72, 61, 77, 53, 83, 13, 48, 9, 74, 16, 99, 6, 62, 93, 26, 58, 95, 98, 41, 15, 22, 49, 88, 81, 29, 42, 20, 70, 43, 79, 82, 85, 1, 11, 28, 7, 68, 80, 17, 34, 36, 78};
-
+    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
     public static final int MOD = 10_0000_0007;
 
     public static void main(String[] args) {
