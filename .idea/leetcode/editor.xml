@@ -2841,6 +2841,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/TossStrangeCoins.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/TossStrangeCoins.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1230" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/TossStrangeCoins.java" />
+              <option name="titleSlug" value="toss-strange-coins" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/TrappingRainWater.java">
           <value>
             <LeetcodeEditor>
