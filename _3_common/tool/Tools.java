@@ -147,8 +147,10 @@ public class Tools {
         for (int i = 1; i < split.length; ) {
             for (int j = q.size(); j > 0; j--) {
                 TreeNode poll = q.poll();
-                q.offer(poll.left = buildTreeWithSingleWord(split[i++]));
-                q.offer(poll.right = buildTreeWithSingleWord(split[i++]));
+                if (poll != null) {
+                    q.offer(poll.left = buildTreeWithSingleWord(split[i++]));
+                    q.offer(poll.right = buildTreeWithSingleWord(split[i++]));
+                }
             }
         }
         return root;
