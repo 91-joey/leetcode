@@ -48,7 +48,7 @@ public class LargestSumOfAverages {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         /*
-         * 题目说是「最多」k个子数组，事实上要求最大分数，只能是k个，不能跟小。
+         * 题目说是「最多」k个子数组，事实上要求最大分数，只能是k个，不能更小。
          * 设dp[i][j]表示以索引j元素结尾的、划分i个子数组的最大分数
          *      则有dp[i][j]=max(dp[i-1][x]+avg(x+1...j)),i-2<=x<=j-1
          *      最终答案为dp[k][len-1]
@@ -125,6 +125,32 @@ public class LargestSumOfAverages {
             }
 
             return dp[n - 1];
+        }
+
+        /*
+         * 第二次重做：
+         *      必须使用数组中的每个数，因此不存在「一个子数组划分为 0 个子数组的情况」
+         */
+        public double largestSumOfAverages7(int[] nums, int k) {
+            int n = nums.length + 1;
+            double[][] f = new double[n][k + 1];
+            for (int i = 1, sum = 0; i < n; i++) {
+                sum += nums[i - 1];
+                f[i][1] = (double) sum / i;
+            }
+
+            //f[i][j]:前 i+1 个数，分成 j+1 个子数组的最大子数组平均值总和
+            for (int i = 1; i < n; i++) {
+                int bound = Math.min(k, i);
+                for (int j = 2; j <= bound; j++) {
+                    for (int x = i - 1, sum = 0; x >= j - 1; x--) {
+                        sum += nums[x];
+                        f[i][j] = Math.max(f[i][j], f[x][j - 1] + (double) sum / (i - x));
+                    }
+                }
+            }
+
+            return f[n - 1][k];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
