@@ -37,38 +37,42 @@ import java.util.Arrays;
 public class TossStrangeCoins {
     public static void main(String[] args) {
         Solution solution = new TossStrangeCoins().new Solution();
-        System.out.println(solution.probabilityOfHeads(new double[]{0.4}, 1));
+//        System.out.println(solution.probabilityOfHeads(new double[]{0.4}, 1));
+        System.out.println(solution.probabilityOfHeads(new double[]{0.2, 0.8, 0, 0.3, 0.5}, 3));
+//        System.out.println(solution.probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public double probabilityOfHeads(double[] prob, int target) {
+        /*
+         * dp[i][j]:前 i 枚硬币，(j - 1)枚硬币正面朝上的概率
+         *      i == 1时，特殊考虑：
+         *          j == 0时，f[i][j] =               0 * prob[i - 1] +           1 * (1 - prob[i - 1])
+         *          j == 1时，f[i][j] =               1 * prob[i - 1] +           0 * (1 - prob[i - 1])
+         *      i >  1时，    f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1])
+         * 故，不失一般性的，我们初始化 f[0][1] = 1.0，则 `i == 1` 和 `i >  1` 两种情况可以合并为一种考虑
+         */
+        public double probabilityOfHeads9(double[] prob, int target) {
             int n = prob.length + 1;
             double[][] f = new double[n][target + 2];
-            Arrays.fill(f[0], 1.0);
-            f[1][0] = 1.0;
-            f[1][1] = 1 - prob[0];
-            if (target > 0)
-                f[1][2] = prob[0];
+            f[0][1] = 1.0;
 
-            for (int i = 2; i < n; i++)
-                for (int j = 1; j < Math.min(target + 2, i); j++)
+            for (int i = 1; i < n; i++)
+                for (int j = 1; j < Math.min(target + 2, i + 2); j++)
                     f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1]);
 
             return f[n - 1][target + 1];
         }
 
-        public double probabilityOfHeads9(double[] prob, int target) {
-            int n = prob.length;
-            double[][] f = new double[n][target + 2];
-            f[0][0] = 1 - prob[0];
-            f[0][1] = prob[1];
+        public double probabilityOfHeads(double[] prob, int target) {
+            double[] f = new double[target + 2];
+            f[1] = 1.0;
 
-            for (int i = 1; i < n; i++)
-                for (int j = 1; j < target + 2; j++)
-                    f[i][j] = f[i - 1][j - 1] * prob[i] + f[i - 1][j] * (1 - prob[i]);
+            for (int i = 0; i < prob.length; i++)
+                for (int j = Math.min(target + 1, i + 2); j >= 1; j--)
+                    f[j] = f[j - 1] * prob[i] + f[j] * (1 - prob[i]);
 
-            return f[n - 1][target + 1];
+            return f[target + 1];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
