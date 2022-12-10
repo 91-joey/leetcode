@@ -2742,6 +2742,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SumOfLeftLeaves.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SumOfLeftLeaves.md" />
+              <option name="frontendQuestionId" value="leetcode.cn404" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SumOfLeftLeaves.java" />
+              <option name="titleSlug" value="sum-of-left-leaves" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SumOfSquareNumbers.java">
           <value>
             <LeetcodeEditor>

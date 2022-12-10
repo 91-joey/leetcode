@@ -163,6 +163,10 @@ public class Tools {
             return new TreeNode(Integer.parseInt(s));
     }
 
+    public static boolean isLeafNode(TreeNode root) {
+        return root.left == null && root.right == null;
+    }
+
     //region binary tree traversal
     public static Collection<Integer> preorderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
         Collection<Integer> coll = collectionSupplier.get();
