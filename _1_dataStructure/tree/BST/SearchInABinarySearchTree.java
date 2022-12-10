@@ -36,7 +36,7 @@
 //</ul>
 //
 //<div><li>👍 346</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.tree;
+package org.example.leetcode.problems._1_dataStructure.tree.BST;
 
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 
