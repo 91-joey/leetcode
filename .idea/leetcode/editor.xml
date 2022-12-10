@@ -377,6 +377,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ConvertBinaryNumberInALinkedListToInteger.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ConvertBinaryNumberInALinkedListToInteger.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1290" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ConvertBinaryNumberInALinkedListToInteger.java" />
+              <option name="titleSlug" value="convert-binary-number-in-a-linked-list-to-integer" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ConvertSortedArrayToBinarySearchTree.java">
           <value>
             <LeetcodeEditor>
