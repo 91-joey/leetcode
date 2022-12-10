@@ -1576,6 +1576,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumHeightByStackingCuboids.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumHeightByStackingCuboids.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1691" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumHeightByStackingCuboids.java" />
+              <option name="titleSlug" value="maximum-height-by-stacking-cuboids" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumNestingDepthOfTheParentheses.java">
           <value>
             <LeetcodeEditor>
