@@ -641,6 +641,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/DesignParkingSystem.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/DesignParkingSystem.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1603" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/DesignParkingSystem.java" />
+              <option name="titleSlug" value="design-parking-system" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/DetermineColorOfAChessboardSquare.java">
           <value>
             <LeetcodeEditor>
