@@ -135,6 +135,54 @@ public class SplitArrayLargestSum {
             }
             return cnt;
         }
+
+        public int splitArray9(int[] nums, int k) {
+            int n = nums.length + 1;
+            int[][] f = new int[n][k + 1];
+
+            for (int i = 1; i < n; i++) {
+                int bound = Math.min(k + 1, i + 1);
+                f[i][1] = f[i - 1][1] + nums[i - 1];
+                for (int j = 2; j < bound; j++) {
+                    f[i][j] = Integer.MAX_VALUE;
+                    for (int x = i - 1, sum = 0; x >= j - 1; x--)
+                        f[i][j] = Math.min(f[i][j], Math.max(f[x][j - 1], (sum += nums[x])));
+                }
+            }
+
+            return f[n - 1][k];
+        }
+
+        /*
+         * DP + 前缀和
+         *  定义：f[len+1][k+1]，f[i][j]表示前i个数，分成j个子数组的子数组各自和的最大值的最小值
+         *  状态转移方程：
+         *      f[i][1] = f[i - 1][1] + nums[i - 1]
+         *      f[i][j] = min(f[i][j], max(f[x][j - 1], sum{arr[x+1...i}))，j > 1，j-1 <= x <= i-1
+         *  答案：f[n - 1][k]
+         *
+         * 注意点：
+         *      一段区间不能划分为 0 个子数组，故分成 1 个子数组的情况单独考虑
+         *      前缀和可以存储在f[i][1]中
+         */
+        public int splitArray6(int[] nums, int k) {
+            int n = nums.length + 1;
+            int[][] f = new int[n][k + 1];
+
+            for (int i = 1; i < n; i++)
+                f[i][1] = f[i - 1][1] + nums[i - 1];
+
+            for (int i = 1; i < n; i++) {
+                int bound = Math.min(k, i) + 1;
+                for (int j = 2; j < bound; j++) {
+                    f[i][j] = Integer.MAX_VALUE;
+                    for (int x = i - 1; x >= j - 1; x--)
+                        f[i][j] = Math.min(f[i][j], Math.max(f[x][j - 1], f[i][1] - f[x][1]));
+                }
+            }
+
+            return f[n - 1][k];
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
