@@ -145,7 +145,7 @@ public class Tools {
         TreeNode root = new TreeNode(Integer.parseInt(split[0]));
         q.offer(root);
         for (int i = 1; i < split.length; ) {
-            for (int j = q.size(); j > 0; j--) {
+            for (int j = q.size(); j > 0 && i < split.length; j--) {
                 TreeNode poll = q.poll();
                 if (poll != null) {
                     q.offer(poll.left = buildTreeWithSingleWord(split[i++]));
