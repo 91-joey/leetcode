@@ -2830,6 +2830,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SumOfBeautyOfAllSubstrings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SumOfBeautyOfAllSubstrings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1781" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SumOfBeautyOfAllSubstrings.java" />
+              <option name="titleSlug" value="sum-of-beauty-of-all-substrings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SumOfLeftLeaves.java">
           <value>
             <LeetcodeEditor>
