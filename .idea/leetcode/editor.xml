@@ -2654,6 +2654,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SortIntegersByTheNumberOf1Bits.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SortIntegersByTheNumberOf1Bits.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1356" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SortIntegersByTheNumberOf1Bits.java" />
+              <option name="titleSlug" value="sort-integers-by-the-number-of-1-bits" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SortTransformedArray.java">
           <value>
             <LeetcodeEditor>

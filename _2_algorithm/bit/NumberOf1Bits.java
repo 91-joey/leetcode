@@ -79,7 +79,7 @@ public class NumberOf1Bits {
             return cnt;
         }
 
-        //位运算优化：n & (n - 1)把 n 的二进制位中的最低位的 1 变为 0
+        //☆☆☆☆☆ 位运算优化：n & (n - 1)把 n 的二进制位中的最低位的 1 变为 0
         public int hammingWeight8(int n) {
             int cnt = 0;
 
