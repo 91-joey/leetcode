@@ -2962,6 +2962,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/TwoSumIvInputIsABst.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/TwoSumIvInputIsABst.md" />
+              <option name="frontendQuestionId" value="leetcode.cn653" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/TwoSumIvInputIsABst.java" />
+              <option name="titleSlug" value="two-sum-iv-input-is-a-bst" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/TwoSumLessThanK.java">
           <value>
             <LeetcodeEditor>
