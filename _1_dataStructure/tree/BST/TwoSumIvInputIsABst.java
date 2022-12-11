@@ -28,13 +28,12 @@
 //</ul>
 //
 //<div><li>👍 443</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._1_dataStructure.tree.BST;
 
+import org.example.leetcode.problems._3_common.tool.Tools;
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 import java.util.function.Supplier;
 
 //653.两数之和 IV - 输入二叉搜索树
@@ -42,12 +41,14 @@ import java.util.function.Supplier;
 public class TwoSumIvInputIsABst {
     public static void main(String[] args) {
         Solution solution = new TwoSumIvInputIsABst().new Solution();
+        System.out.println(solution.findTarget(Tools.buildTree("[1,0,4,-2,null,3,null]"), 7));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
 //    import java.util.Collection;
     class Solution {
-        public boolean findTarget(TreeNode root, int k) {
+        //中序遍历结果 + 双指针
+        public boolean findTarget9(TreeNode root, int k) {
             int[] arr = inorderTraversal(root).stream().mapToInt(Integer::intValue).toArray();
             for (int l = 0, r = arr.length - 1; l < r; )
                 if (arr[l] + arr[r] == k)
@@ -57,6 +58,67 @@ public class TwoSumIvInputIsABst {
                 else
                     r--;
             return false;
+        }
+
+        //☆☆☆☆☆ 双指针 + 中序遍历
+        public boolean findTarget8(TreeNode root, int k) {
+            TreeNode left = root, right = root;
+            Deque<TreeNode> stackL = new LinkedList<>(), stackR = new LinkedList<>();
+            stackL.push(left);
+            stackR.push(right);
+            while (left.left != null) {
+                left = left.left;
+                stackL.push(left);
+            }
+            while (right.right != null) {
+                right = right.right;
+                stackR.push(right);
+            }
+
+            while (left != right) {
+                if (k == left.val + right.val)
+                    return true;
+                else if (k < left.val + right.val)
+                    right = getRight(stackR);
+                else
+                    left = getLeft(stackL);
+            }
+
+            return false;
+        }
+
+
+        HashSet<Integer> set = new HashSet<>();
+
+        //哈希表
+        public boolean findTarget(TreeNode root, int k) {
+            if (root == null)
+                return false;
+
+            if (set.contains(k - root.val))
+                return true;
+            set.add(root.val);
+            return findTarget(root.left, k) || findTarget(root.right, k);
+        }
+
+        private TreeNode getRight(Deque<TreeNode> stack) {
+            TreeNode pop = stack.pop();
+            TreeNode node = pop.left;
+            while (node != null) {
+                stack.push(node);
+                node = node.right;
+            }
+            return pop;
+        }
+
+        private TreeNode getLeft(Deque<TreeNode> stack) {
+            TreeNode pop = stack.pop();
+            TreeNode node = pop.right;
+            while (node != null) {
+                stack.push(node);
+                node = node.left;
+            }
+            return pop;
         }
 
         public static Collection<Integer> inorderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
