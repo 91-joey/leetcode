@@ -3182,6 +3182,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WildcardMatching.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/WildcardMatching.md" />
+              <option name="frontendQuestionId" value="leetcode.cn44" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/WildcardMatching.java" />
+              <option name="titleSlug" value="wildcard-matching" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/XorOperationInAnArray.java">
           <value>
             <LeetcodeEditor>
