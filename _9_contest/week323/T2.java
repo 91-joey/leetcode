@@ -9,7 +9,8 @@ import java.util.stream.Collectors;
 //6258. 数组中最长的方波
 public class T2 {
     public static void main(String[] args) {
-
+        System.out.println(18532 * 18532);
+        System.out.println(92682 * 92682);
     }
 
     //哈希表 + 动态规划
@@ -32,7 +33,7 @@ public class T2 {
         return max <= 1 ? -1 : max;
     }
 
-    public int longestSquareStreak9(int[] nums) {
+    public int longestSquareStreakX(int[] nums) {
         HashSet<Integer> set = new HashSet<>();
         for (int num : nums)
             set.add(num);
@@ -47,27 +48,12 @@ public class T2 {
         return max == 1 ? -1 : max;
     }
 
-    public int longestSquareStreak8(int[] nums) {
-        HashSet<Integer> set = new HashSet<>();
-        for (int num : nums)
-            set.add(num);
-
-        int max = -1;
-        for (int num : set) {
-            int cnt = 1;
-            for (int target = num * num; set.contains(target); target *= target)
-                cnt++;
-            max = Math.max(max, cnt);
-        }
-        return max <= 1 ? -1 : max;
-    }
-
     //☆☆☆☆☆ 哈希表 + 枚举
     public int longestSquareStreak(int[] nums) {
-        Set<Integer> set = Arrays.stream(nums).boxed().collect(Collectors.toSet());
+        Set<Long> set = Arrays.stream(nums).mapToObj(Long::valueOf).collect(Collectors.toSet());
 
         int max = -1;
-        for (int num : set) {
+        for (long num : set) {
             int cnt = 0;
             for (; set.contains(num); num *= num)
                 cnt++;
