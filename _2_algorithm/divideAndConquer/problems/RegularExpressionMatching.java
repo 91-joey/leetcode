@@ -59,9 +59,52 @@ public class RegularExpressionMatching {
             return s.matches(p);
         }
 
-        //todo DP
+        /*
+         * dp
+         * 关键点：2个字符串要从右往左匹配
+         * 状态转移：
+         *      s[i]=p[j]||p[j]='.':
+         *          true:f[i][j]=f[i-1][j-1]
+         *          false:
+         *              p[j]!='*':false
+         *              p[j]=='*':
+         *                  s[i]=p[j-1]||p[j-1]='.':
+         *                      '*'消了0次：f[i][j]=f[i][j-2]
+         *                      '*'消了1次：f[i][j]=f[i-1][j-2]
+         *                      '*'消了2次以上：f[i][j]=f[i-1][j]
+         *                  s[i]!=p[j-1]:f[i][j]=f[i][j-2]
+         *  初始化：
+         *      p[j]=='*',  f[0][j]=f[0][j-2]   ,f[0][0]=true
+         *      p[j]!='*',  f[0][j]=false
+         *      f[i][0]=false
+         *  结果：
+         *      f[m-1][n-1]
+         */
         public boolean isMatch(String s, String p) {
-            return true;
+            char[] cS = s.toCharArray();
+            char[] cP = p.toCharArray();
+            int m = cS.length + 1;
+            int n = cP.length + 1;
+            boolean[][] f = new boolean[m][n];
+
+            f[0][0] = true;
+            for (int j = 2; j < n && cP[j - 1] == '*'; j += 2)
+                f[0][j] = true;
+
+            for (int i = 1; i < m; i++)
+                for (int j = 1; j < n; j++) {
+                    char a = cS[i - 1];
+                    char b = cP[j - 1];
+                    if (a == b || b == '.')
+                        f[i][j] = f[i - 1][j - 1];
+                    else if (b == '*')
+                        f[i][j] = a == cP[j - 2] || cP[j - 2] == '.' ?
+//                                f[i][j - 2] || f[i - 1][j - 2] || f[i - 1][j] :
+                                f[i][j - 2] || f[i - 1][j] :
+                                f[i][j - 2];
+                }
+
+            return f[m - 1][n - 1];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
