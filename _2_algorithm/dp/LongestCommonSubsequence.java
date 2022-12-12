@@ -71,6 +71,23 @@ public class LongestCommonSubsequence {
 
             return f[m - 1][n - 1];
         }
+
+        /*
+         * f[i][j]=max(f[i][j-1],f[i-1][j],f[i-1][j-1]+s[i]==s[j]?1:0)
+         */
+        public int longestCommonSubsequence9(String text1, String text2) {
+            char[] cs1 = text1.toCharArray();
+            char[] cs2 = text2.toCharArray();
+            int m = cs1.length + 1;
+            int n = cs2.length + 1;
+            int[][] f = new int[m][n];
+
+            for (int i = 1; i < m; i++)
+                for (int j = 1; j < n; j++)
+                    f[i][j] = Math.max(Math.max(f[i][j - 1], f[i - 1][j]), f[i - 1][j - 1] + (cs1[i - 1] == cs2[j - 1] ? 1 : 0));
+
+            return f[m - 1][n - 1];
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
