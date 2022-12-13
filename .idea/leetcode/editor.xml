@@ -1147,6 +1147,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/InterleavingString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/InterleavingString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn97" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/InterleavingString.java" />
+              <option name="titleSlug" value="interleaving-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/IntersectionOfTwoArrays.java">
           <value>
             <LeetcodeEditor>
