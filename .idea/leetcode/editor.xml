@@ -3083,6 +3083,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/Triangle.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/Triangle.md" />
+              <option name="frontendQuestionId" value="leetcode.cn120" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/Triangle.java" />
+              <option name="titleSlug" value="triangle" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/TwoSum.java">
           <value>
             <LeetcodeEditor>
