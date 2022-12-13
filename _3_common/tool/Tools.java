@@ -20,7 +20,6 @@ public class Tools {
     public static final int MOD = 10_0000_0007;
 
     public static void main(String[] args) {
-
     }
 
     public static List<Integer> toList(int[] ints) {
@@ -303,5 +302,41 @@ public class Tools {
             cur = next;
         }
         return pre;
+    }
+
+    public static int max(int... arr) {
+        int max = Integer.MIN_VALUE;
+        for (int x : arr) if (max < x) max = x;
+        return max;
+    }
+
+    public static int min(int... arr) {
+        int min = Integer.MAX_VALUE;
+        for (int x : arr) if (min > x) min = x;
+        return min;
+    }
+
+    public static long max(long... arr) {
+        long max = Long.MIN_VALUE;
+        for (long x : arr) if (max < x) max = x;
+        return max;
+    }
+
+    public static long min(long... arr) {
+        long min = Long.MAX_VALUE;
+        for (long x : arr) if (min > x) min = x;
+        return min;
+    }
+
+    public static double max(double... arr) {
+        double max = -Double.MAX_VALUE;
+        for (double x : arr) if (max < x) max = x;
+        return max;
+    }
+
+    public static double min(double... arr) {
+        double min = Double.MAX_VALUE;
+        for (double x : arr) if (min > x) min = x;
+        return min;
     }
 }
