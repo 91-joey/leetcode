@@ -285,7 +285,8 @@ public class Tools {
     //endregion
 
     public static int[] toIntArray(String s) {
-        return Arrays.stream(s.substring(1, s.length() - 1).split(",")).mapToInt(Integer::parseInt).toArray();
+        String strip = s.strip();
+        return Arrays.stream(strip.substring(1, strip.length() - 1).split(",")).map(String::strip).mapToInt(Integer::parseInt).toArray();
     }
 
     public static int[][] to2DIntArray(String s) {

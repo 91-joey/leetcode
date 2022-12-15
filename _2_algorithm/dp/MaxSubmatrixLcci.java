@@ -40,7 +40,7 @@ public class MaxSubmatrixLcci {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int[] getMaxMatrix(int[][] matrix) {
+        public int[] getMaxMatrix10(int[][] matrix) {
             int m = matrix.length;
             int n = matrix[0].length;
 
@@ -81,6 +81,64 @@ public class MaxSubmatrixLcci {
                             max = cur;
                         }
                     }
+
+            return ans;
+        }
+
+        //二维前缀和
+        public int[] getMaxMatrix9(int[][] matrix) {
+            int m = matrix.length + 1;
+            int n = matrix[0].length + 1;
+
+            int[][] prefix = new int[m][n];
+            for (int i = 1; i < m; i++)
+                for (int j = 1; j < n; j++)
+                    prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + matrix[i - 1][j - 1];
+
+            int max = Integer.MIN_VALUE;
+            int[] ans = new int[]{};
+            for (int i = 1; i < m; i++)
+                for (int j = 1; j < n; j++)
+                    for (int p = i; p < m; p++)
+                        for (int q = j; q < n; q++) {
+                            int sum = prefix[p][q] + prefix[i - 1][j - 1] - prefix[p][j - 1] - prefix[i - 1][q];
+                            if (max < sum) {
+                                max = sum;
+                                ans = new int[]{i - 1, j - 1, p - 1, q - 1};
+                            }
+                        }
+
+            return ans;
+        }
+
+        //☆☆☆☆☆ DP（二维最大子数组和）    m^2*n
+        public int[] getMaxMatrix(int[][] matrix) {
+            int m = matrix.length;
+            int n = matrix[0].length;
+
+            int max = Integer.MIN_VALUE;
+            int[] ans = new int[]{};
+
+            for (int i = 0; i < m; i++) {
+                int[] arr = new int[n];
+                for (int j = i; j < m; j++) {
+                    for (int k = 0, c = 0, sum = 0; k < n; k++) {
+                        arr[k] += matrix[j][k];
+
+                        if (sum >= 0)
+                            sum += arr[k];
+                        else {
+                            sum = arr[k];
+                            c = k;
+                        }
+
+                        if (max < sum) {
+                            max = sum;
+                            ans = new int[]{i, c, j, k};
+                        }
+                    }
+                }
+            }
 
             return ans;
         }
