@@ -2973,6 +2973,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SumOfDigitsOfStringAfterConvert.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SumOfDigitsOfStringAfterConvert.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1945" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SumOfDigitsOfStringAfterConvert.java" />
+              <option name="titleSlug" value="sum-of-digits-of-string-after-convert" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SumOfLeftLeaves.java">
           <value>
             <LeetcodeEditor>
