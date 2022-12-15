@@ -44,6 +44,11 @@ public class UglyNumberIi {
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
+    /*
+     * 解题关键点：
+     *  如果一个数 x 是丑数，那么 2x,3x,5x 均为丑数
+     *  「由丑数 x 推出的丑数 X」和「由丑数 y 推出的丑数 Y」是可能相等的，例如 2 * 3 = 3 * 2，故需要过滤重复值
+     */
     class Solution {
 
         public int nthUglyNumberX(int n) {
@@ -53,6 +58,11 @@ public class UglyNumberIi {
                         return i;
         }
 
+        /*
+         * ☆☆☆☆☆ DP（多路归并、多指针）
+         * 三个指针p2，p3，p5。pi的含义是有资格同i相乘的最小丑数的位置。
+         * 三个不关联的if语句，可以保证过滤掉重复值
+         */
         public int nthUglyNumber9(int n) {
             int[] f = new int[n + 1];
             f[1] = 1;
@@ -65,6 +75,7 @@ public class UglyNumberIi {
             return f[n];
         }
 
+        //优先队列 + 哈希表
         public int nthUglyNumber(int n) {
             int[] factors = {2, 3, 5};
             HashSet<Long> seen = new HashSet<>();
