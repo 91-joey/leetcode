@@ -25,6 +25,10 @@
 //<div><li>👍 168</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
+import java.util.Arrays;
+import java.util.Map;
+import java.util.TreeMap;
+
 //面试题 17.24.最大子矩阵
 //开题时间：2022-11-23 16:27:27
 public class MaxSubmatrixLcci {
@@ -36,6 +40,14 @@ public class MaxSubmatrixLcci {
                 {6, -4, -4, 8, -7}};
 //        System.out.println(Arrays.toString(solution.getMaxMatrix(
 //        )));
+        System.out.println(Arrays.toString(solution.getMaxMatrix(new int[][]
+                {
+                        {8, -4, 5},
+                        {-1, 4, 4},
+                        {-2, 3, 1},
+                        {-4, 4, 3}
+                }
+        )));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -112,7 +124,7 @@ public class MaxSubmatrixLcci {
         }
 
         //☆☆☆☆☆ DP（二维最大子数组和）    m^2*n
-        public int[] getMaxMatrix(int[][] matrix) {
+        public int[] getMaxMatrix5(int[][] matrix) {
             int m = matrix.length;
             int n = matrix[0].length;
 
@@ -142,6 +154,48 @@ public class MaxSubmatrixLcci {
 
             return ans;
         }
+
+
+        public int[] getMaxMatrix(int[][] matrix) {
+            int m = matrix.length + 1;
+            int n = matrix[0].length + 1;
+
+//            if (m > n) {
+//                int a = n - 1;
+//                int b = m - 1;
+//                int[][] transformed = new int[a][b];
+//                for (int i = 0; i < a; i++)
+//                    for (int j = 0; j < b; j++)
+//                        transformed[i][j] = matrix[j][i];
+//                return getMaxMatrix(transformed);
+//            }
+
+            int max = Integer.MIN_VALUE;
+            int[] ans = new int[]{};
+
+            for (int top = 1; top < m; top++) {
+                int[] prefix = new int[n];
+                for (int bot = top; bot < m; bot++) {
+                    TreeMap<Integer, Integer> map = new TreeMap<>();
+                    map.put(0, 0);
+                    int right = 0;
+                    for (int j = 1; j < n; j++) {
+                        prefix[j] += matrix[bot - 1][j - 1];
+                        right += prefix[j];
+                        Map.Entry<Integer, Integer> left = map.ceilingEntry(right - Integer.MAX_VALUE / 2);
+                        if (left != null)
+                            if (max < right - left.getKey()) {
+                                max = right - left.getKey();
+                                ans = new int[]{top - 1, left.getValue(), bot - 1, j - 1};
+                            }
+                        map.put(right, j);
+                    }
+                }
+            }
+
+            return ans;
+        }
+
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
