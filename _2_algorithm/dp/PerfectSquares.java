@@ -27,7 +27,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数学</li><li>动态规划</li></div></div><br><div><li>👍 1464</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -44,7 +44,7 @@ public class PerfectSquares {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         //1.自解（BFS）   n   sqrt(n)
-        public int numSquares(int n) {
+        public int numSquares10(int n) {
 //            求出<=n的最大完全平方数
             int start = (int) Math.sqrt(n);
             int cnt = 1;
@@ -79,35 +79,57 @@ public class PerfectSquares {
 
             return -1;
         }
-
-
-        //2.官解（数学）   sqrt(n)    1
-        public int numSquares2(int n) {
-            if (isPerfectSquare(n)) {
-                return 1;
-            } else if (checkAnswer4(n)) {
-                return 4;
-            } else {
-                //Answer==2?
-                int sqrt = (int) Math.sqrt(n);
-                for (int i = 1; i <= sqrt; i++) {
-                    if (isPerfectSquare(n - i * i)){
-                        return 2;
-                    }
-                }
-                return 3;
+        /*
+         * ☆☆☆ DP
+         * 定义：  f[i]：和为 i 的完全平方数的最少数量
+         * 转移：  f[i] = Math.min(f[i], f[i - j * j] + 1)
+         * 初始化： f[i] = i
+         * 答案：  f[n]
+         */
+        public int numSquares9(int n) {
+            int[] f = new int[n + 1];
+            for (int i = 1; i <= n; i++) {
+                f[i] = i;
+                int sqrt = (int) Math.sqrt(i);
+                for (int j = 1; j <= sqrt; j++)
+                    f[i] = Math.min(f[i], f[i - j * j] + 1);
             }
+            return f[n];
+        }
+
+        /*
+         * ☆☆☆☆☆ 数学（四平方和定理）
+         * 答案为 4 ：n = 4^k * (8m+7)
+         * 答案为 1 ：n 为完全平方数
+         * 答案为 2 ：n 为两个完全平方数之和
+         * 答案为 3 ：其余情况
+         */
+        public int numSquares(int n) {
+            //O(1)
+            if (isPerfectSquare(n))
+                return 1;
+
+            //O(log n)
+            if (checkAnswer4(n))
+                return 4;
+
+            //O(sqrt(n))
+            int sqrt = (int) Math.sqrt(n);
+            for (int i = 1; i <= sqrt; i++)
+                if (isPerfectSquare(n - i * i))
+                    return 2;
+
+            return 3;
         }
 
         private boolean isPerfectSquare(int n) {
-            int sqrt = (int) Math.sqrt(n);
-            return sqrt * sqrt == n;
+            double sqrt = Math.sqrt(n);
+            return sqrt == (int) sqrt;
         }
 
         private boolean checkAnswer4(int n) {
-            while (n % 4 == 0) {
+            while (n % 4 == 0)
                 n /= 4;
-            }
             return n % 8 == 7;
         }
     }
