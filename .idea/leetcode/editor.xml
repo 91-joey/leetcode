@@ -982,6 +982,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindTheLongestSubstringContainingVowelsInEvenCounts.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindTheLongestSubstringContainingVowelsInEvenCounts.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1371" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindTheLongestSubstringContainingVowelsInEvenCounts.java" />
+              <option name="titleSlug" value="find-the-longest-substring-containing-vowels-in-even-counts" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FirstBadVersion.java">
           <value>
             <LeetcodeEditor>

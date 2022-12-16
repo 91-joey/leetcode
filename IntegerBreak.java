@@ -97,7 +97,7 @@ public class IntegerBreak {
             return switch (n) {
                 case 2 -> 1;
                 case 3 -> 2;
-                case 4 -> 4;
+//                case 4 -> 4;
                 default -> {
                     int ans = 1;
                     while (n > 4) {
