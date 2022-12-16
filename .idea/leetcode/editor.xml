@@ -1796,6 +1796,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumSizeSubarraySumEqualsK.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumSizeSubarraySumEqualsK.md" />
+              <option name="frontendQuestionId" value="leetcode.cn325" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumSizeSubarraySumEqualsK.java" />
+              <option name="titleSlug" value="maximum-size-subarray-sum-equals-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumSubarray.java">
           <value>
             <LeetcodeEditor>
