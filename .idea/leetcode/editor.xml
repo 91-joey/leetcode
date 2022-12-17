@@ -3050,6 +3050,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SubarraySumsDivisibleByK.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SubarraySumsDivisibleByK.md" />
+              <option name="frontendQuestionId" value="leetcode.cn974" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SubarraySumsDivisibleByK.java" />
+              <option name="titleSlug" value="subarray-sums-divisible-by-k" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SubarraysWithKDifferentIntegers.java">
           <value>
             <LeetcodeEditor>
