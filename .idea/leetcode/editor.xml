@@ -509,6 +509,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountNumberOfNiceSubarrays.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountNumberOfNiceSubarrays.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1248" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountNumberOfNiceSubarrays.java" />
+              <option name="titleSlug" value="count-number-of-nice-subarrays" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CountNumberOfPairsWithAbsoluteDifferenceK.java">
           <value>
             <LeetcodeEditor>
