@@ -83,7 +83,7 @@ public class SubarraySumsDivisibleByK {
             return ans;
         }
 
-        //☆☆☆☆☆（同余原理）前缀和 + 哈希计数 + 单词统计，注意取模为负数时需要转正处理
+        //☆☆☆☆☆（同余原理）前缀和 + 哈希计数 + 单次统计，注意取模为负数时需要转正处理
         public int subarraysDivByK(int[] nums, int k) {
             HashMap<Integer, Integer> mod2cnt = new HashMap<>();
             int sum = 0;
