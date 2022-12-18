@@ -1037,6 +1037,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindTwoNonOverlappingSubArraysEachWithTargetSum.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindTwoNonOverlappingSubArraysEachWithTargetSum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1477" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindTwoNonOverlappingSubArraysEachWithTargetSum.java" />
+              <option name="titleSlug" value="find-two-non-overlapping-sub-arrays-each-with-target-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FirstBadVersion.java">
           <value>
             <LeetcodeEditor>
