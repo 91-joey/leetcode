@@ -26,16 +26,13 @@ public class PivotIndex {
         return -1;
     }
 
-    //    2.非官方解
+    //☆☆☆☆☆ 2.非官方解
     public int pivotIndex2(int[] nums) {
-        int left = 0;
-        int right = Arrays.stream(nums).sum();
-        for (int i = 0; i < nums.length; i++) {
-            right -= nums[i];
-            if (left == right) {
+        for (int i = 0, pre = 0, suf = Arrays.stream(nums).sum(); i < nums.length; i++) {
+            suf -= nums[i];
+            if (pre == suf)
                 return i;
-            }
-            left += nums[i];
+            pre += nums[i];
         }
         return -1;
     }
@@ -45,10 +42,8 @@ public class PivotIndex {
         int left = 0;
         int sum = Arrays.stream(nums).sum();
         for (int i = 0; i < nums.length; i++) {
-//            if(left==sum-left-nums[i]){
-            if (2 * left + nums[i] == sum) {
+            if (2 * left + nums[i] == sum)
                 return i;
-            }
             left += nums[i];
         }
         return -1;
