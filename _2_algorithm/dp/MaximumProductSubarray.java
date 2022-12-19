@@ -54,9 +54,10 @@ public class MaximumProductSubarray {
             return max;
         }
 
+        //DP 负数时：交换最值
         public int maxProduct(int[] nums) {
-            int max = nums[0];
-            for (int i = 1, iMin = max, iMax = max; i < nums.length; i++) {
+            int max = Integer.MIN_VALUE;
+            for (int i = 0, iMin = 1, iMax = 1; i < nums.length; i++) {
                 if (nums[i] < 0) {
                     int tmp = iMin;
                     iMin = iMax;
