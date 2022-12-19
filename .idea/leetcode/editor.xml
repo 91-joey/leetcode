@@ -1433,6 +1433,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LianXuZiShuZuDeZuiDaHeLcof.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LianXuZiShuZuDeZuiDaHeLcof.md" />
+              <option name="frontendQuestionId" value="leetcode.cn剑指 Offer 42" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LianXuZiShuZuDeZuiDaHeLcof.java" />
+              <option name="titleSlug" value="lian-xu-zi-shu-zu-de-zui-da-he-lcof" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LinkedListCycle.java">
           <value>
             <LeetcodeEditor>
