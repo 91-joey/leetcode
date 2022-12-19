@@ -2511,6 +2511,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ProductOfTheLastKNumbers.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ProductOfTheLastKNumbers.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1352" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ProductOfTheLastKNumbers.java" />
+              <option name="titleSlug" value="product-of-the-last-k-numbers" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RangeSumQuery2dImmutable.java">
           <value>
             <LeetcodeEditor>

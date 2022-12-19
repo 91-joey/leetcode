@@ -3,6 +3,7 @@ package org.example.leetcode.problems._3_common.tool;
 import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -339,5 +340,14 @@ public class Tools {
         double min = Double.MAX_VALUE;
         for (double x : arr) if (min > x) min = x;
         return min;
+    }
+
+    public static void runDesign(String methods, String parameters) throws ClassNotFoundException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        methods = methods.replace("\"", "");
+        String[] m = methods.substring(1, methods.length() - 1).split(",");
+        String[] p = parameters.substring(1, methods.length() - 1).split(",");
+
+        Class<?> clazz = Class.forName(m[0]);
+        Object o = clazz.getDeclaredConstructors()[0].newInstance();
     }
 }
