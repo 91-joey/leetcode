@@ -3556,6 +3556,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/XorQueriesOfASubarray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/XorQueriesOfASubarray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1310" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/XorQueriesOfASubarray.java" />
+              <option name="titleSlug" value="xor-queries-of-a-subarray" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/Xx4gT2.java">
           <value>
             <LeetcodeEditor>
