@@ -597,6 +597,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountTripletsThatCanFormTwoArraysOfEqualXor.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountTripletsThatCanFormTwoArraysOfEqualXor.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1442" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountTripletsThatCanFormTwoArraysOfEqualXor.java" />
+              <option name="titleSlug" value="count-triplets-that-can-form-two-arrays-of-equal-xor" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CountingBits.java">
           <value>
             <LeetcodeEditor>
