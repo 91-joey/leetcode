@@ -1653,6 +1653,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MatrixBlockSum.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MatrixBlockSum.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1314" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MatrixBlockSum.java" />
+              <option name="titleSlug" value="matrix-block-sum" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MatrixDiagonalSum.java">
           <value>
             <LeetcodeEditor>
