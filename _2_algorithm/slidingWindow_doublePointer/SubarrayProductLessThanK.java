@@ -54,6 +54,17 @@ public class SubarrayProductLessThanK {
             }
             return cnt;
         }
+
+        public int numSubarrayProductLessThanK9(int[] nums, int k) {
+            int ans = 0;
+            for (int l = 0, r = 0, product = 1; r < nums.length; ) {
+                product *= nums[r++];
+                while (l < r && product >= k)
+                    product /= nums[l++];
+                ans += r - l;
+            }
+            return ans;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
