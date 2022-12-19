@@ -2335,6 +2335,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfSubmatricesThatSumToTarget.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfSubmatricesThatSumToTarget.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1074" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfSubmatricesThatSumToTarget.java" />
+              <option name="titleSlug" value="number-of-submatrices-that-sum-to-target" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfSubstringsContainingAllThreeCharacters.java">
           <value>
             <LeetcodeEditor>
