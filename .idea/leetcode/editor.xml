@@ -1565,6 +1565,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LongestPalindromicSubsequence.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LongestPalindromicSubsequence.md" />
+              <option name="frontendQuestionId" value="leetcode.cn516" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LongestPalindromicSubsequence.java" />
+              <option name="titleSlug" value="longest-palindromic-subsequence" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LongestPalindromicSubstring.java">
           <value>
             <LeetcodeEditor>
