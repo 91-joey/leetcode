@@ -2434,6 +2434,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PalindromicSubstrings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/PalindromicSubstrings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn647" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/PalindromicSubstrings.java" />
+              <option name="titleSlug" value="palindromic-substrings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ParsingABooleanExpression.java">
           <value>
             <LeetcodeEditor>
