@@ -2555,6 +2555,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RangeAddition.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RangeAddition.md" />
+              <option name="frontendQuestionId" value="leetcode.cn370" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RangeAddition.java" />
+              <option name="titleSlug" value="range-addition" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RangeSumQuery2dImmutable.java">
           <value>
             <LeetcodeEditor>
