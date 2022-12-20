@@ -58,6 +58,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/AssignCookies.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/AssignCookies.md" />
+              <option name="frontendQuestionId" value="leetcode.cn455" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/AssignCookies.java" />
+              <option name="titleSlug" value="assign-cookies" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/AverageSalaryExcludingTheMinimumAndMaximumSalary.java">
           <value>
             <LeetcodeEditor>
