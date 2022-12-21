@@ -124,13 +124,11 @@ public class MaximumScoreFromRemovingStones {
                 int first = pq.poll();
                 int second = pq.poll();
                 if (second == 0)
-                    break;
+                    return ans;
                 ans++;
                 pq.offer(first - 1);
                 pq.offer(second - 1);
             }
-
-            return ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
