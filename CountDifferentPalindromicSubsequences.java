@@ -48,12 +48,48 @@ package org.example.leetcode.problems;
 public class CountDifferentPalindromicSubsequences {
     public static void main(String[] args) {
         Solution solution = new CountDifferentPalindromicSubsequences().new Solution();
+        System.out.println(solution.countPalindromicSubsequences("bcbacbabdcbcbdcbddcaaccdcbbcdbcabbcdddadaadddbdbbbdacbabaabdddcaccccdccdbabcddbdcccabccbbcdbcdbdaada"));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public static final int MOD = 10_0000_0007;
+
         public int countPalindromicSubsequences(String s) {
-            return 0;
+            char[] cs = s.toCharArray();
+            int n = cs.length;
+            int[][] f = new int[n][n];
+
+            for (int i = n - 1; i >= 0; i--) {
+                f[i][i] = 1;
+
+                int[] cnt = new int[4];
+                int[] first = new int[4];
+                int[] last = new int[4];
+
+                for (int j = i + 1; j < n; j++) {
+                    if (j > i + 1) {
+                        int idx = cs[j - 1] - 'a';
+                        cnt[idx]++;
+                        if (first[idx] == 0)
+                            first[idx] = j - 1;
+                        else
+                            last[idx] = j - 1;
+                    }
+
+                    f[i][j] = cs[i] == cs[j] ?
+                            2 * f[i + 1][j - 1] + switch (cnt[cs[i] - 'a']) {
+                                case 0 -> 2;
+                                case 1 -> 1;
+                                default -> -f[first[cs[i] - 'a'] + 1][last[cs[i] - 'a'] - 1];
+                            } :
+                            f[i + 1][j] + f[i][j - 1] - f[i + 1][j - 1];
+
+                    f[i][j] = Math.floorMod(f[i][j], MOD);
+                }
+            }
+
+            return f[0][n - 1];
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
