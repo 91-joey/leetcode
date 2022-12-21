@@ -16,15 +16,12 @@ public class T4 {
         for (int i = 0; i < m; i++) {
             String a = Integer.toBinaryString(queries[i][0]);
             String b = Integer.toBinaryString(queries[i][1]);
-            String s = "";
             int j = 0;
-            while (j < a.length() && j < b.length()) {
-                char c = a.charAt(j);
-                if (c == b.charAt(j++))
-                    s += c;
+            while (j < a.length() && j < b.length())
+                if (a.charAt(j) == b.charAt(j))
+                    j++;
                 else
                     break;
-            }
             ans[i] = a.length() + b.length() - 2 * j + 1;
         }
 
@@ -32,8 +29,8 @@ public class T4 {
     }
 
 
-    //☆☆☆☆☆ 最近公共祖先（自底向上）
-    public int[] cycleLengthQueries(int n, int[][] queries) {
+    //☆☆☆ 最近公共祖先（自底向上）
+    public int[] cycleLengthQueries8(int n, int[][] queries) {
         int m = queries.length;
         int[] ans = new int[m];
 
@@ -49,6 +46,26 @@ public class T4 {
                 cnt++;
             }
             ans[i] = cnt;
+        }
+
+        return ans;
+    }
+
+    //☆☆☆☆☆ 位运算优化
+    public int[] cycleLengthQueries(int n, int[][] queries) {
+        int m = queries.length;
+        int[] ans = new int[m];
+
+        for (int i = 0; i < m; i++) {
+            int a = queries[i][0];
+            int b = queries[i][1];
+            if (a > b) {
+                int tmp = a;
+                a = b;
+                b = tmp;
+            }
+            int d = Integer.numberOfLeadingZeros(a) - Integer.numberOfLeadingZeros(b);
+            ans[i] = d + 2 * (32 - Integer.numberOfLeadingZeros(a ^ (b >> d))) + 1;
         }
 
         return ans;
