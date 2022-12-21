@@ -1961,6 +1961,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumScoreFromRemovingStones.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumScoreFromRemovingStones.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1753" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumScoreFromRemovingStones.java" />
+              <option name="titleSlug" value="maximum-score-from-removing-stones" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumSizeSubarraySumEqualsK.java">
           <value>
             <LeetcodeEditor>
