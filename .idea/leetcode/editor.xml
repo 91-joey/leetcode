@@ -3182,6 +3182,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SortArrayByIncreasingFrequency.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SortArrayByIncreasingFrequency.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1636" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SortArrayByIncreasingFrequency.java" />
+              <option name="titleSlug" value="sort-array-by-increasing-frequency" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SortColors.java">
           <value>
             <LeetcodeEditor>
@@ -3729,6 +3740,17 @@
               <option name="host" value="leetcode.cn" />
               <option name="path" value="$PROJECT_DIR$/WildcardMatching.java" />
               <option name="titleSlug" value="wildcard-matching" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/XltzEq.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/XltzEq.md" />
+              <option name="frontendQuestionId" value="leetcode.cn剑指 Offer II 018" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/XltzEq.java" />
+              <option name="titleSlug" value="XltzEq" />
             </LeetcodeEditor>
           </value>
         </entry>
