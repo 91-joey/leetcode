@@ -26,7 +26,7 @@
 //<p>注意：本题与主站 54 题相同：<a href="https://leetcode-cn.com/problems/spiral-matrix/">https://leetcode-cn.com/problems/spiral-matrix/</a></p>
 //
 //<div><li>👍 479</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.simulation;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 
