@@ -72,7 +72,7 @@ public class MaximizeScoreAfterNOperations {
          * 转移：
          *      由未删除 2 个元素的前状态转移而来：
          *      f[s] = max{f[s ^ (1 << i) ^ (1 << j)] + cnt / 2 * gcd[i][j]}， ((s >> i) & 1) == 1 && ((s >> j) & 1) == 1
-         * T(2^n * m^2)
+         * T(2^n * n^2)
          */
         public int maxScore(int[] nums) {
             int n = nums.length;

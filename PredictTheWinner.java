@@ -52,6 +52,7 @@ public class PredictTheWinner {
             return helper(nums, 0, nums.length - 1) >= 0;
         }
 
+        //当前玩家 在 当前数组区段上 所能获得的与另一个玩家的最大分数差
         private int helper(int[] nums, int l, int r) {
             if (l == r)
                 return nums[l];
