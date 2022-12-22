@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 145</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.sort;
 
 import java.util.ArrayList;
 import java.util.Arrays;
