@@ -2236,6 +2236,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinimumScoreTriangulationOfPolygon.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinimumScoreTriangulationOfPolygon.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1039" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinimumScoreTriangulationOfPolygon.java" />
+              <option name="titleSlug" value="minimum-score-triangulation-of-polygon" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumSizeSubarraySum.java">
           <value>
             <LeetcodeEditor>
