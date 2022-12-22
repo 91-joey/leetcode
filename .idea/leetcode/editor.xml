@@ -1807,6 +1807,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximizeScoreAfterNOperations.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximizeScoreAfterNOperations.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1799" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximizeScoreAfterNOperations.java" />
+              <option name="titleSlug" value="maximize-score-after-n-operations" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumAverageSubarrayI.java">
           <value>
             <LeetcodeEditor>
