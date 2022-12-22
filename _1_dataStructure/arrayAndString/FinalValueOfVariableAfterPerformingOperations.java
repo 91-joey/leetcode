@@ -60,6 +60,8 @@
 //<div><li>👍 22</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
+import java.util.Arrays;
+
 //2011.执行操作后的变量值
 //开题时间：2022-11-06 09:02:13
 public class FinalValueOfVariableAfterPerformingOperations {
@@ -80,11 +82,17 @@ public class FinalValueOfVariableAfterPerformingOperations {
             return var;
         }
 
-        public int finalValueAfterOperations(String[] operations) {
+        public int finalValueAfterOperations3(String[] operations) {
             int var = 0;
             for (String operation : operations)
                 var += 44 - operation.charAt(1);
             return var;
+        }
+
+        public int finalValueAfterOperations(String[] operations) {
+            return Arrays.stream(operations)
+                    .mapToInt(s -> 44 - s.charAt(1))
+                    .sum();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
