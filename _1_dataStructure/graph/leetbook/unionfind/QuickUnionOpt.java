@@ -1,6 +1,6 @@
 package org.example.leetcode.problems._1_dataStructure.graph.leetbook.unionfind;
 
-//按秩合并的「并查集」
+//优化的「QuickUnion并查集」
 public class QuickUnionOpt extends QuickUnion {
     int[] rank;
 
@@ -10,13 +10,15 @@ public class QuickUnionOpt extends QuickUnion {
         rank = new int[size];
     }
 
-    //O(log n)
+    //O(log n)  路径压缩
     @Override
     public int find(int x) {
-        return super.find(x);
+        if (x == root[x])
+            return x;
+        return root[x] = find(root[x]);
     }
 
-    //O(log n)
+    //O(log n)  按秩合并
     @Override
     public void union(int x, int y) {
         int rootX = find(x);
