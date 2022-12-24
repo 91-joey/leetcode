@@ -43,6 +43,8 @@
 package org.example.leetcode.problems;
 
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 
 //547.省份数量
 //开题时间：2022-12-23 17:29:03
@@ -71,7 +73,7 @@ public class NumberOfProvinces {
         }
 
         //☆☆☆ n^2 * log n 并查集（quick union实现 + 计数）
-        public int findCircleNum(int[][] isConnected) {
+        public int findCircleNum8(int[][] isConnected) {
             int n = isConnected.length;
             UnionFind uf = new UnionFind(n);
 
@@ -83,8 +85,49 @@ public class NumberOfProvinces {
             return uf.getCnt();
         }
 
-        //todo DFS
-        //todo BFS
+        //☆☆☆☆☆ n^2 DFS
+        public int findCircleNum7(int[][] isConnected) {
+            int ans = 0;
+            int n = isConnected.length;
+            boolean[] visited = new boolean[n];
+            for (int i = 0; i < n; i++) {
+                if (!visited[i]) {
+                    dfs(isConnected, visited, i);
+                    ans++;
+                }
+            }
+            return ans;
+        }
+
+        private void dfs(int[][] isConnected, boolean[] visited, int i) {
+            for (int j = 0; j < isConnected.length; j++) {
+                if (!visited[j] && isConnected[i][j] == 1) {
+                    visited[j] = true;
+                    dfs(isConnected, visited, j);
+                }
+            }
+        }
+
+        //☆☆☆☆☆ n^2 BFS
+        public int findCircleNum(int[][] isConnected) {
+            int ans = 0;
+            int n = isConnected.length;
+            boolean[] visited = new boolean[n];
+            Queue<Integer> q = new LinkedList<>();
+            for (int i = 0; i < n; i++)
+                if (!visited[i]) {
+                    q.offer(i);
+                    while (!q.isEmpty()) {
+                        int poll = q.poll();
+                        visited[poll] = true;
+                        for (int j = 0; j < n; j++)
+                            if (!visited[j] && isConnected[poll][j] == 1)
+                                q.offer(j);
+                    }
+                    ans++;
+                }
+            return ans;
+        }
 
         class UnionFind {
             int[] root;
