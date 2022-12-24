@@ -44,10 +44,7 @@ package org.example.leetcode.problems;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 //797.所有可能的路径
 //开题时间：2022-12-24 14:04:46
@@ -83,7 +80,7 @@ public class AllPathsFromSourceToTarget {
         Deque<Integer> stack = new LinkedList<>();
 
         //☆☆☆☆☆ DFS + 回溯
-        public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+        public List<List<Integer>> allPathsSourceTarget8(int[][] graph) {
             dfs(graph, 0);
             return ans;
         }
@@ -98,6 +95,27 @@ public class AllPathsFromSourceToTarget {
                     //回溯
                     stack.pollLast();
                 }
+        }
+
+        //BFS
+        public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+            List<List<Integer>> ans = new ArrayList<>();
+            ArrayList<Integer> list = new ArrayList<>();
+            list.add(0);
+            Queue<List<Integer>> q = new LinkedList<>();
+            q.offer(list);
+            while (!q.isEmpty()) {
+                List<Integer> poll = q.poll();
+                for (int i : graph[poll.get(poll.size() - 1)]) {
+                    ArrayList<Integer> copy = new ArrayList<>(poll);
+                    copy.add(i);
+                    if (i == graph.length - 1)
+                        ans.add(copy);
+                    else
+                        q.offer(copy);
+                }
+            }
+            return ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
