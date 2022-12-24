@@ -287,7 +287,10 @@ public class Tools {
 
     public static int[] toIntArray(String s) {
         String strip = s.strip();
-        return Arrays.stream(strip.substring(1, strip.length() - 1).split(",")).map(String::strip).mapToInt(Integer::parseInt).toArray();
+        String substring = strip.substring(1, strip.length() - 1);
+        if (substring.isEmpty())
+            return new int[]{};
+        return Arrays.stream(substring.split(",")).map(String::strip).mapToInt(Integer::parseInt).toArray();
     }
 
     public static int[][] to2DIntArray(String s) {
