@@ -1444,6 +1444,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/LargestMergeOfTwoStrings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/LargestMergeOfTwoStrings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1754" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/LargestMergeOfTwoStrings.java" />
+              <option name="titleSlug" value="largest-merge-of-two-strings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/LargestPerimeterTriangle.java">
           <value>
             <LeetcodeEditor>
