@@ -2148,6 +2148,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinCostToConnectAllPoints.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinCostToConnectAllPoints.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1584" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinCostToConnectAllPoints.java" />
+              <option name="titleSlug" value="min-cost-to-connect-all-points" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumAbsoluteDifference.java">
           <value>
             <LeetcodeEditor>

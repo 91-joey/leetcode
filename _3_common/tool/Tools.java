@@ -353,4 +353,16 @@ public class Tools {
         Class<?> clazz = Class.forName(m[0]);
         Object o = clazz.getDeclaredConstructors()[0].newInstance();
     }
+
+    public static int manhattan(int x0, int y0, int x1, int y1) {
+        return Math.abs(x0 - x1) + Math.abs(y0 - y1);
+    }
+
+    public static int manhattan(int[] p0, int[] p1) {
+        return manhattan(p0[0], p0[1], p1[0], p1[1]);
+    }
+
+    public static int manhattan(int[][] points, int i, int j) {
+        return manhattan(points[i], points[j]);
+    }
 }
