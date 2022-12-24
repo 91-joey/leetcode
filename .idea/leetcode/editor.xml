@@ -2148,6 +2148,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinCostClimbingStairs.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinCostClimbingStairs.md" />
+              <option name="frontendQuestionId" value="leetcode.cn746" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinCostClimbingStairs.java" />
+              <option name="titleSlug" value="min-cost-climbing-stairs" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinCostToConnectAllPoints.java">
           <value>
             <LeetcodeEditor>
