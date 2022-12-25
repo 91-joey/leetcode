@@ -256,6 +256,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BuildingBoxes.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BuildingBoxes.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1739" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BuildingBoxes.java" />
+              <option name="titleSlug" value="building-boxes" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CanMakeArithmeticProgressionFromSequence.java">
           <value>
             <LeetcodeEditor>
