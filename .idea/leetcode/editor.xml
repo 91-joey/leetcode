@@ -927,6 +927,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindCommonCharacters.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindCommonCharacters.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1002" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindCommonCharacters.java" />
+              <option name="titleSlug" value="find-common-characters" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FindFirstAndLastPositionOfElementInSortedArray.java">
           <value>
             <LeetcodeEditor>
