@@ -50,7 +50,7 @@
 //</ul>
 //
 //<div><li>👍 69</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.greedy;
 
 //1739.放置盒子
 //开题时间：2022-12-25 17:13:54
