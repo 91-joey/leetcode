@@ -2797,6 +2797,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RankTransformOfAnArray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RankTransformOfAnArray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1331" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RankTransformOfAnArray.java" />
+              <option name="titleSlug" value="rank-transform-of-an-array" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RansomNote.java">
           <value>
             <LeetcodeEditor>
