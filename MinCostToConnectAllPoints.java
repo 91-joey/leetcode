@@ -98,8 +98,8 @@ public class MinCostToConnectAllPoints {
             return ans;
         }
 
-        //☆☆☆☆☆ （优化）Kruskal最小生成树 + 并查集 + 优先队列
-        public int minCostConnectPoints(int[][] points) {
+        //☆☆☆☆☆ n^2logn （优化）Kruskal最小生成树 + 并查集 + 优先队列
+        public int minCostConnectPoints8(int[][] points) {
             int n = points.length;
             if (n <= 1)
                 return 0;
@@ -119,6 +119,33 @@ public class MinCostToConnectAllPoints {
                     n--;
                 }
             }
+            return ans;
+        }
+
+        //n^2logn prim + 优先队列
+        public int minCostConnectPoints(int[][] points) {
+            int n = points.length;
+            if (n <= 1)
+                return 0;
+            PriorityQueue<Edge> pq = new PriorityQueue<>(n * (n - 1) / 2, Comparator.comparingInt(edge -> edge.weight));
+            for (int i = 1; i < n; i++)
+                pq.offer(new Edge(0, i, manhattan(points, 0, i)));
+
+            boolean[] vis = new boolean[n];
+            vis[0] = true;
+            int ans = 0;
+            for (int i = 0; i < n - 1; ) {
+                Edge poll = pq.poll();
+                if (!vis[poll.end]) {
+                    vis[poll.end] = true;
+                    ans += poll.weight;
+                    for (int j = 1; j < n; j++)
+                        if (!vis[j])
+                            pq.offer(new Edge(poll.end, j, manhattan(points, poll.end, j)));
+                    i++;
+                }
+            }
+
             return ans;
         }
 
