@@ -2,7 +2,7 @@ package org.example.leetcode.problems._1_dataStructure.graph.leetbook.unionfind;
 
 public abstract class UnionFind {
 
-    int[] root = new int[0];
+    int[] root;
 
     public UnionFind(int size) {
         root = new int[size];
