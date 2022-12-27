@@ -2269,6 +2269,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinimumMovesToConvertString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinimumMovesToConvertString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2027" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinimumMovesToConvertString.java" />
+              <option name="titleSlug" value="minimum-moves-to-convert-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumNumberOfKConsecutiveBitFlips.java">
           <value>
             <LeetcodeEditor>
