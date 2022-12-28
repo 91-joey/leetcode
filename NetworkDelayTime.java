@@ -60,7 +60,7 @@ public class NetworkDelayTime {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int networkDelayTime(int[][] times, int n, int k) {
+        public int networkDelayTimeX(int[][] times, int n, int k) {
             HashMap<Integer, Set<int[]>> v2vs = new HashMap<>();
             for (int[] time : times) {
                 if (v2vs.containsKey(time[0]))
@@ -103,6 +103,151 @@ public class NetworkDelayTime {
             }
             int max = Arrays.stream(mins).skip(1).max().getAsInt();
             return max == Integer.MAX_VALUE ? -1 : max;
+        }
+
+        public static final int INF = 0x3f3f3f3f;
+
+        //「多源汇最短路」算法（Floyd算法）   n^3
+        public int networkDelayTime9(int[][] times, int n, int k) {
+            int[][] graph = new int[n + 1][n + 1];
+            for (int[] ints : graph)
+                Arrays.fill(ints, INF);
+            for (int i = 1; i <= n; i++)
+                graph[i][i] = 0;
+
+            for (int[] time : times)
+                graph[time[0]][time[1]] = time[2];
+
+            floyd(graph, n);
+
+            int max = Arrays.stream(graph[k]).skip(1).max().getAsInt();
+            return max == INF ? -1 : max;
+        }
+
+        //「单源最短路」算法（朴素dijkstra算法）   n^2
+        public int networkDelayTime8(int[][] times, int n, int k) {
+            int[][] graph = new int[n + 1][n + 1];
+            for (int[] ints : graph)
+                Arrays.fill(ints, INF);
+            for (int i = 1; i <= n; i++)
+                graph[i][i] = 0;
+
+            for (int[] time : times)
+                graph[time[0]][time[1]] = time[2];
+
+            int[] dist = new int[n + 1];
+            Arrays.fill(dist, INF);
+            dist[k] = 0;
+            dijkstra(graph, dist, n);
+
+            int max = Arrays.stream(dist).skip(1).max().getAsInt();
+            return max == INF ? -1 : max;
+        }
+
+        public int networkDelayTime(int[][] times, int n, int k) {
+            ArrayLinkedListGraph graph = new ArrayLinkedListGraph(n + 1, Math.min(6010, (n + 1) * n));
+            for (int[] time : times)
+                graph.add(time[0], time[1], time[2]);
+
+            int[] dist = new int[n + 1];
+            Arrays.fill(dist, INF);
+            dist[k] = 0;
+            dijkstra2(graph, dist, n, k);
+
+            int max = Arrays.stream(dist).skip(1).max().getAsInt();
+            return max > INF / 2 ? -1 : max;
+        }
+
+        private void dijkstra2(ArrayLinkedListGraph graph, int[] dist, int n, int k) {
+            boolean[] vis = new boolean[n + 1];
+            PriorityQueue<Edge> pq = new PriorityQueue<>(Comparator.comparingInt(Edge::getWeight));
+            pq.offer(new Edge(k, 0));
+            while (!pq.isEmpty()) {
+                Edge poll = pq.poll();
+                if (vis[poll.end])
+                    continue;
+                vis[poll.end] = true;
+                for (Edge edge : graph.outEdges(poll.end)) {
+                    if (dist[poll.end] + edge.weight < dist[edge.end]) {
+                        dist[edge.end] = dist[poll.end] + edge.weight;
+                        if (!vis[edge.end]) {
+                            edge.weight = dist[edge.end];
+                            pq.offer(edge);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void dijkstra(int[][] graph, int[] dist, int n) {
+            boolean[] vis = new boolean[n + 1];
+            for (int i = 1; i <= n; i++) {
+                int t = -1;
+                for (int j = 1; j <= n; j++)
+                    if (!vis[j] && (t == -1 || dist[j] < dist[t])) t = j;
+                vis[t] = true;
+
+                for (int j = 1; j <= n; j++)
+                    dist[j] = Math.min(dist[j], dist[t] + graph[t][j]);
+            }
+        }
+
+        private void floyd(int[][] graph, int n) {
+            for (int p = 1; p <= n; p++)
+                for (int i = 1; i <= n; i++)
+                    for (int j = 1; j <= n; j++)
+                        graph[i][j] = Math.min(graph[i][j], graph[i][p] + graph[p][j]);
+        }
+    }
+
+    class Edge {
+        int end;
+        int weight;
+
+        public Edge(int end, int weight) {
+            this.end = end;
+            this.weight = weight;
+        }
+
+        public int getWeight() {
+            return weight;
+        }
+    }
+
+    class ArrayLinkedListGraph {
+        //O(m)，m为边数
+        int[] head;//顶点对应链表的头边
+        int[] end;//边的终点
+        int[] weight;//边的权值
+        int[] next;//边的下一个边
+        int idx = 1;//边的索引
+
+
+        public ArrayLinkedListGraph(int size) {
+            this(size, size * (size - 1));
+        }
+
+        public ArrayLinkedListGraph(int size, int edgeSize) {
+            head = new int[size];
+            end = new int[edgeSize];
+            weight = new int[edgeSize];
+            next = new int[edgeSize];
+        }
+
+        //O(1)，链表头插法
+        public void add(int start, int end, int weight) {
+            this.end[idx] = end;
+            this.weight[idx] = weight;
+            next[idx] = head[start];
+            head[start] = idx++;
+        }
+
+        //O(出度)
+        public List<Edge> outEdges(int start) {
+            ArrayList<Edge> list = new ArrayList<>();
+            for (int i = head[start]; i != 0; i = next[i])
+                list.add(new Edge(end[i], weight[i]));
+            return list;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)

@@ -10,12 +10,15 @@ public class ArrayLinkedListGraph extends Graph {
     int[] end;//边的终点
     int[] weight;//边的权值
     int[] next;//边的下一个边
-    int idx = 0;//边的索引
+    int idx = 1;//边的索引
 
     public ArrayLinkedListGraph(int size) {
+        this(size, size * (size - 1));
+    }
+
+    public ArrayLinkedListGraph(int size, int edgeSize) {
         super(size);
         head = new int[size];
-        int edgeSize = size * (size - 1);
         end = new int[edgeSize];
         weight = new int[edgeSize];
         next = new int[edgeSize];
