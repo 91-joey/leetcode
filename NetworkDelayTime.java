@@ -144,6 +144,7 @@ public class NetworkDelayTime {
             return max == INF ? -1 : max;
         }
 
+        //「单源最短路」算法（优先队列 + Dijkstra + 链式前向星存图法）   mlogn+n
         public int networkDelayTime(int[][] times, int n, int k) {
             ArrayLinkedListGraph graph = new ArrayLinkedListGraph(n + 1, Math.min(6010, (n + 1) * n));
             for (int[] time : times)

@@ -68,7 +68,7 @@ public class FinalPricesWithASpecialDiscountInAShop {
             return prices;
         }
 
-        //☆☆☆☆☆ 单调栈（正序遍历、存索引）
+        //☆☆☆☆☆ 单调递增栈（正序遍历、存索引）
         public int[] finalPrices8(int[] prices) {
             Deque<Integer> stack = new LinkedList<>();
             for (int i = 0; i < prices.length; i++) {
@@ -79,7 +79,7 @@ public class FinalPricesWithASpecialDiscountInAShop {
             return prices;
         }
 
-        //☆☆☆☆ 单调栈（倒序遍历、存值）
+        //☆☆☆☆ 单调递减栈（倒序遍历、存值）
         public int[] finalPrices(int[] prices) {
             Deque<Integer> stack = new LinkedList<>();
             for (int i = prices.length - 1; i >= 0; i--) {
