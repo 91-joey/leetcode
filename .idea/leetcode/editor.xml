@@ -2280,6 +2280,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinimumLengthOfStringAfterDeletingSimilarEnds.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinimumLengthOfStringAfterDeletingSimilarEnds.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1750" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinimumLengthOfStringAfterDeletingSimilarEnds.java" />
+              <option name="titleSlug" value="minimum-length-of-string-after-deleting-similar-ends" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumLimitOfBallsInABag.java">
           <value>
             <LeetcodeEditor>
