@@ -145,7 +145,7 @@ public class NetworkDelayTime {
         }
 
         //「单源最短路」算法（优先队列 + Dijkstra + 链式前向星存图法）   mlogn+n
-        public int networkDelayTime(int[][] times, int n, int k) {
+        public int networkDelayTime7(int[][] times, int n, int k) {
             ArrayLinkedListGraph graph = new ArrayLinkedListGraph(n + 1, Math.min(6010, (n + 1) * n));
             for (int[] time : times)
                 graph.add(time[0], time[1], time[2]);
@@ -159,17 +159,118 @@ public class NetworkDelayTime {
             return max > INF / 2 ? -1 : max;
         }
 
+        //「单源最短路」算法（Bellman Ford + 邻接矩阵存图法）   n*m
+        public int networkDelayTime_bellman(int[][] times, int n, int k) {
+            int[][] graph = new int[n + 1][n + 1];
+            for (int[] ints : graph)
+                Arrays.fill(ints, INF);
+            for (int i = 1; i <= n; i++)
+                graph[i][i] = 0;
+            for (int[] time : times)
+                graph[time[0]][time[1]] = time[2];
+
+            /*
+            int[][] f = new int[n][n + 1];
+            for (int[] ints : f)
+                Arrays.fill(ints, INF);
+            f[0][k] = 0;
+
+            for (int i = 1; i < n; i++)
+                for (int j = 1; j < n + 1; j++)
+                    for (int p = 1; p < n + 1; p++)
+                        f[i][j] = Math.min(f[i][j], f[i - 1][p] + graph[p][j]);
+
+            int max = Arrays.stream(f[n - 1]).skip(1).max().getAsInt();
+            */
+
+            //region 动态规划之滚动数组
+            int[] f = new int[n + 1];
+            Arrays.fill(f, INF);
+            f[k] = 0;
+
+            for (int i = 1; i < n; i++)
+                for (int j = 1; j < n + 1; j++)
+                    for (int p = 1; p < n + 1; p++)
+                        f[j] = Math.min(f[j], f[p] + graph[p][j]);
+
+            int max = Arrays.stream(f).skip(1).max().getAsInt();
+            //endregion
+
+            return max > INF / 2 ? -1 : max;
+        }
+
+
+        //「单源最短路」算法（Bellman Ford + 枚举边）   n*m
+        public int networkDelayTime_bellman2(int[][] times, int n, int k) {
+            int[] f = new int[n + 1];
+            Arrays.fill(f, INF);
+            f[k] = 0;
+
+            // 迭代 n 次
+            for (int i = 1; i < n; i++)
+                //枚举边
+                for (int[] time : times) {
+                    int start = time[0], end = time[1], weight = time[2];
+                    f[end] = Math.min(f[end], f[start] + weight);
+                }
+
+            int max = Arrays.stream(f).skip(1).max().getAsInt();
+            return max > INF / 2 ? -1 : max;
+        }
+
+        //SPFA(Shortest Path Faster Algorithm) 算法（基于「队列」优化的 Bellman-Ford 算法）    通常情况下复杂度为 O(k∗m)，k 一般为 4 到 5，最坏情况下仍为 O(n∗m)
+        public int networkDelayTime(int[][] times, int n, int k) {
+            int[][] graph = new int[n + 1][n + 1];
+            for (int[] ints : graph)
+                Arrays.fill(ints, INF);
+            for (int i = 1; i <= n; i++)
+                graph[i][i] = 0;
+            for (int[] time : times)
+                graph[time[0]][time[1]] = time[2];
+
+            int[] f = new int[n + 1];
+            Arrays.fill(f, INF);
+            f[k] = 0;
+
+            //通过「队列」来维护我们接下来要遍历边的起点
+            Queue<Integer> q = new LinkedList<>();
+            q.offer(k);
+            boolean[] isInQueue = new boolean[n + 1];
+            isInQueue[k] = true;
+
+            while (!q.isEmpty()) {
+                int mid = q.poll();
+                isInQueue[mid] = false;
+                for (int i = 1; i < n + 1; i++) {
+                    if (f[mid] + graph[mid][i] < f[i]) {
+                        f[i] = f[mid] + graph[mid][i];
+                        //当某个顶点的最短距离更新之后，并且该顶点不在「队列」中，我们就将该顶点加入到「队列」中
+                        if (!isInQueue[i]) {
+                            isInQueue[i] = true;
+                            q.offer(i);
+                        }
+                    }
+                }
+            }
+
+            int max = Arrays.stream(f).skip(1).max().getAsInt();
+            return max > INF / 2 ? -1 : max;
+        }
+
         private void dijkstra2(ArrayLinkedListGraph graph, int[] dist, int n, int k) {
             boolean[] vis = new boolean[n + 1];
             PriorityQueue<Edge> pq = new PriorityQueue<>(Comparator.comparingInt(Edge::getWeight));
             pq.offer(new Edge(k, 0));
             while (!pq.isEmpty()) {
+                //每次取未访问且距离最短的终点作为中转点
                 Edge poll = pq.poll();
                 if (vis[poll.end])
                     continue;
                 vis[poll.end] = true;
+                //枚举出边
                 for (Edge edge : graph.outEdges(poll.end)) {
                     if (dist[poll.end] + edge.weight < dist[edge.end]) {
+                        //更新最短距离
                         dist[edge.end] = dist[poll.end] + edge.weight;
                         if (!vis[edge.end]) {
                             edge.weight = dist[edge.end];
@@ -182,12 +283,15 @@ public class NetworkDelayTime {
 
         private void dijkstra(int[][] graph, int[] dist, int n) {
             boolean[] vis = new boolean[n + 1];
+            //循环 n 次
             for (int i = 1; i <= n; i++) {
                 int t = -1;
+                //每次取未访问且距离最短的终点作为中转点
                 for (int j = 1; j <= n; j++)
                     if (!vis[j] && (t == -1 || dist[j] < dist[t])) t = j;
                 vis[t] = true;
 
+                //更新最短距离
                 for (int j = 1; j <= n; j++)
                     dist[j] = Math.min(dist[j], dist[t] + graph[t][j]);
             }
