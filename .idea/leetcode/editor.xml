@@ -3776,6 +3776,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/TwoOutOfThree.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/TwoOutOfThree.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2032" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/TwoOutOfThree.java" />
+              <option name="titleSlug" value="two-out-of-three" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/TwoSum.java">
           <value>
             <LeetcodeEditor>
