@@ -300,6 +300,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheapestFlightsWithinKStops.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheapestFlightsWithinKStops.md" />
+              <option name="frontendQuestionId" value="leetcode.cn787" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheapestFlightsWithinKStops.java" />
+              <option name="titleSlug" value="cheapest-flights-within-k-stops" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfArrayIsSortedAndRotated.java">
           <value>
             <LeetcodeEditor>
