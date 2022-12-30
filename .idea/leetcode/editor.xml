@@ -916,6 +916,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ExamRoom.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ExamRoom.md" />
+              <option name="frontendQuestionId" value="leetcode.cn855" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ExamRoom.java" />
+              <option name="titleSlug" value="exam-room" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ExpressiveWords.java">
           <value>
             <LeetcodeEditor>
