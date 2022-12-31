@@ -163,12 +163,12 @@ public class ExamRoom {
     }
 
 
-    class ExamRoom {
+    class ExamRoom2 {
         TreeSet<Integer> set = new TreeSet<>();
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.<int[]>comparingInt(arr -> (arr[0] - arr[1]) / 2).thenComparingInt(arr -> arr[0]));
         int n;
 
-        public ExamRoom(int n) {
+        public ExamRoom2(int n) {
             this.n = n;
         }
 
