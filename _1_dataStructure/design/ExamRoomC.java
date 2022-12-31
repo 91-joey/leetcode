@@ -31,7 +31,7 @@
 //</ol>
 //
 //<div><li>👍 176</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._1_dataStructure.design;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -40,8 +40,23 @@ import java.util.TreeSet;
 
 //855.考场就座
 //开题时间：2022-12-30 13:07:01
-public class ExamRoom {
+public class ExamRoomC {
     public static void main(String[] args) {
+        ExamRoom e = new ExamRoom(10);
+//        System.out.println(e.seat());
+//        System.out.println(e.seat());
+//        System.out.println(e.seat());
+//        System.out.println(e.seat());
+//        e.leave(4);
+//        System.out.println(e.seat());
+
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        System.out.println(e.seat());
+        e.leave(0);
+        e.leave(4);
+        System.out.println(e.seat());
+        System.out.println(e.seat());
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -130,6 +145,13 @@ public class ExamRoom {
         }
     }
 
+    /*
+     * 有序集合
+     * 时间复杂度：
+     *      seat() : O(n)
+     *      leave(): O(logn)
+     * 空间复杂度：O(n)
+     */
     class ExamRoom9 {
         TreeSet<Integer> set = new TreeSet<>();
         int n;
@@ -163,27 +185,38 @@ public class ExamRoom {
     }
 
 
-    class ExamRoom2 {
+    /*
+     * ☆☆☆☆☆ 有序集合 + 优先队列 + 延迟删除
+     * 时间复杂度：
+     *      seat() : O(logn)
+     *      leave(): O(logn)
+     * 空间复杂度：O(n)
+     */
+    static class ExamRoom {
         TreeSet<Integer> set = new TreeSet<>();
         PriorityQueue<int[]> pq = new PriorityQueue<>(Comparator.<int[]>comparingInt(arr -> (arr[0] - arr[1]) / 2).thenComparingInt(arr -> arr[0]));
         int n;
 
-        public ExamRoom2(int n) {
+        public ExamRoom(int n) {
             this.n = n;
         }
 
         public int seat() {
             int size = set.size();
+            //考场无人
             if (size == 0) {
                 set.add(0);
                 return 0;
             }
             int first = set.first();
             int last = n - 1 - set.last();
+            //考场 2 人及以上，学生可以坐在0号、n-1号、或者两个学生之间
             while (size >= 2) {
                 int[] poll = pq.poll();
+                //判断区间是否已删除
                 if (!set.contains(poll[0]) || !set.contains(poll[1]) || set.higher(poll[0]) != poll[1]) continue;
                 int dist = (poll[1] - poll[0]) / 2;
+                //学生坐在0号、n-1号时更优
                 if (dist <= first || dist < last) {
                     pq.offer(poll);
                     break;
@@ -192,6 +225,7 @@ public class ExamRoom {
                 set.add(seat);
                 pq.offer(new int[]{poll[0], seat});
                 pq.offer(new int[]{seat, poll[1]});
+                return seat;
             }
             int l = 0, r = first, seat = l;
             if (first < last) {
@@ -205,6 +239,7 @@ public class ExamRoom {
         }
 
         public void leave(int p) {
+            //延迟删除
             if (p != set.first() && p != set.last())
                 pq.add(new int[]{set.lower(p), set.higher(p)});
             set.remove(p);
