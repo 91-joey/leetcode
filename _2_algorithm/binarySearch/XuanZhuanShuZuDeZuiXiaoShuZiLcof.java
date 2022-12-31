@@ -34,7 +34,7 @@
 //<p>注意：本题与主站 154 题相同：<a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/">https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/</a></p>
 //
 //<div><li>👍 734</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 //剑指 Offer 11.旋转数组的最小数字
 //开题时间：2022-12-30 09:31:36
@@ -47,13 +47,16 @@ public class XuanZhuanShuZuDeZuiXiaoShuZiLcof {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         public int minArray(int[] numbers) {
-            int l = 0, r = numbers.length - 1, lst = numbers[r];
+            int l = 0, r = numbers.length - 1;
             while (l < r) {
-                int mid = ((r - l + 1) >> 1) + l;
-                if (numbers[mid - 1] < numbers[mid] && numbers[mid] <= lst)
-                    r = mid - 1;
+                int mid = ((r - l) >> 1) + l;
+                if (numbers[mid] < numbers[r])
+                    r = mid;
+                else if (numbers[mid] > numbers[r])
+                    l = mid + 1;
+                //无法二分，转为线性
                 else
-                    l = mid;
+                    r--;
             }
             return numbers[r];
         }
