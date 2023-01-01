@@ -5,5 +5,13 @@ public class T1 {
 
     }
 
-    
+    public int countDigits(int num) {
+        int cnt = 0;
+        for (int i = num; i != 0; i /= 10) {
+            int digit = i % 10;
+            if (num % digit == 0)
+                cnt++;
+        }
+        return cnt;
+    }
 }

@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 733</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._1_dataStructure.graph;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 

@@ -20,6 +20,7 @@ public class Tools {
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
     public static final int MOD = 10_0000_0007;
     public static final int INF = 0x3f3f3f3f;
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
 
     public static void main(String[] args) {
     }
