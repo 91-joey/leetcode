@@ -11,22 +11,22 @@ public class T4 {
 
     public static int[] closestPrimes(int left, int right) {
         ArrayList<Integer> list = new ArrayList<>();
-        for (int i = Math.max(left, 2); i <= right; i++) {
+        for (int i = Math.max(left, 2); i <= right; i++)
             if (isPrime(i))
                 list.add(i);
-        }
 
-        if (list.size() < 2)
-            return new int[]{-1, -1};
         int min = Integer.MAX_VALUE;
         int[] ans = {-1, -1};
+        int pre = 0;
+        if (!list.isEmpty())
+            pre = list.get(0);
         for (int i = 1; i < list.size(); i++) {
             int cur = list.get(i);
-            int pre = list.get(i - 1);
             if (cur - pre < min) {
                 min = cur - pre;
                 ans = new int[]{pre, cur};
             }
+            pre = cur;
         }
         return ans;
     }
