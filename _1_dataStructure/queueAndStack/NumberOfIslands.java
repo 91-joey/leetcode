@@ -44,7 +44,10 @@
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>广度优先搜索</li><li>并查集</li><li>数组</li><li>矩阵</li></div></div><br><div><li>👍 1851</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
 
 //200.岛屿数量
 //开题时间：2022-08-15 18:12:27
@@ -165,6 +168,99 @@ public class NumberOfIslands {
                 }
             }
 
+            return cnt;
+        }
+
+        public static final int[] DIRS = {1, 0, -1, 0, 1};
+
+        //☆☆☆☆☆ DFS
+        public int numIslands9(char[][] grid) {
+            int ans = 0;
+            int m = grid.length;
+            int n = grid[0].length;
+            for (int i = 0; i < m; i++)
+                for (int j = 0; j < n; j++)
+                    if (grid[i][j] == '1') {
+                        ans++;
+                        dfs(grid, i, j);
+                    }
+            return ans;
+        }
+
+        private void dfs(char[][] grid, int i, int j) {
+            grid[i][j] = '0';
+            for (int k = 0; k < 4; k++) {
+                int newI = i + DIRS[k];
+                int newJ = j + DIRS[k + 1];
+                if (0 <= newI && newI < grid.length && 0 <= newJ && newJ < grid[0].length &&
+                        grid[newI][newJ] == '1')
+                    dfs(grid, newI, newJ);
+            }
+        }
+
+        //并查集   O(MN×α(MN))
+        public int numIslands8(char[][] grid) {
+            UnionFind uf = new UnionFind(grid);
+            int m = grid.length;
+            int n = grid[0].length;
+            for (int i = 0; i < m; i++)
+                for (int j = 0; j < n; j++)
+                    if (grid[i][j] == '1') {
+                        grid[i][j] = '0';
+                        for (int k = 0; k < 4; k++) {
+                            int newI = i + DIRS[k];
+                            int newJ = j + DIRS[k + 1];
+                            if (0 <= newI && newI < grid.length && 0 <= newJ && newJ < grid[0].length &&
+                                    grid[newI][newJ] == '1')
+                                uf.union(i * n + j, newI * n + newJ);
+                        }
+                    }
+            return uf.getCnt();
+        }
+    }
+
+    class UnionFind {
+        int[] root;
+        int[] rank;
+        int cnt = 0;
+
+        UnionFind(char[][] grid) {
+            int m = grid.length;
+            int n = grid[0].length;
+            root = new int[m * n];
+            rank = new int[m * n];
+            for (int i = 0; i < m; i++)
+                for (int j = 0; j < n; j++)
+                    if (grid[i][j] == '1') {
+                        cnt++;
+                        int idx = i * n + j;
+                        root[idx] = idx;
+                    }
+        }
+
+        int find(int x) {
+            if (x == root[x])
+                return x;
+            return root[x] = find(root[x]);
+        }
+
+        void union(int x, int y) {
+            int rootX = find(x);
+            int rootY = find(y);
+            if (rootX != rootY) {
+                if (rank[rootX] > rank[rootY]) {
+                    root[rootY] = rootX;
+                } else if (rank[rootX] < rank[rootY]) {
+                    root[rootX] = rootY;
+                } else {
+                    root[rootY] = rootX;
+                    rank[rootX]++;
+                }
+                cnt--;
+            }
+        }
+
+        int getCnt() {
             return cnt;
         }
     }
