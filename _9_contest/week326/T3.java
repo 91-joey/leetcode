@@ -1,5 +1,6 @@
 package org.example.leetcode.problems._9_contest.week326;
 
+//6196. Partition String Into Substrings With Values at Most K
 public class T3 {
     public static void main(String[] args) {
 //        System.out.println(minimumPartition("165462", 60));
@@ -8,7 +9,24 @@ public class T3 {
 //        System.out.println(minimumPartition("128288", 16));
     }
 
+    //☆☆☆☆☆ 贪心 + 模拟
     public static int minimumPartition(String s, int k) {
+        int ans = 1;
+        long sum = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int digit = s.charAt(i) - '0';
+            if (digit > k)
+                return -1;
+            sum = sum * 10 + digit;
+            if (sum > k) {
+                ans++;
+                sum = digit;
+            }
+        }
+        return ans;
+    }
+
+    public static int minimumPartitionX(String s, int k) {
 //        char[] cs = s.toCharArray();
         int[] arr = s.chars().map(x -> x - '0').toArray();
         for (int x : arr)
