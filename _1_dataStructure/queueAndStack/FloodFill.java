@@ -143,6 +143,54 @@ public class FloodFill {
             return image;
         }
 
+
+        public static final int[] DIRS = {1, 0, -1, 0, 1};
+
+        //☆☆☆☆ BFS
+        public int[][] floodFill9(int[][] image, int sr, int sc, int color) {
+            if (image[sr][sc] == color)
+                return image;
+            int m = image.length;
+            int n = image[0].length;
+            Queue<int[]> q = new LinkedList<>();
+            q.offer(new int[]{sr, sc});
+            int t = image[sr][sc];
+
+            while (!q.isEmpty()) {
+                int[] poll = q.poll();
+                int r = poll[0];
+                int c = poll[1];
+                image[r][c] = color;
+                for (int i = 0; i < 4; i++) {
+                    int rNew = r + DIRS[i];
+                    int cNew = c + DIRS[i + 1];
+                    if (0 <= rNew && rNew < m && 0 <= cNew && cNew < n &&
+                            image[rNew][cNew] == t)
+                        q.offer(new int[]{rNew, cNew});
+                }
+            }
+
+            return image;
+        }
+
+        //☆☆☆☆☆ DFS
+        public int[][] floodFill8(int[][] image, int sr, int sc, int color) {
+            int t = image[sr][sc];
+            if (t != color)
+                dfs(image, sr, sc, color, t);
+            return image;
+        }
+
+        private void dfs(int[][] image, int r, int c, int color, int t) {
+            image[r][c] = color;
+            for (int i = 0; i < 4; i++) {
+                int rNew = r + DIRS[i];
+                int cNew = c + DIRS[i + 1];
+                if (0 <= rNew && rNew < image.length && 0 <= cNew && cNew < image[0].length &&
+                        image[rNew][cNew] == t)
+                    dfs(image, rNew, cNew, color, t);
+            }
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
