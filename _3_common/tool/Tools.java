@@ -367,4 +367,14 @@ public class Tools {
     public static int manhattan(int[][] points, int i, int j) {
         return manhattan(points[i], points[j]);
     }
+
+    public void dfs(char[][] arr, int r, int c) {
+        for (int i = 0; i < 4; i++) {
+            int rNew = r + DIRS[i];
+            int cNew = c + DIRS[i + 1];
+            if (0 <= rNew && rNew < arr.length && 0 <= cNew && cNew < arr[0].length &&
+                    arr[rNew][cNew] == '1')
+                dfs(arr, rNew, cNew);
+        }
+    }
 }
