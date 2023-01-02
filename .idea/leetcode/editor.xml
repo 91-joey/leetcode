@@ -2632,6 +2632,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfClosedIslands.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfClosedIslands.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1254" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfClosedIslands.java" />
+              <option name="titleSlug" value="number-of-closed-islands" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfDifferentIntegersInAString.java">
           <value>
             <LeetcodeEditor>
