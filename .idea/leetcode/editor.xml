@@ -520,6 +520,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ConvertANumberToHexadecimal.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ConvertANumberToHexadecimal.md" />
+              <option name="frontendQuestionId" value="leetcode.cn405" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ConvertANumberToHexadecimal.java" />
+              <option name="titleSlug" value="convert-a-number-to-hexadecimal" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ConvertBinaryNumberInALinkedListToInteger.java">
           <value>
             <LeetcodeEditor>
