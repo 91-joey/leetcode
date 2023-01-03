@@ -355,6 +355,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckIfNumbersAreAscendingInASentence.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckIfNumbersAreAscendingInASentence.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2042" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckIfNumbersAreAscendingInASentence.java" />
+              <option name="titleSlug" value="check-if-numbers-are-ascending-in-a-sentence" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfOneStringSwapCanMakeStringsEqual.java">
           <value>
             <LeetcodeEditor>
