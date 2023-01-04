@@ -2269,6 +2269,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumValueAtAGivenIndexInABoundedArray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumValueAtAGivenIndexInABoundedArray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1802" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumValueAtAGivenIndexInABoundedArray.java" />
+              <option name="titleSlug" value="maximum-value-at-a-given-index-in-a-bounded-array" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MedianOfTwoSortedArrays.java">
           <value>
             <LeetcodeEditor>
