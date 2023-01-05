@@ -3292,6 +3292,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ReverseBits.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReverseBits.md" />
+              <option name="frontendQuestionId" value="leetcode.cn190" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReverseBits.java" />
+              <option name="titleSlug" value="reverse-bits" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ReverseLinkedList.java">
           <value>
             <LeetcodeEditor>
