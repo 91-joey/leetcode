@@ -3457,6 +3457,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ShortestPathInBinaryMatrix.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ShortestPathInBinaryMatrix.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1091" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ShortestPathInBinaryMatrix.java" />
+              <option name="titleSlug" value="shortest-path-in-binary-matrix" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ShortestPathToGetAllKeys.java">
           <value>
             <LeetcodeEditor>
