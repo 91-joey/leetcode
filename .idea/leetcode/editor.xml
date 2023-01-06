@@ -2676,6 +2676,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NearestExitFromEntranceInMaze.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NearestExitFromEntranceInMaze.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1926" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NearestExitFromEntranceInMaze.java" />
+              <option name="titleSlug" value="nearest-exit-from-entrance-in-maze" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NetworkDelayTime.java">
           <value>
             <LeetcodeEditor>

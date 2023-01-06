@@ -22,6 +22,8 @@ public class Tools {
     public static final int INF = 0x3f3f3f3f;
     public static final int[] DIRS = {1, 0, -1, 0, 1};
     public static final int[] DIRS8 = {1, 0, -1, 0, 1, 1, -1, -1, 1};
+    public static final char EMPTY = '.';
+    public static final char WALL = '+';
 
     public static void main(String[] args) {
     }
@@ -377,5 +379,43 @@ public class Tools {
                     arr[rNew][cNew] == '1')
                 dfs(arr, rNew, cNew);
         }
+    }
+
+    private static boolean isOnBorder(int r, int c, int m, int n) {
+        return 0 == r || r == m - 1 || 0 == c || c == n - 1;
+    }
+
+
+    public static int bfs(int[][] arr, int[] entrance) {
+        int m = arr.length;
+        int n = arr[0].length;
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(entrance);
+        boolean[][] vis = new boolean[m][n];
+        vis[entrance[0]][entrance[1]] = true;
+
+        int step = 1;
+        while (!q.isEmpty()) {
+            for (int i = q.size(); i > 0; i--) {
+                int[] poll = q.poll();
+                int r = poll[0];
+                int c = poll[1];
+
+                for (int j = 0; j < 4; j++) {
+                    int nr = r + DIRS[j];
+                    int nc = c + DIRS[j + 1];
+                    if (0 <= nr && nr < m && 0 <= nc && nc < n &&
+                            !vis[nr][nc]) {
+                        if (arr[nr][nc] == 666)
+                            return step;
+                        vis[nr][nc] = true;
+                        q.offer(new int[]{nr, nc});
+                    }
+                }
+            }
+            step++;
+        }
+
+        return -1;
     }
 }
