@@ -25,7 +25,7 @@
 //</ul>
 //
 //<div><li>👍 649</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.bit;
 
 //371.两整数之和
 //开题时间：2023-01-05 18:35:50
@@ -36,8 +36,27 @@ public class SumOfTwoIntegers {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        public int getSum9(int a, int b) {
+            int sum = 0;
+            for (int i = 0, carry = 0; i < 32; i++) {
+                int x = a & 1;
+                int y = b & 1;
+                sum += (x ^ y ^ carry) << i;
+                carry = ((x & y) == 1 || (x & carry) == 1 || (y & carry) == 1) ? 1 : 0;
+                a >>>= 1;
+                b >>>= 1;
+            }
+            return sum;
+        }
+
+        //☆☆☆☆☆ 位运算：两数之和 = 无进位和 + 进位和
         public int getSum(int a, int b) {
-            return a + b;
+            while (b != 0) {
+                int carry = (a & b) << 1;//进位和
+                a = a ^ b;//无进位和
+                b = carry;
+            }
+            return a;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
