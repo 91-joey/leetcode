@@ -3490,6 +3490,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ShortestBridge.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ShortestBridge.md" />
+              <option name="frontendQuestionId" value="leetcode.cn934" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ShortestBridge.java" />
+              <option name="titleSlug" value="shortest-bridge" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ShortestPathInBinaryMatrix.java">
           <value>
             <LeetcodeEditor>

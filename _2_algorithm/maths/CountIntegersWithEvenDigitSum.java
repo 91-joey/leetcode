@@ -67,7 +67,7 @@ public class CountIntegersWithEvenDigitSum {
         }
 
         public int countEven(int num) {
-            return (num - (Stream.iterate(num / 10, x -> x > 0, x -> x / 10).mapToInt(Integer::intValue).sum() & 1)) / 2;
+            return (num - (Stream.iterate(num / 10, x -> x > 0, x -> x / 10).mapToInt(x -> x % 10).sum() & 1)) / 2;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
