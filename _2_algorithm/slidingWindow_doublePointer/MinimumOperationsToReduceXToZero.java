@@ -40,7 +40,8 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>二分查找</li><li>前缀和</li><li>滑动窗口</li></div></div><br><div><li>👍 124</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
 
 //1658.将 x 减到 0 的最小操作数
 //开题时间：2022-10-03 10:21:20
@@ -236,26 +237,24 @@ public class MinimumOperationsToReduceXToZero {
         public int minOperations7(int[] nums, int x) {
             int length = nums.length;
 
-//            int target = Arrays.stream(nums).sum() - x;
-            int sumNums = 0;
+            int t = -x;
             for (int num : nums)
-                sumNums += num;
-            int target = sumNums - x;
+                t += num;
 
-            if (target < 0) return -1;
-            else if (target == 0) return length;
+            if (t < 0) return -1;
+            else if (t == 0) return length;
 
-            int maxLen = 0;
-            //sum([l,r)) <target
+            int max = -1;
+            //sum([l,r)) <t
             for (int l = 0, r = 0, sum = 0; r < length; ) {
                 sum += nums[r++];
-                while (sum > target)
+                while (sum > t)
                     sum -= nums[l++];
-                if (sum == target)
-                    maxLen = Math.max(maxLen, r - l);
+                if (sum == t)
+                    max = Math.max(max, r - l);
             }
 
-            return maxLen == 0 ? -1 : length - maxLen;
+            return max == -1 ? -1 : length - max;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
