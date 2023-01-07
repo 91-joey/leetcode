@@ -239,6 +239,27 @@ public class KeysAndRooms {
                 }
             }
         }
+
+        //☆☆☆☆☆ bfs + 访问标记
+        public boolean canVisitAllRooms8(List<List<Integer>> rooms) {
+            int n = rooms.size();
+            boolean[] vis = new boolean[n];
+
+            dfs(rooms, vis, 0);
+
+            boolean ans = true;
+            for (boolean b : vis)
+                ans = ans && b;
+            return ans;
+        }
+
+        private void dfs(List<List<Integer>> rooms, boolean[] vis, int i) {
+            vis[i] = true;
+
+            for (int j : rooms.get(i))
+                if (!vis[j])
+                    dfs(rooms, vis, j);
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
