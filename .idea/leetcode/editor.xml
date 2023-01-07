@@ -1488,6 +1488,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/HowManyNumbersAreSmallerThanTheCurrentNumber.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/HowManyNumbersAreSmallerThanTheCurrentNumber.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1365" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/HowManyNumbersAreSmallerThanTheCurrentNumber.java" />
+              <option name="titleSlug" value="how-many-numbers-are-smaller-than-the-current-number" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ImplementQueueUsingStacks.java">
           <value>
             <LeetcodeEditor>
