@@ -2247,6 +2247,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumProductDifferenceBetweenTwoPairs.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumProductDifferenceBetweenTwoPairs.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1913" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumProductDifferenceBetweenTwoPairs.java" />
+              <option name="titleSlug" value="maximum-product-difference-between-two-pairs" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumProductSubarray.java">
           <value>
             <LeetcodeEditor>
