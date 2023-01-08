@@ -784,6 +784,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountingWordsWithAGivenPrefix.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountingWordsWithAGivenPrefix.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2185" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountingWordsWithAGivenPrefix.java" />
+              <option name="titleSlug" value="counting-words-with-a-given-prefix" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CourseScheduleIi.java">
           <value>
             <LeetcodeEditor>
