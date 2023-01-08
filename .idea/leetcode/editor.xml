@@ -2874,6 +2874,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NumberOfOperationsToMakeNetworkConnected.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NumberOfOperationsToMakeNetworkConnected.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1319" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NumberOfOperationsToMakeNetworkConnected.java" />
+              <option name="titleSlug" value="number-of-operations-to-make-network-connected" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NumberOfOrdersInTheBacklog.java">
           <value>
             <LeetcodeEditor>
