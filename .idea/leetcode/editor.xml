@@ -333,6 +333,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckArrayFormationThroughConcatenation.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckArrayFormationThroughConcatenation.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1640" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckArrayFormationThroughConcatenation.java" />
+              <option name="titleSlug" value="check-array-formation-through-concatenation" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfArrayIsSortedAndRotated.java">
           <value>
             <LeetcodeEditor>
