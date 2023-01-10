@@ -3424,6 +3424,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReorderRoutesToMakeAllPathsLeadToTheCityZero.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1466" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReorderRoutesToMakeAllPathsLeadToTheCityZero.java" />
+              <option name="titleSlug" value="reorder-routes-to-make-all-paths-lead-to-the-city-zero" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ReshapeTheMatrix.java">
           <value>
             <LeetcodeEditor>
