@@ -377,6 +377,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckIfNumberHasEqualDigitCountAndDigitValue.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckIfNumberHasEqualDigitCountAndDigitValue.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2283" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckIfNumberHasEqualDigitCountAndDigitValue.java" />
+              <option name="titleSlug" value="check-if-number-has-equal-digit-count-and-digit-value" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfNumberIsASumOfPowersOfThree.java">
           <value>
             <LeetcodeEditor>
