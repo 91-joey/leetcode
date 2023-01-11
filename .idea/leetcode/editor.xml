@@ -1653,6 +1653,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/JumpGameIii.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/JumpGameIii.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1306" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/JumpGameIii.java" />
+              <option name="titleSlug" value="jump-game-iii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/KEmptySlots.java">
           <value>
             <LeetcodeEditor>
