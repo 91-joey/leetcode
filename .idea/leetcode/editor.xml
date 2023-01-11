@@ -4436,6 +4436,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WaterAndJugProblem.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/WaterAndJugProblem.md" />
+              <option name="frontendQuestionId" value="leetcode.cn365" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/WaterAndJugProblem.java" />
+              <option name="titleSlug" value="water-and-jug-problem" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/WildcardMatching.java">
           <value>
             <LeetcodeEditor>
