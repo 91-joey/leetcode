@@ -234,6 +234,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/BitwiseAndOfNumbersRange.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/BitwiseAndOfNumbersRange.md" />
+              <option name="frontendQuestionId" value="leetcode.cn201" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/BitwiseAndOfNumbersRange.java" />
+              <option name="titleSlug" value="bitwise-and-of-numbers-range" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/BoatsToSavePeople.java">
           <value>
             <LeetcodeEditor>
