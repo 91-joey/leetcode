@@ -50,17 +50,13 @@
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数组</li><li>哈希表</li><li>字符串</li></div></div><br><div><li>👍 526</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
 
 //752.打开转盘锁
 //开题时间：2022-08-16 11:42:37
 public class OpenTheLock {
     public static void main(String[] args) {
-//        Solution solution = new OpenTheLock().new Solution();
-        Solution2 solution = new OpenTheLock().new Solution2();
+        Solution solution = new OpenTheLock().new Solution();
         solution.openLock(new String[]{"0201", "0101", "0102", "1212", "2002"}, "0202");
     }
 
@@ -78,7 +74,7 @@ public class OpenTheLock {
                 {0, 0, 0, -1},
         };
 
-        public int openLock(String[] deadends, String target) {
+        public int openLock9(String[] deadends, String target) {
             int[][][][] steps = new int[10][10][10][10];
             Queue<int[]> queue = new LinkedList<>();
             int[] start = {0, 0, 0, 0};
@@ -129,14 +125,11 @@ public class OpenTheLock {
             }
             return false;
         }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
 
-//    2.官解一（BFS）：①char直接运算 ②Set记录已访问节点、int变量计算步数    r^n*n^2+m*n r^n*n+m
-    class Solution2 {
+        //    2.官解一（BFS）：①char直接运算 ②Set记录已访问节点、int变量计算步数    r^n*n^2+m*n r^n*n+m
         public static final int CANNOT_OPEN_LOCK = -1;
 
-        public int openLock(String[] deadends, String target) {
+        public int openLock8(String[] deadends, String target) {
             int steps = 0;
 
             String start = "0000";
@@ -203,13 +196,108 @@ public class OpenTheLock {
             }
             return false;
         }
-    }
 
-    //    3.官解二：启发式搜索
-    //todo
-    class Solution3 {
+
+        public static final int[] DIRS = {1, -1};
+
+        //朴素bfs（访问数组 + 队列存数字数组）
+        public int openLock7(String[] deadends, String target) {
+            boolean[] vis = new boolean[10000];
+            for (String s : deadends)
+                vis[Integer.parseInt(s)] = true;
+
+            if (vis[0])
+                return -1;
+
+            Queue<int[]> q = new LinkedList<>();
+            q.offer(new int[]{0, 0, 0, 0});
+            vis[0] = true;
+
+            int step = 0;
+            int t = Integer.parseInt(target);
+            while (!q.isEmpty()) {
+                for (int i = q.size(); i > 0; i--) {
+                    int[] poll = q.poll();
+                    if (poll[0] * 1000 + poll[1] * 100 + poll[2] * 10 + poll[3] == t)
+                        return step;
+                    for (int j = 0; j < 4; j++) {
+                        for (int dir : DIRS) {
+                            int rotated = (poll[j] + dir + 10) % 10;
+                            int[] copy = Arrays.copyOf(poll, 4);
+                            copy[j] = rotated;
+                            int newNum = copy[0] * 1000 + copy[1] * 100 + copy[2] * 10 + copy[3];
+                            if (!vis[newNum]) {
+                                vis[newNum] = true;
+                                q.offer(copy);
+                            }
+                        }
+                    }
+                }
+                step++;
+            }
+
+            return -1;
+        }
+
+        //☆☆☆☆☆ 双向bfs（相较于朴素bfs更省空间）
+        public int openLock6(String[] deadends, String target) {
+            HashSet<String> bans = new HashSet<>(Arrays.asList(deadends));
+            String source = "0000";
+            if (bans.contains(source))
+                return -1;
+            if (target.equals(source))
+                return 0;
+
+            Queue<String> q1 = new LinkedList<>(), q2 = new LinkedList<>();
+            Set<String> vis1 = new HashSet<>(), vis2 = new HashSet<>();
+            q1.offer(source);
+            vis1.add(source);
+            q2.offer(target);
+            vis2.add(target);
+            int step1 = 0, step2 = 0;
+            while (!q1.isEmpty() && !q2.isEmpty()) {
+                boolean reachTarget;
+                if (q1.size() <= q2.size()) {
+                    reachTarget = bfs(q1, bans, vis1, vis2);
+                    step1++;
+                } else {
+                    reachTarget = bfs(q2, bans, vis2, vis1);
+                    step2++;
+                }
+                if (reachTarget)
+                    return step1 + step2;
+            }
+
+            return -1;
+        }
+
+        private boolean bfs(Queue<String> q, Set<String> bans, Set<String> cur, Set<String> other) {
+            for (int i = q.size(); i > 0; i--) {
+                String poll = q.poll();
+                for (int j = 0; j < poll.length(); j++) {
+                    for (int k = -1; k <= 1; k++) {
+                        if (k == 0) continue;
+                        char[] cs = poll.toCharArray();
+                        cs[j] = (char) ('0' + (cs[j] - '0' + k + 10) % 10);
+                        String s = new String(cs);
+                        if (!bans.contains(s) && !cur.contains(s))
+                            if (other.contains(s))
+                                return true;
+                            else {
+                                q.offer(s);
+                                cur.add(s);
+                            }
+                    }
+                }
+            }
+            return false;
+        }
+
+        //    3.官解二：启发式搜索
+        //todo
         public int openLock(String[] deadends, String target) {
             return -1;
         }
     }
+//leetcode submit region end(Prohibit modification and deletion)
 }

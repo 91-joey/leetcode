@@ -3072,6 +3072,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/OpenTheLock.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/OpenTheLock.md" />
+              <option name="frontendQuestionId" value="leetcode.cn752" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/OpenTheLock.java" />
+              <option name="titleSlug" value="open-the-lock" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PacificAtlanticWaterFlow.java">
           <value>
             <LeetcodeEditor>
