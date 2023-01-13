@@ -1345,6 +1345,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindTheTownJudge.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindTheTownJudge.md" />
+              <option name="frontendQuestionId" value="leetcode.cn997" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindTheTownJudge.java" />
+              <option name="titleSlug" value="find-the-town-judge" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FindTwoNonOverlappingSubArraysEachWithTargetSum.java">
           <value>
             <LeetcodeEditor>
