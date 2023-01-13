@@ -3380,6 +3380,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RearrangeCharactersToMakeTargetString.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RearrangeCharactersToMakeTargetString.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2287" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RearrangeCharactersToMakeTargetString.java" />
+              <option name="titleSlug" value="rearrange-characters-to-make-target-string" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RecursiveMulitplyLcci.java">
           <value>
             <LeetcodeEditor>
