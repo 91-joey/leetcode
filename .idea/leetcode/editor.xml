@@ -3886,6 +3886,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SingleNumberIii.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SingleNumberIii.md" />
+              <option name="frontendQuestionId" value="leetcode.cn260" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SingleNumberIii.java" />
+              <option name="titleSlug" value="single-number-iii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SingleRowKeyboard.java">
           <value>
             <LeetcodeEditor>
