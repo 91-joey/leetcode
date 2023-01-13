@@ -418,4 +418,56 @@ public class Tools {
 
         return -1;
     }
+
+    public <T> int doubleBfs(T source, T target, int notFound) {
+        if (target.equals(source))
+            return 0;
+
+        Queue<T> q1 = new LinkedList<>(), q2 = new LinkedList<>();
+        Set<T> vis1 = new HashSet<>(), vis2 = new HashSet<>();
+        q1.offer(source);
+        vis1.add(source);
+        q2.offer(target);
+        vis2.add(target);
+        int step1 = 0, step2 = 0;
+        while (!q1.isEmpty() && !q2.isEmpty()) {
+            boolean reachTarget;
+            if (q1.size() <= q2.size()) {
+                reachTarget = bfs(q1, vis1, vis2);
+                step1++;
+            } else {
+                reachTarget = bfs(q2, vis2, vis1);
+                step2++;
+            }
+            if (reachTarget)
+                return step1 + step2;
+        }
+
+        return notFound;
+    }
+
+    public <T> boolean bfs(Queue<T> q, Set<T> cur, Set<T> other) {
+        for (int i = q.size(); i > 0; i--) {
+            T poll = q.poll();
+
+            for (T next : getNexts(poll, cur))
+                if (other.contains(next))
+                    return true;
+                else {
+                    q.offer(next);
+                    cur.add(next);
+                }
+        }
+        return false;
+    }
+
+    private <T> List<T> getNexts(T poll, Set<T> vis) {
+        ArrayList<T> ans = new ArrayList<>();
+
+        T next = null;
+        if (!vis.contains(next))
+            ans.add(next);
+
+        return ans;
+    }
 }

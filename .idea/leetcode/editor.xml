@@ -4568,6 +4568,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/WordLadder.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/WordLadder.md" />
+              <option name="frontendQuestionId" value="leetcode.cn127" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/WordLadder.java" />
+              <option name="titleSlug" value="word-ladder" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/XltzEq.java">
           <value>
             <LeetcodeEditor>
