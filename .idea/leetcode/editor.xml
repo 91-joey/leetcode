@@ -2390,6 +2390,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumStudentsTakingExam.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumStudentsTakingExam.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1349" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumStudentsTakingExam.java" />
+              <option name="titleSlug" value="maximum-students-taking-exam" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumSubarray.java">
           <value>
             <LeetcodeEditor>
