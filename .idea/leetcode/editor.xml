@@ -2170,6 +2170,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximalNetworkRank.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximalNetworkRank.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1615" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximalNetworkRank.java" />
+              <option name="titleSlug" value="maximal-network-rank" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximalSquare.java">
           <value>
             <LeetcodeEditor>
