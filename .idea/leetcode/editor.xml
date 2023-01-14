@@ -3303,6 +3303,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/PossibleBipartition.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/PossibleBipartition.md" />
+              <option name="frontendQuestionId" value="leetcode.cn886" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/PossibleBipartition.java" />
+              <option name="titleSlug" value="possible-bipartition" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/PowerOfTwo.java">
           <value>
             <LeetcodeEditor>
