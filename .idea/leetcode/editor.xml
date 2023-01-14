@@ -1675,6 +1675,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/IsGraphBipartite.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/IsGraphBipartite.md" />
+              <option name="frontendQuestionId" value="leetcode.cn785" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/IsGraphBipartite.java" />
+              <option name="titleSlug" value="is-graph-bipartite" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/IsSubsequence.java">
           <value>
             <LeetcodeEditor>
