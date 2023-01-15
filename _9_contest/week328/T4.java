@@ -5,14 +5,15 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 import java.util.ArrayList;
 import java.util.List;
 
+//6294. Difference Between Maximum and Minimum Price Sum
 public class T4 {
     public static void main(String[] args) {
-        S s = new T4().new S();
+        Solution solution = new T4().new Solution();
 //        System.out.println(s.maxOutput(9, Tools.to2DIntArray("[[1,7],[5,2],[2,3],[6,0],[0,4],[4,7],[7,3],[3,8]]"), new int[]{6, 13, 8, 10, 4, 5, 8, 3, 12}));
-        System.out.println(s.maxOutput(6, Tools.to2DIntArray("[[0,1],[1,2],[1,3],[3,4],[3,5]]"), new int[]{9, 8, 7, 6, 10, 5}));
+        System.out.println(solution.maxOutput(6, Tools.to2DIntArray("[[0,1],[1,2],[1,3],[3,4],[3,5]]"), new int[]{9, 8, 7, 6, 10, 5}));
     }
 
-    class S {
+    class Solution {
         long max = 0;
 
         public long maxOutputX(int n, int[][] edges, int[] price) {
@@ -94,5 +95,7 @@ public class T4 {
                 }
             }
         }
+
+        //todo 树形DP
     }
 }
