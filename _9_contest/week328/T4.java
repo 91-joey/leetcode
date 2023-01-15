@@ -3,6 +3,7 @@ package org.example.leetcode.problems._9_contest.week328;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 //6294. Difference Between Maximum and Minimum Price Sum
@@ -37,7 +38,7 @@ public class T4 {
             }
 
             boolean[] vis = new boolean[n];
-            dfs(graph, vis, idx, price, 0);
+            dfsX(graph, vis, idx, price, 0);
             return max;
         }
 
@@ -48,12 +49,12 @@ public class T4 {
             }
             for (int j : graph[i]) {
                 if (!vis[j]) {
-                    dfs(graph, vis, j, price, sum + price[i]);
+                    dfsXX(graph, vis, j, price, sum + price[i]);
                 }
             }
         }
 
-        public long maxOutput(int n, int[][] edges, int[] price) {
+        public long maxOutputXX(int n, int[][] edges, int[] price) {
             List<Integer>[] graph = new List[n];
             for (int i = 0; i < n; i++) {
                 graph[i] = new ArrayList<>();
@@ -74,11 +75,11 @@ public class T4 {
             }
 
             boolean[] vis = new boolean[n];
-            dfs(graph, vis, idx, price, 0);
+            dfsXX(graph, vis, idx, price, 0);
             return max;
         }
 
-        private void dfs(List<Integer>[] graph, boolean[] vis, int i, int[] price, long sum) {
+        private void dfsXX(List<Integer>[] graph, boolean[] vis, int i, int[] price, long sum) {
 //            if (graph[i].size() == 1) {
             if (!vis[i]) {
                 sum += price[i];
@@ -91,11 +92,55 @@ public class T4 {
 //                return;
             for (int j : graph[i]) {
                 if (!vis[j]) {
-                    dfs(graph, vis, j, price, sum);
+                    dfsXX(graph, vis, j, price, sum);
                 }
             }
         }
 
-        //todo 树形DP
+        List<Integer>[] g;
+        int[] price;
+        long ans;
+
+        /*
+         * 树形DP
+         * 某节点为根节点：
+         *      价值和最大的路径必为此节点到叶节点的价值和
+         *      价值和最小的路径必为此节点的价值
+         * 因此，某节点为根节点的开销 = 此节点到叶节点的价值和 - 某一端点的价值
+         */
+        public long maxOutput(int n, int[][] edges, int[] price) {
+            g = new ArrayList[n];
+            this.price = price;
+            Arrays.setAll(g, idx -> new ArrayList<>());
+            for (int[] edge : edges) {
+                g[edge[0]].add(edge[1]);
+                g[edge[1]].add(edge[0]);
+            }
+            dfs(0, -1);
+            return ans;
+        }
+
+        /**
+         *
+         * @param x 当前遍历的节点
+         * @param fa 父节点
+         * @return 数组{最大路径和（带叶节点），最大路径和（不带叶节点）}
+         */
+        private long[] dfs(int x, int fa) {
+            long p = price[x], max_s1 = p, max_s2 = 0;
+            for (int y : g[x]) {
+                if (y != fa) {
+                    long[] maxes = dfs(y, x);
+                    long s1 = maxes[0], s2 = maxes[1];
+                    //最大开销即最大路径和（去除某一端点），其值为以下两种情况中的较大值：
+                    //1.当前子树的最大路径和（带叶节点）    + 另一子树的最大路径和（不带叶节点）
+                    //2.当前子树的最大路径和（不带叶节点）  + 另一子树的最大路径和（带叶节点）
+                    ans = Math.max(ans, Math.max(max_s1 + s2, max_s2 + s1));
+                    max_s1 = Math.max(max_s1, s1 + p);
+                    max_s2 = Math.max(max_s2, s2 + p);
+                }
+            }
+            return new long[]{max_s1, max_s2};
+        }
     }
 }
