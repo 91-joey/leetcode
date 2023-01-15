@@ -1,13 +1,7 @@
 package org.example.leetcode.problems._9_contest.week328;
 
-import java.util.Arrays;
-
 public class T2 {
     public static void main(String[] args) {
-        System.out.println(Arrays.deepToString(rangeAddQueries(3, new int[][]{
-                {1, 1, 2, 2},
-                {0, 0, 1, 1}
-        })));
     }
 
     public static int[][] rangeAddQueriesX(int n, int[][] queries) {
@@ -29,7 +23,6 @@ public class T2 {
         }
         return arr;
     }
-
 
     public static int[][] rangeAddQueries9(int n, int[][] queries) {
         int[][] diff = new int[n][n + 2];
@@ -53,15 +46,12 @@ public class T2 {
         return arr;
     }
 
-    public static int[][] rangeAddQueries(int n, int[][] queries) {
+    public int[][] rangeAddQueries(int n, int[][] queries) {
         int[][] arr = new int[n][n];
-        for (int[] query : queries) {
-            for (int i = query[0]; i <= query[2]; i++) {
-                for (int j = query[1]; j <= query[3]; j++) {
+        for (int[] query : queries)
+            for (int i = query[0]; i <= query[2]; i++)
+                for (int j = query[1]; j <= query[3]; j++)
                     arr[i][j]++;
-                }
-            }
-        }
         return arr;
     }
 }
