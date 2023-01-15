@@ -2555,6 +2555,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinMaxGame.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinMaxGame.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2293" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinMaxGame.java" />
+              <option name="titleSlug" value="min-max-game" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumAbsoluteDifference.java">
           <value>
             <LeetcodeEditor>
