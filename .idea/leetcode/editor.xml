@@ -3512,6 +3512,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/RectangleOverlap.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/RectangleOverlap.md" />
+              <option name="frontendQuestionId" value="leetcode.cn836" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/RectangleOverlap.java" />
+              <option name="titleSlug" value="rectangle-overlap" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RecursiveMulitplyLcci.java">
           <value>
             <LeetcodeEditor>
