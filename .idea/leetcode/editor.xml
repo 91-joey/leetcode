@@ -3809,6 +3809,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/SentenceSimilarityIii.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/SentenceSimilarityIii.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1813" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/SentenceSimilarityIii.java" />
+              <option name="titleSlug" value="sentence-similarity-iii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/SerializeAndDeserializeBinaryTree.java">
           <value>
             <LeetcodeEditor>
