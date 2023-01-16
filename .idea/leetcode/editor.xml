@@ -14,6 +14,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/AirplaneSeatAssignmentProbability.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/AirplaneSeatAssignmentProbability.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1227" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/AirplaneSeatAssignmentProbability.java" />
+              <option name="titleSlug" value="airplane-seat-assignment-probability" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/AllPathsFromSourceToTarget.java">
           <value>
             <LeetcodeEditor>
