@@ -67,10 +67,10 @@ public class CheckIfItIsAStraightLine {
         public boolean checkStraightLine(int[][] coordinates) {
             int x0 = coordinates[0][0];
             int y0 = coordinates[0][1];
-            int diffY = coordinates[1][1] - y0;
-            int diffX = coordinates[1][0] - x0;
+            int deltaY = coordinates[1][1] - y0;
+            int deltaX = coordinates[1][0] - x0;
             for (int i = 2; i < coordinates.length; i++)
-                if ((coordinates[i][1] - y0) * diffX != (coordinates[i][0] - x0) * diffY)
+                if ((coordinates[i][1] - y0) * deltaX != (coordinates[i][0] - x0) * deltaY)
                     return false;
             return true;
         }

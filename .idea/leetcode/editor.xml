@@ -4678,6 +4678,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ValidSquare.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ValidSquare.md" />
+              <option name="frontendQuestionId" value="leetcode.cn593" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ValidSquare.java" />
+              <option name="titleSlug" value="valid-square" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ValidSudoku.java">
           <value>
             <LeetcodeEditor>
