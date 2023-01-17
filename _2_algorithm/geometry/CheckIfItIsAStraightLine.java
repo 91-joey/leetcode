@@ -62,6 +62,8 @@ public class CheckIfItIsAStraightLine {
         }
 
         //乘法代替除法，即从 (yi-y0)/(xi-x0)=?diffY/diffX 转为 (yi-y0)*diffX=?(xi-x0)*diffY
+        //(yi-y0)/(xi-x0) = (y1-y0)/(x1-x0) ×
+        //(yi-y0)*(x1-x0) = (y1-y0)*(xi-x0) √
         public boolean checkStraightLine(int[][] coordinates) {
             int x0 = coordinates[0][0];
             int y0 = coordinates[0][1];
