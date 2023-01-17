@@ -470,4 +470,16 @@ public class Tools {
 
         return ans;
     }
+
+    /**
+     * 反转数字（十进制）
+     * @param x
+     * @return
+     */
+    public int reverse(int x) {
+        int rev = 0;
+        for (int tmp = x; tmp != 0; tmp /= 10)
+            rev = rev * 10 + tmp % 10;
+        return rev;
+    }
 }

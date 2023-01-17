@@ -685,6 +685,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CountNicePairsInAnArray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CountNicePairsInAnArray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1814" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CountNicePairsInAnArray.java" />
+              <option name="titleSlug" value="count-nice-pairs-in-an-array" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CountNumberOfHomogenousSubstrings.java">
           <value>
             <LeetcodeEditor>
