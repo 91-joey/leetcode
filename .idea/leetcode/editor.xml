@@ -2973,6 +2973,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/NimGame.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/NimGame.md" />
+              <option name="frontendQuestionId" value="leetcode.cn292" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/NimGame.java" />
+              <option name="titleSlug" value="nim-game" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/NthMagicalNumber.java">
           <value>
             <LeetcodeEditor>
