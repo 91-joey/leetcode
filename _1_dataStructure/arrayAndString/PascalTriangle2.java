@@ -3,7 +3,12 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 import java.util.ArrayList;
 import java.util.List;
 
+//119. Pascal's Triangle II
 public class PascalTriangle2 {
+    /*
+     * 杨辉三角性质：
+     * https://leetcode.cn/problems/pascals-triangle-ii/solutions/601082/yang-hui-san-jiao-ii-by-leetcode-solutio-shuk/?orderBy=hot
+     */
     //    1.递推(2个数组)  n^2 1
     public List<Integer> getRow1(int rowIndex) {
         List<Integer> pre = new ArrayList<>();
@@ -34,7 +39,7 @@ public class PascalTriangle2 {
         return row;
     }
 
-    //    Cmn=C(m-1)n * (n-m+1)/m
+    //☆☆☆☆☆ Cmn=C(m-1)n * (n-m+1)/m
     public List<Integer> getRow3(int rowIndex) {
         List<Integer> row = new ArrayList<>();
         row.add(1);
