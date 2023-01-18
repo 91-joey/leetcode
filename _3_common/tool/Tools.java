@@ -26,6 +26,7 @@ public class Tools {
     public static final char WALL = '+';
 
     public static void main(String[] args) {
+
     }
 
     public static List<Integer> toList(int[] ints) {
@@ -481,5 +482,26 @@ public class Tools {
         for (int tmp = x; tmp != 0; tmp /= 10)
             rev = rev * 10 + tmp % 10;
         return rev;
+    }
+
+    /**
+     * 求组合数：C_n^m，即 n 个数里取 m 个的组合数
+     */
+    public static long comb(int n, int m) {
+        m = Math.min(m, n - m);
+        long comb = 1;
+        for (int i = 1, j = n - m + 1; i <= m; i++, j++)
+            comb = comb * j / i;
+        return comb;
+    }
+
+    /**
+     * 阶乘
+     */
+    public static long factorial(int x) {
+        long ans = 1;
+        for (int i = 2; i <= x; i++)
+            ans *= i;
+        return ans;
     }
 }

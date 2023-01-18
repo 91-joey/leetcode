@@ -4634,6 +4634,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/UniquePaths.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/UniquePaths.md" />
+              <option name="frontendQuestionId" value="leetcode.cn62" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/UniquePaths.java" />
+              <option name="titleSlug" value="unique-paths" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/UniqueSubstringsInWraparoundString.java">
           <value>
             <LeetcodeEditor>
