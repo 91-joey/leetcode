@@ -35,8 +35,6 @@
 //<div><li>👍 991</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-import java.util.Arrays;
-
 //204.计数质数
 //开题时间：2023-01-01 12:41:52
 public class CountPrimes {
@@ -58,16 +56,16 @@ public class CountPrimes {
 
         //☆☆☆☆☆ 埃氏筛   n * log log n
         public int countPrimes(int n) {
-            boolean[] isPrime = new boolean[n];
-            Arrays.fill(isPrime, true);
+            boolean[] notPrime = new boolean[n];
             int sqrt = (int) Math.sqrt(n);
             for (int i = 2; i <= sqrt; i++)
-                for (int j = i * i; j < n; j += i)
-                    isPrime[j] = false;
+                if (!notPrime[i])
+                    for (int j = i * i; j < n; j += i)
+                        notPrime[j] = true;
 
             int ans = 0;
             for (int i = 2; i < n; i++)
-                if (isPrime[i])
+                if (!notPrime[i])
                     ans++;
             return ans;
         }
