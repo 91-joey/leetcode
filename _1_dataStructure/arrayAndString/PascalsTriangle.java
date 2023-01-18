@@ -40,6 +40,7 @@ class PascalsTriangle {
     public static void main(String[] args) {
         Solution solution = new PascalsTriangle().new Solution();
         System.out.println(solution.generate(5));
+//        System.out.println(solution.generate(5));
     }
 
     //leetcode submit region begin(Prohibit modification and deletion)
@@ -61,7 +62,7 @@ class PascalsTriangle {
         }
 
         //GJ
-        public List<List<Integer>> generate(int numRows) {
+        public List<List<Integer>> generate8(int numRows) {
             List<List<Integer>> list = new ArrayList<>();
             for (int i = 0; i < numRows; i++) {
                 ArrayList<Integer> row = new ArrayList<>();
@@ -76,6 +77,24 @@ class PascalsTriangle {
                 list.add(row);
             }
             return list;
+        }
+
+        //☆☆☆☆☆ 每一行是对称的，左半边计算完后，右半边对称复制即可
+        public List<List<Integer>> generate(int numRows) {
+            List<List<Integer>> ans = new ArrayList<>();
+            ans.add(List.of(1));
+            for (int i = 1; i < numRows; i++) {
+                ArrayList<Integer> list = new ArrayList<>();
+                list.add(1);
+                List<Integer> pre = ans.get(i - 1);
+                for (int j = 1; j < (i + 2) / 2; j++)
+                    list.add(pre.get(j - 1) + pre.get(j));
+                for (int j = (i + 2) / 2; j < i; j++)
+                    list.add(list.get(i - j));
+                list.add(1);
+                ans.add(list);
+            }
+            return ans;
         }
 
         //1.自解    n^2 1
