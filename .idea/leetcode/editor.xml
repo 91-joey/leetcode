@@ -4293,6 +4293,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/StoneGame.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/StoneGame.md" />
+              <option name="frontendQuestionId" value="leetcode.cn877" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/StoneGame.java" />
+              <option name="titleSlug" value="stone-game" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/StrangePrinter.java">
           <value>
             <LeetcodeEditor>
