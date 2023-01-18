@@ -377,6 +377,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CheckIfItIsAGoodArray.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CheckIfItIsAGoodArray.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1250" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CheckIfItIsAGoodArray.java" />
+              <option name="titleSlug" value="check-if-it-is-a-good-array" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CheckIfItIsAStraightLine.java">
           <value>
             <LeetcodeEditor>
