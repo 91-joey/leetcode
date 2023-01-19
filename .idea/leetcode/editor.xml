@@ -2368,6 +2368,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MaximumNumberOfCoinsYouCanGet.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MaximumNumberOfCoinsYouCanGet.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1561" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MaximumNumberOfCoinsYouCanGet.java" />
+              <option name="titleSlug" value="maximum-number-of-coins-you-can-get" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MaximumNumberOfVowelsInASubstringOfGivenLength.java">
           <value>
             <LeetcodeEditor>
