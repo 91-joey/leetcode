@@ -1411,6 +1411,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/FindingTheUsersActiveMinutes.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/FindingTheUsersActiveMinutes.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1817" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/FindingTheUsersActiveMinutes.java" />
+              <option name="titleSlug" value="finding-the-users-active-minutes" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/FirstBadVersion.java">
           <value>
             <LeetcodeEditor>
