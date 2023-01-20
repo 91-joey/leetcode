@@ -50,15 +50,15 @@ public class SquaresOfASortedArray {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
+        //双指针
         public int[] sortedSquares(int[] nums) {
             int len = nums.length;
             int[] ans = new int[len];
 
-            for (int i = len - 1, l = 0, r = i; i >= 0; i--) {
+            for (int i = len - 1, l = 0, r = i; i >= 0; i--)
                 ans[i] = nums[l] + nums[r] > 0 ?
                         nums[r] * nums[r--] :
                         nums[l] * nums[l++];
-            }
 
             return ans;
         }
