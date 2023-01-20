@@ -474,6 +474,7 @@ public class Tools {
 
     /**
      * 反转数字（十进制）
+     *
      * @param x
      * @return
      */
@@ -510,5 +511,27 @@ public class Tools {
             if (n % i == 0)
                 return false;
         return true;
+    }
+
+    /**
+     * 数组向右轮转 k 个位置
+     */
+    public static void rotate(int[] nums, int k) {
+        int n = nums.length;
+        k %= n;
+        reverse(nums, 0, n - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, n - 1);
+    }
+
+    /**
+     * 翻转数组
+     */
+    public static void reverse(int[] nums, int l, int r) {
+        while (l < r) {
+            int tmp = nums[l];
+            nums[l++] = nums[r];
+            nums[r--] = tmp;
+        }
     }
 }
