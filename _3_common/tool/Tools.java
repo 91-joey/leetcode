@@ -534,4 +534,18 @@ public class Tools {
             nums[r--] = tmp;
         }
     }
+
+    /**
+     * 最大不重叠区间数（端点值相等算重叠）
+     */
+    public static int maxNonOverlap(int[][] intervals) {
+        Arrays.sort(intervals, Comparator.comparingInt(a -> a[1]));
+        int ans = 1;
+        for (int i = 1, t = intervals[0][1]; i < intervals.length; i++)
+            if (t < intervals[i][0]) {
+                ans++;
+                t = intervals[i][1];
+            }
+        return ans;
+    }
 }
