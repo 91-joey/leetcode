@@ -2907,6 +2907,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/MinimumSidewayJumps.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/MinimumSidewayJumps.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1824" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/MinimumSidewayJumps.java" />
+              <option name="titleSlug" value="minimum-sideway-jumps" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/MinimumSizeSubarraySum.java">
           <value>
             <LeetcodeEditor>

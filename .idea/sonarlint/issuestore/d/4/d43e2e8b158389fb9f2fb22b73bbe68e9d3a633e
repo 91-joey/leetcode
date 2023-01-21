@@ -1,0 +1,18 @@
+
+K
+java:S1121Ò".Extract the assignment out of this expression.(³ŞÏ8åóÿÚ0
+ñ
+java:S1598-"ÓThis file "IsGraphBipartite.java" should be located in "org\example\leetcode\problems\_1_dataStructure\graph" directory, not in "D:\eclipse-workspace\study\05_leetcode\leetcode\editor\cn\_1_dataStructure\graph".(°¼‰¢8éóÿÚ0
+v	java:S120-"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(°¼‰¢8éóÿÚ0
+Z	java:S1068"9Replace this use of System.out or System.err by a logger.(ÀÇ€§øÿÿÿÿ8‰øÿÚ0
+X	java:S1259"<This block of commented-out lines of code should be removed.(ìé£ı8ŠøÿÚ0
+o
+java:S3776>"RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(á¢Ó¦8ŒøÿÚ0
+N
+java:S3599K",Use another way to initialize this instance.(ğ€Œçşÿÿÿÿ8øÿÚ0
+{
+java:S1171K"YMove the contents of this initializer to a standard constructor or to field initializers.(ğ€Œçşÿÿÿÿ8øÿÚ0
+u
+java:S3776š"RRefactor this method to reduce its Cognitive Complexity from 20 to the 15 allowed.( ÿøÿÿÿÿ8•øÿÚ0
+O
+java:S5261Ü"1Add explicit curly braces to avoid dangling else.(Âà¡½8œøÿÚ0
