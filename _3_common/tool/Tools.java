@@ -548,4 +548,28 @@ public class Tools {
             }
         return ans;
     }
+
+    public static void reverse(char[] cs, int l, int r) {
+        while (l < r) {
+            char tmp = cs[l];
+            cs[l++] = cs[r];
+            cs[r--] = tmp;
+        }
+    }
+
+    public static void reverse(char[] cs) {
+        reverse(cs, 0, cs.length - 1);
+    }
+
+    public static <T> void reverse(T[] arr, int l, int r) {
+        while (l < r) {
+            T tmp = arr[l];
+            arr[l++] = arr[r];
+            arr[r--] = tmp;
+        }
+    }
+
+    public static <T> void reverse(T[] arr){
+        reverse(arr, 0, arr.length - 1);
+    }
 }

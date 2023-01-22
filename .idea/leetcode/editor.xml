@@ -3897,6 +3897,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ReverseWordsInAStringIii.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ReverseWordsInAStringIii.md" />
+              <option name="frontendQuestionId" value="leetcode.cn557" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ReverseWordsInAStringIii.java" />
+              <option name="titleSlug" value="reverse-words-in-a-string-iii" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RichestCustomerWealth.java">
           <value>
             <LeetcodeEditor>
