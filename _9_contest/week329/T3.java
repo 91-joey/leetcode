@@ -11,7 +11,7 @@ public class T3 {
     }
 
     class Solution {
-        public boolean makeStringsEqual(String s, String target) {
+        public boolean makeStringsEqualX(String s, String target) {
             if (s.equals(target))
                 return true;
 
@@ -41,6 +41,17 @@ public class T3 {
             if (cnt0 == n - 1 && diff == 1 && one)
                 return false;
             return cnt0 + 1 < cnt02;
+        }
+
+        public boolean makeStringsEqual(String s, String target) {
+            return hasOne(s) == hasOne(target);
+        }
+
+        private boolean hasOne(String s) {
+            for (int i = 0; i < s.length(); i++)
+                if (s.charAt(i) == '1')
+                    return true;
+            return false;
         }
     }
 }
