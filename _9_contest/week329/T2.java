@@ -3,7 +3,7 @@ package org.example.leetcode.problems._9_contest.week329;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//2546. Apply Bitwise Operations to Make Strings Equal
+//2545. Sort the Students by Their Kth Score
 public class T2 {
     public static void main(String[] args) {
         Solution solution = new T2().new Solution();
