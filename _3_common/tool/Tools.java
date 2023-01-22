@@ -117,10 +117,6 @@ public class Tools {
 
     /**
      * 返回 两数之合 = 目标值 的索引数组
-     *
-     * @param arr
-     * @param target
-     * @return
      */
 
     public static int[] searchSumOfTwo(int[] arr, int start, int end, int target) {
@@ -474,9 +470,6 @@ public class Tools {
 
     /**
      * 反转数字（十进制）
-     *
-     * @param x
-     * @return
      */
     public int reverse(int x) {
         int rev = 0;
