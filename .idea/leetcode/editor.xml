@@ -311,6 +311,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/CalculateAmountPaidInTaxes.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/CalculateAmountPaidInTaxes.md" />
+              <option name="frontendQuestionId" value="leetcode.cn2303" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/CalculateAmountPaidInTaxes.java" />
+              <option name="titleSlug" value="calculate-amount-paid-in-taxes" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/CanMakeArithmeticProgressionFromSequence.java">
           <value>
             <LeetcodeEditor>
