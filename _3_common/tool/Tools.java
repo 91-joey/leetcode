@@ -106,9 +106,12 @@ public class Tools {
     }
 
     public static int gcd(int a, int b) {
-        return b != 0 ?
-                gcd(b, a % b) :
-                a;
+        while (a != 0) {
+            int tmp = a;
+            a = b % a;
+            b = tmp;
+        }
+        return b;
     }
 
     public static int lcm(int a, int b) {
@@ -580,4 +583,7 @@ public class Tools {
         return Math.sqrt(getSquareDistance(a, b));
     }
 
+    public static boolean isPowerOfTwo(int n) {
+        return n > 0 && (n & (n - 1)) == 0;
+    }
 }
