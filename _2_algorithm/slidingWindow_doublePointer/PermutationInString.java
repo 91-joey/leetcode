@@ -31,6 +31,8 @@
 //<div><div>Related Topics</div><div><li>哈希表</li><li>双指针</li><li>字符串</li><li>滑动窗口</li></div></div><br><div><li>👍 773</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
+import java.util.Arrays;
+
 //567.字符串的排列
 //开题时间：2022-10-07 11:02:48
 public class PermutationInString {
@@ -41,7 +43,7 @@ public class PermutationInString {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         //与「438.找到字符串中所有字母异位词」同解
-        public boolean checkInclusion(String s1, String s2) {
+        public boolean checkInclusion99(String s1, String s2) {
             int len1 = s1.length();
             int len2 = s2.length();
             if (len2 < len1)
@@ -66,6 +68,81 @@ public class PermutationInString {
                 if (++cnts[chars[i++]] > 0)
                     cnt--;
                 if (cnt == len1)
+                    return true;
+            }
+
+            return false;
+        }
+
+        //固长滑窗 + 判断频率数组全为 0
+        public boolean checkInclusion9(String s1, String s2) {
+            int m = s1.length();
+            if (m > s2.length())
+                return false;
+            int[] freq = new int[26];
+            for (int i = 0; i < m; i++) {
+                freq[s1.charAt(i) - 'a']++;
+            }
+
+            for (int i = 0; i < s2.length(); i++) {
+                freq[s2.charAt(i) - 'a']--;
+                if (i >= m)
+                    freq[s2.charAt(i - m) - 'a']++;
+                if (Arrays.stream(freq).allMatch(x -> x == 0))
+                    return true;
+            }
+
+            return false;
+        }
+
+        //（优化）固长滑窗 + 维护字母频率不同的个数
+        public boolean checkInclusion(String s1, String s2) {
+            int m = s1.length();
+            if (m > s2.length())
+                return false;
+            int[] freq = new int[26];
+            for (int i = 0; i < m; i++)
+                freq[s1.charAt(i) - 'a']++;
+            int diffCnt = (int) Arrays.stream(freq).filter(x -> x != 0).count();
+
+            char[] cs = s2.toCharArray();
+            for (int i = 0; i < cs.length; i++) {
+                int cnt = --freq[cs[i] - 'a'];
+                if (cnt == 0)
+                    diffCnt--;
+                else if (cnt == -1)
+                    diffCnt++;
+                if (i >= m) {
+                    cnt = ++freq[cs[i - m] - 'a'];
+                    if (cnt == 0)
+                        diffCnt--;
+                    else if (cnt == 1)
+                        diffCnt++;
+                }
+                if (diffCnt == 0)
+                    return true;
+            }
+
+            return false;
+        }
+
+        //☆☆☆☆☆ （进一步优化）固长滑窗 + 维护核销的有效字母数
+        public boolean checkInclusion8(String s1, String s2) {
+            int m = s1.length();
+            if (m > s2.length())
+                return false;
+            int[] freq = new int[26];
+            for (int i = 0; i < m; i++)
+                freq[s1.charAt(i) - 'a']++;
+
+            char[] cs = s2.toCharArray();
+            for (int i = 0, cnt = 0; i < cs.length; i++) {
+                if (freq[cs[i] - 'a']-- > 0)
+                    cnt++;
+                if (i >= m)
+                    if (++freq[cs[i - m] - 'a'] > 0)
+                        cnt++;
+                if (cnt == m)
                     return true;
             }
 
