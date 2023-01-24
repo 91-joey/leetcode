@@ -42,6 +42,9 @@
 //<div><li>👍 1918</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
+import java.util.Arrays;
+import java.util.stream.Stream;
+
 //122.买卖股票的最佳时机 II
 //开题时间：2022-12-12 05:18:30
 public class BestTimeToBuyAndSellStockIi {
@@ -53,7 +56,7 @@ public class BestTimeToBuyAndSellStockIi {
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
         //贪心（复杂版）
-        public int maxProfit9(int[] prices) {
+        public int maxProfit99(int[] prices) {
             int ans = 0;
             int n = prices.length;
             for (int l = 0, r = 0; l < n - 1; ) {
@@ -93,7 +96,7 @@ public class BestTimeToBuyAndSellStockIi {
             return f[n - 1];
         }
 
-        public int maxProfit8(int[] prices) {
+        public int maxProfit88(int[] prices) {
             int n = prices.length;
             int[][] f = new int[n][2];
             f[0][1] = -prices[0];
@@ -115,7 +118,7 @@ public class BestTimeToBuyAndSellStockIi {
          *      f[i][0]=max(f[i - 1][0],    f[i - 1][1] + prices[i])
          *      f[i][1]=max(f[i - 1][1],    f[i - 1][0] - prices[i])
          */
-        public int maxProfit7(int[] prices) {
+        public int maxProfit77(int[] prices) {
             int n = prices.length;
             int unhold = 0, hold = -prices[0];
 
@@ -128,8 +131,8 @@ public class BestTimeToBuyAndSellStockIi {
             return unhold;
         }
 
-        //☆☆☆☆☆ 贪心
-        public int maxProfit(int[] prices) {
+        //贪心
+        public int maxProfit66(int[] prices) {
             int ans = 0;
 
             for (int i = 1; i < prices.length; i++) {
@@ -141,6 +144,45 @@ public class BestTimeToBuyAndSellStockIi {
             return ans;
         }
 
+        /*
+         * dp
+         * 定义：f[i] 表示最后一次出售股票为第 i 天时的最大利润
+         */
+        public int maxProfit9(int[] prices) {
+            int ans = 0;
+            int n = prices.length;
+            int[] f = new int[n + 1];
+            Arrays.fill(f, Integer.MIN_VALUE);
+            f[0] = 0;
+            for (int i = 1; i < n + 1; i++) {
+                for (int j = 1; j <= i; j++)
+                    f[i] = Math.max(f[i], f[j - 1] + prices[i - 1] - prices[j - 1]);
+                ans = Math.max(ans, f[i]);
+            }
+            return ans;
+        }
+
+        /*
+         * ☆☆☆☆☆ 贪心
+         * 求所有正增量的和
+         *
+         * 证明：
+         *  加上任意非正增量，结果不会更大
+         *  减去任意正增量，结果只会更小
+         */
+        public int maxProfit8(int[] prices) {
+            int ans = 0;
+            for (int i = 0; i < prices.length - 1; i++)
+                ans += Math.max(0, prices[i + 1] - prices[i]);
+            return ans;
+        }
+
+        public int maxProfit(int[] prices) {
+            return Stream.iterate(0, i -> i < prices.length - 1, i -> i + 1)
+                    .mapToInt(Integer::intValue)
+                    .map(i -> Math.max(0, prices[i + 1] - prices[i]))
+                    .sum();
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
