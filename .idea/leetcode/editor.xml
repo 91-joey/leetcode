@@ -3578,6 +3578,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/QueriesOnNumberOfPointsInsideACircle.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/QueriesOnNumberOfPointsInsideACircle.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1828" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/QueriesOnNumberOfPointsInsideACircle.java" />
+              <option name="titleSlug" value="queries-on-number-of-points-inside-a-circle" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/RangeAddition.java">
           <value>
             <LeetcodeEditor>

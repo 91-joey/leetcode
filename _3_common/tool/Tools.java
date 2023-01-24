@@ -562,7 +562,22 @@ public class Tools {
         }
     }
 
-    public static <T> void reverse(T[] arr){
+    public static <T> void reverse(T[] arr) {
         reverse(arr, 0, arr.length - 1);
     }
+
+    public int getSquareDistance(int x1, int y1, int x2, int y2) {
+        int disX = x1 - x2;
+        int disY = y1 - y2;
+        return disX * disX + disY * disY;
+    }
+
+    public int getSquareDistance(int[] a, int[] b) {
+        return getSquareDistance(a[0], a[1], b[0], b[1]);
+    }
+
+    public double getDistance(int[] a, int[] b) {
+        return Math.sqrt(getSquareDistance(a, b));
+    }
+
 }
