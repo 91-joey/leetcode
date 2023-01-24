@@ -39,6 +39,8 @@
 //<div><li>👍 752</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
+import java.util.Arrays;
+
 //392.判断子序列
 //开题时间：2022-11-17 13:51:12
 public class IsSubsequence {
@@ -48,7 +50,7 @@ public class IsSubsequence {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public boolean isSubsequence9(String s, String t) {
+        public boolean isSubsequence99(String s, String t) {
             if (s.length() > t.length())
                 return false;
 
@@ -63,14 +65,42 @@ public class IsSubsequence {
             return true;
         }
 
-        public boolean isSubsequence(String s, String t) {
+        public boolean isSubsequence88(String s, String t) {
             for (int i = 0, j = -1; i < s.length(); i++)
                 if ((j = t.indexOf(s.charAt(i), j + 1)) == -1)
                     return false;
             return true;
         }
 
-        //todo DP
+        //☆☆☆☆☆ 贪心 + 双指针
+        public boolean isSubsequence9(String s, String t) {
+            int i = 0, j = 0;
+            while (i < s.length() && j < t.length())
+                if (s.charAt(i) == t.charAt(j++))
+                    i++;
+            return i == s.length();
+        }
+
+        //☆☆☆☆☆ 后续挑战： dp 预处理每个索引开始每个字符第一次出现的位置
+        public boolean isSubsequence(String s, String t) {
+            int m = s.length(), n = t.length();
+            int[][] f = new int[n + 1][26];
+            Arrays.fill(f[n], n);
+
+            for (int i = n - 1; i >= 0; i--)
+                for (int j = 0; j < 26; j++)
+                    f[i][j] = t.charAt(i) == (char) ('a' + j) ?
+                            i :
+                            f[i + 1][j];
+
+            int i = 0, j = -1;
+            while (i < m)
+                if ((j = f[j + 1][s.charAt(i) - 'a']) == n)
+                    break;
+                else
+                    i++;
+            return i == m;
+        }
     }
 //leetcode submit region end(Prohibit modification and deletion)
 }
