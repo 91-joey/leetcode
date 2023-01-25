@@ -542,6 +542,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/ConstructKPalindromeStrings.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/ConstructKPalindromeStrings.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1400" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/ConstructKPalindromeStrings.java" />
+              <option name="titleSlug" value="construct-k-palindrome-strings" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/ContainerWithMostWater.java">
           <value>
             <LeetcodeEditor>
