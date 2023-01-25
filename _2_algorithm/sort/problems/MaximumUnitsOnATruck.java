@@ -55,7 +55,7 @@ public class MaximumUnitsOnATruck {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        public int maximumUnits(int[][] boxTypes, int truckSize) {
+        public int maximumUnits9(int[][] boxTypes, int truckSize) {
             Arrays.sort(boxTypes, Comparator.<int[]>comparingInt(boxType -> boxType[1]).reversed());
 
             int maximumUnits = 0;
@@ -66,6 +66,19 @@ public class MaximumUnitsOnATruck {
             }
 
             return maximumUnits;
+        }
+
+        public int maximumUnits(int[][] boxTypes, int truckSize) {
+            int ans = 0;
+            Arrays.sort(boxTypes, Comparator.<int[]>comparingInt(a -> a[1]).reversed());
+            for (int[] boxType : boxTypes) {
+                int min = Math.min(boxType[0], truckSize);
+                truckSize -= min;
+                ans += min * boxType[1];
+                if (truckSize == 0)
+                    break;
+            }
+            return ans;
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
