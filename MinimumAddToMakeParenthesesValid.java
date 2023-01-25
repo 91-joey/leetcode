@@ -76,7 +76,7 @@ public class MinimumAddToMakeParenthesesValid {
         }
 
         //☆☆☆☆☆ 贪心：将「有效括号问题」转化为「分值有效性」的数学判定
-        public int minAddToMakeValid(String s) {
+        public int minAddToMakeValid8(String s) {
             int addOpening = 0, addClosing = 0;
             for (int i = 0; i < s.length(); i++) {
                 addClosing += s.charAt(i) == '(' ? 1 : -1;
@@ -86,6 +86,16 @@ public class MinimumAddToMakeParenthesesValid {
                 }
             }
             return addOpening + addClosing;
+        }
+
+        //取巧：字符串替换
+        public int minAddToMakeValid(String s) {
+            String tmp = s;
+            do {
+                s = tmp;
+                tmp = s.replace("()", "");
+            } while (tmp.length() != s.length());
+            return s.length();
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
