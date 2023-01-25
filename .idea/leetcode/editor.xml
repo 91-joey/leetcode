@@ -4777,6 +4777,17 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/TwoCityScheduling.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="contentPath" value="$PROJECT_DIR$/doc/content/TwoCityScheduling.md" />
+              <option name="frontendQuestionId" value="leetcode.cn1029" />
+              <option name="host" value="leetcode.cn" />
+              <option name="path" value="$PROJECT_DIR$/TwoCityScheduling.java" />
+              <option name="titleSlug" value="two-city-scheduling" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/TwoKeysKeyboard.java">
           <value>
             <LeetcodeEditor>
