@@ -65,14 +65,13 @@ public class MinimumCostToMoveChipsToTheSamePosition {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //贪心（统计奇偶数个数，去较小值）
+        //贪心（统计奇偶数个数，取较小值）
         public int minCostToMoveChips(int[] position) {
             int odd = 0;
             for (int x : position)
                 if ((x & 1) == 1)
                     odd++;
-            int even = position.length - odd;
-            return Math.min(odd, even);
+            return Math.min(odd, position.length - odd);
         }
     }
 //leetcode submit region end(Prohibit modification and deletion)
