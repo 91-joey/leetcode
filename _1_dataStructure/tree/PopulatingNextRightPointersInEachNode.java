@@ -85,7 +85,21 @@ public class PopulatingNextRightPointersInEachNode {
 
     //leetcode submit region begin(Prohibit modification and deletion)
     class Solution {
-        //BFS+迭代    n   1
+        /*
+         * ☆☆☆☆☆ BFS（层序遍历） + 迭代    n   1
+         * 按父节点是否相同，分为 2 类：
+         *  父节点相同，直接借助父节点即可，    node.left.next = node.right
+         *  父节点不同，需要借助父节点的后节点，node.right.next = node.next == null ? null : node.next.left
+         *
+         * 具体的：
+         *  1.枚举二叉树的最左侧节点
+         *  2.从每个当前的最左侧节点开始层序遍历（通过 next 指针，类似链表）每个节点
+         *  3.对于每个节点：
+         *      - 串联左子树和右子树
+         *      - 串联右子树和后节点的左子树
+         *
+         * 由于是层序遍历，可以保证遍历到当前层级时，上层均已串联
+         */
         public Node connectGJ2(Node root) {
             if (root == null) return null;
             Node leftMost = root;
@@ -144,6 +158,31 @@ public class PopulatingNextRightPointersInEachNode {
             return root;
         }
 
+        /*
+         * 递归2
+         * 我们以当前节 root 点为起始，左右节点不断的深入下面：
+         *  left 节点不断往右走
+         *  right 节点不断往左走
+         * 当这两个节点走到底后，整个纵深这段就完成了串联。
+         */
+        public Node connect7(Node root) {
+            if (root == null)
+                return null;
+
+            Node l = root.left;
+            Node r = root.right;
+            while (l != null && r != null) {
+                l.next = r;
+                l = l.right;
+                r = r.left;
+            }
+
+            connect(root.left);
+            connect(root.right);
+
+            return root;
+        }
+
         //栈 n   logn
         public Node connect3(Node root) {
             if (root == null) return null;
@@ -180,6 +219,27 @@ public class PopulatingNextRightPointersInEachNode {
                 }
             }
 
+            return root;
+        }
+
+        //（自解）BFS层序遍历 + queue   n   n
+        public Node connect9(Node root) {
+            if (root == null)
+                return null;
+
+            Queue<Node> q = new LinkedList<>();
+            q.offer(root);
+            while (!q.isEmpty()) {
+                Node pre = new Node();
+                for (int i = q.size(); i > 0; i--) {
+                    pre.next = q.poll();
+                    pre = pre.next;
+                    if (pre.left != null) {
+                        q.offer(pre.left);
+                        q.offer(pre.right);
+                    }
+                }
+            }
             return root;
         }
 
