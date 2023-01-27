@@ -73,7 +73,6 @@ public class WiggleSort {
       arr[i] = arr[j];
       arr[j] = tmp;
     }
-    
   }
-  //leetcode submit region end(Prohibit modification and deletion)
+//leetcode submit region end(Prohibit modification and deletion)
 }
