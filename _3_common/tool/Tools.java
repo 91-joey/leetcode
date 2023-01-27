@@ -26,7 +26,6 @@ public class Tools {
   public static final char WALL = '+';
   
   public static void main(String[] args) {
-  
   }
   
   public static List<Integer> toList(int[] ints) {
@@ -172,7 +171,7 @@ public class Tools {
     return root.left == null && root.right == null;
   }
   
-  //region binary tree traversal
+  // region binary tree traversal
   public static Collection<Integer> preorderTraversal(TreeNode root, Supplier<Collection<Integer>> collectionSupplier) {
     Collection<Integer> coll = collectionSupplier.get();
     if (root == null)
@@ -288,7 +287,7 @@ public class Tools {
   public static List<Integer> levelOrderTraversal(TreeNode root) {
     return (List<Integer>) levelOrderTraversal(root, ArrayList::new);
   }
-  //endregion
+  // endregion
   
   public static int[] toIntArray(String s) {
     String strip = s.strip();
