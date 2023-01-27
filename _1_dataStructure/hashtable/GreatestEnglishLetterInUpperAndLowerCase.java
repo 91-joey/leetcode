@@ -32,7 +32,7 @@ public class GreatestEnglishLetterInUpperAndLowerCase {
       
       return "";
     }
-    
+  
     public String greatestLetter(String s) {
       return s.chars()
           .distinct()
