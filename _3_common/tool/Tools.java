@@ -587,4 +587,19 @@ public class Tools {
   public static boolean isPowerOfTwo(int n) {
     return n > 0 && (n & (n - 1)) == 0;
   }
+  
+  /**
+   * 判断整数是否数位单调递增.
+   */
+  public static boolean isMonotoneIncreasing(int n) {
+    int next = 10;
+    for (int i = n; i != 0; i /= 10) {
+      int digit = i % 10;
+      if (digit > next) {
+        return false;
+      }
+      next = digit;
+    }
+    return true;
+  }
 }
