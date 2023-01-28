@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 406</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.greedy;
 
 //860.柠檬水找零
 //开题时间：2023-01-19 14:34:35

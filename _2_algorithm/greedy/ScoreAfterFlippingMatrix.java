@@ -1,4 +1,4 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.greedy;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 

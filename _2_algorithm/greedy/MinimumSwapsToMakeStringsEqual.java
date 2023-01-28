@@ -46,7 +46,7 @@
 //</ul>
 //
 //<div><li>👍 71</li><li>👎 0</li></div>
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.greedy;
 
 //1247.交换字符使得字符串相同
 //开题时间：2023-01-25 11:09:57

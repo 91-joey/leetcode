@@ -1,4 +1,4 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.greedy;
 
 /**
  * 738.单调递增的数字 <br>
