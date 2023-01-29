@@ -88,18 +88,18 @@ public class PowxN {
     }
     
     //☆☆☆☆☆ 迭代    logn    1
-    // x^65=x^1 * x^2 * x^4 * x^8 * x^16 * x^32
-    // x^57=x^1 * x^2 * x^4       * x^16 * x^32
-    public double myPow5(double x, int n) {
+    // x^63=x^1 * x^2 * x^4 * x^8 * x^16 * x^32
+    // x^55=x^1 * x^2 * x^4       * x^16 * x^32
+    public double myPow5(double base, int exponent) {
       double pow = 1.0;
-      long abs = Math.abs((long) n);
-      while (abs != 0) {
-        if ((abs & 1) == 1)
-          pow *= x;
-        abs >>= 1;
-        x *= x;
+      long expo = Math.abs((long) exponent);
+      while (expo != 0) {
+        if ((expo & 1) == 1)
+          pow *= base;
+        expo >>= 1;
+        base *= base;
       }
-      return n >= 0 ? pow : 1.0 / pow;
+      return exponent >= 0 ? pow : 1.0 / pow;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
