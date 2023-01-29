@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class T3 {
   public static void main(String[] args) {
     Solution solution = new T3().new Solution();
-    System.out.println(solution.putMarbles(new int[]{24, 16, 62, 27, 8, 3, 70, 55, 13, 34, 9, 29, 101}, 11));
+    System.out.println(solution.putMarbles(new int[]{24, 16, 62, 27, 8, 3, 70, 55, 13, 34, 9, 29, 10}, 11));
     // System.out.println(solution.putMarbles(new int[]{1, 3, 5, 1}, 2));
   }
   
@@ -31,7 +31,7 @@ public class T3 {
       // for (int l = 0, r = n - 2; l < k - 1; l++, r--) {
       //   ans += weights[r] - weights[l];
       // }
-      for (int i = 0; i < Math.min(k - 1, n - k + 2); i++) {
+      for (int i = 0; i < Math.min(k - 1, n - k); i++) {
         ans += weights[n - 2 - i] - weights[i];
       }
       return ans;
