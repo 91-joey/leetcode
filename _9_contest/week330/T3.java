@@ -9,7 +9,7 @@ public class T3 {
   
   class Solution {
     public long putMarbles(int[] weights, int k) {
-    
+      return 0L;
     }
   }
 }
