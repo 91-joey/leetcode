@@ -11,9 +11,9 @@
 //<pre><b>输入：</b>s = "l|*e*et|c**o|*de|"
 //<b>输出：</b>2
 //<b>解释：</b>不在竖线对之间的字符加粗加斜体后，得到字符串："<strong><em>l</em></strong>|*e*et|<strong><em>c**o</em></strong>|*de|" 。
-//第一和第二条竖线 '|' 之间的字符不计入答案。
-//同时，第三条和第四条竖线 '|' 之间的字符也不计入答案。
-//不在竖线对之间总共有 2 个星号，所以我们返回 2 。</pre>
+// 第一和第二条竖线 '|' 之间的字符不计入答案。
+// 同时，第三条和第四条竖线 '|' 之间的字符也不计入答案。
+// 不在竖线对之间总共有 2 个星号，所以我们返回 2 。</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -41,44 +41,45 @@
 //<div><li>👍 7</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-import java.util.Arrays;
-
-//2315.统计星号
-//开题时间：2022-11-16 17:36:13
+// 2315.统计星号
+// 开题时间：2022-11-16 17:36:13
 public class CountAsterisks {
-    public static void main(String[] args) {
-        Solution solution = new CountAsterisks().new Solution();
-        System.out.println(solution.countAsterisks9("l|*e*et|c**o|*de|"));
+  public static void main(String[] args) {
+    Solution solution = new CountAsterisks().new Solution();
+    System.out.println(solution.countAsterisks9("l|*e*et|c**o|*de|"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int countAsterisks9(String s) {
+      String[] split = s.split("\\|.*?\\|");
+      int ans = 0;
+      for (String str : split) {
+        for (int i = 0; i < str.length(); i++) {
+          if (str.charAt(i) == '*') {
+            ans++;
+          }
+        }
+      }
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int countAsterisks9(String s) {
-            String[] split = s.split("\\|.*?\\|");
-            System.out.println(Arrays.toString(split));
-            int cnt = 0;
-            for (String ss : split)
-                for (int i = 0; i < ss.length(); i++)
-                    if (ss.charAt(i) == '*')
-                        cnt++;
-            return cnt;
+    
+    public int countAsterisks8(String s) {
+      int ans = 0;
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == '*') {
+          ans++;
+        } else if (c == '|') {
+          i = s.indexOf('|', i + 1);
         }
-
-        public int countAsterisks8(String s) {
-            int cnt = 0;
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (c == '*')
-                    cnt++;
-                else if (c == '|')
-                    i = s.indexOf('|', i + 1);
-            }
-            return cnt;
-        }
-
-        public int countAsterisks(String s) {
-            return s.replaceAll("\\|.*?\\||[^*]", "").length();
-        }
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int countAsterisks(String s) {
+      return s.replaceAll("\\|.*?\\||[^*]", "").length();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
