@@ -13,7 +13,7 @@
 //<strong>输出：</strong>15
 //<strong>解释：</strong>你将从下标为 1 的台阶开始。
 //- 支付 15 ，向上爬两个台阶，到达楼梯顶部。
-//总花费为 15 。
+// 总花费为 15 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -28,7 +28,7 @@
 //- 支付 1 ，向上爬一个台阶，到达下标为 7 的台阶。
 //- 支付 1 ，向上爬两个台阶，到达下标为 9 的台阶。
 //- 支付 1 ，向上爬一个台阶，到达楼梯顶部。
-//总花费为 6 。
+// 总花费为 6 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -43,38 +43,38 @@
 //<div><li>👍 1082</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//746.使用最小花费爬楼梯
-//开题时间：2022-12-24 21:46:01
+// 746.使用最小花费爬楼梯
+// 开题时间：2022-12-24 21:46:01
 public class MinCostClimbingStairs {
-    public static void main(String[] args) {
-        Solution solution = new MinCostClimbingStairs().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinCostClimbingStairs().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minCostClimbingStairs9(int[] cost) {
+      int n = cost.length;
+      int[] f = new int[n];
+      f[0] = cost[0];
+      f[1] = cost[1];
+      for (int i = 2; i < n; i++)
+        f[i] = Math.min(f[i - 2], f[i - 1]) + cost[i];
+      return Math.min(f[n - 2], f[n - 1]);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minCostClimbingStairs9(int[] cost) {
-            int n = cost.length;
-            int[] f = new int[n];
-            f[0] = cost[0];
-            f[1] = cost[1];
-            for (int i = 2; i < n; i++)
-                f[i] = Math.min(f[i - 2], f[i - 1]) + cost[i];
-            return Math.min(f[n - 2], f[n - 1]);
-        }
-
-        //DP
-        public int minCostClimbingStairs(int[] cost) {
-            int n = cost.length;
-            int[] f = new int[n];
-            int a = cost[0];
-            int b = cost[1];
-            for (int i = 2; i < n; i++) {
-                int tmp = b;
-                b = Math.min(a, b) + cost[i];
-                a = tmp;
-            }
-            return Math.min(a, b);
-        }
+    
+    // DP
+    public int minCostClimbingStairs(int[] cost) {
+      int n = cost.length;
+      int[] f = new int[n];
+      int a = cost[0];
+      int b = cost[1];
+      for (int i = 2; i < n; i++) {
+        int tmp = b;
+        b = Math.min(a, b) + cost[i];
+        a = tmp;
+      }
+      return Math.min(a, b);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
