@@ -13,8 +13,8 @@
 //   <strong>2</strong>
 //  <strong>3</strong> 4
 // 6 <strong>5</strong> 7
-//4 <strong>1</strong> 8 3
-//自顶向下的最小路径和为&nbsp;11（即，2&nbsp;+&nbsp;3&nbsp;+&nbsp;5&nbsp;+&nbsp;1&nbsp;= 11）。
+// 4 <strong>1</strong> 8 3
+// 自顶向下的最小路径和为&nbsp;11（即，2&nbsp;+&nbsp;3&nbsp;+&nbsp;5&nbsp;+&nbsp;1&nbsp;= 11）。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -50,128 +50,128 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//120.三角形最小路径和
-//开题时间：2022-12-13 17:15:53
+// 120.三角形最小路径和
+// 开题时间：2022-12-13 17:15:53
 public class Triangle {
-    public static void main(String[] args) {
-        Solution solution = new Triangle().new Solution();
-        ArrayList<Integer> l1 = new ArrayList<>();
-        l1.add(2);
-        ArrayList<Integer> l2 = new ArrayList<>();
-        l2.add(3);
-        l2.add(4);
-        ArrayList<Integer> l3 = new ArrayList<>();
-        l3.add(6);
-        l3.add(5);
-        l3.add(8);
-        ArrayList<Integer> l4 = new ArrayList<>();
-        l4.add(4);
-        l4.add(1);
-        l4.add(8);
-        l4.add(3);
-        ArrayList<List<Integer>> lists = new ArrayList<>();
-        lists.add(l1);
-        lists.add(l2);
-        lists.add(l3);
-        lists.add(l4);
-
-        System.out.println(solution.minimumTotal(lists));
+  public static void main(String[] args) {
+    Solution solution = new Triangle().new Solution();
+    ArrayList<Integer> l1 = new ArrayList<>();
+    l1.add(2);
+    ArrayList<Integer> l2 = new ArrayList<>();
+    l2.add(3);
+    l2.add(4);
+    ArrayList<Integer> l3 = new ArrayList<>();
+    l3.add(6);
+    l3.add(5);
+    l3.add(8);
+    ArrayList<Integer> l4 = new ArrayList<>();
+    l4.add(4);
+    l4.add(1);
+    l4.add(8);
+    l4.add(3);
+    ArrayList<List<Integer>> lists = new ArrayList<>();
+    lists.add(l1);
+    lists.add(l2);
+    lists.add(l3);
+    lists.add(l4);
+    
+    System.out.println(solution.minimumTotal(lists));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // region 自顶向下
+    public int minimumTotal9(List<List<Integer>> triangle) {
+      int m = triangle.size();
+      
+      for (int i = 1; i < m; i++)
+        for (int j = 0; j <= i; j++)
+          if (i == j)
+            triangle.get(i).set(j, triangle.get(i - 1).get(j - 1) + triangle.get(i).get(j));
+          else if (j == 0)
+            triangle.get(i).set(j, triangle.get(i - 1).get(j) + triangle.get(i).get(j));
+          else
+            triangle.get(i).set(j, Math.min(triangle.get(i - 1).get(j), triangle.get(i - 1).get(j - 1)) + triangle.get(i).get(j));
+      
+      return triangle.get(m - 1).stream().min(Integer::compareTo).get();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //region 自顶向下
-        public int minimumTotal9(List<List<Integer>> triangle) {
-            int m = triangle.size();
-
-            for (int i = 1; i < m; i++)
-                for (int j = 0; j <= i; j++)
-                    if (i == j)
-                        triangle.get(i).set(j, triangle.get(i - 1).get(j - 1) + triangle.get(i).get(j));
-                    else if (j == 0)
-                        triangle.get(i).set(j, triangle.get(i - 1).get(j) + triangle.get(i).get(j));
-                    else
-                        triangle.get(i).set(j, Math.min(triangle.get(i - 1).get(j), triangle.get(i - 1).get(j - 1)) + triangle.get(i).get(j));
-
-            return triangle.get(m - 1).stream().min(Integer::compareTo).get();
-        }
-
-        public int minimumTotal8(List<List<Integer>> triangle) {
-            int m = triangle.size();
-            int[][] f = new int[m][m];
-            f[0][0] = triangle.get(0).get(0);
-
-            for (int i = 1; i < m; i++)
-                for (int j = 0; j <= i; j++)
-                    if (i == j)
-                        f[i][j] = f[i - 1][j - 1] + triangle.get(i).get(j);
-                    else if (j == 0)
-                        f[i][j] = f[i - 1][j] + triangle.get(i).get(j);
-                    else
-                        f[i][j] = Math.min(f[i - 1][j], f[i - 1][j - 1]) + triangle.get(i).get(j);
-
-            return Arrays.stream(f[m - 1]).min().getAsInt();
-        }
-
-        public int minimumTotal7(List<List<Integer>> triangle) {
-            int m = triangle.size();
-            int[] f = new int[m];
-            f[0] = triangle.get(0).get(0);
-
-            for (int i = 1; i < m; i++)
-                for (int j = i; j >= 0; j--)
-                    if (i == j)
-                        f[j] = f[j - 1] + triangle.get(i).get(j);
-                    else if (j == 0)
-                        f[j] = f[j] + triangle.get(i).get(j);
-                    else
-                        f[j] = Math.min(f[j], f[j - 1]) + triangle.get(i).get(j);
-
-            return Arrays.stream(f).min().getAsInt();
-        }
-
-
-        //自顶向下+滚动数组
-        public int minimumTotal(List<List<Integer>> triangle) {
-            int m = triangle.size();
-            int[] f = new int[m];
-            f[0] = triangle.get(0).get(0);
-
-            for (int i = 1; i < m; i++) {
-                f[i] = f[i - 1] + triangle.get(i).get(i);
-                for (int j = i - 1; j > 0; j--)
-                    f[j] = Math.min(f[j], f[j - 1]) + triangle.get(i).get(j);
-                f[0] += triangle.get(i).get(0);
-            }
-
-            return Arrays.stream(f).min().getAsInt();
-        }
-        //endregion
-
-        //region 自底向上
-        public int minimumTotal6(List<List<Integer>> triangle) {
-            int m = triangle.size() + 1;
-            int[][] f = new int[m][m];
-
-            for (int i = m - 2; i >= 0; i--)
-                for (int j = 0; j <= i; j++)
-                    f[i][j] = Math.min(f[i + 1][j], f[i + 1][j + 1]) + triangle.get(i).get(j);
-
-            return f[0][0];
-        }
-
-        //☆☆☆☆☆ 自底向上+滚动数组
-        public int minimumTotal5(List<List<Integer>> triangle) {
-            int m = triangle.size() + 1;
-            int[] f = new int[m];
-
-            for (int i = m - 2; i >= 0; i--)
-                for (int j = 0; j <= i; j++)
-                    f[j] = Math.min(f[j], f[j + 1]) + triangle.get(i).get(j);
-
-            return f[0];
-        }
-        //endregion
+    
+    public int minimumTotal8(List<List<Integer>> triangle) {
+      int m = triangle.size();
+      int[][] f = new int[m][m];
+      f[0][0] = triangle.get(0).get(0);
+      
+      for (int i = 1; i < m; i++)
+        for (int j = 0; j <= i; j++)
+          if (i == j)
+            f[i][j] = f[i - 1][j - 1] + triangle.get(i).get(j);
+          else if (j == 0)
+            f[i][j] = f[i - 1][j] + triangle.get(i).get(j);
+          else
+            f[i][j] = Math.min(f[i - 1][j], f[i - 1][j - 1]) + triangle.get(i).get(j);
+      
+      return Arrays.stream(f[m - 1]).min().getAsInt();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int minimumTotal7(List<List<Integer>> triangle) {
+      int m = triangle.size();
+      int[] f = new int[m];
+      f[0] = triangle.get(0).get(0);
+      
+      for (int i = 1; i < m; i++)
+        for (int j = i; j >= 0; j--)
+          if (i == j)
+            f[j] = f[j - 1] + triangle.get(i).get(j);
+          else if (j == 0)
+            f[j] = f[j] + triangle.get(i).get(j);
+          else
+            f[j] = Math.min(f[j], f[j - 1]) + triangle.get(i).get(j);
+      
+      return Arrays.stream(f).min().getAsInt();
+    }
+    
+    
+    // 自顶向下+滚动数组
+    public int minimumTotal(List<List<Integer>> triangle) {
+      int m = triangle.size();
+      int[] f = new int[m];
+      f[0] = triangle.get(0).get(0);
+      
+      for (int i = 1; i < m; i++) {
+        f[i] = f[i - 1] + triangle.get(i).get(i);
+        for (int j = i - 1; j > 0; j--)
+          f[j] = Math.min(f[j], f[j - 1]) + triangle.get(i).get(j);
+        f[0] += triangle.get(i).get(0);
+      }
+      
+      return Arrays.stream(f).min().getAsInt();
+    }
+    // endregion
+    
+    // region 自底向上
+    public int minimumTotal6(List<List<Integer>> triangle) {
+      int m = triangle.size() + 1;
+      int[][] f = new int[m][m];
+      
+      for (int i = m - 2; i >= 0; i--)
+        for (int j = 0; j <= i; j++)
+          f[i][j] = Math.min(f[i + 1][j], f[i + 1][j + 1]) + triangle.get(i).get(j);
+      
+      return f[0][0];
+    }
+    
+    //☆☆☆☆☆ 自底向上+滚动数组
+    public int minimumTotal5(List<List<Integer>> triangle) {
+      int m = triangle.size() + 1;
+      int[] f = new int[m];
+      
+      for (int i = m - 2; i >= 0; i--)
+        for (int j = 0; j <= i; j++)
+          f[j] = Math.min(f[j], f[j + 1]) + triangle.get(i).get(j);
+      
+      return f[0];
+    }
+    // endregion
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
