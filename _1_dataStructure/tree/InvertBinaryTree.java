@@ -44,72 +44,83 @@ import org.example.leetcode.problems._3_common.tree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//226.翻转二叉树
-//开题时间：2022-12-09 11:44:14
+// 226.翻转二叉树
+// 开题时间：2022-12-09 11:44:14
 public class InvertBinaryTree {
-    public static void main(String[] args) {
-        Solution solution = new InvertBinaryTree().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new InvertBinaryTree().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // recursive + DFS
+    public TreeNode invertTree(TreeNode root) {
+      if (root == null) {
+        return null;
+      }
+      TreeNode tmp = invertTree(root.left);
+      root.left = invertTree(root.right);
+      root.right = tmp;
+      return root;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //recursive + DFS
-        public TreeNode invertTree9(TreeNode root) {
-            if (root == null)
-                return null;
-
-            TreeNode left = root.left;
-            root.left = root.right;
-            root.right = left;
-
-            invertTree(root.left);
-            invertTree(root.right);
-
-            return root;
-        }
-
-        //BFS + queue
-        public TreeNode invertTree8(TreeNode root) {
-            if (root == null)
-                return null;
-
-            Queue<TreeNode> q = new LinkedList<>();
-            q.offer(root);
-
-            while (!q.isEmpty()) {
-                TreeNode poll = q.poll();
-
-                TreeNode left = poll.left;
-                poll.left = poll.right;
-                poll.right = left;
-
-                if (poll.left != null) q.offer(poll.left);
-                if (poll.right != null) q.offer(poll.right);
-            }
-
-            return root;
-        }
-
-        //BFS + queue（简版）
-        public TreeNode invertTree(TreeNode root) {
-            Queue<TreeNode> q = new LinkedList<>();
-            q.offer(root);
-
-            while (!q.isEmpty()) {
-                TreeNode poll = q.poll();
-                if (poll == null)
-                    continue;
-
-                TreeNode left = poll.left;
-                poll.left = poll.right;
-                poll.right = left;
-
-                q.offer(poll.left);
-                q.offer(poll.right);
-            }
-
-            return root;
-        }
+    
+    // recursive + DFS （偏向尾递归）
+    public TreeNode invertTree9(TreeNode root) {
+      if (root == null)
+        return null;
+      
+      TreeNode left = root.left;
+      root.left = root.right;
+      root.right = left;
+      
+      invertTree(root.left);
+      invertTree(root.right);
+      
+      return root;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // BFS + queue
+    public TreeNode invertTree8(TreeNode root) {
+      if (root == null)
+        return null;
+      
+      Queue<TreeNode> q = new LinkedList<>();
+      q.offer(root);
+      
+      while (!q.isEmpty()) {
+        TreeNode poll = q.poll();
+        
+        TreeNode left = poll.left;
+        poll.left = poll.right;
+        poll.right = left;
+        
+        if (poll.left != null) q.offer(poll.left);
+        if (poll.right != null) q.offer(poll.right);
+      }
+      
+      return root;
+    }
+    
+    // BFS + queue（简版）
+    public TreeNode invertTree7(TreeNode root) {
+      Queue<TreeNode> q = new LinkedList<>();
+      q.offer(root);
+      
+      while (!q.isEmpty()) {
+        TreeNode poll = q.poll();
+        if (poll == null)
+          continue;
+        
+        TreeNode left = poll.left;
+        poll.left = poll.right;
+        poll.right = left;
+        
+        q.offer(poll.left);
+        q.offer(poll.right);
+      }
+      
+      return root;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
