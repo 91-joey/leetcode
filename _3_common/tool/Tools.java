@@ -4,7 +4,16 @@ import org.example.leetcode.problems._3_common.linkedlist.ListNode;
 import org.example.leetcode.problems._3_common.tree.TreeNode;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -600,5 +609,15 @@ public class Tools {
       next = digit;
     }
     return true;
+  }
+  
+  /**
+   * 克隆二叉树.
+   */
+  public static TreeNode cloneTree(TreeNode root) {
+    if (root == null) {
+      return null;
+    }
+    return new TreeNode(root.val, cloneTree(root.left), cloneTree(root.right));
   }
 }
