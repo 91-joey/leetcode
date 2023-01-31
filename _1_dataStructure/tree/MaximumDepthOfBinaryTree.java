@@ -22,64 +22,64 @@ import org.example.leetcode.problems._3_common.tree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//104.二叉树的最大深度
-//开题时间：2022-09-14 08:59:25
+// 104.二叉树的最大深度
+// 开题时间：2022-09-14 08:59:25
 public class MaximumDepthOfBinaryTree {
-    public static void main(String[] args) {
-        Solution solution = new MaximumDepthOfBinaryTree().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumDepthOfBinaryTree().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int max = 0;
+    
+    // DFS+自顶向下
+    public int maxDepth(TreeNode root) {
+      DFS(root, 1);
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int max = 0;
-
-        //DFS+自顶向下
-        public int maxDepth(TreeNode root) {
-            DFS(root, 1);
-            return max;
-        }
-
-        private void DFS(TreeNode node, int depth) {
-            if (node == null)
-                return;
-            //叶节点时，更新最大深度
-            if (node.left == null && node.right == null) {
-                max = Math.max(max, depth);
-                return;
-            }
-            DFS(node.left, depth + 1);
-            DFS(node.right, depth + 1);
-        }
-
-        //DFS+自底向上
-        public int maxDepth2(TreeNode root) {
-            return root == null ? 0 : Math.max(maxDepth2(root.left), maxDepth2(root.right)) + 1;
-        }
-
-        //BFS
-        public int maxDepth3(TreeNode root) {
-            if (root == null)
-                return 0;
-            Queue<TreeNode> queue = new LinkedList<>();
-            queue.offer(root);
-            int max = 0;
-
-            while (!queue.isEmpty()) {
-                max++;
-                int size = queue.size();
-
-                for (int i = 0; i < size; i++) {
-                    TreeNode poll = queue.poll();
-                    if (poll.left != null)
-                        queue.offer(poll.left);
-                    if (poll.right != null)
-                        queue.offer(poll.right);
-                }
-
-            }
-
-            return max;
-        }
+    
+    private void DFS(TreeNode node, int depth) {
+      if (node == null)
+        return;
+      // 叶节点时，更新最大深度
+      if (node.left == null && node.right == null) {
+        max = Math.max(max, depth);
+        return;
+      }
+      DFS(node.left, depth + 1);
+      DFS(node.right, depth + 1);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // DFS+自底向上
+    public int maxDepth2(TreeNode root) {
+      return root == null ? 0 : Math.max(maxDepth2(root.left), maxDepth2(root.right)) + 1;
+    }
+    
+    // BFS
+    public int maxDepth3(TreeNode root) {
+      if (root == null)
+        return 0;
+      Queue<TreeNode> queue = new LinkedList<>();
+      queue.offer(root);
+      int max = 0;
+      
+      while (!queue.isEmpty()) {
+        max++;
+        int size = queue.size();
+        
+        for (int i = 0; i < size; i++) {
+          TreeNode poll = queue.poll();
+          if (poll.left != null)
+            queue.offer(poll.left);
+          if (poll.right != null)
+            queue.offer(poll.right);
+        }
+        
+      }
+      
+      return max;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
