@@ -33,35 +33,68 @@
 //<div><li>👍 2357</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//198.打家劫舍
-//开题时间：2022-11-24 18:41:16
+// 198.打家劫舍
+// 开题时间：2022-11-24 18:41:16
 public class HouseRobber {
-    public static void main(String[] args) {
-        Solution solution = new HouseRobber().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new HouseRobber().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * dp1
+     * 定义：
+     *  f[i] 表示偷窃前 i 个房子的最高金额
+     */
+    public int rob9(int[] nums) {
+      int n = nums.length;
+      int[] f = new int[n + 2];
+      for (int i = 2; i < n + 2; i++) {
+        f[i] = Math.max(f[i - 1], f[i - 2] + nums[i - 2]);
+      }
+      return f[n + 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int rob9(int[] nums) {
-            int a = 0, b = 0, c = 0;
-            for (int num : nums) {
-                int d = Math.max(a, b) + num;
-                a = b;
-                b = c;
-                c = d;
-            }
-            return Math.max(b, c);
-        }
-
-        public int rob(int[] nums) {
-            int pre = 0, cur = 0;
-            for (int num : nums) {
-                int tmp = Math.max(cur, pre + num);
-                pre = cur;
-                cur = tmp;
-            }
-            return cur;
-        }
+    
+    // dp1（优化）
+    public int rob8(int[] nums) {
+      int pre = 0, cur = 0;
+      for (int num : nums) {
+        int tmp = Math.max(cur, pre + num);
+        pre = cur;
+        cur = tmp;
+      }
+      return cur;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * dp2
+     * 定义：
+     *  f[i][0] 表示偷窃前 i 个房子的最高金额（第 i 个房子不偷）
+     *  f[i][1] 表示偷窃前 i 个房子的最高金额（第 i 个房子 偷）
+     */
+    public int rob7(int[] nums) {
+      int n = nums.length;
+      int[][] f = new int[n + 1][2];
+      for (int i = 1; i < n + 1; i++) {
+        f[i][0] = Math.max(f[i - 1][0], f[i - 1][1]);
+        f[i][1] = f[i - 1][0] + nums[i - 1];
+      }
+      return Math.max(f[n][0], f[n][1]);
+    }
+    
+    // dp2（优化）
+    public int rob(int[] nums) {
+      int n = nums.length;
+      int notRob = 0;
+      int rob = 0;
+      for (int i = 1; i < n + 1; i++) {
+        int tmp = notRob;
+        notRob = Math.max(notRob, rob);
+        rob = tmp + nums[i - 1];
+      }
+      return Math.max(notRob, rob);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
