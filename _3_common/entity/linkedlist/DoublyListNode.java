@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.linkedlist;
+package org.example.leetcode.problems._3_common.entity.linkedlist;
 
 public class DoublyListNode {
     public int val;

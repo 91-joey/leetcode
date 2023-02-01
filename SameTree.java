@@ -1,6 +1,6 @@
 package org.example.leetcode.problems;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 /**
  * 100.相同的树 <br>

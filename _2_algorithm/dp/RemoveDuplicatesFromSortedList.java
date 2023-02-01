@@ -30,7 +30,7 @@
 //<div><li>👍 901</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 //83.删除排序链表中的重复元素
 //开题时间：2022-12-05 10:24:13

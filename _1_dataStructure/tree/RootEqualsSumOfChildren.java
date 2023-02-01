@@ -34,7 +34,7 @@
 //<div><li>👍 24</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 //2236.判断根结点是否等于子结点之和
 //开题时间：2022-11-05 08:37:27

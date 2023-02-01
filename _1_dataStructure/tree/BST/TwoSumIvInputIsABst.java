@@ -30,10 +30,15 @@
 //<div><li>👍 443</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.tree.BST;
 
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 import org.example.leetcode.problems._3_common.tool.Tools;
-import org.example.leetcode.problems._3_common.tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.function.Supplier;
 
 //653.两数之和 IV - 输入二叉搜索树

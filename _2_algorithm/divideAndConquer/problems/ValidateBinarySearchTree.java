@@ -37,8 +37,8 @@
 //<div><li>👍 1816</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 import org.example.leetcode.problems._3_common.tool.Tools;
-import org.example.leetcode.problems._3_common.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Deque;

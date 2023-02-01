@@ -1,6 +1,6 @@
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 //622. 设计循环队列
 //1.自解（数组）

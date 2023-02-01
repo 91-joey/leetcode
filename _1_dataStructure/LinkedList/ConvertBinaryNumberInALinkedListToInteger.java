@@ -50,7 +50,7 @@
 //<div><li>👍 135</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 //1290.二进制链表转整数
 //开题时间：2022-12-10 09:33:12

@@ -39,7 +39,7 @@
 //<div><li>👍 1454</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

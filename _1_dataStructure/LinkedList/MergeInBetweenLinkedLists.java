@@ -1,6 +1,6 @@
 package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 /**
  * 1669.合并两个链表 <br>

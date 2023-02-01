@@ -58,9 +58,12 @@
 //<div><div>Related Topics</div><div><li>哈希表</li><li>链表</li></div></div><br><div><li>👍 978</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.linkedlist.Node;
+import org.example.leetcode.problems._3_common.entity.linkedlist.Node;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 //138.复制带随机指针的链表
 //开题时间：2022-09-02 11:06:49

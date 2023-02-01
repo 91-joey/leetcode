@@ -34,7 +34,7 @@
 //<div><li>👍 1438</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 //92.反转链表 II
 //开题时间：2022-11-15 12:02:24

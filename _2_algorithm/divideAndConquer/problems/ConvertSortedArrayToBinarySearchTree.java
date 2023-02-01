@@ -34,7 +34,7 @@
 //<div><li>👍 1192</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 //108.将有序数组转换为二叉搜索树
 //开题时间：2022-11-17 17:43:31

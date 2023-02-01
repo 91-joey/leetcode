@@ -42,10 +42,16 @@
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>哈希表</li><li>二叉树</li></div></div><br><div><li>👍 625</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.hashtable;
 
-import org.example.leetcode.problems._3_common.Entry;
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.Entry;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 //652.寻找重复的子树
 //开题时间：2022-09-09 09:04:28

@@ -23,7 +23,7 @@
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>二叉搜索树</li><li>二分查找</li><li>二叉树</li></div></div><br><div><li>👍 128</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 import java.util.ArrayList;
 

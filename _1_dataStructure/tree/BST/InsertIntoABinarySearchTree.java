@@ -47,7 +47,7 @@
 //<div><li>👍 409</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.tree.BST;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 //701.二叉搜索树中的插入操作
 //开题时间：2022-12-10 11:21:18

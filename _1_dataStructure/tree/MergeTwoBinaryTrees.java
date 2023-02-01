@@ -34,7 +34,7 @@
 //<div><li>👍 1142</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 //617.合并二叉树
 //开题时间：2023-01-26 08:44:45

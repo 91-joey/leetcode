@@ -42,9 +42,14 @@
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>二叉树</li></div></div><br><div><li>👍 1961</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Set;
 
 //236.二叉树的最近公共祖先
 //开题时间：2022-09-17 15:09:48

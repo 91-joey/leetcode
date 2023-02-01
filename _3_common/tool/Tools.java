@@ -1,7 +1,7 @@
 package org.example.leetcode.problems._3_common.tool;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;

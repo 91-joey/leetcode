@@ -36,7 +36,7 @@
 //<div><li>👍 2781</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.linkedlist.ListNode;
+import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 //21.合并两个有序链表
 //开题时间：2022-11-12 14:51:41

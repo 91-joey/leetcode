@@ -41,7 +41,7 @@
 //<div><li>👍 1184</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 //110.平衡二叉树
 //开题时间：2022-11-18 12:25:12

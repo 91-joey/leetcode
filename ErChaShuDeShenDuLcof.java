@@ -1,6 +1,6 @@
 package org.example.leetcode.problems;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 /**
  * 剑指 Offer 55 - I.二叉树的深度 <br>

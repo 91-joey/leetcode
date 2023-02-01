@@ -1,6 +1,6 @@
 package org.example.leetcode.problems._9_contest.history.lccup22.team;
 
-import org.example.leetcode.problems._3_common.tree.TreeNode;
+import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 //LCP 67. 装饰树
 public class ExpandBinaryTree {

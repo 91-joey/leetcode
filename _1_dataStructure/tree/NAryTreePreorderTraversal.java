@@ -40,7 +40,7 @@
 package org.example.leetcode.problems._1_dataStructure.tree;
 
 
-import org.example.leetcode.problems._3_common.nAryTree.Node;
+import org.example.leetcode.problems._3_common.entity.tree.nAryTree.Node;
 
 import java.util.ArrayList;
 import java.util.Deque;
