@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.BFS;
+package org.example.leetcode.problems._2_algorithm.bfs;
 
 import java.util.Arrays;
 import java.util.LinkedList;
