@@ -63,73 +63,131 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//1129.颜色交替的最短路径
-//开题时间：2023-01-11 09:48:30
+// 1129.颜色交替的最短路径
+// 开题时间：2023-01-11 09:48:30
 public class ShortestPathWithAlternatingColors {
-    public static void main(String[] args) {
-        Solution solution = new ShortestPathWithAlternatingColors().new Solution();
-        System.out.println(Arrays.toString(solution.shortestAlternatingPaths(9, Tools.to2DIntArray("[[3,1],[2,3],[7,6],[5,1],[1,3],[8,1],[5,4],[8,4],[6,3],[4,7],[0,1],[7,8],[3,8]]"), Tools.to2DIntArray("[[4,1],[5,8],[3,7],[7,1],[1,8],[8,7],[5,4]]"))));
-//        System.out.println(Arrays.toString(solution.shortestAlternatingPaths(5, Tools.to2DIntArray("[[0,1],[1,2],[2,3],[3,4]]"), Tools.to2DIntArray("[[1,2],[2,3],[3,1]]"))));
-//        System.out.println(Arrays.toString(solution.shortestAlternatingPaths(3, new int[][]{{0, 1}}, new int[][]{{1, 2}})));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] shortestAlternatingPaths(int n, int[][] redEdges, int[][] blueEdges) {
-            //初始化结果数组
-            int[] ans = new int[n];
-            Arrays.fill(ans, Integer.MAX_VALUE);
-
-            //红蓝边分别建立邻接表
-            ArrayList<Integer>[] g1 = new ArrayList[n], g2 = new ArrayList[n];
-            for (int i = 0; i < n; i++) {
-                g1[i] = new ArrayList<>();
-                g2[i] = new ArrayList<>();
+  public static void main(String[] args) {
+    Solution solution = new ShortestPathWithAlternatingColors().new Solution();
+    System.out.println(Arrays.toString(solution.shortestAlternatingPaths(9, Tools.to2DIntArray("[[3,1],[2,3],[7,6],[5,1],[1,3],[8,1],[5,4],[8,4],[6,3],[4,7],[0,1],[7,8],[3,8]]"), Tools.to2DIntArray("[[4,1],[5,8],[3,7],[7,1],[1,8],[8,7],[5,4]]"))));
+    //        System.out.println(Arrays.toString(solution.shortestAlternatingPaths(5, Tools.to2DIntArray("[[0,1],[1,2],[2,3],[3,4]]"), Tools.to2DIntArray("[[1,2],[2,3],[3,1]]"))));
+    //        System.out.println(Arrays.toString(solution.shortestAlternatingPaths(3, new int[][]{{0, 1}}, new int[][]{{1, 2}})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // ☆☆☆☆☆ 双源BFS
+    public int[] shortestAlternatingPaths(int n, int[][] redEdges, int[][] blueEdges) {
+      // 初始化结果数组
+      int[] ans = new int[n];
+      Arrays.fill(ans, Integer.MAX_VALUE);
+      ans[0] = 0;
+      
+      /*
+       * 初始化邻接表数组
+       *  g[0] 为红边所在邻接表
+       *  g[1] 为蓝边所在邻接表
+       */
+      ArrayList<Integer>[][] g = new ArrayList[2][n];
+      for (int i = 0; i < n; i++) {
+        g[0][i] = new ArrayList<>();
+        g[1][i] = new ArrayList<>();
+      }
+      for (int[] redEdge : redEdges) {
+        g[0][redEdge[0]].add(redEdge[1]);
+      }
+      for (int[] blueEdge : blueEdges) {
+        g[1][blueEdge[0]].add(blueEdge[1]);
+      }
+      
+      // 初始化队列（元素以{到该点的边颜色（0红，1蓝），节点}的数组存储）、访问标记数组，由于是红蓝交替、因此是双源BFS
+      Queue<int[]> q = new LinkedList<>();
+      q.offer(new int[]{0, 0});
+      q.offer(new int[]{1, 0});
+      boolean[][] vis = new boolean[2][n];
+      vis[0][0] = vis[1][0] = true;
+      
+      int step = 1;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int color = poll[0] ^ 1; // 变换颜色
+          int point = poll[1];
+          for (int next : g[color][point]) {
+            if (!vis[color][next]) {
+              ans[next] = Math.min(ans[next], step);
+              q.offer(new int[]{color, next});
+              vis[color][next] = true;
             }
-            for (int[] edge : redEdges) g1[edge[0]].add(edge[1]);
-            for (int[] edge : blueEdges) g2[edge[0]].add(edge[1]);
-
-            //从节点 0 开始分别以红、蓝边出发进行 BFS
-            bfs(g1, g2, ans, new boolean[n][2]);
-            bfs(g2, g1, ans, new boolean[n][2]);
-
-            for (int i = 0; i < n; i++)
-                if (ans[i] == Integer.MAX_VALUE)
-                    ans[i] = -1;
-            return ans;
+          }
         }
-
-        /**
-         * 从节点 0 开始以g1中的边、g2中的边交替行进，进行BFS
-         * @param g1 起始颜色所在的邻接表
-         * @param g2 交替颜色所在的邻接表
-         * @param ans 作为结果的最短路径数组
-         * @param vis 访问标记数组
-         *            vis[i][0]表示到达节点i时，下一条边的颜色为起始颜色，这一状态是否访问过
-         *            vis[i][1]表示到达节点i时，下一条边的颜色为交替颜色，这一状态是否访问过
-         */
-        private void bfs(ArrayList<Integer>[] g1, ArrayList<Integer>[] g2, int[] ans, boolean[][] vis) {
-            Queue<Integer> q = new LinkedList<>();
-            q.offer(0);
-            ans[0] = 0;
-            vis[0][0] = true;
-
-            int step = 1;
-            while (!q.isEmpty()) {
-                takeOneStep(g1, ans, vis, q, step++, 1);
-                takeOneStep(g2, ans, vis, q, step++, 0);
-            }
+        step++;
+      }
+      
+      // 对于不存在路径的点，特殊处理为 -1
+      for (int i = 0; i < n; i++) {
+        if (ans[i] == Integer.MAX_VALUE) {
+          ans[i] = -1;
         }
-
-        private void takeOneStep(ArrayList<Integer>[] g, int[] ans, boolean[][] vis, Queue<Integer> q, int step, int color) {
-            for (int i = q.size(); i > 0; i--)
-                for (int j : g[q.poll()])
-                    if (!vis[j][color]) {
-                        ans[j] = Math.min(ans[j], step);
-                        vis[j][color] = true;
-                        q.offer(j);
-                    }
-        }
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int[] shortestAlternatingPaths9(int n, int[][] redEdges, int[][] blueEdges) {
+      // 初始化结果数组
+      int[] ans = new int[n];
+      Arrays.fill(ans, Integer.MAX_VALUE);
+      
+      // 红蓝边分别建立邻接表
+      ArrayList<Integer>[] g1 = new ArrayList[n], g2 = new ArrayList[n];
+      for (int i = 0; i < n; i++) {
+        g1[i] = new ArrayList<>();
+        g2[i] = new ArrayList<>();
+      }
+      for (int[] edge : redEdges) g1[edge[0]].add(edge[1]);
+      for (int[] edge : blueEdges) g2[edge[0]].add(edge[1]);
+      
+      // 从节点 0 开始分别以红、蓝边出发进行 BFS
+      bfs(g1, g2, ans, new boolean[n][2]);
+      bfs(g2, g1, ans, new boolean[n][2]);
+      
+      for (int i = 0; i < n; i++)
+        if (ans[i] == Integer.MAX_VALUE)
+          ans[i] = -1;
+      return ans;
+    }
+    
+    /**
+     * 从节点 0 开始以g1中的边、g2中的边交替行进，进行BFS
+     *
+     * @param g1  起始颜色所在的邻接表
+     * @param g2  交替颜色所在的邻接表
+     * @param ans 作为结果的最短路径数组
+     * @param vis 访问标记数组
+     *            vis[i][0]表示到达节点i时，下一条边的颜色为起始颜色，这一状态是否访问过
+     *            vis[i][1]表示到达节点i时，下一条边的颜色为交替颜色，这一状态是否访问过
+     */
+    private void bfs(ArrayList<Integer>[] g1, ArrayList<Integer>[] g2, int[] ans, boolean[][] vis) {
+      Queue<Integer> q = new LinkedList<>();
+      q.offer(0);
+      ans[0] = 0;
+      vis[0][0] = true;
+      
+      int step = 1;
+      while (!q.isEmpty()) {
+        takeOneStep(g1, ans, vis, q, step++, 1);
+        takeOneStep(g2, ans, vis, q, step++, 0);
+      }
+    }
+    
+    private void takeOneStep(ArrayList<Integer>[] g, int[] ans, boolean[][] vis, Queue<Integer> q, int step, int color) {
+      for (int i = q.size(); i > 0; i--)
+        for (int j : g[q.poll()])
+          if (!vis[j][color]) {
+            ans[j] = Math.min(ans[j], step);
+            vis[j][color] = true;
+            q.offer(j);
+          }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
