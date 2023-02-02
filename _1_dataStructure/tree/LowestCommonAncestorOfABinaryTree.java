@@ -51,123 +51,123 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
-//236.二叉树的最近公共祖先
-//开题时间：2022-09-17 15:09:48
+// 236.二叉树的最近公共祖先
+// 开题时间：2022-09-17 15:09:48
 public class LowestCommonAncestorOfABinaryTree {
-    public static void main(String[] args) {
-        Solution solution = new LowestCommonAncestorOfABinaryTree().new Solution();
-        TreeNode node0 = new TreeNode(0);
-        TreeNode node1 = new TreeNode(1);
-        TreeNode node2 = new TreeNode(2);
-        TreeNode node3 = new TreeNode(3);
-        TreeNode node4 = new TreeNode(4);
-        TreeNode node5 = new TreeNode(5);
-        TreeNode node6 = new TreeNode(6);
-        TreeNode node7 = new TreeNode(7);
-        TreeNode node8 = new TreeNode(8);
-        node3.left = node5;
-        node3.right = node1;
-        node5.left = node6;
-        node5.right = node2;
-        node1.left = node0;
-        node1.right = node8;
-        node2.left = node7;
-        node2.right = node4;
-        System.out.println(solution.lowestCommonAncestorGJ(node3, node5, node4));
+  public static void main(String[] args) {
+    Solution solution = new LowestCommonAncestorOfABinaryTree().new Solution();
+    TreeNode node0 = new TreeNode(0);
+    TreeNode node1 = new TreeNode(1);
+    TreeNode node2 = new TreeNode(2);
+    TreeNode node3 = new TreeNode(3);
+    TreeNode node4 = new TreeNode(4);
+    TreeNode node5 = new TreeNode(5);
+    TreeNode node6 = new TreeNode(6);
+    TreeNode node7 = new TreeNode(7);
+    TreeNode node8 = new TreeNode(8);
+    node3.left = node5;
+    node3.right = node1;
+    node5.left = node6;
+    node5.right = node2;
+    node1.left = node0;
+    node1.right = node8;
+    node2.left = node7;
+    node2.right = node4;
+    System.out.println(solution.lowestCommonAncestorGJ(node3, node5, node4));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    Deque<TreeNode> stack = new LinkedList<>();
+    Deque<TreeNode> stack2 = new LinkedList<>();
+    boolean notFound = true;
+    boolean allFound = false;
+    
+    // 双向队列
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+      helper(root, p, q);
+      while (!stack.isEmpty() && !stack2.isEmpty()) {
+        TreeNode poll = stack.pollLast();
+        if (poll != stack2.pollLast()) {
+          return root;
+        }
+        root = poll;
+      }
+      return root;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        Deque<TreeNode> stack = new LinkedList<>();
-        Deque<TreeNode> stack2 = new LinkedList<>();
-        boolean notFound = true;
-        boolean allFound = false;
-
-        //双向队列
-        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            helper(root, p, q);
-            while (!stack.isEmpty() && !stack2.isEmpty()) {
-                TreeNode poll = stack.pollLast();
-                if (poll != stack2.pollLast()) {
-                    return root;
-                }
-                root = poll;
-            }
-            return root;
+    
+    private void helper(TreeNode root, TreeNode p, TreeNode q) {
+      if (root == null || allFound) return;
+      stack.push(root);
+      if (root.val == p.val || root.val == q.val) {
+        if (notFound) {
+          stack2 = new LinkedList<>(stack);
+          notFound = false;
+        } else {
+          allFound = true;
         }
-
-        private void helper(TreeNode root, TreeNode p, TreeNode q) {
-            if (root == null || allFound) return;
-            stack.push(root);
-            if (root.val == p.val || root.val == q.val) {
-                if (notFound) {
-                    stack2 = new LinkedList<>(stack);
-                    notFound = false;
-                } else {
-                    allFound = true;
-                }
-            }
-            helper(root.left, p, q);
-            helper(root.right, p, q);
-            if (!allFound)
-                stack.pop();
-        }
-
-        //递归
-        TreeNode ans;
-        boolean found = false;
-
-        public TreeNode lowestCommonAncestorGJ(TreeNode root, TreeNode p, TreeNode q) {
-            helperGJ(root, p, q);
-            return ans;
-        }
-
-        private boolean helperGJ(TreeNode root, TreeNode p, TreeNode q) {
-            if (root == null || found) return false;
-            boolean b = root == p || root == q;
-            boolean bl = helperGJ(root.left, p, q);
-            boolean br = helperGJ(root.right, p, q);
-            if (bl && br || (b && (bl || br))) {
-                ans = root;
-                found = true;
-            }
-            return b || bl || br;
-        }
-
-        Map<Integer, TreeNode> child2parent = new HashMap<>();
-        Set<TreeNode> visited = new HashSet<>();
-
-        //哈希
-        public TreeNode lowestCommonAncestorGJ2(TreeNode root, TreeNode p, TreeNode q) {
-            //存储 <子节点值 -> 父节点>哈希映射
-            getMap2Parent(root);
-
-            while (p != null) {
-                visited.add(p);
-                p = child2parent.get(p.val);
-            }
-
-            while (q != null) {
-                if (!visited.add(q))
-                    return q;
-                q = child2parent.get(q.val);
-            }
-
-            return null;
-        }
-
-        private void getMap2Parent(TreeNode root) {
-            TreeNode l = root.left;
-            if (l != null) {
-                child2parent.put(l.val, root);
-                getMap2Parent(l);
-            }
-            TreeNode r = root.right;
-            if (r != null) {
-                child2parent.put(r.val, root);
-                getMap2Parent(r);
-            }
-        }
+      }
+      helper(root.left, p, q);
+      helper(root.right, p, q);
+      if (!allFound)
+        stack.pop();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 递归
+    TreeNode ans;
+    boolean found = false;
+    
+    public TreeNode lowestCommonAncestorGJ(TreeNode root, TreeNode p, TreeNode q) {
+      helperGJ(root, p, q);
+      return ans;
+    }
+    
+    private boolean helperGJ(TreeNode root, TreeNode p, TreeNode q) {
+      if (root == null || found) return false;
+      boolean b = root == p || root == q;
+      boolean bl = helperGJ(root.left, p, q);
+      boolean br = helperGJ(root.right, p, q);
+      if (bl && br || (b && (bl || br))) {
+        ans = root;
+        found = true;
+      }
+      return b || bl || br;
+    }
+    
+    Map<Integer, TreeNode> child2parent = new HashMap<>();
+    Set<TreeNode> visited = new HashSet<>();
+    
+    // 哈希
+    public TreeNode lowestCommonAncestorGJ2(TreeNode root, TreeNode p, TreeNode q) {
+      // 存储 <子节点值 -> 父节点>哈希映射
+      getMap2Parent(root);
+      
+      while (p != null) {
+        visited.add(p);
+        p = child2parent.get(p.val);
+      }
+      
+      while (q != null) {
+        if (!visited.add(q))
+          return q;
+        q = child2parent.get(q.val);
+      }
+      
+      return null;
+    }
+    
+    private void getMap2Parent(TreeNode root) {
+      TreeNode l = root.left;
+      if (l != null) {
+        child2parent.put(l.val, root);
+        getMap2Parent(l);
+      }
+      TreeNode r = root.right;
+      if (r != null) {
+        child2parent.put(r.val, root);
+        getMap2Parent(r);
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

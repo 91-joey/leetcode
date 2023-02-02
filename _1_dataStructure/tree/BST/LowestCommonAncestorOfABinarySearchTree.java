@@ -39,88 +39,88 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//235.二叉搜索树的最近公共祖先
-//开题时间：2022-12-11 16:12:38
+// 235.二叉搜索树的最近公共祖先
+// 开题时间：2022-12-11 16:12:38
 public class LowestCommonAncestorOfABinarySearchTree {
-    public static void main(String[] args) {
-        Solution solution = new LowestCommonAncestorOfABinarySearchTree().new Solution();
-        TreeNode root = Tools.buildTree("[6,2,8,0,4,7,9,null,null,3,5]");
-        System.out.println(solution.lowestCommonAncestor(root, root.left, root.right));
+  public static void main(String[] args) {
+    Solution solution = new LowestCommonAncestorOfABinarySearchTree().new Solution();
+    TreeNode root = Tools.buildTree("[6,2,8,0,4,7,9,null,null,3,5]");
+    System.out.println(solution.lowestCommonAncestor(root, root.left, root.right));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public TreeNode lowestCommonAncestor9(TreeNode root, TreeNode p, TreeNode q) {
+      Queue<TreeNode> qP = getPath(root, p);
+      Queue<TreeNode> qQ = getPath(root, q);
+      
+      TreeNode a = root;
+      while (qP.peek() == qQ.peek()) {
+        a = qP.poll();
+        qQ.poll();
+      }
+      
+      return a;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public TreeNode lowestCommonAncestor9(TreeNode root, TreeNode p, TreeNode q) {
-            Queue<TreeNode> qP = getPath(root, p);
-            Queue<TreeNode> qQ = getPath(root, q);
-
-            TreeNode a = root;
-            while (qP.peek() == qQ.peek()) {
-                a = qP.poll();
-                qQ.poll();
-            }
-
-            return a;
-        }
-
-        public TreeNode lowestCommonAncestor8(TreeNode root, TreeNode p, TreeNode q) {
-            TreeNode ancestor = root, a = root, b = root;
-            while (a == b) {
-                ancestor = a;
-                a = a.val == p.val ? a : a.val < p.val ? a.right : a.left;
-                b = b.val == q.val ? b : b.val < q.val ? b.right : b.left;
-            }
-            return ancestor;
-        }
-
-
-        public TreeNode lowestCommonAncestor7(TreeNode root, TreeNode p, TreeNode q) {
-            if (root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left, p, q);
-            if (root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right, p, q);
-            return root;
-        }
-
-        public TreeNode lowestCommonAncestor6(TreeNode root, TreeNode p, TreeNode q) {
-            while (true) {
-                if (root.val > p.val && root.val > q.val)
-                    root = root.left;
-                else if (root.val < p.val && root.val < q.val)
-                    root = root.right;
-                else
-                    return root;
-            }
-        }
-
-        /*
-         * ☆☆☆☆☆
-         * 如果两个节点值都小于根节点，说明他们都在根节点的左子树上，我们往左子树上找
-         * 如果两个节点值都大于根节点，说明他们都在根节点的右子树上，我们往右子树上找
-         * 如果一个节点值大于根节点，一个节点值小于根节点，说明他们他们一个在根节点的左子树上一个在根节点的右子树上，那么根节点就是他们的最近公共祖先节点。
-         */
-        public TreeNode lowestCommonAncestor5(TreeNode root, TreeNode p, TreeNode q) {
-            while ((long) (root.val - p.val) * (root.val - q.val) > 0)
-                root = root.val > p.val ? root.left : root.right;
-            return root;
-        }
-
-
-        public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-            if ((long) (root.val - p.val) * (root.val - q.val) > 0)
-                return lowestCommonAncestor(root.val > p.val ? root.left : root.right, p, q);
-            return root;
-        }
-
-        private Queue<TreeNode> getPath(TreeNode root, TreeNode t) {
-            Queue<TreeNode> dq = new LinkedList<>();
-            dq.offer(root);
-
-            while (root.val != t.val) {
-                root = root.val < t.val ? root.right : root.left;
-                dq.offer(root);
-            }
-
-            return dq;
-        }
+    
+    public TreeNode lowestCommonAncestor8(TreeNode root, TreeNode p, TreeNode q) {
+      TreeNode ancestor = root, a = root, b = root;
+      while (a == b) {
+        ancestor = a;
+        a = a.val == p.val ? a : a.val < p.val ? a.right : a.left;
+        b = b.val == q.val ? b : b.val < q.val ? b.right : b.left;
+      }
+      return ancestor;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    
+    public TreeNode lowestCommonAncestor7(TreeNode root, TreeNode p, TreeNode q) {
+      if (root.val > p.val && root.val > q.val) return lowestCommonAncestor(root.left, p, q);
+      if (root.val < p.val && root.val < q.val) return lowestCommonAncestor(root.right, p, q);
+      return root;
+    }
+    
+    public TreeNode lowestCommonAncestor6(TreeNode root, TreeNode p, TreeNode q) {
+      while (true) {
+        if (root.val > p.val && root.val > q.val)
+          root = root.left;
+        else if (root.val < p.val && root.val < q.val)
+          root = root.right;
+        else
+          return root;
+      }
+    }
+    
+    /*
+     * ☆☆☆☆☆
+     * 如果两个节点值都小于根节点，说明他们都在根节点的左子树上，我们往左子树上找
+     * 如果两个节点值都大于根节点，说明他们都在根节点的右子树上，我们往右子树上找
+     * 如果一个节点值大于根节点，一个节点值小于根节点，说明他们他们一个在根节点的左子树上一个在根节点的右子树上，那么根节点就是他们的最近公共祖先节点。
+     */
+    public TreeNode lowestCommonAncestor5(TreeNode root, TreeNode p, TreeNode q) {
+      while ((long) (root.val - p.val) * (root.val - q.val) > 0)
+        root = root.val > p.val ? root.left : root.right;
+      return root;
+    }
+    
+    
+    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+      if ((long) (root.val - p.val) * (root.val - q.val) > 0)
+        return lowestCommonAncestor(root.val > p.val ? root.left : root.right, p, q);
+      return root;
+    }
+    
+    private Queue<TreeNode> getPath(TreeNode root, TreeNode t) {
+      Queue<TreeNode> dq = new LinkedList<>();
+      dq.offer(root);
+      
+      while (root.val != t.val) {
+        root = root.val < t.val ? root.right : root.left;
+        dq.offer(root);
+      }
+      
+      return dq;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
