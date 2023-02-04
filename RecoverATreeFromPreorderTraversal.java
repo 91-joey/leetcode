@@ -15,6 +15,12 @@ public class RecoverATreeFromPreorderTraversal {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
+    /*
+     * 递归
+     * 1. 求根节点值 val 、左子节点的深度 depth、左子节点的开始位置 leftBegin
+     * 2. 用左子节点的深度 depth 求出右子节点的开始位置 rightBegin （不存在右子节点时，为 n ）
+     * 3. 递归求解左右子树
+     */
     public TreeNode recoverFromPreorder(String traversal) {
       int depth = 0;
       int val = 0;
@@ -43,8 +49,10 @@ public class RecoverATreeFromPreorderTraversal {
         }
       }
       
+      // 右子树不存在时，不需要减去深度
       int leftEnd = rightBegin - (rightBegin == n ? 0 : depth);
       return new TreeNode(val,
+          // 边界检查
           leftEnd <= n && leftBegin < leftEnd ? recoverFromPreorder(traversal.substring(leftBegin, leftEnd)) : null,
           rightBegin < n ? recoverFromPreorder(traversal.substring(rightBegin, n)) : null
       );
