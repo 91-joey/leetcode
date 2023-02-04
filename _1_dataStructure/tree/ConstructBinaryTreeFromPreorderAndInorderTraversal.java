@@ -45,7 +45,7 @@ import java.util.Map;
 public class ConstructBinaryTreeFromPreorderAndInorderTraversal {
   public static void main(String[] args) {
     Solution solution = new ConstructBinaryTreeFromPreorderAndInorderTraversal().new Solution();
-    //        System.out.println(solution.buildTree3(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7}));
+    // System.out.println(solution.buildTree3(new int[]{3, 9, 20, 15, 7}, new int[]{9, 3, 15, 20, 7}));
     System.out.println(solution.buildTree3(new int[]{3, 9, 15, 10, 20, 7, 5, 8, 4}, new int[]{15, 9, 10, 3, 20, 5, 7, 8, 4}));
   }
   

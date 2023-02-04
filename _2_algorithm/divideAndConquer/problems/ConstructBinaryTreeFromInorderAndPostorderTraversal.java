@@ -47,27 +47,27 @@ public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
   // leetcode submit region begin(Prohibit modification and deletion)
   
   class Solution {
-    Map<Integer, Integer> val2idx = new HashMap<>();
+    Map<Integer, Integer> val2idxIn = new HashMap<>();
     
     public TreeNode buildTree(int[] inorder, int[] postorder) {
       int len = inorder.length;
       for (int i = 0; i < len; i++)
-        val2idx.put(inorder[i], i);
+        val2idxIn.put(inorder[i], i);
       
-      return buildTree(postorder, 0, len - 1, 0, len - 1);
+      return buildTree(postorder, 0, len - 1, 0);
     }
     
-    private TreeNode buildTree(int[] postorder, int l1, int r1, int l2, int r2) {
-      if (l1 > r1)
+    private TreeNode buildTree(int[] postorder, int lPost, int rPost, int lIn) {
+      if (lPost > rPost)
         return null;
       
-      TreeNode root = new TreeNode(postorder[r2]);
-      int rootIdxIn = val2idx.get(postorder[r2]);
-      int rightStart = l2 + rootIdxIn - l1;
-      root.left = buildTree(postorder, l1, rootIdxIn - 1, l2, rightStart - 1);
-      root.right = buildTree(postorder, rootIdxIn + 1, r1, rightStart, r2 - 1);
+      int rootIn = val2idxIn.get(postorder[rPost]);
+      int leftMostPost = lPost + rootIn - lIn - 1;
       
-      return root;
+      return new TreeNode(postorder[rPost],
+          buildTree(postorder, lPost, leftMostPost, lIn),
+          buildTree(postorder, leftMostPost + 1, rPost - 1, rootIn + 1)
+      );
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
