@@ -20,40 +20,40 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 
 import java.util.HashSet;
 
-//剑指 Offer 03.数组中重复的数字
-//开题时间：2022-12-18 09:10:20
+// 剑指 Offer 03.数组中重复的数字
+// 开题时间：2022-12-18 09:10:20
 public class ShuZuZhongZhongFuDeShuZiLcof {
-    public static void main(String[] args) {
-        Solution solution = new ShuZuZhongZhongFuDeShuZiLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ShuZuZhongZhongFuDeShuZiLcof().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int findRepeatNumber9(int[] nums) {
+      HashSet<Integer> set = new HashSet<>();
+      for (int x : nums)
+        if (!set.add(x))
+          return x;
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int findRepeatNumber9(int[] nums) {
-            HashSet<Integer> set = new HashSet<>();
-            for (int x : nums)
-                if (!set.add(x))
-                    return x;
-            return -1;
-        }
-
-        //☆☆☆☆☆ 原地交换
-        public int findRepeatNumber(int[] nums) {
-            for (int i = 0; i < nums.length; )
-                if (i == nums[i])
-                    i++;
-                else if (nums[nums[i]] == nums[i])
-                    return nums[i];
-                else
-                    swap(nums, i, nums[i]);
-            return -1;
-        }
-
-        public static void swap(int[] arr, int i, int j) {
-            int tmp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = tmp;
-        }
+    
+    //☆☆☆☆☆ 原地交换
+    public int findRepeatNumber(int[] nums) {
+      for (int i = 0; i < nums.length; )
+        if (i == nums[i])
+          i++;
+        else if (nums[nums[i]] == nums[i])
+          return nums[i];
+        else
+          swap(nums, i, nums[i]);
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public static void swap(int[] arr, int i, int j) {
+      int tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

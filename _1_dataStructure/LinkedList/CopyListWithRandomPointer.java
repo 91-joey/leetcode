@@ -65,13 +65,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//138.复制带随机指针的链表
-//开题时间：2022-09-02 11:06:49
+// 138.复制带随机指针的链表
+// 开题时间：2022-09-02 11:06:49
 public class CopyListWithRandomPointer {
-    public static void main(String[] args) {
-        Solution solution = new CopyListWithRandomPointer().new Solution();
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
+  public static void main(String[] args) {
+    Solution solution = new CopyListWithRandomPointer().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
 /*
 // Definition for a Node.
 class Node {
@@ -86,98 +86,98 @@ class Node {
     }
 }
 */
-
-    class Solution {
-        //1.迭代 n^2  n
-        public Node copyRandomList(Node head) {
-            Node dummy = new Node(-1);
-            Node p = dummy;
-
-            Node pHead = head;
-            int size = 0;
-            while (pHead != null) {
-                pHead = pHead.next;
-                size++;
-            }
-
-            List<NodeAndRandomIdx> copies = new ArrayList<>(size);
-            for (pHead = head; pHead != null; pHead = pHead.next) {
-                p.next = new Node(pHead.val);
-                p = p.next;
-                //record random pointer
-                Node random = pHead.random;
-                int randomIdx = -1;
-                if (random != null) {
-                    int step = 0;
-                    for (Node r = random.next; r != null; r = r.next) {
-                        step++;
-                    }
-                    randomIdx = size - step - 1;
-                }
-                copies.add(new NodeAndRandomIdx(p, randomIdx));
-            }
-
-            for (NodeAndRandomIdx nodeAndRandomIdx : copies) {
-                if (nodeAndRandomIdx.randomIdx != -1) {
-                    nodeAndRandomIdx.node.random = copies.get(nodeAndRandomIdx.randomIdx).node;
-                }
-            }
-
-            return dummy.next;
+  
+  class Solution {
+    // 1.迭代 n^2  n
+    public Node copyRandomList(Node head) {
+      Node dummy = new Node(-1);
+      Node p = dummy;
+      
+      Node pHead = head;
+      int size = 0;
+      while (pHead != null) {
+        pHead = pHead.next;
+        size++;
+      }
+      
+      List<NodeAndRandomIdx> copies = new ArrayList<>(size);
+      for (pHead = head; pHead != null; pHead = pHead.next) {
+        p.next = new Node(pHead.val);
+        p = p.next;
+        // record random pointer
+        Node random = pHead.random;
+        int randomIdx = -1;
+        if (random != null) {
+          int step = 0;
+          for (Node r = random.next; r != null; r = r.next) {
+            step++;
+          }
+          randomIdx = size - step - 1;
         }
-
-        //GJ2.迭代 n  1
-        public Node copyRandomListGJ1(Node head) {
-            if (head == null) {
-                return null;
-            }
-
-            //1.元节点后追加拷贝节点，即A → A' → B → B′ → C → C′
-            for (Node p = head; p != null; p = p.next.next) {
-                Node copy = new Node(p.val);
-                copy.next = p.next;
-                p.next = copy;
-            }
-            //2.拷贝节点的random域赋值
-            for (Node p = head; p != null; p = p.next.next) {
-                p.next.random = p.random == null ? null : p.random.next;
-            }
-            //3.复原原链表，连接拷贝节点，返回新头节点
-            Node headNew = head.next;
-            for (Node p = head; p != null; p = p.next) {
-                Node copy = p.next;
-                p.next = copy.next;
-                copy.next = copy.next == null ? null : copy.next.next;
-            }
-
-            return headNew;
+        copies.add(new NodeAndRandomIdx(p, randomIdx));
+      }
+      
+      for (NodeAndRandomIdx nodeAndRandomIdx : copies) {
+        if (nodeAndRandomIdx.randomIdx != -1) {
+          nodeAndRandomIdx.node.random = copies.get(nodeAndRandomIdx.randomIdx).node;
         }
-
-        //2.秀解.哈希表    n   n
-        public Node copyRandomList2(Node head) {
-            Map<Node, Node> map = new HashMap<>();
-
-            for (Node p = head; p != null; p = p.next) {
-                map.put(p, new Node(p.val));
-            }
-            for (Node p = head; p != null; p = p.next) {
-                Node copy = map.get(p);
-                copy.next = map.get(p.next);
-                copy.random = map.get(p.random);
-            }
-
-            return map.get(head);
-        }
-
-        private class NodeAndRandomIdx {
-            public Node node;
-            public int randomIdx;
-
-            public NodeAndRandomIdx(Node node, int randomIdx) {
-                this.node = node;
-                this.randomIdx = randomIdx;
-            }
-        }
+      }
+      
+      return dummy.next;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // GJ2.迭代 n  1
+    public Node copyRandomListGJ1(Node head) {
+      if (head == null) {
+        return null;
+      }
+      
+      // 1.元节点后追加拷贝节点，即A → A' → B → B′ → C → C′
+      for (Node p = head; p != null; p = p.next.next) {
+        Node copy = new Node(p.val);
+        copy.next = p.next;
+        p.next = copy;
+      }
+      // 2.拷贝节点的random域赋值
+      for (Node p = head; p != null; p = p.next.next) {
+        p.next.random = p.random == null ? null : p.random.next;
+      }
+      // 3.复原原链表，连接拷贝节点，返回新头节点
+      Node headNew = head.next;
+      for (Node p = head; p != null; p = p.next) {
+        Node copy = p.next;
+        p.next = copy.next;
+        copy.next = copy.next == null ? null : copy.next.next;
+      }
+      
+      return headNew;
+    }
+    
+    // 2.秀解.哈希表    n   n
+    public Node copyRandomList2(Node head) {
+      Map<Node, Node> map = new HashMap<>();
+      
+      for (Node p = head; p != null; p = p.next) {
+        map.put(p, new Node(p.val));
+      }
+      for (Node p = head; p != null; p = p.next) {
+        Node copy = map.get(p);
+        copy.next = map.get(p.next);
+        copy.random = map.get(p.random);
+      }
+      
+      return map.get(head);
+    }
+    
+    private class NodeAndRandomIdx {
+      public Node node;
+      public int randomIdx;
+      
+      public NodeAndRandomIdx(Node node, int randomIdx) {
+        this.node = node;
+        this.randomIdx = randomIdx;
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -59,31 +59,30 @@ package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import org.example.leetcode.problems._3_common.interactive.GuessGame;
 
-//374.猜数字大小
-//开题时间：2022-10-28 17:21:04
+// 374.猜数字大小
+// 开题时间：2022-10-28 17:21:04
 public class GuessNumberHigherOrLower {
-    public static void main(String[] args) {
-        Solution solution = new GuessNumberHigherOrLower().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new GuessNumberHigherOrLower().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  
+  public class Solution extends GuessGame {
+    public int guessNumber(int n) {
+      for (int l = 1, r = n; l <= r; ) {
+        int mid = l + (r - l) / 2;
+        int diff = guess(mid);
+        if (diff == 0)
+          return mid;
+        else if (diff < 0)
+          r = mid - 1;
+        else
+          l = mid + 1;
+      }
+      return -1;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-
-
-    public class Solution extends GuessGame {
-        public int guessNumber(int n) {
-            for (int l = 1, r = n; l <= r; ) {
-                int mid = l + (r - l) / 2;
-                int diff = guess(mid);
-                if (diff == 0)
-                    return mid;
-                else if (diff < 0)
-                    r = mid - 1;
-                else
-                    l = mid + 1;
-            }
-            return -1;
-        }
-    }
-
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  // leetcode submit region end(Prohibit modification and deletion)
 }

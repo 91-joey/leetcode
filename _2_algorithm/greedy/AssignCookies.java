@@ -8,9 +8,9 @@
 //<strong>输入:</strong> g = [1,2,3], s = [1,1]
 //<strong>输出:</strong> 1
 //<strong>解释:</strong> 
-//你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。
-//虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。
-//所以你应该输出1。
+// 你有三个孩子和两块小饼干，3个孩子的胃口值分别是：1,2,3。
+// 虽然你有两块小饼干，由于他们的尺寸都是1，你只能让胃口值是1的孩子满足。
+// 所以你应该输出1。
 //</pre>
 //
 //<p><strong>示例&nbsp;2:</strong></p>
@@ -19,9 +19,9 @@
 //<strong>输入:</strong> g = [1,2], s = [1,2,3]
 //<strong>输出:</strong> 2
 //<strong>解释:</strong> 
-//你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。
-//你拥有的饼干数量和尺寸都足以让所有孩子满足。
-//所以你应该输出2.
+// 你有两个孩子和三块小饼干，2个孩子的胃口值分别是1,2。
+// 你拥有的饼干数量和尺寸都足以让所有孩子满足。
+// 所以你应该输出2.
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -39,27 +39,27 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 
 import java.util.Arrays;
 
-//455.分发饼干
-//开题时间：2022-12-20 09:46:46
+// 455.分发饼干
+// 开题时间：2022-12-20 09:46:46
 public class AssignCookies {
-    public static void main(String[] args) {
-        Solution solution = new AssignCookies().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new AssignCookies().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 排序 + 双指针 + 贪心
+    public int findContentChildren(int[] g, int[] s) {
+      Arrays.sort(g);
+      Arrays.sort(s);
+      
+      int i = 0;
+      for (int j = 0; i < g.length && j < s.length; j++)
+        if (g[i] <= s[j])
+          i++;
+      
+      return i;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //排序 + 双指针 + 贪心
-        public int findContentChildren(int[] g, int[] s) {
-            Arrays.sort(g);
-            Arrays.sort(s);
-
-            int i = 0;
-            for (int j = 0; i < g.length && j < s.length; j++)
-                if (g[i] <= s[j])
-                    i++;
-
-            return i;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

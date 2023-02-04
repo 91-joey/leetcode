@@ -41,62 +41,62 @@
 //<div><li>👍 493</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//413.等差数列划分
-//开题时间：2022-12-02 16:08:17
+// 413.等差数列划分
+// 开题时间：2022-12-02 16:08:17
 public class ArithmeticSlices {
-    public static void main(String[] args) {
-        Solution solution = new ArithmeticSlices().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ArithmeticSlices().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int numberOfArithmeticSlicesX(int[] nums) {
+      int cnt = 0;
+      int n = nums.length;
+      int[][] dp = new int[n][4001];
+      
+      for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+          int d = nums[i] - nums[j] + 2000;
+          dp[i][d] = dp[j][d] + 1;
+          if (dp[i][d] >= 2)
+            cnt++;
+        }
+      }
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int numberOfArithmeticSlicesX(int[] nums) {
-            int cnt = 0;
-            int n = nums.length;
-            int[][] dp = new int[n][4001];
-
-            for (int i = 1; i < n; i++) {
-                for (int j = 0; j < i; j++) {
-                    int d = nums[i] - nums[j] + 2000;
-                    dp[i][d] = dp[j][d] + 1;
-                    if (dp[i][d] >= 2)
-                        cnt++;
-                }
-            }
-
-            return cnt;
+    
+    /*
+     * dp[i]：以索引 i 结尾的最大等差子数组长度 - 2
+     *   则索引 i 处对答案的贡献为 dp[i]
+     */
+    public int numberOfArithmeticSlices8(int[] nums) {
+      int cnt = 0;
+      int n = nums.length;
+      int[] dp = new int[n];
+      
+      for (int i = 2; i < n; i++)
+        if (2 * nums[i - 1] == nums[i - 2] + nums[i]) {
+          dp[i] = dp[i - 1] + 1;
+          cnt += dp[i];
         }
-
-        /*
-         * dp[i]：以索引 i 结尾的最大等差子数组长度 - 2
-         *   则索引 i 处对答案的贡献为 dp[i]
-         */
-        public int numberOfArithmeticSlices8(int[] nums) {
-            int cnt = 0;
-            int n = nums.length;
-            int[] dp = new int[n];
-
-            for (int i = 2; i < n; i++)
-                if (2 * nums[i - 1] == nums[i - 2] + nums[i]) {
-                    dp[i] = dp[i - 1] + 1;
-                    cnt += dp[i];
-                }
-
-            return cnt;
-        }
-
-        //DP优化（状态压缩）
-        public int numberOfArithmeticSlices(int[] nums) {
-            int cnt = 0;
-
-            for (int i = 2, pre = 0; i < nums.length; i++)
-                if (2 * nums[i - 1] == nums[i - 2] + nums[i])
-                    cnt += ++pre;
-                else
-                    pre = 0;
-
-            return cnt;
-        }
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // DP优化（状态压缩）
+    public int numberOfArithmeticSlices(int[] nums) {
+      int cnt = 0;
+      
+      for (int i = 2, pre = 0; i < nums.length; i++)
+        if (2 * nums[i - 1] == nums[i - 2] + nums[i])
+          cnt += ++pre;
+        else
+          pre = 0;
+      
+      return cnt;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

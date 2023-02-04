@@ -23,8 +23,8 @@
 //<strong>输入：</strong>position = [1,2,3]
 //<strong>输出：</strong>1
 //<strong>解释：</strong>第一步:将位置3的筹码移动到位置1，成本为0。
-//第二步:将位置2的筹码移动到位置1，成本= 1。
-//总成本是1。
+// 第二步:将位置2的筹码移动到位置1，成本= 1。
+// 总成本是1。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -56,23 +56,23 @@
 //<div><li>👍 196</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//1217.玩筹码
-//开题时间：2022-12-27 10:05:18
+// 1217.玩筹码
+// 开题时间：2022-12-27 10:05:18
 public class MinimumCostToMoveChipsToTheSamePosition {
-    public static void main(String[] args) {
-        Solution solution = new MinimumCostToMoveChipsToTheSamePosition().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumCostToMoveChipsToTheSamePosition().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 贪心（统计奇偶数个数，取较小值）
+    public int minCostToMoveChips(int[] position) {
+      int odd = 0;
+      for (int x : position)
+        if ((x & 1) == 1)
+          odd++;
+      return Math.min(odd, position.length - odd);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //贪心（统计奇偶数个数，取较小值）
-        public int minCostToMoveChips(int[] position) {
-            int odd = 0;
-            for (int x : position)
-                if ((x & 1) == 1)
-                    odd++;
-            return Math.min(odd, position.length - odd);
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

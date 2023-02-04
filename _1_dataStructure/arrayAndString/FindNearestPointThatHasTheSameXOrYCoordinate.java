@@ -43,45 +43,45 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//1779.找到最近的有相同 X 或 Y 坐标的点
-//开题时间：2022-12-01 11:02:42
+// 1779.找到最近的有相同 X 或 Y 坐标的点
+// 开题时间：2022-12-01 11:02:42
 public class FindNearestPointThatHasTheSameXOrYCoordinate {
-    public static void main(String[] args) {
-        Solution solution = new FindNearestPointThatHasTheSameXOrYCoordinate().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int nearestValidPoint9(int x, int y, int[][] points) {
-            for (int i = 0; i < points.length; i++) {
-                if (points[i][0] == x || points[i][1] == y) {
-                    points[i][1] = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
-                    points[i][0] = i;
-                } else {
-                    points[i][0] = -1;
-                }
-            }
-
-            return Arrays.stream(points)
-                    .filter(point -> point[0] != -1)
-                    .min(Comparator.comparingInt(point -> point[1]))
-                    .orElse(new int[]{-1})[0];
+  public static void main(String[] args) {
+    Solution solution = new FindNearestPointThatHasTheSameXOrYCoordinate().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int nearestValidPoint9(int x, int y, int[][] points) {
+      for (int i = 0; i < points.length; i++) {
+        if (points[i][0] == x || points[i][1] == y) {
+          points[i][1] = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
+          points[i][0] = i;
+        } else {
+          points[i][0] = -1;
         }
-
-        public int nearestValidPoint(int x, int y, int[][] points) {
-            int min = Integer.MAX_VALUE;
-            int idx = -1;
-            for (int i = 0; i < points.length; i++) {
-                if (points[i][0] == x || points[i][1] == y) {
-                    int distance = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
-                    if (min > distance) {
-                        min = distance;
-                        idx = i;
-                    }
-                }
-            }
-            return idx;
-        }
+      }
+      
+      return Arrays.stream(points)
+          .filter(point -> point[0] != -1)
+          .min(Comparator.comparingInt(point -> point[1]))
+          .orElse(new int[]{-1})[0];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int nearestValidPoint(int x, int y, int[][] points) {
+      int min = Integer.MAX_VALUE;
+      int idx = -1;
+      for (int i = 0; i < points.length; i++) {
+        if (points[i][0] == x || points[i][1] == y) {
+          int distance = Math.abs(x - points[i][0]) + Math.abs(y - points[i][1]);
+          if (min > distance) {
+            min = distance;
+            idx = i;
+          }
+        }
+      }
+      return idx;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

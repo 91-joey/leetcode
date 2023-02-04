@@ -15,7 +15,7 @@
 //<strong>输入：</strong>grid = [[1,0,1],[0,0,0],[1,0,1]]
 //<strong>输出：</strong>2
 //<strong>解释： </strong>
-//海洋单元格 (1, 1) 和所有陆地单元格之间的距离都达到最大，最大距离为 2。
+// 海洋单元格 (1, 1) 和所有陆地单元格之间的距离都达到最大，最大距离为 2。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -26,7 +26,7 @@
 //<strong>输入：</strong>grid = [[1,0,0],[0,0,0],[0,0,0]]
 //<strong>输出：</strong>4
 //<strong>解释： </strong>
-//海洋单元格 (2, 2) 和所有陆地单元格之间的距离都达到最大，最大距离为 4。
+// 海洋单元格 (2, 2) 和所有陆地单元格之间的距离都达到最大，最大距离为 4。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -52,102 +52,102 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//1162.地图分析
-//开题时间：2023-01-04 12:21:57
+// 1162.地图分析
+// 开题时间：2023-01-04 12:21:57
 public class AsFarFromLandAsPossible {
-    public static void main(String[] args) {
-        Solution solution = new AsFarFromLandAsPossible().new Solution();
-        System.out.println(solution.maxDistance(Tools.to2DIntArray("[[1,0,0,0,0,1,0,0,0,1],[1,1,0,1,1,1,0,1,1,0],[0,1,1,0,1,0,0,1,0,0],[1,0,1,0,1,0,0,0,0,0],[0,1,0,0,0,1,1,0,1,1],[0,0,1,0,0,1,0,1,0,1],[0,0,0,1,1,1,1,0,0,1],[0,1,0,0,1,0,0,1,0,0],[0,0,0,0,0,1,1,1,0,0],[1,1,0,1,1,1,1,1,0,0]]")));
-//        System.out.println(solution.maxDistance(Tools.to2DIntArray("[[1,0,1],[0,0,0],[1,0,1]]")));
+  public static void main(String[] args) {
+    Solution solution = new AsFarFromLandAsPossible().new Solution();
+    System.out.println(solution.maxDistance(Tools.to2DIntArray("[[1,0,0,0,0,1,0,0,0,1],[1,1,0,1,1,1,0,1,1,0],[0,1,1,0,1,0,0,1,0,0],[1,0,1,0,1,0,0,0,0,0],[0,1,0,0,0,1,1,0,1,1],[0,0,1,0,0,1,0,1,0,1],[0,0,0,1,1,1,1,0,0,1],[0,1,0,0,1,0,0,1,0,0],[0,0,0,0,0,1,1,1,0,0],[1,1,0,1,1,1,1,1,0,0]]")));
+    //        System.out.println(solution.maxDistance(Tools.to2DIntArray("[[1,0,1],[0,0,0],[1,0,1]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
+    
+    // 单源BFS
+    public int maxDistanceTLE(int[][] grid) {
+      int max = -1;
+      int sum = Arrays.stream(grid).flatMapToInt(Arrays::stream).sum();
+      int n = grid.length;
+      if (sum == 0 || sum == n * n)
+        return max;
+      
+      for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+          if (grid[i][j] == 0)
+            max = Math.max(max, bfs(grid, i, j));
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS = {1, 0, -1, 0, 1};
-
-        //单源BFS
-        public int maxDistanceTLE(int[][] grid) {
-            int max = -1;
-            int sum = Arrays.stream(grid).flatMapToInt(Arrays::stream).sum();
-            int n = grid.length;
-            if (sum == 0 || sum == n * n)
-                return max;
-
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    if (grid[i][j] == 0)
-                        max = Math.max(max, bfs(grid, i, j));
-
-            return max;
-        }
-
-        //☆☆☆☆☆ 多源BFS（也可以看成是单源，源为虚拟的超级源点）
-        public int maxDistance(int[][] grid) {
-            int n = grid.length;
-
-            Queue<int[]> q = new LinkedList<>();
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    if (grid[i][j] == 1)
-                        q.offer(new int[]{i, j});
-
-            if (q.isEmpty() || q.size() == n * n)
-                return -1;
-            //记录最后一个被访问的海洋单元格
-            int[] furthestOcean = new int[0];
-            while (!q.isEmpty()) {
-                furthestOcean = q.poll();
-                int r = furthestOcean[0];
-                int c = furthestOcean[1];
-
-                for (int k = 0; k < 4; k++) {
-                    int newI = r + DIRS[k];
-                    int newJ = c + DIRS[k + 1];
-                    if (0 <= newI && newI < n && 0 <= newJ && newJ < n &&
-                            grid[newI][newJ] == 0) {
-                        grid[newI][newJ] = grid[r][c] + 1;
-                        q.offer(new int[]{newI, newJ});
-                    }
-                }
-            }
-
-            return grid[furthestOcean[0]][furthestOcean[1]] - 1;
-        }
-
-        private int bfs(int[][] grid, int i, int j) {
-            int m = grid.length;
-            int n = grid[0].length;
-
-            Queue<int[]> q = new LinkedList<>();
-            boolean[][] vis = new boolean[m][n];
+    
+    //☆☆☆☆☆ 多源BFS（也可以看成是单源，源为虚拟的超级源点）
+    public int maxDistance(int[][] grid) {
+      int n = grid.length;
+      
+      Queue<int[]> q = new LinkedList<>();
+      for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+          if (grid[i][j] == 1)
             q.offer(new int[]{i, j});
-            vis[i][j] = true;
-
-            int distance = 0;
-            while (!q.isEmpty()) {
-                for (int size = q.size(); size > 0; size--) {
-                    int[] poll = q.poll();
-                    int r = poll[0];
-                    int c = poll[1];
-
-                    if (grid[r][c] == 1)
-                        return distance;
-
-                    vis[r][c] = true;
-
-                    for (int k = 0; k < 4; k++) {
-                        int newI = r + DIRS[k];
-                        int newJ = c + DIRS[k + 1];
-                        if (0 <= newI && newI < m && 0 <= newJ && newJ < n &&
-                                !vis[newI][newJ])
-                            q.offer(new int[]{newI, newJ});
-                    }
-                }
-                distance++;
-            }
-
-            return distance;
+      
+      if (q.isEmpty() || q.size() == n * n)
+        return -1;
+      // 记录最后一个被访问的海洋单元格
+      int[] furthestOcean = new int[0];
+      while (!q.isEmpty()) {
+        furthestOcean = q.poll();
+        int r = furthestOcean[0];
+        int c = furthestOcean[1];
+        
+        for (int k = 0; k < 4; k++) {
+          int newI = r + DIRS[k];
+          int newJ = c + DIRS[k + 1];
+          if (0 <= newI && newI < n && 0 <= newJ && newJ < n &&
+              grid[newI][newJ] == 0) {
+            grid[newI][newJ] = grid[r][c] + 1;
+            q.offer(new int[]{newI, newJ});
+          }
         }
+      }
+      
+      return grid[furthestOcean[0]][furthestOcean[1]] - 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private int bfs(int[][] grid, int i, int j) {
+      int m = grid.length;
+      int n = grid[0].length;
+      
+      Queue<int[]> q = new LinkedList<>();
+      boolean[][] vis = new boolean[m][n];
+      q.offer(new int[]{i, j});
+      vis[i][j] = true;
+      
+      int distance = 0;
+      while (!q.isEmpty()) {
+        for (int size = q.size(); size > 0; size--) {
+          int[] poll = q.poll();
+          int r = poll[0];
+          int c = poll[1];
+          
+          if (grid[r][c] == 1)
+            return distance;
+          
+          vis[r][c] = true;
+          
+          for (int k = 0; k < 4; k++) {
+            int newI = r + DIRS[k];
+            int newJ = c + DIRS[k + 1];
+            if (0 <= newI && newI < m && 0 <= newJ && newJ < n &&
+                !vis[newI][newJ])
+              q.offer(new int[]{newI, newJ});
+          }
+        }
+        distance++;
+      }
+      
+      return distance;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

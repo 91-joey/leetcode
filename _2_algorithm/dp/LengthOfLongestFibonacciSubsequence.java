@@ -44,40 +44,40 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.HashMap;
 
-//873.最长的斐波那契子序列的长度
-//开题时间：2022-11-29 14:37:56
+// 873.最长的斐波那契子序列的长度
+// 开题时间：2022-11-29 14:37:56
 public class LengthOfLongestFibonacciSubsequence {
-    public static void main(String[] args) {
-        Solution solution = new LengthOfLongestFibonacciSubsequence().new Solution();
-        System.out.println(solution.lenLongestFibSubseq(new int[]{1, 2, 3, 4, 5, 6, 7, 8}));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * dp[i][j](i<j):以 arr[i]、arr[j]结尾的斐波那契序列最大长度
-         * dp[i][j]=max(dp[k][i]+1,3)(dp[k]+dp[i]=dp[j])
-         */
-        public int lenLongestFibSubseq(int[] arr) {
-            HashMap<Integer, Integer> val2idx = new HashMap<>();
-            int n = arr.length;
-            for (int i = 0; i < n; i++)
-                val2idx.put(arr[i], i);
-
-            int max = 0;
-            int[][] dp = new int[n - 1][n];
-
-            for (int i = 0; i < n - 1; i++) {
-                for (int j = i + 1; j < n && 2 * arr[i] > arr[j]; j++) {
-                    Integer idx = val2idx.get(arr[j] - arr[i]);
-                    if (idx != null)
-                        dp[i][j] = dp[idx][i] + 1;
-                    max = Math.max(max, dp[i][j]);
-                }
-            }
-
-            return max == 0 ? 0 : max + 2;
+  public static void main(String[] args) {
+    Solution solution = new LengthOfLongestFibonacciSubsequence().new Solution();
+    System.out.println(solution.lenLongestFibSubseq(new int[]{1, 2, 3, 4, 5, 6, 7, 8}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * dp[i][j](i<j):以 arr[i]、arr[j]结尾的斐波那契序列最大长度
+     * dp[i][j]=max(dp[k][i]+1,3)(dp[k]+dp[i]=dp[j])
+     */
+    public int lenLongestFibSubseq(int[] arr) {
+      HashMap<Integer, Integer> val2idx = new HashMap<>();
+      int n = arr.length;
+      for (int i = 0; i < n; i++)
+        val2idx.put(arr[i], i);
+      
+      int max = 0;
+      int[][] dp = new int[n - 1][n];
+      
+      for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n && 2 * arr[i] > arr[j]; j++) {
+          Integer idx = val2idx.get(arr[j] - arr[i]);
+          if (idx != null)
+            dp[i][j] = dp[idx][i] + 1;
+          max = Math.max(max, dp[i][j]);
         }
+      }
+      
+      return max == 0 ? 0 : max + 2;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

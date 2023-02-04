@@ -37,117 +37,117 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 import java.util.Arrays;
 import java.util.Stack;
 
-//739.每日温度
-//开题时间：2022-08-18 11:00:27
+// 739.每日温度
+// 开题时间：2022-08-18 11:00:27
 public class DailyTemperatures {
-    public static void main(String[] args) {
-        Solution solution = new DailyTemperatures().new Solution();
-        System.out.println(Arrays.toString(solution.dailyTemperatures2(new int[]{73, 74, 75, 71, 69, 72, 76, 73})));
+  public static void main(String[] args) {
+    Solution solution = new DailyTemperatures().new Solution();
+    System.out.println(Arrays.toString(solution.dailyTemperatures2(new int[]{73, 74, 75, 71, 69, 72, 76, 73})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 1.暴力法   n^2 1
+    public int[] dailyTemperatures(int[] temperatures) {
+      int length = temperatures.length;
+      outer:
+      for (int i = 0; i < length; i++) {
+        for (int j = i + 1; j < length; j++) {
+          if (temperatures[i] < temperatures[j]) {
+            temperatures[i] = j - i;
+            continue outer;
+          }
+        }
+        temperatures[i] = 0;
+      }
+      return temperatures;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //1.暴力法   n^2 1
-        public int[] dailyTemperatures(int[] temperatures) {
-            int length = temperatures.length;
-            outer:
-            for (int i = 0; i < length; i++) {
-                for (int j = i + 1; j < length; j++) {
-                    if (temperatures[i] < temperatures[j]) {
-                        temperatures[i] = j - i;
-                        continue outer;
-                    }
-                }
-                temperatures[i] = 0;
-            }
-            return temperatures;
+    
+    // 2.官解一：暴力    m*n m
+    public int[] dailyTemperatures2(int[] temperatures) {
+      int length = temperatures.length;
+      int[] ans = new int[length];
+      int[] next = new int[101];
+      Arrays.fill(next, Integer.MAX_VALUE);
+      for (int i = length - 1; i >= 0; --i) {
+        int warmerIndex = Integer.MAX_VALUE;
+        for (int t = temperatures[i] + 1; t <= 100; ++t) {
+          if (next[t] < warmerIndex) {
+            warmerIndex = next[t];
+          }
         }
-
-        //2.官解一：暴力    m*n m
-        public int[] dailyTemperatures2(int[] temperatures) {
-            int length = temperatures.length;
-            int[] ans = new int[length];
-            int[] next = new int[101];
-            Arrays.fill(next, Integer.MAX_VALUE);
-            for (int i = length - 1; i >= 0; --i) {
-                int warmerIndex = Integer.MAX_VALUE;
-                for (int t = temperatures[i] + 1; t <= 100; ++t) {
-                    if (next[t] < warmerIndex) {
-                        warmerIndex = next[t];
-                    }
-                }
-                if (warmerIndex < Integer.MAX_VALUE) {
-                    ans[i] = warmerIndex - i;
-                }
-                next[temperatures[i]] = i;
-            }
-            return ans;
+        if (warmerIndex < Integer.MAX_VALUE) {
+          ans[i] = warmerIndex - i;
         }
-
-        //3.官解一（空间优化）：暴力    m*n m
-        public int[] dailyTemperatures3(int[] temperatures) {
-            int length = temperatures.length;
-            //30 <= temperatures[i] <= 100
-            //记录每个温度第一次出现的下标
-            int[] next = new int[71];
-            Arrays.fill(next, Integer.MAX_VALUE);
-            for (int i = length - 1; i >= 0; --i) {
-                int warmerIndex = Integer.MAX_VALUE;
-                for (int t = temperatures[i] + 1 - 30; t <= next.length - 1; t++) {
-                    if (next[t] < warmerIndex) {
-                        warmerIndex = next[t];
-                    }
-                }
-                next[temperatures[i] - 30] = i;
-                if (warmerIndex < Integer.MAX_VALUE) {
-                    temperatures[i] = warmerIndex - i;
-                } else {
-                    temperatures[i] = 0;
-                }
-            }
-            return temperatures;
-        }
-
-        //4.官解二：单调栈 n   n
-        public int[] dailyTemperatures4(int[] temperatures) {
-            Stack<Integer> idxes = new Stack<>();
-            for (int i = 0; i < temperatures.length; i++) {
-                while (!idxes.empty() && temperatures[idxes.peek()] < temperatures[i]) {
-                    int peek = idxes.peek();
-                    temperatures[peek] = i - peek;
-                    idxes.pop();
-                }
-                idxes.push(i);
-            }
-
-            for (int idxAndTemperature : idxes) {
-                temperatures[idxAndTemperature] = 0;
-            }
-
-            return temperatures;
-        }
-
-        //5.高分解
-        public int[] dailyTemperatures5(int[] temperatures) {
-            int length = temperatures.length;
-            int[] ans = new int[length];
-            ans[length - 1] = 0;
-            for (int i = length - 2; i >= 0; i--) {
-                //key1: j += ans[j]
-                for (int j = i + 1; j < length; j += ans[j]) {
-                    if (temperatures[i] < temperatures[j]) {
-                        ans[i] = j - i;
-                        break;
-                        //key2: if (ans[j] == 0)
-                    } else if (ans[j] == 0) {
-                        ans[i] = 0;
-                        break;
-                    }
-                }
-            }
-
-            return ans;
-        }
+        next[temperatures[i]] = i;
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 3.官解一（空间优化）：暴力    m*n m
+    public int[] dailyTemperatures3(int[] temperatures) {
+      int length = temperatures.length;
+      // 30 <= temperatures[i] <= 100
+      // 记录每个温度第一次出现的下标
+      int[] next = new int[71];
+      Arrays.fill(next, Integer.MAX_VALUE);
+      for (int i = length - 1; i >= 0; --i) {
+        int warmerIndex = Integer.MAX_VALUE;
+        for (int t = temperatures[i] + 1 - 30; t <= next.length - 1; t++) {
+          if (next[t] < warmerIndex) {
+            warmerIndex = next[t];
+          }
+        }
+        next[temperatures[i] - 30] = i;
+        if (warmerIndex < Integer.MAX_VALUE) {
+          temperatures[i] = warmerIndex - i;
+        } else {
+          temperatures[i] = 0;
+        }
+      }
+      return temperatures;
+    }
+    
+    // 4.官解二：单调栈 n   n
+    public int[] dailyTemperatures4(int[] temperatures) {
+      Stack<Integer> idxes = new Stack<>();
+      for (int i = 0; i < temperatures.length; i++) {
+        while (!idxes.empty() && temperatures[idxes.peek()] < temperatures[i]) {
+          int peek = idxes.peek();
+          temperatures[peek] = i - peek;
+          idxes.pop();
+        }
+        idxes.push(i);
+      }
+      
+      for (int idxAndTemperature : idxes) {
+        temperatures[idxAndTemperature] = 0;
+      }
+      
+      return temperatures;
+    }
+    
+    // 5.高分解
+    public int[] dailyTemperatures5(int[] temperatures) {
+      int length = temperatures.length;
+      int[] ans = new int[length];
+      ans[length - 1] = 0;
+      for (int i = length - 2; i >= 0; i--) {
+        // key1: j += ans[j]
+        for (int j = i + 1; j < length; j += ans[j]) {
+          if (temperatures[i] < temperatures[j]) {
+            ans[i] = j - i;
+            break;
+            // key2: if (ans[j] == 0)
+          } else if (ans[j] == 0) {
+            ans[i] = 0;
+            break;
+          }
+        }
+      }
+      
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

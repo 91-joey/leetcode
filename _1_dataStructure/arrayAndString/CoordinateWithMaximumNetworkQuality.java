@@ -30,11 +30,11 @@
 //<b>输入：</b>towers = [[1,2,5],[2,1,7],[3,1,9]], radius = 2
 //<b>输出：</b>[2,1]
 //<strong>解释：</strong>
-//坐标 (2, 1) 信号强度之和为 13
+// 坐标 (2, 1) 信号强度之和为 13
 //- 塔 (2, 1) 强度参数为 7 ，在该点强度为 ⌊7 / (1 + sqrt(0)⌋ = ⌊7⌋ = 7
 //- 塔 (1, 2) 强度参数为 5 ，在该点强度为 ⌊5 / (1 + sqrt(2)⌋ = ⌊2.07⌋ = 2
 //- 塔 (3, 1) 强度参数为 9 ，在该点强度为 ⌊9 / (1 + sqrt(1)⌋ = ⌊4.5⌋ = 4
-//没有别的坐标有更大的信号强度。</pre>
+// 没有别的坐标有更大的信号强度。</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -66,84 +66,84 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//1620.网络信号最好的坐标
-//开题时间：2022-11-02 08:27:55
+// 1620.网络信号最好的坐标
+// 开题时间：2022-11-02 08:27:55
 public class CoordinateWithMaximumNetworkQuality {
-    public static void main(String[] args) {
-        Solution solution = new CoordinateWithMaximumNetworkQuality().new Solution();
-        System.out.println(Arrays.toString(solution.bestCoordinate(new int[][]{{42, 0, 0}}, 7)));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力枚举
-        public int[] bestCoordinate(int[][] towers, int radius) {
-            int[] ans = {0, 0};
-            int max = -1;
-            for (int x = -radius; x <= 50 + radius; x++) {
-                for (int y = -radius; y <= 50 + radius; y++) {
-                    int cur = 0;
-                    for (int[] tower : towers) {
-                        double sqrt = Math.sqrt(Math.pow(x - tower[0], 2) + Math.pow(y - tower[1], 2));
-                        if (sqrt <= radius)
-                            cur += (int) (tower[2] / (1 + sqrt));
-                    }
-
-                    if (cur > max) {
-                        max = cur;
-                        ans[0] = x;
-                        ans[1] = y;
-                    } else if (cur == max) {
-                        if (ans[0] < 0 && ans[1] < 0 && 0 <= x && 0 <= y) {
-                            ans[0] = x;
-                            ans[1] = y;
-                        }
-                    }
-                }
+  public static void main(String[] args) {
+    Solution solution = new CoordinateWithMaximumNetworkQuality().new Solution();
+    System.out.println(Arrays.toString(solution.bestCoordinate(new int[][]{{42, 0, 0}}, 7)));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力枚举
+    public int[] bestCoordinate(int[][] towers, int radius) {
+      int[] ans = {0, 0};
+      int max = -1;
+      for (int x = -radius; x <= 50 + radius; x++) {
+        for (int y = -radius; y <= 50 + radius; y++) {
+          int cur = 0;
+          for (int[] tower : towers) {
+            double sqrt = Math.sqrt(Math.pow(x - tower[0], 2) + Math.pow(y - tower[1], 2));
+            if (sqrt <= radius)
+              cur += (int) (tower[2] / (1 + sqrt));
+          }
+          
+          if (cur > max) {
+            max = cur;
+            ans[0] = x;
+            ans[1] = y;
+          } else if (cur == max) {
+            if (ans[0] < 0 && ans[1] < 0 && 0 <= x && 0 <= y) {
+              ans[0] = x;
+              ans[1] = y;
             }
-            return ans;
+          }
         }
-
-        //暴力枚举(优化枚举范围）
-        public int[] bestCoordinate2(int[][] towers, int radius) {
-            int maxX = 0, maxY = 0;
-            for (int[] tower : towers) {
-                maxX = Math.max(maxX, tower[0]);
-                maxY = Math.max(maxY, tower[1]);
-            }
-
-            int[] ans = {0, 0};
-
-            int max = -1;
-            for (int x = 0; x <= maxX; x++) {
-                for (int y = 0; y <= maxY; y++) {
-                    int cur = 0;
-                    for (int[] tower : towers) {
-//                        double sqrt = Math.sqrt(Math.pow(x - tower[0], 2) + Math.pow(y - tower[1], 2));
-//                        if (sqrt <= radius)
-
-                        //整数的直接相乘，效率比调用pow函数高
-//                        double sqrt = Math.sqrt((x - tower[0]) * (x - tower[0]) + (y - tower[1]) * (y - tower[1]));
-//                        if (sqrt <= radius)
-//                            cur += (int) (tower[2] / (1 + sqrt));
-
-                        int diffX = x - tower[0];
-                        int diffY = y - tower[1];
-                        int square = diffX * diffX + diffY * diffY;
-                        //平方根函数（sqrt）很费时间
-                        if (square <= radius * radius)
-                            cur += (int) (tower[2] / (1 + Math.sqrt(square)));
-                    }
-
-                    if (cur > max) {
-                        max = cur;
-                        ans[0] = x;
-                        ans[1] = y;
-                    }
-                }
-            }
-            return ans;
-        }
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 暴力枚举(优化枚举范围）
+    public int[] bestCoordinate2(int[][] towers, int radius) {
+      int maxX = 0, maxY = 0;
+      for (int[] tower : towers) {
+        maxX = Math.max(maxX, tower[0]);
+        maxY = Math.max(maxY, tower[1]);
+      }
+      
+      int[] ans = {0, 0};
+      
+      int max = -1;
+      for (int x = 0; x <= maxX; x++) {
+        for (int y = 0; y <= maxY; y++) {
+          int cur = 0;
+          for (int[] tower : towers) {
+            //                        double sqrt = Math.sqrt(Math.pow(x - tower[0], 2) + Math.pow(y - tower[1], 2));
+            //                        if (sqrt <= radius)
+            
+            // 整数的直接相乘，效率比调用pow函数高
+            //                        double sqrt = Math.sqrt((x - tower[0]) * (x - tower[0]) + (y - tower[1]) * (y - tower[1]));
+            //                        if (sqrt <= radius)
+            //                            cur += (int) (tower[2] / (1 + sqrt));
+            
+            int diffX = x - tower[0];
+            int diffY = y - tower[1];
+            int square = diffX * diffX + diffY * diffY;
+            // 平方根函数（sqrt）很费时间
+            if (square <= radius * radius)
+              cur += (int) (tower[2] / (1 + Math.sqrt(square)));
+          }
+          
+          if (cur > max) {
+            max = cur;
+            ans[0] = x;
+            ans[1] = y;
+          }
+        }
+      }
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -12,12 +12,12 @@
 //
 //<pre>
 //<strong>输入：</strong> 
-//S = "heeellooo"
-//words = ["hello", "hi", "helo"]
+// S = "heeellooo"
+// words = ["hello", "hi", "helo"]
 //<strong>输出：</strong>1
 //<strong>解释</strong>：
-//我们能通过扩张 "hello" 的 "e" 和 "o" 来得到 "heeellooo"。
-//我们不能通过扩张 "helo" 来得到 "heeellooo" 因为 "ll" 的长度小于 3 。
+// 我们能通过扩张 "hello" 的 "e" 和 "o" 来得到 "heeellooo"。
+// 我们不能通过扩张 "helo" 来得到 "heeellooo" 因为 "ll" 的长度小于 3 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -36,95 +36,95 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import java.util.ArrayList;
 
-//809.情感丰富的文字
-//开题时间：2022-11-25 08:49:55
+// 809.情感丰富的文字
+// 开题时间：2022-11-25 08:49:55
 public class ExpressiveWords {
-    public static void main(String[] args) {
-        Solution solution = new ExpressiveWords().new Solution();
-//        System.out.println(solution.expressiveWords("abcd", new String[]{"abc"}));
-        System.out.println(solution.expressiveWordsX("abcccc", new String[]{"abcd"}));
-//        System.out.println(solution.expressiveWords("heeellooo", new String[]{"hello", "hi", "helo"}));
-//        System.out.println(solution.expressiveWords("zzzzzyyyyy", new String[]{"zzyy", "zy", "zyy"}));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int expressiveWordsX(String s, String[] words) {
-            ArrayList<int[]> list = new ArrayList<>();
-            int l = 0, r = 1;
-            int n = s.length();
-            for (; r < n; r++) {
-                char c = s.charAt(l);
-                if (c != s.charAt(r)) {
-                    list.add(new int[]{c, r - l});
-                    l = r;
-                }
-            }
-            list.add(new int[]{s.charAt(n - 1), n - l});
-
-            int cnt = words.length;
-            outer:
-            for (String word : words) {
-                if (word.length() > n) {
-                    cnt--;
-                    continue;
-                }
-                l = 0;
-                r = 1;
-                int i = 0;
-                for (; r <= word.length(); i++, r++) {
-                    int[] char2cnt = list.get(i);
-                    char c = word.charAt(l);
-                    if (c != char2cnt[0]) {
-                        cnt--;
-                        continue outer;
-                    }
-
-                    while (r < word.length() && c == word.charAt(r))
-                        r++;
-
-                    if (char2cnt[1] < r - l || (char2cnt[1] > r - l && char2cnt[1] <= 2)) {
-                        cnt--;
-                        continue outer;
-                    }
-
-                    l = r;
-                }
-
-                if (i < list.size())
-                    cnt--;
-            }
-
-            return cnt;
+  public static void main(String[] args) {
+    Solution solution = new ExpressiveWords().new Solution();
+    //        System.out.println(solution.expressiveWords("abcd", new String[]{"abc"}));
+    System.out.println(solution.expressiveWordsX("abcccc", new String[]{"abcd"}));
+    //        System.out.println(solution.expressiveWords("heeellooo", new String[]{"hello", "hi", "helo"}));
+    //        System.out.println(solution.expressiveWords("zzzzzyyyyy", new String[]{"zzyy", "zy", "zyy"}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int expressiveWordsX(String s, String[] words) {
+      ArrayList<int[]> list = new ArrayList<>();
+      int l = 0, r = 1;
+      int n = s.length();
+      for (; r < n; r++) {
+        char c = s.charAt(l);
+        if (c != s.charAt(r)) {
+          list.add(new int[]{c, r - l});
+          l = r;
         }
-
-        public int expressiveWords(String s, String[] words) {
-            int cnt = 0;
-            char[] chars = s.toCharArray();
-            int n = chars.length;
-            out:
-            for (String word : words) {
-                int m = word.length();
-                if (m > n)
-                    continue;
-
-                int i = 0, j = 0;
-                for (int a = 1, b = 1; i < n && j < m; a++, b++) {
-                    char c = s.charAt(i);
-                    if (c != word.charAt(j)) continue out;
-
-                    while (a < n && c == chars[a]) a++;
-                    while (b < m && c == word.charAt(b)) b++;
-
-                    int lenS = a - i, lenW = b - j;
-                    if (lenS != lenW && (lenS < lenW || lenS < 3)) continue out;
-                    i = a;
-                    j = b;
-                }
-                if (i == n && j == m) cnt++;
-            }
-            return cnt;
+      }
+      list.add(new int[]{s.charAt(n - 1), n - l});
+      
+      int cnt = words.length;
+      outer:
+      for (String word : words) {
+        if (word.length() > n) {
+          cnt--;
+          continue;
         }
+        l = 0;
+        r = 1;
+        int i = 0;
+        for (; r <= word.length(); i++, r++) {
+          int[] char2cnt = list.get(i);
+          char c = word.charAt(l);
+          if (c != char2cnt[0]) {
+            cnt--;
+            continue outer;
+          }
+          
+          while (r < word.length() && c == word.charAt(r))
+            r++;
+          
+          if (char2cnt[1] < r - l || (char2cnt[1] > r - l && char2cnt[1] <= 2)) {
+            cnt--;
+            continue outer;
+          }
+          
+          l = r;
+        }
+        
+        if (i < list.size())
+          cnt--;
+      }
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int expressiveWords(String s, String[] words) {
+      int cnt = 0;
+      char[] chars = s.toCharArray();
+      int n = chars.length;
+      out:
+      for (String word : words) {
+        int m = word.length();
+        if (m > n)
+          continue;
+        
+        int i = 0, j = 0;
+        for (int a = 1, b = 1; i < n && j < m; a++, b++) {
+          char c = s.charAt(i);
+          if (c != word.charAt(j)) continue out;
+          
+          while (a < n && c == chars[a]) a++;
+          while (b < m && c == word.charAt(b)) b++;
+          
+          int lenS = a - i, lenW = b - j;
+          if (lenS != lenW && (lenS < lenW || lenS < 3)) continue out;
+          i = a;
+          j = b;
+        }
+        if (i == n && j == m) cnt++;
+      }
+      return cnt;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

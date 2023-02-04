@@ -41,47 +41,47 @@ package org.example.leetcode.problems._2_algorithm.bit;
 
 import java.util.Arrays;
 
-//260.只出现一次的数字 III
-//开题时间：2023-01-13 14:17:33
+// 260.只出现一次的数字 III
+// 开题时间：2023-01-13 14:17:33
 public class SingleNumberIii {
-    public static void main(String[] args) {
-        Solution solution = new SingleNumberIii().new Solution();
-        System.out.println(-Integer.MIN_VALUE);
+  public static void main(String[] args) {
+    Solution solution = new SingleNumberIii().new Solution();
+    System.out.println(-Integer.MIN_VALUE);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] singleNumber9(int[] nums) {
+      int xor = Arrays.stream(nums).reduce((x, y) -> x ^ y).getAsInt();
+      int mask = xor & (-xor);
+      int[] ans = new int[2];
+      for (int num : nums)
+        if ((num & mask) == 0)
+          ans[0] ^= num;
+        else
+          ans[1] ^= num;
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] singleNumber9(int[] nums) {
-            int xor = Arrays.stream(nums).reduce((x, y) -> x ^ y).getAsInt();
-            int mask = xor & (-xor);
-            int[] ans = new int[2];
-            for (int num : nums)
-                if ((num & mask) == 0)
-                    ans[0] ^= num;
-                else
-                    ans[1] ^= num;
-            return ans;
-        }
-
-        /*
-         * 位运算 + 分治思想
-         * a & (-a) 可以获得 a 的 LSB（ Least Significant Bit，最低有效位：最低的 1 位）
-         *      num & lsb == 0，分为一组，元素一出现一次，其余元素出现两次
-         *      num & lsb != 0，分为一组，元素二出现一次，其余元素出现两次
-         */
-        public int[] singleNumber(int[] nums) {
-            int xor = Arrays.stream(nums)
-                    .reduce((x, y) -> x ^ y)
-                    .getAsInt();
-            int lsb = xor & (-xor);
-
-            int a = Arrays.stream(nums)
-                    .filter(num -> (num & lsb) == 0)
-                    .reduce((x, y) -> x ^ y)
-                    .getAsInt();
-
-            return new int[]{a, a ^ xor};
-        }
+    
+    /*
+     * 位运算 + 分治思想
+     * a & (-a) 可以获得 a 的 LSB（ Least Significant Bit，最低有效位：最低的 1 位）
+     *      num & lsb == 0，分为一组，元素一出现一次，其余元素出现两次
+     *      num & lsb != 0，分为一组，元素二出现一次，其余元素出现两次
+     */
+    public int[] singleNumber(int[] nums) {
+      int xor = Arrays.stream(nums)
+          .reduce((x, y) -> x ^ y)
+          .getAsInt();
+      int lsb = xor & (-xor);
+      
+      int a = Arrays.stream(nums)
+          .filter(num -> (num & lsb) == 0)
+          .reduce((x, y) -> x ^ y)
+          .getAsInt();
+      
+      return new int[]{a, a ^ xor};
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

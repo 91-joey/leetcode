@@ -13,9 +13,9 @@
 //<pre><strong>输入：</strong>boxes = "110"
 //<strong>输出：</strong>[1,1,3]
 //<strong>解释：</strong>每个盒子对应的最小操作数如下：
-//1) 第 1 个盒子：将一个小球从第 2 个盒子移动到第 1 个盒子，需要 1 步操作。
-//2) 第 2 个盒子：将一个小球从第 1 个盒子移动到第 2 个盒子，需要 1 步操作。
-//3) 第 3 个盒子：将一个小球从第 1 个盒子移动到第 3 个盒子，需要 2 步操作。将一个小球从第 2 个盒子移动到第 3 个盒子，需要 1 步操作。共计 3 步操作。
+// 1) 第 1 个盒子：将一个小球从第 2 个盒子移动到第 1 个盒子，需要 1 步操作。
+// 2) 第 2 个盒子：将一个小球从第 1 个盒子移动到第 2 个盒子，需要 1 步操作。
+// 3) 第 3 个盒子：将一个小球从第 1 个盒子移动到第 3 个盒子，需要 2 步操作。将一个小球从第 2 个盒子移动到第 3 个盒子，需要 1 步操作。共计 3 步操作。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -36,52 +36,52 @@
 //<div><li>👍 40</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1769.移动所有球到每个盒子所需的最小操作数
-//开题时间：2022-12-02 08:46:40
+// 1769.移动所有球到每个盒子所需的最小操作数
+// 开题时间：2022-12-02 08:46:40
 public class MinimumNumberOfOperationsToMoveAllBallsToEachBox {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfOperationsToMoveAllBallsToEachBox().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfOperationsToMoveAllBallsToEachBox().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] minOperations9(String boxes) {
+      char[] cs = boxes.toCharArray();
+      int n = cs.length;
+      int[] ans = new int[n];
+      
+      for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+          if (cs[j] == '1')
+            ans[i] += Math.abs(i - j);
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] minOperations9(String boxes) {
-            char[] cs = boxes.toCharArray();
-            int n = cs.length;
-            int[] ans = new int[n];
-
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    if (cs[j] == '1')
-                        ans[i] += Math.abs(i - j);
-
-            return ans;
+    
+    // 根据前一个盒子的操作数得到下一个盒子的操作数
+    public int[] minOperations(String boxes) {
+      char[] cs = boxes.toCharArray();
+      int n = cs.length;
+      int[] ans = new int[n];
+      int l = cs[0] - '0', r = 0;
+      
+      for (int i = 1; i < n; i++) {
+        if (cs[i] == '1') {
+          r++;
+          ans[0] += i;
         }
-
-        //根据前一个盒子的操作数得到下一个盒子的操作数
-        public int[] minOperations(String boxes) {
-            char[] cs = boxes.toCharArray();
-            int n = cs.length;
-            int[] ans = new int[n];
-            int l = cs[0] - '0', r = 0;
-
-            for (int i = 1; i < n; i++) {
-                if (cs[i] == '1') {
-                    r++;
-                    ans[0] += i;
-                }
-            }
-
-            for (int i = 1; i < n; i++) {
-                ans[i] = ans[i - 1] + l - r;
-                if (cs[i] == '1') {
-                    l++;
-                    r--;
-                }
-            }
-
-            return ans;
+      }
+      
+      for (int i = 1; i < n; i++) {
+        ans[i] = ans[i - 1] + l - r;
+        if (cs[i] == '1') {
+          l++;
+          r--;
         }
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

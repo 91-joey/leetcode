@@ -1,4 +1,4 @@
-//已知一个长度为 <code>n</code> 的数组，预先按照升序排列，经由 <code>1</code> 到 <code>n</code> 次 <strong>旋转</strong> 后，得到输入数组。例如，原数组 <code>nums = [0,1,2,4,5,6,7]</code> 在变化后可能得到：
+// 已知一个长度为 <code>n</code> 的数组，预先按照升序排列，经由 <code>1</code> 到 <code>n</code> 次 <strong>旋转</strong> 后，得到输入数组。例如，原数组 <code>nums = [0,1,2,4,5,6,7]</code> 在变化后可能得到：
 //
 //<ul> 
 // <li>若旋转 <code>4</code> 次，则可以得到 <code>[4,5,6,7,0,1,2]</code></li> 
@@ -52,51 +52,51 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li></div></div><br><div><li>👍 850</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//153.寻找旋转排序数组中的最小值
-//开题时间：2022-10-29 18:19:11
+// 153.寻找旋转排序数组中的最小值
+// 开题时间：2022-10-29 18:19:11
 public class FindMinimumInRotatedSortedArray {
-    public static void main(String[] args) {
-        Solution solution = new FindMinimumInRotatedSortedArray().new Solution();
-        System.out.println(solution.findMin3(new int[]{3,4,5,1,2}));
+  public static void main(String[] args) {
+    Solution solution = new FindMinimumInRotatedSortedArray().new Solution();
+    System.out.println(solution.findMin3(new int[]{3, 4, 5, 1, 2}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力
+    public int findMin(int[] nums) {
+      for (int i = 0; i < nums.length - 1; )
+        if (nums[i] > nums[++i])
+          return nums[i];
+      return nums[0];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力
-        public int findMin(int[] nums) {
-            for (int i = 0; i < nums.length - 1; )
-                if (nums[i] > nums[++i])
-                    return nums[i];
-            return nums[0];
-        }
-
-        public int findMin2(int[] nums) {
-            int l = 0, r = nums.length - 1;
-            if (nums[l] < nums[r])
-                return nums[l];
-
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (nums[mid] >= nums[0])
-                    l = mid + 1;
-                else
-                    r = mid;
-            }
-            return nums[l];
-        }
-
-        //☆☆☆☆☆ 优雅精简二分法
-        public int findMin3(int[] nums) {
-            int l = 0, r = nums.length - 1;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (nums[mid] > nums[r])
-                    l = mid + 1;
-                else
-                    r = mid;
-            }
-            return nums[l];
-        }
+    
+    public int findMin2(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      if (nums[l] < nums[r])
+        return nums[l];
+      
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (nums[mid] >= nums[0])
+          l = mid + 1;
+        else
+          r = mid;
+      }
+      return nums[l];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 优雅精简二分法
+    public int findMin3(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (nums[mid] > nums[r])
+          l = mid + 1;
+        else
+          r = mid;
+      }
+      return nums[l];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

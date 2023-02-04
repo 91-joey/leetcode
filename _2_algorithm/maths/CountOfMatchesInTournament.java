@@ -17,7 +17,7 @@
 //- 第 1 轮：队伍数 = 7 ，配对次数 = 3 ，4 支队伍晋级。
 //- 第 2 轮：队伍数 = 4 ，配对次数 = 2 ，2 支队伍晋级。
 //- 第 3 轮：队伍数 = 2 ，配对次数 = 1 ，决出 1 支获胜队伍。
-//总配对次数 = 3 + 2 + 1 = 6
+// 总配对次数 = 3 + 2 + 1 = 6
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -29,7 +29,7 @@
 //- 第 2 轮：队伍数 = 7 ，配对次数 = 3 ，4 支队伍晋级。 
 //- 第 3 轮：队伍数 = 4 ，配对次数 = 2 ，2 支队伍晋级。
 //- 第 4 轮：队伍数 = 2 ，配对次数 = 1 ，决出 1 支获胜队伍。
-//总配对次数 = 7 + 3 + 2 + 1 = 13
+// 总配对次数 = 7 + 3 + 2 + 1 = 13
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -43,29 +43,29 @@
 //<div><li>👍 105</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1688.比赛中的配对次数
-//开题时间：2022-11-14 15:27:39
+// 1688.比赛中的配对次数
+// 开题时间：2022-11-14 15:27:39
 public class CountOfMatchesInTournament {
-    public static void main(String[] args) {
-        Solution solution = new CountOfMatchesInTournament().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CountOfMatchesInTournament().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int numberOfMatches2(int n) {
+      int matches = 0;
+      while (n != 1) {
+        int cur = n >> 1;
+        matches += cur;
+        n -= cur;
+      }
+      return matches;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int numberOfMatches2(int n) {
-            int matches = 0;
-            while (n != 1) {
-                int cur = n >> 1;
-                matches += cur;
-                n -= cur;
-            }
-            return matches;
-        }
-
-        //配对次数=淘汰次数 -> 目标：淘汰 n-1 支队伍 -> 配对次数=n-1
-        public int numberOfMatches(int n) {
-            return n - 1;
-        }
+    
+    // 配对次数=淘汰次数 -> 目标：淘汰 n-1 支队伍 -> 配对次数=n-1
+    public int numberOfMatches(int n) {
+      return n - 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

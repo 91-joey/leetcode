@@ -39,7 +39,7 @@ public class ScoreAfterFlippingMatrix {
       
       return ans;
     }
-  
+    
     /*
      * ☆☆☆☆☆ 贪心
      *

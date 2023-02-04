@@ -20,8 +20,8 @@
 //- 1 个第一类的箱子，里面含 3 个单元。
 //- 2 个第二类的箱子，每个里面含 2 个单元。
 //- 3 个第三类的箱子，每个里面含 1 个单元。
-//可以选择第一类和第二类的所有箱子，以及第三类的一个箱子。
-//单元总数 = (1 * 3) + (2 * 2) + (1 * 1) = 8</pre>
+// 可以选择第一类和第二类的所有箱子，以及第三类的一个箱子。
+// 单元总数 = (1 * 3) + (2 * 2) + (1 * 1) = 8</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -46,40 +46,40 @@ package org.example.leetcode.problems._2_algorithm.sort.problems;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//1710.卡车上的最大单元数
-//开题时间：2022-11-15 09:25:37
+// 1710.卡车上的最大单元数
+// 开题时间：2022-11-15 09:25:37
 public class MaximumUnitsOnATruck {
-    public static void main(String[] args) {
-        Solution solution = new MaximumUnitsOnATruck().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumUnitsOnATruck().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maximumUnits9(int[][] boxTypes, int truckSize) {
+      Arrays.sort(boxTypes, Comparator.<int[]>comparingInt(boxType -> boxType[1]).reversed());
+      
+      int maximumUnits = 0;
+      for (int i = 0; i < boxTypes.length && truckSize != 0; i++) {
+        int min = Math.min(truckSize, boxTypes[i][0]);
+        maximumUnits += min * boxTypes[i][1];
+        truckSize -= min;
+      }
+      
+      return maximumUnits;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maximumUnits9(int[][] boxTypes, int truckSize) {
-            Arrays.sort(boxTypes, Comparator.<int[]>comparingInt(boxType -> boxType[1]).reversed());
-
-            int maximumUnits = 0;
-            for (int i = 0; i < boxTypes.length && truckSize != 0; i++) {
-                int min = Math.min(truckSize, boxTypes[i][0]);
-                maximumUnits += min * boxTypes[i][1];
-                truckSize -= min;
-            }
-
-            return maximumUnits;
-        }
-
-        public int maximumUnits(int[][] boxTypes, int truckSize) {
-            int ans = 0;
-            Arrays.sort(boxTypes, Comparator.<int[]>comparingInt(a -> a[1]).reversed());
-            for (int[] boxType : boxTypes) {
-                int min = Math.min(boxType[0], truckSize);
-                truckSize -= min;
-                ans += min * boxType[1];
-                if (truckSize == 0)
-                    break;
-            }
-            return ans;
-        }
+    
+    public int maximumUnits(int[][] boxTypes, int truckSize) {
+      int ans = 0;
+      Arrays.sort(boxTypes, Comparator.<int[]>comparingInt(a -> a[1]).reversed());
+      for (int[] boxType : boxTypes) {
+        int min = Math.min(boxType[0], truckSize);
+        truckSize -= min;
+        ans += min * boxType[1];
+        if (truckSize == 0)
+          break;
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

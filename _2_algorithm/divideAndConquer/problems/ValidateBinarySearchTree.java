@@ -45,158 +45,158 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//98.验证二叉搜索树
-//开题时间：2022-11-17 17:59:16
+// 98.验证二叉搜索树
+// 开题时间：2022-11-17 17:59:16
 public class ValidateBinarySearchTree {
-    public static void main(String[] args) {
-        Solution solution = new ValidateBinarySearchTree().new Solution();
-//        System.out.println(solution.isValidBST(Tools.buildTree("[2,1,3]")));
-//        System.out.println(solution.isValidBST(Tools.buildTree("[5,4,6,null,null,3,7]")));
-        System.out.println(solution.isValidBST(Tools.buildTree("[120,70,140,50,100,130,160,20,55,75,110,119,135,150,200]")));
+  public static void main(String[] args) {
+    Solution solution = new ValidateBinarySearchTree().new Solution();
+    //        System.out.println(solution.isValidBST(Tools.buildTree("[2,1,3]")));
+    //        System.out.println(solution.isValidBST(Tools.buildTree("[5,4,6,null,null,3,7]")));
+    System.out.println(solution.isValidBST(Tools.buildTree("[120,70,140,50,100,130,160,20,55,75,110,119,135,150,200]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     *       5
+     *      / \
+     *     4   6
+     *        / \
+     *       3   7
+     */
+    public boolean isValidBSTX(TreeNode root) {
+      TreeNode dummy = new TreeNode(root.right == null ? root.val + 1 : root.right.val + 1, root, null);
+      return isValidBST(dummy, root);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         *       5
-         *      / \
-         *     4   6
-         *        / \
-         *       3   7
-         */
-        public boolean isValidBSTX(TreeNode root) {
-            TreeNode dummy = new TreeNode(root.right == null ? root.val + 1 : root.right.val + 1, root, null);
-            return isValidBST(dummy, root);
+    
+    private boolean isValidBST(TreeNode root, TreeNode cur) {
+      if (cur == null)
+        return true;
+      
+      return (cur.left == null || (cur.val > cur.left.val && cur.left.val > root.val))
+          &&
+          (cur.right == null || (cur.val < cur.right.val && cur.right.val < root.val))
+          &&
+          isValidBST(cur, cur.left)
+          &&
+          isValidBST(cur, cur.right);
+    }
+    
+    public boolean isValidBSTXX(TreeNode root) {
+      if (helper(root)) {
+        TreeNode node = root.left;
+        while (node != null && node.right != null)
+          node = node.right;
+        if (node == null || node.val < root.val) {
+          node = root.right;
+          while (node != null && node.left != null)
+            node = node.left;
+          return node == null || node.val > root.val;
         }
-
-        private boolean isValidBST(TreeNode root, TreeNode cur) {
-            if (cur == null)
-                return true;
-
-            return (cur.left == null || (cur.val > cur.left.val && cur.left.val > root.val))
-                    &&
-                    (cur.right == null || (cur.val < cur.right.val && cur.right.val < root.val))
-                    &&
-                    isValidBST(cur, cur.left)
-                    &&
-                    isValidBST(cur, cur.right);
-        }
-
-        public boolean isValidBSTXX(TreeNode root) {
-            if (helper(root)) {
-                TreeNode node = root.left;
-                while (node != null && node.right != null)
-                    node = node.right;
-                if (node == null || node.val < root.val) {
-                    node = root.right;
-                    while (node != null && node.left != null)
-                        node = node.left;
-                    return node == null || node.val > root.val;
-                }
-            }
+      }
+      return false;
+    }
+    
+    private boolean helper(TreeNode root) {
+      if (root == null)
+        return true;
+      
+      return (root.left == null || (root.val > root.left.val && (root.left.right == null || root.left.right.val < root.val)))
+          &&
+          (root.right == null || (root.val < root.right.val && (root.right.left == null || root.right.left.val > root.val)))
+          &&
+          helper(root.left)
+          &&
+          helper(root.right);
+    }
+    
+    // 中序遍历 + 判断升序
+    public boolean isValidBST7(TreeNode root) {
+      return isSortedNaturally(inorderTraversal(root));
+    }
+    
+    public List<Integer> inorderTraversal(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      
+      if (root == null)
+        return list;
+      list.addAll(inorderTraversal(root.left));
+      list.add(root.val);
+      list.addAll(inorderTraversal(root.right));
+      
+      return list;
+    }
+    
+    public static boolean isSortedNaturally(List<Integer> list) {
+      for (int i = 0; i < list.size() - 1; i++)
+        if (list.get(i) >= list.get(i + 1))
+          return false;
+      return true;
+    }
+    
+    //☆☆☆☆☆ 递归
+    public boolean isValidBST6(TreeNode root) {
+      return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
+    }
+    
+    private boolean helper(TreeNode root, long min, long max) {
+      if (root == null)
+        return true;
+      
+      return min < root.val &&
+          root.val < max &&
+          helper(root.left, min, root.val) &&
+          helper(root.right, root.val, max);
+    }
+    
+    // 中序遍历（Morris）
+    public boolean isValidBST5(TreeNode root) {
+      long curVal = Long.MIN_VALUE;
+      TreeNode cur = root;
+      TreeNode left;
+      while (cur != null) {
+        left = cur.left;
+        if (left != null) {
+          while (left.right != null && left.right != cur) {
+            left = left.right;
+          }
+          if (left.right == null) {
+            left.right = cur;
+            cur = cur.left;
+          } else {
+            if (curVal >= cur.val)
+              return false;
+            curVal = cur.val;
+            left.right = null;
+            cur = cur.right;
+          }
+        } else {
+          if (curVal >= cur.val)
             return false;
+          curVal = cur.val;
+          cur = cur.right;
         }
-
-        private boolean helper(TreeNode root) {
-            if (root == null)
-                return true;
-
-            return (root.left == null || (root.val > root.left.val && (root.left.right == null || root.left.right.val < root.val)))
-                    &&
-                    (root.right == null || (root.val < root.right.val && (root.right.left == null || root.right.left.val > root.val)))
-                    &&
-                    helper(root.left)
-                    &&
-                    helper(root.right);
-        }
-
-        //中序遍历 + 判断升序
-        public boolean isValidBST7(TreeNode root) {
-            return isSortedNaturally(inorderTraversal(root));
-        }
-
-        public List<Integer> inorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-
-            if (root == null)
-                return list;
-            list.addAll(inorderTraversal(root.left));
-            list.add(root.val);
-            list.addAll(inorderTraversal(root.right));
-
-            return list;
-        }
-
-        public static boolean isSortedNaturally(List<Integer> list) {
-            for (int i = 0; i < list.size() - 1; i++)
-                if (list.get(i) >= list.get(i + 1))
-                    return false;
-            return true;
-        }
-
-        //☆☆☆☆☆ 递归
-        public boolean isValidBST6(TreeNode root) {
-            return helper(root, Long.MIN_VALUE, Long.MAX_VALUE);
-        }
-
-        private boolean helper(TreeNode root, long min, long max) {
-            if (root == null)
-                return true;
-
-            return min < root.val &&
-                    root.val < max &&
-                    helper(root.left, min, root.val) &&
-                    helper(root.right, root.val, max);
-        }
-
-        //中序遍历（Morris）
-        public boolean isValidBST5(TreeNode root) {
-            long curVal = Long.MIN_VALUE;
-            TreeNode cur = root;
-            TreeNode left;
-            while (cur != null) {
-                left = cur.left;
-                if (left != null) {
-                    while (left.right != null && left.right != cur) {
-                        left = left.right;
-                    }
-                    if (left.right == null) {
-                        left.right = cur;
-                        cur = cur.left;
-                    } else {
-                        if (curVal >= cur.val)
-                            return false;
-                        curVal = cur.val;
-                        left.right = null;
-                        cur = cur.right;
-                    }
-                } else {
-                    if (curVal >= cur.val)
-                        return false;
-                    curVal = cur.val;
-                    cur = cur.right;
-                }
-            }
-            return true;
-        }
-
-        //中序遍历（栈）
-        public boolean isValidBST(TreeNode root) {
-            long curVal = Long.MIN_VALUE;
-            Deque<TreeNode> stack = new LinkedList<>();
-            while (root != null || !stack.isEmpty()) {
-                while (root != null) {
-                    stack.push(root);
-                    root = root.left;
-                }
-                root = stack.pop();
-                if (curVal >= root.val)
-                    return false;
-                curVal = root.val;
-                root = root.right;
-            }
-            return true;
-        }
+      }
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 中序遍历（栈）
+    public boolean isValidBST(TreeNode root) {
+      long curVal = Long.MIN_VALUE;
+      Deque<TreeNode> stack = new LinkedList<>();
+      while (root != null || !stack.isEmpty()) {
+        while (root != null) {
+          stack.push(root);
+          root = root.left;
+        }
+        root = stack.pop();
+        if (curVal >= root.val)
+          return false;
+        curVal = root.val;
+        root = root.right;
+      }
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

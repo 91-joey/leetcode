@@ -32,50 +32,50 @@
 //<div><li>👍 28</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.sort;
 
-//1796.字符串中第二大的数字
-//开题时间：2022-12-03 11:01:21
+// 1796.字符串中第二大的数字
+// 开题时间：2022-12-03 11:01:21
 public class SecondLargestDigitInAString {
-    public static void main(String[] args) {
-        Solution solution = new SecondLargestDigitInAString().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SecondLargestDigitInAString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 计数排序
+    public int secondHighest9(String s) {
+      int[] freq = new int[10];
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (Character.isDigit(c))
+          freq[c - '0']++;
+      }
+      
+      for (int i = freq.length - 1; i >= 0; i--)
+        if (freq[i] > 0)
+          for (int j = i - 1; j >= 0; j--)
+            if (freq[j] > 0)
+              return j;
+      
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //计数排序
-        public int secondHighest9(String s) {
-            int[] freq = new int[10];
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (Character.isDigit(c))
-                    freq[c - '0']++;
-            }
-
-            for (int i = freq.length - 1; i >= 0; i--)
-                if (freq[i] > 0)
-                    for (int j = i - 1; j >= 0; j--)
-                        if (freq[j] > 0)
-                            return j;
-
-            return -1;
+    
+    // 一次遍历，维护第一个和第二个最大值
+    public int secondHighest(String s) {
+      int first = -1, second = -1;
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (Character.isDigit(c)) {
+          int num = c - '0';
+          if (second < num && num < first)
+            second = num;
+          else if (first < num) {
+            second = first;
+            first = num;
+          }
         }
-
-        //一次遍历，维护第一个和第二个最大值
-        public int secondHighest(String s) {
-            int first = -1, second = -1;
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (Character.isDigit(c)) {
-                    int num = c - '0';
-                    if (second < num && num < first)
-                        second = num;
-                    else if (first < num) {
-                        second = first;
-                        first = num;
-                    }
-                }
-            }
-            return second;
-        }
+      }
+      return second;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -25,7 +25,7 @@
 //<pre>
 //<strong>输入：</strong>points = [[1,2],[2,3],[3,4],[4,5]]
 //<strong>输出：</strong>2
-//解释：气球可以用2支箭来爆破:
+// 解释：气球可以用2支箭来爆破:
 //- 在x = 2处发射箭，击破气球[1,2]和[2,3]。
 //- 在x = 4处射出箭，击破气球[3,4]和[4,5]。</pre>
 //
@@ -48,28 +48,28 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//452.用最少数量的箭引爆气球
-//开题时间：2023-01-20 11:33:34
+// 452.用最少数量的箭引爆气球
+// 开题时间：2023-01-20 11:33:34
 public class MinimumNumberOfArrowsToBurstBalloons {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfArrowsToBurstBalloons().new Solution();
-        System.out.println(solution);
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //排序 + 贪心（最大不重叠区间数，端点相等算重叠）
-        public int findMinArrowShots(int[][] points) {
-            Arrays.sort(points, Comparator.comparingInt(a -> a[1]));
-            int ans = 1;
-            for (int i = 1, t = points[0][1]; i < points.length; i++) {
-                if (t < points[i][0])    {
-                    ans++;
-                    t = points[i][1];
-                }
-            }
-            return ans;
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfArrowsToBurstBalloons().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 排序 + 贪心（最大不重叠区间数，端点相等算重叠）
+    public int findMinArrowShots(int[][] points) {
+      Arrays.sort(points, Comparator.comparingInt(a -> a[1]));
+      int ans = 1;
+      for (int i = 1, t = points[0][1]; i < points.length; i++) {
+        if (t < points[i][0]) {
+          ans++;
+          t = points[i][1];
         }
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -34,24 +34,24 @@ package org.example.leetcode.problems._2_algorithm.sort;
 
 import java.util.Arrays;
 
-//1502.判断能否形成等差数列
-//开题时间：2022-12-04 12:04:41
+// 1502.判断能否形成等差数列
+// 开题时间：2022-12-04 12:04:41
 public class CanMakeArithmeticProgressionFromSequence {
-    public static void main(String[] args) {
-        Solution solution = new CanMakeArithmeticProgressionFromSequence().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CanMakeArithmeticProgressionFromSequence().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean canMakeArithmeticProgression(int[] arr) {
+      Arrays.sort(arr);
+      
+      for (int i = 2, diff = arr[1] - arr[0]; i < arr.length; i++)
+        if (arr[i] - arr[i - 1] != diff)
+          return false;
+      
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean canMakeArithmeticProgression(int[] arr) {
-            Arrays.sort(arr);
-
-            for (int i = 2, diff = arr[1] - arr[0]; i < arr.length; i++)
-                if (arr[i] - arr[i - 1] != diff)
-                    return false;
-
-            return true;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

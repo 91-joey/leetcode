@@ -38,103 +38,103 @@ import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//404.左叶子之和
-//开题时间：2022-12-10 09:53:22
+// 404.左叶子之和
+// 开题时间：2022-12-10 09:53:22
 public class SumOfLeftLeaves {
-    public static void main(String[] args) {
-        Solution solution = new SumOfLeftLeaves().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SumOfLeftLeaves().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int sum = 0;
+    
+    // 递归（复杂版）
+    public int sumOfLeftLeaves9(TreeNode root) {
+      helper(null, root, false);
+      return sum;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int sum = 0;
-
-        //递归（复杂版）
-        public int sumOfLeftLeaves9(TreeNode root) {
-            helper(null, root, false);
-            return sum;
-        }
-
-        private void helper(TreeNode root, TreeNode cur, boolean left) {
-            if (cur == null)
-                return;
-            if (root != null && left && isLeafNode(cur))
-                sum += cur.val;
-
-            helper(cur, cur.left, true);
-            helper(cur, cur.right, false);
-        }
-
-        //BFS（复杂版）
-        public int sumOfLeftLeaves8(TreeNode root) {
-            int sum = 0;
-            if (root == null)
-                return sum;
-
-            Queue<TreeNode> qL = new LinkedList<>();
-            Queue<TreeNode> qR = new LinkedList<>();
-            qL.offer(root.left);
-            qR.offer(root.right);
-
-            while (!qL.isEmpty() || !qR.isEmpty()) {
-                while (!qL.isEmpty()) {
-                    TreeNode poll = qL.poll();
-                    if (poll != null) {
-                        if (isLeafNode(poll))
-                            sum += poll.val;
-                        qL.offer(poll.left);
-                        qR.offer(poll.right);
-                    }
-                }
-                while (!qR.isEmpty()) {
-                    TreeNode poll = qR.poll();
-                    if (poll != null) {
-                        qL.offer(poll.left);
-                        qR.offer(poll.right);
-                    }
-                }
-            }
-
-            return sum;
-        }
-
-        public static boolean isLeafNode(TreeNode root) {
-            return root.left == null && root.right == null;
-        }
-
-        //☆☆☆☆☆ 递归（精简版）
-        public int sumOfLeftLeaves7(TreeNode root) {
-            if (root == null)
-                return 0;
-
-            return sumOfLeftLeaves(root.left) +
-                    sumOfLeftLeaves(root.right) +
-                    (root.left != null && isLeafNode(root.left) ? root.left.val : 0);
-        }
-
-
-        //BFS（精简版）
-        public int sumOfLeftLeaves(TreeNode root) {
-            int sum = 0;
-
-            Queue<TreeNode> q = new LinkedList<>();
-            q.offer(root);
-
-            while (!q.isEmpty()) {
-                TreeNode poll = q.poll();
-                if (poll == null)
-                    continue;
-
-                if (poll.left != null) {
-                    if (isLeafNode(poll.left))
-                        sum += poll.left.val;
-                    q.offer(poll.left);
-                }
-                q.offer(poll.right);
-            }
-
-            return sum;
-        }
+    
+    private void helper(TreeNode root, TreeNode cur, boolean left) {
+      if (cur == null)
+        return;
+      if (root != null && left && isLeafNode(cur))
+        sum += cur.val;
+      
+      helper(cur, cur.left, true);
+      helper(cur, cur.right, false);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // BFS（复杂版）
+    public int sumOfLeftLeaves8(TreeNode root) {
+      int sum = 0;
+      if (root == null)
+        return sum;
+      
+      Queue<TreeNode> qL = new LinkedList<>();
+      Queue<TreeNode> qR = new LinkedList<>();
+      qL.offer(root.left);
+      qR.offer(root.right);
+      
+      while (!qL.isEmpty() || !qR.isEmpty()) {
+        while (!qL.isEmpty()) {
+          TreeNode poll = qL.poll();
+          if (poll != null) {
+            if (isLeafNode(poll))
+              sum += poll.val;
+            qL.offer(poll.left);
+            qR.offer(poll.right);
+          }
+        }
+        while (!qR.isEmpty()) {
+          TreeNode poll = qR.poll();
+          if (poll != null) {
+            qL.offer(poll.left);
+            qR.offer(poll.right);
+          }
+        }
+      }
+      
+      return sum;
+    }
+    
+    public static boolean isLeafNode(TreeNode root) {
+      return root.left == null && root.right == null;
+    }
+    
+    //☆☆☆☆☆ 递归（精简版）
+    public int sumOfLeftLeaves7(TreeNode root) {
+      if (root == null)
+        return 0;
+      
+      return sumOfLeftLeaves(root.left) +
+          sumOfLeftLeaves(root.right) +
+          (root.left != null && isLeafNode(root.left) ? root.left.val : 0);
+    }
+    
+    
+    // BFS（精简版）
+    public int sumOfLeftLeaves(TreeNode root) {
+      int sum = 0;
+      
+      Queue<TreeNode> q = new LinkedList<>();
+      q.offer(root);
+      
+      while (!q.isEmpty()) {
+        TreeNode poll = q.poll();
+        if (poll == null)
+          continue;
+        
+        if (poll.left != null) {
+          if (isLeafNode(poll.left))
+            sum += poll.left.val;
+          q.offer(poll.left);
+        }
+        q.offer(poll.right);
+      }
+      
+      return sum;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

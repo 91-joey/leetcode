@@ -22,47 +22,47 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
-//136.只出现一次的数字
-//开题时间：2022-09-04 09:51:02
+// 136.只出现一次的数字
+// 开题时间：2022-09-04 09:51:02
 public class SingleNumber {
-    public static void main(String[] args) {
-        Solution solution = new SingleNumber().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SingleNumber().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 1.hashtable   n   n
+    public int singleNumber(int[] nums) {
+      Set<Integer> set = new HashSet<>();
+      for (int num : nums) {
+        if (set.contains(num)) {
+          set.remove(num);
+        } else {
+          set.add(num);
+        }
+      }
+      for (Integer element : set)
+        return element;
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //1.hashtable   n   n
-        public int singleNumber(int[] nums) {
-            Set<Integer> set = new HashSet<>();
-            for (int num : nums) {
-                if (set.contains(num)) {
-                    set.remove(num);
-                } else {
-                    set.add(num);
-                }
-            }
-            for (Integer element : set)
-                return element;
-            return -1;
-        }
-
-        //2.sort nlogn  logn
-        public int singleNumber2(int[] nums) {
-            Arrays.sort(nums);
-            int length = nums.length;
-            for (int i = 0; i < length - 1; i += 2)
-                if (nums[i] != nums[i + 1])
-                    return nums[i];
-            return nums[length - 1];
-        }
-
-        //GJ.xor n   1
-        public int singleNumberGJ(int[] nums) {
-            int ans = 0;
-            for (int num : nums)
-                ans ^= num;
-            return ans;
-        }
+    
+    // 2.sort nlogn  logn
+    public int singleNumber2(int[] nums) {
+      Arrays.sort(nums);
+      int length = nums.length;
+      for (int i = 0; i < length - 1; i += 2)
+        if (nums[i] != nums[i + 1])
+          return nums[i];
+      return nums[length - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // GJ.xor n   1
+    public int singleNumberGJ(int[] nums) {
+      int ans = 0;
+      for (int num : nums)
+        ans ^= num;
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

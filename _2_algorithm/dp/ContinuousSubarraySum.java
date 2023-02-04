@@ -24,7 +24,7 @@
 //<strong>输入：</strong>nums = [<u>23,2,6,4,7</u>], k = 6
 //<strong>输出：</strong>true
 //<strong>解释：</strong>[23, 2, 6, 4, 7] 是大小为 5 的子数组，并且和为 42 。 
-//42 是 6 的倍数，因为 42 = 7 * 6 且 7 是一个整数。
+// 42 是 6 的倍数，因为 42 = 7 * 6 且 7 是一个整数。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -51,91 +51,91 @@ package org.example.leetcode.problems._2_algorithm.dp;
 import java.util.HashMap;
 import java.util.HashSet;
 
-//523.连续的子数组和
-//开题时间：2022-12-17 16:00:04
+// 523.连续的子数组和
+// 开题时间：2022-12-17 16:00:04
 public class ContinuousSubarraySum {
-    public static void main(String[] args) {
-        Solution solution = new ContinuousSubarraySum().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ContinuousSubarraySum().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力前缀和（TLE）
+    public boolean checkSubarraySumX(int[] nums, int k) {
+      int n = nums.length;
+      int[] prefix = new int[n + 1];
+      for (int i = 1; i < n + 1; i++)
+        prefix[i] = prefix[i - 1] + nums[i - 1];
+      
+      for (int i = 0; i < n - 1; i++)
+        for (int j = i + 1; j < n; j++)
+          if ((prefix[j + 1] - prefix[i]) % k == 0)
+            return true;
+      
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力前缀和（TLE）
-        public boolean checkSubarraySumX(int[] nums, int k) {
-            int n = nums.length;
-            int[] prefix = new int[n + 1];
-            for (int i = 1; i < n + 1; i++)
-                prefix[i] = prefix[i - 1] + nums[i - 1];
-
-            for (int i = 0; i < n - 1; i++)
-                for (int j = i + 1; j < n; j++)
-                    if ((prefix[j + 1] - prefix[i]) % k == 0)
-                        return true;
-
-            return false;
-        }
-
-        //暴力前缀和2（TLE）
-        public boolean checkSubarraySum9(int[] nums, int k) {
-            int n = nums.length;
-
-            for (int i = 0; i < n - 1; i++)
-                for (int j = i + 1, sum = nums[i]; j < n; j++)
-                    if ((sum += nums[j]) % k == 0)
-                        return true;
-
-            return false;
-        }
-
-        //☆☆☆☆☆ 前缀和 + 哈希映射（同余原理：若a-b=n*k，则有a%k=b%k）
-        public boolean checkSubarraySum8(int[] nums, int k) {
-            HashMap<Integer, Integer> mod2idx = new HashMap<>();
-            int sum = 0;
-            mod2idx.put(0, -1);
-
-            for (int i = 0; i < nums.length; i++) {
-                sum += nums[i];
-                int key = sum % k;
-                if (mod2idx.containsKey(key)) {
-                    if (i - mod2idx.get(key) > 1)
-                        return true;
-                } else
-                    mod2idx.put(key, i);
-            }
-
-            return false;
-        }
-
-        //☆☆☆ 前缀和 + 哈希集合
-        public boolean checkSubarraySum7(int[] nums, int k) {
-            int n = nums.length;
-            int[] prefix = new int[n + 1];
-            for (int i = 1; i < n + 1; i++)
-                prefix[i] = prefix[i - 1] + nums[i - 1];
-
-            HashSet<Integer> mods = new HashSet<>();
-            for (int i = 2; i <= n; i++) {
-                mods.add(prefix[i - 2] % k);
-                if (mods.contains(prefix[i] % k))
-                    return true;
-            }
-
-            return false;
-        }
-
-        //单哈希集合
-        public boolean checkSubarraySum(int[] nums, int k) {
-            HashSet<Integer> mods = new HashSet<>();
-
-            for (int i = 2, sum = 0; i <= nums.length; i++) {
-                mods.add(sum % k);
-                sum += nums[i - 2];
-                if (mods.contains((sum + nums[i - 1]) % k))
-                    return true;
-            }
-
-            return false;
-        }
+    
+    // 暴力前缀和2（TLE）
+    public boolean checkSubarraySum9(int[] nums, int k) {
+      int n = nums.length;
+      
+      for (int i = 0; i < n - 1; i++)
+        for (int j = i + 1, sum = nums[i]; j < n; j++)
+          if ((sum += nums[j]) % k == 0)
+            return true;
+      
+      return false;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 前缀和 + 哈希映射（同余原理：若a-b=n*k，则有a%k=b%k）
+    public boolean checkSubarraySum8(int[] nums, int k) {
+      HashMap<Integer, Integer> mod2idx = new HashMap<>();
+      int sum = 0;
+      mod2idx.put(0, -1);
+      
+      for (int i = 0; i < nums.length; i++) {
+        sum += nums[i];
+        int key = sum % k;
+        if (mod2idx.containsKey(key)) {
+          if (i - mod2idx.get(key) > 1)
+            return true;
+        } else
+          mod2idx.put(key, i);
+      }
+      
+      return false;
+    }
+    
+    //☆☆☆ 前缀和 + 哈希集合
+    public boolean checkSubarraySum7(int[] nums, int k) {
+      int n = nums.length;
+      int[] prefix = new int[n + 1];
+      for (int i = 1; i < n + 1; i++)
+        prefix[i] = prefix[i - 1] + nums[i - 1];
+      
+      HashSet<Integer> mods = new HashSet<>();
+      for (int i = 2; i <= n; i++) {
+        mods.add(prefix[i - 2] % k);
+        if (mods.contains(prefix[i] % k))
+          return true;
+      }
+      
+      return false;
+    }
+    
+    // 单哈希集合
+    public boolean checkSubarraySum(int[] nums, int k) {
+      HashSet<Integer> mods = new HashSet<>();
+      
+      for (int i = 2, sum = 0; i <= nums.length; i++) {
+        mods.add(sum % k);
+        sum += nums[i - 2];
+        if (mods.contains((sum + nums[i - 1]) % k))
+          return true;
+      }
+      
+      return false;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

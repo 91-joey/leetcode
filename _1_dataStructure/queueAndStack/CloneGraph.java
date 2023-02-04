@@ -27,10 +27,10 @@
 //<strong>输出：</strong>[[2,4],[1,3],[2,4],[1,3]]
 //<strong>解释：
 //</strong>图中有 4 个节点。
-//节点 1 的值是 1，它有两个邻居：节点 2 和 4 。
-//节点 2 的值是 2，它有两个邻居：节点 1 和 3 。
-//节点 3 的值是 3，它有两个邻居：节点 2 和 4 。
-//节点 4 的值是 4，它有两个邻居：节点 1 和 3 。
+// 节点 1 的值是 1，它有两个邻居：节点 2 和 4 。
+// 节点 2 的值是 2，它有两个邻居：节点 1 和 3 。
+// 节点 3 的值是 3，它有两个邻居：节点 2 和 4 。
+// 节点 4 的值是 4，它有两个邻居：节点 1 和 3 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -71,121 +71,126 @@
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>广度优先搜索</li><li>图</li><li>哈希表</li></div></div><br><div><li>👍 530</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
 
-//133.克隆图
-//开题时间：2022-08-20 08:26:22
+// 133.克隆图
+// 开题时间：2022-08-20 08:26:22
 public class CloneGraph {
-    public static void main(String[] args) {
-        Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        Node node4 = new Node(4);
-        List<Node> list1 = new ArrayList<>();
-        list1.add(node2);
-        list1.add(node4);
-        List<Node> list2 = new ArrayList<>();
-        list2.add(node1);
-        list2.add(node3);
-        node1.neighbors = list1;
-        node2.neighbors = list2;
-        node3.neighbors = list1;
-        node4.neighbors = list2;
-
-        Solution solution = new CloneGraph().new Solution();
-        System.out.println(solution.cloneGraph(node1));
+  public static void main(String[] args) {
+    Node node1 = new Node(1);
+    Node node2 = new Node(2);
+    Node node3 = new Node(3);
+    Node node4 = new Node(4);
+    List<Node> list1 = new ArrayList<>();
+    list1.add(node2);
+    list1.add(node4);
+    List<Node> list2 = new ArrayList<>();
+    list2.add(node1);
+    list2.add(node3);
+    node1.neighbors = list1;
+    node2.neighbors = list2;
+    node3.neighbors = list1;
+    node4.neighbors = list2;
+    
+    Solution solution = new CloneGraph().new Solution();
+    System.out.println(solution.cloneGraph(node1));
+  }
+  
+  // Definition for a Node.
+  static class Node {
+    public int val;
+    public List<Node> neighbors;
+    
+    public Node() {
+      val = 0;
+      neighbors = new ArrayList<>();
     }
-
-    // Definition for a Node.
-    static class Node {
-        public int val;
-        public List<Node> neighbors;
-
-        public Node() {
-            val = 0;
-            neighbors = new ArrayList<>();
-        }
-
-        public Node(int _val) {
-            val = _val;
-            neighbors = new ArrayList<>();
-        }
-
-        public Node(int _val, ArrayList<Node> _neighbors) {
-            val = _val;
-            neighbors = _neighbors;
-        }
+    
+    public Node(int _val) {
+      val = _val;
+      neighbors = new ArrayList<>();
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    class Solution {
-        private final Map<Integer, Node> map = new HashMap<>();
-
-        //1.DFS+递归
-        public Node cloneGraph(Node node) {
-            if (node == null) {
-                return null;
-            }
-            Node clone = new Node(node.val, new ArrayList<>());
-            map.put(node.val, clone);
-
-            DFS(node);
-
-            return clone;
-        }
-
-        private void DFS(Node node) {
-            for (Node neighbor : node.neighbors) {
-                int val = neighbor.val;
-                if (!map.containsKey(val)) {
-                    map.put(val, new Node(val, new ArrayList<>()));
-                    DFS(neighbor);
-                }
-                map.get(node.val).neighbors.add(map.get(val));
-            }
-        }
-
-        //2.BFS+队列
-        public Node cloneGraph2(Node node) {
-            if (node == null) {
-                return null;
-            }
-            Node clone = new Node(node.val, new ArrayList<>());
-            map.put(node.val, clone);
-            Queue<Node> queue = new ArrayDeque<>();
-            queue.offer(node);
-            while (!queue.isEmpty()) {
-                Node poll = queue.poll();
-                for (Node neighbor : poll.neighbors) {
-                    int val = neighbor.val;
-                    if (!map.containsKey(val)) {
-                        map.put(val, new Node(val, new ArrayList<>()));
-                        queue.offer(neighbor);
-                    }
-                    map.get(poll.val).neighbors.add(map.get(val));
-                }
-            }
-
-            return clone;
-        }
-
-        //3.官解一：DFS
-        public Node cloneGraph3(Node node) {
-            if (node == null) {
-                return null;
-            }
-            int val = node.val;
-            if (map.containsKey(val)) {
-                return map.get(val);
-            }
-            Node clone = new Node(val, new ArrayList<>());
-            map.put(val, clone);
-            for (Node neighbor : node.neighbors) {
-                map.get(val).neighbors.add(cloneGraph3(neighbor));
-            }
-
-            return clone;
-        }
+    
+    public Node(int _val, ArrayList<Node> _neighbors) {
+      val = _val;
+      neighbors = _neighbors;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  class Solution {
+    private final Map<Integer, Node> map = new HashMap<>();
+    
+    // 1.DFS+递归
+    public Node cloneGraph(Node node) {
+      if (node == null) {
+        return null;
+      }
+      Node clone = new Node(node.val, new ArrayList<>());
+      map.put(node.val, clone);
+      
+      DFS(node);
+      
+      return clone;
+    }
+    
+    private void DFS(Node node) {
+      for (Node neighbor : node.neighbors) {
+        int val = neighbor.val;
+        if (!map.containsKey(val)) {
+          map.put(val, new Node(val, new ArrayList<>()));
+          DFS(neighbor);
+        }
+        map.get(node.val).neighbors.add(map.get(val));
+      }
+    }
+    
+    // 2.BFS+队列
+    public Node cloneGraph2(Node node) {
+      if (node == null) {
+        return null;
+      }
+      Node clone = new Node(node.val, new ArrayList<>());
+      map.put(node.val, clone);
+      Queue<Node> queue = new ArrayDeque<>();
+      queue.offer(node);
+      while (!queue.isEmpty()) {
+        Node poll = queue.poll();
+        for (Node neighbor : poll.neighbors) {
+          int val = neighbor.val;
+          if (!map.containsKey(val)) {
+            map.put(val, new Node(val, new ArrayList<>()));
+            queue.offer(neighbor);
+          }
+          map.get(poll.val).neighbors.add(map.get(val));
+        }
+      }
+      
+      return clone;
+    }
+    
+    // 3.官解一：DFS
+    public Node cloneGraph3(Node node) {
+      if (node == null) {
+        return null;
+      }
+      int val = node.val;
+      if (map.containsKey(val)) {
+        return map.get(val);
+      }
+      Node clone = new Node(val, new ArrayList<>());
+      map.put(val, clone);
+      for (Node neighbor : node.neighbors) {
+        map.get(val).neighbors.add(cloneGraph3(neighbor));
+      }
+      
+      return clone;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

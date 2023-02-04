@@ -44,102 +44,102 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-//417.太平洋大西洋水流问题
-//开题时间：2023-01-04 09:21:41
+// 417.太平洋大西洋水流问题
+// 开题时间：2023-01-04 09:21:41
 public class PacificAtlanticWaterFlow {
-    public static void main(String[] args) {
-        Solution solution = new PacificAtlanticWaterFlow().new Solution();
-        System.out.println(solution.pacificAtlantic(Tools.to2DIntArray("[[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]")));
+  public static void main(String[] args) {
+    Solution solution = new PacificAtlanticWaterFlow().new Solution();
+    System.out.println(solution.pacificAtlantic(Tools.to2DIntArray("[[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
+    
+    // 暴力DFS (m*n)^2
+    public List<List<Integer>> pacificAtlantic9(int[][] heights) {
+      ArrayList<List<Integer>> ans = new ArrayList<>();
+      int m = heights.length;
+      int n = heights[0].length;
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+          boolean[] pa = dfs(heights, i, j, new boolean[m][n]);
+          if (pa[0] && pa[1])
+            ans.add(List.of(i, j));
+        }
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS = {1, 0, -1, 0, 1};
-
-        //暴力DFS (m*n)^2
-        public List<List<Integer>> pacificAtlantic9(int[][] heights) {
-            ArrayList<List<Integer>> ans = new ArrayList<>();
-            int m = heights.length;
-            int n = heights[0].length;
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++) {
-                    boolean[] pa = dfs(heights, i, j, new boolean[m][n]);
-                    if (pa[0] && pa[1])
-                        ans.add(List.of(i, j));
-                }
-            return ans;
-        }
-
-        /*
-         * ☆☆☆☆☆ 逆向思维 + DFS：水往高处流   m*n
-         * 分别求出太平洋和大西洋的水所能流到（逆向）的单元格 canReachPacific、canReachAtlantic
-         * 两者的交集，即为既可流向（正向）太平洋也可流向（正向）大西洋的所有单元格
-         */
-        public List<List<Integer>> pacificAtlantic(int[][] heights) {
-            int m = heights.length;
-            int n = heights[0].length;
-
-            boolean[][] canReachPacific = new boolean[m][n];
-            boolean[][] canReachAtlantic = new boolean[m][n];
-            for (int i = 0; i < m; i++) {
-                contraFlow(heights, i, 0, canReachPacific);
-                contraFlow(heights, i, n - 1, canReachAtlantic);
-            }
-            for (int j = 0; j < n; j++) {
-                contraFlow(heights, 0, j, canReachPacific);
-                contraFlow(heights, m - 1, j, canReachAtlantic);
-            }
-
-            ArrayList<List<Integer>> ans = new ArrayList<>();
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++)
-                    if (canReachPacific[i][j] && canReachAtlantic[i][j])
-                        ans.add(List.of(i, j));
-
-            return ans;
-        }
-
-        private void contraFlow(int[][] arr, int r, int c, boolean[][] canReach) {
-            canReach[r][c] = true;
-            for (int i = 0; i < 4; i++) {
-                int newI = r + DIRS[i];
-                int newJ = c + DIRS[i + 1];
-                if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-                        !canReach[newI][newJ] && arr[newI][newJ] >= arr[r][c])
-                    contraFlow(arr, newI, newJ, canReach);
-            }
-        }
-
-        private void dfs(int[][] arr, int r, int c, Set<List<Integer>> set, boolean[][] vis) {
-            vis[r][c] = true;
-            set.add(List.of(r, c));
-            for (int i = 0; i < 4; i++) {
-                int newI = r + DIRS[i];
-                int newJ = c + DIRS[i + 1];
-                if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-                        !vis[newI][newJ] && arr[newI][newJ] >= arr[r][c])
-                    dfs(arr, newI, newJ, set, vis);
-            }
-        }
-
-        private boolean[] dfs(int[][] arr, int r, int c, boolean[][] vis) {
-            boolean p = c == 0 || r == 0;
-            boolean a = c == arr[0].length - 1 || r == arr.length - 1;
-            vis[r][c] = true;
-            for (int i = 0; i < 4; i++) {
-                int newI = r + DIRS[i];
-                int newJ = c + DIRS[i + 1];
-                if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-                        !vis[newI][newJ] && arr[newI][newJ] <= arr[r][c]) {
-                    boolean[] pa = dfs(arr, newI, newJ, vis);
-                    p = p || pa[0];
-                    a = a || pa[1];
-                    if (p && a)
-                        return new boolean[]{true, true};
-                }
-            }
-            return new boolean[]{p, a};
-        }
+    
+    /*
+     * ☆☆☆☆☆ 逆向思维 + DFS：水往高处流   m*n
+     * 分别求出太平洋和大西洋的水所能流到（逆向）的单元格 canReachPacific、canReachAtlantic
+     * 两者的交集，即为既可流向（正向）太平洋也可流向（正向）大西洋的所有单元格
+     */
+    public List<List<Integer>> pacificAtlantic(int[][] heights) {
+      int m = heights.length;
+      int n = heights[0].length;
+      
+      boolean[][] canReachPacific = new boolean[m][n];
+      boolean[][] canReachAtlantic = new boolean[m][n];
+      for (int i = 0; i < m; i++) {
+        contraFlow(heights, i, 0, canReachPacific);
+        contraFlow(heights, i, n - 1, canReachAtlantic);
+      }
+      for (int j = 0; j < n; j++) {
+        contraFlow(heights, 0, j, canReachPacific);
+        contraFlow(heights, m - 1, j, canReachAtlantic);
+      }
+      
+      ArrayList<List<Integer>> ans = new ArrayList<>();
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+          if (canReachPacific[i][j] && canReachAtlantic[i][j])
+            ans.add(List.of(i, j));
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private void contraFlow(int[][] arr, int r, int c, boolean[][] canReach) {
+      canReach[r][c] = true;
+      for (int i = 0; i < 4; i++) {
+        int newI = r + DIRS[i];
+        int newJ = c + DIRS[i + 1];
+        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
+            !canReach[newI][newJ] && arr[newI][newJ] >= arr[r][c])
+          contraFlow(arr, newI, newJ, canReach);
+      }
+    }
+    
+    private void dfs(int[][] arr, int r, int c, Set<List<Integer>> set, boolean[][] vis) {
+      vis[r][c] = true;
+      set.add(List.of(r, c));
+      for (int i = 0; i < 4; i++) {
+        int newI = r + DIRS[i];
+        int newJ = c + DIRS[i + 1];
+        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
+            !vis[newI][newJ] && arr[newI][newJ] >= arr[r][c])
+          dfs(arr, newI, newJ, set, vis);
+      }
+    }
+    
+    private boolean[] dfs(int[][] arr, int r, int c, boolean[][] vis) {
+      boolean p = c == 0 || r == 0;
+      boolean a = c == arr[0].length - 1 || r == arr.length - 1;
+      vis[r][c] = true;
+      for (int i = 0; i < 4; i++) {
+        int newI = r + DIRS[i];
+        int newJ = c + DIRS[i + 1];
+        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
+            !vis[newI][newJ] && arr[newI][newJ] <= arr[r][c]) {
+          boolean[] pa = dfs(arr, newI, newJ, vis);
+          p = p || pa[0];
+          a = a || pa[1];
+          if (p && a)
+            return new boolean[]{true, true};
+        }
+      }
+      return new boolean[]{p, a};
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

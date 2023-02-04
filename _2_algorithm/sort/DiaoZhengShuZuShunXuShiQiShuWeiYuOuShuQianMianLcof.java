@@ -24,37 +24,37 @@ package org.example.leetcode.problems._2_algorithm.sort;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//剑指 Offer 21.调整数组顺序使奇数位于偶数前面
-//开题时间：2022-12-24 09:12:23
+// 剑指 Offer 21.调整数组顺序使奇数位于偶数前面
+// 开题时间：2022-12-24 09:12:23
 public class DiaoZhengShuZuShunXuShiQiShuWeiYuOuShuQianMianLcof {
-    public static void main(String[] args) {
-        Solution solution = new DiaoZhengShuZuShunXuShiQiShuWeiYuOuShuQianMianLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DiaoZhengShuZuShunXuShiQiShuWeiYuOuShuQianMianLcof().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] exchange9(int[] nums) {
+      return Arrays.stream(nums)
+          .boxed()
+          .sorted(Comparator.<Integer>comparingInt(x -> x & 1).reversed())
+          .mapToInt(Integer::intValue)
+          .toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] exchange9(int[] nums) {
-            return Arrays.stream(nums)
-                    .boxed()
-                    .sorted(Comparator.<Integer>comparingInt(x -> x & 1).reversed())
-                    .mapToInt(Integer::intValue)
-                    .toArray();
+    
+    //☆☆☆☆☆ 首尾双指针
+    public int[] exchange(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      while (l < r) {
+        while (l < r && (nums[l] & 1) == 1) l++;
+        while (l < r && (nums[r] & 1) == 0) r--;
+        if (l < r) {
+          int tmp = nums[l];
+          nums[l++] = nums[r];
+          nums[r--] = tmp;
         }
-
-        //☆☆☆☆☆ 首尾双指针
-        public int[] exchange(int[] nums) {
-            int l = 0, r = nums.length - 1;
-            while (l < r) {
-                while (l < r && (nums[l] & 1) == 1) l++;
-                while (l < r && (nums[r] & 1) == 0) r--;
-                if (l < r) {
-                    int tmp = nums[l];
-                    nums[l++] = nums[r];
-                    nums[r--] = tmp;
-                }
-            }
-            return nums;
-        }
+      }
+      return nums;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

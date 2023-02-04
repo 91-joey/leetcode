@@ -52,85 +52,85 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//1106.解析布尔表达式
-//开题时间：2022-11-05 10:08:26
+// 1106.解析布尔表达式
+// 开题时间：2022-11-05 10:08:26
 public class ParsingABooleanExpression {
-    public static void main(String[] args) {
-        Solution solution = new ParsingABooleanExpression().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final char TRUE = 't';
-        public static final char FALSE = 'f';
-        public static final char NOT = '!';
-        public static final char AND = '&';
-        public static final char OR = '|';
-        public static final char BRACE_LEFT = '(';
-        public static final char BRACE_RIGHT = ')';
-        public static final char SEPARATOR = ',';
-
-        public boolean parseBoolExpr9(String expression) {
-            Deque<Character> stack = new LinkedList<>();
-
-            for (int i = 0; i < expression.length(); i++) {
-                char c = expression.charAt(i);
-                if (c != BRACE_LEFT && c != SEPARATOR) {
-                    if (c != BRACE_RIGHT) {
-                        stack.push(c);
-                    } else {
-                        int cntAll = 0;
-                        int cntTrue = 0;
-                        char pop;
-                        while ((pop = stack.pop()) == TRUE || pop == FALSE) {
-                            cntAll++;
-                            if (pop == TRUE)
-                                cntTrue++;
-                        }
-                        stack.push(switch (pop) {
-                            case NOT -> cntTrue == 0 ? TRUE : FALSE;
-                            case AND -> cntTrue == cntAll ? TRUE : FALSE;
-                            case OR -> cntTrue > 0 ? TRUE : FALSE;
-                            default -> throw new IllegalStateException("Unexpected value: " + pop);
-                        });
-                    }
-                }
+  public static void main(String[] args) {
+    Solution solution = new ParsingABooleanExpression().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final char TRUE = 't';
+    public static final char FALSE = 'f';
+    public static final char NOT = '!';
+    public static final char AND = '&';
+    public static final char OR = '|';
+    public static final char BRACE_LEFT = '(';
+    public static final char BRACE_RIGHT = ')';
+    public static final char SEPARATOR = ',';
+    
+    public boolean parseBoolExpr9(String expression) {
+      Deque<Character> stack = new LinkedList<>();
+      
+      for (int i = 0; i < expression.length(); i++) {
+        char c = expression.charAt(i);
+        if (c != BRACE_LEFT && c != SEPARATOR) {
+          if (c != BRACE_RIGHT) {
+            stack.push(c);
+          } else {
+            int cntAll = 0;
+            int cntTrue = 0;
+            char pop;
+            while ((pop = stack.pop()) == TRUE || pop == FALSE) {
+              cntAll++;
+              if (pop == TRUE)
+                cntTrue++;
             }
-
-            return stack.pop() == TRUE;
+            stack.push(switch (pop) {
+              case NOT -> cntTrue == 0 ? TRUE : FALSE;
+              case AND -> cntTrue == cntAll ? TRUE : FALSE;
+              case OR -> cntTrue > 0 ? TRUE : FALSE;
+              default -> throw new IllegalStateException("Unexpected value: " + pop);
+            });
+          }
         }
-
-        //☆☆☆☆☆ stack
-        public boolean parseBoolExpr(String expression) {
-            Deque<Character> stack = new LinkedList<>();
-
-            for (int i = 0; i < expression.length(); i++) {
-                char c = expression.charAt(i);
-                if (c != BRACE_LEFT && c != SEPARATOR) {
-                    if (c != BRACE_RIGHT) {
-                        stack.push(c);
-                    } else {
-                        int cntTrue = 0;
-                        int cntFalse = 0;
-                        char pop;
-                        while ((pop = stack.pop()) == TRUE || pop == FALSE) {
-                            if (pop == TRUE)
-                                cntTrue++;
-                            else
-                                cntFalse++;
-                        }
-                        stack.push(switch (pop) {
-                            case NOT -> cntTrue == 0 ? TRUE : FALSE;
-                            case AND -> cntFalse == 0 ? TRUE : FALSE;
-                            case OR -> cntTrue > 0 ? TRUE : FALSE;
-                            default -> throw new IllegalStateException("Unexpected value: " + pop);
-                        });
-                    }
-                }
-            }
-
-            return stack.pop() == TRUE;
-        }
+      }
+      
+      return stack.pop() == TRUE;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ stack
+    public boolean parseBoolExpr(String expression) {
+      Deque<Character> stack = new LinkedList<>();
+      
+      for (int i = 0; i < expression.length(); i++) {
+        char c = expression.charAt(i);
+        if (c != BRACE_LEFT && c != SEPARATOR) {
+          if (c != BRACE_RIGHT) {
+            stack.push(c);
+          } else {
+            int cntTrue = 0;
+            int cntFalse = 0;
+            char pop;
+            while ((pop = stack.pop()) == TRUE || pop == FALSE) {
+              if (pop == TRUE)
+                cntTrue++;
+              else
+                cntFalse++;
+            }
+            stack.push(switch (pop) {
+              case NOT -> cntTrue == 0 ? TRUE : FALSE;
+              case AND -> cntFalse == 0 ? TRUE : FALSE;
+              case OR -> cntTrue > 0 ? TRUE : FALSE;
+              default -> throw new IllegalStateException("Unexpected value: " + pop);
+            });
+          }
+        }
+      }
+      
+      return stack.pop() == TRUE;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

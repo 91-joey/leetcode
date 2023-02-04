@@ -46,64 +46,64 @@
 //<div><li>👍 32</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1813.句子相似性 III
-//开题时间：2023-01-16 08:20:24
+// 1813.句子相似性 III
+// 开题时间：2023-01-16 08:20:24
 public class SentenceSimilarityIii {
-    public static void main(String[] args) {
-        Solution solution = new SentenceSimilarityIii().new Solution();
-//        System.out.println(solution.areSentencesSimilar("Ogn WtWj HneS", "Ogn WtWj HneS"));
-//        System.out.println(solution.areSentencesSimilar("Eating right now", "Eating"));
-        System.out.println(solution.areSentencesSimilar("My name is Haley", "My Haley"));
+  public static void main(String[] args) {
+    Solution solution = new SentenceSimilarityIii().new Solution();
+    //        System.out.println(solution.areSentencesSimilar("Ogn WtWj HneS", "Ogn WtWj HneS"));
+    //        System.out.println(solution.areSentencesSimilar("Eating right now", "Eating"));
+    System.out.println(solution.areSentencesSimilar("My name is Haley", "My Haley"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // minLen(s1,s2)^2
+    public boolean areSentencesSimilar9(String sentence1, String sentence2) {
+      if (sentence1.equals(sentence2))
+        return true;
+      String[] split1 = sentence1.split(" ");
+      String[] split2 = sentence2.split(" ");
+      if (split1.length <= split2.length)
+        return helper2(split1, split2);
+      else
+        return helper2(split2, split1);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //minLen(s1,s2)^2
-        public boolean areSentencesSimilar9(String sentence1, String sentence2) {
-            if (sentence1.equals(sentence2))
-                return true;
-            String[] split1 = sentence1.split(" ");
-            String[] split2 = sentence2.split(" ");
-            if (split1.length <= split2.length)
-                return helper2(split1, split2);
-            else
-                return helper2(split2, split1);
-        }
-
-        private boolean helper2(String[] split1, String[] split2) {
-            out:
-            for (int i = 0; i <= split1.length; i++) {
-                for (int j = 0; j < i; j++)
-                    if (!split1[j].equals(split2[j]))
-                        continue out;
-                for (int j = split1.length - 1, k = split2.length - 1; j >= i; j--, k--)
-                    if (!split1[j].equals(split2[k]))
-                        continue out;
-                return true;
-            }
-            return false;
-        }
-
-        //☆☆☆☆☆ 双指针对撞 minLen(s1,s2)
-        public boolean areSentencesSimilar(String sentence1, String sentence2) {
-            String[] split1 = sentence1.split(" ");
-            String[] split2 = sentence2.split(" ");
-            if (split1.length <= split2.length)
-                return helper(split1, split2);
-            else
-                return helper(split2, split1);
-        }
-
-        private boolean helper(String[] split1, String[] split2) {
-            int m = split1.length, n = split2.length;
-            int l = 0, r1 = m - 1, r2 = n - 1;
-            while (l < m && split1[l].equals(split2[l])) l++;
-            while (l <= r1 && split1[r1].equals(split2[r2])) {
-                r1--;
-                r2--;
-            }
-            return l == r1 + 1;
-        }
+    
+    private boolean helper2(String[] split1, String[] split2) {
+      out:
+      for (int i = 0; i <= split1.length; i++) {
+        for (int j = 0; j < i; j++)
+          if (!split1[j].equals(split2[j]))
+            continue out;
+        for (int j = split1.length - 1, k = split2.length - 1; j >= i; j--, k--)
+          if (!split1[j].equals(split2[k]))
+            continue out;
+        return true;
+      }
+      return false;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 双指针对撞 minLen(s1,s2)
+    public boolean areSentencesSimilar(String sentence1, String sentence2) {
+      String[] split1 = sentence1.split(" ");
+      String[] split2 = sentence2.split(" ");
+      if (split1.length <= split2.length)
+        return helper(split1, split2);
+      else
+        return helper(split2, split1);
+    }
+    
+    private boolean helper(String[] split1, String[] split2) {
+      int m = split1.length, n = split2.length;
+      int l = 0, r1 = m - 1, r2 = n - 1;
+      while (l < m && split1[l].equals(split2[l])) l++;
+      while (l <= r1 && split1[r1].equals(split2[r2])) {
+        r1--;
+        r2--;
+      }
+      return l == r1 + 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -11,8 +11,8 @@
 //<strong>输出：</strong>4
 //<strong>解释：</strong>
 //<span><code>调用 isBadVersion(3) -&gt; false 
-//调用 isBadVersion(5)&nbsp;-&gt; true 
-//调用 isBadVersion(4)&nbsp;-&gt; true</code></span>
+// 调用 isBadVersion(5)&nbsp;-&gt; true
+// 调用 isBadVersion(4)&nbsp;-&gt; true</code></span>
 //<span><code>所以，4 是第一个错误的版本。</code></span>
 //</pre>
 //
@@ -34,58 +34,56 @@
 //<div><div>Related Topics</div><div><li>二分查找</li><li>交互</li></div></div><br><div><li>👍 815</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-import java.util.Random;
-
-//278.第一个错误的版本
-//开题时间：2022-10-29 11:11:48
+// 278.第一个错误的版本
+// 开题时间：2022-10-29 11:11:48
 public class FirstBadVersion {
-    public static void main(String[] args) {
-        Solution solution = new FirstBadVersion().new Solution();
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
+  public static void main(String[] args) {
+    Solution solution = new FirstBadVersion().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
 /* The isBadVersion API is defined in the parent class VersionControl.
       boolean isBadVersion(int version); */
-
-    public class Solution extends VersionControl {
-        public int firstBadVersion(int n) {
-            int l = 1;
-            long r = (long) n + 1;
-            while (l < r) {
-                int mid = (int) (l + (r - l) / 2);
-                if (isBadVersion(mid))
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return l;
-        }
-
-        public int firstBadVersion2(int n) {
-            int l = 1;
-            int r = n;
-            while (l < r) {
-                int mid = l + (r - l) / 2;
-                if (isBadVersion(mid))
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return l;
-        }
-
-        public int firstBadVersion3(int n) {
-            int l = 1;
-            int r = n;
-            while (l <= r) {
-                int mid = l + (r - l) / 2;
-                if (isBadVersion(mid))
-                    r = mid - 1;
-                else
-                    l = mid + 1;
-            }
-            return l;
-        }
+  
+  public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+      int l = 1;
+      long r = (long) n + 1;
+      while (l < r) {
+        int mid = (int) (l + (r - l) / 2);
+        if (isBadVersion(mid))
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return l;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int firstBadVersion2(int n) {
+      int l = 1;
+      int r = n;
+      while (l < r) {
+        int mid = l + (r - l) / 2;
+        if (isBadVersion(mid))
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return l;
+    }
+    
+    public int firstBadVersion3(int n) {
+      int l = 1;
+      int r = n;
+      while (l <= r) {
+        int mid = l + (r - l) / 2;
+        if (isBadVersion(mid))
+          r = mid - 1;
+        else
+          l = mid + 1;
+      }
+      return l;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
 

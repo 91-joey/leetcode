@@ -44,42 +44,42 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//53.最大子数组和
-//开题时间：2022-11-21 17:50:11
+// 53.最大子数组和
+// 开题时间：2022-11-21 17:50:11
 public class MaximumSubarray {
-    public static void main(String[] args) {
-        Solution solution = new MaximumSubarray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumSubarray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // dp
+    public int maxSubArray9(int[] nums) {
+      int n = nums.length;
+      int[] f = new int[n + 1];
+      for (int i = 1; i < n + 1; i++)
+        f[i] = Math.max(f[i - 1], 0) + nums[i - 1];
+      return Arrays.stream(f).skip(1).max().getAsInt();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //dp
-        public int maxSubArray9(int[] nums) {
-            int n = nums.length;
-            int[] f = new int[n + 1];
-            for (int i = 1; i < n + 1; i++)
-                f[i] = Math.max(f[i - 1], 0) + nums[i - 1];
-            return Arrays.stream(f).skip(1).max().getAsInt();
-        }
-
-        //☆☆☆☆☆ dp 优化
-        public int maxSubArray8(int[] nums) {
-            int ans = Integer.MIN_VALUE;
-            for (int i = 0, pre = 0; i < nums.length; i++) {
-                pre = Math.max(pre, 0) + nums[i];
-                ans = Math.max(ans, pre);
-            }
-            return ans;
-        }
-
-        public int maxSubArray(int[] nums) {
-            int max = nums[0];
-            for (int i = 1, maxPre = max; i < nums.length; i++) {
-                maxPre = Math.max(nums[i], maxPre + nums[i]);
-                max = Math.max(max, maxPre);
-            }
-            return max;
-        }
+    
+    //☆☆☆☆☆ dp 优化
+    public int maxSubArray8(int[] nums) {
+      int ans = Integer.MIN_VALUE;
+      for (int i = 0, pre = 0; i < nums.length; i++) {
+        pre = Math.max(pre, 0) + nums[i];
+        ans = Math.max(ans, pre);
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int maxSubArray(int[] nums) {
+      int max = nums[0];
+      for (int i = 1, maxPre = max; i < nums.length; i++) {
+        maxPre = Math.max(nums[i], maxPre + nums[i]);
+        max = Math.max(max, maxPre);
+      }
+      return max;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

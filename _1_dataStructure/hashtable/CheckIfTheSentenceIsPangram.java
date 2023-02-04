@@ -35,48 +35,48 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 
 import java.util.HashSet;
 
-//1832.判断句子是否为全字母句
-//开题时间：2022-12-13 10:07:26
+// 1832.判断句子是否为全字母句
+// 开题时间：2022-12-13 10:07:26
 public class CheckIfTheSentenceIsPangram {
-    public static void main(String[] args) {
-        Solution solution = new CheckIfTheSentenceIsPangram().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CheckIfTheSentenceIsPangram().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean checkIfPangram9(String sentence) {
+      HashSet<Character> set = new HashSet<>();
+      for (int i = 0; i < sentence.length(); i++) {
+        set.add(sentence.charAt(i));
+        if (set.size() == 26)
+          return true;
+      }
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean checkIfPangram9(String sentence) {
-            HashSet<Character> set = new HashSet<>();
-            for (int i = 0; i < sentence.length(); i++) {
-                set.add(sentence.charAt(i));
-                if (set.size() == 26)
-                    return true;
-            }
-            return false;
+    
+    public boolean checkIfPangram8(String sentence) {
+      boolean[] exists = new boolean[123];
+      int cnt = 0;
+      for (int i = 0; i < sentence.length(); i++) {
+        char c = sentence.charAt(i);
+        if (!exists[c]) {
+          exists[c] = true;
+          cnt++;
         }
-
-        public boolean checkIfPangram8(String sentence) {
-            boolean[] exists = new boolean[123];
-            int cnt = 0;
-            for (int i = 0; i < sentence.length(); i++) {
-                char c = sentence.charAt(i);
-                if (!exists[c]) {
-                    exists[c] = true;
-                    cnt++;
-                }
-                if (cnt == 26)
-                    return true;
-            }
-            return false;
-        }
-
-        public boolean checkIfPangram(String sentence) {
-            for (int i = 0, cnt = 0, target = (1 << 26) - 1; i < sentence.length(); i++) {
-                cnt |= 1 << (sentence.charAt(i) - 'a');
-                if (cnt == target)
-                    return true;
-            }
-            return false;
-        }
+        if (cnt == 26)
+          return true;
+      }
+      return false;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public boolean checkIfPangram(String sentence) {
+      for (int i = 0, cnt = 0, target = (1 << 26) - 1; i < sentence.length(); i++) {
+        cnt |= 1 << (sentence.charAt(i) - 'a');
+        if (cnt == target)
+          return true;
+      }
+      return false;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

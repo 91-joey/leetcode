@@ -44,79 +44,83 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
-//797.所有可能的路径
-//开题时间：2022-12-24 14:04:46
+// 797.所有可能的路径
+// 开题时间：2022-12-24 14:04:46
 public class AllPathsFromSourceToTarget {
-    public static void main(String[] args) {
-        Solution solution = new AllPathsFromSourceToTarget().new Solution();
-        System.out.println(solution.allPathsSourceTarget(Tools.to2DIntArray("[[1,2],[3],[3],[]]")));
+  public static void main(String[] args) {
+    Solution solution = new AllPathsFromSourceToTarget().new Solution();
+    System.out.println(solution.allPathsSourceTarget(Tools.to2DIntArray("[[1,2],[3],[3],[]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<List<Integer>> allPathsSourceTarget9(int[][] graph) {
+      List<List<Integer>> ans = new ArrayList<>();
+      List<Integer> list = new ArrayList<>();
+      dfs(graph, ans, list, 0);
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<List<Integer>> allPathsSourceTarget9(int[][] graph) {
-            List<List<Integer>> ans = new ArrayList<>();
-            List<Integer> list = new ArrayList<>();
-            dfs(graph, ans, list, 0);
-            return ans;
-        }
-
-        private void dfs(int[][] graph, List<List<Integer>> ans, List<Integer> list, int i) {
-            ArrayList<Integer> copy = new ArrayList<>(list);
-            copy.add(i);
-
-            if (i == graph.length - 1) {
-                ans.add(copy);
-                return;
-            }
-
-            for (int j : graph[i])
-                dfs(graph, ans, copy, j);
-        }
-
-        List<List<Integer>> ans = new ArrayList<>();
-        Deque<Integer> stack = new LinkedList<>();
-
-        //☆☆☆☆☆ DFS + 回溯
-        public List<List<Integer>> allPathsSourceTarget8(int[][] graph) {
-            dfs(graph, 0);
-            return ans;
-        }
-
-        private void dfs(int[][] graph, int cur) {
-            stack.offer(cur);
-            if (cur == graph.length - 1)
-                ans.add(new ArrayList<>(stack));
-            else
-                for (int i : graph[cur]) {
-                    dfs(graph, i);
-                    //回溯
-                    stack.pollLast();
-                }
-        }
-
-        //BFS
-        public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
-            List<List<Integer>> ans = new ArrayList<>();
-            ArrayList<Integer> list = new ArrayList<>();
-            list.add(0);
-            Queue<List<Integer>> q = new LinkedList<>();
-            q.offer(list);
-            while (!q.isEmpty()) {
-                List<Integer> poll = q.poll();
-                for (int i : graph[poll.get(poll.size() - 1)]) {
-                    ArrayList<Integer> copy = new ArrayList<>(poll);
-                    copy.add(i);
-                    if (i == graph.length - 1)
-                        ans.add(copy);
-                    else
-                        q.offer(copy);
-                }
-            }
-            return ans;
+    
+    private void dfs(int[][] graph, List<List<Integer>> ans, List<Integer> list, int i) {
+      ArrayList<Integer> copy = new ArrayList<>(list);
+      copy.add(i);
+      
+      if (i == graph.length - 1) {
+        ans.add(copy);
+        return;
+      }
+      
+      for (int j : graph[i])
+        dfs(graph, ans, copy, j);
+    }
+    
+    List<List<Integer>> ans = new ArrayList<>();
+    Deque<Integer> stack = new LinkedList<>();
+    
+    //☆☆☆☆☆ DFS + 回溯
+    public List<List<Integer>> allPathsSourceTarget8(int[][] graph) {
+      dfs(graph, 0);
+      return ans;
+    }
+    
+    private void dfs(int[][] graph, int cur) {
+      stack.offer(cur);
+      if (cur == graph.length - 1)
+        ans.add(new ArrayList<>(stack));
+      else
+        for (int i : graph[cur]) {
+          dfs(graph, i);
+          // 回溯
+          stack.pollLast();
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // BFS
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+      List<List<Integer>> ans = new ArrayList<>();
+      ArrayList<Integer> list = new ArrayList<>();
+      list.add(0);
+      Queue<List<Integer>> q = new LinkedList<>();
+      q.offer(list);
+      while (!q.isEmpty()) {
+        List<Integer> poll = q.poll();
+        for (int i : graph[poll.get(poll.size() - 1)]) {
+          ArrayList<Integer> copy = new ArrayList<>(poll);
+          copy.add(i);
+          if (i == graph.length - 1)
+            ans.add(copy);
+          else
+            q.offer(copy);
+        }
+      }
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

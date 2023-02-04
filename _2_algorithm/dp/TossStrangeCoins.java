@@ -30,48 +30,48 @@
 //<div><li>👍 60</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//1230.抛掷硬币
-//开题时间：2022-12-09 17:45:59
+// 1230.抛掷硬币
+// 开题时间：2022-12-09 17:45:59
 public class TossStrangeCoins {
-    public static void main(String[] args) {
-        Solution solution = new TossStrangeCoins().new Solution();
-//        System.out.println(solution.probabilityOfHeads(new double[]{0.4}, 1));
-        System.out.println(solution.probabilityOfHeads(new double[]{0.2, 0.8, 0, 0.3, 0.5}, 3));
-//        System.out.println(solution.probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
+  public static void main(String[] args) {
+    Solution solution = new TossStrangeCoins().new Solution();
+    //        System.out.println(solution.probabilityOfHeads(new double[]{0.4}, 1));
+    System.out.println(solution.probabilityOfHeads(new double[]{0.2, 0.8, 0, 0.3, 0.5}, 3));
+    //        System.out.println(solution.probabilityOfHeads(new double[]{0.5,0.5,0.5,0.5,0.5}, 0));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * dp[i][j]:前 i 枚硬币，(j - 1)枚硬币正面朝上的概率
+     *      i == 1时，特殊考虑：
+     *          j == 0时，f[i][j] =               0 * prob[i - 1] +           1 * (1 - prob[i - 1])
+     *          j == 1时，f[i][j] =               1 * prob[i - 1] +           0 * (1 - prob[i - 1])
+     *      i >  1时，    f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1])
+     * 故，不失一般性的，我们初始化 f[0][1] = 1.0，则 `i == 1` 和 `i >  1` 两种情况可以合并为一种考虑
+     */
+    public double probabilityOfHeads9(double[] prob, int target) {
+      int n = prob.length + 1;
+      double[][] f = new double[n][target + 2];
+      f[0][1] = 1.0;
+      
+      for (int i = 1; i < n; i++)
+        for (int j = 1; j < Math.min(target + 2, i + 2); j++)
+          f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1]);
+      
+      return f[n - 1][target + 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * dp[i][j]:前 i 枚硬币，(j - 1)枚硬币正面朝上的概率
-         *      i == 1时，特殊考虑：
-         *          j == 0时，f[i][j] =               0 * prob[i - 1] +           1 * (1 - prob[i - 1])
-         *          j == 1时，f[i][j] =               1 * prob[i - 1] +           0 * (1 - prob[i - 1])
-         *      i >  1时，    f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1])
-         * 故，不失一般性的，我们初始化 f[0][1] = 1.0，则 `i == 1` 和 `i >  1` 两种情况可以合并为一种考虑
-         */
-        public double probabilityOfHeads9(double[] prob, int target) {
-            int n = prob.length + 1;
-            double[][] f = new double[n][target + 2];
-            f[0][1] = 1.0;
-
-            for (int i = 1; i < n; i++)
-                for (int j = 1; j < Math.min(target + 2, i + 2); j++)
-                    f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1]);
-
-            return f[n - 1][target + 1];
-        }
-
-        public double probabilityOfHeads(double[] prob, int target) {
-            double[] f = new double[target + 2];
-            f[1] = 1.0;
-
-            for (int i = 0; i < prob.length; i++)
-                for (int j = Math.min(target + 1, i + 2); j >= 1; j--)
-                    f[j] = f[j - 1] * prob[i] + f[j] * (1 - prob[i]);
-
-            return f[target + 1];
-        }
+    
+    public double probabilityOfHeads(double[] prob, int target) {
+      double[] f = new double[target + 2];
+      f[1] = 1.0;
+      
+      for (int i = 0; i < prob.length; i++)
+        for (int j = Math.min(target + 1, i + 2); j >= 1; j--)
+          f[j] = f[j - 1] * prob[i] + f[j] * (1 - prob[i]);
+      
+      return f[target + 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

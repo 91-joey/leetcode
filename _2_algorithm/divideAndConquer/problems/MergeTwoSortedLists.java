@@ -38,57 +38,57 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//21.合并两个有序链表
-//开题时间：2022-11-12 14:51:41
+// 21.合并两个有序链表
+// 开题时间：2022-11-12 14:51:41
 public class MergeTwoSortedLists {
-    public static void main(String[] args) {
-        Solution solution = new MergeTwoSortedLists().new Solution();
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        //☆☆☆☆☆ 迭代（空间效率高，难上手）
-        public ListNode mergeTwoLists9(ListNode A, ListNode B) {
-            ListNode dummy = new ListNode();
-            ListNode cur = dummy;
-            while (A != null && B != null) {
-                if (A.val <= B.val) {
-                    cur.next = A;
-                    A = A.next;
-                } else {
-                    cur.next = B;
-                    B = B.next;
-                }
-                cur = cur.next;
-            }
-            cur.next = A == null ? B : A;
-            return dummy.next;
+  public static void main(String[] args) {
+    Solution solution = new MergeTwoSortedLists().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    //☆☆☆☆☆ 迭代（空间效率高，难上手）
+    public ListNode mergeTwoLists9(ListNode A, ListNode B) {
+      ListNode dummy = new ListNode();
+      ListNode cur = dummy;
+      while (A != null && B != null) {
+        if (A.val <= B.val) {
+          cur.next = A;
+          A = A.next;
+        } else {
+          cur.next = B;
+          B = B.next;
         }
-
-        //递归（空间效率低，易上手）
-        public ListNode mergeTwoLists(ListNode A, ListNode B) {
-            if (A == null)
-                return B;
-            else if (B == null)
-                return A;
-            else if (A.val <= B.val) {
-                A.next = mergeTwoLists(A.next, B);
-                return A;
-            } else {
-                B.next = mergeTwoLists(B.next, A);
-                return B;
-            }
-        }
+        cur = cur.next;
+      }
+      cur.next = A == null ? B : A;
+      return dummy.next;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 递归（空间效率低，易上手）
+    public ListNode mergeTwoLists(ListNode A, ListNode B) {
+      if (A == null)
+        return B;
+      else if (B == null)
+        return A;
+      else if (A.val <= B.val) {
+        A.next = mergeTwoLists(A.next, B);
+        return A;
+      } else {
+        B.next = mergeTwoLists(B.next, A);
+        return B;
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

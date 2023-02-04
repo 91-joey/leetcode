@@ -39,91 +39,91 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//238.除自身以外数组的乘积
-//开题时间：2022-12-17 18:01:58
+// 238.除自身以外数组的乘积
+// 开题时间：2022-12-17 18:01:58
 public class ProductOfArrayExceptSelf {
-    public static void main(String[] args) {
-        Solution solution = new ProductOfArrayExceptSelf().new Solution();
-        System.out.println(Arrays.toString(solution.productExceptSelf(new int[]{1, 2, 3, 4})));
+  public static void main(String[] args) {
+    Solution solution = new ProductOfArrayExceptSelf().new Solution();
+    System.out.println(Arrays.toString(solution.productExceptSelf(new int[]{1, 2, 3, 4})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 前缀和+后缀和   O(n)空间
+    public int[] productExceptSelf9(int[] nums) {
+      int n = nums.length + 1;
+      int[] pre = new int[n];
+      int[] suf = new int[n];
+      pre[0] = suf[n - 1] = 1;
+      for (int i = 1; i < n; i++)
+        pre[i] = pre[i - 1] * nums[i - 1];
+      for (int i = n - 2; i >= 0; i--)
+        suf[i] = suf[i + 1] * nums[i];
+      
+      for (int i = 0; i < nums.length; i++)
+        nums[i] = pre[i] * suf[i + 1];
+      
+      return nums;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //前缀和+后缀和   O(n)空间
-        public int[] productExceptSelf9(int[] nums) {
-            int n = nums.length + 1;
-            int[] pre = new int[n];
-            int[] suf = new int[n];
-            pre[0] = suf[n - 1] = 1;
-            for (int i = 1; i < n; i++)
-                pre[i] = pre[i - 1] * nums[i - 1];
-            for (int i = n - 2; i >= 0; i--)
-                suf[i] = suf[i + 1] * nums[i];
-
-            for (int i = 0; i < nums.length; i++)
-                nums[i] = pre[i] * suf[i + 1];
-
-            return nums;
-        }
-
-        //除法
-        public int[] productExceptSelf8(int[] nums) {
-            int product = 1;
-            int cnt0 = 0;
-            int idx = -1;
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] == 0) {
-                    cnt0++;
-                    idx = i;
-                } else
-                    product *= nums[i];
-            }
-
-            if (cnt0 == 0) {
-                for (int i = 0; i < nums.length; i++)
-                    nums[i] = product / nums[i];
-            } else {
-                Arrays.fill(nums, 0);
-                if (cnt0 == 1)
-                    nums[idx] = product;
-            }
-
-            return nums;
-        }
-
-        //☆☆☆☆☆ 前缀和+后缀和   O(1)空间
-        public int[] productExceptSelf7(int[] nums) {
-            int n = nums.length;
-            int[] ans = new int[n];
-
-            ans[0] = 1;
-            for (int i = 1; i < n; i++)
-                ans[i] = ans[i - 1] * nums[i];
-
-            for (int i = n - 1, suf = 1; i >= 0; i--) {
-                ans[i] *= suf;
-                suf *= nums[i];
-            }
-
-            return ans;
-        }
-
-
-        //前缀和+后缀和（天秀写法）   O(1)空间
-        public int[] productExceptSelf(int[] nums) {
-            int n = nums.length;
-            int[] ans = new int[n];
-
-            Arrays.fill(ans, 1);
-            for (int l = 0, r = n - 1, pre = 1, suf = 1; l < n; l++, r--) {
-                ans[l] *= pre;
-                ans[r] *= suf;
-                pre *= nums[l];
-                suf *= nums[r];
-            }
-
-            return ans;
-        }
+    
+    // 除法
+    public int[] productExceptSelf8(int[] nums) {
+      int product = 1;
+      int cnt0 = 0;
+      int idx = -1;
+      for (int i = 0; i < nums.length; i++) {
+        if (nums[i] == 0) {
+          cnt0++;
+          idx = i;
+        } else
+          product *= nums[i];
+      }
+      
+      if (cnt0 == 0) {
+        for (int i = 0; i < nums.length; i++)
+          nums[i] = product / nums[i];
+      } else {
+        Arrays.fill(nums, 0);
+        if (cnt0 == 1)
+          nums[idx] = product;
+      }
+      
+      return nums;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 前缀和+后缀和   O(1)空间
+    public int[] productExceptSelf7(int[] nums) {
+      int n = nums.length;
+      int[] ans = new int[n];
+      
+      ans[0] = 1;
+      for (int i = 1; i < n; i++)
+        ans[i] = ans[i - 1] * nums[i];
+      
+      for (int i = n - 1, suf = 1; i >= 0; i--) {
+        ans[i] *= suf;
+        suf *= nums[i];
+      }
+      
+      return ans;
+    }
+    
+    
+    // 前缀和+后缀和（天秀写法）   O(1)空间
+    public int[] productExceptSelf(int[] nums) {
+      int n = nums.length;
+      int[] ans = new int[n];
+      
+      Arrays.fill(ans, 1);
+      for (int l = 0, r = n - 1, pre = 1, suf = 1; l < n; l++, r--) {
+        ans[l] *= pre;
+        ans[r] *= suf;
+        pre *= nums[l];
+        suf *= nums[r];
+      }
+      
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

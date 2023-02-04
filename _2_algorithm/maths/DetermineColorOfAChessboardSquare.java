@@ -44,42 +44,42 @@
 //<div><li>👍 21</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1812.判断国际象棋棋盘中一个格子的颜色
-//开题时间：2022-12-08 08:51:48
+// 1812.判断国际象棋棋盘中一个格子的颜色
+// 开题时间：2022-12-08 08:51:48
 public class DetermineColorOfAChessboardSquare {
-    public static void main(String[] args) {
-        Solution solution = new DetermineColorOfAChessboardSquare().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DetermineColorOfAChessboardSquare().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean squareIsWhite9(String coordinates) {
+      return (((coordinates.charAt(0) - 'a') ^ (coordinates.charAt(1) - '0')) & 1) == 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean squareIsWhite9(String coordinates) {
-            return (((coordinates.charAt(0) - 'a') ^ (coordinates.charAt(1) - '0')) & 1) == 0;
-        }
-
-        public boolean squareIsWhite8(String coordinates) {
-            return (((coordinates.charAt(0) - 'a') ^ (coordinates.charAt(1) - '1')) & 1) == 1;
-        }
-
-        public boolean squareIsWhite(String coordinates) {
-            return ((coordinates.charAt(0) - 'a') & 1) ==
-                    ((coordinates.charAt(1) - '1') & 1);
-        }
-
-        public static final boolean[][] chessboard = {
-                {false, true, false, true, false, true, false, true},
-                {true, false, true, false, true, false, true, false},
-                {false, true, false, true, false, true, false, true},
-                {true, false, true, false, true, false, true, false},
-                {false, true, false, true, false, true, false, true},
-                {true, false, true, false, true, false, true, false},
-                {false, true, false, true, false, true, false, true},
-                {true, false, true, false, true, false, true, false},
-        };
-
-        public boolean squareIsWhite7(String coordinates) {
-            return chessboard[coordinates.charAt(0) - 'a'][coordinates.charAt(1) - '1'];
-        }
+    
+    public boolean squareIsWhite8(String coordinates) {
+      return (((coordinates.charAt(0) - 'a') ^ (coordinates.charAt(1) - '1')) & 1) == 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public boolean squareIsWhite(String coordinates) {
+      return ((coordinates.charAt(0) - 'a') & 1) ==
+          ((coordinates.charAt(1) - '1') & 1);
+    }
+    
+    public static final boolean[][] chessboard = {
+        {false, true, false, true, false, true, false, true},
+        {true, false, true, false, true, false, true, false},
+        {false, true, false, true, false, true, false, true},
+        {true, false, true, false, true, false, true, false},
+        {false, true, false, true, false, true, false, true},
+        {true, false, true, false, true, false, true, false},
+        {false, true, false, true, false, true, false, true},
+        {true, false, true, false, true, false, true, false},
+    };
+    
+    public boolean squareIsWhite7(String coordinates) {
+      return chessboard[coordinates.charAt(0) - 'a'][coordinates.charAt(1) - '1'];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

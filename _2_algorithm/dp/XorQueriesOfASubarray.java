@@ -12,12 +12,12 @@
 //<strong>输入：</strong>arr = [1,3,4,8], queries = [[0,1],[1,2],[0,3],[3,3]]
 //<strong>输出：</strong>[2,7,14,8] 
 //<strong>解释：</strong>
-//数组中元素的二进制表示形式是：
-//1 = 0001 
-//3 = 0011 
-//4 = 0100 
-//8 = 1000 
-//查询的 XOR 值为：
+// 数组中元素的二进制表示形式是：
+// 1 = 0001
+// 3 = 0011
+// 4 = 0100
+// 8 = 1000
+// 查询的 XOR 值为：
 //[0,1] = 1 xor 3 = 2 
 //[1,2] = 3 xor 4 = 7 
 //[0,3] = 1 xor 3 xor 4 xor 8 = 14 
@@ -46,29 +46,29 @@
 //<div><li>👍 153</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//1310.子数组异或查询
-//开题时间：2022-12-19 20:36:18
+// 1310.子数组异或查询
+// 开题时间：2022-12-19 20:36:18
 public class XorQueriesOfASubarray {
-    public static void main(String[] args) {
-        Solution solution = new XorQueriesOfASubarray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new XorQueriesOfASubarray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 前缀异或
+    public int[] xorQueries(int[] arr, int[][] queries) {
+      int n = arr.length + 1;
+      int[] prefix = new int[n];
+      for (int i = 1; i < n; i++)
+        prefix[i] = prefix[i - 1] ^ arr[i - 1];
+      
+      int m = queries.length;
+      int[] ans = new int[m];
+      for (int i = 0; i < m; i++)
+        ans[i] = prefix[queries[i][1] + 1] ^ prefix[queries[i][0]];
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //前缀异或
-        public int[] xorQueries(int[] arr, int[][] queries) {
-            int n = arr.length + 1;
-            int[] prefix = new int[n];
-            for (int i = 1; i < n; i++)
-                prefix[i] = prefix[i - 1] ^ arr[i - 1];
-
-            int m = queries.length;
-            int[] ans = new int[m];
-            for (int i = 0; i < m; i++)
-                ans[i] = prefix[queries[i][1] + 1] ^ prefix[queries[i][0]];
-
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

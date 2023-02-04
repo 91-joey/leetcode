@@ -39,41 +39,41 @@
 //<div><div>Related Topics</div><div><li>哈希表</li><li>字符串</li><li>滑动窗口</li></div></div><br><div><li>👍 8239</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//3.无重复字符的最长子串
-//开题时间：2022-10-06 08:39:41
+// 3.无重复字符的最长子串
+// 开题时间：2022-10-06 08:39:41
 public class LongestSubstringWithoutRepeatingCharacters {
-    public static void main(String[] args) {
-        Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * [l,r) not duplicate?
+     * r++
+     * if duplicate,l++,r++
+     */
+    public int lengthOfLongestSubstring(String s) {
+      int length = s.length();
+      if (length <= 1)
+        return length;
+      
+      int[] exists = new int[128];
+      int size = 0;
+      
+      char[] chars = s.toCharArray();
+      int l = 0;
+      int r = 0;
+      while (r < length) {
+        if (exists[chars[r++]]++ == 0)
+          size++;
+        if (size < r - l)
+          if (--exists[chars[l++]] == 0)
+            size--;
+      }
+      
+      return r - l;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * [l,r) not duplicate?
-         * r++
-         * if duplicate,l++,r++
-         */
-        public int lengthOfLongestSubstring(String s) {
-            int length = s.length();
-            if (length <= 1)
-                return length;
-
-            int[] exists = new int[128];
-            int size = 0;
-
-            char[] chars = s.toCharArray();
-            int l = 0;
-            int r = 0;
-            while (r < length) {
-                if (exists[chars[r++]]++ == 0)
-                    size++;
-                if (size < r - l)
-                    if (--exists[chars[l++]] == 0)
-                        size--;
-            }
-
-            return r - l;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

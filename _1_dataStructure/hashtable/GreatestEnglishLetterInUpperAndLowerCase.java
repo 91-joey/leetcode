@@ -15,9 +15,9 @@ public class GreatestEnglishLetterInUpperAndLowerCase {
     System.out.println(solution.greatestLetter("lEeTcOdE"));
   }
   
-  //leetcode submit region begin(Prohibit modification and deletion)
+  // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    //hashtable
+    // hashtable
     public String greatestLetter9(String s) {
       boolean[] exists = new boolean[123];
       for (int i = 0; i < s.length(); i++) {
@@ -32,7 +32,7 @@ public class GreatestEnglishLetterInUpperAndLowerCase {
       
       return "";
     }
-  
+    
     public String greatestLetter(String s) {
       return s.chars()
           .distinct()
@@ -49,5 +49,5 @@ public class GreatestEnglishLetterInUpperAndLowerCase {
           .orElse("");
     }
   }
-  //leetcode submit region end(Prohibit modification and deletion)
+  // leetcode submit region end(Prohibit modification and deletion)
 }

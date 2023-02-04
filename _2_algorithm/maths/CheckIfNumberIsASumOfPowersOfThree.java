@@ -38,43 +38,43 @@ package org.example.leetcode.problems._2_algorithm.maths;
 import java.util.HashSet;
 import java.util.Set;
 
-//1780.判断一个数字是否可以表示成三的幂的和
-//开题时间：2022-12-09 12:20:39
+// 1780.判断一个数字是否可以表示成三的幂的和
+// 开题时间：2022-12-09 12:20:39
 public class CheckIfNumberIsASumOfPowersOfThree {
-    public static void main(String[] args) {
-        Solution solution = new CheckIfNumberIsASumOfPowersOfThree().new Solution();
-        System.out.println(solution.checkPowersOfThree(6378022));
+  public static void main(String[] args) {
+    Solution solution = new CheckIfNumberIsASumOfPowersOfThree().new Solution();
+    System.out.println(solution.checkPowersOfThree(6378022));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final Set<Integer> set = new HashSet<>();
+    
+    static {
+      int bound = 1 << 15;
+      for (int i = 0; i < bound; i++) {
+        int sum = 0;
+        for (int j = i, pow = 1; j != 0; j >>= 1, pow *= 3)
+          if ((j & 1) == 1)
+            sum += pow;
+        set.add(sum);
+      }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final Set<Integer> set = new HashSet<>();
-
-        static {
-            int bound = 1 << 15;
-            for (int i = 0; i < bound; i++) {
-                int sum = 0;
-                for (int j = i, pow = 1; j != 0; j >>= 1, pow *= 3)
-                    if ((j & 1) == 1)
-                        sum += pow;
-                set.add(sum);
-            }
-        }
-
-        //二进制枚举打表
-        public boolean checkPowersOfThree9(int n) {
-            return set.contains(n);
-        }
-
-        //☆☆☆☆☆ 转三进制，某位是2则为false，否则为true
-        public boolean checkPowersOfThree(int n) {
-            while (n != 0) {
-                if (n % 3 == 2)
-                    return false;
-                n /= 3;
-            }
-            return true;
-        }
+    
+    // 二进制枚举打表
+    public boolean checkPowersOfThree9(int n) {
+      return set.contains(n);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 转三进制，某位是2则为false，否则为true
+    public boolean checkPowersOfThree(int n) {
+      while (n != 0) {
+        if (n % 3 == 2)
+          return false;
+        n /= 3;
+      }
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

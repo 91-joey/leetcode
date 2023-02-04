@@ -36,106 +36,106 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-//1122.数组的相对排序
-//开题时间：2022-09-27 13:04:44
+// 1122.数组的相对排序
+// 开题时间：2022-09-27 13:04:44
 public class RelativeSortArray {
-    public static void main(String[] args) {
-        Solution solution = new RelativeSortArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RelativeSortArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 计数排序 之 略显笨拙
+    public int[] relativeSortArray(int[] arr1, int[] arr2) {
+      int range = 1001;
+      int[] counting = new int[range];
+      for (int e : arr2)
+        counting[e]++;
+      // 计数 共同元素
+      for (int e : arr1)
+        if (counting[e] != 0)
+          counting[e]++;
+      
+      int length1 = arr1.length;
+      int[] sorted = new int[length1];
+      int idx = 0;
+      // 排序 共同元素
+      for (int e : arr2) {
+        do {
+          sorted[idx++] = e;
+          counting[e]--;
+        } while (counting[e] != 1);
+        counting[e] = -1;
+      }
+      
+      // 计数 不同元素
+      for (int i : arr1)
+        if (counting[i] != -1)
+          counting[i]++;
+      // 排序 不同元素
+      for (int i = 0; i < range; i++)
+        while (counting[i] > 0) {
+          sorted[idx++] = i;
+          counting[i]--;
+        }
+      
+      return sorted;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //计数排序 之 略显笨拙
-        public int[] relativeSortArray(int[] arr1, int[] arr2) {
-            int range = 1001;
-            int[] counting = new int[range];
-            for (int e : arr2)
-                counting[e]++;
-            //计数 共同元素
-            for (int e : arr1)
-                if (counting[e] != 0)
-                    counting[e]++;
-
-            int length1 = arr1.length;
-            int[] sorted = new int[length1];
-            int idx = 0;
-            //排序 共同元素
-            for (int e : arr2) {
-                do {
-                    sorted[idx++] = e;
-                    counting[e]--;
-                } while (counting[e] != 1);
-                counting[e] = -1;
-            }
-
-            //计数 不同元素
-            for (int i : arr1)
-                if (counting[i] != -1)
-                    counting[i]++;
-            //排序 不同元素
-            for (int i = 0; i < range; i++)
-                while (counting[i] > 0) {
-                    sorted[idx++] = i;
-                    counting[i]--;
-                }
-
-            return sorted;
+    
+    // 计数排序 之 略显机智
+    public int[] relativeSortArray2(int[] arr1, int[] arr2) {
+      // 确定计数范围
+      int min = arr1[0];
+      int max = arr1[0];
+      for (int e : arr1) {
+        if (e < min) min = e;
+        else if (max < e) max = e;
+      }
+      int[] counting = new int[max - min + 1];
+      // 计数
+      for (int e : arr1)
+        counting[e - min]++;
+      
+      int[] sorted = new int[arr1.length];
+      int idx = 0;
+      // 排序 共同元素
+      for (int e : arr2) {
+        int i = e - min;
+        do {
+          sorted[idx++] = e;
+          counting[i]--;
+        } while (counting[i] != 0);
+      }
+      
+      // 排序 不同元素
+      for (int i = 0; i < counting.length; i++) {
+        if (counting[i] != 0) {
+          int e = min + i;
+          do {
+            sorted[idx++] = e;
+            counting[i]--;
+          } while (counting[i] != 0);
         }
-
-        //计数排序 之 略显机智
-        public int[] relativeSortArray2(int[] arr1, int[] arr2) {
-            //确定计数范围
-            int min = arr1[0];
-            int max = arr1[0];
-            for (int e : arr1) {
-                if (e < min) min = e;
-                else if (max < e) max = e;
-            }
-            int[] counting = new int[max - min + 1];
-            //计数
-            for (int e : arr1)
-                counting[e - min]++;
-
-            int[] sorted = new int[arr1.length];
-            int idx = 0;
-            //排序 共同元素
-            for (int e : arr2) {
-                int i = e - min;
-                do {
-                    sorted[idx++] = e;
-                    counting[i]--;
-                } while (counting[i] != 0);
-            }
-
-            //排序 不同元素
-            for (int i = 0; i < counting.length; i++) {
-                if (counting[i] != 0) {
-                    int e = min + i;
-                    do {
-                        sorted[idx++] = e;
-                        counting[i]--;
-                    } while (counting[i] != 0);
-                }
-            }
-
-            return sorted;
-        }
-
-        //自定义排序
-        public int[] relativeSortArray3(int[] arr1, int[] arr2) {
-            Map<Integer, Integer> val2idx = new HashMap<>();
-            for (int i = 0; i < arr2.length; i++)
-                val2idx.put(arr2[i], i);
-
-            int defaultValue = 1001;
-            return Arrays.stream(arr1).boxed().sorted((o1, o2) -> {
-                if (val2idx.containsKey(o1) || val2idx.containsKey(o2)) {
-                    return val2idx.getOrDefault(o1, defaultValue) -
-                            val2idx.getOrDefault(o2, defaultValue);
-                }
-                return o1 - o2;
-            }).mapToInt(Integer::valueOf).toArray();
-        }
+      }
+      
+      return sorted;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 自定义排序
+    public int[] relativeSortArray3(int[] arr1, int[] arr2) {
+      Map<Integer, Integer> val2idx = new HashMap<>();
+      for (int i = 0; i < arr2.length; i++)
+        val2idx.put(arr2[i], i);
+      
+      int defaultValue = 1001;
+      return Arrays.stream(arr1).boxed().sorted((o1, o2) -> {
+        if (val2idx.containsKey(o1) || val2idx.containsKey(o2)) {
+          return val2idx.getOrDefault(o1, defaultValue) -
+              val2idx.getOrDefault(o2, defaultValue);
+        }
+        return o1 - o2;
+      }).mapToInt(Integer::valueOf).toArray();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

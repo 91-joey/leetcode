@@ -40,47 +40,47 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 
-//1636.按照频率将数组升序排序
-//开题时间：2022-12-22 18:34:12
+// 1636.按照频率将数组升序排序
+// 开题时间：2022-12-22 18:34:12
 public class SortArrayByIncreasingFrequency {
-    public static void main(String[] args) {
-        Solution solution = new SortArrayByIncreasingFrequency().new Solution();
-        System.out.println(Arrays.toString(solution.frequencySort(new int[]{2, 3, 1, 3, 2})));
+  public static void main(String[] args) {
+    Solution solution = new SortArrayByIncreasingFrequency().new Solution();
+    System.out.println(Arrays.toString(solution.frequencySort(new int[]{2, 3, 1, 3, 2})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 哈希计数 + 自定义排序
+    public int[] frequencySort9(int[] nums) {
+      HashMap<Integer, Integer> val2cnt = new HashMap<>();
+      for (int x : nums)
+        val2cnt.merge(x, 1, Integer::sum);
+      
+      ArrayList<int[]> list = new ArrayList<>();
+      val2cnt.forEach((k, v) -> list.add(new int[]{k, v}));
+      list.sort(Comparator.<int[]>comparingInt(arr -> arr[1])
+          .thenComparing(Comparator.<int[]>comparingInt(arr -> arr[0]).reversed()));
+      
+      int i = 0;
+      for (int[] arr : list)
+        for (int j = 0; j < arr[1]; j++)
+          nums[i++] = arr[0];
+      
+      return nums;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //哈希计数 + 自定义排序
-        public int[] frequencySort9(int[] nums) {
-            HashMap<Integer, Integer> val2cnt = new HashMap<>();
-            for (int x : nums)
-                val2cnt.merge(x, 1, Integer::sum);
-
-            ArrayList<int[]> list = new ArrayList<>();
-            val2cnt.forEach((k, v) -> list.add(new int[]{k, v}));
-            list.sort(Comparator.<int[]>comparingInt(arr -> arr[1])
-                    .thenComparing(Comparator.<int[]>comparingInt(arr -> arr[0]).reversed()));
-
-            int i = 0;
-            for (int[] arr : list)
-                for (int j = 0; j < arr[1]; j++)
-                    nums[i++] = arr[0];
-
-            return nums;
-        }
-
-        public int[] frequencySort(int[] nums) {
-            HashMap<Integer, Integer> val2cnt = new HashMap<>();
-            for (int x : nums)
-                val2cnt.merge(x, 1, Integer::sum);
-
-            return Arrays.stream(nums)
-                    .boxed()
-                    .sorted(Comparator.<Integer>comparingInt(val2cnt::get)
-                            .thenComparing(Comparator.reverseOrder()))
-                    .mapToInt(Integer::intValue)
-                    .toArray();
-        }
+    
+    public int[] frequencySort(int[] nums) {
+      HashMap<Integer, Integer> val2cnt = new HashMap<>();
+      for (int x : nums)
+        val2cnt.merge(x, 1, Integer::sum);
+      
+      return Arrays.stream(nums)
+          .boxed()
+          .sorted(Comparator.<Integer>comparingInt(val2cnt::get)
+              .thenComparing(Comparator.reverseOrder()))
+          .mapToInt(Integer::intValue)
+          .toArray();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

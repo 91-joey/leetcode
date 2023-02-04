@@ -37,100 +37,100 @@ import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//234.回文链表
-//开题时间：2022-08-30 11:06:13
+// 234.回文链表
+// 开题时间：2022-08-30 11:06:13
 public class PalindromeLinkedList {
-    public static void main(String[] args) {
-        Solution solution = new PalindromeLinkedList().new Solution();
-        ListNode listNode4 = new ListNode(1);
-        ListNode listNode3 = new ListNode(2, listNode4);
-        ListNode listNode2 = new ListNode(2, listNode3);
-        ListNode listNode1 = new ListNode(1, listNode2);
-        System.out.println(solution.isPalindrome(listNode1));
+  public static void main(String[] args) {
+    Solution solution = new PalindromeLinkedList().new Solution();
+    ListNode listNode4 = new ListNode(1);
+    ListNode listNode3 = new ListNode(2, listNode4);
+    ListNode listNode2 = new ListNode(2, listNode3);
+    ListNode listNode1 = new ListNode(1, listNode2);
+    System.out.println(solution.isPalindrome(listNode1));
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  //    1234567
+  class Solution {
+    // 1.双指针+双端队列 n   n
+    public boolean isPalindrome(ListNode head) {
+      Deque<Integer> deque = new LinkedList<>();
+      while (head != null) {
+        deque.push(head.val);
+        head = head.next;
+      }
+      
+      while (deque.size() > 1) {
+        if (deque.removeFirst() != deque.removeLast()) {
+          return false;
+        }
+      }
+      
+      return true;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-//    1234567
-    class Solution {
-        //1.双指针+双端队列 n   n
-        public boolean isPalindrome(ListNode head) {
-            Deque<Integer> deque = new LinkedList<>();
-            while (head != null) {
-                deque.push(head.val);
-                head = head.next;
-            }
-
-            while (deque.size() > 1) {
-                if (deque.removeFirst() != deque.removeLast()) {
-                    return false;
-                }
-            }
-
-            return true;
+    
+    // GJ3.快慢指针   n   1
+    public boolean isPalindromeGJ1(ListNode head) {
+      // 找到中间节点
+      ListNode slow = head;
+      ListNode fast = head;
+      while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+      }
+      
+      // 反转右半部分
+      ListNode headOfReversedRightHalf = ReverseLinkedList.Solution.reverseListGJ1(slow);
+      // 比较左半部分和反转后的右半部分
+      while (headOfReversedRightHalf != null) {
+        if (head.val != headOfReversedRightHalf.val) {
+          return false;
         }
-
-        //GJ3.快慢指针   n   1
-        public boolean isPalindromeGJ1(ListNode head) {
-            //找到中间节点
-            ListNode slow = head;
-            ListNode fast = head;
-            while (fast != null && fast.next != null) {
-                slow = slow.next;
-                fast = fast.next.next;
-            }
-
-            //反转右半部分
-            ListNode headOfReversedRightHalf = ReverseLinkedList.Solution.reverseListGJ1(slow);
-            //比较左半部分和反转后的右半部分
-            while (headOfReversedRightHalf != null) {
-                if (head.val != headOfReversedRightHalf.val) {
-                    return false;
-                }
-                head = head.next;
-                headOfReversedRightHalf = headOfReversedRightHalf.next;
-            }
-            return true;
-        }
-
-        //2.高分解
-        public boolean isPalindrome2(ListNode head) {
-            //找到中间节点，同时反转左半部分
-            ListNode prev = null;
-            ListNode curr = head;
-            ListNode fast = head;
-            while (fast != null && fast.next != null) {
-                fast = fast.next.next;
-
-                ListNode next = curr.next;
-                curr.next = prev;
-                prev = curr;
-                curr = next;
-            }
-            //奇数节点 -> 忽略中间节点
-            if (fast != null) {
-                curr = curr.next;
-            }
-            //比较反转后的左半部分和右半部分
-            while (prev != null) {
-                if (prev.val != curr.val) {
-                    return false;
-                }
-                prev = prev.next;
-                curr = curr.next;
-            }
-            return true;
-        }
+        head = head.next;
+        headOfReversedRightHalf = headOfReversedRightHalf.next;
+      }
+      return true;
     }
-
-    //leetcode submit region end(Prohibit modification and deletion)
+    
+    // 2.高分解
+    public boolean isPalindrome2(ListNode head) {
+      // 找到中间节点，同时反转左半部分
+      ListNode prev = null;
+      ListNode curr = head;
+      ListNode fast = head;
+      while (fast != null && fast.next != null) {
+        fast = fast.next.next;
+        
+        ListNode next = curr.next;
+        curr.next = prev;
+        prev = curr;
+        curr = next;
+      }
+      // 奇数节点 -> 忽略中间节点
+      if (fast != null) {
+        curr = curr.next;
+      }
+      // 比较反转后的左半部分和右半部分
+      while (prev != null) {
+        if (prev.val != curr.val) {
+          return false;
+        }
+        prev = prev.next;
+        curr = curr.next;
+      }
+      return true;
+    }
+  }
+  
+  // leetcode submit region end(Prohibit modification and deletion)
 }

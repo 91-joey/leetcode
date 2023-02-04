@@ -19,8 +19,8 @@
 //<strong>输入：</strong>n = 2
 //<strong>输出：</strong>1
 //<strong>解释：</strong>最初，perm = [0,1]
-//第 1&nbsp;步操作后，perm = [0,1]
-//所以，仅需执行 1 步操作</pre>
+// 第 1&nbsp;步操作后，perm = [0,1]
+// 所以，仅需执行 1 步操作</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -28,9 +28,9 @@
 //<strong>输入：</strong>n = 4
 //<strong>输出：</strong>2
 //<strong>解释：</strong>最初，perm = [0,1,2,3]
-//第 1&nbsp;步操作后，perm = [0,2,1,3]
-//第 2&nbsp;步操作后，perm = [0,1,2,3]
-//所以，仅需执行 2 步操作</pre>
+// 第 1&nbsp;步操作后，perm = [0,2,1,3]
+// 第 2&nbsp;步操作后，perm = [0,1,2,3]
+// 所以，仅需执行 2 步操作</pre>
 //
 //<p><strong>示例 3：</strong></p>
 //
@@ -51,55 +51,55 @@
 //<div><li>👍 43</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.simulation;
 
-//1806.还原排列的最少操作步数
-//开题时间：2023-01-09 09:37:51
+// 1806.还原排列的最少操作步数
+// 开题时间：2023-01-09 09:37:51
 public class MinimumNumberOfOperationsToReinitializeAPermutation {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfOperationsToReinitializeAPermutation().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfOperationsToReinitializeAPermutation().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 模拟
+    public int reinitializePermutation9(int n) {
+      int ans = 1;
+      int[] perm = new int[n];
+      for (int i = 0; i < n; i++)
+        perm[i] = i;
+      do {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++)
+          if (i % 2 == 0)
+            arr[i] = perm[i / 2];
+          else
+            arr[i] = perm[n / 2 + (i - 1) / 2];
+        
+        if (isPermutation(arr))
+          return ans;
+        
+        ans++;
+        perm = arr;
+      } while (true);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //模拟
-        public int reinitializePermutation9(int n) {
-            int ans = 1;
-            int[] perm = new int[n];
-            for (int i = 0; i < n; i++)
-                perm[i] = i;
-            do {
-                int[] arr = new int[n];
-                for (int i = 0; i < n; i++)
-                    if (i % 2 == 0)
-                        arr[i] = perm[i / 2];
-                    else
-                        arr[i] = perm[n / 2 + (i - 1) / 2];
-
-                if (isPermutation(arr))
-                    return ans;
-
-                ans++;
-                perm = arr;
-            } while (true);
-        }
-
-        //☆☆☆☆☆ 数学
-        public int reinitializePermutation(int n) {
-            if (n == 2)
-                return 1;
-            int ans = 1, pow2 = 2;
-            while (pow2 != 1) {
-                pow2 = 2 * pow2 % (n - 1);
-                ans++;
-            }
-            return ans;
-        }
-
-        private boolean isPermutation(int[] arr) {
-            for (int i = 0; i < arr.length; i++)
-                if (i != arr[i])
-                    return false;
-            return true;
-        }
+    
+    //☆☆☆☆☆ 数学
+    public int reinitializePermutation(int n) {
+      if (n == 2)
+        return 1;
+      int ans = 1, pow2 = 2;
+      while (pow2 != 1) {
+        pow2 = 2 * pow2 % (n - 1);
+        ans++;
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private boolean isPermutation(int[] arr) {
+      for (int i = 0; i < arr.length; i++)
+        if (i != arr[i])
+          return false;
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

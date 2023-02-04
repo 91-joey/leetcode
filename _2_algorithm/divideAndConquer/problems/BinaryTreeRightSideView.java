@@ -45,54 +45,54 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-//199.二叉树的右视图
-//开题时间：2022-11-18 17:24:06
+// 199.二叉树的右视图
+// 开题时间：2022-11-18 17:24:06
 public class BinaryTreeRightSideView {
-    public static void main(String[] args) {
-        Solution solution = new BinaryTreeRightSideView().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BinaryTreeRightSideView().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // BFS
+    public List<Integer> rightSideView9(TreeNode root) {
+      List<Integer> ans = new ArrayList<>();
+      if (root == null)
+        return ans;
+      
+      Queue<TreeNode> q = new LinkedList<>();
+      q.offer(root);
+      
+      TreeNode poll = null;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          poll = q.poll();
+          if (poll.left != null) q.offer(poll.left);
+          if (poll.right != null) q.offer(poll.right);
+        }
+        ans.add(poll.val);
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //BFS
-        public List<Integer> rightSideView9(TreeNode root) {
-            List<Integer> ans = new ArrayList<>();
-            if (root == null)
-                return ans;
-
-            Queue<TreeNode> q = new LinkedList<>();
-            q.offer(root);
-
-            TreeNode poll = null;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    poll = q.poll();
-                    if (poll.left != null) q.offer(poll.left);
-                    if (poll.right != null) q.offer(poll.right);
-                }
-                ans.add(poll.val);
-            }
-
-            return ans;
-        }
-
-        List<Integer> ans = new ArrayList<>();
-
-        public List<Integer> rightSideView(TreeNode root) {
-            dfs(root, 1);
-            return ans;
-        }
-
-        private void dfs(TreeNode root, int depth) {
-            if (root == null)
-                return;
-
-            if (ans.size() < depth)
-                ans.add(root.val);
-
-            dfs(root.right, depth + 1);
-            dfs(root.left, depth + 1);
-        }
+    
+    List<Integer> ans = new ArrayList<>();
+    
+    public List<Integer> rightSideView(TreeNode root) {
+      dfs(root, 1);
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private void dfs(TreeNode root, int depth) {
+      if (root == null)
+        return;
+      
+      if (ans.size() < depth)
+        ans.add(root.val);
+      
+      dfs(root.right, depth + 1);
+      dfs(root.left, depth + 1);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

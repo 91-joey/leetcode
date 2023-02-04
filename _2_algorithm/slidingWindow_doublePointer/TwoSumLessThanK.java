@@ -8,7 +8,7 @@
 //<strong>输入：</strong>nums = [34,23,1,24,75,33,54,8], k = 60
 //<strong>输出：</strong>58
 //<strong>解释：</strong>
-//34 和 24 相加得到 58，58 小于 60，满足题意。
+// 34 和 24 相加得到 58，58 小于 60，满足题意。
 //</pre>
 //
 //<p><strong>示例&nbsp;2：</strong></p>
@@ -17,7 +17,7 @@
 //<strong>输入：</strong>nums = [10,20,30], k = 15
 //<strong>输出：</strong>-1
 //<strong>解释：</strong>
-//我们无法找到和小于 15 的两个元素。</pre>
+// 我们无法找到和小于 15 的两个元素。</pre>
 //
 //<p>&nbsp;</p>
 //
@@ -34,37 +34,37 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import java.util.Arrays;
 
-//1099.小于 K 的两数之和
-//开题时间：2022-10-28 09:13:38
+// 1099.小于 K 的两数之和
+// 开题时间：2022-10-28 09:13:38
 public class TwoSumLessThanK {
-    public static void main(String[] args) {
-        Solution solution = new TwoSumLessThanK().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new TwoSumLessThanK().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int twoSumLessThanK(int[] nums, int k) {
+      int len = nums.length;
+      if (len == 1) return -1;
+      
+      Arrays.sort(nums);
+      if (nums[0] + nums[1] >= k)
+        return -1;
+      else if (nums[len - 2] + nums[len - 1] < k)
+        return nums[len - 2] + nums[len - 1];
+      
+      int max = 2;
+      for (int l = 0, r = len - 1; l < r; ) {
+        int sum = nums[l] + nums[r];
+        if (sum < k) {
+          max = Math.max(max, sum);
+          l++;
+        } else
+          r--;
+      }
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int twoSumLessThanK(int[] nums, int k) {
-            int len = nums.length;
-            if (len == 1) return -1;
-
-            Arrays.sort(nums);
-            if (nums[0] + nums[1] >= k)
-                return -1;
-            else if (nums[len - 2] + nums[len - 1] < k)
-                return nums[len - 2] + nums[len - 1];
-
-            int max = 2;
-            for (int l = 0, r = len - 1; l < r; ) {
-                int sum = nums[l] + nums[r];
-                if (sum < k) {
-                    max = Math.max(max, sum);
-                    l++;
-                } else
-                    r--;
-            }
-
-            return max;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

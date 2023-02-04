@@ -26,39 +26,39 @@
 //<div><li>👍 628</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//剑指 Offer 42.连续子数组的最大和
-//开题时间：2022-12-19 09:58:26
+// 剑指 Offer 42.连续子数组的最大和
+// 开题时间：2022-12-19 09:58:26
 public class LianXuZiShuZuDeZuiDaHeLcof {
-    public static void main(String[] args) {
-        Solution solution = new LianXuZiShuZuDeZuiDaHeLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LianXuZiShuZuDeZuiDaHeLcof().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxSubArray9(int[] nums) {
+      int n = nums.length + 1;
+      int[] f = new int[n];
+      
+      int max = Integer.MIN_VALUE;
+      for (int i = 1; i < n; i++) {
+        f[i] = Math.max(f[i - 1] + nums[i - 1], nums[i - 1]);
+        max = Math.max(max, f[i]);
+      }
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxSubArray9(int[] nums) {
-            int n = nums.length + 1;
-            int[] f = new int[n];
-
-            int max = Integer.MIN_VALUE;
-            for (int i = 1; i < n; i++) {
-                f[i] = Math.max(f[i - 1] + nums[i - 1], nums[i - 1]);
-                max = Math.max(max, f[i]);
-            }
-
-            return max;
-        }
-
-        public int maxSubArray(int[] nums) {
-            int n = nums.length + 1;
-
-            int max = Integer.MIN_VALUE;
-            for (int i = 1, pre = 0; i < n; i++) {
-                pre = Math.max(pre + nums[i - 1], nums[i - 1]);
-                max = Math.max(max, pre);
-            }
-
-            return max;
-        }
+    
+    public int maxSubArray(int[] nums) {
+      int n = nums.length + 1;
+      
+      int max = Integer.MIN_VALUE;
+      for (int i = 1, pre = 0; i < n; i++) {
+        pre = Math.max(pre + nums[i - 1], nums[i - 1]);
+        max = Math.max(max, pre);
+      }
+      
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

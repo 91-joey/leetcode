@@ -11,7 +11,7 @@
 //<strong>输入：</strong>nums = [-4,-1,0,3,10]
 //<strong>输出：</strong>[0,1,9,16,100]
 //<strong>解释：</strong>平方后，数组变为 [16,1,0,9,100]
-//排序后，数组变为 [0,1,9,16,100]</pre>
+// 排序后，数组变为 [0,1,9,16,100]</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -41,27 +41,27 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>排序</li></div></div><br><div><li>👍 649</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//977.有序数组的平方
-//开题时间：2022-10-28 08:56:00
+// 977.有序数组的平方
+// 开题时间：2022-10-28 08:56:00
 public class SquaresOfASortedArray {
-    public static void main(String[] args) {
-        Solution solution = new SquaresOfASortedArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SquaresOfASortedArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 双指针
+    public int[] sortedSquares(int[] nums) {
+      int len = nums.length;
+      int[] ans = new int[len];
+      
+      for (int i = len - 1, l = 0, r = i; i >= 0; i--)
+        ans[i] = nums[l] + nums[r] > 0 ?
+            nums[r] * nums[r--] :
+            nums[l] * nums[l++];
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //双指针
-        public int[] sortedSquares(int[] nums) {
-            int len = nums.length;
-            int[] ans = new int[len];
-
-            for (int i = len - 1, l = 0, r = i; i >= 0; i--)
-                ans[i] = nums[l] + nums[r] > 0 ?
-                        nums[r] * nums[r--] :
-                        nums[l] * nums[l++];
-
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

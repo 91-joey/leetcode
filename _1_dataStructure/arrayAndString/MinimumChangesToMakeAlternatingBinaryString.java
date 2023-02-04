@@ -39,67 +39,67 @@
 //<div><li>👍 58</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1758.生成交替二进制字符串的最少操作数
-//开题时间：2022-11-29 09:55:25
+// 1758.生成交替二进制字符串的最少操作数
+// 开题时间：2022-11-29 09:55:25
 public class MinimumChangesToMakeAlternatingBinaryString {
-    public static void main(String[] args) {
-        Solution solution = new MinimumChangesToMakeAlternatingBinaryString().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumChangesToMakeAlternatingBinaryString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minOperations9(String s) {
+      int min = s.length();
+      char[] chars = s.toCharArray();
+      int cnt = 0;
+      for (int i = 0; i < chars.length; i++) {
+        if (chars[i++] == '1')
+          cnt++;
+        if (i < chars.length && chars[i] == '0')
+          cnt++;
+      }
+      min = Math.min(min, cnt);
+      
+      cnt = 0;
+      for (int i = 0; i < chars.length; i++) {
+        if (chars[i++] == '0')
+          cnt++;
+        if (i < chars.length && chars[i] == '1')
+          cnt++;
+      }
+      min = Math.min(min, cnt);
+      
+      return min;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minOperations9(String s) {
-            int min = s.length();
-            char[] chars = s.toCharArray();
-            int cnt = 0;
-            for (int i = 0; i < chars.length; i++) {
-                if (chars[i++] == '1')
-                    cnt++;
-                if (i < chars.length && chars[i] == '0')
-                    cnt++;
-            }
-            min = Math.min(min, cnt);
-
-            cnt = 0;
-            for (int i = 0; i < chars.length; i++) {
-                if (chars[i++] == '0')
-                    cnt++;
-                if (i < chars.length && chars[i] == '1')
-                    cnt++;
-            }
-            min = Math.min(min, cnt);
-
-            return min;
-        }
-
-        public int minOperations8(String s) {
-            int min = 0;
-            char[] chars = s.toCharArray();
-            for (int i = 0; i < chars.length; i++) {
-                if ((i % 2 == 0 && chars[i] == '1') ||
-                        i % 2 == 1 && chars[i] == '0')
-                    min++;
-            }
-
-            int cnt = 0;
-            for (int i = 0; i < chars.length; i++) {
-                if ((i % 2 == 0 && chars[i] == '0') ||
-                        i % 2 == 1 && chars[i] == '1')
-                    cnt++;
-            }
-            min = Math.min(min, cnt);
-
-            return min;
-        }
-
-        //以1开头 和 以0开头 的操作数之和为字符串长度。
-        public int minOperations(String s) {
-            int cnt = 0;
-            int n = s.length();
-            for (int i = 0; i < n; i++)
-                cnt += s.charAt(i) ^ '0' ^ (i & 1);
-            return Math.min(cnt, n - cnt);
-        }
+    
+    public int minOperations8(String s) {
+      int min = 0;
+      char[] chars = s.toCharArray();
+      for (int i = 0; i < chars.length; i++) {
+        if ((i % 2 == 0 && chars[i] == '1') ||
+            i % 2 == 1 && chars[i] == '0')
+          min++;
+      }
+      
+      int cnt = 0;
+      for (int i = 0; i < chars.length; i++) {
+        if ((i % 2 == 0 && chars[i] == '0') ||
+            i % 2 == 1 && chars[i] == '1')
+          cnt++;
+      }
+      min = Math.min(min, cnt);
+      
+      return min;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 以1开头 和 以0开头 的操作数之和为字符串长度。
+    public int minOperations(String s) {
+      int cnt = 0;
+      int n = s.length();
+      for (int i = 0; i < n; i++)
+        cnt += s.charAt(i) ^ '0' ^ (i & 1);
+      return Math.min(cnt, n - cnt);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

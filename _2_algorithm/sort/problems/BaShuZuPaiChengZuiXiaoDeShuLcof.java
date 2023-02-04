@@ -30,58 +30,57 @@
 //<div><div>Related Topics</div><div><li>贪心</li><li>字符串</li><li>排序</li></div></div><br><div><li>👍 542</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 
-//剑指 Offer 45.把数组排成最小的数
-//开题时间：2022-09-19 11:30:38
+// 剑指 Offer 45.把数组排成最小的数
+// 开题时间：2022-09-19 11:30:38
 public class BaShuZuPaiChengZuiXiaoDeShuLcof {
-    public static void main(String[] args) {
-        Solution solution = new BaShuZuPaiChengZuiXiaoDeShuLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BaShuZuPaiChengZuiXiaoDeShuLcof().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 内置排序函数
+    public String minNumber(int[] nums) {
+      int length = nums.length;
+      String[] arr = new String[length];
+      for (int i = 0; i < length; i++)
+        arr[i] = String.valueOf(nums[i]);
+      
+      Arrays.parallelSort(arr, (a, b) -> (a + b).compareTo(b + a));
+      
+      StringBuilder sb = new StringBuilder();
+      for (String s : arr) sb.append(s);
+      return sb.toString();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //内置排序函数
-        public String minNumber(int[] nums) {
-            int length = nums.length;
-            String[] arr = new String[length];
-            for (int i = 0; i < length; i++)
-                arr[i] = String.valueOf(nums[i]);
-
-            Arrays.parallelSort(arr, (a, b) -> (a + b).compareTo(b + a));
-
-            StringBuilder sb = new StringBuilder();
-            for (String s : arr) sb.append(s);
-            return sb.toString();
-        }
-
-        //冒泡排序（优化）
-        public String minNumber2(int[] nums) {
-            int length = nums.length;
-            String[] arr = new String[length];
-            for (int i = 0; i < length; i++)
-                arr[i] = String.valueOf(nums[i]);
-
-            int lst = length - 1;
-            boolean swapped = true;
-            int endIdx = lst;
-            int lstSwappedIdx = -1;
-            while (swapped) {
-                swapped = false;
-                for (int i = 0; i < endIdx; i++)
-                    if ((arr[i] + arr[i + 1]).compareTo(arr[i + 1] + arr[i]) > 0) {
-                        Tools.swap(arr, i, i + 1);
-                        swapped = true;
-                        lstSwappedIdx = i;
-                    }
-                endIdx = lstSwappedIdx;
-            }
-
-            return String.join("", arr);
-        }
+    
+    // 冒泡排序（优化）
+    public String minNumber2(int[] nums) {
+      int length = nums.length;
+      String[] arr = new String[length];
+      for (int i = 0; i < length; i++)
+        arr[i] = String.valueOf(nums[i]);
+      
+      int lst = length - 1;
+      boolean swapped = true;
+      int endIdx = lst;
+      int lstSwappedIdx = -1;
+      while (swapped) {
+        swapped = false;
+        for (int i = 0; i < endIdx; i++)
+          if ((arr[i] + arr[i + 1]).compareTo(arr[i + 1] + arr[i]) > 0) {
+            Tools.swap(arr, i, i + 1);
+            swapped = true;
+            lstSwappedIdx = i;
+          }
+        endIdx = lstSwappedIdx;
+      }
+      
+      return String.join("", arr);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

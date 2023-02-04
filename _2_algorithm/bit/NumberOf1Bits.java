@@ -56,61 +56,61 @@
 //<div><li>👍 535</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//191.位1的个数
-//开题时间：2022-12-02 09:51:18
+// 191.位1的个数
+// 开题时间：2022-12-02 09:51:18
 public class NumberOf1Bits {
-    public static void main(String[] args) {
-        Solution solution = new NumberOf1Bits().new Solution();
-        System.out.println(1 << 30);
-        System.out.println(-1 & (1 << 30));
-        System.out.println(solution.hammingWeight(-1));
+  public static void main(String[] args) {
+    Solution solution = new NumberOf1Bits().new Solution();
+    System.out.println(1 << 30);
+    System.out.println(-1 & (1 << 30));
+    System.out.println(solution.hammingWeight(-1));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  public class Solution {
+    // 循环检查二进制位
+    public int hammingWeight9(int n) {
+      int cnt = 0;
+      
+      for (int i = 0; i < 32; i++)
+        if ((n & (1 << i)) != 0)
+          cnt++;
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    public class Solution {
-        //循环检查二进制位
-        public int hammingWeight9(int n) {
-            int cnt = 0;
-
-            for (int i = 0; i < 32; i++)
-                if ((n & (1 << i)) != 0)
-                    cnt++;
-
-            return cnt;
-        }
-
-        //☆☆☆☆☆ 位运算优化：n & (n - 1)把 n 的二进制位中的最低位的 1 变为 0
-        public int hammingWeight8(int n) {
-            int cnt = 0;
-
-            while (n != 0) {
-                n &= n - 1;
-                cnt++;
-            }
-
-            return cnt;
-        }
-
-        //API
-        public int hammingWeight7(int n) {
-            return Integer.bitCount(n);
-        }
-
-        /*
-         * 循环检查二进制位（优化）
-         * >>    有符号位移（算术位移）：舍弃低位，高位用符号位填补
-         * >>>   无符号位移（逻辑位移）：舍弃低位，高位用 0   填补
-         */
-        public int hammingWeight(int n) {
-            int cnt = 0;
-
-            while (n != 0) {
-                cnt += n & 1;
-                n >>>= 1;
-            }
-
-            return cnt;
-        }
+    
+    //☆☆☆☆☆ 位运算优化：n & (n - 1)把 n 的二进制位中的最低位的 1 变为 0
+    public int hammingWeight8(int n) {
+      int cnt = 0;
+      
+      while (n != 0) {
+        n &= n - 1;
+        cnt++;
+      }
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // API
+    public int hammingWeight7(int n) {
+      return Integer.bitCount(n);
+    }
+    
+    /*
+     * 循环检查二进制位（优化）
+     * >>    有符号位移（算术位移）：舍弃低位，高位用符号位填补
+     * >>>   无符号位移（逻辑位移）：舍弃低位，高位用 0   填补
+     */
+    public int hammingWeight(int n) {
+      int cnt = 0;
+      
+      while (n != 0) {
+        cnt += n & 1;
+        n >>>= 1;
+      }
+      
+      return cnt;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

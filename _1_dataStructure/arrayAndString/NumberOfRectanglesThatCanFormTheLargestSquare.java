@@ -14,7 +14,7 @@
 //<strong>输入：</strong>rectangles = [[5,8],[3,9],[5,12],[16,5]]
 //<strong>输出：</strong>3
 //<strong>解释：</strong>能从每个矩形中切出的最大正方形边长分别是 [5,3,5,5] 。
-//最大正方形的边长为 5 ，可以由 3 个矩形切分得到。
+// 最大正方形的边长为 5 ，可以由 3 个矩形切分得到。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -38,29 +38,29 @@
 //<div><li>👍 58</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1725.可以形成最大正方形的矩形数目
-//开题时间：2022-11-24 17:00:01
+// 1725.可以形成最大正方形的矩形数目
+// 开题时间：2022-11-24 17:00:01
 public class NumberOfRectanglesThatCanFormTheLargestSquare {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfRectanglesThatCanFormTheLargestSquare().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int countGoodRectangles(int[][] rectangles) {
-            int cnt = 0;
-            int max = 0;
-            for (int[] rectangle : rectangles) {
-                int len = Math.min(rectangle[0], rectangle[1]);
-                if (max == len)
-                    cnt++;
-                else if (max < len) {
-                    max = len;
-                    cnt = 1;
-                }
-            }
-            return cnt;
+  public static void main(String[] args) {
+    Solution solution = new NumberOfRectanglesThatCanFormTheLargestSquare().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int countGoodRectangles(int[][] rectangles) {
+      int cnt = 0;
+      int max = 0;
+      for (int[] rectangle : rectangles) {
+        int len = Math.min(rectangle[0], rectangle[1]);
+        if (max == len)
+          cnt++;
+        else if (max < len) {
+          max = len;
+          cnt = 1;
         }
+      }
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

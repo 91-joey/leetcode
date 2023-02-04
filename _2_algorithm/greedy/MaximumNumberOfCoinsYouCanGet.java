@@ -19,9 +19,9 @@
 //<pre><strong>输入：</strong>piles = [2,4,1,2,7,8]
 //<strong>输出：</strong>9
 //<strong>解释：</strong>选出 (2, 7, 8) ，Alice 取走 8 枚硬币的那堆，你取走 <strong>7</strong> 枚硬币的那堆，Bob 取走最后一堆。
-//选出 (1, 2, 4) , Alice 取走 4 枚硬币的那堆，你取走 <strong>2</strong> 枚硬币的那堆，Bob 取走最后一堆。
-//你可以获得的最大硬币数目：7 + 2 = 9.
-//考虑另外一种情况，如果选出的是 (1, <strong>2</strong>, 8) 和 (2, <strong>4</strong>, 7) ，你就只能得到 2 + 4 = 6 枚硬币，这不是最优解。
+// 选出 (1, 2, 4) , Alice 取走 4 枚硬币的那堆，你取走 <strong>2</strong> 枚硬币的那堆，Bob 取走最后一堆。
+// 你可以获得的最大硬币数目：7 + 2 = 9.
+// 考虑另外一种情况，如果选出的是 (1, <strong>2</strong>, 8) 和 (2, <strong>4</strong>, 7) ，你就只能得到 2 + 4 = 6 枚硬币，这不是最优解。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -51,30 +51,30 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 
 import java.util.Arrays;
 
-//1561.你可以获得的最大硬币数目
-//开题时间：2023-01-19 11:47:09
+// 1561.你可以获得的最大硬币数目
+// 开题时间：2023-01-19 11:47:09
 public class MaximumNumberOfCoinsYouCanGet {
-    public static void main(String[] args) {
-        Solution solution = new MaximumNumberOfCoinsYouCanGet().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new MaximumNumberOfCoinsYouCanGet().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 排序 + 贪心：
+     *  Alice 取最大值
+     *  我    取次大值
+     *  Bob   取最小值
+     */
+    public int maxCoins(int[] piles) {
+      Arrays.sort(piles);
+      int ans = 0;
+      int n = piles.length;
+      for (int i = n / 3; i < n; i += 2)
+        ans += piles[i];
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 排序 + 贪心：
-         *  Alice 取最大值
-         *  我    取次大值
-         *  Bob   取最小值
-         */
-        public int maxCoins(int[] piles) {
-            Arrays.sort(piles);
-            int ans = 0;
-            int n = piles.length;
-            for (int i = n / 3; i < n; i += 2)
-                ans += piles[i];
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

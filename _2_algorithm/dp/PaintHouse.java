@@ -40,70 +40,70 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//256.粉刷房子
-//开题时间：2022-12-09 17:08:44
+// 256.粉刷房子
+// 开题时间：2022-12-09 17:08:44
 public class PaintHouse {
-    public static void main(String[] args) {
-        Solution solution = new PaintHouse().new Solution();
-        System.out.println(solution.minCost(new int[][]{
-                {17, 2, 17},
-                {16, 16, 5},
-                {14, 3, 19}
-        }));
+  public static void main(String[] args) {
+    Solution solution = new PaintHouse().new Solution();
+    System.out.println(solution.minCost(new int[][]{
+        {17, 2, 17},
+        {16, 16, 5},
+        {14, 3, 19}
+    }));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minCost9(int[][] costs) {
+      int n = costs.length + 1;
+      int[][] f = new int[n][3];
+      
+      for (int i = 1; i < n; i++) {
+        for (int j = 0; j < 3; j++) {
+          int min = Integer.MAX_VALUE;
+          for (int k = 0; k < 3; k++)
+            if (k != j)
+              min = Math.min(min, f[i - 1][k]);
+          f[i][j] = min + costs[i - 1][j];
+        }
+      }
+      
+      return Arrays.stream(f[n - 1]).min().getAsInt();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minCost9(int[][] costs) {
-            int n = costs.length + 1;
-            int[][] f = new int[n][3];
-
-            for (int i = 1; i < n; i++) {
-                for (int j = 0; j < 3; j++) {
-                    int min = Integer.MAX_VALUE;
-                    for (int k = 0; k < 3; k++)
-                        if (k != j)
-                            min = Math.min(min, f[i - 1][k]);
-                    f[i][j] = min + costs[i - 1][j];
-                }
-            }
-
-            return Arrays.stream(f[n - 1]).min().getAsInt();
+    
+    public int minCost8(int[][] costs) {
+      int n = costs.length + 1;
+      int[] f = new int[3];
+      
+      for (int i = 1; i < n; i++) {
+        int[] g = new int[3];
+        for (int j = 0; j < 3; j++) {
+          int min = Integer.MAX_VALUE;
+          for (int k = 0; k < 3; k++)
+            if (k != j)
+              min = Math.min(min, f[k]);
+          g[j] = min + costs[i - 1][j];
         }
-
-        public int minCost8(int[][] costs) {
-            int n = costs.length + 1;
-            int[] f = new int[3];
-
-            for (int i = 1; i < n; i++) {
-                int[] g = new int[3];
-                for (int j = 0; j < 3; j++) {
-                    int min = Integer.MAX_VALUE;
-                    for (int k = 0; k < 3; k++)
-                        if (k != j)
-                            min = Math.min(min, f[k]);
-                    g[j] = min + costs[i - 1][j];
-                }
-                f = g;
-            }
-
-            return Arrays.stream(f).min().getAsInt();
-        }
-
-        //dp（带维度单串 dp[i][k]，i 为位置，k 为附加的维度，这里 k 表示颜色）
-        public int minCost(int[][] costs) {
-            int n = costs.length + 1;
-            int[] f = new int[3];
-
-            for (int i = 1; i < n; i++) {
-                int[] tmp = new int[3];
-                for (int j = 0; j < 3; j++)
-                    tmp[j] = Math.min(f[(j + 1) % 3], f[(j + 2) % 3]) + costs[i - 1][j];
-                f = tmp;
-            }
-
-            return Arrays.stream(f).min().getAsInt();
-        }
+        f = g;
+      }
+      
+      return Arrays.stream(f).min().getAsInt();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // dp（带维度单串 dp[i][k]，i 为位置，k 为附加的维度，这里 k 表示颜色）
+    public int minCost(int[][] costs) {
+      int n = costs.length + 1;
+      int[] f = new int[3];
+      
+      for (int i = 1; i < n; i++) {
+        int[] tmp = new int[3];
+        for (int j = 0; j < 3; j++)
+          tmp[j] = Math.min(f[(j + 1) % 3], f[(j + 2) % 3]) + costs[i - 1][j];
+        f = tmp;
+      }
+      
+      return Arrays.stream(f).min().getAsInt();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

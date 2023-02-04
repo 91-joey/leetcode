@@ -34,41 +34,41 @@
 //<div><li>👍 1852</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//152.乘积最大子数组
-//开题时间：2022-11-22 18:14:56
+// 152.乘积最大子数组
+// 开题时间：2022-11-22 18:14:56
 public class MaximumProductSubarray {
-    public static void main(String[] args) {
-        Solution solution = new MaximumProductSubarray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumProductSubarray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxProduct9(int[] nums) {
+      int max = nums[0];
+      for (int i = 1, maxPreMin = max, maxPreMax = max; i < nums.length; i++) {
+        int tmp = maxPreMin;
+        maxPreMin = Math.min(Math.min(nums[i], maxPreMin * nums[i]), maxPreMax * nums[i]);
+        maxPreMax = Math.max(Math.max(nums[i], maxPreMax * nums[i]), tmp * nums[i]);
+        max = Math.max(max, maxPreMax);
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxProduct9(int[] nums) {
-            int max = nums[0];
-            for (int i = 1, maxPreMin = max, maxPreMax = max; i < nums.length; i++) {
-                int tmp = maxPreMin;
-                maxPreMin = Math.min(Math.min(nums[i], maxPreMin * nums[i]), maxPreMax * nums[i]);
-                maxPreMax = Math.max(Math.max(nums[i], maxPreMax * nums[i]), tmp * nums[i]);
-                max = Math.max(max, maxPreMax);
-            }
-            return max;
+    
+    // DP 负数时：交换最值
+    public int maxProduct(int[] nums) {
+      int max = Integer.MIN_VALUE;
+      for (int i = 0, iMin = 1, iMax = 1; i < nums.length; i++) {
+        if (nums[i] < 0) {
+          int tmp = iMin;
+          iMin = iMax;
+          iMax = tmp;
         }
-
-        //DP 负数时：交换最值
-        public int maxProduct(int[] nums) {
-            int max = Integer.MIN_VALUE;
-            for (int i = 0, iMin = 1, iMax = 1; i < nums.length; i++) {
-                if (nums[i] < 0) {
-                    int tmp = iMin;
-                    iMin = iMax;
-                    iMax = tmp;
-                }
-                iMin = Math.min(nums[i], iMin * nums[i]);
-                iMax = Math.max(nums[i], iMax * nums[i]);
-                max = Math.max(max, iMax);
-            }
-            return max;
-        }
+        iMin = Math.min(nums[i], iMin * nums[i]);
+        iMax = Math.max(nums[i], iMax * nums[i]);
+        max = Math.max(max, iMax);
+      }
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

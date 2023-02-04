@@ -46,52 +46,52 @@
 //<div><li>👍 52</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//1147.段式回文
-//开题时间：2022-12-20 16:42:54
+// 1147.段式回文
+// 开题时间：2022-12-20 16:42:54
 public class LongestChunkedPalindromeDecomposition {
-    public static void main(String[] args) {
-        Solution solution = new LongestChunkedPalindromeDecomposition().new Solution();
-        System.out.println(solution.longestDecomposition("ghiabcdefhelloadamhelloabcdefghi"));
-//        System.out.println(solution.longestDecomposition("elvtoelvto"));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //TLE
-        public int longestDecompositionX(String text) {
-            char[] cs = text.toCharArray();
-            int n = cs.length;
-            int[][] f = new int[n][n];
-
-            for (int i = n - 1; i >= 0; i--) {
-                for (int j = i; j < n; j++) {
-                    f[i][j] = 1;
-                    for (int l = i + 1, r = j - 1; l - 2 < r; l++, r--) {
-                        if (text.substring(i, l).equals(text.substring(r + 1, j + 1)))
-                            f[i][j] = Math.max(f[i][j], f[l][r] + 2);
-                    }
-                }
-            }
-
-            return f[0][n - 1];
+  public static void main(String[] args) {
+    Solution solution = new LongestChunkedPalindromeDecomposition().new Solution();
+    System.out.println(solution.longestDecomposition("ghiabcdefhelloadamhelloabcdefghi"));
+    //        System.out.println(solution.longestDecomposition("elvtoelvto"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // TLE
+    public int longestDecompositionX(String text) {
+      char[] cs = text.toCharArray();
+      int n = cs.length;
+      int[][] f = new int[n][n];
+      
+      for (int i = n - 1; i >= 0; i--) {
+        for (int j = i; j < n; j++) {
+          f[i][j] = 1;
+          for (int l = i + 1, r = j - 1; l - 2 < r; l++, r--) {
+            if (text.substring(i, l).equals(text.substring(r + 1, j + 1)))
+              f[i][j] = Math.max(f[i][j], f[l][r] + 2);
+          }
         }
-
-        //朴素对角线 DP
-        public int longestDecomposition(String text) {
-            int n = text.length();
-            int[][] f = new int[n][n];
-
-            for (int i = (n - 1) / 2, j = (n - 1) / 2 + (n - 1) % 2; i >= 0 && j < n; i--, j++) {
-                f[i][j] = 1;
-                for (int l = i + 1, r = j - 1; l - 2 < r; l++, r--)
-                    if (text.substring(i, l).equals(text.substring(r + 1, j + 1)))
-                        f[i][j] = Math.max(f[i][j], f[l][r] + 2);
-            }
-
-            return f[0][n - 1];
-        }
-
-        //todo 贪心
+      }
+      
+      return f[0][n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 朴素对角线 DP
+    public int longestDecomposition(String text) {
+      int n = text.length();
+      int[][] f = new int[n][n];
+      
+      for (int i = (n - 1) / 2, j = (n - 1) / 2 + (n - 1) % 2; i >= 0 && j < n; i--, j++) {
+        f[i][j] = 1;
+        for (int l = i + 1, r = j - 1; l - 2 < r; l++, r--)
+          if (text.substring(i, l).equals(text.substring(r + 1, j + 1)))
+            f[i][j] = Math.max(f[i][j], f[l][r] + 2);
+      }
+      
+      return f[0][n - 1];
+    }
+    
+    // todo 贪心
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

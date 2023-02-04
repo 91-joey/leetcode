@@ -10,10 +10,10 @@
 //<strong>输入：</strong>nums = [1,4,3,2]
 //<strong>输出：</strong>4
 //<strong>解释：</strong>所有可能的分法（忽略元素顺序）为：
-//1. (1, 4), (2, 3) -&gt; min(1, 4) + min(2, 3) = 1 + 2 = 3
-//2. (1, 3), (2, 4) -&gt; min(1, 3) + min(2, 4) = 1 + 2 = 3
-//3. (1, 2), (3, 4) -&gt; min(1, 2) + min(3, 4) = 1 + 3 = 4
-//所以最大总和为 4</pre>
+// 1. (1, 4), (2, 3) -&gt; min(1, 4) + min(2, 3) = 1 + 2 = 3
+// 2. (1, 3), (2, 4) -&gt; min(1, 3) + min(2, 4) = 1 + 2 = 3
+// 3. (1, 2), (3, 4) -&gt; min(1, 2) + min(3, 4) = 1 + 3 = 4
+// 所以最大总和为 4</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -38,24 +38,24 @@ package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import java.util.Arrays;
 
-//561.数组拆分
-//开题时间：2022-09-28 15:36:14
+// 561.数组拆分
+// 开题时间：2022-09-28 15:36:14
 public class ArrayPartition {
-    public static void main(String[] args) {
-        Solution solution = new ArrayPartition().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ArrayPartition().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int arrayPairSum(int[] nums) {
+      Arrays.sort(nums);
+      
+      int sum = 0;
+      for (int i = 0; i < nums.length; i += 2)
+        sum += nums[i];
+      
+      return sum;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int arrayPairSum(int[] nums) {
-            Arrays.sort(nums);
-
-            int sum = 0;
-            for (int i = 0; i < nums.length; i += 2)
-                sum+=nums[i];
-
-            return sum;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

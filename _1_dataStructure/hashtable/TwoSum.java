@@ -47,71 +47,71 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.HashMap;
 import java.util.Map;
 
-//1.两数之和
-//开题时间：2022-09-05 08:45:10
+// 1.两数之和
+// 开题时间：2022-09-05 08:45:10
 public class TwoSum {
-    public static void main(String[] args) {
-        Solution solution = new TwoSum().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new TwoSum().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 数组中同一个元素在答案里不能重复出现。
+    // 只会存在一个有效答案
+    // 1.暴力枚举 n^2 1
+    public int[] twoSum(int[] nums, int target) {
+      for (int i = 0; i < nums.length - 1; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+          if (target == nums[i] + nums[j]) {
+            return new int[]{i, j};
+          }
+        }
+      }
+      return new int[]{};
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //数组中同一个元素在答案里不能重复出现。
-        //只会存在一个有效答案
-        //1.暴力枚举 n^2 1
-        public int[] twoSum(int[] nums, int target) {
-            for (int i = 0; i < nums.length - 1; i++) {
-                for (int j = i + 1; j < nums.length; j++) {
-                    if (target == nums[i] + nums[j]) {
-                        return new int[]{i, j};
-                    }
-                }
-            }
-            return new int[]{};
+    
+    // 2.自解（复杂）(hashtable)  n   n
+    public int[] twoSum2(int[] nums, int target) {
+      Map<Integer, Pair> map = new HashMap<>();
+      
+      for (int i = 0; i < nums.length; i++) {
+        int key = target - nums[i];
+        if (key != nums[i] && map.containsKey(key))
+          return new int[]{i, map.get(key).firstIdx};
+        
+        if (!map.containsKey(nums[i])) {
+          map.putIfAbsent(nums[i], new Pair(i));
+        } else {
+          map.get(nums[i]).secondIdx = i;
         }
-
-        //2.自解（复杂）(hashtable)  n   n
-        public int[] twoSum2(int[] nums, int target) {
-            Map<Integer, Pair> map = new HashMap<>();
-
-            for (int i = 0; i < nums.length; i++) {
-                int key = target - nums[i];
-                if (key != nums[i] && map.containsKey(key))
-                    return new int[]{i, map.get(key).firstIdx};
-
-                if (!map.containsKey(nums[i])) {
-                    map.putIfAbsent(nums[i], new Pair(i));
-                } else {
-                    map.get(nums[i]).secondIdx = i;
-                }
-            }
-
-            Pair pair = map.get(target / 2);
-            return new int[]{pair.firstIdx, pair.secondIdx};
-        }
-
-        //3.高分解(hashtable) n   n
-        public int[] twoSum3(int[] nums, int target) {
-            Map<Integer, Integer> map = new HashMap<>();
-
-            for (int i = 0; i < nums.length; i++) {
-                int key = target - nums[i];
-                if (map.containsKey(key))
-                    return new int[]{i, map.get(key)};
-                map.put(nums[i], i);
-            }
-
-            return new int[0];
-        }
-
-        public class Pair {
-            public int firstIdx;
-            public int secondIdx;
-
-            public Pair(int firstIdx) {
-                this.firstIdx = firstIdx;
-            }
-        }
+      }
+      
+      Pair pair = map.get(target / 2);
+      return new int[]{pair.firstIdx, pair.secondIdx};
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 3.高分解(hashtable) n   n
+    public int[] twoSum3(int[] nums, int target) {
+      Map<Integer, Integer> map = new HashMap<>();
+      
+      for (int i = 0; i < nums.length; i++) {
+        int key = target - nums[i];
+        if (map.containsKey(key))
+          return new int[]{i, map.get(key)};
+        map.put(nums[i], i);
+      }
+      
+      return new int[0];
+    }
+    
+    public class Pair {
+      public int firstIdx;
+      public int secondIdx;
+      
+      public Pair(int firstIdx) {
+        this.firstIdx = firstIdx;
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

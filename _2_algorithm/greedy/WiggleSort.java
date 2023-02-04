@@ -12,9 +12,9 @@ public class WiggleSort {
     solution.wiggleSort(new int[]{3, 5, 2, 1, 6, 4});
   }
   
-  //leetcode submit region begin(Prohibit modification and deletion)
+  // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    //排序 + 贪心 + 偶数索引取小数、奇数索引取大数
+    // 排序 + 贪心 + 偶数索引取小数、奇数索引取大数
     public void wiggleSort9(int[] nums) {
       Arrays.sort(nums);
       
@@ -74,5 +74,5 @@ public class WiggleSort {
       arr[j] = tmp;
     }
   }
-//leetcode submit region end(Prohibit modification and deletion)
+  // leetcode submit region end(Prohibit modification and deletion)
 }

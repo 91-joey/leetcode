@@ -12,7 +12,7 @@
 //<strong>输入：</strong>keyboard = "abcdefghijklmnopqrstuvwxyz", word = "cba"
 //<strong>输出：</strong>4
 //<strong>解释：</strong>从 0 号键移动到 2 号键来输出 'c'，又移动到 1 号键来输出 'b'，接着移动到 0 号键来输出 'a'。
-//总用时 = 2 + 1 + 1 = 4. 
+// 总用时 = 2 + 1 + 1 = 4.
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -36,27 +36,27 @@
 //<div><li>👍 23</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.hashtable;
 
-//1165.单行键盘
-//开题时间：2022-11-17 15:57:39
+// 1165.单行键盘
+// 开题时间：2022-11-17 15:57:39
 public class SingleRowKeyboard {
-    public static void main(String[] args) {
-        Solution solution = new SingleRowKeyboard().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SingleRowKeyboard().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // hashmap
+    public int calculateTime(String keyboard, String word) {
+      int[] indices = new int[123];
+      for (int i = 0; i < keyboard.length(); i++)
+        indices[keyboard.charAt(i)] = i;
+      
+      int time = 0, i = 0;
+      for (char c : word.toCharArray())
+        time += Math.abs(i - (i = indices[c]));
+      
+      return time;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //hashmap
-        public int calculateTime(String keyboard, String word) {
-            int[] indices = new int[123];
-            for (int i = 0; i < keyboard.length(); i++)
-                indices[keyboard.charAt(i)] = i;
-
-            int time = 0, i = 0;
-            for (char c : word.toCharArray())
-                time += Math.abs(i - (i = indices[c]));
-
-            return time;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

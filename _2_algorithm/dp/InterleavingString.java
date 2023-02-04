@@ -51,67 +51,67 @@
 //<div><li>👍 802</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//97.交错字符串
-//开题时间：2022-12-13 13:31:59
+// 97.交错字符串
+// 开题时间：2022-12-13 13:31:59
 public class InterleavingString {
-    public static void main(String[] args) {
-        Solution solution = new InterleavingString().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new InterleavingString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * dp[i][j] 表示 s1的前i个字符 和 s2的前j个字符 能否交错组成 s3的前i+j个字符
+     * 状态转移：f[i][j] = (f[i - 1][j] && cs1[i - 1] == cs3[i + j - 1]) ||
+     *                   (f[i][j - 1] && cs2[j - 1] == cs3[i + j - 1])
+     * 初始化：需要初始化 f[i][0] 和 f[0][j]
+     * 推导过程一定满足 s1 和 s2 是交错的
+     */
+    public boolean isInterleave9(String s1, String s2, String s3) {
+      if (s1.length() + s2.length() != s3.length())
+        return false;
+      
+      char[] cs1 = s1.toCharArray();
+      char[] cs2 = s2.toCharArray();
+      char[] cs3 = s3.toCharArray();
+      int m = cs1.length + 1;
+      int n = cs2.length + 1;
+      boolean[][] f = new boolean[m][n];
+      
+      f[0][0] = true;
+      for (int i = 1; i < m && cs1[i - 1] == cs3[i - 1]; i++) f[i][0] = true;
+      for (int j = 1; j < n && cs2[j - 1] == cs3[j - 1]; j++) f[0][j] = true;
+      
+      for (int i = 1; i < m; i++)
+        for (int j = 1; j < n; j++)
+          f[i][j] = (f[i - 1][j] && cs1[i - 1] == cs3[i + j - 1]) ||
+              (f[i][j - 1] && cs2[j - 1] == cs3[i + j - 1]);
+      
+      return f[m - 1][n - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * dp[i][j] 表示 s1的前i个字符 和 s2的前j个字符 能否交错组成 s3的前i+j个字符
-         * 状态转移：f[i][j] = (f[i - 1][j] && cs1[i - 1] == cs3[i + j - 1]) ||
-         *                   (f[i][j - 1] && cs2[j - 1] == cs3[i + j - 1])
-         * 初始化：需要初始化 f[i][0] 和 f[0][j]
-         * 推导过程一定满足 s1 和 s2 是交错的
-         */
-        public boolean isInterleave9(String s1, String s2, String s3) {
-            if (s1.length() + s2.length() != s3.length())
-                return false;
-
-            char[] cs1 = s1.toCharArray();
-            char[] cs2 = s2.toCharArray();
-            char[] cs3 = s3.toCharArray();
-            int m = cs1.length + 1;
-            int n = cs2.length + 1;
-            boolean[][] f = new boolean[m][n];
-
-            f[0][0] = true;
-            for (int i = 1; i < m && cs1[i - 1] == cs3[i - 1]; i++) f[i][0] = true;
-            for (int j = 1; j < n && cs2[j - 1] == cs3[j - 1]; j++) f[0][j] = true;
-
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < n; j++)
-                    f[i][j] = (f[i - 1][j] && cs1[i - 1] == cs3[i + j - 1]) ||
-                            (f[i][j - 1] && cs2[j - 1] == cs3[i + j - 1]);
-
-            return f[m - 1][n - 1];
+    
+    // 滚动数组
+    public boolean isInterleave(String s1, String s2, String s3) {
+      if (s1.length() + s2.length() != s3.length())
+        return false;
+      
+      char[] cs1 = s1.toCharArray();
+      char[] cs2 = s2.toCharArray();
+      char[] cs3 = s3.toCharArray();
+      int m = cs1.length + 1;
+      int n = cs2.length + 1;
+      boolean[] f = new boolean[n];
+      
+      f[0] = true;
+      
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+          if (i > 0) f[j] = f[j] && cs1[i - 1] == cs3[i + j - 1];
+          if (j > 0) f[j] = f[j] || (f[j - 1] && cs2[j - 1] == cs3[i + j - 1]);
         }
-
-        //滚动数组
-        public boolean isInterleave(String s1, String s2, String s3) {
-            if (s1.length() + s2.length() != s3.length())
-                return false;
-
-            char[] cs1 = s1.toCharArray();
-            char[] cs2 = s2.toCharArray();
-            char[] cs3 = s3.toCharArray();
-            int m = cs1.length + 1;
-            int n = cs2.length + 1;
-            boolean[] f = new boolean[n];
-
-            f[0] = true;
-
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++) {
-                    if (i > 0) f[j] = f[j] && cs1[i - 1] == cs3[i + j - 1];
-                    if (j > 0) f[j] = f[j] || (f[j - 1] && cs2[j - 1] == cs3[i + j - 1]);
-                }
-
-            return f[n - 1];
-        }
+      
+      return f[n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

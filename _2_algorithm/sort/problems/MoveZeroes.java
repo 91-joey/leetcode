@@ -34,110 +34,109 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li></div></div><br><div><li>👍 1740</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.sort.problems;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.Swap;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.List;
 
-//283.移动零
-//开题时间：2022-09-19 14:28:58
+// 283.移动零
+// 开题时间：2022-09-19 14:28:58
 public class MoveZeroes {
-    public static void main(String[] args) {
-        Solution solution = new MoveZeroes().new Solution();
-        solution.moveZeroes4(new int[]{0, 1, 0, 3, 12});
+  public static void main(String[] args) {
+    Solution solution = new MoveZeroes().new Solution();
+    solution.moveZeroes4(new int[]{0, 1, 0, 3, 12});
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 冒泡排序
+    public void moveZeroes(int[] nums) {
+      int endIdx = nums.length - 1;
+      int lstSwappedIdx = -1;
+      boolean swapped = true;
+      while (swapped) {
+        swapped = false;
+        for (int i = 0; i < endIdx; i++) {
+          if (nums[i] == 0) {
+            Tools.swap(nums, i, i + 1);
+            swapped = true;
+            lstSwappedIdx = i;
+          }
+        }
+        endIdx = lstSwappedIdx;
+      }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //冒泡排序
-        public void moveZeroes(int[] nums) {
-            int endIdx = nums.length - 1;
-            int lstSwappedIdx = -1;
-            boolean swapped = true;
-            while (swapped) {
-                swapped = false;
-                for (int i = 0; i < endIdx; i++) {
-                    if (nums[i] == 0) {
-                        Tools.swap(nums, i, i + 1);
-                        swapped = true;
-                        lstSwappedIdx = i;
-                    }
-                }
-                endIdx = lstSwappedIdx;
-            }
-        }
-
-        //快慢指针
-        public void moveZeroes2(int[] nums) {
-            for (int slow = 0, fast = 0; fast < nums.length; fast++)
-                if (nums[fast] != 0) {
-//                    swap(nums, slow++, fast);
-                    //快慢指针索引值相同时，不交换
-                    if (fast > slow) {
-                        nums[slow] = nums[fast];
-                        nums[fast] = 0;
-                    }
-                    slow++;
-                }
-        }
-
-        //补零法
-        public void moveZeroes3(int[] nums) {
-            int idx = 0;
-            int length = nums.length;
-            //非零值覆盖
-            for (int i = 0; i < length; i++)
-                if (nums[i] != 0)
-                    nums[idx++] = nums[i];
-            //补零
-            for (int i = idx; i < length; i++)
-                nums[i] = 0;
-        }
-
-        //快慢指针
-        public void moveZeroes4(int[] nums) {
-            //  all in [idx,i) = 0
-            int i = 0;
-            int length = nums.length;
-            while (i < length && nums[i] != 0)
-                i++;
-            for (int idx = i++; i < length; i++)
-                if (nums[i] != 0) {
-                    nums[idx++] = nums[i];
-                    nums[i] = 0;
-                }
-        }
-
-        //快慢指针
-        public void moveZeroes5(int[] nums) {
-            //  all in (idx,i) = 0
-            int i = 0;
-            int length = nums.length;
-            while (i < length && nums[i] != 0)
-                i++;
-            for (int idx = i++ - 1; i < length; i++)
-                if (nums[i] != 0) {
-                    nums[++idx] = nums[i];
-                    nums[i] = 0;
-                }
-        }
-
-        //自定义排序
-        public void moveZeroes6(int[] nums) {
-            List<Integer> list = Arrays.stream(nums).boxed().sorted((o1, o2) -> {
-                if (o1.equals(0) ^ o2.equals(0)) return o1.equals(0) ? 1 : -1;
-                return 0;
-            }).toList();
-            for (int i = 0; i < list.size(); i++)
-                nums[i] = list.get(i);
-        }
-
-        public static void swap(int[] arr, int i, int j) {
-            int tmp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = tmp;
+    
+    // 快慢指针
+    public void moveZeroes2(int[] nums) {
+      for (int slow = 0, fast = 0; fast < nums.length; fast++)
+        if (nums[fast] != 0) {
+          //                    swap(nums, slow++, fast);
+          // 快慢指针索引值相同时，不交换
+          if (fast > slow) {
+            nums[slow] = nums[fast];
+            nums[fast] = 0;
+          }
+          slow++;
         }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 补零法
+    public void moveZeroes3(int[] nums) {
+      int idx = 0;
+      int length = nums.length;
+      // 非零值覆盖
+      for (int i = 0; i < length; i++)
+        if (nums[i] != 0)
+          nums[idx++] = nums[i];
+      // 补零
+      for (int i = idx; i < length; i++)
+        nums[i] = 0;
+    }
+    
+    // 快慢指针
+    public void moveZeroes4(int[] nums) {
+      //  all in [idx,i) = 0
+      int i = 0;
+      int length = nums.length;
+      while (i < length && nums[i] != 0)
+        i++;
+      for (int idx = i++; i < length; i++)
+        if (nums[i] != 0) {
+          nums[idx++] = nums[i];
+          nums[i] = 0;
+        }
+    }
+    
+    // 快慢指针
+    public void moveZeroes5(int[] nums) {
+      //  all in (idx,i) = 0
+      int i = 0;
+      int length = nums.length;
+      while (i < length && nums[i] != 0)
+        i++;
+      for (int idx = i++ - 1; i < length; i++)
+        if (nums[i] != 0) {
+          nums[++idx] = nums[i];
+          nums[i] = 0;
+        }
+    }
+    
+    // 自定义排序
+    public void moveZeroes6(int[] nums) {
+      List<Integer> list = Arrays.stream(nums).boxed().sorted((o1, o2) -> {
+        if (o1.equals(0) ^ o2.equals(0)) return o1.equals(0) ? 1 : -1;
+        return 0;
+      }).toList();
+      for (int i = 0; i < list.size(); i++)
+        nums[i] = list.get(i);
+    }
+    
+    public static void swap(int[] arr, int i, int j) {
+      int tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

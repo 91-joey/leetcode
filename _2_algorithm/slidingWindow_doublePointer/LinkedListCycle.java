@@ -55,48 +55,48 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//141.环形链表
-//开题时间：2022-10-21 17:02:58
+// 141.环形链表
+// 开题时间：2022-10-21 17:02:58
 public class LinkedListCycle {
-    public static void main(String[] args) {
-        Solution solution = new LinkedListCycle().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LinkedListCycle().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode(int x) {
+   * val = x;
+   * next = null;
+   * }
+   * }
+   */
+  public class Solution {
+    public boolean hasCycle(ListNode head) {
+      if (head == null)
+        return false;
+      for (ListNode slow = head, fast = head.next; fast != null && fast.next != null; slow = slow.next, fast = fast.next.next)
+        if (slow == fast)
+          return true;
+      return false;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) {
-     * val = x;
-     * next = null;
-     * }
-     * }
-     */
-    public class Solution {
-        public boolean hasCycle(ListNode head) {
-            if (head == null)
-                return false;
-            for (ListNode slow = head, fast = head.next; fast != null && fast.next != null; slow = slow.next, fast = fast.next.next)
-                if (slow == fast)
-                    return true;
-            return false;
-        }
-
-        public boolean hasCycle2(ListNode head) {
-            for (int i = 0; i < 10001; i++, head = head.next)
-                if (head == null)
-                    return false;
-            return true;
-        }
-
-        public boolean hasCycle3(ListNode head) {
-            for (ListNode fast = head; fast != null && fast.next != null; )
-                if ((head = head.next) == (fast = fast.next.next))
-                    return true;
-            return false;
-        }
+    
+    public boolean hasCycle2(ListNode head) {
+      for (int i = 0; i < 10001; i++, head = head.next)
+        if (head == null)
+          return false;
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public boolean hasCycle3(ListNode head) {
+      for (ListNode fast = head; fast != null && fast.next != null; )
+        if ((head = head.next) == (fast = fast.next.next))
+          return true;
+      return false;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

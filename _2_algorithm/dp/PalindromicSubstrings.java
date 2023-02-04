@@ -35,51 +35,51 @@
 //<div><li>👍 1037</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//647.回文子串
-//开题时间：2022-12-20 14:33:11
+// 647.回文子串
+// 开题时间：2022-12-20 14:33:11
 public class PalindromicSubstrings {
-    public static void main(String[] args) {
-        Solution solution = new PalindromicSubstrings().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new PalindromicSubstrings().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    //☆☆☆☆ 中心扩散法
+    public int countSubstrings9(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      
+      int ans = 1;
+      for (int i = 0; i < n - 1; i++)
+        ans += centerSpread(cs, i, i) + centerSpread(cs, i, i + 1);
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //☆☆☆☆ 中心扩散法
-        public int countSubstrings9(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-
-            int ans = 1;
-            for (int i = 0; i < n - 1; i++)
-                ans += centerSpread(cs, i, i) + centerSpread(cs, i, i + 1);
-
-            return ans;
-        }
-
-        private int centerSpread(char[] cs, int l, int r) {
-            while (0 <= l && r < cs.length && cs[l] == cs[r]) {
-                l--;
-                r++;
-            }
-            return (r - l) / 2;
-        }
-
-        //DP（滚动数组）
-        public int countSubstrings(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            boolean[] f = new boolean[n];
-
-            int ans = n;
-            for (int i = n - 2; i >= 0; i--)
-                for (int j = n - 1; j >= i + 1; j--) {
-                    f[j] = (j - i <= 2 || f[j - 1]) && cs[i] == cs[j];
-                    if (f[j])
-                        ans++;
-                }
-
-            return ans;
-        }
+    
+    private int centerSpread(char[] cs, int l, int r) {
+      while (0 <= l && r < cs.length && cs[l] == cs[r]) {
+        l--;
+        r++;
+      }
+      return (r - l) / 2;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // DP（滚动数组）
+    public int countSubstrings(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      boolean[] f = new boolean[n];
+      
+      int ans = n;
+      for (int i = n - 2; i >= 0; i--)
+        for (int j = n - 1; j >= i + 1; j--) {
+          f[j] = (j - i <= 2 || f[j - 1]) && cs[i] == cs[j];
+          if (f[j])
+            ans++;
+        }
+      
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -24,7 +24,7 @@
 //<b>输入：</b>obstacles = [0,1,2,3,0]
 //<b>输出：</b>2 
 //<b>解释：</b>最优方案如上图箭头所示。总共有 2 次侧跳（红色箭头）。
-//注意，这只青蛙只有当侧跳时才可以跳过障碍（如上图点 2 处所示）。
+// 注意，这只青蛙只有当侧跳时才可以跳过障碍（如上图点 2 处所示）。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p> 
@@ -61,111 +61,111 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//1824.最少侧跳次数
-//开题时间：2023-01-21 10:22:13
+// 1824.最少侧跳次数
+// 开题时间：2023-01-21 10:22:13
 public class MinimumSidewayJumps {
-    public static void main(String[] args) {
-        Solution solution = new MinimumSidewayJumps().new Solution();
-        System.out.println(solution.minSideJumps(new int[]{0, 1, 2, 3, 0}));
+  public static void main(String[] args) {
+    Solution solution = new MinimumSidewayJumps().new Solution();
+    System.out.println(solution.minSideJumps(new int[]{0, 1, 2, 3, 0}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // BFS（路径总长 = 前跳路径长（固定为 n) + 侧跳路径长）
+    public int minSideJumps9(int[] obstacles) {
+      int n = obstacles.length;
+      Queue<int[]> q = new LinkedList<>();
+      q.offer(new int[]{0, 1});
+      boolean[][] vis = new boolean[n][3];
+      vis[0][1] = true;
+      for (int i = 0; i < n; i++)
+        if (obstacles[i] != 0)
+          vis[i][obstacles[i] - 1] = true;
+      
+      int step = -n + 2;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int pos = poll[0], lane = poll[1];
+          
+          if (pos == n - 2)
+            return step;
+          
+          if (!vis[pos + 1][lane]) {
+            q.offer(new int[]{pos + 1, lane});
+            vis[pos + 1][lane] = true;
+          }
+          
+          for (int j = 0; j < 3; j++) {
+            if (!vis[pos][j]) {
+              q.offer(new int[]{pos, j});
+              vis[pos][j] = true;
+            }
+          }
+        }
+        step++;
+      }
+      
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //BFS（路径总长 = 前跳路径长（固定为 n) + 侧跳路径长）
-        public int minSideJumps9(int[] obstacles) {
-            int n = obstacles.length;
-            Queue<int[]> q = new LinkedList<>();
-            q.offer(new int[]{0, 1});
-            boolean[][] vis = new boolean[n][3];
-            vis[0][1] = true;
-            for (int i = 0; i < n; i++)
-                if (obstacles[i] != 0)
-                    vis[i][obstacles[i] - 1] = true;
-
-            int step = -n + 2;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    int pos = poll[0], lane = poll[1];
-
-                    if (pos == n - 2)
-                        return step;
-
-                    if (!vis[pos + 1][lane]) {
-                        q.offer(new int[]{pos + 1, lane});
-                        vis[pos + 1][lane] = true;
-                    }
-
-                    for (int j = 0; j < 3; j++) {
-                        if (!vis[pos][j]) {
-                            q.offer(new int[]{pos, j});
-                            vis[pos][j] = true;
-                        }
-                    }
-                }
-                step++;
-            }
-
-            return -1;
-        }
-
-        //dp
-        public int minSideJumps8(int[] obstacles) {
-            int n = obstacles.length;
-            int[][] f = new int[n][3];
-            f[0][1] = 0;
-            f[0][0] = f[0][2] = 1;
-            for (int i = 1; i < n; i++)
-                Arrays.fill(f[i], 0x3f3f3f3f);
-            for (int i = 1; i < n; i++) {
-                for (int j = 0; j < 3; j++)
-                    if (obstacles[i] != j + 1)
-                        f[i][j] = f[i - 1][j];
-                for (int j = 0; j < 3; j++)
-                    if (obstacles[i] != j + 1)
-                        f[i][j] = Math.min(f[i][j], Math.min(f[i][(j + 1) % 3], f[i][(j + 2) % 3]) + 1);
-            }
-            return Math.min(f[n - 1][0], Math.min(f[n - 1][1], f[n - 1][2]));
-        }
-
-        //dp优化（滚动数组）
-        public int minSideJumps7(int[] obstacles) {
-            int n = obstacles.length;
-            int[] f = new int[3];
-            f[0] = f[2] = 1;
-            for (int i = 1; i < n; i++) {
-                for (int j = 0; j < 3; j++)
-                    if (obstacles[i] == j + 1)
-                        f[j] = 0x3f3f3f3f;
-                for (int j = 0; j < 3; j++)
-                    if (obstacles[i] != j + 1)
-                        f[j] = Math.min(f[j], Math.min(f[(j + 1) % 3], f[(j + 2) % 3]) + 1);
-            }
-            return Math.min(f[0], Math.min(f[1], f[2]));
-        }
-
-        /*
-         * ☆☆☆☆☆ 贪心
-         * 1.一直前跳，直到遇到障碍。
-         * 2.此时，需要侧跳，有 2 个落地点（若有障碍，则包括障碍）
-         *  我们从 2 个落地点同时出发，直到遇到障碍，我们选择没有遇到障碍的跑道，继续步骤1。
-         */
-        public int minSideJumps(int[] obstacles) {
-            int n = obstacles.length;
-            int ans = 0;
-            for (int i = 0, lane = 1; i < n - 1; i++) {
-                int lanePlus = lane + 1;
-                if (obstacles[i + 1] != lanePlus)
-                    continue;
-                while (i < n - 1 && (obstacles[i] == lanePlus || obstacles[i] == 0))
-                    i++;
-                int one = lanePlus % 3;
-                lane = obstacles[i] == one + 1 ? (lane + 2) % 3 : one;
-                i--;
-                ans++;
-            }
-            return ans;
-        }
+    
+    // dp
+    public int minSideJumps8(int[] obstacles) {
+      int n = obstacles.length;
+      int[][] f = new int[n][3];
+      f[0][1] = 0;
+      f[0][0] = f[0][2] = 1;
+      for (int i = 1; i < n; i++)
+        Arrays.fill(f[i], 0x3f3f3f3f);
+      for (int i = 1; i < n; i++) {
+        for (int j = 0; j < 3; j++)
+          if (obstacles[i] != j + 1)
+            f[i][j] = f[i - 1][j];
+        for (int j = 0; j < 3; j++)
+          if (obstacles[i] != j + 1)
+            f[i][j] = Math.min(f[i][j], Math.min(f[i][(j + 1) % 3], f[i][(j + 2) % 3]) + 1);
+      }
+      return Math.min(f[n - 1][0], Math.min(f[n - 1][1], f[n - 1][2]));
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // dp优化（滚动数组）
+    public int minSideJumps7(int[] obstacles) {
+      int n = obstacles.length;
+      int[] f = new int[3];
+      f[0] = f[2] = 1;
+      for (int i = 1; i < n; i++) {
+        for (int j = 0; j < 3; j++)
+          if (obstacles[i] == j + 1)
+            f[j] = 0x3f3f3f3f;
+        for (int j = 0; j < 3; j++)
+          if (obstacles[i] != j + 1)
+            f[j] = Math.min(f[j], Math.min(f[(j + 1) % 3], f[(j + 2) % 3]) + 1);
+      }
+      return Math.min(f[0], Math.min(f[1], f[2]));
+    }
+    
+    /*
+     * ☆☆☆☆☆ 贪心
+     * 1.一直前跳，直到遇到障碍。
+     * 2.此时，需要侧跳，有 2 个落地点（若有障碍，则包括障碍）
+     *  我们从 2 个落地点同时出发，直到遇到障碍，我们选择没有遇到障碍的跑道，继续步骤1。
+     */
+    public int minSideJumps(int[] obstacles) {
+      int n = obstacles.length;
+      int ans = 0;
+      for (int i = 0, lane = 1; i < n - 1; i++) {
+        int lanePlus = lane + 1;
+        if (obstacles[i + 1] != lanePlus)
+          continue;
+        while (i < n - 1 && (obstacles[i] == lanePlus || obstacles[i] == 0))
+          i++;
+        int one = lanePlus % 3;
+        lane = obstacles[i] == one + 1 ? (lane + 2) % 3 : one;
+        i--;
+        ans++;
+      }
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

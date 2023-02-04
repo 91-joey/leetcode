@@ -59,81 +59,81 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-//1615.最大网络秩
-//开题时间：2023-01-14 11:02:53
+// 1615.最大网络秩
+// 开题时间：2023-01-14 11:02:53
 public class MaximalNetworkRank {
-    public static void main(String[] args) {
-        Solution solution = new MaximalNetworkRank().new Solution();
-//        System.out.println(solution.maximalNetworkRank(5, Tools.to2DIntArray("[[2,3],[0,3],[0,4],[4,1]]")));
-        System.out.println(solution.maximalNetworkRank(8, Tools.to2DIntArray("[[0,1],[1,2],[2,3],[2,4],[5,6],[5,7]]")));
-        System.out.println(-1 / 2);
+  public static void main(String[] args) {
+    Solution solution = new MaximalNetworkRank().new Solution();
+    //        System.out.println(solution.maximalNetworkRank(5, Tools.to2DIntArray("[[2,3],[0,3],[0,4],[4,1]]")));
+    System.out.println(solution.maximalNetworkRank(8, Tools.to2DIntArray("[[0,1],[1,2],[2,3],[2,4],[5,6],[5,7]]")));
+    System.out.println(-1 / 2);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力枚举  m+n^2   n^2
+    public int maximalNetworkRank9(int n, int[][] roads) {
+      int[] inDeg = new int[n];
+      boolean[][] g = new boolean[n][n];
+      for (int[] road : roads) {
+        inDeg[road[0]]++;
+        inDeg[road[1]]++;
+        g[road[0]][road[1]] = g[road[1]][road[0]] = true;
+      }
+      
+      int max = 0;
+      for (int i = 0; i < n - 1; i++)
+        for (int j = i + 1; j < n; j++)
+          max = Math.max(max, inDeg[i] + inDeg[j] - (g[i][j] ? 1 : 0));
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力枚举  m+n^2   n^2
-        public int maximalNetworkRank9(int n, int[][] roads) {
-            int[] inDeg = new int[n];
-            boolean[][] g = new boolean[n][n];
-            for (int[] road : roads) {
-                inDeg[road[0]]++;
-                inDeg[road[1]]++;
-                g[road[0]][road[1]] = g[road[1]][road[0]] = true;
-            }
-
-            int max = 0;
-            for (int i = 0; i < n - 1; i++)
-                for (int j = i + 1; j < n; j++)
-                    max = Math.max(max, inDeg[i] + inDeg[j] - (g[i][j] ? 1 : 0));
-
-            return max;
-        }
-
-        //枚举优化（统计最大次大入度值的顶点集合）  m + n
-        public int maximalNetworkRank(int n, int[][] roads) {
-            int[] inDeg = new int[n];
-            Set<Integer>[] g = new HashSet[n];
-            for (int i = 0; i < n; i++)
-                g[i] = new HashSet<>();
-            for (int[] road : roads) {
-                inDeg[road[0]]++;
-                inDeg[road[1]]++;
-                g[road[0]].add(road[1]);
-                g[road[1]].add(road[0]);
-            }
-
-            int first = 0, second = -1;
-            for (int i = 0; i < n; i++)
-                if (first < inDeg[i]) {
-                    second = first;
-                    first = inDeg[i];
-                } else if (second < inDeg[i])
-                    second = inDeg[i];
-
-            List<Integer> firstList = new ArrayList<>(), secondList = new ArrayList<>();
-            for (int i = 0; i < n; i++)
-                if (first == inDeg[i])
-                    firstList.add(i);
-                else if (second == inDeg[i])
-                    secondList.add(i);
-
-            int size = firstList.size();
-            if (size == 1) {
-                int firstIdx = firstList.get(0);
-                for (int secondIdx : secondList)
-                    if (!g[firstIdx].contains(secondIdx))
-                        return first + second;
-                return first + second - 1;
-            } else {
-                if (size * (size - 1) / 2 > roads.length)
-                    return first * 2;
-                for (int i = 0; i < size - 1; i++)
-                    for (int j = i + 1; j < size; j++)
-                        if (!g[firstList.get(i)].contains(firstList.get(j)))
-                            return first * 2;
-                return first * 2 - 1;
-            }
-        }
+    
+    // 枚举优化（统计最大次大入度值的顶点集合）  m + n
+    public int maximalNetworkRank(int n, int[][] roads) {
+      int[] inDeg = new int[n];
+      Set<Integer>[] g = new HashSet[n];
+      for (int i = 0; i < n; i++)
+        g[i] = new HashSet<>();
+      for (int[] road : roads) {
+        inDeg[road[0]]++;
+        inDeg[road[1]]++;
+        g[road[0]].add(road[1]);
+        g[road[1]].add(road[0]);
+      }
+      
+      int first = 0, second = -1;
+      for (int i = 0; i < n; i++)
+        if (first < inDeg[i]) {
+          second = first;
+          first = inDeg[i];
+        } else if (second < inDeg[i])
+          second = inDeg[i];
+      
+      List<Integer> firstList = new ArrayList<>(), secondList = new ArrayList<>();
+      for (int i = 0; i < n; i++)
+        if (first == inDeg[i])
+          firstList.add(i);
+        else if (second == inDeg[i])
+          secondList.add(i);
+      
+      int size = firstList.size();
+      if (size == 1) {
+        int firstIdx = firstList.get(0);
+        for (int secondIdx : secondList)
+          if (!g[firstIdx].contains(secondIdx))
+            return first + second;
+        return first + second - 1;
+      } else {
+        if (size * (size - 1) / 2 > roads.length)
+          return first * 2;
+        for (int i = 0; i < size - 1; i++)
+          for (int j = i + 1; j < size; j++)
+            if (!g[firstList.get(i)].contains(firstList.get(j)))
+              return first * 2;
+        return first * 2 - 1;
+      }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

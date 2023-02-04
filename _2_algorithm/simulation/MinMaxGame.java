@@ -22,10 +22,10 @@
 //<strong>输入：</strong>nums = [1,3,5,2,4,8,2,2]
 //<strong>输出：</strong>1
 //<strong>解释：</strong>重复执行算法会得到下述数组。
-//第一轮：nums = [1,5,4,2]
-//第二轮：nums = [1,4]
-//第三轮：nums = [1]
-//1 是最后剩下的那个数字，返回 1 。
+// 第一轮：nums = [1,5,4,2]
+// 第二轮：nums = [1,4]
+// 第三轮：nums = [1]
+// 1 是最后剩下的那个数字，返回 1 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -49,61 +49,61 @@
 //<div><li>👍 19</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.simulation;
 
-//2293.极大极小游戏
-//开题时间：2023-01-15 08:50:43
+// 2293.极大极小游戏
+// 开题时间：2023-01-15 08:50:43
 public class MinMaxGame {
-    public static void main(String[] args) {
-        Solution solution = new MinMaxGame().new Solution();
-        System.out.println(solution.minMaxGame(new int[]{1, 3, 5, 2, 4, 8, 2, 2}));
+  public static void main(String[] args) {
+    Solution solution = new MinMaxGame().new Solution();
+    System.out.println(solution.minMaxGame(new int[]{1, 3, 5, 2, 4, 8, 2, 2}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 模拟 + 递归 + 新建数组
+    public int minMaxGame9(int[] nums) {
+      int n = nums.length;
+      if (n == 1)
+        return nums[0];
+      int[] arr = new int[n / 2];
+      for (int i = 0; i < n / 2; i++) {
+        arr[i] = i % 2 == 0 ?
+            Math.min(nums[2 * i], nums[2 * i + 1]) :
+            Math.max(nums[2 * i], nums[2 * i + 1]);
+      }
+      return minMaxGame(arr);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //模拟 + 递归 + 新建数组
-        public int minMaxGame9(int[] nums) {
-            int n = nums.length;
-            if (n == 1)
-                return nums[0];
-            int[] arr = new int[n / 2];
-            for (int i = 0; i < n / 2; i++) {
-                arr[i] = i % 2 == 0 ?
-                        Math.min(nums[2 * i], nums[2 * i + 1]) :
-                        Math.max(nums[2 * i], nums[2 * i + 1]);
-            }
-            return minMaxGame(arr);
+    
+    // 模拟 + 迭代 + 原地修改（复杂）
+    public int minMaxGame8(int[] nums) {
+      for (int i = 1, n = nums.length; n > 1; i <<= 1, n >>= 1) {
+        for (int j = 0, k = 0; j < n / 2; j++, k += 2 * i) {
+          nums[k] = j % 2 == 0 ?
+              Math.min(nums[k], nums[k + i]) :
+              Math.max(nums[k], nums[k + i]);
         }
-
-        //模拟 + 迭代 + 原地修改（复杂）
-        public int minMaxGame8(int[] nums) {
-            for (int i = 1, n = nums.length; n > 1; i <<= 1, n >>= 1) {
-                for (int j = 0, k = 0; j < n / 2; j++, k += 2 * i) {
-                    nums[k] = j % 2 == 0 ?
-                            Math.min(nums[k], nums[k + i]) :
-                            Math.max(nums[k], nums[k + i]);
-                }
-            }
-            return nums[0];
-        }
-
-        //模拟 + 迭代 + 原地修改（精简）
-        public int minMaxGame7(int[] nums) {
-            for (int n = nums.length; n > 1; n >>= 1)
-                for (int i = 0; i < n / 2; i++)
-                    nums[i] = i % 2 == 0 ?
-                            Math.min(nums[2 * i], nums[2 * i + 1]) :
-                            Math.max(nums[2 * i], nums[2 * i + 1]);
-            return nums[0];
-        }
-
-        //☆☆☆☆☆ 模拟 + 迭代 + 原地修改（精简）（优化：省去索引奇偶性的判断）
-        public int minMaxGame(int[] nums) {
-            for (int n = nums.length; n > 2; n >>= 1)
-                for (int i = 0; i < n / 2; ) {
-                    nums[i] = Math.min(nums[2 * i], nums[2 * i++ + 1]);
-                    nums[i] = Math.max(nums[2 * i], nums[2 * i++ + 1]);
-                }
-            return nums.length == 1 ? nums[0] : Math.min(nums[0], nums[1]);
-        }
+      }
+      return nums[0];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 模拟 + 迭代 + 原地修改（精简）
+    public int minMaxGame7(int[] nums) {
+      for (int n = nums.length; n > 1; n >>= 1)
+        for (int i = 0; i < n / 2; i++)
+          nums[i] = i % 2 == 0 ?
+              Math.min(nums[2 * i], nums[2 * i + 1]) :
+              Math.max(nums[2 * i], nums[2 * i + 1]);
+      return nums[0];
+    }
+    
+    //☆☆☆☆☆ 模拟 + 迭代 + 原地修改（精简）（优化：省去索引奇偶性的判断）
+    public int minMaxGame(int[] nums) {
+      for (int n = nums.length; n > 2; n >>= 1)
+        for (int i = 0; i < n / 2; ) {
+          nums[i] = Math.min(nums[2 * i], nums[2 * i++ + 1]);
+          nums[i] = Math.max(nums[2 * i], nums[2 * i++ + 1]);
+        }
+      return nums.length == 1 ? nums[0] : Math.min(nums[0], nums[1]);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

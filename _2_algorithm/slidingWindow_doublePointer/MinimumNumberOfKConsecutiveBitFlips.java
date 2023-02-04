@@ -30,9 +30,9 @@
 //<strong>输入：</strong>nums = [0,0,0,1,0,1,1,0], K = 3
 //<strong>输出：</strong>3
 //<strong>解释：</strong>
-//翻转 A[0],A[1],A[2]:&nbsp;A变成 [1,1,1,1,0,1,1,0]
-//翻转 A[4],A[5],A[6]:&nbsp;A变成 [1,1,1,1,1,0,0,0]
-//翻转 A[5],A[6],A[7]:&nbsp;A变成 [1,1,1,1,1,1,1,1]
+// 翻转 A[0],A[1],A[2]:&nbsp;A变成 [1,1,1,1,0,1,1,0]
+// 翻转 A[4],A[5],A[6]:&nbsp;A变成 [1,1,1,1,1,0,0,0]
+// 翻转 A[5],A[6],A[7]:&nbsp;A变成 [1,1,1,1,1,1,1,1]
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -49,58 +49,58 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import java.util.LinkedList;
 
-//995.K 连续位的最小翻转次数
-//开题时间：2022-10-10 09:02:21
+// 995.K 连续位的最小翻转次数
+// 开题时间：2022-10-10 09:02:21
 public class MinimumNumberOfKConsecutiveBitFlips {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfKConsecutiveBitFlips().new Solution();
-        System.out.println(solution.minKBitFlips(new int[]{0, 0, 0, 1, 0, 1, 1, 0}, 3));
-        System.out.println(Integer.toBinaryString(0));
-        System.out.println(Integer.toBinaryString(1));
-        System.out.println(Integer.toBinaryString(-1));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //模拟翻转（超时）
-        public int minKBitFlips(int[] nums, int k) {
-            int cnt = 0;
-            int len = nums.length;
-            for (int i = 0; i <= len - k; i++)
-                if (nums[i] == 0) {
-                    for (int j = i; j < i + k; j++)
-                        nums[j] = (nums[j] + 1) % 2;
-                    cnt++;
-                }
-
-            for (int i = len - k + 1; i < len; i++)
-                if (nums[i] == 0)
-                    return -1;
-
-            return cnt;
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfKConsecutiveBitFlips().new Solution();
+    System.out.println(solution.minKBitFlips(new int[]{0, 0, 0, 1, 0, 1, 1, 0}, 3));
+    System.out.println(Integer.toBinaryString(0));
+    System.out.println(Integer.toBinaryString(1));
+    System.out.println(Integer.toBinaryString(-1));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 模拟翻转（超时）
+    public int minKBitFlips(int[] nums, int k) {
+      int cnt = 0;
+      int len = nums.length;
+      for (int i = 0; i <= len - k; i++)
+        if (nums[i] == 0) {
+          for (int j = i; j < i + k; j++)
+            nums[j] = (nums[j] + 1) % 2;
+          cnt++;
         }
-
-        //队列模拟滑动窗口
-        public int minKBitFlips2(int[] nums, int k) {
-            int len = nums.length;
-            LinkedList<Integer> q = new LinkedList<>();
-            int cnt = 0;
-
-            for (int i = 0; i < len; i++) {
-                if (!q.isEmpty() && q.peek() + k <= i)
-                    q.poll();
-
-                if (q.size() % 2 == nums[i]) {
-                    if (i > len - k)
-                        return -1;
-                    q.offer(i);
-                    cnt++;
-                }
-            }
-
-            return cnt;
-        }
-
+      
+      for (int i = len - k + 1; i < len; i++)
+        if (nums[i] == 0)
+          return -1;
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 队列模拟滑动窗口
+    public int minKBitFlips2(int[] nums, int k) {
+      int len = nums.length;
+      LinkedList<Integer> q = new LinkedList<>();
+      int cnt = 0;
+      
+      for (int i = 0; i < len; i++) {
+        if (!q.isEmpty() && q.peek() + k <= i)
+          q.poll();
+        
+        if (q.size() % 2 == nums[i]) {
+          if (i > len - k)
+            return -1;
+          q.offer(i);
+          cnt++;
+        }
+      }
+      
+      return cnt;
+    }
+    
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

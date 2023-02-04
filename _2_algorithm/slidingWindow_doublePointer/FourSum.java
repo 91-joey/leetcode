@@ -41,64 +41,64 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//18.四数之和
-//开题时间：2022-10-24 10:57:35
+// 18.四数之和
+// 开题时间：2022-10-24 10:57:35
 public class FourSum {
-    public static void main(String[] args) {
-        Solution solution = new FourSum().new Solution();
-//        System.out.println(solution.fourSum(new int[]{-1, 0, 1, 2, -1, -4}, -1));
-        System.out.println(solution.fourSum(new int[]{0, 0, 0, 1000000000, 1000000000, 1000000000, 1000000000}, 1000000000));
-        System.out.println(-3E10 + "~" + 3E10);
-        System.out.println(1_000_000_000 * 3);
-        System.out.println(-1_000_000_000 * 3);
-        //溢出最小值-2147483648时，target必>0，-10^9 <= a <=b <= -573741824       -2*10^9 <= -(c+d) <= -1147483648
-        System.out.println("[-2147483648,-1294967296]");
-        System.out.println("[+1294967296,+2147483648]");
-        System.out.println((-2147483648 + 1000000000) / 2);
-        System.out.println(-573741825 * 2 - 1000_000_000);
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<List<Integer>> fourSum(int[] nums, int target) {
-            List<List<Integer>> res = new ArrayList<>();
-            Arrays.sort(nums);
-            int len = nums.length;
-            if (len < 4 ||
-                    target > (long) nums[len - 1] + nums[len - 2] + nums[len - 3] + nums[len - 4])
-                return res;
-
-            for (int i = 0; i < len - 3; ) {
-                long ti = (long) target - nums[i];
-                if (ti < (long) nums[i + 1] + nums[i + 2] + nums[i + 3]) break;
-                if (ti > (long) nums[len - 1] + nums[len - 2] + nums[len - 3]) {
-                    i++;
-                    continue;
-                }
-                for (int j = i + 1; j < len - 2; ) {
-                    long tj = ti - nums[j];
-                    if (tj < nums[j + 1] + nums[j + 2]) break;
-                    if (tj > nums[len - 1] + nums[len - 2]) {
-                        j++;
-                        continue;
-                    }
-                    for (int l = j + 1, r = len - 1; l < r; ) {
-                        int sum = nums[l] + nums[r];
-                        if (sum == tj) {
-                            res.add(Arrays.asList(nums[i], nums[j], nums[l], nums[r]));
-                            while (l < r && nums[l] == nums[++l]) ;
-                            while (l < r && nums[r] == nums[--r]) ;
-                        } else if (sum < tj)
-                            l++;
-                        else
-                            r--;
-                    }
-                    while (j < len - 2 && nums[j] == nums[++j]) ;
-                }
-                while (i < len - 3 && nums[i] == nums[++i]) ;
-            }
-            return res;
+  public static void main(String[] args) {
+    Solution solution = new FourSum().new Solution();
+    //        System.out.println(solution.fourSum(new int[]{-1, 0, 1, 2, -1, -4}, -1));
+    System.out.println(solution.fourSum(new int[]{0, 0, 0, 1000000000, 1000000000, 1000000000, 1000000000}, 1000000000));
+    System.out.println(-3E10 + "~" + 3E10);
+    System.out.println(1_000_000_000 * 3);
+    System.out.println(-1_000_000_000 * 3);
+    // 溢出最小值-2147483648时，target必>0，-10^9 <= a <=b <= -573741824       -2*10^9 <= -(c+d) <= -1147483648
+    System.out.println("[-2147483648,-1294967296]");
+    System.out.println("[+1294967296,+2147483648]");
+    System.out.println((-2147483648 + 1000000000) / 2);
+    System.out.println(-573741825 * 2 - 1000_000_000);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+      List<List<Integer>> res = new ArrayList<>();
+      Arrays.sort(nums);
+      int len = nums.length;
+      if (len < 4 ||
+          target > (long) nums[len - 1] + nums[len - 2] + nums[len - 3] + nums[len - 4])
+        return res;
+      
+      for (int i = 0; i < len - 3; ) {
+        long ti = (long) target - nums[i];
+        if (ti < (long) nums[i + 1] + nums[i + 2] + nums[i + 3]) break;
+        if (ti > (long) nums[len - 1] + nums[len - 2] + nums[len - 3]) {
+          i++;
+          continue;
         }
+        for (int j = i + 1; j < len - 2; ) {
+          long tj = ti - nums[j];
+          if (tj < nums[j + 1] + nums[j + 2]) break;
+          if (tj > nums[len - 1] + nums[len - 2]) {
+            j++;
+            continue;
+          }
+          for (int l = j + 1, r = len - 1; l < r; ) {
+            int sum = nums[l] + nums[r];
+            if (sum == tj) {
+              res.add(Arrays.asList(nums[i], nums[j], nums[l], nums[r]));
+              while (l < r && nums[l] == nums[++l]) ;
+              while (l < r && nums[r] == nums[--r]) ;
+            } else if (sum < tj)
+              l++;
+            else
+              r--;
+          }
+          while (j < len - 2 && nums[j] == nums[++j]) ;
+        }
+        while (i < len - 3 && nums[i] == nums[++i]) ;
+      }
+      return res;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

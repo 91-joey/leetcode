@@ -29,7 +29,7 @@
 //- 选择 1 号基料：成本 7
 //- 选择 1 份 0 号配料：成本 1 x 3 = 3
 //- 选择 0 份 1 号配料：成本 0 x 4 = 0
-//总成本：7 + 3 + 0 = 10 。
+// 总成本：7 + 3 + 0 = 10 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -42,7 +42,7 @@
 //- 选择 1 份 0 号配料：成本 1 x 4 = 4
 //- 选择 2 份 1 号配料：成本 2 x 5 = 10
 //- 选择 0 份 2 号配料：成本 0 x 100 = 0
-//总成本：3 + 4 + 10 + 0 = 17 。不存在总成本为 18 的甜点制作方案。
+// 总成本：3 + 4 + 10 + 0 = 17 。不存在总成本为 18 的甜点制作方案。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -75,69 +75,69 @@
 //<div><li>👍 93</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//1774.最接近目标价格的甜点成本
-//开题时间：2022-12-04 14:43:13
+// 1774.最接近目标价格的甜点成本
+// 开题时间：2022-12-04 14:43:13
 public class ClosestDessertCost {
-    public static void main(String[] args) {
-        Solution solution = new ClosestDessertCost().new Solution();
-        System.out.println(solution.closestCost(new int[]{2, 3}, new int[]{4, 5, 100}, 18));
+  public static void main(String[] args) {
+    Solution solution = new ClosestDessertCost().new Solution();
+    System.out.println(solution.closestCost(new int[]{2, 3}, new int[]{4, 5, 100}, 18));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 三进制枚举法
+    public int closestCost9(int[] baseCosts, int[] toppingCosts, int target) {
+      int l = Integer.MIN_VALUE, r = Integer.MAX_VALUE;
+      
+      int bound = (int) Math.pow(3, toppingCosts.length);
+      for (int base : baseCosts)
+        for (int i = 0; i < bound; i++) {
+          int sum = base;
+          for (int j = i, idx = 0; j != 0; j /= 3, idx++) {
+            int cnt = j % 3;
+            sum += cnt * toppingCosts[idx];
+          }
+          
+          if (sum == target)
+            return target;
+          else if (l < sum && sum < target)
+            l = sum;
+          else if (target < sum && sum < r)
+            r = sum;
+        }
+      
+      return Math.abs(target - l) <= Math.abs(target - r) ? l : r;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //三进制枚举法
-        public int closestCost9(int[] baseCosts, int[] toppingCosts, int target) {
-            int l = Integer.MIN_VALUE, r = Integer.MAX_VALUE;
-
-            int bound = (int) Math.pow(3, toppingCosts.length);
-            for (int base : baseCosts)
-                for (int i = 0; i < bound; i++) {
-                    int sum = base;
-                    for (int j = i, idx = 0; j != 0; j /= 3, idx++) {
-                        int cnt = j % 3;
-                        sum += cnt * toppingCosts[idx];
-                    }
-
-                    if (sum == target)
-                        return target;
-                    else if (l < sum && sum < target)
-                        l = sum;
-                    else if (target < sum && sum < r)
-                        r = sum;
-                }
-
-            return Math.abs(target - l) <= Math.abs(target - r) ? l : r;
-        }
-
-        int ans = Integer.MIN_VALUE;
-
-        //回溯 + DFS（递归）
-        public int closestCost(int[] baseCosts, int[] toppingCosts, int target) {
-            for (int base : baseCosts)
-                dfs(toppingCosts, base, -1, target);
-
-            return ans;
-        }
-
-        private void dfs(int[] toppingCosts, int cost, int i, int target) {
-            int diffAns = Math.abs(target - ans);
-            if (cost - target >= diffAns)
-                return;
-
-            int diffCur = Math.abs(target - cost);
-            if (diffCur < diffAns || (diffCur == diffAns && cost < ans))
-                ans = cost;
-
-            if (i >= toppingCosts.length - 1)
-                return;
-
-            i++;
-            dfs(toppingCosts, cost, i, target);
-            dfs(toppingCosts, cost + toppingCosts[i], i, target);
-            dfs(toppingCosts, cost + toppingCosts[i] * 2, i, target);
-        }
-
-        //todo DP 「01 背包」问题
+    
+    int ans = Integer.MIN_VALUE;
+    
+    // 回溯 + DFS（递归）
+    public int closestCost(int[] baseCosts, int[] toppingCosts, int target) {
+      for (int base : baseCosts)
+        dfs(toppingCosts, base, -1, target);
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private void dfs(int[] toppingCosts, int cost, int i, int target) {
+      int diffAns = Math.abs(target - ans);
+      if (cost - target >= diffAns)
+        return;
+      
+      int diffCur = Math.abs(target - cost);
+      if (diffCur < diffAns || (diffCur == diffAns && cost < ans))
+        ans = cost;
+      
+      if (i >= toppingCosts.length - 1)
+        return;
+      
+      i++;
+      dfs(toppingCosts, cost, i, target);
+      dfs(toppingCosts, cost + toppingCosts[i], i, target);
+      dfs(toppingCosts, cost + toppingCosts[i] * 2, i, target);
+    }
+    
+    // todo DP 「01 背包」问题
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -12,13 +12,13 @@
 //<p>前五项如下：</p>
 //
 //<pre>
-//1.     1
-//2.     11
-//3.     21
-//4.     1211
-//5.     111221
-//第一项是数字 1 
-//描述前一项，这个数是 <span><code>1</code></span> 即 “ 一 个 1 ”，记作 <span><code>"11"
+// 1.     1
+// 2.     11
+// 3.     21
+// 4.     1211
+// 5.     111221
+// 第一项是数字 1
+// 描述前一项，这个数是 <span><code>1</code></span> 即 “ 一 个 1 ”，记作 <span><code>"11"
 //</code></span>描述前一项，这个数是 <span><code>11</code></span> 即 “ 二 个 1 ” ，记作 <span><code>"21"
 //</code></span>描述前一项，这个数是 <span><code>21</code></span> 即 “ 一 个 2 + 一 个 1 ” ，记作 "<span><code>1211"
 //</code></span>描述前一项，这个数是 <span><code>1211</code></span> 即 “ 一 个 1 + 一 个 2 + 二 个 1 ” ，记作 "<span><code>111221"</code></span>
@@ -47,10 +47,10 @@
 //<strong>输入：</strong>n = 4
 //<strong>输出：</strong>"1211"
 //<strong>解释：</strong>
-//countAndSay(1) = "1"
-//countAndSay(2) = 读 "1" = 一 个 1 = "11"
-//countAndSay(3) = 读 "11" = 二 个 1 = "21"
-//countAndSay(4) = 读 "21" = 一 个 2 + 一 个 1 = "12" + "11" = "1211"
+// countAndSay(1) = "1"
+// countAndSay(2) = 读 "1" = 一 个 1 = "11"
+// countAndSay(3) = 读 "11" = 二 个 1 = "21"
+// countAndSay(4) = 读 "21" = 一 个 2 + 一 个 1 = "12" + "11" = "1211"
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -64,52 +64,52 @@
 //<div><li>👍 970</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
-//38.外观数列
-//开题时间：2022-11-19 17:55:43
+// 38.外观数列
+// 开题时间：2022-11-19 17:55:43
 public class CountAndSay {
-    public static void main(String[] args) {
-        Solution solution = new CountAndSay().new Solution();
-        System.out.println(solution.countAndSay(4));
+  public static void main(String[] args) {
+    Solution solution = new CountAndSay().new Solution();
+    System.out.println(solution.countAndSay(4));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 递归
+    public String countAndSay9(int n) {
+      if (n == 1)
+        return "1";
+      
+      String s = countAndSay(n - 1);
+      StringBuilder sb = new StringBuilder();
+      int cnt = 1;
+      for (int i = 1; i < s.length(); i++) {
+        if (s.charAt(i) != s.charAt(i - 1)) {
+          sb.append(cnt).append(s.charAt(i - 1));
+          cnt = 1;
+        } else
+          cnt++;
+      }
+      sb.append(cnt).append(s.charAt(s.length() - 1));
+      return sb.toString();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //递归
-        public String countAndSay9(int n) {
-            if (n == 1)
-                return "1";
-
-            String s = countAndSay(n - 1);
-            StringBuilder sb = new StringBuilder();
-            int cnt = 1;
-            for (int i = 1; i < s.length(); i++) {
-                if (s.charAt(i) != s.charAt(i - 1)) {
-                    sb.append(cnt).append(s.charAt(i - 1));
-                    cnt = 1;
-                } else
-                    cnt++;
-            }
-            sb.append(cnt).append(s.charAt(s.length() - 1));
-            return sb.toString();
+    
+    // 迭代
+    public String countAndSay(int n) {
+      String s = "1";
+      for (int i = 1; i < n; i++) {
+        StringBuilder sb = new StringBuilder();
+        int len = s.length();
+        for (int j = 0; j < len; ) {
+          int k = j + 1;
+          while (k < len && s.charAt(j) == s.charAt(k))
+            k++;
+          sb.append(k - j).append(s.charAt(j));
+          j = k;
         }
-
-        //迭代
-        public String countAndSay(int n) {
-            String s = "1";
-            for (int i = 1; i < n; i++) {
-                StringBuilder sb = new StringBuilder();
-                int len = s.length();
-                for (int j = 0; j < len; ) {
-                    int k = j + 1;
-                    while (k < len && s.charAt(j) == s.charAt(k))
-                        k++;
-                    sb.append(k - j).append(s.charAt(j));
-                    j = k;
-                }
-                s = sb.toString();
-            }
-            return s;
-        }
+        s = sb.toString();
+      }
+      return s;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

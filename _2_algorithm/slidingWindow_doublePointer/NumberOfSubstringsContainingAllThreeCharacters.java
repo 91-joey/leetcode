@@ -36,56 +36,56 @@
 //<div><div>Related Topics</div><div><li>哈希表</li><li>字符串</li><li>滑动窗口</li></div></div><br><div><li>👍 84</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1358.包含所有三种字符的子字符串数目
-//开题时间：2022-10-15 08:58:32
+// 1358.包含所有三种字符的子字符串数目
+// 开题时间：2022-10-15 08:58:32
 public class NumberOfSubstringsContainingAllThreeCharacters {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfSubstringsContainingAllThreeCharacters().new Solution();
-        System.out.println(solution.numberOfSubstrings2("abcabc"));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * aaaabbaacb
-         */
-        //反向子数组区间
-        public int numberOfSubstrings(String s) {
-            int[] freq = new int[100];
-            char[] chars = s.toCharArray();
-            int cnt = 0;
-            //[l,r) abc都至少出现过一次
-            for (int l = 0, r = 0, size = 0; r < chars.length; ) {
-                if (freq[chars[r++]]++ == 0)
-                    size++;
-                if (size == 3) {
-                    while (freq[chars[l]] > 1)
-                        freq[chars[l++]]--;
-                    cnt += l + 1;
-                }
-            }
-            return cnt;
+  public static void main(String[] args) {
+    Solution solution = new NumberOfSubstringsContainingAllThreeCharacters().new Solution();
+    System.out.println(solution.numberOfSubstrings2("abcabc"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * aaaabbaacb
+     */
+    // 反向子数组区间
+    public int numberOfSubstrings(String s) {
+      int[] freq = new int[100];
+      char[] chars = s.toCharArray();
+      int cnt = 0;
+      //[l,r) abc都至少出现过一次
+      for (int l = 0, r = 0, size = 0; r < chars.length; ) {
+        if (freq[chars[r++]]++ == 0)
+          size++;
+        if (size == 3) {
+          while (freq[chars[l]] > 1)
+            freq[chars[l++]]--;
+          cnt += l + 1;
         }
-
-        //正向子数组区间
-        public int numberOfSubstrings2(String s) {
-            int[] freq = new int[100];
-            char[] chars = s.toCharArray();
-            int cnt = 0;
-            int len = chars.length;
-            for (int l = 0, r = 0, size = 0; r < len; r++) {
-                if (freq[chars[r]]++ == 0)
-                    size++;
-                if (size == 3) {
-                    int incre = len - r;
-                    do{
-                        cnt += incre;
-                    }while (freq[chars[l++]]-- > 1);
-                    size = 2;
-                }
-            }
-            return cnt;
-        }
+      }
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 正向子数组区间
+    public int numberOfSubstrings2(String s) {
+      int[] freq = new int[100];
+      char[] chars = s.toCharArray();
+      int cnt = 0;
+      int len = chars.length;
+      for (int l = 0, r = 0, size = 0; r < len; r++) {
+        if (freq[chars[r]]++ == 0)
+          size++;
+        if (size == 3) {
+          int incre = len - r;
+          do {
+            cnt += incre;
+          } while (freq[chars[l++]]-- > 1);
+          size = 2;
+        }
+      }
+      return cnt;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

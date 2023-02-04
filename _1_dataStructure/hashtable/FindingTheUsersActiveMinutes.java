@@ -16,9 +16,9 @@
 //<strong>输入：</strong>logs = [[0,5],[1,2],[0,2],[0,5],[1,3]], k = 5
 //<strong>输出：</strong>[0,2,0,0,0]
 //<strong>解释：</strong>
-//ID=0 的用户执行操作的分钟分别是：5 、2 和 5 。因此，该用户的用户活跃分钟数为 2（分钟 5 只计数一次）
-//ID=1 的用户执行操作的分钟分别是：2 和 3 。因此，该用户的用户活跃分钟数为 2
-//2 个用户的用户活跃分钟数都是 2 ，answer[2] 为 2 ，其余 answer[j] 的值都是 0
+// ID=0 的用户执行操作的分钟分别是：5 、2 和 5 。因此，该用户的用户活跃分钟数为 2（分钟 5 只计数一次）
+// ID=1 的用户执行操作的分钟分别是：2 和 3 。因此，该用户的用户活跃分钟数为 2
+// 2 个用户的用户活跃分钟数都是 2 ，answer[2] 为 2 ，其余 answer[j] 的值都是 0
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -27,10 +27,10 @@
 //<strong>输入：</strong>logs = [[1,1],[2,2],[2,3]], k = 4
 //<strong>输出：</strong>[1,1,0,0]
 //<strong>解释：</strong>
-//ID=1 的用户仅在分钟 1 执行单个操作。因此，该用户的用户活跃分钟数为 1
-//ID=2 的用户执行操作的分钟分别是：2 和 3 。因此，该用户的用户活跃分钟数为 2
-//1 个用户的用户活跃分钟数是 1 ，1 个用户的用户活跃分钟数是 2 
-//因此，answer[1] = 1 ，answer[2] = 1 ，其余的值都是 0
+// ID=1 的用户仅在分钟 1 执行单个操作。因此，该用户的用户活跃分钟数为 1
+// ID=2 的用户执行操作的分钟分别是：2 和 3 。因此，该用户的用户活跃分钟数为 2
+// 1 个用户的用户活跃分钟数是 1 ，1 个用户的用户活跃分钟数是 2
+// 因此，answer[1] = 1 ，answer[2] = 1 ，其余的值都是 0
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -51,47 +51,47 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
-//1817.查找用户活跃分钟数
-//开题时间：2023-01-20 07:39:41
+// 1817.查找用户活跃分钟数
+// 开题时间：2023-01-20 07:39:41
 public class FindingTheUsersActiveMinutes {
-    public static void main(String[] args) {
-        Solution solution = new FindingTheUsersActiveMinutes().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new FindingTheUsersActiveMinutes().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] findingUsersActiveMinutes9(int[][] logs, int k) {
+      HashMap<Integer, Set<Integer>> map = new HashMap<>();
+      for (int[] log : logs) {
+        Set<Integer> set = map.get(log[0]);
+        if (set == null)
+          map.put(log[0], new HashSet<>() {{
+            add(log[1]);
+          }});
+        else
+          set.add(log[1]);
+      }
+      
+      int[] ans = new int[k];
+      for (Set<Integer> set : map.values())
+        ans[set.size() - 1]++;
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] findingUsersActiveMinutes9(int[][] logs, int k) {
-            HashMap<Integer, Set<Integer>> map = new HashMap<>();
-            for (int[] log : logs) {
-                Set<Integer> set = map.get(log[0]);
-                if (set == null)
-                    map.put(log[0], new HashSet<>() {{
-                        add(log[1]);
-                    }});
-                else
-                    set.add(log[1]);
-            }
-
-            int[] ans = new int[k];
-            for (Set<Integer> set : map.values())
-                ans[set.size() - 1]++;
-            return ans;
-        }
-
-        //☆☆☆☆☆ 「哈希映射」套「哈希集合」（简化）
-        public int[] findingUsersActiveMinutes(int[][] logs, int k) {
-            HashMap<Integer, Set<Integer>> id2minutes = new HashMap<>();
-            for (int[] log : logs) {
-                id2minutes.putIfAbsent(log[0], new HashSet<>());
-                id2minutes.get(log[0]).add(log[1]);
-            }
-
-            int[] ans = new int[k];
-            for (Set<Integer> minutes : id2minutes.values())
-                ans[minutes.size() - 1]++;
-            return ans;
-        }
+    
+    //☆☆☆☆☆ 「哈希映射」套「哈希集合」（简化）
+    public int[] findingUsersActiveMinutes(int[][] logs, int k) {
+      HashMap<Integer, Set<Integer>> id2minutes = new HashMap<>();
+      for (int[] log : logs) {
+        id2minutes.putIfAbsent(log[0], new HashSet<>());
+        id2minutes.get(log[0]).add(log[1]);
+      }
+      
+      int[] ans = new int[k];
+      for (Set<Integer> minutes : id2minutes.values())
+        ans[minutes.size() - 1]++;
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

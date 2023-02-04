@@ -55,7 +55,7 @@ public class LetterCasePermutation {
         cs[i] = Character.toLowerCase(cs[i]);
       }
     }
-  
+    
     // ☆☆☆☆☆ 回溯（优化）
     public List<String> letterCasePermutation(String s) {
       ArrayList<String> ans = new ArrayList<>();

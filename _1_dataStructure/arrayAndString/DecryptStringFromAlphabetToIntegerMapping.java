@@ -39,65 +39,65 @@
 //<div><li>👍 75</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1309.解码字母到整数映射
-//开题时间：2022-12-09 09:15:17
+// 1309.解码字母到整数映射
+// 开题时间：2022-12-09 09:15:17
 public class DecryptStringFromAlphabetToIntegerMapping {
-    public static void main(String[] args) {
-        Solution solution = new DecryptStringFromAlphabetToIntegerMapping().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DecryptStringFromAlphabetToIntegerMapping().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 正序遍历
+    public String freqAlphabets9(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      StringBuilder sb = new StringBuilder(n);
+      
+      for (int i = 0; i < n; )
+        if (i + 2 >= n || cs[i + 2] != '#')
+          sb.append((char) (cs[i++] + 'a' - '1'));
+        else {
+          sb.append((char) ((cs[i] - '0') * 10 + cs[i + 1] - '0' + 'j' - 10));
+          i += 3;
+        }
+      
+      return sb.toString();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //正序遍历
-        public String freqAlphabets9(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            StringBuilder sb = new StringBuilder(n);
-
-            for (int i = 0; i < n; )
-                if (i + 2 >= n || cs[i + 2] != '#')
-                    sb.append((char) (cs[i++] + 'a' - '1'));
-                else {
-                    sb.append((char) ((cs[i] - '0') * 10 + cs[i + 1] - '0' + 'j' - 10));
-                    i += 3;
-                }
-
-            return sb.toString();
+    
+    // 倒序遍历
+    public String freqAlphabets8(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      StringBuilder sb = new StringBuilder(n);
+      
+      for (int i = n - 1; i >= 0; )
+        if (cs[i] != '#')
+          sb.append((char) (cs[i--] + 'a' - '1'));
+        else {
+          sb.append((char) ((cs[i - 2] - '0') * 10 + cs[i - 1] - '0' + 'j' - 10));
+          i -= 3;
         }
-
-        //倒序遍历
-        public String freqAlphabets8(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            StringBuilder sb = new StringBuilder(n);
-
-            for (int i = n - 1; i >= 0; )
-                if (cs[i] != '#')
-                    sb.append((char) (cs[i--] + 'a' - '1'));
-                else {
-                    sb.append((char) ((cs[i - 2] - '0') * 10 + cs[i - 1] - '0' + 'j' - 10));
-                    i -= 3;
-                }
-
-            return sb.reverse().toString();
-        }
-
-        //倒序遍历+子字符串转数字
-        public String freqAlphabets(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            StringBuilder sb = new StringBuilder(n);
-
-            for (int i = n - 1; i >= 0; )
-                if (cs[i] != '#')
-                    sb.append((char) (cs[i--] + 'a' - '1'));
-                else {
-                    sb.append((char) (Integer.parseInt(s.substring(i - 2, i)) + 'j' - 10));
-                    i -= 3;
-                }
-
-            return sb.reverse().toString();
-        }
+      
+      return sb.reverse().toString();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 倒序遍历+子字符串转数字
+    public String freqAlphabets(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      StringBuilder sb = new StringBuilder(n);
+      
+      for (int i = n - 1; i >= 0; )
+        if (cs[i] != '#')
+          sb.append((char) (cs[i--] + 'a' - '1'));
+        else {
+          sb.append((char) (Integer.parseInt(s.substring(i - 2, i)) + 'j' - 10));
+          i -= 3;
+        }
+      
+      return sb.reverse().toString();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

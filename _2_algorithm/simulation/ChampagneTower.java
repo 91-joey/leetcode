@@ -44,49 +44,49 @@
 //<div><li>👍 149</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.simulation;
 
-//799.香槟塔
-//开题时间：2022-11-20 09:17:38
+// 799.香槟塔
+// 开题时间：2022-11-20 09:17:38
 public class ChampagneTower {
-    public static void main(String[] args) {
-        Solution solution = new ChampagneTower().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public double champagneTower9(int poured, int query_row, int query_glass) {
-            int len = query_row + 1;
-            double[][] champagnes = new double[len][len];
-            champagnes[0][0] = poured;
-
-            for (int i = 1; i < len; i++) {
-                for (int j = 0; j <= i; j++) {
-                    if (j > 0 && champagnes[i - 1][j - 1] > 1)
-                        champagnes[i][j] += (champagnes[i - 1][j - 1] - 1) / 2.0;
-                    if (j < i && champagnes[i - 1][j] > 1)
-                        champagnes[i][j] += (champagnes[i - 1][j] - 1) / 2.0;
-                }
-            }
-
-            return Math.min(champagnes[query_row][query_glass], 1.0);
+  public static void main(String[] args) {
+    Solution solution = new ChampagneTower().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public double champagneTower9(int poured, int query_row, int query_glass) {
+      int len = query_row + 1;
+      double[][] champagnes = new double[len][len];
+      champagnes[0][0] = poured;
+      
+      for (int i = 1; i < len; i++) {
+        for (int j = 0; j <= i; j++) {
+          if (j > 0 && champagnes[i - 1][j - 1] > 1)
+            champagnes[i][j] += (champagnes[i - 1][j - 1] - 1) / 2.0;
+          if (j < i && champagnes[i - 1][j] > 1)
+            champagnes[i][j] += (champagnes[i - 1][j] - 1) / 2.0;
         }
-
-        public double champagneTower(int poured, int query_row, int query_glass) {
-            double[] rowPre = {poured};
-
-            for (int i = 1; i <= query_row; i++) {
-                double[] rowCur = new double[i + 1];
-                for (int j = 0; j < i; j++) {
-                    if (rowPre[j] > 1) {
-                        double incr = (rowPre[j] - 1) / 2.0;
-                        rowCur[j] += incr;
-                        rowCur[j + 1] += incr;
-                    }
-                }
-                rowPre = rowCur;
-            }
-
-            return Math.min(rowPre[query_glass], 1.0);
-        }
+      }
+      
+      return Math.min(champagnes[query_row][query_glass], 1.0);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public double champagneTower(int poured, int query_row, int query_glass) {
+      double[] rowPre = {poured};
+      
+      for (int i = 1; i <= query_row; i++) {
+        double[] rowCur = new double[i + 1];
+        for (int j = 0; j < i; j++) {
+          if (rowPre[j] > 1) {
+            double incr = (rowPre[j] - 1) / 2.0;
+            rowCur[j] += incr;
+            rowCur[j + 1] += incr;
+          }
+        }
+        rowPre = rowCur;
+      }
+      
+      return Math.min(rowPre[query_glass], 1.0);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

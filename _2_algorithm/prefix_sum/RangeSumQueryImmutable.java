@@ -23,10 +23,10 @@
 //</strong>[null, 1, -1, -3]
 //
 //<strong>解释：</strong>
-//NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
-//numArray.sumRange(0, 2); // return 1 ((-2) + 0 + 3)
-//numArray.sumRange(2, 5); // return -1 (3 + (-5) + 2 + (-1)) 
-//numArray.sumRange(0, 5); // return -3 ((-2) + 0 + 3 + (-5) + 2 + (-1))
+// NumArray numArray = new NumArray([-2, 0, 3, -5, 2, -1]);
+// numArray.sumRange(0, 2); // return 1 ((-2) + 0 + 3)
+// numArray.sumRange(2, 5); // return -1 (3 + (-5) + 2 + (-1))
+// numArray.sumRange(0, 5); // return -3 ((-2) + 0 + 3 + (-5) + 2 + (-1))
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -43,31 +43,31 @@
 //<div><li>👍 518</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.prefix_sum;
 
-//303.区域和检索 - 数组不可变
-//开题时间：2022-12-12 03:39:42
+// 303.区域和检索 - 数组不可变
+// 开题时间：2022-12-12 03:39:42
 public class RangeSumQueryImmutable {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class NumArray {
+    int[] prefixSum;
+    
+    public NumArray(int[] nums) {
+      prefixSum = new int[nums.length + 1];
+      for (int i = 1; i < prefixSum.length; i++)
+        prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class NumArray {
-        int[] prefixSum;
-
-        public NumArray(int[] nums) {
-            prefixSum = new int[nums.length + 1];
-            for (int i = 1; i < prefixSum.length; i++)
-                prefixSum[i] = prefixSum[i - 1] + nums[i - 1];
-        }
-
-        public int sumRange(int left, int right) {
-            return prefixSum[right + 1] - prefixSum[left];
-        }
+    
+    public int sumRange(int left, int right) {
+      return prefixSum[right + 1] - prefixSum[left];
     }
-
-/**
- * Your NumArray object will be instantiated and called as such:
- * NumArray obj = new NumArray(nums);
- * int param_1 = obj.sumRange(left,right);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  /**
+   * Your NumArray object will be instantiated and called as such:
+   * NumArray obj = new NumArray(nums);
+   * int param_1 = obj.sumRange(left,right);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

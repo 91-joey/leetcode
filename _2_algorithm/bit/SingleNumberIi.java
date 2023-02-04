@@ -31,40 +31,40 @@
 //<div><li>👍 962</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//137.只出现一次的数字 II
-//开题时间：2023-01-12 21:30:04
+// 137.只出现一次的数字 II
+// 开题时间：2023-01-12 21:30:04
 public class SingleNumberIi {
-    public static void main(String[] args) {
-        Solution solution = new SingleNumberIi().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //遍历计数 + 取余
-        public int singleNumber9(int[] nums) {
-            int[] freq = new int[32];
-            for (int num : nums) {
-                for (int i = 0; i < 32; i++) {
-                    freq[i] += (num & 1);
-                    num >>= 1;
-                }
-            }
-
-            int ans = 0;
-            for (int i = 0; i < 32; i++)
-                ans |= ((freq[i] % 3) << i);
-            return ans;
+  public static void main(String[] args) {
+    Solution solution = new SingleNumberIi().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 遍历计数 + 取余
+    public int singleNumber9(int[] nums) {
+      int[] freq = new int[32];
+      for (int num : nums) {
+        for (int i = 0; i < 32; i++) {
+          freq[i] += (num & 1);
+          num >>= 1;
         }
-
-        //☆☆☆☆☆ 有限状态自动机（数字电路设计）
-        public int singleNumber(int[] nums) {
-            int ones = 0, twos = 0;
-            for (int num : nums) {
-                ones ^= num & ~twos;
-                twos ^= num & ~ones;
-            }
-            return ones;
-        }
+      }
+      
+      int ans = 0;
+      for (int i = 0; i < 32; i++)
+        ans |= ((freq[i] % 3) << i);
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 有限状态自动机（数字电路设计）
+    public int singleNumber(int[] nums) {
+      int ones = 0, twos = 0;
+      for (int num : nums) {
+        ones ^= num & ~twos;
+        twos ^= num & ~ones;
+      }
+      return ones;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

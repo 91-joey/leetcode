@@ -37,23 +37,23 @@
 //<div><li>👍 359</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//263.丑数
-//开题时间：2022-12-15 15:52:13
+// 263.丑数
+// 开题时间：2022-12-15 15:52:13
 public class UglyNumber {
-    public static void main(String[] args) {
-        Solution solution = new UglyNumber().new Solution();
-        System.out.println(solution.isUgly(-2147483648));
+  public static void main(String[] args) {
+    Solution solution = new UglyNumber().new Solution();
+    System.out.println(solution.isUgly(-2147483648));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean isUgly(int n) {
+      if (n <= 0) return false;
+      while (n % 2 == 0) n /= 2;
+      while (n % 3 == 0) n /= 3;
+      while (n % 5 == 0) n /= 5;
+      return n == 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean isUgly(int n) {
-            if (n <= 0) return false;
-            while (n % 2 == 0) n /= 2;
-            while (n % 3 == 0) n /= 3;
-            while (n % 5 == 0) n /= 5;
-            return n == 1;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

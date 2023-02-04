@@ -52,65 +52,65 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//934.最短的桥
-//开题时间：2023-01-06 11:39:59
+// 934.最短的桥
+// 开题时间：2023-01-06 11:39:59
 public class ShortestBridge {
-    public static void main(String[] args) {
-        Solution solution = new ShortestBridge().new Solution();
-        System.out.println(solution.shortestBridge(Tools.to2DIntArray("[[0,1],[1,0]]")));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS = {1, 0, -1, 0, 1};
-
-        //DFS+多源BFS
-        public int shortestBridge(int[][] grid) {
-            int n = grid.length;
-            Queue<int[]> q = new LinkedList<>();
-            boolean[][] vis = new boolean[n][n];
-            out:
-            for (int i = 0; i < n; i++)
-                for (int j = 0; j < n; j++)
-                    if (grid[i][j] == 1) {
-                        dfs(grid, i, j, q, vis);
-                        break out;
-                    }
-
-            int ans = 0;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    int r = poll[0];
-                    int c = poll[1];
-                    for (int j = 0; j < 4; j++) {
-                        int rNew = r + DIRS[j];
-                        int cNew = c + DIRS[j + 1];
-                        if (0 <= rNew && rNew < n && 0 <= cNew && cNew < n &&
-                                !vis[rNew][cNew]) {
-                            if (grid[rNew][cNew] == 1)
-                                return ans;
-                            q.offer(new int[]{rNew, cNew});
-                            vis[rNew][cNew] = true;
-                        }
-                    }
-                }
-                ans++;
+  public static void main(String[] args) {
+    Solution solution = new ShortestBridge().new Solution();
+    System.out.println(solution.shortestBridge(Tools.to2DIntArray("[[0,1],[1,0]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
+    
+    // DFS+多源BFS
+    public int shortestBridge(int[][] grid) {
+      int n = grid.length;
+      Queue<int[]> q = new LinkedList<>();
+      boolean[][] vis = new boolean[n][n];
+      out:
+      for (int i = 0; i < n; i++)
+        for (int j = 0; j < n; j++)
+          if (grid[i][j] == 1) {
+            dfs(grid, i, j, q, vis);
+            break out;
+          }
+      
+      int ans = 0;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int r = poll[0];
+          int c = poll[1];
+          for (int j = 0; j < 4; j++) {
+            int rNew = r + DIRS[j];
+            int cNew = c + DIRS[j + 1];
+            if (0 <= rNew && rNew < n && 0 <= cNew && cNew < n &&
+                !vis[rNew][cNew]) {
+              if (grid[rNew][cNew] == 1)
+                return ans;
+              q.offer(new int[]{rNew, cNew});
+              vis[rNew][cNew] = true;
             }
-            return ans;
+          }
         }
-
-        public void dfs(int[][] arr, int r, int c, Queue<int[]> q, boolean[][] vis) {
-            q.offer(new int[]{r, c});
-            vis[r][c] = true;
-            for (int i = 0; i < 4; i++) {
-                int rNew = r + DIRS[i];
-                int cNew = c + DIRS[i + 1];
-                if (0 <= rNew && rNew < arr.length && 0 <= cNew && cNew < arr[0].length &&
-                        !vis[rNew][cNew] && arr[rNew][cNew] == 1)
-                    dfs(arr, rNew, cNew, q, vis);
-            }
-        }
+        ans++;
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public void dfs(int[][] arr, int r, int c, Queue<int[]> q, boolean[][] vis) {
+      q.offer(new int[]{r, c});
+      vis[r][c] = true;
+      for (int i = 0; i < 4; i++) {
+        int rNew = r + DIRS[i];
+        int cNew = c + DIRS[i + 1];
+        if (0 <= rNew && rNew < arr.length && 0 <= cNew && cNew < arr[0].length &&
+            !vis[rNew][cNew] && arr[rNew][cNew] == 1)
+          dfs(arr, rNew, cNew, q, vis);
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

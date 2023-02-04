@@ -40,84 +40,84 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-//106.从中序与后序遍历序列构造二叉树
-//开题时间：2022-09-15 10:44:06
+// 106.从中序与后序遍历序列构造二叉树
+// 开题时间：2022-09-15 10:44:06
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();
-//        System.out.println(solution.buildTree2(new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3}));
-        System.out.println(solution.buildTree2(new int[]{15, 9, 10, 3, 20, 5, 7, 8, 4}, new int[]{15, 10, 9, 5, 4, 8, 7, 20, 3}));
+  public static void main(String[] args) {
+    Solution solution = new ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();
+    //        System.out.println(solution.buildTree2(new int[]{9, 3, 15, 20, 7}, new int[]{9, 15, 7, 20, 3}));
+    System.out.println(solution.buildTree2(new int[]{15, 9, 10, 3, 20, 5, 7, 8, 4}, new int[]{15, 10, 9, 5, 4, 8, 7, 20, 3}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 递归
+    Map<Integer, Integer> val2idx = new HashMap<>();
+    int[] postorder;
+    int postIdx;
+    
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+      this.postorder = postorder;
+      postIdx = inorder.length - 1;
+      
+      int idx = 0;
+      for (int val : inorder)
+        val2idx.put(val, idx++);
+      
+      return helper(0, postIdx);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //递归
-        Map<Integer, Integer> val2idx = new HashMap<>();
-        int[] postorder;
-        int postIdx;
-
-        public TreeNode buildTree(int[] inorder, int[] postorder) {
-            this.postorder = postorder;
-            postIdx = inorder.length - 1;
-
-            int idx = 0;
-            for (int val : inorder)
-                val2idx.put(val, idx++);
-
-            return helper(0, postIdx);
-        }
-
-        //递归
-        private TreeNode helper(int l, int r) {
-            if (l > r) return null;
-
-            int rootVal = postorder[postIdx--];
-            Integer rootIdx = val2idx.get(rootVal);
-            TreeNode root = new TreeNode(rootVal);
-            root.right = helper(rootIdx + 1, r);
-            root.left = helper(l, rootIdx - 1);
-
-            return root;
-        }
-
-/*
-             3
-            / \
-           9  20
-          / \   \
-         15 10   7
+    
+    // 递归
+    private TreeNode helper(int l, int r) {
+      if (l > r) return null;
+      
+      int rootVal = postorder[postIdx--];
+      Integer rootIdx = val2idx.get(rootVal);
+      TreeNode root = new TreeNode(rootVal);
+      root.right = helper(rootIdx + 1, r);
+      root.left = helper(l, rootIdx - 1);
+      
+      return root;
+    }
+    
+    /*
+                 3
                 / \
-               5   8
-                    \
-                     4
-        inorder   = [15, 9, 10, 3, 20, 5, 7, 8, 4]
-        postorder = [15, 10, 9, 5, 4, 8, 7, 20, 3]
-*/
-        //迭代
-        public TreeNode buildTree2(int[] inorder, int[] postorder) {
-            int length = postorder.length;
-            int inIdx = length - 1;
-            TreeNode root = new TreeNode(postorder[length - 1]);
-            Deque<TreeNode> stack = new LinkedList<>();
-            stack.push(root);
-
-            for (int i = length - 2; i >= 0; i--) {
-                TreeNode peek = stack.peek();
-                TreeNode node = new TreeNode(postorder[i]);
-                if (peek.val != inorder[inIdx]) {
-                    peek.right = node;
-                } else {
-                    while (!stack.isEmpty() && stack.peek().val == inorder[inIdx]) {
-                        peek = stack.pop();
-                        inIdx--;
-                    }
-                    peek.left = node;
-                }
-                stack.push(node);
-            }
-
-            return root;
+               9  20
+              / \   \
+             15 10   7
+                    / \
+                   5   8
+                        \
+                         4
+            inorder   = [15, 9, 10, 3, 20, 5, 7, 8, 4]
+            postorder = [15, 10, 9, 5, 4, 8, 7, 20, 3]
+    */
+    // 迭代
+    public TreeNode buildTree2(int[] inorder, int[] postorder) {
+      int length = postorder.length;
+      int inIdx = length - 1;
+      TreeNode root = new TreeNode(postorder[length - 1]);
+      Deque<TreeNode> stack = new LinkedList<>();
+      stack.push(root);
+      
+      for (int i = length - 2; i >= 0; i--) {
+        TreeNode peek = stack.peek();
+        TreeNode node = new TreeNode(postorder[i]);
+        if (peek.val != inorder[inIdx]) {
+          peek.right = node;
+        } else {
+          while (!stack.isEmpty() && stack.peek().val == inorder[inIdx]) {
+            peek = stack.pop();
+            inIdx--;
+          }
+          peek.left = node;
         }
+        stack.push(node);
+      }
+      
+      return root;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

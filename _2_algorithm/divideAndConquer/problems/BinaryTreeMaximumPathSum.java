@@ -35,33 +35,33 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//124.二叉树中的最大路径和
-//开题时间：2022-11-18 15:10:32
+// 124.二叉树中的最大路径和
+// 开题时间：2022-11-18 15:10:32
 public class BinaryTreeMaximumPathSum {
-    public static void main(String[] args) {
-        Solution solution = new BinaryTreeMaximumPathSum().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BinaryTreeMaximumPathSum().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int max = Integer.MIN_VALUE;
+    
+    // 三个关键点：某子树内部最大值，某子树向外部提供的最大值、全局最大值。
+    public int maxPathSum(TreeNode root) {
+      maxGain(root);
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int max = Integer.MIN_VALUE;
-
-        //三个关键点：某子树内部最大值，某子树向外部提供的最大值、全局最大值。
-        public int maxPathSum(TreeNode root) {
-            maxGain(root);
-            return max;
-        }
-
-        public int maxGain(TreeNode root) {
-            if (root == null)
-                return 0;
-
-            int maxL = Math.max(maxGain(root.left), 0);
-            int maxR = Math.max(maxGain(root.right), 0);
-            max = Math.max(max, root.val + maxL + maxR);
-
-            return root.val + Math.max(maxL, maxR);
-        }
+    
+    public int maxGain(TreeNode root) {
+      if (root == null)
+        return 0;
+      
+      int maxL = Math.max(maxGain(root.left), 0);
+      int maxR = Math.max(maxGain(root.right), 0);
+      max = Math.max(max, root.val + maxL + maxR);
+      
+      return root.val + Math.max(maxL, maxR);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

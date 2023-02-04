@@ -53,32 +53,32 @@
 //<div><li>👍 126</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//1039.多边形三角剖分的最低得分
-//开题时间：2022-12-22 15:01:58
+// 1039.多边形三角剖分的最低得分
+// 开题时间：2022-12-22 15:01:58
 public class MinimumScoreTriangulationOfPolygon {
-    public static void main(String[] args) {
-        Solution solution = new MinimumScoreTriangulationOfPolygon().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 区间DP
-         *  定义：f[i][j]表示顶点i到顶点j组成的多边形进行三角剖分后的最低分
-         *  转移：设底边ij的三角形的顶点为 m ，则把多边形划分成3部分：
-         *      f[i][j]=f[i][m]+arr[i]*arr[j]*arr[m]+f[m][j],   i<m<j，i+2<=j
-         */
-        public int minScoreTriangulation(int[] values) {
-            int n = values.length;
-            int[][] f = new int[n][n];
-            for (int i = n - 3; i >= 0; i--)
-                for (int j = i + 2; j < n; j++) {
-                    f[i][j] = Integer.MAX_VALUE;
-                    for (int m = i + 1; m < j; m++)
-                        f[i][j] = Math.min(f[i][j], f[i][m] + values[i] * values[j] * values[m] + f[m][j]);
-                }
-            return f[0][n - 1];
+  public static void main(String[] args) {
+    Solution solution = new MinimumScoreTriangulationOfPolygon().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 区间DP
+     *  定义：f[i][j]表示顶点i到顶点j组成的多边形进行三角剖分后的最低分
+     *  转移：设底边ij的三角形的顶点为 m ，则把多边形划分成3部分：
+     *      f[i][j]=f[i][m]+arr[i]*arr[j]*arr[m]+f[m][j],   i<m<j，i+2<=j
+     */
+    public int minScoreTriangulation(int[] values) {
+      int n = values.length;
+      int[][] f = new int[n][n];
+      for (int i = n - 3; i >= 0; i--)
+        for (int j = i + 2; j < n; j++) {
+          f[i][j] = Integer.MAX_VALUE;
+          for (int m = i + 1; m < j; m++)
+            f[i][j] = Math.min(f[i][j], f[i][m] + values[i] * values[j] * values[m] + f[m][j]);
         }
+      return f[0][n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

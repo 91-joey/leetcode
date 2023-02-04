@@ -60,82 +60,82 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//144.二叉树的前序遍历
-//开题时间：2022-09-12 08:27:45
+// 144.二叉树的前序遍历
+// 开题时间：2022-09-12 08:27:45
 public class BinaryTreePreorderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new BinaryTreePreorderTraversal().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BinaryTreePreorderTraversal().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // DFS+递归    n   n
+    List<Integer> list = new ArrayList<>();
+    
+    public List<Integer> preorderTraversal(TreeNode root) {
+      dfs(root);
+      return list;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //DFS+递归    n   n
-        List<Integer> list = new ArrayList<>();
-
-        public List<Integer> preorderTraversal(TreeNode root) {
-            dfs(root);
-            return list;
-        }
-
-        public void dfs(TreeNode root) {
-            if (root == null)
-                return;
-
-            dfs(root.left);
-            list.add(root.val);
-            dfs(root.right);
-        }
-
-        //DFS+栈 n   n
-        public List<Integer> preorderTraversal_stack(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-            Deque<TreeNode> stack = new LinkedList<>();
-            stack.push(root);
-
-            while (!stack.isEmpty()) {
-                TreeNode pop = stack.pop();
-                list.add(pop.val);
-                if (pop.right != null)
-                    stack.push(pop.right);
-                if (pop.left != null)
-                    stack.push(pop.left);
-            }
-
-            return list;
-        }
-
-        //Morris解法  n   1
-        public List<Integer> preorderTraversal_morris(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-
-            TreeNode cur = root;
-            TreeNode l;
-            while (cur != null) {
-                l = cur.left;
-                if (l != null) {
-                    while (l.right != null && l.right != cur) {
-                        l = l.right;
-                    }
-                    if (l.right == null) {
-                        l.right = cur;
-                        list.add(cur.val);
-                        cur = cur.left;
-                    } else {
-                        l.right = null;
-                        cur = cur.right;
-                    }
-                } else {
-                    list.add(cur.val);
-                    cur = cur.right;
-                }
-            }
-
-            return list;
-        }
+    
+    public void dfs(TreeNode root) {
+      if (root == null)
+        return;
+      
+      dfs(root.left);
+      list.add(root.val);
+      dfs(root.right);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // DFS+栈 n   n
+    public List<Integer> preorderTraversal_stack(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      Deque<TreeNode> stack = new LinkedList<>();
+      stack.push(root);
+      
+      while (!stack.isEmpty()) {
+        TreeNode pop = stack.pop();
+        list.add(pop.val);
+        if (pop.right != null)
+          stack.push(pop.right);
+        if (pop.left != null)
+          stack.push(pop.left);
+      }
+      
+      return list;
+    }
+    
+    // Morris解法  n   1
+    public List<Integer> preorderTraversal_morris(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      
+      TreeNode cur = root;
+      TreeNode l;
+      while (cur != null) {
+        l = cur.left;
+        if (l != null) {
+          while (l.right != null && l.right != cur) {
+            l = l.right;
+          }
+          if (l.right == null) {
+            l.right = cur;
+            list.add(cur.val);
+            cur = cur.left;
+          } else {
+            l.right = null;
+            cur = cur.right;
+          }
+        } else {
+          list.add(cur.val);
+          cur = cur.right;
+        }
+      }
+      
+      return list;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

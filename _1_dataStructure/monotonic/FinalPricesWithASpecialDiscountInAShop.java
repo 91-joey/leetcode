@@ -11,10 +11,10 @@
 //<pre><strong>输入：</strong>prices = [8,4,6,2,3]
 //<strong>输出：</strong>[4,2,4,2,3]
 //<strong>解释：</strong>
-//商品 0 的价格为 price[0]=8 ，你将得到 prices[1]=4 的折扣，所以最终价格为 8 - 4 = 4 。
-//商品 1 的价格为 price[1]=4 ，你将得到 prices[3]=2 的折扣，所以最终价格为 4 - 2 = 2 。
-//商品 2 的价格为 price[2]=6 ，你将得到 prices[3]=2 的折扣，所以最终价格为 6 - 2 = 4 。
-//商品 3 和 4 都没有折扣。
+// 商品 0 的价格为 price[0]=8 ，你将得到 prices[1]=4 的折扣，所以最终价格为 8 - 4 = 4 。
+// 商品 1 的价格为 price[1]=4 ，你将得到 prices[3]=2 的折扣，所以最终价格为 4 - 2 = 2 。
+// 商品 2 的价格为 price[2]=6 ，你将得到 prices[3]=2 的折扣，所以最终价格为 6 - 2 = 4 。
+// 商品 3 和 4 都没有折扣。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -45,52 +45,52 @@ package org.example.leetcode.problems._1_dataStructure.monotonic;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//1475.商品折扣后的最终价格
-//开题时间：2022-12-28 18:29:52
+// 1475.商品折扣后的最终价格
+// 开题时间：2022-12-28 18:29:52
 public class FinalPricesWithASpecialDiscountInAShop {
-    public static void main(String[] args) {
-        Solution solution = new FinalPricesWithASpecialDiscountInAShop().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FinalPricesWithASpecialDiscountInAShop().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] finalPrices9(int[] prices) {
+      int n = prices.length;
+      for (int i = 0; i < n; i++) {
+        int discount = 0;
+        for (int j = i + 1; j < n; j++)
+          if (prices[j] <= prices[i]) {
+            discount = prices[j];
+            break;
+          }
+        prices[i] -= discount;
+      }
+      return prices;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] finalPrices9(int[] prices) {
-            int n = prices.length;
-            for (int i = 0; i < n; i++) {
-                int discount = 0;
-                for (int j = i + 1; j < n; j++)
-                    if (prices[j] <= prices[i]) {
-                        discount = prices[j];
-                        break;
-                    }
-                prices[i] -= discount;
-            }
-            return prices;
-        }
-
-        //☆☆☆☆☆ 单调递增栈（正序遍历、存索引）
-        public int[] finalPrices8(int[] prices) {
-            Deque<Integer> stack = new LinkedList<>();
-            for (int i = 0; i < prices.length; i++) {
-                while (!stack.isEmpty() && prices[stack.peek()] >= prices[i])
-                    prices[stack.pop()] -= prices[i];
-                stack.push(i);
-            }
-            return prices;
-        }
-
-        //☆☆☆☆ 单调递减栈（倒序遍历、存值）
-        public int[] finalPrices(int[] prices) {
-            Deque<Integer> stack = new LinkedList<>();
-            for (int i = prices.length - 1; i >= 0; i--) {
-                while (!stack.isEmpty() && stack.peek() > prices[i])
-                    stack.pop();
-                int tmp = prices[i];
-                prices[i] -= stack.isEmpty() ? 0 : stack.peek();
-                stack.push(tmp);
-            }
-            return prices;
-        }
+    
+    //☆☆☆☆☆ 单调递增栈（正序遍历、存索引）
+    public int[] finalPrices8(int[] prices) {
+      Deque<Integer> stack = new LinkedList<>();
+      for (int i = 0; i < prices.length; i++) {
+        while (!stack.isEmpty() && prices[stack.peek()] >= prices[i])
+          prices[stack.pop()] -= prices[i];
+        stack.push(i);
+      }
+      return prices;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆ 单调递减栈（倒序遍历、存值）
+    public int[] finalPrices(int[] prices) {
+      Deque<Integer> stack = new LinkedList<>();
+      for (int i = prices.length - 1; i >= 0; i--) {
+        while (!stack.isEmpty() && stack.peek() > prices[i])
+          stack.pop();
+        int tmp = prices[i];
+        prices[i] -= stack.isEmpty() ? 0 : stack.peek();
+        stack.push(tmp);
+      }
+      return prices;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

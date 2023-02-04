@@ -34,73 +34,73 @@ package org.example.leetcode.problems._2_algorithm.dp;
 import java.util.HashSet;
 import java.util.PriorityQueue;
 
-//264.丑数 II
-//开题时间：2022-12-15 16:06:07
+// 264.丑数 II
+// 开题时间：2022-12-15 16:06:07
 public class UglyNumberIi {
-    public static void main(String[] args) {
-        Solution solution = new UglyNumberIi().new Solution();
-        System.out.println(solution.nthUglyNumber(1690));
-//        System.out.println(solution.nthUglyNumber(1352));
+  public static void main(String[] args) {
+    Solution solution = new UglyNumberIi().new Solution();
+    System.out.println(solution.nthUglyNumber(1690));
+    //        System.out.println(solution.nthUglyNumber(1352));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  /*
+   * 解题关键点：
+   *  如果一个数 x 是丑数，那么 2x,3x,5x 均为丑数
+   *  「由丑数 x 推出的丑数 X」和「由丑数 y 推出的丑数 Y」是可能相等的，例如 2 * 3 = 3 * 2，故需要过滤重复值
+   */
+  class Solution {
+    
+    public int nthUglyNumberX(int n) {
+      for (int i = 1; ; i++)
+        if (isUgly(i))
+          if (--n == 0)
+            return i;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
+    
     /*
-     * 解题关键点：
-     *  如果一个数 x 是丑数，那么 2x,3x,5x 均为丑数
-     *  「由丑数 x 推出的丑数 X」和「由丑数 y 推出的丑数 Y」是可能相等的，例如 2 * 3 = 3 * 2，故需要过滤重复值
+     * ☆☆☆☆☆ DP（多路归并、多指针）
+     * 三个指针p2，p3，p5。pi的含义是有资格同i相乘的最小丑数的位置。
+     * 三个不关联的if语句，可以保证过滤掉重复值
      */
-    class Solution {
-
-        public int nthUglyNumberX(int n) {
-            for (int i = 1; ; i++)
-                if (isUgly(i))
-                    if (--n == 0)
-                        return i;
-        }
-
-        /*
-         * ☆☆☆☆☆ DP（多路归并、多指针）
-         * 三个指针p2，p3，p5。pi的含义是有资格同i相乘的最小丑数的位置。
-         * 三个不关联的if语句，可以保证过滤掉重复值
-         */
-        public int nthUglyNumber9(int n) {
-            int[] f = new int[n + 1];
-            f[1] = 1;
-            for (int i = 2, a = 1, b = 1, c = 1; i <= n; i++) {
-                f[i] = Math.min(Math.min(f[a] * 2, f[b] * 3), f[c] * 5);
-                if (f[i] == f[a] * 2) a++;
-                if (f[i] == f[b] * 3) b++;
-                if (f[i] == f[c] * 5) c++;
-            }
-            return f[n];
-        }
-
-        //优先队列 + 哈希表
-        public int nthUglyNumber(int n) {
-            int[] factors = {2, 3, 5};
-            HashSet<Long> seen = new HashSet<>();
-            PriorityQueue<Long> pq = new PriorityQueue<>();
-            seen.add(1L);
-            pq.offer(1L);
-
-            long ans = 1;
-            for (int i = 0; i < n; i++) {
-                ans = pq.poll();
-                for (int factor : factors)
-                    if (seen.add(ans * factor))
-                        pq.offer(ans * factor);
-            }
-
-            return (int) ans;
-        }
-
-        public static boolean isUgly(int n) {
-            if (n <= 0) return false;
-            while (n % 2 == 0) n /= 2;
-            while (n % 3 == 0) n /= 3;
-            while (n % 5 == 0) n /= 5;
-            return n == 1;
-        }
+    public int nthUglyNumber9(int n) {
+      int[] f = new int[n + 1];
+      f[1] = 1;
+      for (int i = 2, a = 1, b = 1, c = 1; i <= n; i++) {
+        f[i] = Math.min(Math.min(f[a] * 2, f[b] * 3), f[c] * 5);
+        if (f[i] == f[a] * 2) a++;
+        if (f[i] == f[b] * 3) b++;
+        if (f[i] == f[c] * 5) c++;
+      }
+      return f[n];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 优先队列 + 哈希表
+    public int nthUglyNumber(int n) {
+      int[] factors = {2, 3, 5};
+      HashSet<Long> seen = new HashSet<>();
+      PriorityQueue<Long> pq = new PriorityQueue<>();
+      seen.add(1L);
+      pq.offer(1L);
+      
+      long ans = 1;
+      for (int i = 0; i < n; i++) {
+        ans = pq.poll();
+        for (int factor : factors)
+          if (seen.add(ans * factor))
+            pq.offer(ans * factor);
+      }
+      
+      return (int) ans;
+    }
+    
+    public static boolean isUgly(int n) {
+      if (n <= 0) return false;
+      while (n % 2 == 0) n /= 2;
+      while (n % 3 == 0) n /= 3;
+      while (n % 5 == 0) n /= 5;
+      return n == 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -41,34 +41,34 @@
 //<div><li>👍 276</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//836.矩形重叠
-//开题时间：2023-01-16 21:24:25
+// 836.矩形重叠
+// 开题时间：2023-01-16 21:24:25
 public class RectangleOverlap {
-    public static void main(String[] args) {
-        Solution solution = new RectangleOverlap().new Solution();
-        System.out.println(solution.isRectangleOverlap(new int[]{7, 8, 13, 15}, new int[]{10, 8, 12, 20}));
+  public static void main(String[] args) {
+    Solution solution = new RectangleOverlap().new Solution();
+    System.out.println(solution.isRectangleOverlap(new int[]{7, 8, 13, 15}, new int[]{10, 8, 12, 20}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean isRectangleOverlapX(int[] rec1, int[] rec2) {
+      int x1 = rec1[0], y1 = rec1[1], x2 = rec1[2], y2 = rec1[3];
+      int a1 = rec2[0], b1 = rec2[1], a2 = rec2[2], b2 = rec2[3];
+      return (x1 <= a1 && a1 < x2 && y1 <= b1 && b1 < y2) ||
+          (x1 < a2 && a2 <= x2 && y1 <= b1 && b1 < y2) ||
+          (x1 <= a1 && a1 < x2 && y1 < b2 && b2 <= y2) ||
+          (x1 < a2 && a2 <= x2 && y1 < b2 && b2 <= y2);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean isRectangleOverlapX(int[] rec1, int[] rec2) {
-            int x1 = rec1[0], y1 = rec1[1], x2 = rec1[2], y2 = rec1[3];
-            int a1 = rec2[0], b1 = rec2[1], a2 = rec2[2], b2 = rec2[3];
-            return (x1 <= a1 && a1 < x2 && y1 <= b1 && b1 < y2) ||
-                    (x1 < a2 && a2 <= x2 && y1 <= b1 && b1 < y2) ||
-                    (x1 <= a1 && a1 < x2 && y1 < b2 && b2 <= y2) ||
-                    (x1 < a2 && a2 <= x2 && y1 < b2 && b2 <= y2);
-        }
-
-        //二维重叠 = 双一维重叠（x、y轴的投影线段都重叠，这可以通过不重叠的情况取反）
-        public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
-            return isLineOverlap(rec1[0], rec1[2], rec2[0], rec2[2])
-                    && isLineOverlap(rec1[1], rec1[3], rec2[1], rec2[3]);
-        }
-
-        private boolean isLineOverlap(int l1, int r1, int l2, int r2) {
-            return !(l1 >= r2 || l2 >= r1);
-        }
+    
+    // 二维重叠 = 双一维重叠（x、y轴的投影线段都重叠，这可以通过不重叠的情况取反）
+    public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
+      return isLineOverlap(rec1[0], rec1[2], rec2[0], rec2[2])
+          && isLineOverlap(rec1[1], rec1[3], rec2[1], rec2[3]);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private boolean isLineOverlap(int l1, int r1, int l2, int r2) {
+      return !(l1 >= r2 || l2 >= r1);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -15,69 +15,69 @@
 //<pre>初始状态:
 //[0,0,0,0,0]
 //
-//进行了操作 [1,3,2] 后的状态:
+// 进行了操作 [1,3,2] 后的状态:
 //[0,2,2,2,0]
 //
-//进行了操作 [2,4,3] 后的状态:
+// 进行了操作 [2,4,3] 后的状态:
 //[0,2,5,5,3]
 //
-//进行了操作 [0,2,-2] 后的状态:
+// 进行了操作 [0,2,-2] 后的状态:
 //[-2,0,3,5,3]
 //</pre>
 //
 //<div><li>👍 148</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//370.区间加法
-//开题时间：2022-12-20 11:31:26
+// 370.区间加法
+// 开题时间：2022-12-20 11:31:26
 public class RangeAddition {
-    public static void main(String[] args) {
-        Solution solution = new RangeAddition().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RangeAddition().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力
+    public int[] getModifiedArray9(int length, int[][] updates) {
+      int[] ans = new int[length];
+      for (int[] update : updates)
+        for (int i = update[0]; i <= update[1]; i++)
+          ans[i] += update[2];
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力
-        public int[] getModifiedArray9(int length, int[][] updates) {
-            int[] ans = new int[length];
-            for (int[] update : updates)
-                for (int i = update[0]; i <= update[1]; i++)
-                    ans[i] += update[2];
-            return ans;
-        }
-
-        //差分数组
-        public int[] getModifiedArray8(int length, int[][] updates) {
-            int[] ans = new int[length];
-            int[] differ = new int[length + 1];
-
-            for (int[] update : updates) {
-                differ[update[0]] += update[2];
-                differ[update[1] + 1] -= update[2];
-            }
-
-            ans[0] = differ[0];
-            for (int i = 1; i < length; i++)
-                ans[i] = ans[i - 1] + differ[i];
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 差分数组（空间优化）
-        public int[] getModifiedArray(int length, int[][] updates) {
-            int[] ans = new int[length];
-
-            for (int[] update : updates) {
-                ans[update[0]] += update[2];
-                if (update[1] + 1 < length)
-                    ans[update[1] + 1] -= update[2];
-            }
-
-            for (int i = 1; i < length; i++)
-                ans[i] += ans[i - 1];
-
-            return ans;
-        }
+    
+    // 差分数组
+    public int[] getModifiedArray8(int length, int[][] updates) {
+      int[] ans = new int[length];
+      int[] differ = new int[length + 1];
+      
+      for (int[] update : updates) {
+        differ[update[0]] += update[2];
+        differ[update[1] + 1] -= update[2];
+      }
+      
+      ans[0] = differ[0];
+      for (int i = 1; i < length; i++)
+        ans[i] = ans[i - 1] + differ[i];
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 差分数组（空间优化）
+    public int[] getModifiedArray(int length, int[][] updates) {
+      int[] ans = new int[length];
+      
+      for (int[] update : updates) {
+        ans[update[0]] += update[2];
+        if (update[1] + 1 < length)
+          ans[update[1] + 1] -= update[2];
+      }
+      
+      for (int i = 1; i < length; i++)
+        ans[i] += ans[i - 1];
+      
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

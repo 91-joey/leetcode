@@ -28,12 +28,12 @@
 //[null, null, null, 1, 1, false]
 //
 //<strong>解释：</strong>
-//MyQueue myQueue = new MyQueue();
-//myQueue.push(1); // queue is: [1]
-//myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
-//myQueue.peek(); // return 1
-//myQueue.pop(); // return 1, queue is [2]
-//myQueue.empty(); // return false
+// MyQueue myQueue = new MyQueue();
+// myQueue.push(1); // queue is: [1]
+// myQueue.push(2); // queue is: [1, 2] (leftmost is front of the queue)
+// myQueue.peek(); // return 1
+// myQueue.pop(); // return 1, queue is [2]
+// myQueue.empty(); // return false
 //</pre>
 //
 //<ul> 
@@ -60,127 +60,130 @@
 //<div><div>Related Topics</div><div><li>栈</li><li>设计</li><li>队列</li></div></div><br><div><li>👍 734</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-import java.util.*;
+import java.util.ArrayDeque;
+import java.util.Collections;
+import java.util.Deque;
+import java.util.LinkedList;
 
-//232.用栈实现队列
-//开题时间：2022-08-22 14:40:57
+// 232.用栈实现队列
+// 开题时间：2022-08-22 14:40:57
 public class ImplementQueueUsingStacks {
-    public static void main(String[] args) {
-//       Solution solution = new ImplementQueueUsingStacks().new Solution();
-
-        MyQueue2 obj = new MyQueue2();
-        obj.push(1);
-        obj.push(2);
-        int param_3 = obj.peek();
-        int param_2 = obj.pop();
-        boolean param_4 = obj.empty();
+  public static void main(String[] args) {
+    //       Solution solution = new ImplementQueueUsingStacks().new Solution();
+    
+    MyQueue2 obj = new MyQueue2();
+    obj.push(1);
+    obj.push(2);
+    int param_3 = obj.peek();
+    int param_2 = obj.pop();
+    boolean param_4 = obj.empty();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  // 1.倒序法 n   1
+  class MyQueue {
+    // 栈一正序排列
+    private LinkedList<Integer> stack1 = new LinkedList<>();
+    // 栈二倒序排列
+    private LinkedList<Integer> stack2 = new LinkedList<>();
+    
+    public MyQueue() {
+    
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    //1.倒序法 n   1
-    class MyQueue {
-        //栈一正序排列
-        private LinkedList<Integer> stack1 = new LinkedList<>();
-        //栈二倒序排列
-        private LinkedList<Integer> stack2 = new LinkedList<>();
-
-        public MyQueue() {
-
-        }
-
-        public void push(int x) {
-            stack1.push(x);
-            stack2 = new LinkedList<>(stack1);
-            Collections.reverse(stack2);
-        }
-
-        public int pop() {
-            Integer pop = stack2.pop();
-            stack1 = new LinkedList<>(stack2);
-            Collections.reverse(stack1);
-            return pop;
-        }
-
-        public int peek() {
-            return stack2.peek();
-        }
-
-        public boolean empty() {
-            return stack1.isEmpty();
-        }
+    
+    public void push(int x) {
+      stack1.push(x);
+      stack2 = new LinkedList<>(stack1);
+      Collections.reverse(stack2);
     }
-
-    //2.官解一（使用两个栈 入队 - O(n)， 出队 - O(1)）
-    static class MyQueue2 {
-        private final Deque<Integer> stack1 = new ArrayDeque<>();
-        private final Deque<Integer> stack2 = new ArrayDeque<>();
-
-        public MyQueue2() {
-        }
-
-        //值 → 入队栈 → 出队栈 → 入队栈 （有些冗余了）
-        public void push(int x) {
-            while (!stack1.isEmpty()) {
-                stack2.push(stack1.pop());
-            }
-            stack1.push(x);
-            while (!stack2.isEmpty()) {
-                stack1.push(stack2.pop());
-            }
-        }
-
-        public int pop() {
-            return stack1.pop();
-        }
-
-        public int peek() {
-            return stack1.peek();
-        }
-
-        public boolean empty() {
-            return stack1.isEmpty();
-        }
+    
+    public int pop() {
+      Integer pop = stack2.pop();
+      stack1 = new LinkedList<>(stack2);
+      Collections.reverse(stack1);
+      return pop;
     }
-
-    //3.☆☆☆☆☆ 官解二（使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)）
-    class MyQueue3 {
-        private final Deque<Integer> stackIn = new ArrayDeque<>();
-        private final Deque<Integer> stackOut = new ArrayDeque<>();
-
-        public MyQueue3() {
-        }
-
-        public void push(int x) {
-            stackIn.push(x);
-        }
-
-        public int pop() {
-            in2out();
-            return stackOut.pop();
-        }
-
-        public int peek() {
-            in2out();
-            return stackOut.peek();
-        }
-
-        public boolean empty() {
-            return stackIn.isEmpty() && stackOut.isEmpty();
-        }
-
-        private void in2out() {
-            if (stackOut.isEmpty())
-                while (!stackIn.isEmpty())
-                    stackOut.push(stackIn.pop());
-        }
+    
+    public int peek() {
+      return stack2.peek();
     }
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue obj = new MyQueue();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.peek();
- * boolean param_4 = obj.empty();
- */
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public boolean empty() {
+      return stack1.isEmpty();
+    }
+  }
+  
+  // 2.官解一（使用两个栈 入队 - O(n)， 出队 - O(1)）
+  static class MyQueue2 {
+    private final Deque<Integer> stack1 = new ArrayDeque<>();
+    private final Deque<Integer> stack2 = new ArrayDeque<>();
+    
+    public MyQueue2() {
+    }
+    
+    // 值 → 入队栈 → 出队栈 → 入队栈 （有些冗余了）
+    public void push(int x) {
+      while (!stack1.isEmpty()) {
+        stack2.push(stack1.pop());
+      }
+      stack1.push(x);
+      while (!stack2.isEmpty()) {
+        stack1.push(stack2.pop());
+      }
+    }
+    
+    public int pop() {
+      return stack1.pop();
+    }
+    
+    public int peek() {
+      return stack1.peek();
+    }
+    
+    public boolean empty() {
+      return stack1.isEmpty();
+    }
+  }
+  
+  // 3.☆☆☆☆☆ 官解二（使用两个栈 入队 - O(1)，出队 - 摊还复杂度 O(1)）
+  class MyQueue3 {
+    private final Deque<Integer> stackIn = new ArrayDeque<>();
+    private final Deque<Integer> stackOut = new ArrayDeque<>();
+    
+    public MyQueue3() {
+    }
+    
+    public void push(int x) {
+      stackIn.push(x);
+    }
+    
+    public int pop() {
+      in2out();
+      return stackOut.pop();
+    }
+    
+    public int peek() {
+      in2out();
+      return stackOut.peek();
+    }
+    
+    public boolean empty() {
+      return stackIn.isEmpty() && stackOut.isEmpty();
+    }
+    
+    private void in2out() {
+      if (stackOut.isEmpty())
+        while (!stackIn.isEmpty())
+          stackOut.push(stackIn.pop());
+    }
+  }
+  /**
+   * Your MyQueue object will be instantiated and called as such:
+   * MyQueue obj = new MyQueue();
+   * obj.push(x);
+   * int param_2 = obj.pop();
+   * int param_3 = obj.peek();
+   * boolean param_4 = obj.empty();
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

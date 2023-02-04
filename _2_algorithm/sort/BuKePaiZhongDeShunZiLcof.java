@@ -30,54 +30,54 @@ package org.example.leetcode.problems._2_algorithm.sort;
 import java.util.Arrays;
 import java.util.HashSet;
 
-//面试题61.扑克牌中的顺子
-//开题时间：2022-12-23 09:54:28
+// 面试题61.扑克牌中的顺子
+// 开题时间：2022-12-23 09:54:28
 public class BuKePaiZhongDeShunZiLcof {
-    public static void main(String[] args) {
-        Solution solution = new BuKePaiZhongDeShunZiLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BuKePaiZhongDeShunZiLcof().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean isStraight9(int[] nums) {
+      Arrays.sort(nums);
+      int cnt0 = (int) Arrays.stream(nums).filter(x -> x == 0).count();
+      for (int i = cnt0 + 1; i < nums.length; i++)
+        if (nums[i - 1] == nums[i] || (cnt0 -= (nums[i] - nums[i - 1] - 1)) < 0)
+          return false;
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean isStraight9(int[] nums) {
-            Arrays.sort(nums);
-            int cnt0 = (int) Arrays.stream(nums).filter(x -> x == 0).count();
-            for (int i = cnt0 + 1; i < nums.length; i++)
-                if (nums[i - 1] == nums[i] || (cnt0 -= (nums[i] - nums[i - 1] - 1)) < 0)
-                    return false;
-            return true;
-        }
-
-        /*
-         * ☆☆☆☆☆ 哈希表 + 遍历
-         *  为顺子的充分必要条件：
-         *      - 除大小王外，无重复值
-         *      - 除大小王外，最值的差值小于 5
-         */
-        public boolean isStraight8(int[] nums) {
-            HashSet<Integer> set = new HashSet<>();
-            int max = 0, min = 13;
-            for (int x : nums) {
-                if (x == 0) continue;
-                if (!set.add(x))
-                    return false;
-                max = Math.max(max, x);
-                min = Math.min(min, x);
-            }
-            return max - min < 5;
-        }
-
-        //排序 + 遍历
-        public boolean isStraight(int[] nums) {
-            Arrays.sort(nums);
-            int joker = 0;
-            for (int i = 1; i < nums.length; i++)
-                if (nums[i - 1] == 0)
-                    joker++;
-                else if (nums[i - 1] == nums[i])
-                    return false;
-            return nums[4] - nums[joker] < 5;
-        }
+    
+    /*
+     * ☆☆☆☆☆ 哈希表 + 遍历
+     *  为顺子的充分必要条件：
+     *      - 除大小王外，无重复值
+     *      - 除大小王外，最值的差值小于 5
+     */
+    public boolean isStraight8(int[] nums) {
+      HashSet<Integer> set = new HashSet<>();
+      int max = 0, min = 13;
+      for (int x : nums) {
+        if (x == 0) continue;
+        if (!set.add(x))
+          return false;
+        max = Math.max(max, x);
+        min = Math.min(min, x);
+      }
+      return max - min < 5;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 排序 + 遍历
+    public boolean isStraight(int[] nums) {
+      Arrays.sort(nums);
+      int joker = 0;
+      for (int i = 1; i < nums.length; i++)
+        if (nums[i - 1] == 0)
+          joker++;
+        else if (nums[i - 1] == nums[i])
+          return false;
+      return nums[4] - nums[joker] < 5;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

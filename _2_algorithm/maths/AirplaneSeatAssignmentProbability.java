@@ -37,19 +37,19 @@
 //<div><li>👍 111</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1227.飞机座位分配概率
-//开题时间：2023-01-16 10:31:37
+// 1227.飞机座位分配概率
+// 开题时间：2023-01-16 10:31:37
 public class AirplaneSeatAssignmentProbability {
-    public static void main(String[] args) {
-        Solution solution = new AirplaneSeatAssignmentProbability().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new AirplaneSeatAssignmentProbability().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public double nthPersonGetsNthSeat(int n) {
+      return n == 1 ? 1.0 : 0.5;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public double nthPersonGetsNthSeat(int n) {
-            return n == 1 ? 1.0 : 0.5;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

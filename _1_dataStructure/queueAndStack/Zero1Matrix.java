@@ -45,19 +45,19 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//542.01 矩阵
-//开题时间：2022-08-24 11:59:08
+// 542.01 矩阵
+// 开题时间：2022-08-24 11:59:08
 public class Zero1Matrix {
   public static void main(String[] args) {
     Solution solution = new Zero1Matrix().new Solution();
-//        System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0]]"))));
+    //        System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0,1,0],[0,1,0],[0,1,0],[0,1,0],[0,1,0]]"))));
     System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0,1,0,1,1],[1,1,0,0,1],[0,0,0,1,0],[1,0,1,1,1],[1,0,0,0,1]]"))));
-//        System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0],[0],[0],[0],[0]]"))));
-//        System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0,0,0],[0,1,0],[1,1,1]]"))));
+    //        System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0],[0],[0],[0],[0]]"))));
+    //        System.out.println(Arrays.deepToString(solution.updateMatrix(Tools.to2DIntArray("[[0,0,0],[0,1,0],[1,1,1]]"))));
     System.out.println("[[2,1,0,0,1,0,0,1,1,0],[1,0,0,1,0,1,1,2,2,1],[1,1,1,0,0,1,2,2,1,0],[0,1,2,1,0,1,2,3,2,1],[0,0,1,2,1,2,1,2,1,0],[1,1,2,3,2,1,0,1,1,1],[0,1,2,3,2,1,1,0,0,1],[1,2,1,2,1,0,0,1,1,2],[0,1,0,1,1,0,1,2,2,3],[1,2,1,0,1,0,1,2,3,4]]");
   }
   
-  //leetcode submit region begin(Prohibit modification and deletion)
+  // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     private final int[][] DIRECTIONS = {
         {0, 1},
@@ -67,7 +67,7 @@ public class Zero1Matrix {
     };
     public static final int ZERO = 0;
     
-    //1.BFS+队列
+    // 1.BFS+队列
     public int[][] updateMatrix88(int[][] mat) {
       int m = mat.length;
       int n = mat[0].length;
@@ -167,5 +167,5 @@ public class Zero1Matrix {
       return ans;
     }
   }
-//leetcode submit region end(Prohibit modification and deletion)
+  // leetcode submit region end(Prohibit modification and deletion)
 }

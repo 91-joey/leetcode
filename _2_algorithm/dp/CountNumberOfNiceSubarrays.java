@@ -42,73 +42,73 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.HashMap;
 
-//1248.统计「优美子数组」
-//开题时间：2022-12-17 14:34:40
+// 1248.统计「优美子数组」
+// 开题时间：2022-12-17 14:34:40
 public class CountNumberOfNiceSubarrays {
-    public static void main(String[] args) {
-        Solution solution = new CountNumberOfNiceSubarrays().new Solution();
-        System.out.println(solution.numberOfSubarrays(new int[]{1, 1, 1, 1, 1}, 1));
-//        System.out.println(solution.numberOfSubarrays(new int[]{2,2,2,1,2,2,1,2,2,2}, 2));
-//        System.out.println(solution.numberOfSubarrays(new int[]{1, 1, 2, 1, 1}, 3));
+  public static void main(String[] args) {
+    Solution solution = new CountNumberOfNiceSubarrays().new Solution();
+    System.out.println(solution.numberOfSubarrays(new int[]{1, 1, 1, 1, 1}, 1));
+    //        System.out.println(solution.numberOfSubarrays(new int[]{2,2,2,1,2,2,1,2,2,2}, 2));
+    //        System.out.println(solution.numberOfSubarrays(new int[]{1, 1, 2, 1, 1}, 3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 前缀和 + 哈希计数
+    public int numberOfSubarrays9(int[] nums, int k) {
+      HashMap<Integer, Integer> sum2cnt = new HashMap<>();
+      int sum = 0;
+      sum2cnt.put(sum, 1);
+      
+      int ans = 0;
+      for (int x : nums) {
+        sum += (x & 1);
+        ans += sum2cnt.getOrDefault(sum - k, 0);
+        sum2cnt.merge(sum, 1, Integer::sum);
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //前缀和 + 哈希计数
-        public int numberOfSubarrays9(int[] nums, int k) {
-            HashMap<Integer, Integer> sum2cnt = new HashMap<>();
-            int sum = 0;
-            sum2cnt.put(sum, 1);
-
-            int ans = 0;
-            for (int x : nums) {
-                sum += (x & 1);
-                ans += sum2cnt.getOrDefault(sum - k, 0);
-                sum2cnt.merge(sum, 1, Integer::sum);
-            }
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 前缀和 + 数组计数
-        public int numberOfSubarrays8(int[] nums, int k) {
-            int[] sum2cnt = new int[nums.length + 1];
-            int sum = 0;
-            sum2cnt[sum] = 1;
-
-            int ans = 0;
-            for (int x : nums) {
-                sum += (x & 1);
-                ans += sum >= k ? sum2cnt[sum - k] : 0;
-                sum2cnt[sum]++;
-            }
-
-            return ans;
-        }
-
-        /*
-         * 贡献法
-         * 1.数组记录第 i 个奇数的索引，特别的：
-         *      第 0 个奇数的索引为 -1
-         *      最后一个奇数的索引为 len
-         * 2.第 i 个奇数开始、第 i + k -1 个奇数为结尾的子数组对答案的贡献为：
-         *      (odd2idx[i] - odd2idx[i - 1]) * (odd2idx[i + k] - odd2idx[i + k - 1]
-         */
-        public int numberOfSubarrays(int[] nums, int k) {
-            int[] odd2idx = new int[nums.length + 2];
-            odd2idx[0] = -1;
-            int idx = 1;
-            for (int i = 0; i < nums.length; i++)
-                if ((nums[i] & 1) == 1)
-                    odd2idx[idx++] = i;
-            odd2idx[idx] = nums.length;
-
-            int ans = 0;
-            for (int i = 1; i <= idx - k; i++)
-                ans += (odd2idx[i] - odd2idx[i - 1]) * (odd2idx[i + k] - odd2idx[i + k - 1]);
-
-            return ans;
-        }
+    
+    //☆☆☆☆☆ 前缀和 + 数组计数
+    public int numberOfSubarrays8(int[] nums, int k) {
+      int[] sum2cnt = new int[nums.length + 1];
+      int sum = 0;
+      sum2cnt[sum] = 1;
+      
+      int ans = 0;
+      for (int x : nums) {
+        sum += (x & 1);
+        ans += sum >= k ? sum2cnt[sum - k] : 0;
+        sum2cnt[sum]++;
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * 贡献法
+     * 1.数组记录第 i 个奇数的索引，特别的：
+     *      第 0 个奇数的索引为 -1
+     *      最后一个奇数的索引为 len
+     * 2.第 i 个奇数开始、第 i + k -1 个奇数为结尾的子数组对答案的贡献为：
+     *      (odd2idx[i] - odd2idx[i - 1]) * (odd2idx[i + k] - odd2idx[i + k - 1]
+     */
+    public int numberOfSubarrays(int[] nums, int k) {
+      int[] odd2idx = new int[nums.length + 2];
+      odd2idx[0] = -1;
+      int idx = 1;
+      for (int i = 0; i < nums.length; i++)
+        if ((nums[i] & 1) == 1)
+          odd2idx[idx++] = i;
+      odd2idx[idx] = nums.length;
+      
+      int ans = 0;
+      for (int i = 1; i <= idx - k; i++)
+        ans += (odd2idx[i] - odd2idx[i - 1]) * (odd2idx[i + k] - odd2idx[i + k - 1]);
+      
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

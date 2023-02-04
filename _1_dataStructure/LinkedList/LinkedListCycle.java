@@ -58,46 +58,46 @@ import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 import java.util.HashSet;
 import java.util.Set;
 
-//141.环形链表
-//开题时间：2022-08-27 08:30:26
+// 141.环形链表
+// 开题时间：2022-08-27 08:30:26
 public class LinkedListCycle {
-    public static void main(String[] args) {
-        Solution solution = new LinkedListCycle().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-
-    public class Solution {
-        //1.哈希集  n   n
-        public boolean hasCycle(ListNode head) {
-            Set<ListNode> visited = new HashSet<>();
-
-            while (head != null) {
-                if (visited.contains(head)) {
-                    return true;
-                } else {
-                    visited.add(head);
-                    head = head.next;
-                }
-            }
-
-            return false;
+  public static void main(String[] args) {
+    Solution solution = new LinkedListCycle().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  public class Solution {
+    // 1.哈希集  n   n
+    public boolean hasCycle(ListNode head) {
+      Set<ListNode> visited = new HashSet<>();
+      
+      while (head != null) {
+        if (visited.contains(head)) {
+          return true;
+        } else {
+          visited.add(head);
+          head = head.next;
         }
-
-        //2.双指针  n   1
-        public boolean hasCycle2(ListNode head) {
-            ListNode fast = head;
-
-            while (fast != null && fast.next != null) {
-                head = head.next;
-                fast = fast.next.next;
-                if (head == fast) {
-                    return true;
-                }
-            }
-
-            return false;
-        }
+      }
+      
+      return false;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 2.双指针  n   1
+    public boolean hasCycle2(ListNode head) {
+      ListNode fast = head;
+      
+      while (fast != null && fast.next != null) {
+        head = head.next;
+        fast = fast.next.next;
+        if (head == fast) {
+          return true;
+        }
+      }
+      
+      return false;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

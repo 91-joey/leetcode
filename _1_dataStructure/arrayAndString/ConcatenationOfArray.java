@@ -45,20 +45,20 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//1929.数组串联
-//开题时间：2022-11-05 08:43:48
+// 1929.数组串联
+// 开题时间：2022-11-05 08:43:48
 public class ConcatenationOfArray {
-    public static void main(String[] args) {
-        Solution solution = new ConcatenationOfArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ConcatenationOfArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] getConcatenation(int[] nums) {
+      int[] ans = Arrays.copyOf(nums, nums.length * 2);
+      System.arraycopy(nums, 0, ans, nums.length, nums.length);
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] getConcatenation(int[] nums) {
-            int[] ans = Arrays.copyOf(nums, nums.length * 2);
-            System.arraycopy(nums, 0, ans, nums.length, nums.length);
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -46,7 +46,7 @@ public class ConstructBinarySearchTreeFromPreorderTraversal {
     }
     
     int idx = 0;
-  
+    
     // ☆☆☆☆☆ 递归（根据数值上下界）
     public TreeNode bstFromPreorder(int[] preorder) {
       return helperByBound(preorder, Integer.MIN_VALUE, Integer.MAX_VALUE);

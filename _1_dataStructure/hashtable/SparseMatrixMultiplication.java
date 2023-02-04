@@ -36,67 +36,67 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.ArrayList;
 import java.util.List;
 
-//311.稀疏矩阵的乘法
-//开题时间：2022-09-09 14:34:58
+// 311.稀疏矩阵的乘法
+// 开题时间：2022-09-09 14:34:58
 public class SparseMatrixMultiplication {
-    public static void main(String[] args) {
-        Solution solution = new SparseMatrixMultiplication().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SparseMatrixMultiplication().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力迭代  m*n*k   m*n
+    public int[][] multiply(int[][] mat1, int[][] mat2) {
+      int m = mat1.length;
+      int n = mat2[0].length;
+      int k = mat2.length;
+      int[][] ans = new int[m][n];
+      
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+          int sum = 0;
+          for (int p = 0; p < k; p++) {
+            sum += mat1[i][p] * mat2[p][j];
+          }
+          ans[i][j] = sum;
+        }
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力迭代  m*n*k   m*n
-        public int[][] multiply(int[][] mat1, int[][] mat2) {
-            int m = mat1.length;
-            int n = mat2[0].length;
-            int k = mat2.length;
-            int[][] ans = new int[m][n];
-
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    int sum = 0;
-                    for (int p = 0; p < k; p++) {
-                        sum += mat1[i][p] * mat2[p][j];
-                    }
-                    ans[i][j] = sum;
-                }
-            }
-
-            return ans;
+    
+    // 高分解：利用矩阵的稀疏性  m*k+k*n+(m*k*k*n=max)
+    public int[][] multiply2(int[][] mat1, int[][] mat2) {
+      int m = mat1.length;
+      int n = mat2[0].length;
+      int[][] ans = new int[m][n];
+      
+      List<int[]> list1 = getTriple(mat1);
+      List<int[]> list2 = getTriple(mat2);
+      for (int[] arr1 : list1) {
+        for (int[] arr2 : list2) {
+          if (arr1[1] == arr2[0]) {
+            ans[arr1[0]][arr2[1]] += arr1[2] * arr2[2];
+          }
         }
-
-        //高分解：利用矩阵的稀疏性  m*k+k*n+(m*k*k*n=max)
-        public int[][] multiply2(int[][] mat1, int[][] mat2) {
-            int m = mat1.length;
-            int n = mat2[0].length;
-            int[][] ans = new int[m][n];
-
-            List<int[]> list1 = getTriple(mat1);
-            List<int[]> list2 = getTriple(mat2);
-            for (int[] arr1 : list1) {
-                for (int[] arr2 : list2) {
-                    if (arr1[1] == arr2[0]) {
-                        ans[arr1[0]][arr2[1]] += arr1[2] * arr2[2];
-                    }
-                }
-            }
-
-            return ans;
-        }
-
-        private List<int[]> getTriple(int[][] mat1) {
-            List<int[]> notZeroes = new ArrayList<>();
-
-            for (int i = 0; i < mat1.length; i++) {
-                for (int j = 0; j < mat1[0].length; j++) {
-                    if (mat1[i][j] != 0) {
-                        notZeroes.add(new int[]{i, j, mat1[i][j]});
-                    }
-                }
-            }
-
-            return notZeroes;
-        }
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private List<int[]> getTriple(int[][] mat1) {
+      List<int[]> notZeroes = new ArrayList<>();
+      
+      for (int i = 0; i < mat1.length; i++) {
+        for (int j = 0; j < mat1[0].length; j++) {
+          if (mat1[i][j] != 0) {
+            notZeroes.add(new int[]{i, j, mat1[i][j]});
+          }
+        }
+      }
+      
+      return notZeroes;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

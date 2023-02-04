@@ -25,8 +25,8 @@
 //<strong>输入：</strong>s = "K1:L2"
 //<strong>输出：</strong>["K1","K2","L1","L2"]
 //<strong>解释：</strong>
-//上图显示了列表中应该出现的单元格。
-//红色箭头指示单元格的出现顺序。
+// 上图显示了列表中应该出现的单元格。
+// 红色箭头指示单元格的出现顺序。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -37,8 +37,8 @@
 //<strong>输入：</strong>s = "A1:F1"
 //<strong>输出：</strong>["A1","B1","C1","D1","E1","F1"]
 //<strong>解释：</strong>
-//上图显示了列表中应该出现的单元格。 
-//红色箭头指示单元格的出现顺序。
+// 上图显示了列表中应该出现的单元格。
+// 红色箭头指示单元格的出现顺序。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -58,35 +58,35 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 import java.util.ArrayList;
 import java.util.List;
 
-//2194.Excel 表中某个范围内的单元格
-//开题时间：2022-11-08 18:19:16
+// 2194.Excel 表中某个范围内的单元格
+// 开题时间：2022-11-08 18:19:16
 public class CellsInARangeOnAnExcelSheet {
-    public static void main(String[] args) {
-        Solution solution = new CellsInARangeOnAnExcelSheet().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CellsInARangeOnAnExcelSheet().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<String> cellsInRange9(String s) {
+      ArrayList<String> list = new ArrayList<>();
+      
+      for (int col = s.charAt(0); col <= s.charAt(3); col++)
+        for (int row = s.charAt(1); row <= s.charAt(4); row++)
+          list.add(String.valueOf((char) col).concat(String.valueOf((char) row)));
+      
+      return list;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<String> cellsInRange9(String s) {
-            ArrayList<String> list = new ArrayList<>();
-
-            for (int col = s.charAt(0); col <= s.charAt(3); col++)
-                for (int row = s.charAt(1); row <= s.charAt(4); row++)
-                    list.add(String.valueOf((char) col).concat(String.valueOf((char) row)));
-
-            return list;
-        }
-
-        public List<String> cellsInRange(String s) {
-            ArrayList<String> list = new ArrayList<>();
-
-            //变量类型定义为 char，加减会自动转换。
-            for (char col = s.charAt(0); col <= s.charAt(3); col++)
-                for (char row = s.charAt(1); row <= s.charAt(4); row++)
-                    list.add(new String(new char[]{col, row}));
-
-            return list;
-        }
+    
+    public List<String> cellsInRange(String s) {
+      ArrayList<String> list = new ArrayList<>();
+      
+      // 变量类型定义为 char，加减会自动转换。
+      for (char col = s.charAt(0); col <= s.charAt(3); col++)
+        for (char row = s.charAt(1); row <= s.charAt(4); row++)
+          list.add(new String(new char[]{col, row}));
+      
+      return list;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

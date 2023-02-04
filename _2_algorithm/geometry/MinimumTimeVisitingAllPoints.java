@@ -23,9 +23,9 @@
 //<strong>输入：</strong>points = [[1,1],[3,4],[-1,0]]
 //<strong>输出：</strong>7
 //<strong>解释：</strong>一条最佳的访问路径是： <strong>[1,1]</strong> -&gt; [2,2] -&gt; [3,3] -&gt; <strong>[3,4] </strong>-&gt; [2,3] -&gt; [1,2] -&gt; [0,1] -&gt; <strong>[-1,0]</strong>   
-//从 [1,1] 到 [3,4] 需要 3 秒 
-//从 [3,4] 到 [-1,0] 需要 4 秒
-//一共需要 7 秒</pre>
+// 从 [1,1] 到 [3,4] 需要 3 秒
+// 从 [3,4] 到 [-1,0] 需要 4 秒
+// 一共需要 7 秒</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -48,21 +48,21 @@
 //<div><li>👍 94</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.geometry;
 
-//1266.访问所有点的最小时间
-//开题时间：2023-01-07 12:14:28
+// 1266.访问所有点的最小时间
+// 开题时间：2023-01-07 12:14:28
 public class MinimumTimeVisitingAllPoints {
-    public static void main(String[] args) {
-        Solution solution = new MinimumTimeVisitingAllPoints().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumTimeVisitingAllPoints().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minTimeToVisitAllPoints(int[][] points) {
+      int ans = 0;
+      for (int i = 1; i < points.length; i++)
+        ans += Math.max(Math.abs(points[i - 1][0] - points[i][0]), Math.abs(points[i - 1][1] - points[i][1]));
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minTimeToVisitAllPoints(int[][] points) {
-            int ans = 0;
-            for (int i = 1; i < points.length; i++)
-                ans += Math.max(Math.abs(points[i - 1][0] - points[i][0]), Math.abs(points[i - 1][1] - points[i][1]));
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

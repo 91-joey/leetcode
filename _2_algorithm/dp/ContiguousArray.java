@@ -30,55 +30,55 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.HashMap;
 
-//525.连续数组
-//开题时间：2022-12-16 17:42:28
+// 525.连续数组
+// 开题时间：2022-12-16 17:42:28
 public class ContiguousArray {
-    public static void main(String[] args) {
-        Solution solution = new ContiguousArray().new Solution();
-//        System.out.println(solution.findMaxLength(new int[]{0, 1}));
-        System.out.println(solution.findMaxLength(new int[]{0, 1, 0, 1}));
-//        System.out.println(solution.findMaxLength(new int[]{0, 1, 0}));
+  public static void main(String[] args) {
+    Solution solution = new ContiguousArray().new Solution();
+    //        System.out.println(solution.findMaxLength(new int[]{0, 1}));
+    System.out.println(solution.findMaxLength(new int[]{0, 1, 0, 1}));
+    //        System.out.println(solution.findMaxLength(new int[]{0, 1, 0}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 设 0 的权值为 -1 ，1 的权值为 +1，则有相同数量的 0 和 1 的连续子数组元素和为 0。
+     * 我们一边遍历一边维护哈希映射（元素和 → 索引）
+     */
+    public int findMaxLength9(int[] nums) {
+      HashMap<Integer, Integer> sum2idx = new HashMap<>();
+      sum2idx.put(0, -1);
+      
+      int max = 0;
+      for (int i = 0, sum = 0; i < nums.length; i++) {
+        sum += nums[i] == 0 ? -1 : 1;
+        Integer left = sum2idx.get(sum);
+        if (left != null)
+          max = Math.max(max, i - left);
+        sum2idx.putIfAbsent(sum, i);
+      }
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 设 0 的权值为 -1 ，1 的权值为 +1，则有相同数量的 0 和 1 的连续子数组元素和为 0。
-         * 我们一边遍历一边维护哈希映射（元素和 → 索引）
-         */
-        public int findMaxLength9(int[] nums) {
-            HashMap<Integer, Integer> sum2idx = new HashMap<>();
-            sum2idx.put(0, -1);
-
-            int max = 0;
-            for (int i = 0, sum = 0; i < nums.length; i++) {
-                sum += nums[i] == 0 ? -1 : 1;
-                Integer left = sum2idx.get(sum);
-                if (left != null)
-                    max = Math.max(max, i - left);
-                sum2idx.putIfAbsent(sum, i);
-            }
-
-            return max;
-        }
-
-        //☆☆☆☆☆ 小优化
-        public int findMaxLength(int[] nums) {
-            HashMap<Integer, Integer> sum2idx = new HashMap<>();
-            sum2idx.put(0, -1);
-
-            int max = 0;
-            for (int i = 0, sum = 0; i < nums.length; i++) {
-                sum += (nums[i] << 1) - 1;
-                Integer left = sum2idx.get(sum);
-                if (left != null)
-                    max = Math.max(max, i - left);
-                else
-                    sum2idx.put(sum, i);
-            }
-
-            return max;
-        }
+    
+    //☆☆☆☆☆ 小优化
+    public int findMaxLength(int[] nums) {
+      HashMap<Integer, Integer> sum2idx = new HashMap<>();
+      sum2idx.put(0, -1);
+      
+      int max = 0;
+      for (int i = 0, sum = 0; i < nums.length; i++) {
+        sum += (nums[i] << 1) - 1;
+        Integer left = sum2idx.get(sum);
+        if (left != null)
+          max = Math.max(max, i - left);
+        else
+          sum2idx.put(sum, i);
+      }
+      
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

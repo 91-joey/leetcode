@@ -31,52 +31,52 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//61.旋转链表
-//开题时间：2022-09-02 15:12:14
+// 61.旋转链表
+// 开题时间：2022-09-02 15:12:14
 public class RotateList {
-    public static void main(String[] args) {
-        Solution solution = new RotateList().new Solution();
-        System.out.println(solution.rotateRight(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))), 2));
+  public static void main(String[] args) {
+    Solution solution = new RotateList().new Solution();
+    System.out.println(solution.rotateRight(new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5))))), 2));
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+      int size = 1;
+      ListNode tail = head;
+      // 遍历得到原尾节点tail，同时计算链表长度size
+      for (; tail != null && tail.next != null; tail = tail.next) {
+        size++;
+      }
+      
+      int cnt = k % size;
+      // k 为 size 的倍数时，或者空单节点时，返回原链表
+      if (cnt == 0 || size <= 1) {
+        return head;
+      }
+      
+      ListNode tailNew = head;
+      for (int i = 1; i < size - cnt; i++) {
+        tailNew = tailNew.next;
+      }
+      ListNode headNew = tailNew.next;
+      // 新尾节点 -> null
+      tailNew.next = null;
+      // 原尾节点 -> 原头节点
+      tail.next = head;
+      
+      return headNew;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        public ListNode rotateRight(ListNode head, int k) {
-            int size = 1;
-            ListNode tail = head;
-            //遍历得到原尾节点tail，同时计算链表长度size
-            for (; tail != null && tail.next != null; tail = tail.next) {
-                size++;
-            }
-
-            int cnt = k % size;
-            //k 为 size 的倍数时，或者空单节点时，返回原链表
-            if (cnt == 0 || size <= 1) {
-                return head;
-            }
-
-            ListNode tailNew = head;
-            for (int i = 1; i < size - cnt; i++) {
-                tailNew = tailNew.next;
-            }
-            ListNode headNew = tailNew.next;
-            //新尾节点 -> null
-            tailNew.next = null;
-            //原尾节点 -> 原头节点
-            tail.next = head;
-
-            return headNew;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

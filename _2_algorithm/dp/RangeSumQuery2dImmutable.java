@@ -25,10 +25,10 @@
 //[null, 8, 11, 12]
 //
 //<strong>解释:</strong>
-//NumMatrix numMatrix = new NumMatrix([[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]);
-//numMatrix.sumRegion(2, 1, 4, 3); // return 8 (红色矩形框的元素总和)
-//numMatrix.sumRegion(1, 1, 2, 2); // return 11 (绿色矩形框的元素总和)
-//numMatrix.sumRegion(1, 2, 2, 4); // return 12 (蓝色矩形框的元素总和)
+// NumMatrix numMatrix = new NumMatrix([[3,0,1,4,2],[5,6,3,2,1],[1,2,0,1,5],[4,1,0,1,7],[1,0,3,0,5]]);
+// numMatrix.sumRegion(2, 1, 4, 3); // return 8 (红色矩形框的元素总和)
+// numMatrix.sumRegion(1, 1, 2, 2); // return 11 (绿色矩形框的元素总和)
+// numMatrix.sumRegion(1, 2, 2, 4); // return 12 (蓝色矩形框的元素总和)
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -50,35 +50,35 @@
 //<div><li>👍 451</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//304.二维区域和检索 - 矩阵不可变
-//开题时间：2022-12-16 16:52:02
+// 304.二维区域和检索 - 矩阵不可变
+// 开题时间：2022-12-16 16:52:02
 public class RangeSumQuery2dImmutable {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class NumMatrix {
+    int[][] prefix;
+    
+    public NumMatrix(int[][] matrix) {
+      int m = matrix.length + 1;
+      int n = matrix[0].length + 1;
+      
+      prefix = new int[m][n];
+      for (int i = 1; i < m; i++)
+        for (int j = 1; j < n; j++)
+          prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + matrix[i - 1][j - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class NumMatrix {
-        int[][] prefix;
-
-        public NumMatrix(int[][] matrix) {
-            int m = matrix.length + 1;
-            int n = matrix[0].length + 1;
-
-            prefix = new int[m][n];
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < n; j++)
-                    prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + matrix[i - 1][j - 1];
-        }
-
-        public int sumRegion(int row1, int col1, int row2, int col2) {
-            return prefix[row2+1][col2+1] + prefix[row1][col1] - prefix[row2+1][col1] - prefix[row1][col2+1];
-        }
+    
+    public int sumRegion(int row1, int col1, int row2, int col2) {
+      return prefix[row2 + 1][col2 + 1] + prefix[row1][col1] - prefix[row2 + 1][col1] - prefix[row1][col2 + 1];
     }
-
-/**
- * Your NumMatrix object will be instantiated and called as such:
- * NumMatrix obj = new NumMatrix(matrix);
- * int param_1 = obj.sumRegion(row1,col1,row2,col2);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  /**
+   * Your NumMatrix object will be instantiated and called as such:
+   * NumMatrix obj = new NumMatrix(matrix);
+   * int param_1 = obj.sumRegion(row1,col1,row2,col2);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

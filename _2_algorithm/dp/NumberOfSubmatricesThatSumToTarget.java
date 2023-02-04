@@ -49,60 +49,60 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.HashMap;
 
-//1074.元素和为目标值的子矩阵数量
-//开题时间：2022-12-19 10:53:10
+// 1074.元素和为目标值的子矩阵数量
+// 开题时间：2022-12-19 10:53:10
 public class NumberOfSubmatricesThatSumToTarget {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfSubmatricesThatSumToTarget().new Solution();
-        System.out.println(solution.numSubmatrixSumTarget(Tools.to2DIntArray("[[904,1,0],[1,1,1],[0,1,0]]"), 0));
-//        System.out.println(solution.numSubmatrixSumTarget(Tools.to2DIntArray("[[0,1,0],[1,1,1],[0,1,0]]"), 0));
+  public static void main(String[] args) {
+    Solution solution = new NumberOfSubmatricesThatSumToTarget().new Solution();
+    System.out.println(solution.numSubmatrixSumTarget(Tools.to2DIntArray("[[904,1,0],[1,1,1],[0,1,0]]"), 0));
+    //        System.out.println(solution.numSubmatrixSumTarget(Tools.to2DIntArray("[[0,1,0],[1,1,1],[0,1,0]]"), 0));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力二维前缀和
+    public int numSubmatrixSumTarget9(int[][] matrix, int target) {
+      int m = matrix.length + 1;
+      int n = matrix[0].length + 1;
+      
+      int[][] prefix = new int[m][n];
+      for (int i = 1; i < m; i++)
+        for (int j = 1; j < n; j++)
+          prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + matrix[i - 1][j - 1];
+      
+      int ans = 0;
+      for (int i = 1; i < m; i++)
+        for (int j = 1; j < n; j++)
+          for (int p = i; p < m; p++)
+            for (int q = j; q < n; q++)
+              if (target == prefix[p][q] - prefix[i - 1][q] - prefix[p][j - 1] + prefix[i - 1][j - 1])
+                ans++;
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力二维前缀和
-        public int numSubmatrixSumTarget9(int[][] matrix, int target) {
-            int m = matrix.length + 1;
-            int n = matrix[0].length + 1;
-
-            int[][] prefix = new int[m][n];
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < n; j++)
-                    prefix[i][j] = prefix[i - 1][j] + prefix[i][j - 1] - prefix[i - 1][j - 1] + matrix[i - 1][j - 1];
-
-            int ans = 0;
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < n; j++)
-                    for (int p = i; p < m; p++)
-                        for (int q = j; q < n; q++)
-                            if (target == prefix[p][q] - prefix[i - 1][q] - prefix[p][j - 1] + prefix[i - 1][j - 1])
-                                ans++;
-
-            return ans;
+    
+    //☆☆☆☆☆ 固定上下界、枚举右边界 + 哈希计数：
+    public int numSubmatrixSumTarget(int[][] matrix, int target) {
+      int m = matrix.length;
+      int n = matrix[0].length;
+      
+      int ans = 0;
+      for (int i = 0; i < m; i++) {
+        int[] prefix = new int[n];
+        for (int j = i; j < m; j++) {
+          HashMap<Integer, Integer> sum2cnt = new HashMap<>();
+          sum2cnt.put(0, 1);
+          for (int k = 0, sum = 0; k < n; k++) {
+            prefix[k] += matrix[j][k];
+            sum += prefix[k];
+            ans += sum2cnt.getOrDefault(sum - target, 0);
+            sum2cnt.merge(sum, 1, Integer::sum);
+          }
         }
-
-        //☆☆☆☆☆ 固定上下界、枚举右边界 + 哈希计数：
-        public int numSubmatrixSumTarget(int[][] matrix, int target) {
-            int m = matrix.length;
-            int n = matrix[0].length;
-
-            int ans = 0;
-            for (int i = 0; i < m; i++) {
-                int[] prefix = new int[n];
-                for (int j = i; j < m; j++) {
-                    HashMap<Integer, Integer> sum2cnt = new HashMap<>();
-                    sum2cnt.put(0, 1);
-                    for (int k = 0, sum = 0; k < n; k++) {
-                        prefix[k] += matrix[j][k];
-                        sum += prefix[k];
-                        ans += sum2cnt.getOrDefault(sum - target, 0);
-                        sum2cnt.merge(sum, 1, Integer::sum);
-                    }
-                }
-            }
-
-            return ans;
-        }
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -45,144 +45,144 @@ package org.example.leetcode.problems._2_algorithm.dp;
 import java.util.Arrays;
 import java.util.stream.Stream;
 
-//122.买卖股票的最佳时机 II
-//开题时间：2022-12-12 05:18:30
+// 122.买卖股票的最佳时机 II
+// 开题时间：2022-12-12 05:18:30
 public class BestTimeToBuyAndSellStockIi {
-    public static void main(String[] args) {
-        Solution solution = new BestTimeToBuyAndSellStockIi().new Solution();
-        System.out.println(solution.maxProfit(new int[]{7, 1, 5, 3, 6, 4}));
+  public static void main(String[] args) {
+    Solution solution = new BestTimeToBuyAndSellStockIi().new Solution();
+    System.out.println(solution.maxProfit(new int[]{7, 1, 5, 3, 6, 4}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 贪心（复杂版）
+    public int maxProfit99(int[] prices) {
+      int ans = 0;
+      int n = prices.length;
+      for (int l = 0, r = 0; l < n - 1; ) {
+        while (l < n - 1 && prices[l] >= prices[l + 1])
+          l++;
+        
+        if (l >= n - 1)
+          break;
+        
+        r = l + 1;
+        while (r < n - 1 && prices[r] <= prices[r + 1])
+          r++;
+        
+        ans += prices[r] - prices[l];
+        
+        l = r + 1;
+      }
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //贪心（复杂版）
-        public int maxProfit99(int[] prices) {
-            int ans = 0;
-            int n = prices.length;
-            for (int l = 0, r = 0; l < n - 1; ) {
-                while (l < n - 1 && prices[l] >= prices[l + 1])
-                    l++;
-
-                if (l >= n - 1)
-                    break;
-
-                r = l + 1;
-                while (r < n - 1 && prices[r] <= prices[r + 1])
-                    r++;
-
-                ans += prices[r] - prices[l];
-
-                l = r + 1;
-            }
-            return ans;
+    
+    /*
+     * 定义：f[n+1],前 n 天的最大利润
+     * 转移方程：f[i]=max(f[j]+prices[i-1]-prices[j-1]),prices[i-1]-prices[j-1]>0, 1<=j<i
+     */
+    public int maxProfitX(int[] prices) {
+      int n = prices.length + 1;
+      int[] f = new int[n];
+      
+      for (int i = 2; i < n; i++) {
+        for (int j = 1; j < i; j++) {
+          int profit = prices[i - 1] - prices[j - 1];
+          if (profit > 0)
+            f[i] = Math.max(f[i], f[j] + profit);
         }
-
-        /*
-         * 定义：f[n+1],前 n 天的最大利润
-         * 转移方程：f[i]=max(f[j]+prices[i-1]-prices[j-1]),prices[i-1]-prices[j-1]>0, 1<=j<i
-         */
-        public int maxProfitX(int[] prices) {
-            int n = prices.length + 1;
-            int[] f = new int[n];
-
-            for (int i = 2; i < n; i++) {
-                for (int j = 1; j < i; j++) {
-                    int profit = prices[i - 1] - prices[j - 1];
-                    if (profit > 0)
-                        f[i] = Math.max(f[i], f[j] + profit);
-                }
-            }
-
-            return f[n - 1];
-        }
-
-        public int maxProfit88(int[] prices) {
-            int n = prices.length;
-            int[][] f = new int[n][2];
-            f[0][1] = -prices[0];
-
-            for (int i = 1; i < n; i++) {
-                f[i][0] = Math.max(f[i - 1][0], f[i - 1][1] + prices[i]);
-                f[i][1] = Math.max(f[i - 1][1], f[i - 1][0] - prices[i]);
-            }
-
-            return f[n - 1][0];
-        }
-
-        /*
-         * dp
-         * 定义：f[n][k],前 i-1 天、持股状态为k时的最大现金（可能为负）
-         *      k=0,不持股
-         *      k=1, 持股
-         * 转移方程：
-         *      f[i][0]=max(f[i - 1][0],    f[i - 1][1] + prices[i])
-         *      f[i][1]=max(f[i - 1][1],    f[i - 1][0] - prices[i])
-         */
-        public int maxProfit77(int[] prices) {
-            int n = prices.length;
-            int unhold = 0, hold = -prices[0];
-
-            for (int i = 1; i < n; i++) {
-                int tmp = unhold;
-                unhold = Math.max(unhold, hold + prices[i]);
-                hold = Math.max(hold, tmp - prices[i]);
-            }
-
-            return unhold;
-        }
-
-        //贪心
-        public int maxProfit66(int[] prices) {
-            int ans = 0;
-
-            for (int i = 1; i < prices.length; i++) {
-                int diff = prices[i] - prices[i - 1];
-                if (diff > 0)
-                    ans += diff;
-            }
-
-            return ans;
-        }
-
-        /*
-         * dp
-         * 定义：f[i] 表示最后一次出售股票为第 i 天时的最大利润
-         */
-        public int maxProfit9(int[] prices) {
-            int ans = 0;
-            int n = prices.length;
-            int[] f = new int[n + 1];
-            Arrays.fill(f, Integer.MIN_VALUE);
-            f[0] = 0;
-            for (int i = 1; i < n + 1; i++) {
-                for (int j = 1; j <= i; j++)
-                    f[i] = Math.max(f[i], f[j - 1] + prices[i - 1] - prices[j - 1]);
-                ans = Math.max(ans, f[i]);
-            }
-            return ans;
-        }
-
-        /*
-         * ☆☆☆☆☆ 贪心
-         * 求所有正增量的和
-         *
-         * 证明：
-         *  加上任意非正增量，结果不会更大
-         *  减去任意正增量，结果只会更小
-         */
-        public int maxProfit8(int[] prices) {
-            int ans = 0;
-            for (int i = 0; i < prices.length - 1; i++)
-                ans += Math.max(0, prices[i + 1] - prices[i]);
-            return ans;
-        }
-
-        public int maxProfit(int[] prices) {
-            return Stream.iterate(0, i -> i < prices.length - 1, i -> i + 1)
-                    .mapToInt(Integer::intValue)
-                    .map(i -> Math.max(0, prices[i + 1] - prices[i]))
-                    .sum();
-        }
+      }
+      
+      return f[n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int maxProfit88(int[] prices) {
+      int n = prices.length;
+      int[][] f = new int[n][2];
+      f[0][1] = -prices[0];
+      
+      for (int i = 1; i < n; i++) {
+        f[i][0] = Math.max(f[i - 1][0], f[i - 1][1] + prices[i]);
+        f[i][1] = Math.max(f[i - 1][1], f[i - 1][0] - prices[i]);
+      }
+      
+      return f[n - 1][0];
+    }
+    
+    /*
+     * dp
+     * 定义：f[n][k],前 i-1 天、持股状态为k时的最大现金（可能为负）
+     *      k=0,不持股
+     *      k=1, 持股
+     * 转移方程：
+     *      f[i][0]=max(f[i - 1][0],    f[i - 1][1] + prices[i])
+     *      f[i][1]=max(f[i - 1][1],    f[i - 1][0] - prices[i])
+     */
+    public int maxProfit77(int[] prices) {
+      int n = prices.length;
+      int unhold = 0, hold = -prices[0];
+      
+      for (int i = 1; i < n; i++) {
+        int tmp = unhold;
+        unhold = Math.max(unhold, hold + prices[i]);
+        hold = Math.max(hold, tmp - prices[i]);
+      }
+      
+      return unhold;
+    }
+    
+    // 贪心
+    public int maxProfit66(int[] prices) {
+      int ans = 0;
+      
+      for (int i = 1; i < prices.length; i++) {
+        int diff = prices[i] - prices[i - 1];
+        if (diff > 0)
+          ans += diff;
+      }
+      
+      return ans;
+    }
+    
+    /*
+     * dp
+     * 定义：f[i] 表示最后一次出售股票为第 i 天时的最大利润
+     */
+    public int maxProfit9(int[] prices) {
+      int ans = 0;
+      int n = prices.length;
+      int[] f = new int[n + 1];
+      Arrays.fill(f, Integer.MIN_VALUE);
+      f[0] = 0;
+      for (int i = 1; i < n + 1; i++) {
+        for (int j = 1; j <= i; j++)
+          f[i] = Math.max(f[i], f[j - 1] + prices[i - 1] - prices[j - 1]);
+        ans = Math.max(ans, f[i]);
+      }
+      return ans;
+    }
+    
+    /*
+     * ☆☆☆☆☆ 贪心
+     * 求所有正增量的和
+     *
+     * 证明：
+     *  加上任意非正增量，结果不会更大
+     *  减去任意正增量，结果只会更小
+     */
+    public int maxProfit8(int[] prices) {
+      int ans = 0;
+      for (int i = 0; i < prices.length - 1; i++)
+        ans += Math.max(0, prices[i + 1] - prices[i]);
+      return ans;
+    }
+    
+    public int maxProfit(int[] prices) {
+      return Stream.iterate(0, i -> i < prices.length - 1, i -> i + 1)
+          .mapToInt(Integer::intValue)
+          .map(i -> Math.max(0, prices[i + 1] - prices[i]))
+          .sum();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

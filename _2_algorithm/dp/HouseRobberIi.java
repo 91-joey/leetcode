@@ -39,42 +39,42 @@
 //<div><li>👍 1205</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//213.打家劫舍 II
-//开题时间：2022-11-26 14:56:23
+// 213.打家劫舍 II
+// 开题时间：2022-11-26 14:56:23
 public class HouseRobberIi {
-    public static void main(String[] args) {
-        Solution solution = new HouseRobberIi().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new HouseRobberIi().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 第一个房屋和最后一个房屋是紧挨着的
+     * 则只有两种情况：
+     *   - 第一个房屋抢，  最后一个房屋不抢
+     *   - 第一个房屋不抢，最后一个房屋抢
+     */
+    public int rob(int[] nums) {
+      int n = nums.length;
+      
+      if (n == 1)
+        return nums[0];
+      
+      return Math.max(
+          getMax(nums, 0, n - 1),
+          getMax(nums, 1, n)
+      );
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 第一个房屋和最后一个房屋是紧挨着的
-         * 则只有两种情况：
-         *   - 第一个房屋抢，  最后一个房屋不抢
-         *   - 第一个房屋不抢，最后一个房屋抢
-         */
-        public int rob(int[] nums) {
-            int n = nums.length;
-
-            if (n == 1)
-                return nums[0];
-
-            return Math.max(
-                    getMax(nums, 0, n - 1),
-                    getMax(nums, 1, n)
-            );
-        }
-
-        private int getMax(int[] nums, int start, int end) {
-            int cur = 0;
-            for (int i = start, pre = 0; i < end; i++) {
-                int tmp = Math.max(cur, pre + nums[i]);
-                pre = cur;
-                cur = tmp;
-            }
-            return cur;
-        }
+    
+    private int getMax(int[] nums, int start, int end) {
+      int cur = 0;
+      for (int i = start, pre = 0; i < end; i++) {
+        int tmp = Math.max(cur, pre + nums[i]);
+        pre = cur;
+        cur = tmp;
+      }
+      return cur;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

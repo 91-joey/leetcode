@@ -54,127 +54,127 @@
 //<div><li>👍 41</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//1754.构造字典序最大的合并字符串
-//开题时间：2022-12-24 10:09:03
+// 1754.构造字典序最大的合并字符串
+// 开题时间：2022-12-24 10:09:03
 public class LargestMergeOfTwoStrings {
-    public static void main(String[] args) {
-        Solution solution = new LargestMergeOfTwoStrings().new Solution();
-//        System.out.println(solution.largestMerge("cabaa", "bcaaa"));
-        System.out.println(solution.largestMerge("qqqqqqqqqeqeqqeeqqq", "qqqqqqqqeqqqeeqqeeqqqqqeq"));
+  public static void main(String[] args) {
+    Solution solution = new LargestMergeOfTwoStrings().new Solution();
+    //        System.out.println(solution.largestMerge("cabaa", "bcaaa"));
+    System.out.println(solution.largestMerge("qqqqqqqqqeqeqqeeqqq", "qqqqqqqqeqqqeeqqeeqqqqqeq"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public String largestMergeX(String word1, String word2) {
+      char[] cs1 = word1.toCharArray();
+      char[] cs2 = word2.toCharArray();
+      int m = cs1.length;
+      int n = cs2.length;
+      StringBuilder sb = new StringBuilder(m + n);
+      int i = m - 1, j = n - 1;
+      while (0 <= i && 0 <= j) {
+        if (cs1[i] == cs2[j]) {
+          int p = i - 1, q = j - 1;
+          while (p >= 0 && q >= 0 && cs1[p] == cs2[q] && cs1[p] <= cs1[p + 1]) {
+            p--;
+            q--;
+          }
+          if ((p < 0 && q >= 0 && cs2[q] >= cs2[q + 1]) || (p >= 0 && q >= 0 && cs1[p] < cs2[q])) {
+            while (i >= Math.max(p, 0))
+              sb.append(cs1[i--]);
+          } else
+            while (j >= Math.max(q, 0))
+              sb.append(cs2[j--]);
+        } else
+          sb.append(cs1[i] < cs2[j] ? cs1[i--] : cs2[j--]);
+      }
+      if (j < 0) {
+        while (i >= 0)
+          sb.append(cs1[i--]);
+      } else
+        while (j >= 0)
+          sb.append(cs2[j--]);
+      
+      return sb.reverse().toString();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public String largestMergeX(String word1, String word2) {
-            char[] cs1 = word1.toCharArray();
-            char[] cs2 = word2.toCharArray();
-            int m = cs1.length;
-            int n = cs2.length;
-            StringBuilder sb = new StringBuilder(m + n);
-            int i = m - 1, j = n - 1;
-            while (0 <= i && 0 <= j) {
-                if (cs1[i] == cs2[j]) {
-                    int p = i - 1, q = j - 1;
-                    while (p >= 0 && q >= 0 && cs1[p] == cs2[q] && cs1[p] <= cs1[p + 1]) {
-                        p--;
-                        q--;
-                    }
-                    if ((p < 0 && q >= 0 && cs2[q] >= cs2[q + 1]) || (p >= 0 && q >= 0 && cs1[p] < cs2[q])) {
-                        while (i >= Math.max(p, 0))
-                            sb.append(cs1[i--]);
-                    } else
-                        while (j >= Math.max(q, 0))
-                            sb.append(cs2[j--]);
-                } else
-                    sb.append(cs1[i] < cs2[j] ? cs1[i--] : cs2[j--]);
-            }
-            if (j < 0) {
-                while (i >= 0)
-                    sb.append(cs1[i--]);
-            } else
-                while (j >= 0)
-                    sb.append(cs2[j--]);
-
-            return sb.reverse().toString();
-        }
-
-        public String largestMergeXX(String word1, String word2) {
-            StringBuilder sb = new StringBuilder();
-
-            if (word1.length() <= 0)
-                sb.append(word2);
-            else if (word2.length() <= 0)
-                sb.append(word1);
-            else if (word1.charAt(0) < word2.charAt(0))
-                sb.append(word2.charAt(0)).append(largestMerge(word1, word2.substring(1)));
-            else if (word1.charAt(0) > word2.charAt(0))
-                sb.append(word1.charAt(0)).append(largestMerge(word1.substring(1), word2));
-            else {
-                String a = largestMerge(word1, word2.substring(1));
-                String b = largestMerge(word1.substring(1), word2);
-                sb.append(word1.charAt(0)).append(a.compareTo(b) < 0 ? b : a);
-            }
-
-            return sb.toString();
-        }
-
-        char[] cs1;
-        char[] cs2;
-
-        public String largestMergeXXX(String word1, String word2) {
-            cs1 = word1.toCharArray();
-            cs2 = word2.toCharArray();
-            return helper(0, 0);
-        }
-
-        private String helper(int i, int j) {
-            String ans = "";
-
-            if (i >= cs1.length)
-                ans += new String(cs2, j, cs2.length - j);
-            else if (j >= cs2.length)
-                ans += new String(cs1, i, cs1.length - i);
-            else if (cs1[i] < cs2[j])
-                ans += (cs2[j]) + (helper(i, j + 1));
-            else if (cs1[i] > cs2[j])
-                ans += (cs1[i]) + (helper(i + 1, j));
-            else {
-                String a = helper(i, j + 1);
-                String b = helper(i + 1, j);
-                ans += (cs1[i]) + (a.compareTo(b) < 0 ? b : a);
-            }
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 贪心 O((m+n)×max(m,n))
-        public String largestMerge9(String word1, String word2) {
-            int m = word1.length();
-            int n = word2.length();
-            StringBuilder sb = new StringBuilder(m + n);
-            while (0 < word1.length() + word2.length())
-                if (word1.compareTo(word2) < 0) {
-                    sb.append(word2.charAt(0));
-                    word2 = word2.substring(1);
-                } else {
-                    sb.append(word1.charAt(0));
-                    word1 = word1.substring(1);
-                }
-            return sb.toString();
-        }
-
-        public String largestMerge(String word1, String word2) {
-            int m = word1.length();
-            int n = word2.length();
-            StringBuilder sb = new StringBuilder(m + n);
-            int i = 0, j = 0;
-            while (i < m && j < n)
-                sb.append(word1.substring(i).compareTo(word2.substring(j)) > 0 ?
-                        word1.charAt(i++) :
-                        word2.charAt(j++)
-                );
-            return sb.append(i < m ? word1.substring(i) : word2.substring(j)).toString();
-        }
+    
+    public String largestMergeXX(String word1, String word2) {
+      StringBuilder sb = new StringBuilder();
+      
+      if (word1.length() <= 0)
+        sb.append(word2);
+      else if (word2.length() <= 0)
+        sb.append(word1);
+      else if (word1.charAt(0) < word2.charAt(0))
+        sb.append(word2.charAt(0)).append(largestMerge(word1, word2.substring(1)));
+      else if (word1.charAt(0) > word2.charAt(0))
+        sb.append(word1.charAt(0)).append(largestMerge(word1.substring(1), word2));
+      else {
+        String a = largestMerge(word1, word2.substring(1));
+        String b = largestMerge(word1.substring(1), word2);
+        sb.append(word1.charAt(0)).append(a.compareTo(b) < 0 ? b : a);
+      }
+      
+      return sb.toString();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    char[] cs1;
+    char[] cs2;
+    
+    public String largestMergeXXX(String word1, String word2) {
+      cs1 = word1.toCharArray();
+      cs2 = word2.toCharArray();
+      return helper(0, 0);
+    }
+    
+    private String helper(int i, int j) {
+      String ans = "";
+      
+      if (i >= cs1.length)
+        ans += new String(cs2, j, cs2.length - j);
+      else if (j >= cs2.length)
+        ans += new String(cs1, i, cs1.length - i);
+      else if (cs1[i] < cs2[j])
+        ans += (cs2[j]) + (helper(i, j + 1));
+      else if (cs1[i] > cs2[j])
+        ans += (cs1[i]) + (helper(i + 1, j));
+      else {
+        String a = helper(i, j + 1);
+        String b = helper(i + 1, j);
+        ans += (cs1[i]) + (a.compareTo(b) < 0 ? b : a);
+      }
+      
+      return ans;
+    }
+    
+    //☆☆☆☆☆ 贪心 O((m+n)×max(m,n))
+    public String largestMerge9(String word1, String word2) {
+      int m = word1.length();
+      int n = word2.length();
+      StringBuilder sb = new StringBuilder(m + n);
+      while (0 < word1.length() + word2.length())
+        if (word1.compareTo(word2) < 0) {
+          sb.append(word2.charAt(0));
+          word2 = word2.substring(1);
+        } else {
+          sb.append(word1.charAt(0));
+          word1 = word1.substring(1);
+        }
+      return sb.toString();
+    }
+    
+    public String largestMerge(String word1, String word2) {
+      int m = word1.length();
+      int n = word2.length();
+      StringBuilder sb = new StringBuilder(m + n);
+      int i = 0, j = 0;
+      while (i < m && j < n)
+        sb.append(word1.substring(i).compareTo(word2.substring(j)) > 0 ?
+            word1.charAt(i++) :
+            word2.charAt(j++)
+        );
+      return sb.append(i < m ? word1.substring(i) : word2.substring(j)).toString();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

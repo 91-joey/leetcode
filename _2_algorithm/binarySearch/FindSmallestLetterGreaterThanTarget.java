@@ -46,49 +46,49 @@ package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.Arrays;
 
-//744.寻找比目标字母大的最小字母
-//开题时间：2022-11-02 16:38:51
+// 744.寻找比目标字母大的最小字母
+// 开题时间：2022-11-02 16:38:51
 public class FindSmallestLetterGreaterThanTarget {
-    public static void main(String[] args) {
-        Solution solution = new FindSmallestLetterGreaterThanTarget().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindSmallestLetterGreaterThanTarget().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // w  xyz abc...w
+    // 手撕二分
+    public char nextGreatestLetter9(char[] letters, char target) {
+      int l = 0, r = letters.length;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (target < letters[mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      //            return r == letters.length ? letters[0] : letters[r];
+      return letters[r % letters.length];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //w  xyz abc...w
-        //手撕二分
-        public char nextGreatestLetter9(char[] letters, char target) {
-            int l = 0, r = letters.length;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (target < letters[mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-//            return r == letters.length ? letters[0] : letters[r];
-            return letters[r % letters.length];
-        }
-
-        //无情API选手
-        public char nextGreatestLetter2(char[] letters, char target) {
-            int search = Arrays.binarySearch(letters, (char) (target + 1));
-            return search >= 0 ? letters[search] : letters[(-search - 1) % letters.length];
-        }
-
-        public char nextGreatestLetter(char[] letters, char target) {
-            int l = 0, r = letters.length - 1;
-            if (letters[r] <= target)
-                return letters[l];
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (target < letters[mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return letters[r];
-        }
+    
+    // 无情API选手
+    public char nextGreatestLetter2(char[] letters, char target) {
+      int search = Arrays.binarySearch(letters, (char) (target + 1));
+      return search >= 0 ? letters[search] : letters[(-search - 1) % letters.length];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public char nextGreatestLetter(char[] letters, char target) {
+      int l = 0, r = letters.length - 1;
+      if (letters[r] <= target)
+        return letters[l];
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (target < letters[mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return letters[r];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

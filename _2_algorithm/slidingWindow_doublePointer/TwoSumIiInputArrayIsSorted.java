@@ -45,39 +45,39 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import java.util.Arrays;
 
-//167.两数之和 II - 输入有序数组
-//开题时间：2022-10-22 17:34:55
+// 167.两数之和 II - 输入有序数组
+// 开题时间：2022-10-22 17:34:55
 public class TwoSumIiInputArrayIsSorted {
-    public static void main(String[] args) {
-        Solution solution = new TwoSumIiInputArrayIsSorted().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new TwoSumIiInputArrayIsSorted().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 二分查找
+    public int[] twoSum(int[] numbers, int target) {
+      int len = numbers.length;
+      for (int i = 0; i < len; i++) {
+        int search = Arrays.binarySearch(numbers, i + 1, len, target - numbers[i]);
+        if (search > 0)
+          return new int[]{i + 1, search + 1};
+      }
+      return new int[]{};
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //二分查找
-        public int[] twoSum(int[] numbers, int target) {
-            int len = numbers.length;
-            for (int i = 0; i < len; i++) {
-                int search = Arrays.binarySearch(numbers, i + 1, len, target - numbers[i]);
-                if (search > 0)
-                    return new int[]{i + 1, search + 1};
-            }
-            return new int[]{};
-        }
-
-        //双指针
-        public int[] twoSum2(int[] numbers, int target) {
-            for (int l = 0, r = numbers.length - 1; l < r; ) {
-                int sum = numbers[l] + numbers[r];
-                if (sum == target)
-                    return new int[]{l + 1, r + 1};
-                else if (sum < target)
-                    l++;
-                else
-                    r--;
-            }
-            return new int[]{};
-        }
+    
+    // 双指针
+    public int[] twoSum2(int[] numbers, int target) {
+      for (int l = 0, r = numbers.length - 1; l < r; ) {
+        int sum = numbers[l] + numbers[r];
+        if (sum == target)
+          return new int[]{l + 1, r + 1};
+        else if (sum < target)
+          l++;
+        else
+          r--;
+      }
+      return new int[]{};
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

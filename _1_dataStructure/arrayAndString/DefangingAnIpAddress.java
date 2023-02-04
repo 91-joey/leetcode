@@ -27,18 +27,18 @@
 //<div><li>👍 122</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1108.IP 地址无效化
-//开题时间：2022-11-07 08:51:57
+// 1108.IP 地址无效化
+// 开题时间：2022-11-07 08:51:57
 public class DefangingAnIpAddress {
-    public static void main(String[] args) {
-        Solution solution = new DefangingAnIpAddress().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DefangingAnIpAddress().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public String defangIPaddr(String address) {
+      return address.replace(".", "[.]");
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public String defangIPaddr(String address) {
-            return address.replace(".", "[.]");
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -36,30 +36,30 @@
 //<div><li>👍 734</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//剑指 Offer 11.旋转数组的最小数字
-//开题时间：2022-12-30 09:31:36
+// 剑指 Offer 11.旋转数组的最小数字
+// 开题时间：2022-12-30 09:31:36
 public class XuanZhuanShuZuDeZuiXiaoShuZiLcof {
-    public static void main(String[] args) {
-        Solution solution = new XuanZhuanShuZuDeZuiXiaoShuZiLcof().new Solution();
-        System.out.println(solution.minArray(new int[]{1, 3, 3}));
+  public static void main(String[] args) {
+    Solution solution = new XuanZhuanShuZuDeZuiXiaoShuZiLcof().new Solution();
+    System.out.println(solution.minArray(new int[]{1, 3, 3}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minArray(int[] numbers) {
+      int l = 0, r = numbers.length - 1;
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (numbers[mid] < numbers[r])
+          r = mid;
+        else if (numbers[mid] > numbers[r])
+          l = mid + 1;
+          // 无法二分，转为线性
+        else
+          r--;
+      }
+      return numbers[r];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minArray(int[] numbers) {
-            int l = 0, r = numbers.length - 1;
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (numbers[mid] < numbers[r])
-                    r = mid;
-                else if (numbers[mid] > numbers[r])
-                    l = mid + 1;
-                //无法二分，转为线性
-                else
-                    r--;
-            }
-            return numbers[r];
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

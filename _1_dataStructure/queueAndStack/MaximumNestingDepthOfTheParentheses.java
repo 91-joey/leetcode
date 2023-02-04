@@ -49,26 +49,26 @@
 //<div><li>👍 119</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-//1614.括号的最大嵌套深度
-//开题时间：2022-11-19 16:46:11
+// 1614.括号的最大嵌套深度
+// 开题时间：2022-11-19 16:46:11
 public class MaximumNestingDepthOfTheParentheses {
-    public static void main(String[] args) {
-        Solution solution = new MaximumNestingDepthOfTheParentheses().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumNestingDepthOfTheParentheses().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxDepth(String s) {
+      int max = 0;
+      int cur = 0;
+      for (char c : s.toCharArray()) {
+        if (c == '(')
+          cur++;
+        else if (c == ')')
+          max = Math.max(max, cur--);
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxDepth(String s) {
-            int max = 0;
-            int cur = 0;
-            for (char c : s.toCharArray()) {
-                if (c == '(')
-                    cur++;
-                else if (c == ')')
-                    max = Math.max(max, cur--);
-            }
-            return max;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

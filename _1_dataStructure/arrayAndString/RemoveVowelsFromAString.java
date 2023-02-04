@@ -29,32 +29,32 @@
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 
-//1119.删去字符串中的元音
-//开题时间：2022-11-04 08:27:00
+// 1119.删去字符串中的元音
+// 开题时间：2022-11-04 08:27:00
 public class RemoveVowelsFromAString {
-    public static void main(String[] args) {
-        Solution solution = new RemoveVowelsFromAString().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RemoveVowelsFromAString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public String removeVowels(String s) {
+      StringBuilder sb = new StringBuilder();
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (isNotVowel(c))
+          sb.append(c);
+      }
+      return sb.toString();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public String removeVowels(String s) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (isNotVowel(c))
-                    sb.append(c);
-            }
-            return sb.toString();
-        }
-
-
-        public boolean isNotVowel(char c) {
-            return switch (c) {
-                case 'a', 'e', 'i', 'o', 'u' -> false;
-                default -> true;
-            };
-        }
+    
+    
+    public boolean isNotVowel(char c) {
+      return switch (c) {
+        case 'a', 'e', 'i', 'o', 'u' -> false;
+        default -> true;
+      };
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

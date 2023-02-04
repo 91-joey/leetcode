@@ -51,83 +51,83 @@ import java.util.Deque;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-//496.下一个更大元素 I
-//开题时间：2022-12-05 11:55:55
+// 496.下一个更大元素 I
+// 开题时间：2022-12-05 11:55:55
 public class NextGreaterElementI {
-    public static void main(String[] args) {
-        Solution solution = new NextGreaterElementI().new Solution();
-        System.out.println(Arrays.toString(solution.nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
+  public static void main(String[] args) {
+    Solution solution = new NextGreaterElementI().new Solution();
+    System.out.println(Arrays.toString(solution.nextGreaterElement(new int[]{4, 1, 2}, new int[]{1, 3, 4, 2})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // hashtable + 2D traversal  m^2
+    public int[] nextGreaterElement9(int[] nums1, int[] nums2) {
+      int[] ans = new int[nums1.length];
+      Arrays.fill(ans, -1);
+      
+      HashMap<Integer, Integer> val2idx = new HashMap<>();
+      int m = nums2.length;
+      for (int i = 0; i < m; i++)
+        val2idx.put(nums2[i], i);
+      
+      for (int i = 0; i < nums1.length; i++)
+        for (int j = val2idx.get(nums1[i]) + 1; j < m; j++)
+          if (nums1[i] < nums2[j]) {
+            ans[i] = nums2[j];
+            break;
+          }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //hashtable + 2D traversal  m^2
-        public int[] nextGreaterElement9(int[] nums1, int[] nums2) {
-            int[] ans = new int[nums1.length];
-            Arrays.fill(ans, -1);
-
-            HashMap<Integer, Integer> val2idx = new HashMap<>();
-            int m = nums2.length;
-            for (int i = 0; i < m; i++)
-                val2idx.put(nums2[i], i);
-
-            for (int i = 0; i < nums1.length; i++)
-                for (int j = val2idx.get(nums1[i]) + 1; j < m; j++)
-                    if (nums1[i] < nums2[j]) {
-                        ans[i] = nums2[j];
-                        break;
-                    }
-
-            return ans;
-        }
-
-        /*
-         * LinkedList
-         *   push/pop/peek:first    offer:last
-         */
-        public int[] nextGreaterElement8(int[] nums1, int[] nums2) {
-            Deque<Integer> stack = new LinkedList<>();
-
-            int m = nums2.length;
-            int[] greaters = new int[m];
-            for (int i = m - 1; i >= 0; i--) {
-                while (!stack.isEmpty() && stack.peek() < nums2[i])
-                    stack.pop();
-                if (stack.isEmpty())
-                    greaters[i] = -1;
-                else
-                    greaters[i] = stack.peek();
-                stack.push(nums2[i]);
-            }
-
-            HashMap<Integer, Integer> val2idx = new HashMap<>();
-            for (int i = 0; i < m; i++)
-                val2idx.put(nums2[i], i);
-
-            for (int i = 0; i < nums1.length; i++)
-                nums1[i] = greaters[val2idx.get(nums1[i])];
-
-            return nums1;
-        }
-
-        //☆☆☆☆☆ hashtable + monotonic stack n+m
-        public int[] nextGreaterElement(int[] nums1, int[] nums2) {
-            Deque<Integer> stack = new LinkedList<>();
-
-            int m = nums2.length;
-            HashMap<Integer, Integer> val2idx = new HashMap<>();
-            for (int i = m - 1; i >= 0; i--) {
-                while (!stack.isEmpty() && stack.peek() < nums2[i])
-                    stack.pop();
-                val2idx.put(nums2[i], stack.isEmpty() ? -1 : stack.peek());
-                stack.push(nums2[i]);
-            }
-
-            for (int i = 0; i < nums1.length; i++)
-                nums1[i] = val2idx.get(nums1[i]);
-
-            return nums1;
-        }
+    
+    /*
+     * LinkedList
+     *   push/pop/peek:first    offer:last
+     */
+    public int[] nextGreaterElement8(int[] nums1, int[] nums2) {
+      Deque<Integer> stack = new LinkedList<>();
+      
+      int m = nums2.length;
+      int[] greaters = new int[m];
+      for (int i = m - 1; i >= 0; i--) {
+        while (!stack.isEmpty() && stack.peek() < nums2[i])
+          stack.pop();
+        if (stack.isEmpty())
+          greaters[i] = -1;
+        else
+          greaters[i] = stack.peek();
+        stack.push(nums2[i]);
+      }
+      
+      HashMap<Integer, Integer> val2idx = new HashMap<>();
+      for (int i = 0; i < m; i++)
+        val2idx.put(nums2[i], i);
+      
+      for (int i = 0; i < nums1.length; i++)
+        nums1[i] = greaters[val2idx.get(nums1[i])];
+      
+      return nums1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ hashtable + monotonic stack n+m
+    public int[] nextGreaterElement(int[] nums1, int[] nums2) {
+      Deque<Integer> stack = new LinkedList<>();
+      
+      int m = nums2.length;
+      HashMap<Integer, Integer> val2idx = new HashMap<>();
+      for (int i = m - 1; i >= 0; i--) {
+        while (!stack.isEmpty() && stack.peek() < nums2[i])
+          stack.pop();
+        val2idx.put(nums2[i], stack.isEmpty() ? -1 : stack.peek());
+        stack.push(nums2[i]);
+      }
+      
+      for (int i = 0; i < nums1.length; i++)
+        nums1[i] = val2idx.get(nums1[i]);
+      
+      return nums1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

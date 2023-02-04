@@ -13,7 +13,7 @@
 //<pre><b>输入：</b>num = 2932
 //<b>输出：</b>52
 //<b>解释：</b>可行的 [new1, new2] 数对为 [29, 23] ，[223, 9] 等等。
-//最小和为数对 [29, 23] 的和：29 + 23 = 52 。
+// 最小和为数对 [29, 23] 的和：29 + 23 = 52 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -21,7 +21,7 @@
 //<pre><b>输入：</b>num = 4009
 //<b>输出：</b>13
 //<b>解释：</b>可行的 [new1, new2] 数对为 [0, 49] ，[490, 0] 等等。
-//最小和为数对 [4, 9] 的和：4 + 9 = 13 。
+// 最小和为数对 [4, 9] 的和：4 + 9 = 13 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -37,31 +37,31 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 
 import java.util.Arrays;
 
-//2160.拆分数位后四位数字的最小和
-//开题时间：2022-12-08 18:21:32
+// 2160.拆分数位后四位数字的最小和
+// 开题时间：2022-12-08 18:21:32
 public class MinimumSumOfFourDigitNumberAfterSplittingDigits {
-    public static void main(String[] args) {
-        Solution solution = new MinimumSumOfFourDigitNumberAfterSplittingDigits().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumSumOfFourDigitNumberAfterSplittingDigits().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 贪心+排序
+    public int minimumSum(int num) {
+      int[] arr = new int[4];
+      for (int i = 0; num != 0; num /= 10, i++)
+        arr[i] = num % 10;
+      Arrays.sort(arr);
+      
+      return (arr[0] + arr[1]) * 10 + arr[2] + arr[3];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //贪心+排序
-        public int minimumSum(int num) {
-            int[] arr = new int[4];
-            for (int i = 0; num != 0; num /= 10, i++)
-                arr[i] = num % 10;
-            Arrays.sort(arr);
-
-            return (arr[0] + arr[1]) * 10 + arr[2] + arr[3];
-        }
-
-        public int minimumSum8(int num) {
-            char[] cs = String.valueOf(num).toCharArray();
-            Arrays.sort(cs);
-            return (cs[0] + cs[1]) * 10 + cs[2] + cs[3] - 22 * '0';
-//            return (cs[0] + cs[1] - 2 * '0') * 10 + cs[2] + cs[3] - 2 * '0';
-        }
+    
+    public int minimumSum8(int num) {
+      char[] cs = String.valueOf(num).toCharArray();
+      Arrays.sort(cs);
+      return (cs[0] + cs[1]) * 10 + cs[2] + cs[3] - 22 * '0';
+      //            return (cs[0] + cs[1] - 2 * '0') * 10 + cs[2] + cs[3] - 2 * '0';
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

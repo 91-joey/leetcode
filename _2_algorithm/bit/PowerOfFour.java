@@ -40,32 +40,32 @@
 //<div><li>👍 328</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//342.4的幂
-//开题时间：2023-01-14 21:24:15
+// 342.4的幂
+// 开题时间：2023-01-14 21:24:15
 public class PowerOfFour {
-    public static void main(String[] args) {
-        Solution solution = new PowerOfFour().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new PowerOfFour().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean isPowerOfFour9(int n) {
+      if (n <= 0)
+        return false;
+      double sqrt = Math.sqrt(n);
+      int intSqrt = (int) sqrt;
+      return intSqrt == sqrt && (intSqrt & (intSqrt - 1)) == 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean isPowerOfFour9(int n) {
-            if (n <= 0)
-                return false;
-            double sqrt = Math.sqrt(n);
-            int intSqrt = (int) sqrt;
-            return intSqrt == sqrt && (intSqrt & (intSqrt - 1)) == 0;
-        }
-
-        //☆☆☆☆☆ 二进制表示中 1 的位置（1.为 2 的幂 2.位 1 的位置为从右往左数的奇数个位置）
-        public boolean isPowerOfFour8(int n) {
-            return n > 0 && (n & (n - 1)) == 0 && (n & 0xAAAAAAAA) == 0;
-        }
-
-        //取模性质：4*x=3*x+x ,(3*x+x)%3 = x%3 ,x0=1
-        public boolean isPowerOfFour(int n) {
-            return (n & (n - 1)) == 0 && n % 3 == 1;
-        }
+    
+    //☆☆☆☆☆ 二进制表示中 1 的位置（1.为 2 的幂 2.位 1 的位置为从右往左数的奇数个位置）
+    public boolean isPowerOfFour8(int n) {
+      return n > 0 && (n & (n - 1)) == 0 && (n & 0xAAAAAAAA) == 0;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 取模性质：4*x=3*x+x ,(3*x+x)%3 = x%3 ,x0=1
+    public boolean isPowerOfFour(int n) {
+      return (n & (n - 1)) == 0 && n % 3 == 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

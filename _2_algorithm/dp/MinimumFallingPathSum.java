@@ -39,69 +39,69 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//931.下降路径最小和
-//开题时间：2022-12-14 12:08:48
+// 931.下降路径最小和
+// 开题时间：2022-12-14 12:08:48
 public class MinimumFallingPathSum {
-    public static void main(String[] args) {
-        Solution solution = new MinimumFallingPathSum().new Solution();
-        System.out.println(solution.minFallingPathSum(new int[][]{{-48}}));
+  public static void main(String[] args) {
+    Solution solution = new MinimumFallingPathSum().new Solution();
+    System.out.println(solution.minFallingPathSum(new int[][]{{-48}}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // DP（原始）
+    public int minFallingPathSum9(int[][] matrix) {
+      if (matrix.length == 1)
+        return matrix[0][0];
+      
+      int n = matrix.length + 1;
+      int[][] f = new int[n][n - 1];
+      
+      for (int i = 1; i < n; i++) {
+        f[i][0] = matrix[i - 1][0] + Math.min(f[i - 1][0], f[i - 1][1]);
+        for (int j = 1; j < n - 2; j++)
+          f[i][j] = matrix[i - 1][j] + min(f[i - 1][j - 1], f[i - 1][j], f[i - 1][j + 1]);
+        f[i][n - 2] = matrix[i - 1][n - 2] + Math.min(f[i - 1][n - 3], f[i - 1][n - 2]);
+      }
+      
+      return Arrays.stream(f[n - 1]).min().getAsInt();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //DP（原始）
-        public int minFallingPathSum9(int[][] matrix) {
-            if (matrix.length == 1)
-                return matrix[0][0];
-
-            int n = matrix.length + 1;
-            int[][] f = new int[n][n - 1];
-
-            for (int i = 1; i < n; i++) {
-                f[i][0] = matrix[i - 1][0] + Math.min(f[i - 1][0], f[i - 1][1]);
-                for (int j = 1; j < n - 2; j++)
-                    f[i][j] = matrix[i - 1][j] + min(f[i - 1][j - 1], f[i - 1][j], f[i - 1][j + 1]);
-                f[i][n - 2] = matrix[i - 1][n - 2] + Math.min(f[i - 1][n - 3], f[i - 1][n - 2]);
-            }
-
-            return Arrays.stream(f[n - 1]).min().getAsInt();
-        }
-
-        //DP（初始化首行元素）
-        public int minFallingPathSum8(int[][] matrix) {
-            int n = matrix.length;
-            int[][] f = new int[n][n];
-            f[0] = matrix[0];
-
-            for (int i = 1; i < n; i++) {
-                f[i][0] = matrix[i][0] + Math.min(f[i - 1][0], f[i - 1][1]);
-                for (int j = 1; j < n - 1; j++)
-                    f[i][j] = matrix[i][j] + min(f[i - 1][j - 1], f[i - 1][j], f[i - 1][j + 1]);
-                f[i][n - 1] = matrix[i][n - 1] + Math.min(f[i - 1][n - 2], f[i - 1][n - 1]);
-            }
-
-            return Arrays.stream(f[n - 1]).min().getAsInt();
-        }
-
-        //☆☆☆☆☆ DP（初始化首列、尾列元素）
-        public int minFallingPathSum(int[][] matrix) {
-            int n = matrix.length + 1;
-            int[][] f = new int[n][n + 1];
-            for (int i = 0; i < n; i++)
-                f[i][0] = f[i][n] = Integer.MAX_VALUE;
-
-            for (int i = 1; i < n; i++)
-                for (int j = 1; j < n; j++)
-                    f[i][j] = matrix[i - 1][j - 1] + min(f[i - 1][j - 1], f[i - 1][j], f[i - 1][j + 1]);
-
-            return Arrays.stream(f[n - 1]).min().getAsInt();
-        }
-
-        public static int min(int... arr) {
-            int min = Integer.MAX_VALUE;
-            for (int x : arr) if (min > x) min = x;
-            return min;
-        }
+    
+    // DP（初始化首行元素）
+    public int minFallingPathSum8(int[][] matrix) {
+      int n = matrix.length;
+      int[][] f = new int[n][n];
+      f[0] = matrix[0];
+      
+      for (int i = 1; i < n; i++) {
+        f[i][0] = matrix[i][0] + Math.min(f[i - 1][0], f[i - 1][1]);
+        for (int j = 1; j < n - 1; j++)
+          f[i][j] = matrix[i][j] + min(f[i - 1][j - 1], f[i - 1][j], f[i - 1][j + 1]);
+        f[i][n - 1] = matrix[i][n - 1] + Math.min(f[i - 1][n - 2], f[i - 1][n - 1]);
+      }
+      
+      return Arrays.stream(f[n - 1]).min().getAsInt();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ DP（初始化首列、尾列元素）
+    public int minFallingPathSum(int[][] matrix) {
+      int n = matrix.length + 1;
+      int[][] f = new int[n][n + 1];
+      for (int i = 0; i < n; i++)
+        f[i][0] = f[i][n] = Integer.MAX_VALUE;
+      
+      for (int i = 1; i < n; i++)
+        for (int j = 1; j < n; j++)
+          f[i][j] = matrix[i - 1][j - 1] + min(f[i - 1][j - 1], f[i - 1][j], f[i - 1][j + 1]);
+      
+      return Arrays.stream(f[n - 1]).min().getAsInt();
+    }
+    
+    public static int min(int... arr) {
+      int min = Integer.MAX_VALUE;
+      for (int x : arr) if (min > x) min = x;
+      return min;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

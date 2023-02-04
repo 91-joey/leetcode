@@ -25,8 +25,8 @@
 //<b>输入：</b>s = "(name)is(age)yearsold", knowledge = [["name","bob"],["age","two"]]
 //<b>输出：</b>"bobistwoyearsold"
 //<strong>解释：</strong>
-//键 "name" 对应的值为 "bob" ，所以将 "(name)" 替换为 "bob" 。
-//键 "age" 对应的值为 "two" ，所以将 "(age)" 替换为 "two" 。
+// 键 "name" 对应的值为 "bob" ，所以将 "(name)" 替换为 "bob" 。
+// 键 "age" 对应的值为 "two" ，所以将 "(age)" 替换为 "two" 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -43,8 +43,8 @@
 //<b>输入：</b>s = "(a)(a)(a)aaa", knowledge = [["a","yes"]]
 //<b>输出：</b>"yesyesyesaaa"
 //<b>解释：</b>相同的键在 s 中可能会出现多次。
-//键 "a" 对应的值为 "yes" ，所以将所有的 "(a)" 替换为 "yes" 。
-//注意，不在括号里的 "a" 不需要被替换。
+// 键 "a" 对应的值为 "yes" ，所以将所有的 "(a)" 替换为 "yes" 。
+// 注意，不在括号里的 "a" 不需要被替换。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -73,78 +73,78 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-//1807.替换字符串中的括号内容
-//开题时间：2023-01-12 09:50:11
+// 1807.替换字符串中的括号内容
+// 开题时间：2023-01-12 09:50:11
 public class EvaluateTheBracketPairsOfAString {
-    public static void main(String[] args) {
-        Solution solution = new EvaluateTheBracketPairsOfAString().new Solution();
-        System.out.println(solution.evaluate("(name)is(age)yearsold", List.of(List.of("name", "bob"), List.of("age", "two"))));
+  public static void main(String[] args) {
+    Solution solution = new EvaluateTheBracketPairsOfAString().new Solution();
+    System.out.println(solution.evaluate("(name)is(age)yearsold", List.of(List.of("name", "bob"), List.of("age", "two"))));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  //    import java.util.regex.Matcher;
+  //    import java.util.regex.Pattern;
+  class Solution {
+    // indexOf方法
+    public String evaluate9(String s, List<List<String>> knowledge) {
+      HashMap<String, String> map = new HashMap<>();
+      for (List<String> entry : knowledge)
+        map.put(entry.get(0), entry.get(1));
+      
+      StringBuilder sb = new StringBuilder();
+      int pre = 0;
+      for (int i = s.indexOf("("); i != -1; i = s.indexOf("(", pre)) {
+        sb.append(s, pre, i);
+        pre = s.indexOf(")", i + 1);
+        sb.append(map.getOrDefault(s.substring(i + 1, pre++), "?"));
+      }
+      sb.append(s, pre, s.length());
+      
+      return sb.toString();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-//    import java.util.regex.Matcher;
-//    import java.util.regex.Pattern;
-    class Solution {
-        //indexOf方法
-        public String evaluate9(String s, List<List<String>> knowledge) {
-            HashMap<String, String> map = new HashMap<>();
-            for (List<String> entry : knowledge)
-                map.put(entry.get(0), entry.get(1));
-
-            StringBuilder sb = new StringBuilder();
-            int pre = 0;
-            for (int i = s.indexOf("("); i != -1; i = s.indexOf("(", pre)) {
-                sb.append(s, pre, i);
-                pre = s.indexOf(")", i + 1);
-                sb.append(map.getOrDefault(s.substring(i + 1, pre++), "?"));
-            }
-            sb.append(s, pre, s.length());
-
-            return sb.toString();
+    
+    // 手动遍历 + key标记
+    public String evaluate8(String s, List<List<String>> knowledge) {
+      HashMap<String, String> map = new HashMap<>();
+      for (List<String> entry : knowledge)
+        map.put(entry.get(0), entry.get(1));
+      
+      StringBuilder sb = new StringBuilder();
+      StringBuilder key = new StringBuilder();
+      boolean isKey = false;
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == '(')
+          isKey = true;
+        else if (c == ')') {
+          sb.append(map.getOrDefault(key.toString(), "?"));
+          key.setLength(0);
+          isKey = false;
+        } else {
+          if (isKey)
+            key.append(c);
+          else
+            sb.append(c);
         }
-
-        //手动遍历 + key标记
-        public String evaluate8(String s, List<List<String>> knowledge) {
-            HashMap<String, String> map = new HashMap<>();
-            for (List<String> entry : knowledge)
-                map.put(entry.get(0), entry.get(1));
-
-            StringBuilder sb = new StringBuilder();
-            StringBuilder key = new StringBuilder();
-            boolean isKey = false;
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (c == '(')
-                    isKey = true;
-                else if (c == ')') {
-                    sb.append(map.getOrDefault(key.toString(), "?"));
-                    key.setLength(0);
-                    isKey = false;
-                } else {
-                    if (isKey)
-                        key.append(c);
-                    else
-                        sb.append(c);
-                }
-            }
-
-            return sb.toString();
-        }
-
-        //☆☆☆☆☆ 正则表达式之分组
-        public String evaluate(String s, List<List<String>> knowledge) {
-            Map<String, String> map = new HashMap<>();
-            for (List<String> entry : knowledge)
-                map.put(entry.get(0), entry.get(1));
-
-            StringBuilder sb = new StringBuilder();
-            Matcher matcher = Pattern.compile("\\((\\w+)\\)").matcher(s);
-            while (matcher.find())
-                matcher.appendReplacement(sb, map.getOrDefault(matcher.group(1), "?"));
-            matcher.appendTail(sb);
-
-            return sb.toString();
-        }
+      }
+      
+      return sb.toString();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 正则表达式之分组
+    public String evaluate(String s, List<List<String>> knowledge) {
+      Map<String, String> map = new HashMap<>();
+      for (List<String> entry : knowledge)
+        map.put(entry.get(0), entry.get(1));
+      
+      StringBuilder sb = new StringBuilder();
+      Matcher matcher = Pattern.compile("\\((\\w+)\\)").matcher(s);
+      while (matcher.find())
+        matcher.appendReplacement(sb, map.getOrDefault(matcher.group(1), "?"));
+      matcher.appendTail(sb);
+      
+      return sb.toString();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

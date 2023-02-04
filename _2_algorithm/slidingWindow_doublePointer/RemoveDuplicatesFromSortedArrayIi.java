@@ -14,11 +14,11 @@
 //
 //<pre>
 //// <strong>nums</strong> 是以“引用”方式传递的。也就是说，不对实参做任何拷贝
-//int len = removeDuplicates(nums);
+// int len = removeDuplicates(nums);
 //
 //// 在函数里修改输入数组对于调用者是可见的。
 //// 根据你的函数返回的长度, 它会打印出数组中<strong> 该长度范围内</strong> 的所有元素。
-//for (int i = 0; i &lt; len; i++) {
+// for (int i = 0; i &lt; len; i++) {
 //&nbsp; &nbsp; print(nums[i]);
 //}
 //</pre>
@@ -54,85 +54,85 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li></div></div><br><div><li>👍 730</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//80.删除有序数组中的重复项 II
-//开题时间：2022-10-01 14:02:59
+// 80.删除有序数组中的重复项 II
+// 开题时间：2022-10-01 14:02:59
 public class RemoveDuplicatesFromSortedArrayIi {
-    public static void main(String[] args) {
-        Solution solution = new RemoveDuplicatesFromSortedArrayIi().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RemoveDuplicatesFromSortedArrayIi().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // region 我很笨拙
+    public int removeDuplicates(int[] nums) {
+      // all in [0,idx] 相同元素出现次数 <=2
+      int idx = 0;
+      boolean once = true;
+      
+      for (int i = 1; i < nums.length; i++) {
+        if (nums[i] != nums[idx]) {
+          nums[++idx] = nums[i];
+          once = true;
+        } else if (once) {
+          nums[++idx] = nums[i];
+          once = false;
+        }
+      }
+      
+      return idx + 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //region 我很笨拙
-        public int removeDuplicates(int[] nums) {
-            //all in [0,idx] 相同元素出现次数 <=2
-            int idx = 0;
-            boolean once = true;
-
-            for (int i = 1; i < nums.length; i++) {
-                if (nums[i] != nums[idx]) {
-                    nums[++idx] = nums[i];
-                    once = true;
-                } else if (once) {
-                    nums[++idx] = nums[i];
-                    once = false;
-                }
-            }
-
-            return idx + 1;
+    
+    public int removeDuplicates2(int[] nums) {
+      // all in [0,idx) 相同元素出现次数 <=2
+      int idx = 1;
+      boolean once = true;
+      
+      for (int i = 1; i < nums.length; i++) {
+        if (nums[i] != nums[idx - 1]) {
+          nums[idx++] = nums[i];
+          once = true;
+        } else if (once) {
+          nums[idx++] = nums[i];
+          once = false;
         }
-
-        public int removeDuplicates2(int[] nums) {
-            //all in [0,idx) 相同元素出现次数 <=2
-            int idx = 1;
-            boolean once = true;
-
-            for (int i = 1; i < nums.length; i++) {
-                if (nums[i] != nums[idx - 1]) {
-                    nums[idx++] = nums[i];
-                    once = true;
-                } else if (once) {
-                    nums[idx++] = nums[i];
-                    once = false;
-                }
-            }
-
-            return idx;
-        }
-        //endregion
-
-        //region ☆☆☆☆☆ 你很机智
-        public int removeDuplicates3(int[] nums) {
-            //all in [0,idx) 相同元素出现次数 <=2
-            int idx = 2;
-
-            for (int i = 2; i < nums.length; i++)
-                if (nums[i] != nums[idx - 2])
-                    nums[idx++] = nums[i];
-
-            return idx;
-        }
-
-        public int removeDuplicates4(int[] nums) {
-            //all in [0,idx] 相同元素出现次数 <=2
-            int idx = 1;
-
-            for (int i = 2; i < nums.length; i++)
-                if (nums[i] != nums[idx - 1])
-                    nums[++idx] = nums[i];
-
-            return idx + 1;
-        }
-
-        //极简
-        public int removeDuplicates5(int[] nums) {
-            int k = 0;
-            for (int num : nums)
-                if (num != nums[k])
-                    nums[++k] = num;
-            return k + 1;
-        }
-        //endregion
+      }
+      
+      return idx;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    // endregion
+    
+    // region ☆☆☆☆☆ 你很机智
+    public int removeDuplicates3(int[] nums) {
+      // all in [0,idx) 相同元素出现次数 <=2
+      int idx = 2;
+      
+      for (int i = 2; i < nums.length; i++)
+        if (nums[i] != nums[idx - 2])
+          nums[idx++] = nums[i];
+      
+      return idx;
+    }
+    
+    public int removeDuplicates4(int[] nums) {
+      // all in [0,idx] 相同元素出现次数 <=2
+      int idx = 1;
+      
+      for (int i = 2; i < nums.length; i++)
+        if (nums[i] != nums[idx - 1])
+          nums[++idx] = nums[i];
+      
+      return idx + 1;
+    }
+    
+    // 极简
+    public int removeDuplicates5(int[] nums) {
+      int k = 0;
+      for (int num : nums)
+        if (num != nums[k])
+          nums[++k] = num;
+      return k + 1;
+    }
+    // endregion
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -31,60 +31,60 @@
 //<div><li>👍 251</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//441.排列硬币
-//开题时间：2022-11-25 13:42:48
+// 441.排列硬币
+// 开题时间：2022-11-25 13:42:48
 public class ArrangingCoins {
-    public static void main(String[] args) {
-        Solution solution = new ArrangingCoins().new Solution();
-        System.out.println(solution.arrangeCoins(1));
-        System.out.println(solution.arrangeCoins(2));
-        System.out.println(solution.arrangeCoins(3));
+  public static void main(String[] args) {
+    Solution solution = new ArrangingCoins().new Solution();
+    System.out.println(solution.arrangeCoins(1));
+    System.out.println(solution.arrangeCoins(2));
+    System.out.println(solution.arrangeCoins(3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int arrangeCoins9(int n) {
+      return (int) (0.5 * (Math.sqrt(8L * n + 1) - 1));
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int arrangeCoins9(int n) {
-            return (int) (0.5 * (Math.sqrt(8L * n + 1) - 1));
-        }
-
-        public int arrangeCoins8(int n) {
-            int l = 1, r = n;
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if ((long) mid * (mid + 1) / 2 >= n)
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return (long) r * (r + 1) / 2 == n ? r : r - 1;
-        }
-
-        public int arrangeCoins7(int n) {
-            int l = 1, r = n;
-            while (l < r) {
-                int mid = ((r - l + 1) >> 1) + l;
-                if ((long) mid * (mid + 1) / 2 > n)
-                    r = mid - 1;
-                else
-                    l = mid;
-            }
-            return r;
-        }
-
-        public int arrangeCoins(int n) {
-            int l = 1, r = n;
-            while (l <= r) {
-                int mid = ((r - l) >> 1) + l;
-                long coins = (long) mid * (mid + 1) / 2;
-                if (coins == n)
-                    return mid;
-                if (coins > n)
-                    r = mid - 1;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
+    
+    public int arrangeCoins8(int n) {
+      int l = 1, r = n;
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if ((long) mid * (mid + 1) / 2 >= n)
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return (long) r * (r + 1) / 2 == n ? r : r - 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int arrangeCoins7(int n) {
+      int l = 1, r = n;
+      while (l < r) {
+        int mid = ((r - l + 1) >> 1) + l;
+        if ((long) mid * (mid + 1) / 2 > n)
+          r = mid - 1;
+        else
+          l = mid;
+      }
+      return r;
+    }
+    
+    public int arrangeCoins(int n) {
+      int l = 1, r = n;
+      while (l <= r) {
+        int mid = ((r - l) >> 1) + l;
+        long coins = (long) mid * (mid + 1) / 2;
+        if (coins == n)
+          return mid;
+        if (coins > n)
+          r = mid - 1;
+        else
+          l = mid + 1;
+      }
+      return r;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

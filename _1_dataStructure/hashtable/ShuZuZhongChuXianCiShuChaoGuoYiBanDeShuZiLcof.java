@@ -29,44 +29,44 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.Arrays;
 import java.util.HashMap;
 
-//剑指 Offer 39.数组中出现次数超过一半的数字
-//开题时间：2023-01-10 11:25:07
+// 剑指 Offer 39.数组中出现次数超过一半的数字
+// 开题时间：2023-01-10 11:25:07
 public class ShuZuZhongChuXianCiShuChaoGuoYiBanDeShuZiLcof {
-    public static void main(String[] args) {
-        Solution solution = new ShuZuZhongChuXianCiShuChaoGuoYiBanDeShuZiLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ShuZuZhongChuXianCiShuChaoGuoYiBanDeShuZiLcof().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 哈希表   n   n
+    public int majorityElement9(int[] nums) {
+      HashMap<Integer, Integer> val2cnt = new HashMap<>();
+      int t = nums.length / 2;
+      for (int x : nums) {
+        Integer cnt = val2cnt.get(x);
+        if (cnt != null && cnt >= t)
+          return x;
+        val2cnt.merge(x, 1, Integer::sum);
+      }
+      return nums[0];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //哈希表   n   n
-        public int majorityElement9(int[] nums) {
-            HashMap<Integer, Integer> val2cnt = new HashMap<>();
-            int t = nums.length / 2;
-            for (int x : nums) {
-                Integer cnt = val2cnt.get(x);
-                if (cnt != null && cnt >= t)
-                    return x;
-                val2cnt.merge(x, 1, Integer::sum);
-            }
-            return nums[0];
-        }
-
-        //排序    nlogn   logn
-        public int majorityElement8(int[] nums) {
-            Arrays.sort(nums);
-            return nums[nums.length / 2];
-        }
-
-        //☆☆☆☆☆ 摩尔投票法 n   1
-        public int majorityElement(int[] nums) {
-            int x = 0, votes = 0;
-            for (int num : nums) {
-                if (votes == 0)
-                    x = num;
-                votes += num == x ? 1 : -1;
-            }
-            return x;
-        }
+    
+    // 排序    nlogn   logn
+    public int majorityElement8(int[] nums) {
+      Arrays.sort(nums);
+      return nums[nums.length / 2];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 摩尔投票法 n   1
+    public int majorityElement(int[] nums) {
+      int x = 0, votes = 0;
+      for (int num : nums) {
+        if (votes == 0)
+          x = num;
+        votes += num == x ? 1 : -1;
+      }
+      return x;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -53,58 +53,58 @@ import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 import java.util.HashMap;
 import java.util.Map;
 
-//147.对链表进行插入排序
-//开题时间：2022-09-20 14:40:31
+// 147.对链表进行插入排序
+// 开题时间：2022-09-20 14:40:31
 public class InsertionSortList {
-    public static void main(String[] args) {
-        Solution solution = new InsertionSortList().new Solution();
-        ListNode head = new ListNode(-1,
-                new ListNode(5,
-                        new ListNode(3,
-                                new ListNode(4,
-                                        new ListNode(0, null
-                                        )))));
-        System.out.println(solution.insertionSortList(head));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public ListNode insertionSortList(ListNode head) {
-            //哈希映射是多余的，可以从头往后遍历，犯不着往前遍历
-            Map<ListNode, ListNode> cur2prev = new HashMap<>();
-            ListNode dummy = new ListNode(Integer.MIN_VALUE, head);
-            ListNode cur = dummy;
-            for (; cur.next != null; cur = cur.next) {
-                cur2prev.put(cur.next, cur);
-            }
-            cur = cur2prev.get(cur);
-            for (; cur != null; cur = cur2prev.get(cur)) {
-                if (cur.val > cur.next.val) {
-                    cur2prev.get(cur).next = cur.next;
-                    ListNode node = cur.next;
-                    while (node.next != null && cur.val > node.next.val) node = node.next;
-                    cur.next = node.next;
-                    node.next = cur;
-                }
-            }
-            return dummy.next;
+  public static void main(String[] args) {
+    Solution solution = new InsertionSortList().new Solution();
+    ListNode head = new ListNode(-1,
+        new ListNode(5,
+            new ListNode(3,
+                new ListNode(4,
+                    new ListNode(0, null
+                    )))));
+    System.out.println(solution.insertionSortList(head));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public ListNode insertionSortList(ListNode head) {
+      // 哈希映射是多余的，可以从头往后遍历，犯不着往前遍历
+      Map<ListNode, ListNode> cur2prev = new HashMap<>();
+      ListNode dummy = new ListNode(Integer.MIN_VALUE, head);
+      ListNode cur = dummy;
+      for (; cur.next != null; cur = cur.next) {
+        cur2prev.put(cur.next, cur);
+      }
+      cur = cur2prev.get(cur);
+      for (; cur != null; cur = cur2prev.get(cur)) {
+        if (cur.val > cur.next.val) {
+          cur2prev.get(cur).next = cur.next;
+          ListNode node = cur.next;
+          while (node.next != null && cur.val > node.next.val) node = node.next;
+          cur.next = node.next;
+          node.next = cur;
         }
-
-        public ListNode insertionSortListGJ(ListNode head) {
-            ListNode dummy = new ListNode(Integer.MIN_VALUE, head);
-            for (ListNode cur = head.next, lst = head; cur != null; cur = lst.next) {
-                if (lst.val > cur.val) {
-                    ListNode prev = dummy;
-                    while (cur.val > prev.next.val) prev = prev.next;
-                    lst.next = cur.next;
-                    cur.next = prev.next;
-                    prev.next = cur;
-                } else {
-                    lst = lst.next;
-                }
-            }
-            return dummy.next;
-        }
+      }
+      return dummy.next;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public ListNode insertionSortListGJ(ListNode head) {
+      ListNode dummy = new ListNode(Integer.MIN_VALUE, head);
+      for (ListNode cur = head.next, lst = head; cur != null; cur = lst.next) {
+        if (lst.val > cur.val) {
+          ListNode prev = dummy;
+          while (cur.val > prev.next.val) prev = prev.next;
+          lst.next = cur.next;
+          cur.next = prev.next;
+          prev.next = cur;
+        } else {
+          lst = lst.next;
+        }
+      }
+      return dummy.next;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

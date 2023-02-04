@@ -52,56 +52,56 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
 
-//89.格雷编码
-//开题时间：2023-01-06 16:45:52
+// 89.格雷编码
+// 开题时间：2023-01-06 16:45:52
 public class GrayCode {
-    public static void main(String[] args) {
-        Solution solution = new GrayCode().new Solution();
-        System.out.println(solution.grayCode(2));
+  public static void main(String[] args) {
+    Solution solution = new GrayCode().new Solution();
+    System.out.println(solution.grayCode(2));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<Integer> grayCode9(int n) {
+      ArrayList<Integer> ans = new ArrayList<>();
+      ans.add(0);
+      ans.add(1);
+      
+      for (int i = 1; i < n; i++)
+        for (int mask = 1 << i, j = mask - 1; j >= 0; j--)
+          ans.add(ans.get(j) | mask);
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<Integer> grayCode9(int n) {
-            ArrayList<Integer> ans = new ArrayList<>();
-            ans.add(0);
-            ans.add(1);
-
-            for (int i = 1; i < n; i++)
-                for (int mask = 1 << i, j = mask - 1; j >= 0; j--)
-                    ans.add(ans.get(j) | mask);
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 镜像反射法
-        public List<Integer> grayCode8(int n) {
-            ArrayList<Integer> ans = new ArrayList<>() {{
-                add(0);
-            }};
-
-            for (int i = 0; i < n; i++)
-                for (int mask = ans.size(), j = mask - 1; j >= 0; j--)
-                    ans.add(ans.get(j) | mask);
-
-            return ans;
-        }
-
-        //☆☆☆☆ 公式法
-        public List<Integer> grayCode7(int n) {
-            List<Integer> ans = new ArrayList<>();
-            for (int i = 0, bound = 1 << n; i < bound; i++)
-                ans.add(i ^ (i >> 1));
-            return ans;
-        }
-
-        public List<Integer> grayCode(int n) {
-            return Stream.iterate(0, i -> i + 1)
-                    .limit(1 << n)
-                    .mapToInt(i -> i ^ (i >> 1))
-                    .boxed()
-                    .toList();
-        }
+    
+    //☆☆☆☆☆ 镜像反射法
+    public List<Integer> grayCode8(int n) {
+      ArrayList<Integer> ans = new ArrayList<>() {{
+        add(0);
+      }};
+      
+      for (int i = 0; i < n; i++)
+        for (int mask = ans.size(), j = mask - 1; j >= 0; j--)
+          ans.add(ans.get(j) | mask);
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆ 公式法
+    public List<Integer> grayCode7(int n) {
+      List<Integer> ans = new ArrayList<>();
+      for (int i = 0, bound = 1 << n; i < bound; i++)
+        ans.add(i ^ (i >> 1));
+      return ans;
+    }
+    
+    public List<Integer> grayCode(int n) {
+      return Stream.iterate(0, i -> i + 1)
+          .limit(1 << n)
+          .mapToInt(i -> i ^ (i >> 1))
+          .boxed()
+          .toList();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

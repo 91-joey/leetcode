@@ -1,4 +1,4 @@
-//给你一个链表的头节点 <code>head</code> 和一个整数 <code>val</code> ，请你删除链表中所有满足 <code>Node.val == val</code> 的节点，并返回 <strong>新的头节点</strong> 。
+// 给你一个链表的头节点 <code>head</code> 和一个整数 <code>val</code> ，请你删除链表中所有满足 <code>Node.val == val</code> 的节点，并返回 <strong>新的头节点</strong> 。
 //
 //<p>&nbsp;</p>
 //
@@ -38,50 +38,50 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//203.移除链表元素
-//开题时间：2022-08-30 08:51:18
+// 203.移除链表元素
+// 开题时间：2022-08-30 08:51:18
 public class RemoveLinkedListElements {
-    public static void main(String[] args) {
-        Solution solution = new RemoveLinkedListElements().new Solution();
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        //1.迭代+哨兵节点
-        public ListNode removeElements(ListNode head, int val) {
-            ListNode dummy = new ListNode(0, head);
-
-            ListNode pointer = dummy;
-            while (pointer.next != null) {
-                if (pointer.next.val == val) {
-                    pointer.next = pointer.next.next;
-                } else {
-                    pointer = pointer.next;
-                }
-            }
-
-            return dummy.next;
+  public static void main(String[] args) {
+    Solution solution = new RemoveLinkedListElements().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    // 1.迭代+哨兵节点
+    public ListNode removeElements(ListNode head, int val) {
+      ListNode dummy = new ListNode(0, head);
+      
+      ListNode pointer = dummy;
+      while (pointer.next != null) {
+        if (pointer.next.val == val) {
+          pointer.next = pointer.next.next;
+        } else {
+          pointer = pointer.next;
         }
-
-        //GJ1:递归
-        public ListNode removeElementsGJ1(ListNode head, int val) {
-            if (head == null) {
-                return null;
-            }
-            head.next = removeElementsGJ1(head.next, val);
-            return head.val == val ? head.next : head;
-        }
+      }
+      
+      return dummy.next;
     }
-
-    //leetcode submit region end(Prohibit modification and deletion)
+    
+    // GJ1:递归
+    public ListNode removeElementsGJ1(ListNode head, int val) {
+      if (head == null) {
+        return null;
+      }
+      head.next = removeElementsGJ1(head.next, val);
+      return head.val == val ? head.next : head;
+    }
+  }
+  
+  // leetcode submit region end(Prohibit modification and deletion)
 }

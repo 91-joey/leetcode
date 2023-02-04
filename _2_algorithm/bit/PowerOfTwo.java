@@ -56,24 +56,24 @@
 //<div><li>👍 564</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//231.2 的幂
-//开题时间：2023-01-13 22:51:19
+// 231.2 的幂
+// 开题时间：2023-01-13 22:51:19
 public class PowerOfTwo {
-    public static void main(String[] args) {
-        Solution solution = new PowerOfTwo().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new PowerOfTwo().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 删去最低位的 1 后变为 0
+    public boolean isPowerOfTwo9(int n) {
+      return n > 0 && (n & (n - 1)) == 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //删去最低位的 1 后变为 0
-        public boolean isPowerOfTwo9(int n) {
-            return n > 0 && (n & (n - 1)) == 0;
-        }
-
-        //LSB（最低有效位）为自身
-        public boolean isPowerOfTwo(int n) {
-            return n > 0 && (n & -n) == n;
-        }
+    
+    // LSB（最低有效位）为自身
+    public boolean isPowerOfTwo(int n) {
+      return n > 0 && (n & -n) == n;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

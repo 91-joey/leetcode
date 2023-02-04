@@ -37,27 +37,27 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 
 import java.util.Arrays;
 
-//1785.构成特定和需要添加的最少元素
-//开题时间：2022-12-16 09:34:16
+// 1785.构成特定和需要添加的最少元素
+// 开题时间：2022-12-16 09:34:16
 public class MinimumElementsToAddToFormAGivenSum {
-    public static void main(String[] args) {
-        Solution solution = new MinimumElementsToAddToFormAGivenSum().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumElementsToAddToFormAGivenSum().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minElements9(int[] nums, int limit, int goal) {
+      long sum = 0;
+      for (int x : nums)
+        sum += x;
+      
+      long diff = Math.abs(sum - goal);
+      return (int) ((diff + limit - 1) / limit);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minElements9(int[] nums, int limit, int goal) {
-            long sum = 0;
-            for (int x : nums)
-                sum += x;
-
-            long diff = Math.abs(sum - goal);
-            return (int) ((diff + limit - 1) / limit);
-        }
-
-        public int minElements(int[] nums, int limit, int goal) {
-            return (int) ((Math.abs(Arrays.stream(nums).mapToLong(Long::valueOf).sum() - goal) + limit - 1) / limit);
-        }
+    
+    public int minElements(int[] nums, int limit, int goal) {
+      return (int) ((Math.abs(Arrays.stream(nums).mapToLong(Long::valueOf).sum() - goal) + limit - 1) / limit);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

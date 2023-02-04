@@ -23,14 +23,14 @@
 //[null,null,null,null,-3,null,0,-2]
 //
 //<strong>解释：</strong>
-//MinStack minStack = new MinStack();
-//minStack.push(-2);
-//minStack.push(0);
-//minStack.push(-3);
-//minStack.getMin();   --&gt; 返回 -3.
-//minStack.pop();
-//minStack.top();      --&gt; 返回 0.
-//minStack.getMin();   --&gt; 返回 -2.
+// MinStack minStack = new MinStack();
+// minStack.push(-2);
+// minStack.push(0);
+// minStack.push(-3);
+// minStack.getMin();   --&gt; 返回 -3.
+// minStack.pop();
+// minStack.top();      --&gt; 返回 0.
+// minStack.getMin();   --&gt; 返回 -2.
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -48,123 +48,123 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
 import java.util.Stack;
 
-//155.最小栈
-//开题时间：2022-08-17 12:04:52
+// 155.最小栈
+// 开题时间：2022-08-17 12:04:52
 public class MinStackClass {
-    public static void main(String[] args) {
-        //Solution solution = new MinStack().new Solution();
-        MinStack3 minStack3 = new MinStack3();
-        minStack3.push(512);
-        minStack3.push(-1024);
-        minStack3.push(-1024);
-        minStack3.push(512);
-
-        minStack3.pop();
-        System.out.println(minStack3.getMin());
-        minStack3.pop();
-        System.out.println(minStack3.getMin());
-        minStack3.pop();
-        System.out.println(minStack3.getMin());
+  public static void main(String[] args) {
+    // Solution solution = new MinStack().new Solution();
+    MinStack3 minStack3 = new MinStack3();
+    minStack3.push(512);
+    minStack3.push(-1024);
+    minStack3.push(-1024);
+    minStack3.push(512);
+    
+    minStack3.pop();
+    System.out.println(minStack3.getMin());
+    minStack3.pop();
+    System.out.println(minStack3.getMin());
+    minStack3.pop();
+    System.out.println(minStack3.getMin());
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  //    1.自解（时间换空间） 单元素栈
+  class MinStack {
+    Stack<Integer> data;
+    
+    public MinStack() {
+      data = new Stack<>();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-//    1.自解（时间换空间） 单元素栈
-    class MinStack {
-        Stack<Integer> data;
-
-        public MinStack() {
-            data = new Stack<>();
-        }
-
-        public void push(int val) {
-            data.push(val);
-        }
-
-        public void pop() {
-            data.pop();
-        }
-
-        public int top() {
-            return data.peek();
-        }
-
-        public int getMin() {
-            int min = Integer.MAX_VALUE;
-            for (Integer ele : data) {
-                min = Math.min(min, ele);
-            }
-            return min;
-        }
+    
+    public void push(int val) {
+      data.push(val);
     }
-
-    /**
-     * Your MinStack object will be instantiated and called as such:
-     * MinStack obj = new MinStack();
-     * obj.push(val);
-     * obj.pop();
-     * int param_3 = obj.top();
-     * int param_4 = obj.getMin();
-     */
-//leetcode submit region end(Prohibit modification and deletion)
-
-//    2.他解（空间换时间） 单栈同步存储元素和最小值
-    class MinStack2 {
-        Stack<int[]> dataAndMins;
-
-        public MinStack2() {
-            dataAndMins = new Stack<>();
-        }
-
-        public void push(int val) {
-            dataAndMins.push(new int[]{val, dataAndMins.empty() ?
-                    val :
-                    Math.min(val, dataAndMins.peek()[1])});
-        }
-
-        public void pop() {
-            dataAndMins.pop();
-        }
-
-        public int top() {
-            return dataAndMins.peek()[0];
-        }
-
-        public int getMin() {
-            return dataAndMins.peek()[1];
-        }
+    
+    public void pop() {
+      data.pop();
     }
-
-    //    3.他解（空间换时间） 元素栈+辅助栈存储最小值（非同步）：空间稍小，时间稍大
-    static class MinStack3 {
-        Stack<Integer> data;
-        Stack<Integer> mins;
-
-        public MinStack3() {
-            data = new Stack<>();
-            mins = new Stack<>();
-        }
-
-        public void push(int val) {
-            data.push(val);
-            if (mins.empty() || val <= mins.peek()) {
-                mins.push(val);
-            }
-        }
-
-        public void pop() {
-            Integer pop = data.pop();
-            if (pop.equals(mins.peek())) {
-                mins.pop();
-            }
-        }
-
-        public int top() {
-            return data.peek();
-        }
-
-        public int getMin() {
-            return mins.peek();
-        }
+    
+    public int top() {
+      return data.peek();
     }
-
+    
+    public int getMin() {
+      int min = Integer.MAX_VALUE;
+      for (Integer ele : data) {
+        min = Math.min(min, ele);
+      }
+      return min;
+    }
+  }
+  
+  /**
+   * Your MinStack object will be instantiated and called as such:
+   * MinStack obj = new MinStack();
+   * obj.push(val);
+   * obj.pop();
+   * int param_3 = obj.top();
+   * int param_4 = obj.getMin();
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
+  
+  //    2.他解（空间换时间） 单栈同步存储元素和最小值
+  class MinStack2 {
+    Stack<int[]> dataAndMins;
+    
+    public MinStack2() {
+      dataAndMins = new Stack<>();
+    }
+    
+    public void push(int val) {
+      dataAndMins.push(new int[]{val, dataAndMins.empty() ?
+          val :
+          Math.min(val, dataAndMins.peek()[1])});
+    }
+    
+    public void pop() {
+      dataAndMins.pop();
+    }
+    
+    public int top() {
+      return dataAndMins.peek()[0];
+    }
+    
+    public int getMin() {
+      return dataAndMins.peek()[1];
+    }
+  }
+  
+  //    3.他解（空间换时间） 元素栈+辅助栈存储最小值（非同步）：空间稍小，时间稍大
+  static class MinStack3 {
+    Stack<Integer> data;
+    Stack<Integer> mins;
+    
+    public MinStack3() {
+      data = new Stack<>();
+      mins = new Stack<>();
+    }
+    
+    public void push(int val) {
+      data.push(val);
+      if (mins.empty() || val <= mins.peek()) {
+        mins.push(val);
+      }
+    }
+    
+    public void pop() {
+      Integer pop = data.pop();
+      if (pop.equals(mins.peek())) {
+        mins.pop();
+      }
+    }
+    
+    public int top() {
+      return data.peek();
+    }
+    
+    public int getMin() {
+      return mins.peek();
+    }
+  }
+  
 }

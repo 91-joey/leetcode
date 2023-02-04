@@ -26,7 +26,7 @@
 //<strong>输入：</strong>n = 6, headID = 2, manager = [2,2,-1,2,2,2], informTime = [0,0,1,0,0,0]
 //<strong>输出：</strong>1
 //<strong>解释：</strong>id = 2 的员工是公司的总负责人，也是其他所有员工的直属负责人，他需要 1 分钟来通知所有员工。
-//上图显示了公司员工的树结构。
+// 上图显示了公司员工的树结构。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -51,63 +51,63 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import java.util.ArrayList;
 import java.util.List;
 
-//1376.通知所有员工所需的时间
-//开题时间：2023-01-10 18:01:37
+// 1376.通知所有员工所需的时间
+// 开题时间：2023-01-10 18:01:37
 public class TimeNeededToInformAllEmployees {
-    public static void main(String[] args) {
-        Solution solution = new TimeNeededToInformAllEmployees().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new TimeNeededToInformAllEmployees().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int max = 0;
+    
+    // 自顶向下 + 建树
+    public int numOfMinutes9(int n, int headID, int[] manager, int[] informTime) {
+      List<Integer>[] g = new ArrayList[n];
+      for (int i = 0; i < n; i++)
+        g[i] = new ArrayList<>();
+      for (int i = 0; i < n; i++)
+        if (i != headID)
+          g[manager[i]].add(i);
+      
+      dfs(g, informTime, headID, 0);
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int max = 0;
-
-        //自顶向下 + 建树
-        public int numOfMinutes9(int n, int headID, int[] manager, int[] informTime) {
-            List<Integer>[] g = new ArrayList[n];
-            for (int i = 0; i < n; i++)
-                g[i] = new ArrayList<>();
-            for (int i = 0; i < n; i++)
-                if (i != headID)
-                    g[manager[i]].add(i);
-
-            dfs(g, informTime, headID, 0);
-
-            return max;
-        }
-
-        private void dfs(List<Integer>[] g, int[] informTime, int i, int time) {
-            if (informTime[i] == 0) {
-                max = Math.max(max, time);
-                return;
-            }
-
-            for (int j : g[i])
-                dfs(g, informTime, j, time + informTime[i]);
-        }
-
-        //自底向上 + 记忆化
-        public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
-            int max = 0;
-            int[] memo = new int[n];
-
-            for (int i = 0; i < n; i++)
-                if (informTime[i] == 0)
-                    max = Math.max(max, memoDfs(manager, informTime, memo, i));
-
-            return max;
-        }
-
-        private int memoDfs(int[] manager, int[] informTime, int[] memo, int i) {
-            if (i == -1)
-                return 0;
-
-            if (memo[i] != 0)
-                return memo[i];
-
-            memo[i] += memoDfs(manager, informTime, memo, manager[i]) + informTime[i];
-            return memo[i];
-        }
+    
+    private void dfs(List<Integer>[] g, int[] informTime, int i, int time) {
+      if (informTime[i] == 0) {
+        max = Math.max(max, time);
+        return;
+      }
+      
+      for (int j : g[i])
+        dfs(g, informTime, j, time + informTime[i]);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 自底向上 + 记忆化
+    public int numOfMinutes(int n, int headID, int[] manager, int[] informTime) {
+      int max = 0;
+      int[] memo = new int[n];
+      
+      for (int i = 0; i < n; i++)
+        if (informTime[i] == 0)
+          max = Math.max(max, memoDfs(manager, informTime, memo, i));
+      
+      return max;
+    }
+    
+    private int memoDfs(int[] manager, int[] informTime, int[] memo, int i) {
+      if (i == -1)
+        return 0;
+      
+      if (memo[i] != 0)
+        return memo[i];
+      
+      memo[i] += memoDfs(manager, informTime, memo, manager[i]) + informTime[i];
+      return memo[i];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -47,55 +47,55 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import java.util.HashSet;
 import java.util.Set;
 
-//365.水壶问题
-//开题时间：2023-01-11 13:38:48
+// 365.水壶问题
+// 开题时间：2023-01-11 13:38:48
 public class WaterAndJugProblem {
-    public static void main(String[] args) {
-        Solution solution = new WaterAndJugProblem().new Solution();
-        System.out.println(Solution.gcd(3, 4));
-        System.out.println(Solution.gcd(2, 6));
-//        System.out.println(solution.canMeasureWater(3, 5, 4));
-        System.out.println(solution.canMeasureWater(4, 6, 8));
+  public static void main(String[] args) {
+    Solution solution = new WaterAndJugProblem().new Solution();
+    System.out.println(Solution.gcd(3, 4));
+    System.out.println(Solution.gcd(2, 6));
+    //        System.out.println(solution.canMeasureWater(3, 5, 4));
+    System.out.println(solution.canMeasureWater(4, 6, 8));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    //☆☆☆☆☆ 数学（贝祖定理）
+    public boolean canMeasureWater9(int jug1Capacity, int jug2Capacity, int targetCapacity) {
+      return targetCapacity <= jug1Capacity + jug2Capacity && targetCapacity % gcd(jug1Capacity, jug2Capacity) == 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //☆☆☆☆☆ 数学（贝祖定理）
-        public boolean canMeasureWater9(int jug1Capacity, int jug2Capacity, int targetCapacity) {
-            return targetCapacity <= jug1Capacity + jug2Capacity && targetCapacity % gcd(jug1Capacity, jug2Capacity) == 0;
-        }
-
-        public static int gcd(int a, int b) {
-            return b != 0 ?
-                    gcd(b, a % b) :
-                    a;
-        }
-
-        //dfs + 哈希表
-        public boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
-            return canMeasureWater(jug1Capacity, jug2Capacity, targetCapacity, 0, 0, new HashSet<>());
-        }
-
-        private boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity, int i, int j, Set<Long> vis) {
-            if (i + j == targetCapacity)
-                return true;
-            vis.add(((long) i << 20) | j);
-
-            boolean ans = false;
-            int[][] operations = {
-                    {jug1Capacity, j},
-                    {i, jug2Capacity},
-                    {0, j},
-                    {i, 0},
-                    {i - Math.min(i, jug2Capacity - j), j + Math.min(i, jug2Capacity - j)},
-                    {i + Math.min(j, jug1Capacity - i), j - Math.min(j, jug1Capacity - i)}
-            };
-            for (int[] jugs : operations)
-                if (!vis.contains(((long) jugs[0] << 20)  | jugs[1]))
-                    ans = ans || canMeasureWater(jug1Capacity, jug2Capacity, targetCapacity, jugs[0], jugs[1], vis);
-
-            return ans;
-        }
+    
+    public static int gcd(int a, int b) {
+      return b != 0 ?
+          gcd(b, a % b) :
+          a;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // dfs + 哈希表
+    public boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
+      return canMeasureWater(jug1Capacity, jug2Capacity, targetCapacity, 0, 0, new HashSet<>());
+    }
+    
+    private boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity, int i, int j, Set<Long> vis) {
+      if (i + j == targetCapacity)
+        return true;
+      vis.add(((long) i << 20) | j);
+      
+      boolean ans = false;
+      int[][] operations = {
+          {jug1Capacity, j},
+          {i, jug2Capacity},
+          {0, j},
+          {i, 0},
+          {i - Math.min(i, jug2Capacity - j), j + Math.min(i, jug2Capacity - j)},
+          {i + Math.min(j, jug1Capacity - i), j - Math.min(j, jug1Capacity - i)}
+      };
+      for (int[] jugs : operations)
+        if (!vis.contains(((long) jugs[0] << 20) | jugs[1]))
+          ans = ans || canMeasureWater(jug1Capacity, jug2Capacity, targetCapacity, jugs[0], jugs[1], vis);
+      
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

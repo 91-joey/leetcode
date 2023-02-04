@@ -14,7 +14,7 @@
 //[1,2,4,8] 都有 1 个 1 。
 //[3,5,6] 有 2 个 1 。
 //[7] 有 3 个 1 。
-//按照 1 的个数排序得到的结果数组为 [0,1,2,4,8,3,5,6,7]
+// 按照 1 的个数排序得到的结果数组为 [0,1,2,4,8,3,5,6,7]
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -57,47 +57,47 @@ package org.example.leetcode.problems._2_algorithm.sort;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//1356.根据数字二进制下 1 的数目排序
-//开题时间：2022-12-11 09:21:19
+// 1356.根据数字二进制下 1 的数目排序
+// 开题时间：2022-12-11 09:21:19
 public class SortIntegersByTheNumberOf1Bits {
-    public static void main(String[] args) {
-        Solution solution = new SortIntegersByTheNumberOf1Bits().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SortIntegersByTheNumberOf1Bits().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] sortByBits9(int[] arr) {
+      return Arrays.stream(arr)
+          .boxed()
+          .sorted(Comparator.comparingInt(Integer::bitCount).thenComparingInt(x -> x))
+          //                    .sorted(Comparator.comparingInt(this::hammingWeight).thenComparingInt(i -> i))
+          .mapToInt(Integer::intValue)
+          .toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] sortByBits9(int[] arr) {
-            return Arrays.stream(arr)
-                    .boxed()
-                    .sorted(Comparator.comparingInt(Integer::bitCount).thenComparingInt(x -> x))
-//                    .sorted(Comparator.comparingInt(this::hammingWeight).thenComparingInt(i -> i))
-                    .mapToInt(Integer::intValue)
-                    .toArray();
-        }
-
-        //☆☆☆☆☆ 位运算（比特数存储在高位，排序后再还原）
-        public int[] sortByBits(int[] arr) {
-            for (int i = 0; i < arr.length; i++)
-                arr[i] |= (Integer.bitCount(arr[i]) << 14);
-
-            Arrays.sort(arr);
-
-            for (int i = 0, mask = (1 << 14) - 1; i < arr.length; i++)
-                arr[i] &= mask;
-
-            return arr;
-        }
-
-        public int hammingWeight(int n) {
-            int cnt = 0;
-
-            while (n != 0) {
-                n &= n - 1;
-                cnt++;
-            }
-
-            return cnt;
-        }
+    
+    //☆☆☆☆☆ 位运算（比特数存储在高位，排序后再还原）
+    public int[] sortByBits(int[] arr) {
+      for (int i = 0; i < arr.length; i++)
+        arr[i] |= (Integer.bitCount(arr[i]) << 14);
+      
+      Arrays.sort(arr);
+      
+      for (int i = 0, mask = (1 << 14) - 1; i < arr.length; i++)
+        arr[i] &= mask;
+      
+      return arr;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int hammingWeight(int n) {
+      int cnt = 0;
+      
+      while (n != 0) {
+        n &= n - 1;
+        cnt++;
+      }
+      
+      return cnt;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

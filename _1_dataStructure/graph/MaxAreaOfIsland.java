@@ -37,39 +37,39 @@
 //<div><li>👍 904</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.graph;
 
-//695.岛屿的最大面积
-//开题时间：2023-01-02 10:17:27
+// 695.岛屿的最大面积
+// 开题时间：2023-01-02 10:17:27
 public class MaxAreaOfIsland {
-    public static void main(String[] args) {
-        Solution solution = new MaxAreaOfIsland().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaxAreaOfIsland().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
+    
+    // DFS
+    public int maxAreaOfIsland(int[][] grid) {
+      int max = 0;
+      for (int i = 0; i < grid.length; i++)
+        for (int j = 0; j < grid[0].length; j++)
+          if (grid[i][j] == 1)
+            max = Math.max(max, dfs(grid, i, j));
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS = {1, 0, -1, 0, 1};
-
-        //DFS
-        public int maxAreaOfIsland(int[][] grid) {
-            int max = 0;
-            for (int i = 0; i < grid.length; i++)
-                for (int j = 0; j < grid[0].length; j++)
-                    if (grid[i][j] == 1)
-                        max = Math.max(max, dfs(grid, i, j));
-            return max;
-        }
-
-        private int dfs(int[][] arr, int r, int c) {
-            int cnt = 1;
-            arr[r][c] = 0;
-            for (int i = 0; i < 4; i++) {
-                int newI = r + DIRS[i];
-                int newJ = c + DIRS[i + 1];
-                if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-                        arr[newI][newJ] == 1)
-                    cnt += dfs(arr, newI, newJ);
-            }
-            return cnt;
-        }
+    
+    private int dfs(int[][] arr, int r, int c) {
+      int cnt = 1;
+      arr[r][c] = 0;
+      for (int i = 0; i < 4; i++) {
+        int newI = r + DIRS[i];
+        int newJ = c + DIRS[i + 1];
+        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
+            arr[newI][newJ] == 1)
+          cnt += dfs(arr, newI, newJ);
+      }
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

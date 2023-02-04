@@ -53,91 +53,91 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-//652.寻找重复的子树
-//开题时间：2022-09-09 09:04:28
+// 652.寻找重复的子树
+// 开题时间：2022-09-09 09:04:28
 public class FindDuplicateSubtrees {
-    public static void main(String[] args) {
-        Solution solution = new FindDuplicateSubtrees().new Solution();
-        System.out.println(Arrays.toString(new int[]{1, 2, 3}));
+  public static void main(String[] args) {
+    Solution solution = new FindDuplicateSubtrees().new Solution();
+    System.out.println(Arrays.toString(new int[]{1, 2, 3}));
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for a binary tree node.
+   * public class TreeNode {
+   * int val;
+   * TreeNode left;
+   * TreeNode right;
+   * TreeNode() {}
+   * TreeNode(int val) { this.val = val; }
+   * TreeNode(int val, TreeNode left, TreeNode right) {
+   * this.val = val;
+   * this.left = left;
+   * this.right = right;
+   * }
+   * }
+   */
+  class Solution {
+    Set<TreeNode> ans = new HashSet<>();
+    Map<String, TreeNode> map = new HashMap<>();
+    
+    // 1.自解：序列化
+    public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
+      DFS(root);
+      return new ArrayList<>(ans);
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for a binary tree node.
-     * public class TreeNode {
-     * int val;
-     * TreeNode left;
-     * TreeNode right;
-     * TreeNode() {}
-     * TreeNode(int val) { this.val = val; }
-     * TreeNode(int val, TreeNode left, TreeNode right) {
-     * this.val = val;
-     * this.left = left;
-     * this.right = right;
-     * }
-     * }
-     */
-    class Solution {
-        Set<TreeNode> ans = new HashSet<>();
-        Map<String, TreeNode> map = new HashMap<>();
-
-        //1.自解：序列化
-        public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-            DFS(root);
-            return new ArrayList<>(ans);
-        }
-
-        public String DFS(TreeNode root) {
-            if (root == null) {
-                return " ";
-            }
-
-            StringBuilder serial = new StringBuilder();
-            serial.append(root.val).
-                    append(">").
-                    append(DFS(root.left)).
-                    append(DFS(root.right));
-
-            String key = serial.toString();
-            TreeNode value = map.get(key);
-            if (value == null) {
-                map.put(key, root);
-            } else {
-                ans.add(value);
-            }
-
-            return key;
-        }
-
-        Map<String, Entry<TreeNode, Integer>> map2 = new HashMap<>();
-        Set<TreeNode> ans2 = new HashSet<>();
-        int idx;
-
-        //2.官解（序列化之三元组）
-        public List<TreeNode> findDuplicateSubtrees2(TreeNode root) {
-            DFS2(root);
-            return new ArrayList<>(ans2);
-        }
-
-        public int DFS2(TreeNode root) {
-            if (root == null) {
-                return 0;
-            }
-
-            String key = String.join(",",
-                    String.valueOf(root.val),
-                    String.valueOf(DFS2(root.left)),
-                    String.valueOf(DFS2(root.right)));
-
-            Entry<TreeNode, Integer> value = map2.get(key);
-            if (value == null) {
-                map2.put(key, new Entry<>(root, ++idx));
-                return idx;
-            } else {
-                ans2.add(value.key);
-                return value.value;
-            }
-        }
+    
+    public String DFS(TreeNode root) {
+      if (root == null) {
+        return " ";
+      }
+      
+      StringBuilder serial = new StringBuilder();
+      serial.append(root.val).
+          append(">").
+          append(DFS(root.left)).
+          append(DFS(root.right));
+      
+      String key = serial.toString();
+      TreeNode value = map.get(key);
+      if (value == null) {
+        map.put(key, root);
+      } else {
+        ans.add(value);
+      }
+      
+      return key;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    Map<String, Entry<TreeNode, Integer>> map2 = new HashMap<>();
+    Set<TreeNode> ans2 = new HashSet<>();
+    int idx;
+    
+    // 2.官解（序列化之三元组）
+    public List<TreeNode> findDuplicateSubtrees2(TreeNode root) {
+      DFS2(root);
+      return new ArrayList<>(ans2);
+    }
+    
+    public int DFS2(TreeNode root) {
+      if (root == null) {
+        return 0;
+      }
+      
+      String key = String.join(",",
+          String.valueOf(root.val),
+          String.valueOf(DFS2(root.left)),
+          String.valueOf(DFS2(root.right)));
+      
+      Entry<TreeNode, Integer> value = map2.get(key);
+      if (value == null) {
+        map2.put(key, new Entry<>(root, ++idx));
+        return idx;
+      } else {
+        ans2.add(value.key);
+        return value.value;
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

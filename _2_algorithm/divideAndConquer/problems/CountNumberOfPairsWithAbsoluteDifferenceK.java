@@ -52,78 +52,78 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import java.util.HashMap;
 
-//2006.差的绝对值为 K 的数对数目
-//开题时间：2022-11-14 14:15:04
+// 2006.差的绝对值为 K 的数对数目
+// 开题时间：2022-11-14 14:15:04
 public class CountNumberOfPairsWithAbsoluteDifferenceK {
-    public static void main(String[] args) {
-        Solution solution = new CountNumberOfPairsWithAbsoluteDifferenceK().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CountNumberOfPairsWithAbsoluteDifferenceK().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 数组计数  n+z-k   z
+    public int countKDifference9(int[] nums, int k) {
+      int[] freqs = new int[101];
+      for (int num : nums)
+        freqs[num]++;
+      
+      int cnt = 0;
+      for (int i = 0; i < 101 - k; i++)
+        cnt += freqs[i] * freqs[i + k];
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //数组计数  n+z-k   z
-        public int countKDifference9(int[] nums, int k) {
-            int[] freqs = new int[101];
-            for (int num : nums)
-                freqs[num]++;
-
-            int cnt = 0;
-            for (int i = 0; i < 101 - k; i++)
-                cnt += freqs[i] * freqs[i + k];
-
-            return cnt;
-        }
-
-        //哈希计数  n+Z Z
-        public int countKDifference8(int[] nums, int k) {
-            HashMap<Integer, Integer> val2cnt = new HashMap<>();
-            for (int num : nums)
-                val2cnt.merge(num, 1, Integer::sum);
-
-            final int[] cnt = {0};
-            val2cnt.forEach((key, val) -> {
-                cnt[0] += val * val2cnt.getOrDefault(key + k, 0);
-            });
-            return cnt[0];
-        }
-
-        //暴力    n^2 1
-        public int countKDifference7(int[] nums, int k) {
-            int cnt = 0;
-            int len = nums.length;
-            for (int i = 0; i < len - 1; i++)
-                for (int j = i + 1; j < len; j++)
-                    if (Math.abs(nums[i] - nums[j]) == k)
-                        cnt++;
-            return cnt;
-        }
-
-        //数组计数（一次遍历）  n z
-        public int countKDifference6(int[] nums, int k) {
-            int cnt = 0;
-            int[] freqs = new int[101];
-            for (int num : nums) {
-                cnt += (num - k >= 0 ? freqs[num - k] : 0)
-                        + (num + k < 101 ? freqs[num + k] : 0);
-                freqs[num]++;
-            }
-
-            return cnt;
-        }
-
-        //哈希计数（一次遍历）  n Z
-        public int countKDifference(int[] nums, int k) {
-            int cnt = 0;
-            HashMap<Integer, Integer> val2cnt = new HashMap<>();
-
-            for (int num : nums) {
-                cnt += val2cnt.getOrDefault(num - k, 0) +
-                        val2cnt.getOrDefault(num + k, 0);
-                val2cnt.merge(num, 1, Integer::sum);
-            }
-
-            return cnt;
-        }
+    
+    // 哈希计数  n+Z Z
+    public int countKDifference8(int[] nums, int k) {
+      HashMap<Integer, Integer> val2cnt = new HashMap<>();
+      for (int num : nums)
+        val2cnt.merge(num, 1, Integer::sum);
+      
+      final int[] cnt = {0};
+      val2cnt.forEach((key, val) -> {
+        cnt[0] += val * val2cnt.getOrDefault(key + k, 0);
+      });
+      return cnt[0];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 暴力    n^2 1
+    public int countKDifference7(int[] nums, int k) {
+      int cnt = 0;
+      int len = nums.length;
+      for (int i = 0; i < len - 1; i++)
+        for (int j = i + 1; j < len; j++)
+          if (Math.abs(nums[i] - nums[j]) == k)
+            cnt++;
+      return cnt;
+    }
+    
+    // 数组计数（一次遍历）  n z
+    public int countKDifference6(int[] nums, int k) {
+      int cnt = 0;
+      int[] freqs = new int[101];
+      for (int num : nums) {
+        cnt += (num - k >= 0 ? freqs[num - k] : 0)
+            + (num + k < 101 ? freqs[num + k] : 0);
+        freqs[num]++;
+      }
+      
+      return cnt;
+    }
+    
+    // 哈希计数（一次遍历）  n Z
+    public int countKDifference(int[] nums, int k) {
+      int cnt = 0;
+      HashMap<Integer, Integer> val2cnt = new HashMap<>();
+      
+      for (int num : nums) {
+        cnt += val2cnt.getOrDefault(num - k, 0) +
+            val2cnt.getOrDefault(num + k, 0);
+        val2cnt.merge(num, 1, Integer::sum);
+      }
+      
+      return cnt;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

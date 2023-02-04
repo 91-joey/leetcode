@@ -34,48 +34,48 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.HashSet;
 import java.util.Set;
 
-//771.宝石与石头
-//开题时间：2022-09-10 08:28:40
+// 771.宝石与石头
+// 开题时间：2022-09-10 08:28:40
 public class JewelsAndStones {
-    public static void main(String[] args) {
-        Solution solution = new JewelsAndStones().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new JewelsAndStones().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 1.hashset m+n m
+    public int numJewelsInStones(String jewels, String stones) {
+      char[] charsJ = jewels.toCharArray();
+      Set<Character> set = new HashSet<>();
+      for (char c : charsJ) {
+        set.add(c);
+      }
+      
+      char[] charsS = stones.toCharArray();
+      int cnt = 0;
+      for (char c : charsS)
+        if (set.contains(c))
+          cnt++;
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //1.hashset m+n m
-        public int numJewelsInStones(String jewels, String stones) {
-            char[] charsJ = jewels.toCharArray();
-            Set<Character> set = new HashSet<>();
-            for (char c : charsJ) {
-                set.add(c);
-            }
-
-            char[] charsS = stones.toCharArray();
-            int cnt = 0;
-            for (char c : charsS)
-                if (set.contains(c))
-                    cnt++;
-
-            return cnt;
-        }
-
-        //2.array   m+n 58
-        public int numJewelsInStones2(String jewels, String stones) {
-            char[] charsJ = jewels.toCharArray();
-            boolean[] set = new boolean[58];
-            for (char c : charsJ) {
-                set[c - 'A'] = true;
-            }
-
-            char[] charsS = stones.toCharArray();
-            int cnt = 0;
-            for (char c : charsS)
-                if (set[c - 'A'])
-                    cnt++;
-
-            return cnt;
-        }
+    
+    // 2.array   m+n 58
+    public int numJewelsInStones2(String jewels, String stones) {
+      char[] charsJ = jewels.toCharArray();
+      boolean[] set = new boolean[58];
+      for (char c : charsJ) {
+        set[c - 'A'] = true;
+      }
+      
+      char[] charsS = stones.toCharArray();
+      int cnt = 0;
+      for (char c : charsS)
+        if (set[c - 'A'])
+          cnt++;
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

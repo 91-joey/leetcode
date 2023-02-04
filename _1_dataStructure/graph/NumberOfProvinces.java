@@ -46,143 +46,143 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//547.省份数量
-//开题时间：2022-12-23 17:29:03
+// 547.省份数量
+// 开题时间：2022-12-23 17:29:03
 public class NumberOfProvinces {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfProvinces().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new NumberOfProvinces().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int[] root;
+    
+    // n^3 并查集（quick find实现 + 去重计数）
+    public int findCircleNum9(int[][] isConnected) {
+      int n = isConnected.length;
+      root = new int[n];
+      for (int i = 0; i < n; i++)
+        root[i] = i;
+      
+      for (int i = 0; i < n; i++)
+        for (int j = i; j < n; j++)
+          if (isConnected[i][j] == 1)
+            union(i, j);
+      
+      return (int) Arrays.stream(root).distinct().count();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int[] root;
-
-        //n^3 并查集（quick find实现 + 去重计数）
-        public int findCircleNum9(int[][] isConnected) {
-            int n = isConnected.length;
-            root = new int[n];
-            for (int i = 0; i < n; i++)
-                root[i] = i;
-
-            for (int i = 0; i < n; i++)
-                for (int j = i; j < n; j++)
-                    if (isConnected[i][j] == 1)
-                        union(i, j);
-
-            return (int) Arrays.stream(root).distinct().count();
-        }
-
-        //☆☆☆ n^2 * log n 并查集（quick union实现 + 计数）
-        public int findCircleNum8(int[][] isConnected) {
-            int n = isConnected.length;
-            UnionFind uf = new UnionFind(n);
-
-            for (int i = 0; i < n; i++)
-                for (int j = i + 1; j < n; j++)
-                    if (isConnected[i][j] == 1)
-                        uf.union(i, j);
-
-            return uf.getCnt();
-        }
-
-        //☆☆☆☆☆ n^2 DFS
-        public int findCircleNum7(int[][] isConnected) {
-            int ans = 0;
-            int n = isConnected.length;
-            boolean[] visited = new boolean[n];
-            for (int i = 0; i < n; i++) {
-                if (!visited[i]) {
-                    dfs(isConnected, visited, i);
-                    ans++;
-                }
-            }
-            return ans;
-        }
-
-        private void dfs(int[][] isConnected, boolean[] visited, int i) {
-            for (int j = 0; j < isConnected.length; j++) {
-                if (!visited[j] && isConnected[i][j] == 1) {
-                    visited[j] = true;
-                    dfs(isConnected, visited, j);
-                }
-            }
-        }
-
-        //☆☆☆☆☆ n^2 BFS
-        public int findCircleNum(int[][] isConnected) {
-            int ans = 0;
-            int n = isConnected.length;
-            boolean[] visited = new boolean[n];
-            Queue<Integer> q = new LinkedList<>();
-            for (int i = 0; i < n; i++)
-                if (!visited[i]) {
-                    q.offer(i);
-                    while (!q.isEmpty()) {
-                        int poll = q.poll();
-                        visited[poll] = true;
-                        for (int j = 0; j < n; j++)
-                            if (!visited[j] && isConnected[poll][j] == 1)
-                                q.offer(j);
-                    }
-                    ans++;
-                }
-            return ans;
-        }
-
-        class UnionFind {
-            int[] root;
-            int[] rank;
-            int cnt;
-
-            UnionFind(int size) {
-                root = new int[size];
-                rank = new int[size];
-                cnt = size;
-                for (int i = 0; i < size; i++)
-                    root[i] = i;
-            }
-
-            int find(int x) {
-                if (x == root[x])
-                    return x;
-                return root[x] = find(root[x]);
-            }
-
-            void union(int x, int y) {
-                int rootX = find(x);
-                int rootY = find(y);
-                if (rootX != rootY) {
-                    if (rank[rootX] > rank[rootY]) {
-                        root[rootY] = rootX;
-                    } else if (rank[rootX] < rank[rootY]) {
-                        root[rootX] = rootY;
-                    } else {
-                        root[rootY] = rootX;
-                        rank[rootX]++;
-                    }
-                    cnt--;
-                }
-            }
-
-            int getCnt() {
-                return cnt;
-            }
-        }
-
-        //O(1)
-        public int find(int x) {
-            return root[x];
-        }
-
-        //O(n)  元素值始终为根节点
-        public void union(int x, int y) {
-            int rootX = find(x);
-            int rootY = find(y);
-            if (rootX != rootY)
-                for (int i = 0; i < root.length; i++)
-                    if (root[i] == rootY)
-                        root[i] = rootX;
-        }
+    
+    //☆☆☆ n^2 * log n 并查集（quick union实现 + 计数）
+    public int findCircleNum8(int[][] isConnected) {
+      int n = isConnected.length;
+      UnionFind uf = new UnionFind(n);
+      
+      for (int i = 0; i < n; i++)
+        for (int j = i + 1; j < n; j++)
+          if (isConnected[i][j] == 1)
+            uf.union(i, j);
+      
+      return uf.getCnt();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ n^2 DFS
+    public int findCircleNum7(int[][] isConnected) {
+      int ans = 0;
+      int n = isConnected.length;
+      boolean[] visited = new boolean[n];
+      for (int i = 0; i < n; i++) {
+        if (!visited[i]) {
+          dfs(isConnected, visited, i);
+          ans++;
+        }
+      }
+      return ans;
+    }
+    
+    private void dfs(int[][] isConnected, boolean[] visited, int i) {
+      for (int j = 0; j < isConnected.length; j++) {
+        if (!visited[j] && isConnected[i][j] == 1) {
+          visited[j] = true;
+          dfs(isConnected, visited, j);
+        }
+      }
+    }
+    
+    //☆☆☆☆☆ n^2 BFS
+    public int findCircleNum(int[][] isConnected) {
+      int ans = 0;
+      int n = isConnected.length;
+      boolean[] visited = new boolean[n];
+      Queue<Integer> q = new LinkedList<>();
+      for (int i = 0; i < n; i++)
+        if (!visited[i]) {
+          q.offer(i);
+          while (!q.isEmpty()) {
+            int poll = q.poll();
+            visited[poll] = true;
+            for (int j = 0; j < n; j++)
+              if (!visited[j] && isConnected[poll][j] == 1)
+                q.offer(j);
+          }
+          ans++;
+        }
+      return ans;
+    }
+    
+    class UnionFind {
+      int[] root;
+      int[] rank;
+      int cnt;
+      
+      UnionFind(int size) {
+        root = new int[size];
+        rank = new int[size];
+        cnt = size;
+        for (int i = 0; i < size; i++)
+          root[i] = i;
+      }
+      
+      int find(int x) {
+        if (x == root[x])
+          return x;
+        return root[x] = find(root[x]);
+      }
+      
+      void union(int x, int y) {
+        int rootX = find(x);
+        int rootY = find(y);
+        if (rootX != rootY) {
+          if (rank[rootX] > rank[rootY]) {
+            root[rootY] = rootX;
+          } else if (rank[rootX] < rank[rootY]) {
+            root[rootX] = rootY;
+          } else {
+            root[rootY] = rootX;
+            rank[rootX]++;
+          }
+          cnt--;
+        }
+      }
+      
+      int getCnt() {
+        return cnt;
+      }
+    }
+    
+    // O(1)
+    public int find(int x) {
+      return root[x];
+    }
+    
+    // O(n)  元素值始终为根节点
+    public void union(int x, int y) {
+      int rootX = find(x);
+      int rootY = find(y);
+      if (rootX != rootY)
+        for (int i = 0; i < root.length; i++)
+          if (root[i] == rootY)
+            root[i] = rootX;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

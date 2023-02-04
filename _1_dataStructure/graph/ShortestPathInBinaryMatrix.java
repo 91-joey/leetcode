@@ -49,50 +49,50 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//1091.二进制矩阵中的最短路径
-//开题时间：2023-01-05 14:09:49
+// 1091.二进制矩阵中的最短路径
+// 开题时间：2023-01-05 14:09:49
 public class ShortestPathInBinaryMatrix {
-    public static void main(String[] args) {
-        Solution solution = new ShortestPathInBinaryMatrix().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS8 = {1, 0, -1, 0, 1, 1, -1, -1, 1};
-
-        //BFS
-        public int shortestPathBinaryMatrix(int[][] grid) {
-            if (grid[0][0] == 1) return -1;
-            Queue<int[]> q = new LinkedList<>();
-            q.offer(new int[]{0, 0});
-            grid[0][0] = 1;
-
-            int dist = 1;
-            int n = grid.length;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    int r = poll[0];
-                    int c = poll[1];
-
-                    if (r == n - 1 && c == n - 1)
-                        return dist;
-
-                    for (int j = 0; j < 8; j++) {
-                        int rNew = r + DIRS8[j];
-                        int cNew = c + DIRS8[j + 1];
-                        if (0 <= rNew && rNew < n && 0 <= cNew && cNew < n &&
-                                grid[rNew][cNew] == 0) {
-                            q.offer(new int[]{rNew, cNew});
-                            grid[rNew][cNew] = 1;
-                        }
-                    }
-                }
-                dist++;
+  public static void main(String[] args) {
+    Solution solution = new ShortestPathInBinaryMatrix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS8 = {1, 0, -1, 0, 1, 1, -1, -1, 1};
+    
+    // BFS
+    public int shortestPathBinaryMatrix(int[][] grid) {
+      if (grid[0][0] == 1) return -1;
+      Queue<int[]> q = new LinkedList<>();
+      q.offer(new int[]{0, 0});
+      grid[0][0] = 1;
+      
+      int dist = 1;
+      int n = grid.length;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int r = poll[0];
+          int c = poll[1];
+          
+          if (r == n - 1 && c == n - 1)
+            return dist;
+          
+          for (int j = 0; j < 8; j++) {
+            int rNew = r + DIRS8[j];
+            int cNew = c + DIRS8[j + 1];
+            if (0 <= rNew && rNew < n && 0 <= cNew && cNew < n &&
+                grid[rNew][cNew] == 0) {
+              q.offer(new int[]{rNew, cNew});
+              grid[rNew][cNew] = 1;
             }
-
-            return -1;
+          }
         }
+        dist++;
+      }
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

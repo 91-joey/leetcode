@@ -55,50 +55,50 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>前缀和</li><li>滑动窗口</li></div></div><br><div><li>👍 257</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1423.可获得的最大点数
-//开题时间：2022-10-03 08:15:03
+// 1423.可获得的最大点数
+// 开题时间：2022-10-03 08:15:03
 public class MaximumPointsYouCanObtainFromCards {
-    public static void main(String[] args) {
-        Solution solution = new MaximumPointsYouCanObtainFromCards().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumPointsYouCanObtainFromCards().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 向右滑动
+    public int maxScore(int[] cardPoints, int k) {
+      int length = cardPoints.length;
+      int sumMax = 0;
+      int remains = length - k;
+      for (int i = remains; i < length; i++)
+        sumMax += cardPoints[i];
+      
+      for (int i = remains, sumCur = sumMax; i < length; i++) {
+        sumCur += cardPoints[i - remains] - cardPoints[i];
+        sumMax = Math.max(sumMax, sumCur);
+      }
+      
+      return sumMax;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //向右滑动
-        public int maxScore(int[] cardPoints, int k) {
-            int length = cardPoints.length;
-            int sumMax = 0;
-            int remains = length - k;
-            for (int i = remains; i < length; i++)
-                sumMax += cardPoints[i];
-
-            for (int i = remains, sumCur = sumMax; i < length; i++) {
-                sumCur += cardPoints[i - remains] - cardPoints[i];
-                sumMax = Math.max(sumMax, sumCur);
-            }
-
-            return sumMax;
-        }
-
-        //向左滑动
-        public int maxScore2(int[] cardPoints, int k) {
-            int length = cardPoints.length;
-            int sumMax = 0;
-            for (int i = 0; i < k; i++)
-                sumMax += cardPoints[i];
-
-            for (int i = k - 1, remains = length - k, sumCur = sumMax; i >= 0; i--) {
-                sumCur += cardPoints[remains + i] - cardPoints[i];
-                sumMax = Math.max(sumMax, sumCur);
-            }
-
-//            for (int i = 0, sumCur = sumMax; i < k; i++) {
-//                sumCur += cardPoints[length - 1 - i] - cardPoints[k - 1 - i];
-//                sumMax = Math.max(sumMax, sumCur);
-//            }
-
-            return sumMax;
-        }
+    
+    // 向左滑动
+    public int maxScore2(int[] cardPoints, int k) {
+      int length = cardPoints.length;
+      int sumMax = 0;
+      for (int i = 0; i < k; i++)
+        sumMax += cardPoints[i];
+      
+      for (int i = k - 1, remains = length - k, sumCur = sumMax; i >= 0; i--) {
+        sumCur += cardPoints[remains + i] - cardPoints[i];
+        sumMax = Math.max(sumMax, sumCur);
+      }
+      
+      //            for (int i = 0, sumCur = sumMax; i < k; i++) {
+      //                sumCur += cardPoints[length - 1 - i] - cardPoints[k - 1 - i];
+      //                sumMax = Math.max(sumMax, sumCur);
+      //            }
+      
+      return sumMax;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

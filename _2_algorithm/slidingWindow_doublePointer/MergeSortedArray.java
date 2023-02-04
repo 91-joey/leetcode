@@ -12,7 +12,7 @@
 //<strong>输入：</strong>nums1 = [1,2,3,0,0,0], m = 3, nums2 = [2,5,6], n = 3
 //<strong>输出：</strong>[1,2,2,3,5,6]
 //<strong>解释：</strong>需要合并 [1,2,3] 和 [2,5,6] 。
-//合并结果是 [<em><strong>1</strong></em>,<em><strong>2</strong></em>,2,<em><strong>3</strong></em>,5,6] ，其中斜体加粗标注的为 nums1 中的元素。
+// 合并结果是 [<em><strong>1</strong></em>,<em><strong>2</strong></em>,2,<em><strong>3</strong></em>,5,6] ，其中斜体加粗标注的为 nums1 中的元素。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -21,7 +21,7 @@
 //<strong>输入：</strong>nums1 = [1], m = 1, nums2 = [], n = 0
 //<strong>输出：</strong>[1]
 //<strong>解释：</strong>需要合并 [1] 和 [] 。
-//合并结果是 [1] 。
+// 合并结果是 [1] 。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -30,8 +30,8 @@
 //<strong>输入：</strong>nums1 = [0], m = 0, nums2 = [1], n = 1
 //<strong>输出：</strong>[1]
 //<strong>解释：</strong>需要合并的数组是 [] 和 [1] 。
-//合并结果是 [1] 。
-//注意，因为 m = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。
+// 合并结果是 [1] 。
+// 注意，因为 m = 0 ，所以 nums1 中没有元素。nums1 中仅存的 0 仅仅是为了确保合并结果可以顺利存放到 nums1 中。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -53,35 +53,35 @@
 //<div><li>👍 1639</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//88.合并两个有序数组
-//开题时间：2022-11-12 15:16:47
+// 88.合并两个有序数组
+// 开题时间：2022-11-12 15:16:47
 public class MergeSortedArray {
-    public static void main(String[] args) {
-        Solution solution = new MergeSortedArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MergeSortedArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 双指针+顺序遍历  m+m+n   1
+    public void merge9(int[] A, int m, int[] B, int n) {
+      System.arraycopy(A, 0, A, n, m);
+      for (int idx = 0, i = n, j = 0; idx < m + n; idx++) {
+        if (i >= m + n)
+          A[idx] = B[j++];
+        else if (j >= n || A[i] <= B[j])
+          A[idx] = A[i++];
+        else
+          A[idx] = B[j++];
+      }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //双指针+顺序遍历  m+m+n   1
-        public void merge9(int[] A, int m, int[] B, int n) {
-            System.arraycopy(A, 0, A, n, m);
-            for (int idx = 0, i = n, j = 0; idx < m + n; idx++) {
-                if (i >= m + n)
-                    A[idx] = B[j++];
-                else if (j >= n || A[i] <= B[j])
-                    A[idx] = A[i++];
-                else
-                    A[idx] = B[j++];
-            }
-        }
-
-        //☆☆☆☆☆ 双指针+倒序遍历  m+n   1
-        public void merge(int[] A, int m, int[] B, int n) {
-            for (int idx = m + n - 1, i = m - 1, j = n - 1; j >= 0; idx--)
-                A[idx] = i < 0 || A[i] < B[j] ?
-                        B[j--] :
-                        A[i--];
-        }
+    
+    //☆☆☆☆☆ 双指针+倒序遍历  m+n   1
+    public void merge(int[] A, int m, int[] B, int n) {
+      for (int idx = m + n - 1, i = m - 1, j = n - 1; j >= 0; idx--)
+        A[idx] = i < 0 || A[i] < B[j] ?
+            B[j--] :
+            A[i--];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

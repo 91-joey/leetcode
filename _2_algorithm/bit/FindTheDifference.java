@@ -37,51 +37,51 @@ package org.example.leetcode.problems._2_algorithm.bit;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
-//389.找不同
-//开题时间：2022-12-08 10:08:46
+// 389.找不同
+// 开题时间：2022-12-08 10:08:46
 public class FindTheDifference {
-    public static void main(String[] args) {
-        Solution solution = new FindTheDifference().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindTheDifference().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public char findTheDifference9(String s, String t) {
+      int ans = 0;
+      for (int i = 0; i < s.length(); i++) ans ^= s.charAt(i);
+      for (int i = 0; i < t.length(); i++) ans ^= t.charAt(i);
+      return (char) ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public char findTheDifference9(String s, String t) {
-            int ans = 0;
-            for (int i = 0; i < s.length(); i++) ans ^= s.charAt(i);
-            for (int i = 0; i < t.length(); i++) ans ^= t.charAt(i);
-            return (char) ans;
-        }
-
-        public char findTheDifference6(String s, String t) {
-            return (char) (s + t).chars().reduce(0, (a, b) -> a ^ b);
-        }
-
-        public char findTheDifference(String s, String t) {
-            return (char) IntStream.concat(s.chars(), t.chars()).reduce(0, (a, b) -> a ^ b);
-        }
-
-        public char findTheDifference8(String s, String t) {
-            int[] freq = new int[123];
-
-            for (int i = 0; i < s.length(); i++)
-                freq[s.charAt(i)]++;
-
-            for (int i = 0; ; i++)
-                if (freq[t.charAt(i)]-- == 0)
-                    return t.charAt(i);
-        }
-
-        public char findTheDifference7(String s, String t) {
-            char[] cs1 = s.toCharArray();
-            char[] cs2 = t.toCharArray();
-            Arrays.sort(cs1);
-            Arrays.sort(cs2);
-
-            for (int i = 0; ; i++)
-                if (i >= cs1.length || cs1[i] != cs2[i])
-                    return cs2[i];
-        }
+    
+    public char findTheDifference6(String s, String t) {
+      return (char) (s + t).chars().reduce(0, (a, b) -> a ^ b);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public char findTheDifference(String s, String t) {
+      return (char) IntStream.concat(s.chars(), t.chars()).reduce(0, (a, b) -> a ^ b);
+    }
+    
+    public char findTheDifference8(String s, String t) {
+      int[] freq = new int[123];
+      
+      for (int i = 0; i < s.length(); i++)
+        freq[s.charAt(i)]++;
+      
+      for (int i = 0; ; i++)
+        if (freq[t.charAt(i)]-- == 0)
+          return t.charAt(i);
+    }
+    
+    public char findTheDifference7(String s, String t) {
+      char[] cs1 = s.toCharArray();
+      char[] cs2 = t.toCharArray();
+      Arrays.sort(cs1);
+      Arrays.sort(cs2);
+      
+      for (int i = 0; ; i++)
+        if (i >= cs1.length || cs1[i] != cs2[i])
+          return cs2[i];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

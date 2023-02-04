@@ -10,7 +10,7 @@
 //<strong>输入：</strong>root = [10,4,6]
 //<strong>输出：</strong>true
 //<strong>解释：</strong>根结点、左子结点和右子结点的值分别是 10 、4 和 6 。
-//由于 10 等于 4 + 6 ，因此返回 true 。
+// 由于 10 等于 4 + 6 ，因此返回 true 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p> 
@@ -19,7 +19,7 @@
 //<strong>输入：</strong>root = [5,3,1]
 //<strong>输出：</strong>false
 //<strong>解释：</strong>根结点、左子结点和右子结点的值分别是 5 、3 和 1 。
-//由于 5 不等于 3 + 1 ，因此返回 false 。
+// 由于 5 不等于 3 + 1 ，因此返回 false 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -36,17 +36,18 @@ package org.example.leetcode.problems._1_dataStructure.tree;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//2236.判断根结点是否等于子结点之和
-//开题时间：2022-11-05 08:37:27
+// 2236.判断根结点是否等于子结点之和
+// 开题时间：2022-11-05 08:37:27
 public class RootEqualsSumOfChildren {
-    public static void main(String[] args) {
-        Solution solution = new RootEqualsSumOfChildren().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RootEqualsSumOfChildren().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean checkTree(TreeNode root) {
+      return root.val == root.left.val + root.right.val;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean checkTree(TreeNode root) {
-            return root.val == root.left.val + root.right.val;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

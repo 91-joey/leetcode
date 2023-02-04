@@ -28,8 +28,8 @@
 //<b>输出：</b>4
 //<b>解释：</b>最优策略如下：
 //- 卡车将所有箱子装上车，到达码头 1 ，然后去码头 2 ，然后再回到码头 1 ，最后回到仓库，总共需要 4 趟行程。
-//所以总行程数为 4 。
-//注意到第一个和第三个箱子不能同时被卸货，因为箱子需要按顺序处理（也就是第二个箱子需要先被送到码头 2 ，然后才能处理第三个箱子）。
+// 所以总行程数为 4 。
+// 注意到第一个和第三个箱子不能同时被卸货，因为箱子需要按顺序处理（也就是第二个箱子需要先被送到码头 2 ，然后才能处理第三个箱子）。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -40,7 +40,7 @@
 //- 卡车首先运输第一个箱子，到达码头 1 ，然后回到仓库，总共 2 趟行程。
 //- 卡车运输第二、第三、第四个箱子，到达码头 3 ，然后回到仓库，总共 2 趟行程。
 //- 卡车运输第五个箱子，到达码头 3 ，回到仓库，总共 2 趟行程。
-//总行程数为 2 + 2 + 2 = 6 。
+// 总行程数为 2 + 2 + 2 = 6 。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -51,7 +51,7 @@
 //- 卡车运输第一和第二个箱子，到达码头 1 ，然后回到仓库，总共 2 趟行程。
 //- 卡车运输第三和第四个箱子，到达码头 2 ，然后回到仓库，总共 2 趟行程。
 //- 卡车运输第五和第六个箱子，到达码头 3 ，然后回到仓库，总共 2 趟行程。
-//总行程数为 2 + 2 + 2 = 6 。
+// 总行程数为 2 + 2 + 2 = 6 。
 //</pre>
 //
 //<p><strong>示例 4：</strong></p>
@@ -65,7 +65,7 @@
 //- 卡车运输第五个箱子，到达码头 3 ，然后回到仓库，总共 2 趟行程。
 //- 卡车运输第六和第七个箱子，到达码头 3 ，然后去码头 4 ，然后回到仓库，总共 3 趟行程。
 //- 卡车运输第八和第九个箱子，到达码头 1 ，然后去码头 5 ，然后回到仓库，总共 3 趟行程。
-//总行程数为 2 + 2 + 2 + 2 + 3 + 3 = 14 。
+// 总行程数为 2 + 2 + 2 + 2 + 3 + 3 = 14 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -85,87 +85,87 @@ package org.example.leetcode.problems._2_algorithm.dp;
 import java.util.Deque;
 import java.util.LinkedList;
 
-//1687.从仓库到码头运输箱子
-//开题时间：2022-12-05 16:03:38
+// 1687.从仓库到码头运输箱子
+// 开题时间：2022-12-05 16:03:38
 public class DeliveringBoxesFromStorageToPorts {
-    public static void main(String[] args) {
-        Solution solution = new DeliveringBoxesFromStorageToPorts().new Solution();
-//        System.out.println(solution.boxDelivering(Tools.to2DIntArray("[[2,4],[2,5],[3,1],[3,2],[3,7],[3,1],[4,4],[1,3],[5,2]]"), 5, 5, 7));
-        System.out.println(solution.boxDelivering(new int[][]{{1, 1}, {2, 1}, {1, 1}}, 2, 3, 3));
+  public static void main(String[] args) {
+    Solution solution = new DeliveringBoxesFromStorageToPorts().new Solution();
+    //        System.out.println(solution.boxDelivering(Tools.to2DIntArray("[[2,4],[2,5],[3,1],[3,2],[3,7],[3,1],[4,4],[1,3],[5,2]]"), 5, 5, 7));
+    System.out.println(solution.boxDelivering(new int[][]{{1, 1}, {2, 1}, {1, 1}}, 2, 3, 3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // TLE DP+前缀和
+    public int boxDelivering9(int[][] boxes, int portsCount, int maxBoxes, int maxWeight) {
+      int n = boxes.length;
+      
+      // weight 前缀和
+      long[] w = new long[n];
+      w[0] = boxes[0][1];
+      for (int i = 1; i < n; i++)
+        w[i] = w[i - 1] + boxes[i][1];
+      
+      // 箱子子数组区间(以索引 0 开头，类似前缀和)内，相邻箱子的目标码头不同的次数
+      int[] neg = new int[n];
+      for (int i = 1; i < n; i++)
+        neg[i] = neg[i - 1] + (boxes[i - 1][0] == boxes[i][0] ? 0 : 1);
+      
+      
+      // dp[i]:以索引 i 结尾的最少行程次数
+      int[] dp = new int[n];
+      dp[0] = 2;
+      for (int i = 1; i < n; i++) {
+        dp[i] = dp[i - 1] + 2;
+        for (int j = i - 2; j >= -1 && i - j <= maxBoxes && w[i] - (j == -1 ? 0 : w[j]) <= maxWeight; j--)
+          dp[i] = Math.min(dp[i], (j == -1 ? 0 : dp[j]) + neg[i] - neg[j + 1] + 2);
+        //                    dp[i] = Math.min(dp[i], (j == -1 ? 0 : dp[j]) + neg[i] - (j == -1 ? 0 : neg[j]) - (j == -1 ? 0 : boxes[j][0] == boxes[j + 1][0] ? 0 : 1) + 2);
+      }
+      
+      return dp[n - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //TLE DP+前缀和
-        public int boxDelivering9(int[][] boxes, int portsCount, int maxBoxes, int maxWeight) {
-            int n = boxes.length;
-
-            //weight 前缀和
-            long[] w = new long[n];
-            w[0] = boxes[0][1];
-            for (int i = 1; i < n; i++)
-                w[i] = w[i - 1] + boxes[i][1];
-
-            //箱子子数组区间(以索引 0 开头，类似前缀和)内，相邻箱子的目标码头不同的次数
-            int[] neg = new int[n];
-            for (int i = 1; i < n; i++)
-                neg[i] = neg[i - 1] + (boxes[i - 1][0] == boxes[i][0] ? 0 : 1);
-
-
-            //dp[i]:以索引 i 结尾的最少行程次数
-            int[] dp = new int[n];
-            dp[0] = 2;
-            for (int i = 1; i < n; i++) {
-                dp[i] = dp[i - 1] + 2;
-                for (int j = i - 2; j >= -1 && i - j <= maxBoxes && w[i] - (j == -1 ? 0 : w[j]) <= maxWeight; j--)
-                    dp[i] = Math.min(dp[i], (j == -1 ? 0 : dp[j]) + neg[i] - neg[j + 1] + 2);
-//                    dp[i] = Math.min(dp[i], (j == -1 ? 0 : dp[j]) + neg[i] - (j == -1 ? 0 : neg[j]) - (j == -1 ? 0 : boxes[j][0] == boxes[j + 1][0] ? 0 : 1) + 2);
-            }
-
-            return dp[n - 1];
+    
+    //☆☆☆☆☆ DP+前缀和+单调队列
+    public int boxDelivering(int[][] boxes, int portsCount, int maxBoxes, int maxWeight) {
+      int len = boxes.length;
+      int n = len + 1;
+      
+      // weight 前缀和
+      long[] w = new long[n];
+      for (int i = 1; i < n; i++)
+        w[i] = w[i - 1] + boxes[i - 1][1];
+      
+      // 箱子子数组区间(类似前缀和)内，相邻箱子的目标码头不同的次数
+      int[] neg = new int[n];
+      for (int i = 2; i < n; i++)
+        neg[i] = neg[i - 1] + (boxes[i - 2][0] == boxes[i - 1][0] ? 0 : 1);
+      
+      // f[i]:以索引 i + 1 结尾的最少行程次数
+      // f[i]=min{f[j]-neg[j+1]}+neg[i]+2
+      int[] f = new int[n];
+      int[] g = new int[n];
+      
+      // 以索引建立g[i]的单调递减队列
+      Deque<Integer> q = new LinkedList<>();
+      q.offer(0);
+      
+      for (int i = 1; i < n; i++) {
+        // 过滤超过箱子数目或总重量限制的「上一次运送的最后一个箱子的索引」
+        while (!q.isEmpty() && i - q.peek() > maxBoxes || w[i] - w[q.peek()] > maxWeight)
+          q.poll();
+        
+        f[i] = g[q.peek()] + neg[i] + 2;
+        if (i != n - 1) {
+          g[i] = f[i] - neg[i + 1];
+          // 维护队列的单调递减性（以g[i]为比较对象）
+          while (!q.isEmpty() && g[i] < g[q.peekLast()])
+            q.pollLast();
+          q.offer(i);
         }
-
-        //☆☆☆☆☆ DP+前缀和+单调队列
-        public int boxDelivering(int[][] boxes, int portsCount, int maxBoxes, int maxWeight) {
-            int len = boxes.length;
-            int n = len + 1;
-
-            //weight 前缀和
-            long[] w = new long[n];
-            for (int i = 1; i < n; i++)
-                w[i] = w[i - 1] + boxes[i - 1][1];
-
-            //箱子子数组区间(类似前缀和)内，相邻箱子的目标码头不同的次数
-            int[] neg = new int[n];
-            for (int i = 2; i < n; i++)
-                neg[i] = neg[i - 1] + (boxes[i - 2][0] == boxes[i - 1][0] ? 0 : 1);
-
-            //f[i]:以索引 i + 1 结尾的最少行程次数
-            //f[i]=min{f[j]-neg[j+1]}+neg[i]+2
-            int[] f = new int[n];
-            int[] g = new int[n];
-
-            //以索引建立g[i]的单调递减队列
-            Deque<Integer> q = new LinkedList<>();
-            q.offer(0);
-
-            for (int i = 1; i < n; i++) {
-                //过滤超过箱子数目或总重量限制的「上一次运送的最后一个箱子的索引」
-                while (!q.isEmpty() && i - q.peek() > maxBoxes || w[i] - w[q.peek()] > maxWeight)
-                    q.poll();
-
-                f[i] = g[q.peek()] + neg[i] + 2;
-                if (i != n - 1) {
-                    g[i] = f[i] - neg[i + 1];
-                    //维护队列的单调递减性（以g[i]为比较对象）
-                    while (!q.isEmpty() && g[i] < g[q.peekLast()])
-                        q.pollLast();
-                    q.offer(i);
-                }
-            }
-
-            return f[n - 1];
-        }
+      }
+      
+      return f[n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -17,10 +17,10 @@
 //<strong>输入：</strong><span><code>n = 4</code></span>
 //<strong>输出：</strong>false 
 //<strong>解释：</strong>以下是可能的结果:
-//1. 移除1颗石头。你的朋友移走了3块石头，包括最后一块。你的朋友赢了。
-//2. 移除2个石子。你的朋友移走2块石头，包括最后一块。你的朋友赢了。
-//3.你移走3颗石子。你的朋友移走了最后一块石头。你的朋友赢了。
-//在所有结果中，你的朋友是赢家。
+// 1. 移除1颗石头。你的朋友移走了3块石头，包括最后一块。你的朋友赢了。
+// 2. 移除2个石子。你的朋友移走2块石头，包括最后一块。你的朋友赢了。
+// 3.你移走3颗石子。你的朋友移走了最后一块石头。你的朋友赢了。
+// 在所有结果中，你的朋友是赢家。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -48,31 +48,31 @@
 //<div><li>👍 650</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//292.Nim 游戏
-//开题时间：2023-01-18 15:47:06
+// 292.Nim 游戏
+// 开题时间：2023-01-18 15:47:06
 public class NimGame {
-    public static void main(String[] args) {
-        Solution solution = new NimGame().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new NimGame().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * ☆☆☆☆☆ 找规律
+     * n % 4 != 0时：
+     *  先手每次都拿 n' % 4 块石头
+     *  轮到后手时每次都是 4k 块石头，无论他怎么拿，轮到先手时依旧是 n % 4 != 0
+     *  而当轮到先手时，正好有 4 块石头时，枚举所有可能的情况，发现先手必胜
+     */
+    public boolean canWinNim9(int n) {
+      return n % 4 != 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * ☆☆☆☆☆ 找规律
-         * n % 4 != 0时：
-         *  先手每次都拿 n' % 4 块石头
-         *  轮到后手时每次都是 4k 块石头，无论他怎么拿，轮到先手时依旧是 n % 4 != 0
-         *  而当轮到先手时，正好有 4 块石头时，枚举所有可能的情况，发现先手必胜
-         */
-        public boolean canWinNim9(int n) {
-            return n % 4 != 0;
-        }
-
-        //位运算优化
-        public boolean canWinNim(int n) {
-            return (n & 3) != 0;
-        }
+    
+    // 位运算优化
+    public boolean canWinNim(int n) {
+      return (n & 3) != 0;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

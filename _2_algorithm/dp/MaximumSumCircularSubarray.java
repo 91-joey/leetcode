@@ -43,92 +43,92 @@
 //<div><li>👍 421</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//918.环形子数组的最大和
-//开题时间：2022-11-23 12:13:08
+// 918.环形子数组的最大和
+// 开题时间：2022-11-23 12:13:08
 public class MaximumSumCircularSubarray {
-    public static void main(String[] args) {
-        Solution solution = new MaximumSumCircularSubarray().new Solution();
-        System.out.println(solution.maxSubarraySumCircular(new int[]{5, -3, 5}));
+  public static void main(String[] args) {
+    Solution solution = new MaximumSumCircularSubarray().new Solution();
+    System.out.println(solution.maxSubarraySumCircular(new int[]{5, -3, 5}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxSubarraySumCircularX(int[] nums) {
+      int n = nums.length;
+      int[] arr = new int[n * 2 - 1];
+      System.arraycopy(nums, 0, arr, 0, n);
+      System.arraycopy(nums, 0, arr, n, n - 1);
+      
+      int max = nums[0];
+      for (int i = 0; i < n; i++) {
+        for (int j = 0, cur = 0; j < n; j++) {
+          int num = arr[i + j];
+          cur = Math.max(cur + num, num);
+          max = Math.max(max, cur);
+        }
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxSubarraySumCircularX(int[] nums) {
-            int n = nums.length;
-            int[] arr = new int[n * 2 - 1];
-            System.arraycopy(nums, 0, arr, 0, n);
-            System.arraycopy(nums, 0, arr, n, n - 1);
-
-            int max = nums[0];
-            for (int i = 0; i < n; i++) {
-                for (int j = 0, cur = 0; j < n; j++) {
-                    int num = arr[i + j];
-                    cur = Math.max(cur + num, num);
-                    max = Math.max(max, cur);
-                }
-            }
-            return max;
-        }
-
-        //max = sum == minArr ? maxArr : max(maxArr , sum - minArr)
-        public int maxSubarraySumCircular8(int[] nums) {
-            int n = nums.length;
-
-            int max = nums[0];
-            int sum = max;
-            int min = Math.min(0, nums[0]);
-            for (int i = 1, iMin = nums[0], iMax = iMin; i < n; i++) {
-                int num = nums[i];
-                sum += num;
-                iMin = Math.min(iMin + num, num);
-                iMax = Math.max(iMax + num, num);
-                min = Math.min(min, iMin);
-                max = Math.max(max, iMax);
-            }
-            return sum == min ? max : Math.max(max, sum - min);
-        }
-
-        //整理一下
-        public int maxSubarraySumCircular7(int[] nums) {
-            int sum = 0;
-            int min = 0;
-            int max = Integer.MIN_VALUE;
-            int iMin = 0;
-            int iMax = 0;
-            for (int num : nums) {
-                sum += num;
-                iMin = Math.min(iMin + num, num);
-                iMax = Math.max(iMax + num, num);
-                min = Math.min(min, iMin);
-                max = Math.max(max, iMax);
-            }
-            return sum == min ? max : Math.max(max, sum - min);
-        }
-
-        //最大最小值逻辑分开写，最小值不用考虑min[len-1]（因为这种情况和最大值的逻辑是重复的）。
-        public int maxSubarraySumCircular(int[] nums) {
-            int n = nums.length;
-
-            int max = nums[0];
-            int sum = max;
-            int cur = max;
-            for (int i = 1; i < n; i++) {
-                int num = nums[i];
-                sum += num;
-                cur = Math.max(cur + num, num);
-                max = Math.max(max, cur);
-            }
-
-            int min = 0;
-            cur = 0;
-            for (int i = 0; i < n - 1; i++) {
-                int num = nums[i];
-                cur = Math.min(cur + num, num);
-                min = Math.min(min, cur);
-            }
-
-            return Math.max(max, sum - min);
-        }
+    
+    // max = sum == minArr ? maxArr : max(maxArr , sum - minArr)
+    public int maxSubarraySumCircular8(int[] nums) {
+      int n = nums.length;
+      
+      int max = nums[0];
+      int sum = max;
+      int min = Math.min(0, nums[0]);
+      for (int i = 1, iMin = nums[0], iMax = iMin; i < n; i++) {
+        int num = nums[i];
+        sum += num;
+        iMin = Math.min(iMin + num, num);
+        iMax = Math.max(iMax + num, num);
+        min = Math.min(min, iMin);
+        max = Math.max(max, iMax);
+      }
+      return sum == min ? max : Math.max(max, sum - min);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 整理一下
+    public int maxSubarraySumCircular7(int[] nums) {
+      int sum = 0;
+      int min = 0;
+      int max = Integer.MIN_VALUE;
+      int iMin = 0;
+      int iMax = 0;
+      for (int num : nums) {
+        sum += num;
+        iMin = Math.min(iMin + num, num);
+        iMax = Math.max(iMax + num, num);
+        min = Math.min(min, iMin);
+        max = Math.max(max, iMax);
+      }
+      return sum == min ? max : Math.max(max, sum - min);
+    }
+    
+    // 最大最小值逻辑分开写，最小值不用考虑min[len-1]（因为这种情况和最大值的逻辑是重复的）。
+    public int maxSubarraySumCircular(int[] nums) {
+      int n = nums.length;
+      
+      int max = nums[0];
+      int sum = max;
+      int cur = max;
+      for (int i = 1; i < n; i++) {
+        int num = nums[i];
+        sum += num;
+        cur = Math.max(cur + num, num);
+        max = Math.max(max, cur);
+      }
+      
+      int min = 0;
+      cur = 0;
+      for (int i = 0; i < n - 1; i++) {
+        int num = nums[i];
+        cur = Math.min(cur + num, num);
+        min = Math.min(min, cur);
+      }
+      
+      return Math.max(max, sum - min);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

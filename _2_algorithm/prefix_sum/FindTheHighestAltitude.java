@@ -33,23 +33,23 @@
 //<div><li>👍 30</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.prefix_sum;
 
-//1732.找到最高海拔
-//开题时间：2022-11-19 08:58:30
+// 1732.找到最高海拔
+// 开题时间：2022-11-19 08:58:30
 public class FindTheHighestAltitude {
-    public static void main(String[] args) {
-        Solution solution = new FindTheHighestAltitude().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindTheHighestAltitude().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int largestAltitude(int[] gain) {
+      int max = 0, cur = 0;
+      for (int e : gain) {
+        cur += e;
+        max = Math.max(max, cur);
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int largestAltitude(int[] gain) {
-            int max = 0, cur = 0;
-            for (int e : gain) {
-                cur += e;
-                max = Math.max(max, cur);
-            }
-            return max;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

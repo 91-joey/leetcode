@@ -29,41 +29,41 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//面试题 08.06.汉诺塔问题
-//开题时间：2022-12-30 11:28:37
+// 面试题 08.06.汉诺塔问题
+// 开题时间：2022-12-30 11:28:37
 public class HanotaLcci {
-    public static void main(String[] args) {
-        Solution solution = new HanotaLcci().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new HanotaLcci().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public void hanotaX(List<Integer> A, List<Integer> B, List<Integer> C) {
+      Deque<Integer> stack = new LinkedList<>();
+      for (Integer x : A)
+        stack.push(x);
+      while (!stack.isEmpty())
+        B.add(stack.pop());
+      for (Integer x : B)
+        stack.push(x);
+      while (!stack.isEmpty())
+        C.add(stack.pop());
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public void hanotaX(List<Integer> A, List<Integer> B, List<Integer> C) {
-            Deque<Integer> stack = new LinkedList<>();
-            for (Integer x : A)
-                stack.push(x);
-            while (!stack.isEmpty())
-                B.add(stack.pop());
-            for (Integer x : B)
-                stack.push(x);
-            while (!stack.isEmpty())
-                C.add(stack.pop());
-        }
-
-        //☆☆☆☆☆ 递归与分治
-        public void hanota(List<Integer> A, List<Integer> B, List<Integer> C) {
-            helper(A, B, C, A.size());
-        }
-
-        private void helper(List<Integer> A, List<Integer> B, List<Integer> C, int n) {
-            if (n == 1) {
-                C.add(A.remove(A.size() - 1));
-                return;
-            }
-            helper(A, C, B, n - 1);
-            C.add(A.remove(A.size() - 1));
-            helper(B, A, C, n - 1);
-        }
+    
+    //☆☆☆☆☆ 递归与分治
+    public void hanota(List<Integer> A, List<Integer> B, List<Integer> C) {
+      helper(A, B, C, A.size());
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private void helper(List<Integer> A, List<Integer> B, List<Integer> C, int n) {
+      if (n == 1) {
+        C.add(A.remove(A.size() - 1));
+        return;
+      }
+      helper(A, C, B, n - 1);
+      C.add(A.remove(A.size() - 1));
+      helper(B, A, C, n - 1);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

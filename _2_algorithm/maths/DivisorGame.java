@@ -43,64 +43,64 @@
 //<div><li>👍 388</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1025.除数博弈
-//开题时间：2023-01-18 16:43:29
+// 1025.除数博弈
+// 开题时间：2023-01-18 16:43:29
 public class DivisorGame {
-    public static void main(String[] args) {
-        Solution solution = new DivisorGame().new Solution();
-        System.out.println(solution.divisorGame(3));
+  public static void main(String[] args) {
+    Solution solution = new DivisorGame().new Solution();
+    System.out.println(solution.divisorGame(3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int[] memo;
+    
+    // 记忆化递归
+    public boolean divisorGame9(int n) {
+      memo = new int[n];
+      return helper(n) == 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int[] memo;
-
-        //记忆化递归
-        public boolean divisorGame9(int n) {
-            memo = new int[n];
-            return helper(n) == 1;
+    
+    private int helper(int n) {
+      for (int i = 1; i < n; i++)
+        if (n % i == 0) {
+          if (memo[n - i] == 0)
+            memo[n - i] = helper(n - i);
+          if (memo[n - i] == -1)
+            return 1;
         }
-
-        private int helper(int n) {
-            for (int i = 1; i < n; i++)
-                if (n % i == 0) {
-                    if (memo[n - i] == 0)
-                        memo[n - i] = helper(n - i);
-                    if (memo[n - i] == -1)
-                        return 1;
-                }
-            return -1;
-        }
-
-        //dp
-        public boolean divisorGame8(int n) {
-            boolean[] f = new boolean[n + 1];
-            for (int i = 2; i < n + 1; i++)
-                for (int j = 1; j < i; j++)
-                    if (i % j == 0 && !f[i - j]) {
-                        f[i] = true;
-                        break;
-                    }
-            return f[n];
-        }
-
-        /*
-         * ☆☆☆☆☆ 数学
-         * 题意为当玩家轮到数字为 1 时，无法执行操作，输掉游戏
-         * 操作的含义为：选一个 [1,n) 范围的约数（因数） x 作为减数，替换数字为 n-x
-         *
-         * 前置知识：奇数的约数必为奇数，偶数的约数可奇可偶
-         * 按 n 的奇偶性分类讨论：
-         *  1. n 为偶数时
-         *      轮到 Alice 时，每次都选 1
-         *      轮到 Bob 时，每次都是奇数，无论选哪个约数都是奇数
-         *      轮到 Alice 时，每次都是偶数，重复以上步骤
-         *      由于 Alice 每次都选 1，数字 1（奇数）最终轮到了 Bob，因此 Alice 必胜
-         *  2. n 为奇数时，同理， Alice 必输
-         */
-        public boolean divisorGame(int n) {
-            return (n & 1) == 0;
-        }
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // dp
+    public boolean divisorGame8(int n) {
+      boolean[] f = new boolean[n + 1];
+      for (int i = 2; i < n + 1; i++)
+        for (int j = 1; j < i; j++)
+          if (i % j == 0 && !f[i - j]) {
+            f[i] = true;
+            break;
+          }
+      return f[n];
+    }
+    
+    /*
+     * ☆☆☆☆☆ 数学
+     * 题意为当玩家轮到数字为 1 时，无法执行操作，输掉游戏
+     * 操作的含义为：选一个 [1,n) 范围的约数（因数） x 作为减数，替换数字为 n-x
+     *
+     * 前置知识：奇数的约数必为奇数，偶数的约数可奇可偶
+     * 按 n 的奇偶性分类讨论：
+     *  1. n 为偶数时
+     *      轮到 Alice 时，每次都选 1
+     *      轮到 Bob 时，每次都是奇数，无论选哪个约数都是奇数
+     *      轮到 Alice 时，每次都是偶数，重复以上步骤
+     *      由于 Alice 每次都选 1，数字 1（奇数）最终轮到了 Bob，因此 Alice 必胜
+     *  2. n 为奇数时，同理， Alice 必输
+     */
+    public boolean divisorGame(int n) {
+      return (n & 1) == 0;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

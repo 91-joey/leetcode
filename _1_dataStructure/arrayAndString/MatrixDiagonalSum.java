@@ -14,7 +14,7 @@
 //&nbsp;           [<strong>7</strong>,8,<strong>9</strong>]]
 //<strong>输出：</strong>25
 //<strong>解释：</strong>对角线的和为：1 + 5 + 9 + 3 + 7 = 25
-//请注意，元素 mat[1][1] = 5 只会被计算一次。
+// 请注意，元素 mat[1][1] = 5 只会被计算一次。
 //</pre>
 //
 //<p><strong>示例&nbsp; 2：</strong></p>
@@ -47,44 +47,44 @@
 //<div><li>👍 63</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1572.矩阵对角线元素的和
-//开题时间：2022-12-07 09:12:55
+// 1572.矩阵对角线元素的和
+// 开题时间：2022-12-07 09:12:55
 public class MatrixDiagonalSum {
-    public static void main(String[] args) {
-        Solution solution = new MatrixDiagonalSum().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MatrixDiagonalSum().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int diagonalSum9(int[][] mat) {
+      int sum = 0;
+      int n = mat.length;
+      for (int i = 0, j = n - 1; i < n; i++, j--)
+        sum += mat[i][i] + mat[j][n - 1 - j];
+      return sum - (n % 2 == 1 ? mat[n / 2][n / 2] : 0);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int diagonalSum9(int[][] mat) {
-            int sum = 0;
-            int n = mat.length;
-            for (int i = 0, j = n - 1; i < n; i++, j--)
-                sum += mat[i][i] + mat[j][n - 1 - j];
-            return sum - (n % 2 == 1 ? mat[n / 2][n / 2] : 0);
-        }
-
-        public int diagonalSum8(int[][] mat) {
-            int sum = 0;
-            int n = mat.length;
-
-            for (int i = 0; i < n; i++)
-                sum += mat[i][i] + mat[i][n - 1 - i];
-
-            int mid = n / 2;
-            return sum - mat[mid][mid] * (n & 1);
-        }
-
-        public int diagonalSum(int[][] mat) {
-            int sum = 0;
-            int n = mat.length;
-
-            for (int i = 0; i < n; i++)
-                sum += mat[i][i] + mat[n - 1 - i][i];
-
-            int mid = n / 2;
-            return sum - mat[mid][mid] * (n & 1);
-        }
+    
+    public int diagonalSum8(int[][] mat) {
+      int sum = 0;
+      int n = mat.length;
+      
+      for (int i = 0; i < n; i++)
+        sum += mat[i][i] + mat[i][n - 1 - i];
+      
+      int mid = n / 2;
+      return sum - mat[mid][mid] * (n & 1);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int diagonalSum(int[][] mat) {
+      int sum = 0;
+      int n = mat.length;
+      
+      for (int i = 0; i < n; i++)
+        sum += mat[i][i] + mat[n - 1 - i][i];
+      
+      int mid = n / 2;
+      return sum - mat[mid][mid] * (n & 1);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

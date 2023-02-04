@@ -14,7 +14,7 @@
 //<strong>输入：</strong>head = [1,2,3,4,5,6,null,null,null,7,8,9,10,null,null,11,12]
 //<strong>输出：</strong>[1,2,3,7,8,11,12,9,10,4,5,6]
 //<strong>解释：</strong>输入的多级列表如上图所示。
-//扁平化后的链表如下图：
+// 扁平化后的链表如下图：
 //<img src="https://assets.leetcode.com/uploads/2021/11/09/flatten12.jpg" style="height:69px; width:1000px" />
 //</pre>
 //
@@ -26,7 +26,7 @@
 //<strong>输入：</strong>head = [1,2,null,3]
 //<strong>输出：</strong>[1,3,2]
 //<strong>解释：</strong>输入的多级列表如上图所示。
-//扁平化后的链表如下图：
+// 扁平化后的链表如下图：
 //<img src="https://assets.leetcode.com/uploads/2021/11/24/list.jpg" style="height:87px; width:300px" />
 //</pre>
 //
@@ -90,76 +90,76 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.Node;
 
-//430.扁平化多级双向链表
-//开题时间：2022-09-01 10:43:50
+// 430.扁平化多级双向链表
+// 开题时间：2022-09-01 10:43:50
 public class FlattenAMultilevelDoublyLinkedList {
-    public static void main(String[] args) {
-        Solution solution = new FlattenAMultilevelDoublyLinkedList().new Solution();
-        Node grandChild = new Node(11, new Node(12));
-        Node child = new Node(7, new Node(8, new Node(9, new Node(10)), grandChild));
-        Node root = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, new Node(6))), child)));
-        System.out.println(solution.flatten(root));
+  public static void main(String[] args) {
+    Solution solution = new FlattenAMultilevelDoublyLinkedList().new Solution();
+    Node grandChild = new Node(11, new Node(12));
+    Node child = new Node(7, new Node(8, new Node(9, new Node(10)), grandChild));
+    Node root = new Node(1, new Node(2, new Node(3, new Node(4, new Node(5, new Node(6))), child)));
+    System.out.println(solution.flatten(root));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    
+    // 1.DFS+递归  n   n
+    public Node flatten(Node head) {
+      flattenAndGetTail(head);
+      return head;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-
-        //1.DFS+递归  n   n
-        public Node flatten(Node head) {
-            flattenAndGetTail(head);
-            return head;
+    
+    public Node flattenAndGetTail(Node head) {
+      while (head != null) {
+        Node child = head.child;
+        Node succ = head.next;
+        if (child != null) {
+          // head⇋head.child
+          head.next = child;
+          child.prev = head;
+          head.child = null;
+          Node childTail = flattenAndGetTail(child);
+          // head.child.childTail⇋head.next
+          if (succ != null) {
+            childTail.next = succ;
+            succ.prev = childTail;
+          }
+          head = childTail;
         }
-
-        public Node flattenAndGetTail(Node head) {
-            while (head != null) {
-                Node child = head.child;
-                Node succ = head.next;
-                if (child != null) {
-                    //head⇋head.child
-                    head.next = child;
-                    child.prev = head;
-                    head.child = null;
-                    Node childTail = flattenAndGetTail(child);
-                    //head.child.childTail⇋head.next
-                    if (succ != null) {
-                        childTail.next = succ;
-                        succ.prev = childTail;
-                    }
-                    head = childTail;
-                }
-                //返回的是最后一个节点，即null的前节点
-                if (succ == null) {
-                    break;
-                }
-                head = succ;
-            }
-            return head;
+        // 返回的是最后一个节点，即null的前节点
+        if (succ == null) {
+          break;
         }
-
-        //2.迭代  n   1
-        public Node flatten2(Node head) {
-            for (Node p = head; p != null; p = p.next) {
-                Node child = p.child;
-                if (child != null) {
-                    Node succ = p.next;
-                    //1.head⇋head.child
-                    p.next = child;
-                    child.prev = p;
-                    p.child = null;
-
-                    //2.head.child.childTail⇋head.next
-                    Node childTail = child;
-                    while (childTail.next != null) {
-                        childTail = childTail.next;
-                    }
-                    if (succ != null) {
-                        childTail.next = succ;
-                        succ.prev = childTail;
-                    }
-                }
-            }
-            return head;
-        }
+        head = succ;
+      }
+      return head;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 2.迭代  n   1
+    public Node flatten2(Node head) {
+      for (Node p = head; p != null; p = p.next) {
+        Node child = p.child;
+        if (child != null) {
+          Node succ = p.next;
+          // 1.head⇋head.child
+          p.next = child;
+          child.prev = p;
+          p.child = null;
+          
+          // 2.head.child.childTail⇋head.next
+          Node childTail = child;
+          while (childTail.next != null) {
+            childTail = childTail.next;
+          }
+          if (succ != null) {
+            childTail.next = succ;
+            succ.prev = childTail;
+          }
+        }
+      }
+      return head;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

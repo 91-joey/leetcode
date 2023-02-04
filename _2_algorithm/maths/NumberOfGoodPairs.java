@@ -39,55 +39,55 @@ package org.example.leetcode.problems._2_algorithm.maths;
 
 import java.util.Arrays;
 
-//1512.好数对的数目
-//开题时间：2022-11-09 08:44:18
+// 1512.好数对的数目
+// 开题时间：2022-11-09 08:44:18
 public class NumberOfGoodPairs {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfGoodPairs().new Solution();
-        System.out.println(-1 / 2);
+  public static void main(String[] args) {
+    Solution solution = new NumberOfGoodPairs().new Solution();
+    System.out.println(-1 / 2);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 计数 + 乘法   n + D  D    (D = range of values of nums)
+    public int numIdenticalPairs9(int[] nums) {
+      int[] freq = new int[101];
+      for (int num : nums)
+        freq[num]++;
+      
+      return Arrays.stream(freq)
+          .filter(value -> value != 0 && value != 1)
+          .map(value -> value * (value - 1) / 2)
+          .sum();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //计数 + 乘法   n + D  D    (D = range of values of nums)
-        public int numIdenticalPairs9(int[] nums) {
-            int[] freq = new int[101];
-            for (int num : nums)
-                freq[num]++;
-
-            return Arrays.stream(freq)
-                    .filter(value -> value != 0 && value != 1)
-                    .map(value -> value * (value - 1) / 2)
-                    .sum();
+    
+    // 排序+遍历 nlogn   1
+    public int numIdenticalPairs8(int[] nums) {
+      int cnt = 0;
+      Arrays.sort(nums);
+      
+      for (int l = 0, r = 1; r <= nums.length; r++) {
+        if (r == nums.length || nums[l] != nums[r]) {
+          int n = r - l;
+          cnt += n * (n - 1) / 2;
+          l = r;
         }
-
-        //排序+遍历 nlogn   1
-        public int numIdenticalPairs8(int[] nums) {
-            int cnt = 0;
-            Arrays.sort(nums);
-
-            for (int l = 0, r = 1; r <= nums.length; r++) {
-                if (r == nums.length || nums[l] != nums[r]) {
-                    int n = r - l;
-                    cnt += n * (n - 1) / 2;
-                    l = r;
-                }
-            }
-
-            return cnt;
-        }
-
-        //☆☆☆☆☆ 计数 + 加法 n   D
-        public int numIdenticalPairs(int[] nums) {
-            int cnt = 0;
-            int[] freq = new int[101];
-
-            for (int num : nums)
-                cnt += freq[num]++;
-
-            return cnt;
-        }
-
+      }
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 计数 + 加法 n   D
+    public int numIdenticalPairs(int[] nums) {
+      int cnt = 0;
+      int[] freq = new int[101];
+      
+      for (int num : nums)
+        cnt += freq[num]++;
+      
+      return cnt;
+    }
+    
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

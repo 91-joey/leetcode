@@ -14,7 +14,7 @@
 //<b>输入：</b>groups = [[1,-1,-1],[3,-2,0]], nums = [1,-1,0,1,-1,-1,3,-2,0]
 //<b>输出：</b>true
 //<b>解释：</b>你可以分别在 nums 中选出第 0 个子数组 [1,-1,0,<strong>1,</strong><strong>-1,</strong><strong>-1</strong>,3,-2,0] 和第 1 个子数组 [1,-1,0,1,-1,-1,<strong>3,</strong><strong>-2,0</strong>] 。
-//这两个子数组是不相交的，因为它们没有任何共同的元素。
+// 这两个子数组是不相交的，因为它们没有任何共同的元素。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -32,7 +32,7 @@
 //<b>输入：</b>groups = [[1,2,3],[3,4]], nums = [7,7,1,2,3,4,7,7]
 //<b>输出：</b>false
 //<strong>解释：</strong>选择子数组 [7,7,<strong>1,2,3</strong>,4,7,7] 和 [7,7,1,2,<strong>3,4</strong>,7,7] 是不正确的，因为它们不是不相交子数组。
-//它们有一个共同的元素 nums[4] （下标从 0 开始）。
+// 它们有一个共同的元素 nums[4] （下标从 0 开始）。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -54,64 +54,64 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//1764.通过连接另一个数组的子数组得到一个数组
-//开题时间：2022-12-17 09:13:52
+// 1764.通过连接另一个数组的子数组得到一个数组
+// 开题时间：2022-12-17 09:13:52
 public class FormArrayByConcatenatingSubarraysOfAnotherArray {
-    public static void main(String[] args) {
-        Solution solution = new FormArrayByConcatenatingSubarraysOfAnotherArray().new Solution();
-        System.out.println(solution.canChoose(new int[][]{
-                {1, -1, -1},
-                {3, -2, 0}
-        }, new int[]{1, -1, 0, 1, -1, -1, 3, -2, 0}));
+  public static void main(String[] args) {
+    Solution solution = new FormArrayByConcatenatingSubarraysOfAnotherArray().new Solution();
+    System.out.println(solution.canChoose(new int[][]{
+        {1, -1, -1},
+        {3, -2, 0}
+    }, new int[]{1, -1, 0, 1, -1, -1, 3, -2, 0}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean canChooseX(int[][] groups, int[] nums) {
+      HashMap<Integer, List<Integer>> val2indices = new HashMap<>();
+      for (int i = 0; i < nums.length; i++) {
+        if (val2indices.containsKey(nums[i]))
+          val2indices.get(nums[i]).add(i);
+        else {
+          ArrayList<Integer> list = new ArrayList<>();
+          list.add(i);
+          val2indices.put(nums[i], list);
+        }
+      }
+      
+      List<Integer> list = val2indices.get(groups[0][0]);
+      if (list == null)
+        return false;
+      
+      //            for (int i = 0; i < list.size(); i++) {
+      //                for (int j = 0, p = 0, q = list.get(0); ; ) {
+      //                }
+      //            }
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean canChooseX(int[][] groups, int[] nums) {
-            HashMap<Integer, List<Integer>> val2indices = new HashMap<>();
-            for (int i = 0; i < nums.length; i++) {
-                if (val2indices.containsKey(nums[i]))
-                    val2indices.get(nums[i]).add(i);
-                else {
-                    ArrayList<Integer> list = new ArrayList<>();
-                    list.add(i);
-                    val2indices.put(nums[i], list);
-                }
-            }
-
-            List<Integer> list = val2indices.get(groups[0][0]);
-            if (list == null)
-                return false;
-
-//            for (int i = 0; i < list.size(); i++) {
-//                for (int j = 0, p = 0, q = list.get(0); ; ) {
-//                }
-//            }
-            return false;
+    
+    // 贪心 + 双指针
+    public boolean canChoose(int[][] groups, int[] nums) {
+      int g = 0;
+      for (int i = 0; g < groups.length && i < nums.length; ) {
+        if (check(groups[g], nums, i)) {
+          i += groups[g].length;
+          g++;
+        } else {
+          i++;
         }
-
-        //贪心 + 双指针
-        public boolean canChoose(int[][] groups, int[] nums) {
-            int g = 0;
-            for (int i = 0; g < groups.length && i < nums.length; ) {
-                if (check(groups[g], nums, i)) {
-                    i += groups[g].length;
-                    g++;
-                } else {
-                    i++;
-                }
-            }
-            return g == groups.length;
-        }
-
-        private boolean check(int[] group, int[] nums, int i) {
-            if (nums.length - i < group.length)
-                return false;
-            for (int x : group)
-                if (x != nums[i++])
-                    return false;
-            return true;
-        }
+      }
+      return g == groups.length;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private boolean check(int[] group, int[] nums, int i) {
+      if (nums.length - i < group.length)
+        return false;
+      for (int x : group)
+        if (x != nums[i++])
+          return false;
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

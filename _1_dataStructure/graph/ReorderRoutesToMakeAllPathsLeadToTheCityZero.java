@@ -51,47 +51,47 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-//1466.重新规划路线
-//开题时间：2023-01-10 20:03:52
+// 1466.重新规划路线
+// 开题时间：2023-01-10 20:03:52
 public class ReorderRoutesToMakeAllPathsLeadToTheCityZero {
-    public static void main(String[] args) {
-        Solution solution = new ReorderRoutesToMakeAllPathsLeadToTheCityZero().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ReorderRoutesToMakeAllPathsLeadToTheCityZero().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    int ans = 0;
+    
+    // dfs + 看成无向图
+    public int minReorder(int n, int[][] connections) {
+      HashSet<Integer> set = new HashSet<>();
+      for (int[] connection : connections)
+        set.add(connection[0] * n + connection[1]);
+      
+      List<Integer>[] g = new ArrayList[n];
+      for (int i = 0; i < n; i++)
+        g[i] = new ArrayList<>();
+      for (int[] connection : connections) {
+        g[connection[0]].add(connection[1]);
+        g[connection[1]].add(connection[0]);
+      }
+      
+      boolean[] vis = new boolean[n];
+      dfs(g, vis, set, n, 0);
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        int ans = 0;
-
-        //dfs + 看成无向图
-        public int minReorder(int n, int[][] connections) {
-            HashSet<Integer> set = new HashSet<>();
-            for (int[] connection : connections)
-                set.add(connection[0] * n + connection[1]);
-
-            List<Integer>[] g = new ArrayList[n];
-            for (int i = 0; i < n; i++)
-                g[i] = new ArrayList<>();
-            for (int[] connection : connections) {
-                g[connection[0]].add(connection[1]);
-                g[connection[1]].add(connection[0]);
-            }
-
-            boolean[] vis = new boolean[n];
-            dfs(g, vis, set, n, 0);
-
-            return ans;
+    
+    private void dfs(List<Integer>[] g, boolean[] vis, HashSet<Integer> set, int n, int i) {
+      vis[i] = true;
+      for (int j : g[i]) {
+        if (!vis[j]) {
+          dfs(g, vis, set, n, j);
+          if (!set.contains(j * n + i))
+            ans++;
         }
-
-        private void dfs(List<Integer>[] g, boolean[] vis, HashSet<Integer> set, int n, int i) {
-            vis[i] = true;
-            for (int j : g[i]) {
-                if (!vis[j]) {
-                    dfs(g, vis, set, n, j);
-                    if (!set.contains(j * n + i))
-                        ans++;
-                }
-            }
-        }
+      }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

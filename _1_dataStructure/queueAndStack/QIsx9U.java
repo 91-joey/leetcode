@@ -13,17 +13,17 @@
 //
 //<pre>
 //<strong>输入：</strong>
-//inputs = ["MovingAverage", "next", "next", "next", "next"]
-//inputs = [[3], [1], [10], [3], [5]]
+// inputs = ["MovingAverage", "next", "next", "next", "next"]
+// inputs = [[3], [1], [10], [3], [5]]
 //<strong>输出：</strong>
 //[null, 1.0, 5.5, 4.66667, 6.0]
 //
 //<strong>解释：</strong>
-//MovingAverage movingAverage = new MovingAverage(3);
-//movingAverage.next(1); // 返回 1.0 = 1 / 1
-//movingAverage.next(10); // 返回 5.5 = (1 + 10) / 2
-//movingAverage.next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
-//movingAverage.next(5); // 返回 6.0 = (10 + 3 + 5) / 3
+// MovingAverage movingAverage = new MovingAverage(3);
+// movingAverage.next(1); // 返回 1.0 = 1 / 1
+// movingAverage.next(10); // 返回 5.5 = (1 + 10) / 2
+// movingAverage.next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
+// movingAverage.next(5); // 返回 6.0 = (10 + 3 + 5) / 3
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -47,59 +47,59 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//剑指 Offer II 041.滑动窗口的平均值
-//开题时间：2022-12-31 12:08:00
+// 剑指 Offer II 041.滑动窗口的平均值
+// 开题时间：2022-12-31 12:08:00
 public class QIsx9U {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  //☆☆☆☆☆ 队列
+  class MovingAverage9 {
+    int sum = 0;
+    int size;
+    Queue<Integer> q = new LinkedList<>();
+    
+    /**
+     * Initialize your data structure here.
+     */
+    public MovingAverage9(int size) {
+      this.size = size;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    //☆☆☆☆☆ 队列
-    class MovingAverage9 {
-        int sum = 0;
-        int size;
-        Queue<Integer> q = new LinkedList<>();
-
-        /**
-         * Initialize your data structure here.
-         */
-        public MovingAverage9(int size) {
-            this.size = size;
-        }
-
-        public double next(int val) {
-            q.offer(val);
-            sum += val;
-            if (q.size() > size)
-                sum -= q.poll();
-            return (double) sum / q.size();
-        }
+    
+    public double next(int val) {
+      q.offer(val);
+      sum += val;
+      if (q.size() > size)
+        sum -= q.poll();
+      return (double) sum / q.size();
     }
-
-    //数组模拟队列
-    class MovingAverage {
-        int sum, i, j;
-        int size;
-        int[] arr = new int[10010];
-
-        /**
-         * Initialize your data structure here.
-         */
-        public MovingAverage(int size) {
-            this.size = size;
-        }
-
-        public double next(int val) {
-            sum += arr[j++] = val;
-            if (j - i > size)
-                sum -= arr[i++];
-            return (double) sum / (j - i);
-        }
+  }
+  
+  // 数组模拟队列
+  class MovingAverage {
+    int sum, i, j;
+    int size;
+    int[] arr = new int[10010];
+    
+    /**
+     * Initialize your data structure here.
+     */
+    public MovingAverage(int size) {
+      this.size = size;
     }
-/**
- * Your MovingAverage object will be instantiated and called as such:
- * MovingAverage obj = new MovingAverage(size);
- * double param_1 = obj.next(val);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public double next(int val) {
+      sum += arr[j++] = val;
+      if (j - i > size)
+        sum -= arr[i++];
+      return (double) sum / (j - i);
+    }
+  }
+  /**
+   * Your MovingAverage object will be instantiated and called as such:
+   * MovingAverage obj = new MovingAverage(size);
+   * double param_1 = obj.next(val);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -12,7 +12,7 @@
 //<strong>输入：</strong>s = "XXX"
 //<strong>输出：</strong>1
 //<strong>解释：<em>XXX</em></strong> -&gt; OOO
-//一次操作，选中全部 3 个字符，并将它们转换为 <span><code>'O' 。</code></span>
+// 一次操作，选中全部 3 个字符，并将它们转换为 <span><code>'O' 。</code></span>
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -21,8 +21,8 @@
 //<strong>输入：</strong>s = "XXOX"
 //<strong>输出：</strong>2
 //<strong>解释：<em>XXO</em></strong>X -&gt; O<em><strong>OOX</strong></em> -&gt; OOOO
-//第一次操作，选择前 3 个字符，并将这些字符转换为 <span><code>'O'</code></span> 。
-//然后，选中后 3 个字符，并执行转换。最终得到的字符串全由字符 <span><code>'O'</code></span> 组成。</pre>
+// 第一次操作，选择前 3 个字符，并将这些字符转换为 <span><code>'O'</code></span> 。
+// 然后，选中后 3 个字符，并执行转换。最终得到的字符串全由字符 <span><code>'O'</code></span> 组成。</pre>
 //
 //<p><strong>示例 3：</strong></p>
 //
@@ -44,25 +44,25 @@
 //<div><li>👍 31</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//2027.转换字符串的最少操作次数
-//开题时间：2022-12-27 09:54:48
+// 2027.转换字符串的最少操作次数
+// 开题时间：2022-12-27 09:54:48
 public class MinimumMovesToConvertString {
-    public static void main(String[] args) {
-        Solution solution = new MinimumMovesToConvertString().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumMovesToConvertString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minimumMoves(String s) {
+      int cnt = 0;
+      for (int i = 0; i < s.length(); )
+        if (s.charAt(i) == 'X') {
+          cnt++;
+          i += 3;
+        } else
+          i++;
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minimumMoves(String s) {
-            int cnt = 0;
-            for (int i = 0; i < s.length(); )
-                if (s.charAt(i) == 'X') {
-                    cnt++;
-                    i += 3;
-                } else
-                    i++;
-            return cnt;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

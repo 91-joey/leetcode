@@ -1,4 +1,4 @@
-//给你两个整数&nbsp;<code>num1</code> 和 <code>num2</code>，返回这两个整数的和。
+// 给你两个整数&nbsp;<code>num1</code> 和 <code>num2</code>，返回这两个整数的和。
 //
 //<p>&nbsp;</p>
 //
@@ -29,18 +29,18 @@
 //<div><li>👍 80</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//2235.两整数相加
-//开题时间：2022-11-05 08:31:52
+// 2235.两整数相加
+// 开题时间：2022-11-05 08:31:52
 public class AddTwoIntegers {
-    public static void main(String[] args) {
-        Solution solution = new AddTwoIntegers().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new AddTwoIntegers().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int sum(int num1, int num2) {
+      return num1 + num2;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int sum(int num1, int num2) {
-            return num1 + num2;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

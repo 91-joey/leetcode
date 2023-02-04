@@ -48,156 +48,156 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//847.访问所有节点的最短路径
-//开题时间：2023-01-12 15:50:21
+// 847.访问所有节点的最短路径
+// 开题时间：2023-01-12 15:50:21
 public class ShortestPathVisitingAllNodes {
-    public static void main(String[] args) {
-        Solution solution = new ShortestPathVisitingAllNodes().new Solution();
-        System.out.println(solution.shortestPathLength(Tools.to2DIntArray("[[7],[3],[3,9],[1,2,4,5,7,11],[3],[3],[9],[3,10,8,0],[7],[11,6,2],[7],[3,9]]")));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int shortestPathLengthX(int[][] graph) {
-            int n = graph.length;
-            Queue<State> q = new LinkedList<>();
-            for (int i = 0; i < n; i++) {
-                int[] vis = new int[n];
-                vis[i]++;
-                q.offer(new State(i, vis));
-            }
-
-            int step = 0;
-            int bound = 2 * n - 3;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    State state = q.poll();
-                    if (isAllVisited(state.vis))
-                        return step;
-
-                    for (int out : graph[state.node]) {
-                        if (state.vis[out] < bound) {
-                            int[] copy = Arrays.copyOf(state.vis, n);
-                            copy[out]++;
-                            q.offer(new State(out, copy));
-                        }
-                    }
-                }
-                step++;
-            }
-
+  public static void main(String[] args) {
+    Solution solution = new ShortestPathVisitingAllNodes().new Solution();
+    System.out.println(solution.shortestPathLength(Tools.to2DIntArray("[[7],[3],[3,9],[1,2,4,5,7,11],[3],[3],[9],[3,10,8,0],[7],[11,6,2],[7],[3,9]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int shortestPathLengthX(int[][] graph) {
+      int n = graph.length;
+      Queue<State> q = new LinkedList<>();
+      for (int i = 0; i < n; i++) {
+        int[] vis = new int[n];
+        vis[i]++;
+        q.offer(new State(i, vis));
+      }
+      
+      int step = 0;
+      int bound = 2 * n - 3;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          State state = q.poll();
+          if (isAllVisited(state.vis))
             return step;
+          
+          for (int out : graph[state.node]) {
+            if (state.vis[out] < bound) {
+              int[] copy = Arrays.copyOf(state.vis, n);
+              copy[out]++;
+              q.offer(new State(out, copy));
+            }
+          }
         }
-
-        public int shortestPathLengthXX(int[][] graph) {
-            int n = graph.length;
-            Queue<State2> q = new LinkedList<>();
-            for (int i = 0; i < n; i++) {
-                boolean[] visNode = new boolean[n];
-                visNode[i] = true;
-                q.offer(new State2(i, new boolean[n][n], visNode));
-            }
-
-            int step = 0;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    State2 state = q.poll();
-                    if (isAllVisited(state.visNode))
-                        return step;
-
-                    for (int out : graph[state.node]) {
-                        if (!state.visEdge[state.node][out]) {
-//                            boolean[][] copyVisEdge = Arrays.copyOf(state.visEdge, n);
-//                            boolean[][] copyVisEdge = state.visEdge.clone();
-                            boolean[][] copyVisEdge = new boolean[n][];
-                            for (int j = 0; j < n; j++)
-                                copyVisEdge[j] = Arrays.copyOf(state.visEdge[j], n);
-                            boolean[] copyVisNode = Arrays.copyOf(state.visNode, n);
-                            copyVisEdge[state.node][out] = true;
-                            copyVisNode[out] = true;
-                            q.offer(new State2(out, copyVisEdge, copyVisNode));
-                        }
-                    }
-                }
-                step++;
-            }
-
+        step++;
+      }
+      
+      return step;
+    }
+    
+    public int shortestPathLengthXX(int[][] graph) {
+      int n = graph.length;
+      Queue<State2> q = new LinkedList<>();
+      for (int i = 0; i < n; i++) {
+        boolean[] visNode = new boolean[n];
+        visNode[i] = true;
+        q.offer(new State2(i, new boolean[n][n], visNode));
+      }
+      
+      int step = 0;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          State2 state = q.poll();
+          if (isAllVisited(state.visNode))
             return step;
+          
+          for (int out : graph[state.node]) {
+            if (!state.visEdge[state.node][out]) {
+              //                            boolean[][] copyVisEdge = Arrays.copyOf(state.visEdge, n);
+              //                            boolean[][] copyVisEdge = state.visEdge.clone();
+              boolean[][] copyVisEdge = new boolean[n][];
+              for (int j = 0; j < n; j++)
+                copyVisEdge[j] = Arrays.copyOf(state.visEdge[j], n);
+              boolean[] copyVisNode = Arrays.copyOf(state.visNode, n);
+              copyVisEdge[state.node][out] = true;
+              copyVisNode[out] = true;
+              q.offer(new State2(out, copyVisEdge, copyVisNode));
+            }
+          }
         }
-
-        /*
-         * ☆☆☆☆☆ bfs + 状压   2^n * n^2   2^n * n
-         * 状态定义：0b(state) 某位为 1，表示某节点已访问
-         * 关键：以同一状态到达同一个节点，是多余、重复的搜索路径。
-         */
-        public int shortestPathLength(int[][] graph) {
-            int n = graph.length;
-            Queue<int[]> q = new LinkedList<>();
-            boolean[][] vis = new boolean[1 << n][n];
-            for (int i = 0; i < n; i++) {
-                q.offer(new int[]{1 << i, i});
-                vis[1 << i][i] = true;
-            }
-
-            int step = 0;
-            int t = (1 << n) - 1;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    int state = poll[0];
-                    int node = poll[1];
-                    if (state == t)
-                        return step;
-
-                    for (int out : graph[node]) {
-                        int newState = state | (1 << out);
-                        if (!vis[newState][out]) {
-                            q.offer(new int[]{newState, out});
-                            vis[newState][out] = true;
-                        }
-                    }
-                }
-                step++;
-            }
-
+        step++;
+      }
+      
+      return step;
+    }
+    
+    /*
+     * ☆☆☆☆☆ bfs + 状压   2^n * n^2   2^n * n
+     * 状态定义：0b(state) 某位为 1，表示某节点已访问
+     * 关键：以同一状态到达同一个节点，是多余、重复的搜索路径。
+     */
+    public int shortestPathLength(int[][] graph) {
+      int n = graph.length;
+      Queue<int[]> q = new LinkedList<>();
+      boolean[][] vis = new boolean[1 << n][n];
+      for (int i = 0; i < n; i++) {
+        q.offer(new int[]{1 << i, i});
+        vis[1 << i][i] = true;
+      }
+      
+      int step = 0;
+      int t = (1 << n) - 1;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int state = poll[0];
+          int node = poll[1];
+          if (state == t)
             return step;
+          
+          for (int out : graph[node]) {
+            int newState = state | (1 << out);
+            if (!vis[newState][out]) {
+              q.offer(new int[]{newState, out});
+              vis[newState][out] = true;
+            }
+          }
         }
-
-        private boolean isAllVisited(int[] vis) {
-            for (int cnt : vis)
-                if (cnt <= 0)
-                    return false;
-            return true;
-        }
-
-        private boolean isAllVisited(boolean[] vis) {
-            for (boolean b : vis)
-                if (!b)
-                    return false;
-            return true;
-        }
+        step++;
+      }
+      
+      return step;
     }
-
-    class State {
-        int node;
-        int[] vis;
-
-        public State(int node, int[] vis) {
-            this.node = node;
-            this.vis = vis;
-        }
+    
+    private boolean isAllVisited(int[] vis) {
+      for (int cnt : vis)
+        if (cnt <= 0)
+          return false;
+      return true;
     }
-
-    class State2 {
-        int node;
-        boolean[][] visEdge;
-        boolean[] visNode;
-
-        public State2(int node, boolean[][] visEdge, boolean[] visNode) {
-            this.node = node;
-            this.visEdge = visEdge;
-            this.visNode = visNode;
-        }
+    
+    private boolean isAllVisited(boolean[] vis) {
+      for (boolean b : vis)
+        if (!b)
+          return false;
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  class State {
+    int node;
+    int[] vis;
+    
+    public State(int node, int[] vis) {
+      this.node = node;
+      this.vis = vis;
+    }
+  }
+  
+  class State2 {
+    int node;
+    boolean[][] visEdge;
+    boolean[] visNode;
+    
+    public State2(int node, boolean[][] visEdge, boolean[] visNode) {
+      this.node = node;
+      this.visEdge = visEdge;
+      this.visNode = visNode;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

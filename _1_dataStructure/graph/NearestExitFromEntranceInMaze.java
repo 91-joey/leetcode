@@ -10,11 +10,11 @@
 //<img alt="" src="https://assets.leetcode.com/uploads/2021/06/04/nearest1-grid.jpg" style="width: 333px; height: 253px;"> <pre><b>输入：</b>maze = [["+","+",".","+"],[".",".",".","+"],["+","+","+","."]], entrance = [1,2]
 //<b>输出：</b>1
 //<b>解释：</b>总共有 3 个出口，分别位于 (1,0)，(0,2) 和 (2,3) 。
-//一开始，你在入口格子 (1,2) 处。
+// 一开始，你在入口格子 (1,2) 处。
 //- 你可以往左移动 2 步到达 (1,0) 。
 //- 你可以往上移动 1 步到达 (0,2) 。
-//从入口处没法到达 (2,3) 。
-//所以，最近的出口是 (0,2) ，距离为 1 步。
+// 从入口处没法到达 (2,3) 。
+// 所以，最近的出口是 (0,2) ，距离为 1 步。
 //</pre> </img>
 //
 //<p><strong>示例 2：</strong></p> 
@@ -22,9 +22,9 @@
 //<b>输出：</b>2
 //<b>解释：</b>迷宫中只有 1 个出口，在 (1,2) 处。
 //(1,0) 不算出口，因为它是入口格子。
-//初始时，你在入口与格子 (1,0) 处。
+// 初始时，你在入口与格子 (1,0) 处。
 //- 你可以往右移动 2 步到达 (1,2) 处。
-//所以，最近的出口为 (1,2) ，距离为 2 步。
+// 所以，最近的出口为 (1,2) ，距离为 2 步。
 //</pre> </img>
 //
 //<p><strong>示例 3：</strong></p> 
@@ -54,54 +54,54 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//1926.迷宫中离入口最近的出口
-//开题时间：2023-01-06 14:08:37
+// 1926.迷宫中离入口最近的出口
+// 开题时间：2023-01-06 14:08:37
 public class NearestExitFromEntranceInMaze {
-    public static void main(String[] args) {
-        Solution solution = new NearestExitFromEntranceInMaze().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS = {1, 0, -1, 0, 1};
-        public static final char EMPTY = '.';
-        public static final char WALL = '+';
-
-        public int nearestExit(char[][] maze, int[] entrance) {
-            Queue<int[]> q = new LinkedList<>();
-            q.offer(entrance);
-            maze[entrance[0]][entrance[1]] = WALL;
-
-            int step = 1;
-            int m = maze.length;
-            int n = maze[0].length;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    int r = poll[0];
-                    int c = poll[1];
-
-                    for (int j = 0; j < 4; j++) {
-                        int nr = r + DIRS[j];
-                        int nc = c + DIRS[j + 1];
-                        if (0 <= nr && nr < m && 0 <= nc && nc < n &&
-                                maze[nr][nc] == EMPTY) {
-                            if (isOnBorder(nr, nc, m, n))
-                                return step;
-                            maze[nr][nc] = WALL;
-                            q.offer(new int[]{nr, nc});
-                        }
-                    }
-                }
-                step++;
+  public static void main(String[] args) {
+    Solution solution = new NearestExitFromEntranceInMaze().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
+    public static final char EMPTY = '.';
+    public static final char WALL = '+';
+    
+    public int nearestExit(char[][] maze, int[] entrance) {
+      Queue<int[]> q = new LinkedList<>();
+      q.offer(entrance);
+      maze[entrance[0]][entrance[1]] = WALL;
+      
+      int step = 1;
+      int m = maze.length;
+      int n = maze[0].length;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int r = poll[0];
+          int c = poll[1];
+          
+          for (int j = 0; j < 4; j++) {
+            int nr = r + DIRS[j];
+            int nc = c + DIRS[j + 1];
+            if (0 <= nr && nr < m && 0 <= nc && nc < n &&
+                maze[nr][nc] == EMPTY) {
+              if (isOnBorder(nr, nc, m, n))
+                return step;
+              maze[nr][nc] = WALL;
+              q.offer(new int[]{nr, nc});
             }
-
-            return -1;
+          }
         }
-
-        private boolean isOnBorder(int r, int c, int m, int n) {
-            return 0 == r || r == m - 1 || 0 == c || c == n - 1;
-        }
+        step++;
+      }
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private boolean isOnBorder(int r, int c, int m, int n) {
+      return 0 == r || r == m - 1 || 0 == c || c == n - 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

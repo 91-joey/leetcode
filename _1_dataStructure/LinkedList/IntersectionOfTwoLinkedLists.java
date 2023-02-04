@@ -32,8 +32,8 @@
 //<strong>输入：</strong>intersectVal = 8, listA = [4,1,8,4,5], listB = [5,6,1,8,4,5], skipA = 2, skipB = 3
 //<strong>输出：</strong>Intersected at '8'
 //<strong>解释：</strong>相交节点的值为 8 （注意，如果两个链表相交则不能为 0）。
-//从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
-//在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
+// 从各自的表头开始算起，链表 A 为 [4,1,8,4,5]，链表 B 为 [5,6,1,8,4,5]。
+// 在 A 中，相交节点前有 2 个节点；在 B 中，相交节点前有 3 个节点。
 //</pre>
 //
 //<p><strong>示例&nbsp;2：</strong></p>
@@ -44,8 +44,8 @@
 //<strong>输入：</strong>intersectVal&nbsp;= 2, listA = [1,9,1,2,4], listB = [3,2,4], skipA = 3, skipB = 1
 //<strong>输出：</strong>Intersected at '2'
 //<strong>解释：</strong>相交节点的值为 2 （注意，如果两个链表相交则不能为 0）。
-//从各自的表头开始算起，链表 A 为 [1,9,1,2,4]，链表 B 为 [3,2,4]。
-//在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
+// 从各自的表头开始算起，链表 A 为 [1,9,1,2,4]，链表 B 为 [3,2,4]。
+// 在 A 中，相交节点前有 3 个节点；在 B 中，相交节点前有 1 个节点。
 //</pre>
 //
 //<p><strong>示例&nbsp;3：</strong></p>
@@ -56,8 +56,8 @@
 //<strong>输入：</strong>intersectVal = 0, listA = [2,6,4], listB = [1,5], skipA = 3, skipB = 2
 //<strong>输出：</strong>null
 //<strong>解释：</strong>从各自的表头开始算起，链表 A 为 [2,6,4]，链表 B 为 [1,5]。
-//由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
-//这两个链表不相交，因此返回 null 。
+// 由于这两个链表不相交，所以 intersectVal 必须为 0，而 skipA 和 skipB 可以是任意值。
+// 这两个链表不相交，因此返回 null 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -85,119 +85,119 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 import java.util.HashSet;
 import java.util.Set;
 
-//160.相交链表
-//开题时间：2022-08-28 08:35:03
+// 160.相交链表
+// 开题时间：2022-08-28 08:35:03
 public class IntersectionOfTwoLinkedLists {
-    public static void main(String[] args) {
-        Solution solution = new IntersectionOfTwoLinkedLists().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new IntersectionOfTwoLinkedLists().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode(int x) {
+   * val = x;
+   * next = null;
+   * }
+   * }
+   */
+  public class Solution {
+    // 1.hashmap m+n m
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+      Set<ListNode> visited = new HashSet<>();
+      
+      ListNode pointer = headA;
+      while (pointer != null) {
+        visited.add(pointer);
+        pointer = pointer.next;
+      }
+      
+      pointer = headB;
+      while (pointer != null) {
+        if (visited.contains(pointer)) {
+          return pointer;
+        }
+        pointer = pointer.next;
+      }
+      
+      return null;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) {
-     * val = x;
-     * next = null;
-     * }
-     * }
-     */
-    public class Solution {
-        //1.hashmap m+n m
-        public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
-            Set<ListNode> visited = new HashSet<>();
-
-            ListNode pointer = headA;
-            while (pointer != null) {
-                visited.add(pointer);
-                pointer = pointer.next;
-            }
-
-            pointer = headB;
-            while (pointer != null) {
-                if (visited.contains(pointer)) {
-                    return pointer;
-                }
-                pointer = pointer.next;
-            }
-
-            return null;
-        }
-
-        //2.双指针 m*n 1
-        public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
-            ListNode pointerA = headA;
-            ListNode pointerB = headB;
-            while (pointerA != null) {
-                while (pointerB != null) {
-                    if (pointerA == pointerB) {
-                        return pointerA;
-                    }
-                    pointerB = pointerB.next;
-                }
-                pointerB = headB;
-                pointerA = pointerA.next;
-            }
-
-            return null;
-        }
-
-        //3.双指针 m+n 1
-        public ListNode getIntersectionNode3(ListNode headA, ListNode headB) {
-            ListNode pointerA = headA;
-            ListNode pointerB = headB;
-            int sizeA = 1;
-            int sizeB = 1;
-            while (pointerA.next != null) {
-                sizeA++;
-                pointerA = pointerA.next;
-            }
-            while (pointerB.next != null) {
-                sizeB++;
-                pointerB = pointerB.next;
-            }
-
-            if (pointerA != pointerB) {
-                return null;
-            } else {
-                pointerA = sizeA < sizeB ? headB : headA;
-                pointerB = pointerA == headA ? headB : headA;
-                for (int i = 0; i < Math.abs(sizeA - sizeB); i++) {
-                    pointerA = pointerA.next;
-                }
-                while (true) {
-                    if (pointerA == pointerB) {
-                        return pointerA;
-                    }
-                    pointerA = pointerA.next;
-                    pointerB = pointerB.next;
-                }
-            }
-        }
-
-        //4.高分解：双指针 m+n 1
-        //原理同3. 代码更优雅
-        public ListNode getIntersectionNode4(ListNode headA, ListNode headB) {
-            ListNode pointerA = headA;
-            ListNode pointerB = headB;
-            while (pointerA != pointerB) {
-                pointerA = pointerA == null ? headB : pointerA.next;
-                pointerB = pointerB == null ? headA : pointerB.next;
-            }
+    
+    // 2.双指针 m*n 1
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+      ListNode pointerA = headA;
+      ListNode pointerB = headB;
+      while (pointerA != null) {
+        while (pointerB != null) {
+          if (pointerA == pointerB) {
             return pointerA;
+          }
+          pointerB = pointerB.next;
         }
+        pointerB = headB;
+        pointerA = pointerA.next;
+      }
+      
+      return null;
     }
-//leetcode submit region end(Prohibit modification and deletion)
-
-    class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
+    
+    // 3.双指针 m+n 1
+    public ListNode getIntersectionNode3(ListNode headA, ListNode headB) {
+      ListNode pointerA = headA;
+      ListNode pointerB = headB;
+      int sizeA = 1;
+      int sizeB = 1;
+      while (pointerA.next != null) {
+        sizeA++;
+        pointerA = pointerA.next;
+      }
+      while (pointerB.next != null) {
+        sizeB++;
+        pointerB = pointerB.next;
+      }
+      
+      if (pointerA != pointerB) {
+        return null;
+      } else {
+        pointerA = sizeA < sizeB ? headB : headA;
+        pointerB = pointerA == headA ? headB : headA;
+        for (int i = 0; i < Math.abs(sizeA - sizeB); i++) {
+          pointerA = pointerA.next;
         }
+        while (true) {
+          if (pointerA == pointerB) {
+            return pointerA;
+          }
+          pointerA = pointerA.next;
+          pointerB = pointerB.next;
+        }
+      }
     }
+    
+    // 4.高分解：双指针 m+n 1
+    // 原理同3. 代码更优雅
+    public ListNode getIntersectionNode4(ListNode headA, ListNode headB) {
+      ListNode pointerA = headA;
+      ListNode pointerB = headB;
+      while (pointerA != pointerB) {
+        pointerA = pointerA == null ? headB : pointerA.next;
+        pointerB = pointerB == null ? headA : pointerB.next;
+      }
+      return pointerA;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
+  
+  class ListNode {
+    int val;
+    ListNode next;
+    
+    ListNode(int x) {
+      val = x;
+      next = null;
+    }
+  }
 }

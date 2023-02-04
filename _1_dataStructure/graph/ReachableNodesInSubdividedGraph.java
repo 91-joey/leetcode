@@ -16,7 +16,7 @@
 //<strong>输入：</strong>edges = [[0,1,10],[0,2,1],[1,2,2]], maxMoves = 6, n = 3
 //<strong>输出：</strong>13
 //<strong>解释：</strong>边的细分情况如上图所示。
-//可以到达的节点已经用黄色标注出来。
+// 可以到达的节点已经用黄色标注出来。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -51,60 +51,66 @@
 //<div><li>👍 70</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.graph;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Set;
 
-//882.细分图中的可到达节点
-//开题时间：2022-11-26 07:03:10
+// 882.细分图中的可到达节点
+// 开题时间：2022-11-26 07:03:10
 public class ReachableNodesInSubdividedGraph {
-    public static void main(String[] args) {
-        Solution solution = new ReachableNodesInSubdividedGraph().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //todo 学完图论重做
-        public int reachableNodes(int[][] edges, int maxMoves, int n) {
-            List<int[]>[] adList = new List[n];
-            for (int i = 0; i < n; i++) {
-                adList[i] = new ArrayList<int[]>();
-            }
-            for (int[] edge : edges) {
-                int u = edge[0], v = edge[1], nodes = edge[2];
-                adList[u].add(new int[]{v, nodes});
-                adList[v].add(new int[]{u, nodes});
-            }
-            Map<Integer, Integer> used = new HashMap<Integer, Integer>();
-            Set<Integer> visited = new HashSet<Integer>();
-            int reachableNodes = 0;
-            PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[0] - b[0]);
-            pq.offer(new int[]{0, 0});
-
-            while (!pq.isEmpty() && pq.peek()[0] <= maxMoves) {
-                int[] pair = pq.poll();
-                int step = pair[0], u = pair[1];
-                if (!visited.add(u)) {
-                    continue;
-                }
-                reachableNodes++;
-                for (int[] next : adList[u]) {
-                    int v = next[0], nodes = next[1];
-                    if (nodes + step + 1 <= maxMoves && !visited.contains(v)) {
-                        pq.offer(new int[]{nodes + step + 1, v});
-                    }
-                    used.put(encode(u, v, n), Math.min(nodes, maxMoves - step));
-                }
-            }
-
-            for (int[] edge : edges) {
-                int u = edge[0], v = edge[1], nodes = edge[2];
-                reachableNodes += Math.min(nodes, used.getOrDefault(encode(u, v, n), 0) + used.getOrDefault(encode(v, u, n), 0));
-            }
-            return reachableNodes;
+  public static void main(String[] args) {
+    Solution solution = new ReachableNodesInSubdividedGraph().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // todo 学完图论重做
+    public int reachableNodes(int[][] edges, int maxMoves, int n) {
+      List<int[]>[] adList = new List[n];
+      for (int i = 0; i < n; i++) {
+        adList[i] = new ArrayList<int[]>();
+      }
+      for (int[] edge : edges) {
+        int u = edge[0], v = edge[1], nodes = edge[2];
+        adList[u].add(new int[]{v, nodes});
+        adList[v].add(new int[]{u, nodes});
+      }
+      Map<Integer, Integer> used = new HashMap<Integer, Integer>();
+      Set<Integer> visited = new HashSet<Integer>();
+      int reachableNodes = 0;
+      PriorityQueue<int[]> pq = new PriorityQueue<int[]>((a, b) -> a[0] - b[0]);
+      pq.offer(new int[]{0, 0});
+      
+      while (!pq.isEmpty() && pq.peek()[0] <= maxMoves) {
+        int[] pair = pq.poll();
+        int step = pair[0], u = pair[1];
+        if (!visited.add(u)) {
+          continue;
         }
-
-        public int encode(int u, int v, int n) {
-            return u * n + v;
+        reachableNodes++;
+        for (int[] next : adList[u]) {
+          int v = next[0], nodes = next[1];
+          if (nodes + step + 1 <= maxMoves && !visited.contains(v)) {
+            pq.offer(new int[]{nodes + step + 1, v});
+          }
+          used.put(encode(u, v, n), Math.min(nodes, maxMoves - step));
         }
+      }
+      
+      for (int[] edge : edges) {
+        int u = edge[0], v = edge[1], nodes = edge[2];
+        reachableNodes += Math.min(nodes, used.getOrDefault(encode(u, v, n), 0) + used.getOrDefault(encode(v, u, n), 0));
+      }
+      return reachableNodes;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int encode(int u, int v, int n) {
+      return u * n + v;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

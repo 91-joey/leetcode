@@ -48,44 +48,44 @@
 //<div><li>👍 84</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1822.数组元素积的符号
-//开题时间：2022-12-04 11:50:34
+// 1822.数组元素积的符号
+// 开题时间：2022-12-04 11:50:34
 public class SignOfTheProductOfAnArray {
-    public static void main(String[] args) {
-        Solution solution = new SignOfTheProductOfAnArray().new Solution();
-        System.out.println(solution.arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41}));
+  public static void main(String[] args) {
+    Solution solution = new SignOfTheProductOfAnArray().new Solution();
+    System.out.println(solution.arraySign(new int[]{41, 65, 14, 80, 20, 10, 55, 58, 24, 56, 28, 86, 96, 10, 3, 84, 4, 41, 13, 32, 42, 43, 83, 78, 82, 70, 15, -41}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int arraySign9(int[] nums) {
+      int sign = 1;
+      for (int num : nums)
+        sign *= Integer.signum(num);
+      return sign;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int arraySign9(int[] nums) {
-            int sign = 1;
-            for (int num : nums)
-                sign *= Integer.signum(num);
-            return sign;
-        }
-
-        public int arraySign8(int[] nums) {
-            int cntNeg = 0;
-            for (int num : nums) {
-                if (num == 0)
-                    return 0;
-                else if (num < 0)
-                    cntNeg++;
-            }
-            return cntNeg % 2 == 0 ? 1 : -1;
-        }
-
-        public int arraySign(int[] nums) {
-            int sign = 1;
-            for (int num : nums) {
-                if (num == 0)
-                    return 0;
-                else if (num < 0)
-                    sign = -sign;
-            }
-            return sign;
-        }
+    
+    public int arraySign8(int[] nums) {
+      int cntNeg = 0;
+      for (int num : nums) {
+        if (num == 0)
+          return 0;
+        else if (num < 0)
+          cntNeg++;
+      }
+      return cntNeg % 2 == 0 ? 1 : -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int arraySign(int[] nums) {
+      int sign = 1;
+      for (int num : nums) {
+        if (num == 0)
+          return 0;
+        else if (num < 0)
+          sign = -sign;
+      }
+      return sign;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

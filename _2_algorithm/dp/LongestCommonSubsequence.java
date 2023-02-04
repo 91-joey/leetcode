@@ -46,48 +46,48 @@
 //<div><li>👍 1177</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//1143.最长公共子序列
-//开题时间：2022-12-06 16:23:26
+// 1143.最长公共子序列
+// 开题时间：2022-12-06 16:23:26
 public class LongestCommonSubsequence {
-    public static void main(String[] args) {
-        Solution solution = new LongestCommonSubsequence().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LongestCommonSubsequence().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int longestCommonSubsequence(String text1, String text2) {
+      char[] cs1 = text1.toCharArray();
+      char[] cs2 = text2.toCharArray();
+      int m = cs1.length + 1;
+      int n = cs2.length + 1;
+      int[][] f = new int[m][n];
+      
+      for (int i = 1; i < m; i++)
+        for (int j = 1; j < n; j++)
+          if (cs1[i - 1] == cs2[j - 1])
+            f[i][j] = f[i - 1][j - 1] + 1;
+          else
+            f[i][j] = Math.max(f[i - 1][j], f[i][j - 1]);
+      
+      return f[m - 1][n - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int longestCommonSubsequence(String text1, String text2) {
-            char[] cs1 = text1.toCharArray();
-            char[] cs2 = text2.toCharArray();
-            int m = cs1.length + 1;
-            int n = cs2.length + 1;
-            int[][] f = new int[m][n];
-
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < n; j++)
-                    if (cs1[i - 1] == cs2[j - 1])
-                        f[i][j] = f[i - 1][j - 1] + 1;
-                    else
-                        f[i][j] = Math.max(f[i - 1][j], f[i][j - 1]);
-
-            return f[m - 1][n - 1];
-        }
-
-        /*
-         * f[i][j]=max(f[i][j-1],f[i-1][j],f[i-1][j-1]+s[i]==s[j]?1:0)
-         */
-        public int longestCommonSubsequence9(String text1, String text2) {
-            char[] cs1 = text1.toCharArray();
-            char[] cs2 = text2.toCharArray();
-            int m = cs1.length + 1;
-            int n = cs2.length + 1;
-            int[][] f = new int[m][n];
-
-            for (int i = 1; i < m; i++)
-                for (int j = 1; j < n; j++)
-                    f[i][j] = Math.max(Math.max(f[i][j - 1], f[i - 1][j]), f[i - 1][j - 1] + (cs1[i - 1] == cs2[j - 1] ? 1 : 0));
-
-            return f[m - 1][n - 1];
-        }
+    
+    /*
+     * f[i][j]=max(f[i][j-1],f[i-1][j],f[i-1][j-1]+s[i]==s[j]?1:0)
+     */
+    public int longestCommonSubsequence9(String text1, String text2) {
+      char[] cs1 = text1.toCharArray();
+      char[] cs2 = text2.toCharArray();
+      int m = cs1.length + 1;
+      int n = cs2.length + 1;
+      int[][] f = new int[m][n];
+      
+      for (int i = 1; i < m; i++)
+        for (int j = 1; j < n; j++)
+          f[i][j] = Math.max(Math.max(f[i][j - 1], f[i - 1][j]), f[i - 1][j - 1] + (cs1[i - 1] == cs2[j - 1] ? 1 : 0));
+      
+      return f[m - 1][n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -53,36 +53,36 @@
 //<div><li>👍 27</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1750.删除字符串两端相同字符后的最短长度
-//开题时间：2022-12-28 09:20:48
+// 1750.删除字符串两端相同字符后的最短长度
+// 开题时间：2022-12-28 09:20:48
 public class MinimumLengthOfStringAfterDeletingSimilarEnds {
-    public static void main(String[] args) {
-        Solution solution = new MinimumLengthOfStringAfterDeletingSimilarEnds().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumLengthOfStringAfterDeletingSimilarEnds().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minimumLength9(String s) {
+      int l = 0, r = s.length() - 1;
+      while (l < r && s.charAt(l) == s.charAt(r)) {
+        char c = s.charAt(l);
+        while (l < r && s.charAt(l) == c) l++;
+        if (l == r) return 0;
+        while (l < r && s.charAt(r) == c) r--;
+      }
+      return r - l + 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minimumLength9(String s) {
-            int l = 0, r = s.length() - 1;
-            while (l < r && s.charAt(l) == s.charAt(r)) {
-                char c = s.charAt(l);
-                while (l < r && s.charAt(l) == c) l++;
-                if (l == r) return 0;
-                while (l < r && s.charAt(r) == c) r--;
-            }
-            return r - l + 1;
-        }
-
-        //☆☆☆☆☆ 双指针（内循环为闭区间）
-        public int minimumLength(String s) {
-            int l = 0, r = s.length() - 1;
-            while (l < r && s.charAt(l) == s.charAt(r)) {
-                char c = s.charAt(l);
-                while (l <= r && s.charAt(l) == c) l++;
-                while (l <= r && s.charAt(r) == c) r--;
-            }
-            return r - l + 1;
-        }
+    
+    //☆☆☆☆☆ 双指针（内循环为闭区间）
+    public int minimumLength(String s) {
+      int l = 0, r = s.length() - 1;
+      while (l < r && s.charAt(l) == s.charAt(r)) {
+        char c = s.charAt(l);
+        while (l <= r && s.charAt(l) == c) l++;
+        while (l <= r && s.charAt(r) == c) r--;
+      }
+      return r - l + 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

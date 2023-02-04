@@ -36,36 +36,36 @@
 //<div><li>👍 19</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//2447.最大公因数等于 K 的子数组数目
-//开题时间：2022-11-16 09:09:00
+// 2447.最大公因数等于 K 的子数组数目
+// 开题时间：2022-11-16 09:09:00
 public class NumberOfSubarraysWithGcdEqualToK {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfSubarraysWithGcdEqualToK().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int subarrayGCD(int[] nums, int k) {
-            int cnt = 0;
-            int len = nums.length;
-            for (int i = 0; i < len; i++) {
-                int gcd = nums[i];
-                for (int j = i; j < len; j++) {
-                    gcd = gcd(gcd, nums[j]);
-                    if (gcd == k)
-                        cnt++;
-                    else if (gcd % k != 0)
-                        break;
-                }
-            }
-            return cnt;
+  public static void main(String[] args) {
+    Solution solution = new NumberOfSubarraysWithGcdEqualToK().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int subarrayGCD(int[] nums, int k) {
+      int cnt = 0;
+      int len = nums.length;
+      for (int i = 0; i < len; i++) {
+        int gcd = nums[i];
+        for (int j = i; j < len; j++) {
+          gcd = gcd(gcd, nums[j]);
+          if (gcd == k)
+            cnt++;
+          else if (gcd % k != 0)
+            break;
         }
-
-        public static int gcd(int a, int b) {
-            return b != 0 ?
-                    gcd(b, a % b) :
-                    a;
-        }
+      }
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public static int gcd(int a, int b) {
+      return b != 0 ?
+          gcd(b, a % b) :
+          a;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

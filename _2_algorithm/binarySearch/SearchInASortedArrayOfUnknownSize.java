@@ -43,62 +43,62 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li><li>交互</li></div></div><br><div><li>👍 59</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//702.搜索长度未知的有序数组
-//开题时间：2022-11-02 12:16:56
+// 702.搜索长度未知的有序数组
+// 开题时间：2022-11-02 12:16:56
 public class SearchInASortedArrayOfUnknownSize {
-    public static void main(String[] args) {
-        Solution solution = new SearchInASortedArrayOfUnknownSize().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SearchInASortedArrayOfUnknownSize().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * // This is ArrayReader's API interface.
+   * // You should not implement it, or speculate about its implementation
+   * interface ArrayReader {
+   * public int get(int index) {}
+   * }
+   */
+  
+  class Solution {
+    // 单二分    log(max(len))
+    public int search(ArrayReader reader, int target) {
+      for (int l = 0, r = 9999; l <= r; ) {
+        int mid = l + r >> 1;
+        int i = reader.get(mid);
+        if (i == target)
+          return mid;
+        else if (i < target)
+          l = mid + 1;
+        else
+          r = mid - 1;
+      }
+      return -1;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * // This is ArrayReader's API interface.
-     * // You should not implement it, or speculate about its implementation
-     * interface ArrayReader {
-     * public int get(int index) {}
-     * }
-     */
-
-    class Solution {
-        //单二分    log(max(len))
-        public int search(ArrayReader reader, int target) {
-            for (int l = 0, r = 9999; l <= r; ) {
-                int mid = l + r >> 1;
-                int i = reader.get(mid);
-                if (i == target)
-                    return mid;
-                else if (i < target)
-                    l = mid + 1;
-                else
-                    r = mid - 1;
-            }
-            return -1;
-        }
-
-        //☆☆☆☆☆ 双二分（先确定查找区间，再二分）  log(target)
-        public int search2(ArrayReader reader, int target) {
-            int l = 0, r = 1;
-            while (target > reader.get(r)) {
-                l = r;
-                r <<= 1;
-            }
-
-            while (l <= r) {
-                int mid = l + r >> 1;
-                int i = reader.get(mid);
-                if (i == target)
-                    return mid;
-                else if (i < target)
-                    l = mid + 1;
-                else
-                    r = mid - 1;
-            }
-            return -1;
-        }
+    
+    //☆☆☆☆☆ 双二分（先确定查找区间，再二分）  log(target)
+    public int search2(ArrayReader reader, int target) {
+      int l = 0, r = 1;
+      while (target > reader.get(r)) {
+        l = r;
+        r <<= 1;
+      }
+      
+      while (l <= r) {
+        int mid = l + r >> 1;
+        int i = reader.get(mid);
+        if (i == target)
+          return mid;
+        else if (i < target)
+          l = mid + 1;
+        else
+          r = mid - 1;
+      }
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
-
-    interface ArrayReader {
-        int get(int index);
-    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
+  
+  interface ArrayReader {
+    int get(int index);
+  }
 }

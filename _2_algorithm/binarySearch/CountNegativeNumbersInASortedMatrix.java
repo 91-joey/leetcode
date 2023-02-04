@@ -35,39 +35,39 @@
 //<div><li>👍 123</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//1351.统计有序矩阵中的负数
-//开题时间：2022-11-27 10:18:52
+// 1351.统计有序矩阵中的负数
+// 开题时间：2022-11-27 10:18:52
 public class CountNegativeNumbersInASortedMatrix {
-    public static void main(String[] args) {
-        Solution solution = new CountNegativeNumbersInASortedMatrix().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CountNegativeNumbersInASortedMatrix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // BS
+    public int countNegatives(int[][] grid) {
+      int m = grid.length;
+      int n = grid[0].length;
+      
+      int cnt = 0;
+      for (int i = 0, r = n; i < m; i++) {
+        r = binarySearch(grid, i, 0, r);
+        cnt += n - r;
+      }
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //BS
-        public int countNegatives(int[][] grid) {
-            int m = grid.length;
-            int n = grid[0].length;
-
-            int cnt = 0;
-            for (int i = 0, r = n; i < m; i++) {
-                r = binarySearch(grid, i, 0, r);
-                cnt += n - r;
-            }
-
-            return cnt;
-        }
-
-        public static int binarySearch(int[][] grid, int row, int l, int r) {
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (0 > grid[row][mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
+    
+    public static int binarySearch(int[][] grid, int row, int l, int r) {
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (0 > grid[row][mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

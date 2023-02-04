@@ -21,7 +21,7 @@
 //[4,2,5] = 11
 //[2,5,3] = 10
 //[1,4,2,5,3] = 15
-//我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</pre>
+// 我们将所有值求和得到 1 + 4 + 2 + 5 + 3 + 7 + 11 + 10 + 15 = 58</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -55,53 +55,53 @@
 //<div><li>👍 210</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1588.所有奇数长度子数组的和
-//开题时间：2022-11-19 14:32:15
+// 1588.所有奇数长度子数组的和
+// 开题时间：2022-11-19 14:32:15
 public class SumOfAllOddLengthSubarrays {
-    public static void main(String[] args) {
-        Solution solution = new SumOfAllOddLengthSubarrays().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SumOfAllOddLengthSubarrays().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 前缀和
+    public int sumOddLengthSubarrays9(int[] arr) {
+      int sum = 0;
+      for (int i = 0; i < arr.length; i++) {
+        for (int j = i, cur = 0; j < arr.length; j += 2) {
+          cur += arr[j];
+          cur += j > i ? arr[j - 1] : 0;
+          sum += cur;
+        }
+      }
+      return sum;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //前缀和
-        public int sumOddLengthSubarrays9(int[] arr) {
-            int sum = 0;
-            for (int i = 0; i < arr.length; i++) {
-                for (int j = i, cur = 0; j < arr.length; j += 2) {
-                    cur += arr[j];
-                    cur += j > i ? arr[j - 1] : 0;
-                    sum += cur;
-                }
-            }
-            return sum;
-        }
-
-        //数学（贡献法）：计算每个元素在多少个奇数长度子数组中出现。偶数=奇数+奇数 or 偶数+偶数
-        public int sumOddLengthSubarrays(int[] arr) {
-            int sum = 0;
-            int n = arr.length;
-            for (int i = 0; i < n; i++) {
-                int j = n - i - 1;
-                int oddL = (i + 1) / 2;
-                int oddR = (j + 1) / 2;
-                int evenL = i / 2 + 1;
-                int evenR = j / 2 + 1;
-                sum += arr[i] * (oddL * oddR + evenL * evenR);
-            }
-            return sum;
-        }
-
-        public int sumOddLengthSubarrays8(int[] arr) {
-            int sum = 0;
-            int n = arr.length;
-            for (int i = 0; i < n; i++) {
-                int evenL = (i + 2) / 2;
-                int evenR = (n - i + 1) / 2;
-                sum += arr[i] * (evenL * evenR + (i + 1 - evenL) * (n - i - evenR));
-            }
-            return sum;
-        }
+    
+    // 数学（贡献法）：计算每个元素在多少个奇数长度子数组中出现。偶数=奇数+奇数 or 偶数+偶数
+    public int sumOddLengthSubarrays(int[] arr) {
+      int sum = 0;
+      int n = arr.length;
+      for (int i = 0; i < n; i++) {
+        int j = n - i - 1;
+        int oddL = (i + 1) / 2;
+        int oddR = (j + 1) / 2;
+        int evenL = i / 2 + 1;
+        int evenR = j / 2 + 1;
+        sum += arr[i] * (oddL * oddR + evenL * evenR);
+      }
+      return sum;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int sumOddLengthSubarrays8(int[] arr) {
+      int sum = 0;
+      int n = arr.length;
+      for (int i = 0; i < n; i++) {
+        int evenL = (i + 2) / 2;
+        int evenR = (n - i + 1) / 2;
+        sum += arr[i] * (evenL * evenR + (i + 1 - evenL) * (n - i - evenR));
+      }
+      return sum;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

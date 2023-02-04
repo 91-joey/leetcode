@@ -35,18 +35,18 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//2185.统计包含给定前缀的字符串
-//开题时间：2023-01-08 09:50:05
+// 2185.统计包含给定前缀的字符串
+// 开题时间：2023-01-08 09:50:05
 public class CountingWordsWithAGivenPrefix {
-    public static void main(String[] args) {
-        Solution solution = new CountingWordsWithAGivenPrefix().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CountingWordsWithAGivenPrefix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int prefixCount(String[] words, String pref) {
+      return (int) Arrays.stream(words).filter(s -> s.startsWith(pref)).count();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int prefixCount(String[] words, String pref) {
-            return (int) Arrays.stream(words).filter(s->s.startsWith(pref)).count();
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

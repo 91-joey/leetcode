@@ -3,53 +3,53 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 import java.util.ArrayList;
 import java.util.List;
 
-//119. Pascal's Triangle II
+// 119. Pascal's Triangle II
 public class PascalTriangle2 {
-    /*
-     * 杨辉三角性质：
-     * https://leetcode.cn/problems/pascals-triangle-ii/solutions/601082/yang-hui-san-jiao-ii-by-leetcode-solutio-shuk/?orderBy=hot
-     */
-    //    1.递推(2个数组)  n^2 1
-    public List<Integer> getRow1(int rowIndex) {
-        List<Integer> pre = new ArrayList<>();
-        for (int i = 0; i <= rowIndex; i++) {
-            List<Integer> cur = new ArrayList<>();
-            for (int j = 0; j <= i; j++) {
-                if (j == 0 || j == i) {
-                    cur.add(1);
-                } else {
-                    cur.add(pre.get(j - 1) + pre.get(j));
-                }
-            }
-            pre = cur;
+  /*
+   * 杨辉三角性质：
+   * https://leetcode.cn/problems/pascals-triangle-ii/solutions/601082/yang-hui-san-jiao-ii-by-leetcode-solutio-shuk/?orderBy=hot
+   */
+  //    1.递推(2个数组)  n^2 1
+  public List<Integer> getRow1(int rowIndex) {
+    List<Integer> pre = new ArrayList<>();
+    for (int i = 0; i <= rowIndex; i++) {
+      List<Integer> cur = new ArrayList<>();
+      for (int j = 0; j <= i; j++) {
+        if (j == 0 || j == i) {
+          cur.add(1);
+        } else {
+          cur.add(pre.get(j - 1) + pre.get(j));
         }
-        return pre;
+      }
+      pre = cur;
     }
-
-    //    2.递推(1个数组)  n^2 1
-    public List<Integer> getRow2(int rowIndex) {
-        List<Integer> row = new ArrayList<>();
-        row.add(1);
-        for (int i = 1; i <= rowIndex; i++) {
-            row.add(0);
-            for (int j = i; j > 0; j--) {
-                row.set(j, row.get(j) + row.get(j - 1));
-            }
-        }
-        return row;
+    return pre;
+  }
+  
+  //    2.递推(1个数组)  n^2 1
+  public List<Integer> getRow2(int rowIndex) {
+    List<Integer> row = new ArrayList<>();
+    row.add(1);
+    for (int i = 1; i <= rowIndex; i++) {
+      row.add(0);
+      for (int j = i; j > 0; j--) {
+        row.set(j, row.get(j) + row.get(j - 1));
+      }
     }
-
-    //☆☆☆☆☆ Cmn=C(m-1)n * (n-m+1)/m
-    public List<Integer> getRow3(int rowIndex) {
-        List<Integer> row = new ArrayList<>();
-        row.add(1);
-        for (int i = 1; i <= rowIndex; i++) {
-            row.add((int) ((long) row.get(i - 1) * (rowIndex - i + 1) / i));
-        }
-        return row;
+    return row;
+  }
+  
+  //☆☆☆☆☆ Cmn=C(m-1)n * (n-m+1)/m
+  public List<Integer> getRow3(int rowIndex) {
+    List<Integer> row = new ArrayList<>();
+    row.add(1);
+    for (int i = 1; i <= rowIndex; i++) {
+      row.add((int) ((long) row.get(i - 1) * (rowIndex - i + 1) / i));
     }
-
-    public static void main(String[] args) {
-        System.out.println(new PascalTriangle2().getRow3(33));
-    }
+    return row;
+  }
+  
+  public static void main(String[] args) {
+    System.out.println(new PascalTriangle2().getRow3(33));
+  }
 }

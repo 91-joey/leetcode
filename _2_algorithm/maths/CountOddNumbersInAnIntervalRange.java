@@ -25,40 +25,40 @@
 //<div><li>👍 77</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1523.在区间范围内统计奇数数目
-//开题时间：2022-12-01 17:14:07
+// 1523.在区间范围内统计奇数数目
+// 开题时间：2022-12-01 17:14:07
 public class CountOddNumbersInAnIntervalRange {
-    public static void main(String[] args) {
-        Solution solution = new CountOddNumbersInAnIntervalRange().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CountOddNumbersInAnIntervalRange().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int countOdds9(int low, int high) {
+      int n = high - low + 1;
+      return n % 2 == 1 && low % 2 == 1 ? (n + 1) / 2 : n / 2;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int countOdds9(int low, int high) {
-            int n = high - low + 1;
-            return n % 2 == 1 && low % 2 == 1 ? (n + 1) / 2 : n / 2;
-        }
-
-        //容斥原理（前缀和）
-        public int countOdds8(int low, int high) {
-            return countOddsPreVal(high) - countOddsPreVal(low - 1);
-        }
-
-        //[0,val]内的奇数个数
-        private int countOddsPreVal(int val) {
-            return (val + 1) >> 1;
-        }
-
-        /*
-        * 找规律：
-        *   low  为奇数，则减一对结果无影响
-        *   high 为奇数，则加一对结果无影响
-        */
-        public int countOdds(int low, int high) {
-            if ((low & 1) == 1) low--;
-            if ((high & 1) == 1) high++;
-            return (high - low) >> 1;
-        }
+    
+    // 容斥原理（前缀和）
+    public int countOdds8(int low, int high) {
+      return countOddsPreVal(high) - countOddsPreVal(low - 1);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //[0,val]内的奇数个数
+    private int countOddsPreVal(int val) {
+      return (val + 1) >> 1;
+    }
+    
+    /*
+     * 找规律：
+     *   low  为奇数，则减一对结果无影响
+     *   high 为奇数，则加一对结果无影响
+     */
+    public int countOdds(int low, int high) {
+      if ((low & 1) == 1) low--;
+      if ((high & 1) == 1) high++;
+      return (high - low) >> 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

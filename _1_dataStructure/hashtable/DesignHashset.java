@@ -18,15 +18,15 @@
 //[null, null, null, true, false, null, true, null, false]
 //
 //<strong>解释：</strong>
-//MyHashSet myHashSet = new MyHashSet();
-//myHashSet.add(1);      // set = [1]
-//myHashSet.add(2);      // set = [1, 2]
-//myHashSet.contains(1); // 返回 True
-//myHashSet.contains(3); // 返回 False ，（未找到）
-//myHashSet.add(2);      // set = [1, 2]
-//myHashSet.contains(2); // 返回 True
-//myHashSet.remove(2);   // set = [1]
-//myHashSet.contains(2); // 返回 False ，（已移除）</pre>
+// MyHashSet myHashSet = new MyHashSet();
+// myHashSet.add(1);      // set = [1]
+// myHashSet.add(2);      // set = [1, 2]
+// myHashSet.contains(1); // 返回 True
+// myHashSet.contains(3); // 返回 False ，（未找到）
+// myHashSet.add(2);      // set = [1, 2]
+// myHashSet.contains(2); // 返回 True
+// myHashSet.remove(2);   // set = [1]
+// myHashSet.contains(2); // 返回 False ，（已移除）</pre>
 //
 //<p>&nbsp;</p>
 //
@@ -43,102 +43,102 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-//705.设计哈希集合
-//开题时间：2022-09-03 10:34:49
+// 705.设计哈希集合
+// 开题时间：2022-09-03 10:34:49
 public class DesignHashset {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  // 1.自解（自定义链表）
+  class MyHashSet {
+    private final int size = 10000;
+    private final Node[] table = new Node[size];
+    
+    public MyHashSet() {
+      Arrays.fill(table, new Node(-1));
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    //1.自解（自定义链表）
-    class MyHashSet {
-        private final int size = 10000;
-        private final Node[] table = new Node[size];
-
-        public MyHashSet() {
-            Arrays.fill(table, new Node(-1));
+    
+    public void add(int key) {
+      Node n = table[hash(key)];
+      for (; n.next != null; n = n.next) {
+        if (n.key == key) {
+          return;
         }
-
-        public void add(int key) {
-            Node n = table[hash(key)];
-            for (; n.next != null; n = n.next) {
-                if (n.key == key) {
-                    return;
-                }
-            }
-            if (n.key == key) {
-                return;
-            }
-            n.next = new Node(key);
-        }
-
-        public void remove(int key) {
-            for (Node n = table[hash(key)]; n.next != null; n = n.next) {
-                if (n.next.key == key) {
-                    n.next = n.next.next;
-                    return;
-                }
-            }
-        }
-
-        public boolean contains(int key) {
-            for (Node n = table[hash(key)]; n != null; n = n.next) {
-                if (n.key == key) {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public int hash(int key) {
-            return key % size;
-        }
+      }
+      if (n.key == key) {
+        return;
+      }
+      n.next = new Node(key);
     }
-
-
-    //2.自解（库链表）
-    class MyHashSet2 {
-        private final int base = 769;
-        private final LinkedList[] table = new LinkedList[base];
-
-        public MyHashSet2() {
-            Arrays.fill(table, new LinkedList<Integer>());
+    
+    public void remove(int key) {
+      for (Node n = table[hash(key)]; n.next != null; n = n.next) {
+        if (n.next.key == key) {
+          n.next = n.next.next;
+          return;
         }
-
-        public void add(int key) {
-            if (!contains(key)) {
-                table[hash(key)].offer(key);
-            }
-        }
-
-        public void remove(int key) {
-            table[hash(key)].remove(Integer.valueOf(key));
-        }
-
-        public boolean contains(int key) {
-            return table[hash(key)].contains(key);
-        }
-
-        public int hash(int key) {
-            return key % base;
-        }
+      }
     }
-
-    public class Node {
-        public int key;
-        public Node next;
-
-        public Node(int key) {
-            this.key = key;
+    
+    public boolean contains(int key) {
+      for (Node n = table[hash(key)]; n != null; n = n.next) {
+        if (n.key == key) {
+          return true;
         }
+      }
+      return false;
     }
-
-/**
- * Your MyHashSet object will be instantiated and called as such:
- * MyHashSet obj = new MyHashSet();
- * obj.add(key);
- * obj.remove(key);
- * boolean param_3 = obj.contains(key);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int hash(int key) {
+      return key % size;
+    }
+  }
+  
+  
+  // 2.自解（库链表）
+  class MyHashSet2 {
+    private final int base = 769;
+    private final LinkedList[] table = new LinkedList[base];
+    
+    public MyHashSet2() {
+      Arrays.fill(table, new LinkedList<Integer>());
+    }
+    
+    public void add(int key) {
+      if (!contains(key)) {
+        table[hash(key)].offer(key);
+      }
+    }
+    
+    public void remove(int key) {
+      table[hash(key)].remove(Integer.valueOf(key));
+    }
+    
+    public boolean contains(int key) {
+      return table[hash(key)].contains(key);
+    }
+    
+    public int hash(int key) {
+      return key % base;
+    }
+  }
+  
+  public class Node {
+    public int key;
+    public Node next;
+    
+    public Node(int key) {
+      this.key = key;
+    }
+  }
+  
+  /**
+   * Your MyHashSet object will be instantiated and called as such:
+   * MyHashSet obj = new MyHashSet();
+   * obj.add(key);
+   * obj.remove(key);
+   * boolean param_3 = obj.contains(key);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -32,28 +32,28 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 import java.util.Arrays;
 import java.util.HashSet;
 
-//349.两个数组的交集
-//开题时间：2022-11-09 18:18:01
+// 349.两个数组的交集
+// 开题时间：2022-11-09 18:18:01
 public class IntersectionOfTwoArrays {
-    public static void main(String[] args) {
-        Solution solution = new IntersectionOfTwoArrays().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new IntersectionOfTwoArrays().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] intersection(int[] nums1, int[] nums2) {
+      if (nums1.length < nums2.length)
+        return intersection(nums2, nums1);
+      
+      HashSet<Integer> set = new HashSet<>();
+      for (int e : nums1)
+        set.add(e);
+      
+      return Arrays.stream(nums2)
+          .distinct()
+          .filter(set::contains)
+          .toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] intersection(int[] nums1, int[] nums2) {
-            if (nums1.length < nums2.length)
-                return intersection(nums2, nums1);
-
-            HashSet<Integer> set = new HashSet<>();
-            for (int e : nums1)
-                set.add(e);
-
-            return Arrays.stream(nums2)
-                    .distinct()
-                    .filter(set::contains)
-                    .toArray();
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

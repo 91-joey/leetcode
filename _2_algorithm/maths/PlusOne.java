@@ -44,54 +44,54 @@ package org.example.leetcode.problems._2_algorithm.maths;
 import java.math.BigInteger;
 import java.util.Arrays;
 
-//66.加一
-//开题时间：2022-12-29 12:28:38
+// 66.加一
+// 开题时间：2022-12-29 12:28:38
 public class PlusOne {
-    public static void main(String[] args) {
-        Solution solution = new PlusOne().new Solution();
-        System.out.println(Arrays.toString(solution.plusOne(new int[]{1, 2, 3})));
+  public static void main(String[] args) {
+    Solution solution = new PlusOne().new Solution();
+    System.out.println(Arrays.toString(solution.plusOne(new int[]{1, 2, 3})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  //    import java.math.BigInteger;
+  
+  class Solution {
+    public int[] plusOne9(int[] digits) {
+      StringBuilder sb = new StringBuilder();
+      for (int digit : digits)
+        sb.append(digit);
+      return new BigInteger(sb.toString()).add(new BigInteger("1")).toString().chars().map(v -> v - '0').toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-//    import java.math.BigInteger;
-
-    class Solution {
-        public int[] plusOne9(int[] digits) {
-            StringBuilder sb = new StringBuilder();
-            for (int digit : digits)
-                sb.append(digit);
-            return new BigInteger(sb.toString()).add(new BigInteger("1")).toString().chars().map(v -> v - '0').toArray();
-        }
-
-        public int[] plusOne8(int[] digits) {
-            int n = digits.length;
-            for (int i = n - 1; i >= 0; i--) {
-                if (digits[i] < 9) {
-                    digits[i]++;
-                    break;
-                } else
-                    digits[i] = 0;
-            }
-
-            if (digits[0] == 0) {
-                int[] ans = new int[n + 1];
-                ans[0] = 1;
-                return ans;
-            }
-            return digits;
-        }
-
-        //☆☆☆☆☆ 精简版
-        public int[] plusOne(int[] digits) {
-            int n = digits.length;
-            for (int i = n - 1; i >= 0; i--)
-                if ((digits[i] = (digits[i] + 1) % 10) != 0)
-                    return digits;
-
-            int[] ans = new int[n + 1];
-            ans[0] = 1;
-            return ans;
-        }
+    
+    public int[] plusOne8(int[] digits) {
+      int n = digits.length;
+      for (int i = n - 1; i >= 0; i--) {
+        if (digits[i] < 9) {
+          digits[i]++;
+          break;
+        } else
+          digits[i] = 0;
+      }
+      
+      if (digits[0] == 0) {
+        int[] ans = new int[n + 1];
+        ans[0] = 1;
+        return ans;
+      }
+      return digits;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 精简版
+    public int[] plusOne(int[] digits) {
+      int n = digits.length;
+      for (int i = n - 1; i >= 0; i--)
+        if ((digits[i] = (digits[i] + 1) % 10) != 0)
+          return digits;
+      
+      int[] ans = new int[n + 1];
+      ans[0] = 1;
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

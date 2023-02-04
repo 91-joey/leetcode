@@ -59,126 +59,126 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 import java.util.HashSet;
 import java.util.Set;
 
-//142.环形链表 II
-//开题时间：2022-08-27 09:50:57
+// 142.环形链表 II
+// 开题时间：2022-08-27 09:50:57
 public class LinkedListCycleIi {
-    public static void main(String[] args) {
-        Solution solution = new LinkedListCycleIi().new Solution();
-        ListNode listNode0 = new ListNode(1);
-        ListNode listNode1 = new ListNode(2);
-        ListNode listNode2 = new ListNode(3);
-        ListNode listNode3 = new ListNode(4);
-        ListNode listNode4 = new ListNode(5);
-        ListNode listNode5 = new ListNode(6);
-        ListNode listNode6 = new ListNode(7);
-        ListNode listNode7 = new ListNode(8);
-        ListNode listNode8 = new ListNode(9);
-        ListNode listNode9 = new ListNode(10);
-        listNode0.next = listNode1;
-        listNode1.next = listNode2;
-        listNode2.next = listNode3;
-        listNode3.next = listNode4;
-        listNode4.next = listNode5;
-        listNode5.next = listNode6;
-        listNode6.next = listNode7;
-        listNode7.next = listNode8;
-        listNode8.next = listNode9;
-        listNode9.next = listNode9;
-        System.out.println(solution.detectCycle2(listNode0));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    public class Solution {
-        //1.哈希表 n   n
-        public ListNode detectCycle(ListNode head) {
-            Set<ListNode> visited = new HashSet<>();
-
-            while (head != null) {
-                if (visited.contains(head)) {
-                    return head;
-                } else {
-                    visited.add(head);
-                    head = head.next;
-                }
-            }
-
-            return null;
+  public static void main(String[] args) {
+    Solution solution = new LinkedListCycleIi().new Solution();
+    ListNode listNode0 = new ListNode(1);
+    ListNode listNode1 = new ListNode(2);
+    ListNode listNode2 = new ListNode(3);
+    ListNode listNode3 = new ListNode(4);
+    ListNode listNode4 = new ListNode(5);
+    ListNode listNode5 = new ListNode(6);
+    ListNode listNode6 = new ListNode(7);
+    ListNode listNode7 = new ListNode(8);
+    ListNode listNode8 = new ListNode(9);
+    ListNode listNode9 = new ListNode(10);
+    listNode0.next = listNode1;
+    listNode1.next = listNode2;
+    listNode2.next = listNode3;
+    listNode3.next = listNode4;
+    listNode4.next = listNode5;
+    listNode5.next = listNode6;
+    listNode6.next = listNode7;
+    listNode7.next = listNode8;
+    listNode8.next = listNode9;
+    listNode9.next = listNode9;
+    System.out.println(solution.detectCycle2(listNode0));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  public class Solution {
+    // 1.哈希表 n   n
+    public ListNode detectCycle(ListNode head) {
+      Set<ListNode> visited = new HashSet<>();
+      
+      while (head != null) {
+        if (visited.contains(head)) {
+          return head;
+        } else {
+          visited.add(head);
+          head = head.next;
         }
-
-        //2.自解：双指针 n   1
-        public ListNode detectCycle2(ListNode head) {
-            ListNode slow = head;
-            ListNode fast = head;
-            int cnt1 = 0;
-            int cnt2 = 0;
-
-            while (fast != null && fast.next != null) {
-                slow = slow.next;
-                fast = fast.next.next;
-                cnt1++;
-                if (slow == fast) {
-                    do {
-                        slow = slow.next;
-                        fast = fast.next.next;
-                        cnt2++;
-                    } while (slow != fast);
-                    break;
-                }
-            }
-
-            if (cnt2 == 0) {
-                return null;
-            }
-
-            slow = head;
-            for (int i = 0; i < cnt1 - cnt2; i++) {
-                slow = slow.next;
-            }
-            for (int i = 0; i <= cnt2; i++) {
-                if (slow == fast) {
-                    return slow;
-                }
-                slow = slow.next;
-                fast = fast.next;
-            }
-
-            return null;
-        }
+      }
+      
+      return null;
     }
-
-    //3.官解：双指针 n   1
-    //a: 起点 -> 入环点，
-    //b：入环点 -> 第一次相遇点,
-    //c: 第一次相遇点 -> 入环点
-    //a=c+(n-1)*(b+c)
-    public ListNode detectCycle3(ListNode head) {
-        ListNode slow = head;
-        ListNode fast = head;
-
-        while (fast != null && fast.next != null) {
+    
+    // 2.自解：双指针 n   1
+    public ListNode detectCycle2(ListNode head) {
+      ListNode slow = head;
+      ListNode fast = head;
+      int cnt1 = 0;
+      int cnt2 = 0;
+      
+      while (fast != null && fast.next != null) {
+        slow = slow.next;
+        fast = fast.next.next;
+        cnt1++;
+        if (slow == fast) {
+          do {
             slow = slow.next;
             fast = fast.next.next;
-            if (slow == fast) {
-                slow=head;
-                while (slow!=fast){
-                    slow = slow.next;
-                    fast = fast.next;
-                }
-                return slow;
-            }
+            cnt2++;
+          } while (slow != fast);
+          break;
         }
-
+      }
+      
+      if (cnt2 == 0) {
         return null;
-    }
-
-    //leetcode submit region end(Prohibit modification and deletion)
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-            next = null;
+      }
+      
+      slow = head;
+      for (int i = 0; i < cnt1 - cnt2; i++) {
+        slow = slow.next;
+      }
+      for (int i = 0; i <= cnt2; i++) {
+        if (slow == fast) {
+          return slow;
         }
+        slow = slow.next;
+        fast = fast.next;
+      }
+      
+      return null;
     }
+  }
+  
+  // 3.官解：双指针 n   1
+  // a: 起点 -> 入环点，
+  // b：入环点 -> 第一次相遇点,
+  // c: 第一次相遇点 -> 入环点
+  // a=c+(n-1)*(b+c)
+  public ListNode detectCycle3(ListNode head) {
+    ListNode slow = head;
+    ListNode fast = head;
+    
+    while (fast != null && fast.next != null) {
+      slow = slow.next;
+      fast = fast.next.next;
+      if (slow == fast) {
+        slow = head;
+        while (slow != fast) {
+          slow = slow.next;
+          fast = fast.next;
+        }
+        return slow;
+      }
+    }
+    
+    return null;
+  }
+  
+  // leetcode submit region end(Prohibit modification and deletion)
+  static class ListNode {
+    int val;
+    ListNode next;
+    
+    ListNode(int x) {
+      val = x;
+      next = null;
+    }
+  }
 }

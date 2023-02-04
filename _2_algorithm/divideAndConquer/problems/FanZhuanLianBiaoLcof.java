@@ -22,71 +22,71 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//剑指 Offer 24.反转链表
-//开题时间：2022-11-12 16:59:19
+// 剑指 Offer 24.反转链表
+// 开题时间：2022-11-12 16:59:19
 public class FanZhuanLianBiaoLcof {
-    public static void main(String[] args) {
-        Solution solution = new FanZhuanLianBiaoLcof().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FanZhuanLianBiaoLcof().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode(int x) { val = x; }
+   * }
+   */
+  class Solution {
+    ListNode newHead;
+    
+    // 递归（单参）
+    public ListNode reverseList9(ListNode head) {
+      if (head == null)
+        return null;
+      reverse(head);
+      head.next = null;
+      return newHead;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) { val = x; }
-     * }
-     */
-    class Solution {
-        ListNode newHead;
-
-        //递归（单参）
-        public ListNode reverseList9(ListNode head) {
-            if (head == null)
-                return null;
-            reverse(head);
-            head.next = null;
-            return newHead;
-        }
-
-        private void reverse(ListNode head) {
-            if (head.next == null) {
-                newHead = head;
-                return;
-            }
-            reverse(head.next);
-            head.next.next = head;
-        }
-
-        //迭代（相较于递归更易懂）
-        public ListNode reverseList8(ListNode head) {
-            ListNode pre = null, cur = head;
-            while (cur != null) {
-                ListNode next = cur.next;
-                cur.next = pre;
-                pre = cur;
-                cur = next;
-            }
-            return pre;
-        }
-
-        //递归（双参）
-        public ListNode reverseList(ListNode head) {
-            if (head == null)
-                return null;
-            reverse2(null, head);
-            return newHead;
-        }
-
-        private void reverse2(ListNode pre, ListNode cur) {
-            if (cur == null) {
-                newHead = pre;
-                return;
-            }
-            reverse2(cur, cur.next);
-            cur.next = pre;
-        }
+    
+    private void reverse(ListNode head) {
+      if (head.next == null) {
+        newHead = head;
+        return;
+      }
+      reverse(head.next);
+      head.next.next = head;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 迭代（相较于递归更易懂）
+    public ListNode reverseList8(ListNode head) {
+      ListNode pre = null, cur = head;
+      while (cur != null) {
+        ListNode next = cur.next;
+        cur.next = pre;
+        pre = cur;
+        cur = next;
+      }
+      return pre;
+    }
+    
+    // 递归（双参）
+    public ListNode reverseList(ListNode head) {
+      if (head == null)
+        return null;
+      reverse2(null, head);
+      return newHead;
+    }
+    
+    private void reverse2(ListNode pre, ListNode cur) {
+      if (cur == null) {
+        newHead = pre;
+        return;
+      }
+      reverse2(cur, cur.next);
+      cur.next = pre;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

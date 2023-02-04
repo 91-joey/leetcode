@@ -20,7 +20,7 @@
 //<strong>输入：</strong>s = "textbook"
 //<strong>输出：</strong>false
 //<strong>解释：</strong>a = "t<strong>e</strong>xt" 且 b = "b<strong>oo</strong>k" 。a 中有 1 个元音，b 中有 2 个元音。因此，a 和 b 不相似。
-//注意，元音 o 在 b 中出现两次，记为 2 个。
+// 注意，元音 o 在 b 中出现两次，记为 2 个。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -36,45 +36,45 @@
 //<div><li>👍 25</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1704.判断字符串的两半是否相似
-//开题时间：2022-11-11 08:39:46
+// 1704.判断字符串的两半是否相似
+// 开题时间：2022-11-11 08:39:46
 public class DetermineIfStringHalvesAreAlike {
-    public static void main(String[] args) {
-        Solution solution = new DetermineIfStringHalvesAreAlike().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DetermineIfStringHalvesAreAlike().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean halvesAreAlike9(String s) {
+      int cnt1 = 0, cnt2 = 0;
+      for (int i = 0, half = s.length() >> 1; i < half; i++) {
+        if (isVowel(s.charAt(i)))
+          cnt1++;
+        if (isVowel(s.charAt(i + half)))
+          cnt2++;
+      }
+      return cnt1 == cnt2;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean halvesAreAlike9(String s) {
-            int cnt1 = 0, cnt2 = 0;
-            for (int i = 0, half = s.length() >> 1; i < half; i++) {
-                if (isVowel(s.charAt(i)))
-                    cnt1++;
-                if (isVowel(s.charAt(i + half)))
-                    cnt2++;
-            }
-            return cnt1 == cnt2;
-        }
-
-        public boolean halvesAreAlike(String s) {
-            int cnt1 = 0, cnt2 = 0;
-            String vowels = "aeiouAEIOU";
-            for (int i = 0, half = s.length() >> 1; i < half; i++) {
-                if (vowels.indexOf(s.charAt(i)) >= 0)
-                    cnt1++;
-                if (vowels.indexOf(s.charAt(i + half)) >= 0)
-                    cnt2++;
-            }
-            return cnt1 == cnt2;
-        }
-
-        public static boolean isVowel(char c) {
-            return switch (c) {
-                case 'a', 'e', 'i', 'o', 'u',
-                        'A', 'E', 'I', 'O', 'U' -> true;
-                default -> false;
-            };
-        }
+    
+    public boolean halvesAreAlike(String s) {
+      int cnt1 = 0, cnt2 = 0;
+      String vowels = "aeiouAEIOU";
+      for (int i = 0, half = s.length() >> 1; i < half; i++) {
+        if (vowels.indexOf(s.charAt(i)) >= 0)
+          cnt1++;
+        if (vowels.indexOf(s.charAt(i + half)) >= 0)
+          cnt2++;
+      }
+      return cnt1 == cnt2;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public static boolean isVowel(char c) {
+      return switch (c) {
+        case 'a', 'e', 'i', 'o', 'u',
+            'A', 'E', 'I', 'O', 'U' -> true;
+        default -> false;
+      };
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -19,9 +19,9 @@
 //<strong>输出：</strong>true
 //<strong>解释：
 //</strong>1<sup>2</sup> + 9<sup>2</sup> = 82
-//8<sup>2</sup> + 2<sup>2</sup> = 68
-//6<sup>2</sup> + 8<sup>2</sup> = 100
-//1<sup>2</sup> + 0<sup>2</sup> + 0<sup>2</sup> = 1
+// 8<sup>2</sup> + 2<sup>2</sup> = 68
+// 6<sup>2</sup> + 8<sup>2</sup> = 100
+// 1<sup>2</sup> + 0<sup>2</sup> + 0<sup>2</sup> = 1
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -44,47 +44,47 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import java.util.HashSet;
 
-//202.快乐数
-//开题时间：2022-11-09 20:10:56
+// 202.快乐数
+// 开题时间：2022-11-09 20:10:56
 public class HappyNumber {
-    public static void main(String[] args) {
-        Solution solution = new HappyNumber().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new HappyNumber().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 哈希表
+    public boolean isHappy9(int n) {
+      HashSet<Integer> visited = new HashSet<>();
+      
+      while (n != 1) {
+        if (!visited.add(n))
+          return false;
+        n = getNext(n);
+      }
+      
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //哈希表
-        public boolean isHappy9(int n) {
-            HashSet<Integer> visited = new HashSet<>();
-
-            while (n != 1) {
-                if (!visited.add(n))
-                    return false;
-                n = getNext(n);
-            }
-
-            return true;
-        }
-
-        //☆☆☆☆☆ 快慢指针
-        public boolean isHappy(int n) {
-            for (int m = getNext(n); m != 1; ) {
-                if (m == n)
-                    return false;
-                n = getNext(n);
-                m = getNext(getNext(m));
-            }
-            return true;
-        }
-
-        private int getNext(int n) {
-            int sum = 0;
-            for (; n != 0; n /= 10) {
-                int digit = n % 10;
-                sum += digit * digit;
-            }
-            return sum;
-        }
+    
+    //☆☆☆☆☆ 快慢指针
+    public boolean isHappy(int n) {
+      for (int m = getNext(n); m != 1; ) {
+        if (m == n)
+          return false;
+        n = getNext(n);
+        m = getNext(getNext(m));
+      }
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private int getNext(int n) {
+      int sum = 0;
+      for (; n != 0; n /= 10) {
+        int digit = n % 10;
+        sum += digit * digit;
+      }
+      return sum;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

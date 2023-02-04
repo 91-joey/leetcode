@@ -17,7 +17,7 @@
 //<strong>输入：</strong>n = 3
 //<strong>输出：</strong>3
 //<strong>解释：</strong>上图是 3 个盒子的摆放位置。
-//这些盒子放在房间的一角，对应左侧位置。
+// 这些盒子放在房间的一角，对应左侧位置。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -28,7 +28,7 @@
 //<strong>输入：</strong>n = 4
 //<strong>输出：</strong>3
 //<strong>解释：</strong>上图是 3 个盒子的摆放位置。
-//这些盒子放在房间的一角，对应左侧位置。
+// 这些盒子放在房间的一角，对应左侧位置。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -39,7 +39,7 @@
 //<strong>输入：</strong>n = 10
 //<strong>输出：</strong>6
 //<strong>解释：</strong>上图是 10 个盒子的摆放位置。
-//这些盒子放在房间的一角，对应后方位置。</pre>
+// 这些盒子放在房间的一角，对应后方位置。</pre>
 //
 //<p>&nbsp;</p>
 //
@@ -52,40 +52,40 @@
 //<div><li>👍 69</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//1739.放置盒子
-//开题时间：2022-12-25 17:13:54
+// 1739.放置盒子
+// 开题时间：2022-12-25 17:13:54
 public class BuildingBoxes {
-    public static void main(String[] args) {
-        Solution solution = new BuildingBoxes().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BuildingBoxes().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 找规律
+    public int minimumBoxes9(int n) {
+      int ans = 0, total = 0;
+      for (int i = 1; total + ans + i <= n; i++) {
+        ans += i;
+        total += ans;
+      }
+      for (int i = 1; total < n; i++) {
+        ans++;
+        total += i;
+      }
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //找规律
-        public int minimumBoxes9(int n) {
-            int ans = 0, total = 0;
-            for (int i = 1; total + ans + i <= n; i++) {
-                ans += i;
-                total += ans;
-            }
-            for (int i = 1; total < n; i++) {
-                ans++;
-                total += i;
-            }
-            return ans;
-        }
-
-        //数学优化
-        public int minimumBoxes(int n) {
-            int x = (int) Math.cbrt(6L * n);
-            int i = (int) ((long) x * (x + 1) * (x + 2) / 6);
-            if (i > n) {
-                x--;
-                i = (int) ((long) x * (x + 1) * (x + 2) / 6);
-            }
-            int y = (int) Math.ceil((-1 + Math.sqrt(1 + 8 * (n - i))) / 2);
-            return x * (x + 1) / 2 + y;
-        }
+    
+    // 数学优化
+    public int minimumBoxes(int n) {
+      int x = (int) Math.cbrt(6L * n);
+      int i = (int) ((long) x * (x + 1) * (x + 2) / 6);
+      if (i > n) {
+        x--;
+        i = (int) ((long) x * (x + 1) * (x + 2) / 6);
+      }
+      int y = (int) Math.ceil((-1 + Math.sqrt(1 + 8 * (n - i))) / 2);
+      return x * (x + 1) / 2 + y;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

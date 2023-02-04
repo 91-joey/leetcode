@@ -58,98 +58,98 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 import java.util.LinkedList;
 import java.util.List;
 
-//1319.连通网络的操作次数
-//开题时间：2023-01-08 16:17:11
+// 1319.连通网络的操作次数
+// 开题时间：2023-01-08 16:17:11
 public class NumberOfOperationsToMakeNetworkConnected {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfOperationsToMakeNetworkConnected().new Solution();
-        System.out.println(solution.makeConnected(11, Tools.to2DIntArray("[[1,4],[0,3],[1,3],[3,7],[2,7],[0,1],[2,4],[3,6],[5,6],[6,7],[4,7],[0,7],[5,7]]")));
+  public static void main(String[] args) {
+    Solution solution = new NumberOfOperationsToMakeNetworkConnected().new Solution();
+    System.out.println(solution.makeConnected(11, Tools.to2DIntArray("[[1,4],[0,3],[1,3],[3,7],[2,7],[0,1],[2,4],[3,6],[5,6],[6,7],[4,7],[0,7],[5,7]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 并查集
+    public int makeConnected9(int n, int[][] connections) {
+      if (n - 1 > connections.length)
+        return -1;
+      
+      UnionFind uf = new UnionFind(n);
+      for (int[] connection : connections)
+        uf.union(connection[0], connection[1]);
+      
+      return uf.cnt - 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //并查集
-        public int makeConnected9(int n, int[][] connections) {
-            if (n - 1 > connections.length)
-                return -1;
-
-            UnionFind uf = new UnionFind(n);
-            for (int[] connection : connections)
-                uf.union(connection[0], connection[1]);
-
-            return uf.cnt - 1;
+    
+    //☆☆☆☆☆ dfs
+    public int makeConnected(int n, int[][] connections) {
+      if (n - 1 > connections.length)
+        return -1;
+      
+      LinkedList<Integer>[] graph = new LinkedList[n];
+      for (int i = 0; i < n; i++)
+        graph[i] = new LinkedList<>();
+      for (int[] connection : connections) {
+        graph[connection[0]].add(connection[1]);
+        graph[connection[1]].add(connection[0]);
+      }
+      
+      int cnt = 0;
+      boolean[] vis = new boolean[n];
+      for (int i = 0; i < n; i++) {
+        if (!vis[i]) {
+          cnt++;
+          dfs(graph, vis, i);
         }
-
-        //☆☆☆☆☆ dfs
-        public int makeConnected(int n, int[][] connections) {
-            if (n - 1 > connections.length)
-                return -1;
-
-            LinkedList<Integer>[] graph = new LinkedList[n];
-            for (int i = 0; i < n; i++)
-                graph[i] = new LinkedList<>();
-            for (int[] connection : connections) {
-                graph[connection[0]].add(connection[1]);
-                graph[connection[1]].add(connection[0]);
-            }
-
-            int cnt = 0;
-            boolean[] vis = new boolean[n];
-            for (int i = 0; i < n; i++) {
-                if (!vis[i]) {
-                    cnt++;
-                    dfs(graph, vis, i);
-                }
-            }
-
-            return cnt - 1;
-        }
-
-        private void dfs(List<Integer>[] graph, boolean[] vis, int i) {
-            vis[i] = true;
-            for (int j : graph[i])
-                if (!vis[j])
-                    dfs(graph, vis, j);
-        }
+      }
+      
+      return cnt - 1;
     }
-
-    class UnionFind {
-        int[] root;
-        int[] rank;
-        int cnt;
-
-        public UnionFind(int size) {
-            cnt = size;
-            root = new int[size];
-            rank = new int[size];
-            for (int i = 0; i < size; i++)
-                root[i] = i;
-        }
-
-        public int find(int x) {
-            if (x == root[x])
-                return x;
-            return root[x] = find(root[x]);
-        }
-
-        public void union(int x, int y) {
-            int rootX = find(x);
-            int rootY = find(y);
-            if (rootX != rootY) {
-                if (rank[rootX] == rank[rootY]) {
-                    root[rootX] = rootY;
-                    rank[rootY]++;
-                } else if (rank[rootX] < rank[rootY])
-                    root[rootX] = rootY;
-                else
-                    root[rootY] = rootX;
-                cnt--;
-            }
-        }
-
-        public boolean connected(int x, int y) {
-            return find(x) == find(y);
-        }
+    
+    private void dfs(List<Integer>[] graph, boolean[] vis, int i) {
+      vis[i] = true;
+      for (int j : graph[i])
+        if (!vis[j])
+          dfs(graph, vis, j);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  class UnionFind {
+    int[] root;
+    int[] rank;
+    int cnt;
+    
+    public UnionFind(int size) {
+      cnt = size;
+      root = new int[size];
+      rank = new int[size];
+      for (int i = 0; i < size; i++)
+        root[i] = i;
+    }
+    
+    public int find(int x) {
+      if (x == root[x])
+        return x;
+      return root[x] = find(root[x]);
+    }
+    
+    public void union(int x, int y) {
+      int rootX = find(x);
+      int rootY = find(y);
+      if (rootX != rootY) {
+        if (rank[rootX] == rank[rootY]) {
+          root[rootX] = rootY;
+          rank[rootY]++;
+        } else if (rank[rootX] < rank[rootY])
+          root[rootX] = rootY;
+        else
+          root[rootY] = rootX;
+        cnt--;
+      }
+    }
+    
+    public boolean connected(int x, int y) {
+      return find(x) == find(y);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

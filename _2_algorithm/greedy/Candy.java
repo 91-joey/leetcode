@@ -78,7 +78,7 @@ public class Candy {
       return ans;
     }
     
-    //贪心（精简版）
+    // 贪心（精简版）
     public int candy(int[] ratings) {
       int n = ratings.length;
       int[] l2r = new int[n];

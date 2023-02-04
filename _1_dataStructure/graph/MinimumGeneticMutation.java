@@ -50,62 +50,67 @@
 //<div><li>👍 233</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.graph;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
-//433.最小基因变化
-//开题时间：2023-01-12 11:58:24
+// 433.最小基因变化
+// 开题时间：2023-01-12 11:58:24
 public class MinimumGeneticMutation {
-    public static void main(String[] args) {
-        Solution solution = new MinimumGeneticMutation().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //bfs
-        public int minMutation(String startGene, String endGene, String[] bank) {
-            boolean isEndGeneIncluded = false;
-            for (String s : bank)
-                if (s.equals(endGene)) {
-                    isEndGeneIncluded = true;
-                    break;
-                }
-            if (!isEndGeneIncluded)
-                return -1;
-
-            Queue<String> q = new LinkedList<>();
-            q.offer(startGene);
-            Set<String> set = new HashSet<>(Arrays.asList(bank));
-
-            int step = 0;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    String poll = q.poll();
-                    if (poll.equals(endGene))
-                        return step;
-
-                    Iterator<String> it = set.iterator();
-                    while (it.hasNext()) {
-                        String next = it.next();
-                        if (isOneMutation(poll, next)) {
-                            q.offer(next);
-                            it.remove();
-                        }
-                    }
-                }
-                step++;
+  public static void main(String[] args) {
+    Solution solution = new MinimumGeneticMutation().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // bfs
+    public int minMutation(String startGene, String endGene, String[] bank) {
+      boolean isEndGeneIncluded = false;
+      for (String s : bank)
+        if (s.equals(endGene)) {
+          isEndGeneIncluded = true;
+          break;
+        }
+      if (!isEndGeneIncluded)
+        return -1;
+      
+      Queue<String> q = new LinkedList<>();
+      q.offer(startGene);
+      Set<String> set = new HashSet<>(Arrays.asList(bank));
+      
+      int step = 0;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          String poll = q.poll();
+          if (poll.equals(endGene))
+            return step;
+          
+          Iterator<String> it = set.iterator();
+          while (it.hasNext()) {
+            String next = it.next();
+            if (isOneMutation(poll, next)) {
+              q.offer(next);
+              it.remove();
             }
-
-            return -1;
+          }
         }
-
-        private boolean isOneMutation(String start, String end) {
-            int mutation = 0;
-            for (int i = 0; i < start.length(); i++)
-                if (start.charAt(i) != end.charAt(i))
-                    if (++mutation > 1)
-                        return false;
-            return mutation == 1;
-        }
+        step++;
+      }
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private boolean isOneMutation(String start, String end) {
+      int mutation = 0;
+      for (int i = 0; i < start.length(); i++)
+        if (start.charAt(i) != end.charAt(i))
+          if (++mutation > 1)
+            return false;
+      return mutation == 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

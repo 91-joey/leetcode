@@ -12,9 +12,9 @@
 //<strong>输入：</strong>nums = [1,5,2]
 //<strong>输出：</strong>false
 //<strong>解释：</strong>一开始，玩家 1 可以从 1 和 2 中进行选择。
-//如果他选择 2（或者 1 ），那么玩家 2 可以从 1（或者 2 ）和 5 中进行选择。如果玩家 2 选择了 5 ，那么玩家 1 则只剩下 1（或者 2 ）可选。 
-//所以，玩家 1 的最终分数为 1 + 2 = 3，而玩家 2 为 5 。
-//因此，玩家 1 永远不会成为赢家，返回 false 。</pre>
+// 如果他选择 2（或者 1 ），那么玩家 2 可以从 1（或者 2 ）和 5 中进行选择。如果玩家 2 选择了 5 ，那么玩家 1 则只剩下 1（或者 2 ）可选。
+// 所以，玩家 1 的最终分数为 1 + 2 = 3，而玩家 2 为 5 。
+// 因此，玩家 1 永远不会成为赢家，返回 false 。</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -22,7 +22,7 @@
 //<strong>输入：</strong>nums = [1,5,233,7]
 //<strong>输出：</strong>true
 //<strong>解释：</strong>玩家 1 一开始选择 1 。然后玩家 2 必须从 5 和 7 中进行选择。无论玩家 2 选择了哪个，玩家 1 都可以选择 233 。
-//最终，玩家 1（234 分）比玩家 2（12 分）获得更多的分数，所以返回 true，表示玩家 1 可以成为赢家。</pre>
+// 最终，玩家 1（234 分）比玩家 2（12 分）获得更多的分数，所以返回 true，表示玩家 1 可以成为赢家。</pre>
 //
 //<p>&nbsp;</p>
 //
@@ -38,80 +38,80 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//486.预测赢家
-//开题时间：2022-12-22 16:08:46
+// 486.预测赢家
+// 开题时间：2022-12-22 16:08:46
 public class PredictTheWinner {
-    public static void main(String[] args) {
-        Solution solution = new PredictTheWinner().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new PredictTheWinner().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 递归
+    public boolean PredictTheWinner9(int[] nums) {
+      return helper(nums, 0, nums.length - 1) >= 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //递归
-        public boolean PredictTheWinner9(int[] nums) {
-            return helper(nums, 0, nums.length - 1) >= 0;
-        }
-
-        //当前玩家 在 当前数组区段上 所能获得的与另一个玩家的最大分数差
-        private int helper(int[] nums, int l, int r) {
-            if (l == r)
-                return nums[l];
-            return Math.max(
-                    nums[l] - helper(nums, l + 1, r),
-                    nums[r] - helper(nums, l, r - 1)
-            );
-        }
-
-        int[][] memo;
-
-        //记忆化递归
-        public boolean PredictTheWinner8(int[] nums) {
-            int n = nums.length;
-            memo = new int[n][n];
-            for (int[] arr : memo)
-                Arrays.fill(arr, -1);
-            return helper2(nums, 0, n - 1) >= 0;
-        }
-
-        private int helper2(int[] nums, int l, int r) {
-            if (l == r)
-                return nums[l];
-            if (memo[l][r] != -1)
-                return memo[l][r];
-            memo[l][r] = Math.max(
-                    nums[l] - helper(nums, l + 1, r),
-                    nums[r] - helper(nums, l, r - 1)
-            );
-            return memo[l][r];
-        }
-
-        //DP
-        public boolean PredictTheWinner7(int[] nums) {
-            int n = nums.length;
-            int[][] f = new int[n][n];
-
-            for (int i = n - 1; i >= 0; i--) {
-                f[i][i] = nums[i];
-                for (int j = i + 1; j < n; j++)
-                    f[i][j] = Math.max(nums[i] - f[i + 1][j], nums[j] - f[i][j - 1]);
-            }
-
-            return f[0][n - 1] >= 0;
-        }
-
-        //☆☆☆☆☆ DP（滚动数组）
-        public boolean PredictTheWinner(int[] nums) {
-            int n = nums.length;
-            int[] f = new int[n];
-
-            for (int i = n - 1; i >= 0; i--) {
-                f[i] = nums[i];
-                for (int j = i + 1; j < n; j++)
-                    f[j] = Math.max(nums[i] - f[j], nums[j] - f[j - 1]);
-            }
-
-            return f[n - 1] >= 0;
-        }
+    
+    // 当前玩家 在 当前数组区段上 所能获得的与另一个玩家的最大分数差
+    private int helper(int[] nums, int l, int r) {
+      if (l == r)
+        return nums[l];
+      return Math.max(
+          nums[l] - helper(nums, l + 1, r),
+          nums[r] - helper(nums, l, r - 1)
+      );
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    int[][] memo;
+    
+    // 记忆化递归
+    public boolean PredictTheWinner8(int[] nums) {
+      int n = nums.length;
+      memo = new int[n][n];
+      for (int[] arr : memo)
+        Arrays.fill(arr, -1);
+      return helper2(nums, 0, n - 1) >= 0;
+    }
+    
+    private int helper2(int[] nums, int l, int r) {
+      if (l == r)
+        return nums[l];
+      if (memo[l][r] != -1)
+        return memo[l][r];
+      memo[l][r] = Math.max(
+          nums[l] - helper(nums, l + 1, r),
+          nums[r] - helper(nums, l, r - 1)
+      );
+      return memo[l][r];
+    }
+    
+    // DP
+    public boolean PredictTheWinner7(int[] nums) {
+      int n = nums.length;
+      int[][] f = new int[n][n];
+      
+      for (int i = n - 1; i >= 0; i--) {
+        f[i][i] = nums[i];
+        for (int j = i + 1; j < n; j++)
+          f[i][j] = Math.max(nums[i] - f[i + 1][j], nums[j] - f[i][j - 1]);
+      }
+      
+      return f[0][n - 1] >= 0;
+    }
+    
+    //☆☆☆☆☆ DP（滚动数组）
+    public boolean PredictTheWinner(int[] nums) {
+      int n = nums.length;
+      int[] f = new int[n];
+      
+      for (int i = n - 1; i >= 0; i--) {
+        f[i] = nums[i];
+        for (int j = i + 1; j < n; j++)
+          f[j] = Math.max(nums[i] - f[j], nums[j] - f[j - 1]);
+      }
+      
+      return f[n - 1] >= 0;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

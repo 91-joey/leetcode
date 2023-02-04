@@ -8,8 +8,8 @@
 //
 //<pre><strong>输入：</strong>nums = [0,2,1,5,3,4]
 //<strong>输出：</strong>[0,1,2,4,5,3]<strong>
-//解释：</strong>数组 ans 构建如下：
-//ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+// 解释：</strong>数组 ans 构建如下：
+// ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
 //    = [nums[0], nums[2], nums[1], nums[5], nums[3], nums[4]]
 //    = [0,1,2,4,5,3]</pre>
 //
@@ -18,7 +18,7 @@
 //<pre><strong>输入：</strong>nums = [5,0,1,2,3,4]
 //<strong>输出：</strong>[4,5,0,1,2,3]
 //<strong>解释：</strong>数组 ans 构建如下：
-//ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
+// ans = [nums[nums[0]], nums[nums[1]], nums[nums[2]], nums[nums[3]], nums[nums[4]], nums[nums[5]]]
 //    = [nums[5], nums[0], nums[1], nums[2], nums[3], nums[4]]
 //    = [4,5,0,1,2,3]</pre>
 //
@@ -37,46 +37,46 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//1920.基于排列构建数组
-//开题时间：2022-11-03 08:40:26
+// 1920.基于排列构建数组
+// 开题时间：2022-11-03 08:40:26
 public class BuildArrayFromPermutation {
-    public static void main(String[] args) {
-        Solution solution = new BuildArrayFromPermutation().new Solution();
-        System.out.println(Arrays.toString(solution.buildArray3(new int[]{0, 2, 1, 5, 3, 4})));
+  public static void main(String[] args) {
+    Solution solution = new BuildArrayFromPermutation().new Solution();
+    System.out.println(Arrays.toString(solution.buildArray3(new int[]{0, 2, 1, 5, 3, 4})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 弱智都想的出来
+    public int[] buildArray(int[] nums) {
+      int[] ans = new int[nums.length];
+      for (int i = 0; i < nums.length; i++)
+        ans[i] = nums[nums[i]];
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //弱智都想的出来
-        public int[] buildArray(int[] nums) {
-            int[] ans = new int[nums.length];
-            for (int i = 0; i < nums.length; i++)
-                ans[i] = nums[nums[i]];
-            return ans;
-        }
-
-        //两次遍历法（第一次遍历：高位存储最终值，低位存储原值；第二次遍历：取高位最终值）
-        public int[] buildArray2(int[] nums) {
-            for (int i = 0; i < nums.length; i++)
-                nums[i] += nums[nums[i]] % 1000 * 1000;
-
-            for (int i = 0; i < nums.length; i++)
-                nums[i] /= 1000;
-
-            return nums;
-        }
-
-        //两次遍历法（优化：位运算）
-        public int[] buildArray3(int[] nums) {
-            int mask = (1 << 10) - 1;
-            for (int i = 0; i < nums.length; i++)
-                nums[i] |= ((nums[nums[i]] & mask) << 10);
-
-            for (int i = 0; i < nums.length; i++)
-                nums[i] >>= 10;
-
-            return nums;
-        }
+    
+    // 两次遍历法（第一次遍历：高位存储最终值，低位存储原值；第二次遍历：取高位最终值）
+    public int[] buildArray2(int[] nums) {
+      for (int i = 0; i < nums.length; i++)
+        nums[i] += nums[nums[i]] % 1000 * 1000;
+      
+      for (int i = 0; i < nums.length; i++)
+        nums[i] /= 1000;
+      
+      return nums;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 两次遍历法（优化：位运算）
+    public int[] buildArray3(int[] nums) {
+      int mask = (1 << 10) - 1;
+      for (int i = 0; i < nums.length; i++)
+        nums[i] |= ((nums[nums[i]] & mask) << 10);
+      
+      for (int i = 0; i < nums.length; i++)
+        nums[i] >>= 10;
+      
+      return nums;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -43,67 +43,67 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//110.平衡二叉树
-//开题时间：2022-11-18 12:25:12
+// 110.平衡二叉树
+// 开题时间：2022-11-18 12:25:12
 public class BalancedBinaryTree {
-    public static void main(String[] args) {
-        Solution solution = new BalancedBinaryTree().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BalancedBinaryTree().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 递归（自顶向下）
+    public boolean isBalanced9(TreeNode root) {
+      if (root == null)
+        return true;
+      
+      return Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1 &&
+          isBalanced(root.left) &&
+          isBalanced(root.right);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //递归（自顶向下）
-        public boolean isBalanced9(TreeNode root) {
-            if (root == null)
-                return true;
-
-            return Math.abs(maxDepth(root.left) - maxDepth(root.right)) <= 1 &&
-                    isBalanced(root.left) &&
-                    isBalanced(root.right);
-        }
-
-        public int maxDepth(TreeNode root) {
-            if (root == null)
-                return 0;
-            return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
-        }
-
-        //递归（自底向上）
-        public boolean isBalance8d(TreeNode root) {
-            return maxHeight(root) >= 0;
-        }
-
-        private int maxHeight(TreeNode root) {
-            if (root == null)
-                return 0;
-
-            int heightL = maxHeight(root.left);
-            int heightR = maxHeight(root.right);
-            if (heightL != -1 && heightR != -1 && Math.abs(heightL - heightR) <= 1)
-                return Math.max(heightL, heightR) + 1;
-            else
-                return -1;
-        }
-
-        //☆☆☆☆☆ 递归（自底向上）（优化：左子树不平衡时，不再求解右子树）
-        public boolean isBalanced(TreeNode root) {
-            return maxHeight2(root) >= 0;
-        }
-
-        private int maxHeight2(TreeNode root) {
-            if (root == null)
-                return 0;
-
-            int heightL;
-            int heightR;
-            if ((heightL = maxHeight2(root.left)) != -1 &&
-                    (heightR = maxHeight2(root.right)) != -1 &&
-                    Math.abs(heightL - heightR) <= 1)
-                return Math.max(heightL, heightR) + 1;
-            else
-                return -1;
-        }
-
+    
+    public int maxDepth(TreeNode root) {
+      if (root == null)
+        return 0;
+      return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 递归（自底向上）
+    public boolean isBalance8d(TreeNode root) {
+      return maxHeight(root) >= 0;
+    }
+    
+    private int maxHeight(TreeNode root) {
+      if (root == null)
+        return 0;
+      
+      int heightL = maxHeight(root.left);
+      int heightR = maxHeight(root.right);
+      if (heightL != -1 && heightR != -1 && Math.abs(heightL - heightR) <= 1)
+        return Math.max(heightL, heightR) + 1;
+      else
+        return -1;
+    }
+    
+    //☆☆☆☆☆ 递归（自底向上）（优化：左子树不平衡时，不再求解右子树）
+    public boolean isBalanced(TreeNode root) {
+      return maxHeight2(root) >= 0;
+    }
+    
+    private int maxHeight2(TreeNode root) {
+      if (root == null)
+        return 0;
+      
+      int heightL;
+      int heightR;
+      if ((heightL = maxHeight2(root.left)) != -1 &&
+          (heightR = maxHeight2(root.right)) != -1 &&
+          Math.abs(heightL - heightR) <= 1)
+        return Math.max(heightL, heightR) + 1;
+      else
+        return -1;
+    }
+    
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

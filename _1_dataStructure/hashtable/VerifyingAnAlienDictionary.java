@@ -44,79 +44,79 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-//953.验证外星语词典
-//开题时间：2022-12-09 10:47:16
+// 953.验证外星语词典
+// 开题时间：2022-12-09 10:47:16
 public class VerifyingAnAlienDictionary {
-    public static void main(String[] args) {
-        Solution solution = new VerifyingAnAlienDictionary().new Solution();
-        String[] strings = new String[]{"world", "word", "row"};
-        Arrays.sort(strings);
-        System.out.println(Arrays.toString(strings));
-        System.out.println(solution.isAlienSorted(new String[]{"hello", "leetcode"}, "hlabcdefgijkmnopqrstuvwxyz"));
+  public static void main(String[] args) {
+    Solution solution = new VerifyingAnAlienDictionary().new Solution();
+    String[] strings = new String[]{"world", "word", "row"};
+    Arrays.sort(strings);
+    System.out.println(Arrays.toString(strings));
+    System.out.println(solution.isAlienSorted(new String[]{"hello", "leetcode"}, "hlabcdefgijkmnopqrstuvwxyz"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
+    
+    public boolean isAlienSorted9(String[] words, String order) {
+      for (int j = 0; j < words.length; j++) {
+        String s = "";
+        for (int i = 0; i < words[j].length(); i++)
+          s += ALPHABET.charAt(order.indexOf(words[j].charAt(i)));
+        words[j] = s;
+      }
+      
+      String[] copy = Arrays.copyOf(words, words.length);
+      Arrays.sort(copy);
+      
+      return Arrays.equals(words, copy);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-
-        public boolean isAlienSorted9(String[] words, String order) {
-            for (int j = 0; j < words.length; j++) {
-                String s = "";
-                for (int i = 0; i < words[j].length(); i++)
-                    s += ALPHABET.charAt(order.indexOf(words[j].charAt(i)));
-                words[j] = s;
-            }
-
-            String[] copy = Arrays.copyOf(words, words.length);
-            Arrays.sort(copy);
-
-            return Arrays.equals(words, copy);
-        }
-
-        //字符串数组转人类语、排序后比较
-        public boolean isAlienSorted8(String[] words, String order) {
-            Map<Character, Character> map = new HashMap<>();
-            for (int i = 0; i < order.length(); i++)
-                map.put(order.charAt(i), (char) ('a' + i));
-
-            for (int j = 0; j < words.length; j++) {
-                String s = "";
-                for (int i = 0; i < words[j].length(); i++)
-                    s += map.get(words[j].charAt(i));
-                words[j] = s;
-            }
-
-            String[] copy = Arrays.copyOf(words, words.length);
-            Arrays.sort(copy);
-
-            return Arrays.equals(words, copy);
-        }
-
-        //☆☆☆☆☆ 直接比较
-        public boolean isAlienSorted(String[] words, String order) {
-            Map<Character, Integer> char2weight = new HashMap<>();
-            for (int i = 0; i < order.length(); i++)
-                char2weight.put(order.charAt(i), i);
-
-            out:
-            for (int i = 1; i < words.length; i++) {
-                String pre = words[i - 1];
-                String cur = words[i];
-                int j = 0;
-                for (; j < pre.length() && j < cur.length(); j++) {
-                    int weightPre = char2weight.get(pre.charAt(j));
-                    int weightCur = char2weight.get(cur.charAt(j));
-                    if (weightPre > weightCur)
-                        return false;
-                    else if (weightPre < weightCur)
-                        continue out;
-                }
-                if (j < pre.length())
-                    return false;
-            }
-
-            return true;
-        }
+    
+    // 字符串数组转人类语、排序后比较
+    public boolean isAlienSorted8(String[] words, String order) {
+      Map<Character, Character> map = new HashMap<>();
+      for (int i = 0; i < order.length(); i++)
+        map.put(order.charAt(i), (char) ('a' + i));
+      
+      for (int j = 0; j < words.length; j++) {
+        String s = "";
+        for (int i = 0; i < words[j].length(); i++)
+          s += map.get(words[j].charAt(i));
+        words[j] = s;
+      }
+      
+      String[] copy = Arrays.copyOf(words, words.length);
+      Arrays.sort(copy);
+      
+      return Arrays.equals(words, copy);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 直接比较
+    public boolean isAlienSorted(String[] words, String order) {
+      Map<Character, Integer> char2weight = new HashMap<>();
+      for (int i = 0; i < order.length(); i++)
+        char2weight.put(order.charAt(i), i);
+      
+      out:
+      for (int i = 1; i < words.length; i++) {
+        String pre = words[i - 1];
+        String cur = words[i];
+        int j = 0;
+        for (; j < pre.length() && j < cur.length(); j++) {
+          int weightPre = char2weight.get(pre.charAt(j));
+          int weightCur = char2weight.get(cur.charAt(j));
+          if (weightPre > weightCur)
+            return false;
+          else if (weightPre < weightCur)
+            continue out;
+        }
+        if (j < pre.length())
+          return false;
+      }
+      
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

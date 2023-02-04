@@ -17,16 +17,16 @@
 // [1,0,0,0,0],
 // [1,1,0,0,0],
 // [1,1,1,1,1]], 
-//k = 3
+// k = 3
 //<strong>输出：</strong>[2,0,3]
 //<strong>解释：</strong>
-//每行中的军人数目：
-//行 0 -&gt; 2 
-//行 1 -&gt; 4 
-//行 2 -&gt; 1 
-//行 3 -&gt; 2 
-//行 4 -&gt; 5 
-//从最弱到最强对这些行排序后得到 [2,0,3,1,4]
+// 每行中的军人数目：
+// 行 0 -&gt; 2
+// 行 1 -&gt; 4
+// 行 2 -&gt; 1
+// 行 3 -&gt; 2
+// 行 4 -&gt; 5
+// 从最弱到最强对这些行排序后得到 [2,0,3,1,4]
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -37,15 +37,15 @@
 //&nbsp;[1,1,1,1],
 //&nbsp;[1,0,0,0],
 //&nbsp;[1,0,0,0]], 
-//k = 2
+// k = 2
 //<strong>输出：</strong>[0,2]
 //<strong>解释：</strong> 
-//每行中的军人数目：
-//行 0 -&gt; 1 
-//行 1 -&gt; 4 
-//行 2 -&gt; 1 
-//行 3 -&gt; 1 
-//从最弱到最强对这些行排序后得到 [0,2,3,1]
+// 每行中的军人数目：
+// 行 0 -&gt; 1
+// 行 1 -&gt; 4
+// 行 2 -&gt; 1
+// 行 3 -&gt; 1
+// 从最弱到最强对这些行排序后得到 [0,2,3,1]
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -67,68 +67,68 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-//1337.矩阵中战斗力最弱的 K 行
-//开题时间：2022-11-28 15:40:09
+// 1337.矩阵中战斗力最弱的 K 行
+// 开题时间：2022-11-28 15:40:09
 public class TheKWeakestRowsInAMatrix {
-    public static void main(String[] args) {
-        Solution solution = new TheKWeakestRowsInAMatrix().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new TheKWeakestRowsInAMatrix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 二分+排序
+    public int[] kWeakestRows9(int[][] mat, int k) {
+      int m = mat.length;
+      int n = mat[0].length;
+      int[][] idx2soldiers = new int[m][2];
+      
+      for (int i = 0; i < m; i++) {
+        int idx = firstIdxOfZero(mat, i);
+        idx2soldiers[i] = new int[]{i, idx};
+      }
+      Arrays.sort(idx2soldiers, Comparator.<int[]>comparingInt(arr -> arr[1]).thenComparingInt(arr -> arr[0]));
+      return Arrays.stream(idx2soldiers).limit(k).mapToInt(arr -> arr[0]).toArray();
+      //            Arrays.sort(idx2soldiers,
+      //                    (o1, o2) -> o1[1] != o2[1] ?
+      //                            o1[1] - o2[1] :
+      //                            o1[0] - o2[0]
+      //            );
+      //            int[] ans = new int[k];
+      //            for (int i = 0; i < k; i++)
+      //                ans[i] = idx2soldiers[i][0];
+      //            return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //二分+排序
-        public int[] kWeakestRows9(int[][] mat, int k) {
-            int m = mat.length;
-            int n = mat[0].length;
-            int[][] idx2soldiers = new int[m][2];
-
-            for (int i = 0; i < m; i++) {
-                int idx = firstIdxOfZero(mat, i);
-                idx2soldiers[i] = new int[]{i, idx};
-            }
-            Arrays.sort(idx2soldiers, Comparator.<int[]>comparingInt(arr -> arr[1]).thenComparingInt(arr -> arr[0]));
-            return Arrays.stream(idx2soldiers).limit(k).mapToInt(arr -> arr[0]).toArray();
-//            Arrays.sort(idx2soldiers,
-//                    (o1, o2) -> o1[1] != o2[1] ?
-//                            o1[1] - o2[1] :
-//                            o1[0] - o2[0]
-//            );
-//            int[] ans = new int[k];
-//            for (int i = 0; i < k; i++)
-//                ans[i] = idx2soldiers[i][0];
-//            return ans;
-        }
-
-        public static int firstIdxOfZero(int[][] mat, int row) {
-            int l = 0, r = mat[0].length;
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (0 >= mat[row][mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
-
-        //☆☆☆☆☆ 二分+优先队列
-        public int[] kWeakestRows(int[][] mat, int k) {
-            int m = mat.length;
-            PriorityQueue<int[]> pq = new PriorityQueue<>(
-                    m,
-                    Comparator.<int[]>comparingInt(arr -> arr[1]).
-                            thenComparingInt(arr -> arr[0])
-            );
-            for (int i = 0; i < m; i++) {
-                int idx = firstIdxOfZero(mat, i);
-                pq.offer(new int[]{i, idx});
-            }
-
-            int[] ans = new int[k];
-            for (int i = 0; i < k; i++)
-                ans[i] = pq.poll()[0];
-            return ans;
-        }
+    
+    public static int firstIdxOfZero(int[][] mat, int row) {
+      int l = 0, r = mat[0].length;
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (0 >= mat[row][mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 二分+优先队列
+    public int[] kWeakestRows(int[][] mat, int k) {
+      int m = mat.length;
+      PriorityQueue<int[]> pq = new PriorityQueue<>(
+          m,
+          Comparator.<int[]>comparingInt(arr -> arr[1]).
+              thenComparingInt(arr -> arr[0])
+      );
+      for (int i = 0; i < m; i++) {
+        int idx = firstIdxOfZero(mat, i);
+        pq.offer(new int[]{i, idx});
+      }
+      
+      int[] ans = new int[k];
+      for (int i = 0; i < k; i++)
+        ans[i] = pq.poll()[0];
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

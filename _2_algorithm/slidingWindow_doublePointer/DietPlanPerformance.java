@@ -49,36 +49,36 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>滑动窗口</li></div></div><br><div><li>👍 22</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1176.健身计划评估
-//开题时间：2022-10-13 08:58:44
+// 1176.健身计划评估
+// 开题时间：2022-10-13 08:58:44
 public class DietPlanPerformance {
-    public static void main(String[] args) {
-        Solution solution = new DietPlanPerformance().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DietPlanPerformance().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 固长滑动窗口
+    public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
+      int sum = 0;
+      for (int i = 0; i < k; i++)
+        sum += calories[i];
+      int score = 0;
+      if (sum < lower)
+        score--;
+      else if (sum > upper)
+        score++;
+      
+      for (int i = k; i < calories.length; i++) {
+        sum += calories[i] - calories[i - k];
+        if (sum < lower)
+          score--;
+        else if (sum > upper)
+          score++;
+      }
+      
+      return score;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //固长滑动窗口
-        public int dietPlanPerformance(int[] calories, int k, int lower, int upper) {
-            int sum = 0;
-            for (int i = 0; i < k; i++)
-                sum += calories[i];
-            int score = 0;
-            if (sum < lower)
-                score--;
-            else if (sum > upper)
-                score++;
-
-            for (int i = k; i < calories.length; i++) {
-                sum += calories[i] - calories[i - k];
-                if (sum < lower)
-                    score--;
-                else if (sum > upper)
-                    score++;
-            }
-
-            return score;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

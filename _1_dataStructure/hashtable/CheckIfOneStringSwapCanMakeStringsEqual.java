@@ -44,68 +44,68 @@
 //<div><li>👍 97</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.hashtable;
 
-//1790.仅执行一次字符串交换能否使两个字符串相等
-//开题时间：2022-12-04 12:26:20
+// 1790.仅执行一次字符串交换能否使两个字符串相等
+// 开题时间：2022-12-04 12:26:20
 public class CheckIfOneStringSwapCanMakeStringsEqual {
-    public static void main(String[] args) {
-        Solution solution = new CheckIfOneStringSwapCanMakeStringsEqual().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CheckIfOneStringSwapCanMakeStringsEqual().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean areAlmostEqual9(String s1, String s2) {
+      int cntDiff = 0;
+      char a = 0, b = 0;
+      for (int i = 0; i < s1.length(); i++)
+        if (s1.charAt(i) != s2.charAt(i)) {
+          cntDiff++;
+          if (cntDiff > 2)
+            return false;
+          else if (cntDiff == 1) {
+            a = s1.charAt(i);
+            b = s2.charAt(i);
+          } else if (a != s2.charAt(i) || b != s1.charAt(i))
+            return false;
+        }
+      return cntDiff != 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean areAlmostEqual9(String s1, String s2) {
-            int cntDiff = 0;
-            char a = 0, b = 0;
-            for (int i = 0; i < s1.length(); i++)
-                if (s1.charAt(i) != s2.charAt(i)) {
-                    cntDiff++;
-                    if (cntDiff > 2)
-                        return false;
-                    else if (cntDiff == 1) {
-                        a = s1.charAt(i);
-                        b = s2.charAt(i);
-                    } else if (a != s2.charAt(i) || b != s1.charAt(i))
-                        return false;
-                }
-            return cntDiff != 1;
+    
+    //☆☆☆☆☆ 计数变量+第一次字符不同的索引变量
+    public boolean areAlmostEqual(String s1, String s2) {
+      int cntDiff = 0;
+      for (int i = 0, idx = -1; i < s1.length(); i++)
+        if (s1.charAt(i) != s2.charAt(i)) {
+          cntDiff++;
+          if (cntDiff > 2)
+            return false;
+          else if (cntDiff == 1)
+            idx = i;
+          else if (s1.charAt(idx) != s2.charAt(i) || s2.charAt(idx) != s1.charAt(i))
+            return false;
         }
-
-        //☆☆☆☆☆ 计数变量+第一次字符不同的索引变量
-        public boolean areAlmostEqual(String s1, String s2) {
-            int cntDiff = 0;
-            for (int i = 0, idx = -1; i < s1.length(); i++)
-                if (s1.charAt(i) != s2.charAt(i)) {
-                    cntDiff++;
-                    if (cntDiff > 2)
-                        return false;
-                    else if (cntDiff == 1)
-                        idx = i;
-                    else if (s1.charAt(idx) != s2.charAt(i) || s2.charAt(idx) != s1.charAt(i))
-                        return false;
-                }
-            return cntDiff != 1;
-        }
-
-        //三叶姐
-        public boolean areAlmostEqual8(String s1, String s2) {
-            int a = -1, b = -1;
-
-            for (int i = 0; i < s1.length(); i++)
-                if (s1.charAt(i) != s2.charAt(i))
-                    if (a == -1)
-                        a = i;
-                    else if (b == -1)
-                        b = i;
-                    else
-                        return false;
-
-            if (a == -1)
-                return true;
-            else if (b == -1)
-                return false;
-            else
-                return s1.charAt(a) == s2.charAt(b) && s1.charAt(b) == s2.charAt(a);
-        }
+      return cntDiff != 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 三叶姐
+    public boolean areAlmostEqual8(String s1, String s2) {
+      int a = -1, b = -1;
+      
+      for (int i = 0; i < s1.length(); i++)
+        if (s1.charAt(i) != s2.charAt(i))
+          if (a == -1)
+            a = i;
+          else if (b == -1)
+            b = i;
+          else
+            return false;
+      
+      if (a == -1)
+        return true;
+      else if (b == -1)
+        return false;
+      else
+        return s1.charAt(a) == s2.charAt(b) && s1.charAt(b) == s2.charAt(a);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

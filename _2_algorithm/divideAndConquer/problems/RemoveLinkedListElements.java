@@ -1,4 +1,4 @@
-//给你一个链表的头节点 <code>head</code> 和一个整数 <code>val</code> ，请你删除链表中所有满足 <code>Node.val == val</code> 的节点，并返回 <strong>新的头节点</strong> 。
+// 给你一个链表的头节点 <code>head</code> 和一个整数 <code>val</code> ，请你删除链表中所有满足 <code>Node.val == val</code> 的节点，并返回 <strong>新的头节点</strong> 。
 //
 //<p>&nbsp;</p>
 //
@@ -38,56 +38,56 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//203.移除链表元素
-//开题时间：2022-11-12 17:50:25
+// 203.移除链表元素
+// 开题时间：2022-11-12 17:50:25
 public class RemoveLinkedListElements {
-    public static void main(String[] args) {
-        Solution solution = new RemoveLinkedListElements().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RemoveLinkedListElements().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    // 迭代（易懂）
+    public ListNode removeElements9(ListNode head, int val) {
+      ListNode dummy = new ListNode(0, head);
+      for (ListNode p = dummy; p.next != null; )
+        if (p.next.val == val)
+          p.next = p.next.next;
+        else
+          p = p.next;
+      return dummy.next;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        //迭代（易懂）
-        public ListNode removeElements9(ListNode head, int val) {
-            ListNode dummy = new ListNode(0, head);
-            for (ListNode p = dummy; p.next != null; )
-                if (p.next.val == val)
-                    p.next = p.next.next;
-                else
-                    p = p.next;
-            return dummy.next;
-        }
-
-        //递归（难懂）
-        public ListNode removeElements8(ListNode head, int val) {
-            if (head == null)
-                return null;
-            else if (head.val == val)
-                return removeElements8(head.next, val);
-
-            head.next = removeElements8(head.next, val);
-
-            return head;
-        }
-
-        public ListNode removeElements(ListNode head, int val) {
-            if (head == null)
-                return null;
-
-            head.next = removeElements(head.next, val);
-
-            return head.val == val ? head.next : head;
-        }
+    
+    // 递归（难懂）
+    public ListNode removeElements8(ListNode head, int val) {
+      if (head == null)
+        return null;
+      else if (head.val == val)
+        return removeElements8(head.next, val);
+      
+      head.next = removeElements8(head.next, val);
+      
+      return head;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public ListNode removeElements(ListNode head, int val) {
+      if (head == null)
+        return null;
+      
+      head.next = removeElements(head.next, val);
+      
+      return head.val == val ? head.next : head;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

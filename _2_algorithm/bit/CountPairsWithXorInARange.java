@@ -46,45 +46,45 @@ package org.example.leetcode.problems._2_algorithm.bit;
 
 import java.util.HashMap;
 
-//1803.统计异或值在范围内的数对有多少
-//开题时间：2023-01-05 14:38:09
+// 1803.统计异或值在范围内的数对有多少
+// 开题时间：2023-01-05 14:38:09
 public class CountPairsWithXorInARange {
-    public static void main(String[] args) {
-        Solution solution = new CountPairsWithXorInARange().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int countPairsTLE(int[] nums, int low, int high) {
-            int ans = 0;
-            for (int i = 0; i < nums.length - 1; i++) {
-                for (int j = i + 1; j < nums.length; j++) {
-                    int xor = nums[i] ^ nums[j];
-                    if (low <= xor && xor <= high)
-                        ans++;
-                }
-            }
-            return ans;
+  public static void main(String[] args) {
+    Solution solution = new CountPairsWithXorInARange().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int countPairsTLE(int[] nums, int low, int high) {
+      int ans = 0;
+      for (int i = 0; i < nums.length - 1; i++) {
+        for (int j = i + 1; j < nums.length; j++) {
+          int xor = nums[i] ^ nums[j];
+          if (low <= xor && xor <= high)
+            ans++;
         }
-
-        //☆☆☆☆☆ 位运算 + 哈希表
-        public int countPairs(int[] nums, int low, int high) {
-            int ans = 0;
-            var cnt = new HashMap<Integer, Integer>();
-            for (int x : nums)
-                cnt.merge(x, 1, Integer::sum);
-            for (++high; high > 0; high >>= 1, low >>= 1) {
-                var nxt = new HashMap<Integer, Integer>();
-                for (var e : cnt.entrySet()) {
-                    int x = e.getKey(), c = e.getValue();
-                    ans += c * (high % 2 * cnt.getOrDefault((high - 1) ^ x, 0) -
-                            low % 2 * cnt.getOrDefault((low - 1) ^ x, 0));
-                    nxt.put(x >> 1, nxt.getOrDefault(x >> 1, 0) + c);
-                }
-                cnt = nxt;
-            }
-            return ans / 2;
-        }
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 位运算 + 哈希表
+    public int countPairs(int[] nums, int low, int high) {
+      int ans = 0;
+      var cnt = new HashMap<Integer, Integer>();
+      for (int x : nums)
+        cnt.merge(x, 1, Integer::sum);
+      for (++high; high > 0; high >>= 1, low >>= 1) {
+        var nxt = new HashMap<Integer, Integer>();
+        for (var e : cnt.entrySet()) {
+          int x = e.getKey(), c = e.getValue();
+          ans += c * (high % 2 * cnt.getOrDefault((high - 1) ^ x, 0) -
+              low % 2 * cnt.getOrDefault((low - 1) ^ x, 0));
+          nxt.put(x >> 1, nxt.getOrDefault(x >> 1, 0) + c);
+        }
+        cnt = nxt;
+      }
+      return ans / 2;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

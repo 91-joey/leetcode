@@ -46,94 +46,94 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-//506.相对名次
-//开题时间：2022-09-21 14:57:44
+// 506.相对名次
+// 开题时间：2022-09-21 14:57:44
 public class RelativeRanks {
-
-    public static void main(String[] args) {
-        Solution solution = new RelativeRanks().new Solution();
+  
+  public static void main(String[] args) {
+    Solution solution = new RelativeRanks().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    
+    public static final String FIRST = "Gold Medal";
+    public static final String SECOND = "Silver Medal";
+    public static final String THIRD = "Bronze Medal";
+    
+    // 笨办法
+    public String[] findRelativeRanks(int[] score) {
+      int length = score.length;
+      String[] ans = new String[length];
+      int idx = 0;
+      for (int i : score) ans[idx++] = String.valueOf(i);
+      
+      Arrays.sort(score);
+      
+      for (int i = 0; i < length; i++) {
+        if (ans[i].equals(String.valueOf(score[length - 1]))) {
+          ans[i] = FIRST;
+        } else if (1 < length && ans[i].equals(String.valueOf(score[length - 2]))) {
+          ans[i] = SECOND;
+        } else if (2 < length && ans[i].equals(String.valueOf(score[length - 3]))) {
+          ans[i] = THIRD;
+        } else {
+          for (int j = 0; j < length - 3; j++) {
+            if (ans[i].equals(String.valueOf(score[j]))) {
+              ans[i] = String.valueOf(length - j);
+            }
+          }
+        }
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-
-        public static final String FIRST = "Gold Medal";
-        public static final String SECOND = "Silver Medal";
-        public static final String THIRD = "Bronze Medal";
-
-        //笨办法
-        public String[] findRelativeRanks(int[] score) {
-            int length = score.length;
-            String[] ans = new String[length];
-            int idx = 0;
-            for (int i : score) ans[idx++] = String.valueOf(i);
-
-            Arrays.sort(score);
-
-            for (int i = 0; i < length; i++) {
-                if (ans[i].equals(String.valueOf(score[length - 1]))) {
-                    ans[i] = FIRST;
-                } else if (1 < length && ans[i].equals(String.valueOf(score[length - 2]))) {
-                    ans[i] = SECOND;
-                } else if (2 < length && ans[i].equals(String.valueOf(score[length - 3]))) {
-                    ans[i] = THIRD;
-                } else {
-                    for (int j = 0; j < length - 3; j++) {
-                        if (ans[i].equals(String.valueOf(score[j]))) {
-                            ans[i] = String.valueOf(length - j);
-                        }
-                    }
-                }
-            }
-
-            return ans;
-        }
-
-        //哈希映射
-        public String[] findRelativeRanks2(int[] score) {
-            int[] clone = score.clone();
-            int length = score.length;
-            String[] ans = new String[length];
-
-            Arrays.sort(score);
-//            shellSort2(score);
-            Map<Integer, Integer> val2rank = new HashMap<>();
-            for (int i = 0; i < length; i++) {
-                val2rank.put(score[i], i);
-            }
-
-            for (int i = 0; i < length; i++) {
-                Integer rank = val2rank.get(clone[i]);
-                if (rank == length - 1) ans[i] = FIRST;
-                else if (rank == length - 2) ans[i] = SECOND;
-                else if (rank == length - 3) ans[i] = THIRD;
-                else ans[i] = String.valueOf(length - rank);
-            }
-
-            return ans;
-        }
-
-        //数组
-        public String[] findRelativeRanks3(int[] score) {
-            String[] prizes = {FIRST, SECOND, THIRD};
-            int length = score.length;
-            int[][] val2idx = new int[length][2];
-            for (int i = 0; i < length; i++) {
-                val2idx[i][0] = score[i];
-                val2idx[i][1] = i;
-            }
-
-            Arrays.sort(val2idx, (a, b) -> b[0] - a[0]);
-
-            String[] ans = new String[length];
-            for (int i = 0; i < length; i++) {
-                if (i < 3) ans[val2idx[i][1]] = prizes[i];
-                else ans[val2idx[i][1]] = String.valueOf(i + 1);
-            }
-
-            return ans;
-        }
-
+    
+    // 哈希映射
+    public String[] findRelativeRanks2(int[] score) {
+      int[] clone = score.clone();
+      int length = score.length;
+      String[] ans = new String[length];
+      
+      Arrays.sort(score);
+      //            shellSort2(score);
+      Map<Integer, Integer> val2rank = new HashMap<>();
+      for (int i = 0; i < length; i++) {
+        val2rank.put(score[i], i);
+      }
+      
+      for (int i = 0; i < length; i++) {
+        Integer rank = val2rank.get(clone[i]);
+        if (rank == length - 1) ans[i] = FIRST;
+        else if (rank == length - 2) ans[i] = SECOND;
+        else if (rank == length - 3) ans[i] = THIRD;
+        else ans[i] = String.valueOf(length - rank);
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 数组
+    public String[] findRelativeRanks3(int[] score) {
+      String[] prizes = {FIRST, SECOND, THIRD};
+      int length = score.length;
+      int[][] val2idx = new int[length][2];
+      for (int i = 0; i < length; i++) {
+        val2idx[i][0] = score[i];
+        val2idx[i][1] = i;
+      }
+      
+      Arrays.sort(val2idx, (a, b) -> b[0] - a[0]);
+      
+      String[] ans = new String[length];
+      for (int i = 0; i < length; i++) {
+        if (i < 3) ans[val2idx[i][1]] = prizes[i];
+        else ans[val2idx[i][1]] = String.valueOf(i + 1);
+      }
+      
+      return ans;
+    }
+    
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

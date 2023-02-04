@@ -19,11 +19,11 @@
 //[null, 1.0, 5.5, 4.66667, 6.0]
 //
 //<strong>解释：</strong>
-//MovingAverage movingAverage = new MovingAverage(3);
-//movingAverage.next(1); // 返回 1.0 = 1 / 1
-//movingAverage.next(10); // 返回 5.5 = (1 + 10) / 2
-//movingAverage.next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
-//movingAverage.next(5); // 返回 6.0 = (10 + 3 + 5) / 3
+// MovingAverage movingAverage = new MovingAverage(3);
+// movingAverage.next(1); // 返回 1.0 = 1 / 1
+// movingAverage.next(10); // 返回 5.5 = (1 + 10) / 2
+// movingAverage.next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
+// movingAverage.next(5); // 返回 6.0 = (10 + 3 + 5) / 3
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -42,44 +42,44 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//346.数据流中的移动平均值
-//开题时间：2022-08-12 21:06:42
+// 346.数据流中的移动平均值
+// 开题时间：2022-08-12 21:06:42
 public class MovingAverageFromDataStream {
-    public static void main(String[] args) {
-//        MovingAverage movingAverage = new MovingAverage(3);
-//        movingAverage.next(1); // 返回 1.0 = 1 / 1
-//        movingAverage.next(10); // 返回 5.5 = (1 + 10) / 2
-//        movingAverage.next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
-//        movingAverage.next(5); // 返回 6.0 = (10 + 3 + 5) / 3
+  public static void main(String[] args) {
+    //        MovingAverage movingAverage = new MovingAverage(3);
+    //        movingAverage.next(1); // 返回 1.0 = 1 / 1
+    //        movingAverage.next(10); // 返回 5.5 = (1 + 10) / 2
+    //        movingAverage.next(3); // 返回 4.66667 = (1 + 10 + 3) / 3
+    //        movingAverage.next(5); // 返回 6.0 = (10 + 3 + 5) / 3
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class MovingAverage {
+    
+    private final Queue<Integer> queue;
+    private final int maxSize;
+    private int sum;
+    
+    public MovingAverage(int size) {
+      queue = new LinkedList<>();
+      this.maxSize = size;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class MovingAverage {
-
-        private final Queue<Integer> queue;
-        private final int maxSize;
-        private int sum;
-
-        public MovingAverage(int size) {
-            queue = new LinkedList<>();
-            this.maxSize = size;
-        }
-
-        public double next(int val) {
-            queue.offer(val);
-            sum += val;
-
-            if (queue.size() > maxSize) {
-                sum -= queue.poll();
-            }
-            return (double) sum / queue.size();
-        }
+    
+    public double next(int val) {
+      queue.offer(val);
+      sum += val;
+      
+      if (queue.size() > maxSize) {
+        sum -= queue.poll();
+      }
+      return (double) sum / queue.size();
     }
-
-/**
- * Your MovingAverage object will be instantiated and called as such:
- * MovingAverage obj = new MovingAverage(size);
- * double param_1 = obj.next(val);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  /**
+   * Your MovingAverage object will be instantiated and called as such:
+   * MovingAverage obj = new MovingAverage(size);
+   * double param_1 = obj.next(val);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -36,61 +36,61 @@
 //<div><li>👍 149</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//790.多米诺和托米诺平铺
-//开题时间：2022-11-12 08:58:01
+// 790.多米诺和托米诺平铺
+// 开题时间：2022-11-12 08:58:01
 public class DominoAndTrominoTiling {
-    public static void main(String[] args) {
-        Solution solution = new DominoAndTrominoTiling().new Solution();
-        System.out.println(solution.numTilings(2));
-        System.out.println(solution.numTilings(3));
+  public static void main(String[] args) {
+    Solution solution = new DominoAndTrominoTiling().new Solution();
+    System.out.println(solution.numTilings(2));
+    System.out.println(solution.numTilings(3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // DP
+    public int numTilings8(int n) {
+      int mod = 10_0000_0000 + 7;
+      int d = 1;
+      for (int i = 1, a = 1, b = 0, c = 0; i < n; i++) {
+        int tmpA = a;
+        int tmpB = b;
+        int tmpC = c;
+        a = d;
+        b = (tmpA + c) % mod;
+        c = (tmpA + tmpB) % mod;
+        d = ((c + tmpC) % mod + d) % mod;
+      }
+      return d;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //DP
-        public int numTilings8(int n) {
-            int mod = 10_0000_0000 + 7;
-            int d = 1;
-            for (int i = 1, a = 1, b = 0, c = 0; i < n; i++) {
-                int tmpA = a;
-                int tmpB = b;
-                int tmpC = c;
-                a = d;
-                b = (tmpA + c) % mod;
-                c = (tmpA + tmpB) % mod;
-                d = ((c + tmpC) % mod + d) % mod;
-            }
-            return d;
-        }
-
-        public static final long MOD = (long) (1e9 + 7);
-
-        //DP递推  n   n
-        //f(i)=2*f(i-1)+f(i-3) i>=4
-        public int numTilings7(int n) {
-            long[] f = new long[n + 2];
-            f[0] = 1;
-            f[1] = 2;
-            f[2] = 5;
-            for (int i = 3; i < n; i++)
-                f[i] = ((f[i - 1] << 1) + f[i - 3]) % MOD;
-            return (int) f[n - 1];
-        }
-
-
-        //☆☆☆☆☆ DP递推  n   1
-        public int numTilings(int n) {
-            if (n == 1) return 1;
-            if (n == 2) return 2;
-            long a = 1, b = 2, c = 5;
-            for (int i = 3; i < n; i++) {
-                long tmp = ((c << 1) + a) % MOD;
-                a = b;
-                b = c;
-                c = tmp;
-            }
-            return (int) c;
-        }
+    
+    public static final long MOD = (long) (1e9 + 7);
+    
+    // DP递推  n   n
+    // f(i)=2*f(i-1)+f(i-3) i>=4
+    public int numTilings7(int n) {
+      long[] f = new long[n + 2];
+      f[0] = 1;
+      f[1] = 2;
+      f[2] = 5;
+      for (int i = 3; i < n; i++)
+        f[i] = ((f[i - 1] << 1) + f[i - 3]) % MOD;
+      return (int) f[n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    
+    //☆☆☆☆☆ DP递推  n   1
+    public int numTilings(int n) {
+      if (n == 1) return 1;
+      if (n == 2) return 2;
+      long a = 1, b = 2, c = 5;
+      for (int i = 3; i < n; i++) {
+        long tmp = ((c << 1) + a) % MOD;
+        a = b;
+        b = c;
+        c = tmp;
+      }
+      return (int) c;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

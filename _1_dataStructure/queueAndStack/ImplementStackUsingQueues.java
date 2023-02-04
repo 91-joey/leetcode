@@ -30,12 +30,12 @@
 //[null, null, null, 2, 2, false]
 //
 //<strong>解释：</strong>
-//MyStack myStack = new MyStack();
-//myStack.push(1);
-//myStack.push(2);
-//myStack.top(); // 返回 2
-//myStack.pop(); // 返回 2
-//myStack.empty(); // 返回 False
+// MyStack myStack = new MyStack();
+// myStack.push(1);
+// myStack.push(2);
+// myStack.top(); // 返回 2
+// myStack.pop(); // 返回 2
+// myStack.empty(); // 返回 False
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -58,110 +58,110 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-//225.用队列实现栈
-//开题时间：2022-08-22 17:53:37
+// 225.用队列实现栈
+// 开题时间：2022-08-22 17:53:37
 public class ImplementStackUsingQueues {
-    public static void main(String[] args) {
-//       Solution solution = new ImplementStackUsingQueues().new Solution();
+  public static void main(String[] args) {
+    //       Solution solution = new ImplementStackUsingQueues().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  // 1.双队列 n   1
+  class MyStack {
+    Queue<Integer> queue1 = new ArrayDeque<>();
+    Queue<Integer> queue2 = new ArrayDeque<>();
+    
+    public MyStack() {
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    //1.双队列 n   1
-    class MyStack {
-        Queue<Integer> queue1 = new ArrayDeque<>();
-        Queue<Integer> queue2 = new ArrayDeque<>();
-
-        public MyStack() {
-        }
-
-        public void push(int x) {
-            while (!queue1.isEmpty()) {
-                queue2.offer(queue1.poll());
-            }
-            queue1.offer(x);
-            while (!queue2.isEmpty()) {
-                queue1.offer(queue2.poll());
-            }
-        }
-
-        public int pop() {
-            return queue1.poll();
-        }
-
-        public int top() {
-            return queue1.peek();
-        }
-
-        public boolean empty() {
-            return queue1.isEmpty();
-        }
+    
+    public void push(int x) {
+      while (!queue1.isEmpty()) {
+        queue2.offer(queue1.poll());
+      }
+      queue1.offer(x);
+      while (!queue2.isEmpty()) {
+        queue1.offer(queue2.poll());
+      }
     }
-
-    //2.官解（双队列） n   1
-    class MyStack2 {
-        Queue<Integer> queue1 = new ArrayDeque<>();
-        Queue<Integer> queue2 = new ArrayDeque<>();
-
-        public MyStack2() {
-        }
-
-        public void push(int x) {
-            queue2.offer(x);
-            while (!queue1.isEmpty()) {
-                queue2.offer(queue1.poll());
-            }
-            queue1 = queue2;
-            queue2 = new ArrayDeque<>();
-        }
-
-        public int pop() {
-            return queue1.poll();
-        }
-
-        public int top() {
-            return queue1.peek();
-        }
-
-        public boolean empty() {
-            return queue1.isEmpty();
-        }
+    
+    public int pop() {
+      return queue1.poll();
     }
-
-    //3.官解（单队列） n   1
-    class MyStack3 {
-        Queue<Integer> queue = new ArrayDeque<>();
-
-        public MyStack3() {
-        }
-
-        public void push(int x) {
-            int size = queue.size();
-            queue.offer(x);
-            for (int i = 0; i < size; i++) {
-                queue.offer(queue.poll());
-            }
-        }
-
-        public int pop() {
-            return queue.poll();
-        }
-
-        public int top() {
-            return queue.peek();
-        }
-
-        public boolean empty() {
-            return queue.isEmpty();
-        }
+    
+    public int top() {
+      return queue1.peek();
     }
-
-/**
- * Your MyStack object will be instantiated and called as such:
- * MyStack obj = new MyStack();
- * obj.push(x);
- * int param_2 = obj.pop();
- * int param_3 = obj.top();
- * boolean param_4 = obj.empty();
- */
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public boolean empty() {
+      return queue1.isEmpty();
+    }
+  }
+  
+  // 2.官解（双队列） n   1
+  class MyStack2 {
+    Queue<Integer> queue1 = new ArrayDeque<>();
+    Queue<Integer> queue2 = new ArrayDeque<>();
+    
+    public MyStack2() {
+    }
+    
+    public void push(int x) {
+      queue2.offer(x);
+      while (!queue1.isEmpty()) {
+        queue2.offer(queue1.poll());
+      }
+      queue1 = queue2;
+      queue2 = new ArrayDeque<>();
+    }
+    
+    public int pop() {
+      return queue1.poll();
+    }
+    
+    public int top() {
+      return queue1.peek();
+    }
+    
+    public boolean empty() {
+      return queue1.isEmpty();
+    }
+  }
+  
+  // 3.官解（单队列） n   1
+  class MyStack3 {
+    Queue<Integer> queue = new ArrayDeque<>();
+    
+    public MyStack3() {
+    }
+    
+    public void push(int x) {
+      int size = queue.size();
+      queue.offer(x);
+      for (int i = 0; i < size; i++) {
+        queue.offer(queue.poll());
+      }
+    }
+    
+    public int pop() {
+      return queue.poll();
+    }
+    
+    public int top() {
+      return queue.peek();
+    }
+    
+    public boolean empty() {
+      return queue.isEmpty();
+    }
+  }
+  
+  /**
+   * Your MyStack object will be instantiated and called as such:
+   * MyStack obj = new MyStack();
+   * obj.push(x);
+   * int param_2 = obj.pop();
+   * int param_3 = obj.top();
+   * boolean param_4 = obj.empty();
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

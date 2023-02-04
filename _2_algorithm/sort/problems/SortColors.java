@@ -48,74 +48,74 @@ package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import java.util.Arrays;
 
-//75.颜色分类
-//开题时间：2022-09-30 14:43:54
+// 75.颜色分类
+// 开题时间：2022-09-30 14:43:54
 public class SortColors {
-    public static void main(String[] args) {
-        Solution solution = new SortColors().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SortColors().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 计数排序
+    public void sortColors(int[] nums) {
+      int cnt0 = 0;
+      int cnt1 = 0;
+      for (int num : nums)
+        if (num == 0)
+          cnt0++;
+        else if (num == 1)
+          cnt1++;
+      
+      int cnt01 = cnt0 + cnt1;
+      Arrays.fill(nums, 0, cnt0, 0);
+      Arrays.fill(nums, cnt0, cnt01, 1);
+      Arrays.fill(nums, cnt01, nums.length, 2);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //计数排序
-        public void sortColors(int[] nums) {
-            int cnt0 = 0;
-            int cnt1 = 0;
-            for (int num : nums)
-                if (num == 0)
-                    cnt0++;
-                else if (num == 1)
-                    cnt1++;
-
-            int cnt01 = cnt0 + cnt1;
-            Arrays.fill(nums, 0, cnt0, 0);
-            Arrays.fill(nums, cnt0, cnt01, 1);
-            Arrays.fill(nums, cnt01, nums.length, 2);
-        }
-
-        //双指针
-        public void sortColors2(int[] nums) {
-            /*
-             *  all in [0,start) = 0
-             *  all in [start,end] = 1
-             *  all in (end,length-1] = 2
-             */
-            int start = 0;
-            int end = nums.length - 1;
-            for (int i = 0; i <= end; ) {
-                if (nums[i] == 0)
-                    swap(nums, i++, start++);
-                else if (nums[i] == 1)
-                    i++;
-                else
-                    swap(nums, i, end--);
-            }
-        }
-
-        //双指针2
-        public void sortColors3(int[] nums) {
-            /*
-             *  all in [0,start] = 0
-             *  all in (start,end) = 1
-             *  all in [end,length-1] = 2
-             */
-            int start = -1;
-            int end = nums.length;
-            for (int i = 0; i < end; ) {
-                if (nums[i] == 0)
-                    swap(nums, i++, ++start);
-                else if (nums[i] == 1)
-                    i++;
-                else
-                    swap(nums, i, --end);
-            }
-        }
-
-        public static void swap(int[] arr, int i, int j) {
-            int tmp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = tmp;
-        }
+    
+    // 双指针
+    public void sortColors2(int[] nums) {
+      /*
+       *  all in [0,start) = 0
+       *  all in [start,end] = 1
+       *  all in (end,length-1] = 2
+       */
+      int start = 0;
+      int end = nums.length - 1;
+      for (int i = 0; i <= end; ) {
+        if (nums[i] == 0)
+          swap(nums, i++, start++);
+        else if (nums[i] == 1)
+          i++;
+        else
+          swap(nums, i, end--);
+      }
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 双指针2
+    public void sortColors3(int[] nums) {
+      /*
+       *  all in [0,start] = 0
+       *  all in (start,end) = 1
+       *  all in [end,length-1] = 2
+       */
+      int start = -1;
+      int end = nums.length;
+      for (int i = 0; i < end; ) {
+        if (nums[i] == 0)
+          swap(nums, i++, ++start);
+        else if (nums[i] == 1)
+          i++;
+        else
+          swap(nums, i, --end);
+      }
+    }
+    
+    public static void swap(int[] arr, int i, int j) {
+      int tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

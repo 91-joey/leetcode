@@ -45,40 +45,40 @@
 //<div><li>👍 117</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1486.数组异或操作
-//开题时间：2022-11-06 09:37:51
+// 1486.数组异或操作
+// 开题时间：2022-11-06 09:37:51
 public class XorOperationInAnArray {
-    public static void main(String[] args) {
-        Solution solution = new XorOperationInAnArray().new Solution();
-        System.out.println(solution.xorOperation(5, 0));
+  public static void main(String[] args) {
+    Solution solution = new XorOperationInAnArray().new Solution();
+    System.out.println(solution.xorOperation(5, 0));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int xorOperation2(int n, int start) {
+      int ans = 0;
+      for (int i = 0; i < n; i++)
+        ans ^= (start + 2 * i);
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int xorOperation2(int n, int start) {
-            int ans = 0;
-            for (int i = 0; i < n; i++)
-                ans ^= (start + 2 * i);
-            return ans;
-        }
-
-        //☆☆☆☆☆ 数学
-        public int xorOperation(int n, int start) {
-            int s = start >> 1;
-            return (sumXor(s - 1) ^ sumXor(s + n - 1)) << 1
-                    | (start & n & 1);
-//                    + ((start & 1) == 1 && (n & 1) == 1 ? 1 : 0);
-        }
-
-        private int sumXor(int x) {
-            return switch ((x & 3)) {
-                case 0 -> x;
-                case 1 -> 1;
-                case 2 -> x + 1;
-                case 3 -> 0;
-                default -> throw new IllegalStateException("Unexpected value: " + (x & 3));
-            };
-        }
+    
+    //☆☆☆☆☆ 数学
+    public int xorOperation(int n, int start) {
+      int s = start >> 1;
+      return (sumXor(s - 1) ^ sumXor(s + n - 1)) << 1
+          | (start & n & 1);
+      //                    + ((start & 1) == 1 && (n & 1) == 1 ? 1 : 0);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private int sumXor(int x) {
+      return switch ((x & 3)) {
+        case 0 -> x;
+        case 1 -> 1;
+        case 2 -> x + 1;
+        case 3 -> 0;
+        default -> throw new IllegalStateException("Unexpected value: " + (x & 3));
+      };
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

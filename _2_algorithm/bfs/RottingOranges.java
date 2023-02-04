@@ -14,11 +14,11 @@ public class RottingOranges {
     System.out.println(solution);
   }
   
-  //leetcode submit region begin(Prohibit modification and deletion)
+  // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     public static final int[] DIRS = {1, 0, -1, 0, 1};
     
-    //多源BFS（较繁琐：访问标记数组 + 记录最后一个新鲜橘子变腐的时间）
+    // 多源BFS（较繁琐：访问标记数组 + 记录最后一个新鲜橘子变腐的时间）
     public int orangesRotting9(int[][] grid) {
       int m = grid.length;
       int n = grid[0].length;
@@ -68,7 +68,7 @@ public class RottingOranges {
       
       return minutes;
     }
-  
+    
     //☆☆☆☆☆ 多源BFS（精简版：覆盖原数组元素值，代替访问标记数组 + 维护新鲜橘子数）
     public int orangesRotting(int[][] grid) {
       int m = grid.length;
@@ -109,5 +109,5 @@ public class RottingOranges {
       return cntFresh == 0 ? minutes : -1;
     }
   }
-  //leetcode submit region end(Prohibit modification and deletion)
+  // leetcode submit region end(Prohibit modification and deletion)
 }

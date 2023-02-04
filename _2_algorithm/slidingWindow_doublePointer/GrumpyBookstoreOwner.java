@@ -14,7 +14,7 @@
 //<strong>输入：</strong>customers = [1,0,1,2,1,1,7,5], grumpy = [0,1,0,1,0,1,0,1], minutes = 3
 //<strong>输出：</strong>16
 //<strong>解释：</strong>书店老板在最后 3 分钟保持冷静。
-//感到满意的最大客户数量 = 1 + 1 + 1 + 1 + 7 + 5 = 16.
+// 感到满意的最大客户数量 = 1 + 1 + 1 + 1 + 7 + 5 = 16.
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -37,76 +37,76 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>滑动窗口</li></div></div><br><div><li>👍 238</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1052.爱生气的书店老板
-//开题时间：2022-10-02 17:33:40
+// 1052.爱生气的书店老板
+// 开题时间：2022-10-02 17:33:40
 public class GrumpyBookstoreOwner {
-    public static void main(String[] args) {
-        Solution solution = new GrumpyBookstoreOwner().new Solution();
-        System.out.println(solution.maxSatisfied(new int[]{1, 0, 1, 2, 1, 1, 7, 5}, new int[]{0, 1, 0, 1, 0, 1, 0, 1}, 3));
+  public static void main(String[] args) {
+    Solution solution = new GrumpyBookstoreOwner().new Solution();
+    System.out.println(solution.maxSatisfied(new int[]{1, 0, 1, 2, 1, 1, 7, 5}, new int[]{0, 1, 0, 1, 0, 1, 0, 1}, 3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
+      int length = customers.length;
+      int sumMax = 0;
+      for (int i = 0; i < minutes; i++)
+        sumMax += customers[i];
+      for (int i = minutes; i < length; i++)
+        if (grumpy[i] == 0)
+          sumMax += customers[i];
+      
+      for (int i = minutes, sumCur = sumMax; i < length; i++) {
+        sumCur += (grumpy[i] == 1 ? customers[i] : 0) -
+            (grumpy[i - minutes] == 1 ? customers[i - minutes] : 0);
+        sumMax = Math.max(sumMax, sumCur);
+      }
+      
+      return sumMax;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
-            int length = customers.length;
-            int sumMax = 0;
-            for (int i = 0; i < minutes; i++)
-                sumMax += customers[i];
-            for (int i = minutes; i < length; i++)
-                if (grumpy[i] == 0)
-                    sumMax += customers[i];
-
-            for (int i = minutes, sumCur = sumMax; i < length; i++) {
-                sumCur += (grumpy[i] == 1 ? customers[i] : 0) -
-                        (grumpy[i - minutes] == 1 ? customers[i - minutes] : 0);
-                sumMax = Math.max(sumMax, sumCur);
-            }
-
-            return sumMax;
-        }
-
-        public int maxSatisfiedGJ(int[] customers, int[] grumpy, int minutes) {
-            int length = customers.length;
-            int sumMax = 0;
-            for (int i = 0; i < minutes; i++)
-                sumMax += customers[i];
-            for (int i = minutes; i < length; i++)
-//                if (grumpy[i] == 0)
-//                    sumMax += customers[i];
-                sumMax += (1 - grumpy[i]) * customers[i];
-
-            for (int i = minutes, sumCur = sumMax; i < length; i++) {
-                sumCur += grumpy[i] * customers[i] -
-                        grumpy[i - minutes] * customers[i - minutes];
-                sumMax = Math.max(sumMax, sumCur);
-            }
-
-            return sumMax;
-        }
-
-        //三叶姐
-        public int maxSatisfiedMTH(int[] customers, int[] grumpy, int minutes) {
-            int length = customers.length;
-            int sumMax = 0;
-            //前 minutes 分钟，「发动秘技！！」
-            for (int i = 0; i < minutes; i++) {
-                sumMax += customers[i];
-                if (grumpy[i] == 0)
-                    customers[i] = 0;
-            }
-            for (int i = minutes; i < length; i++)
-                if (grumpy[i] == 0) {
-                    sumMax += customers[i];
-                    customers[i] = 0;
-                }
-
-            for (int i = minutes, sumCur = sumMax; i < length; i++) {
-                sumCur += customers[i] - customers[i - minutes];
-                sumMax = Math.max(sumMax, sumCur);
-            }
-
-            return sumMax;
-        }
+    
+    public int maxSatisfiedGJ(int[] customers, int[] grumpy, int minutes) {
+      int length = customers.length;
+      int sumMax = 0;
+      for (int i = 0; i < minutes; i++)
+        sumMax += customers[i];
+      for (int i = minutes; i < length; i++)
+        //                if (grumpy[i] == 0)
+        //                    sumMax += customers[i];
+        sumMax += (1 - grumpy[i]) * customers[i];
+      
+      for (int i = minutes, sumCur = sumMax; i < length; i++) {
+        sumCur += grumpy[i] * customers[i] -
+            grumpy[i - minutes] * customers[i - minutes];
+        sumMax = Math.max(sumMax, sumCur);
+      }
+      
+      return sumMax;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 三叶姐
+    public int maxSatisfiedMTH(int[] customers, int[] grumpy, int minutes) {
+      int length = customers.length;
+      int sumMax = 0;
+      // 前 minutes 分钟，「发动秘技！！」
+      for (int i = 0; i < minutes; i++) {
+        sumMax += customers[i];
+        if (grumpy[i] == 0)
+          customers[i] = 0;
+      }
+      for (int i = minutes; i < length; i++)
+        if (grumpy[i] == 0) {
+          sumMax += customers[i];
+          customers[i] = 0;
+        }
+      
+      for (int i = minutes, sumCur = sumMax; i < length; i++) {
+        sumCur += customers[i] - customers[i - minutes];
+        sumMax = Math.max(sumMax, sumCur);
+      }
+      
+      return sumMax;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

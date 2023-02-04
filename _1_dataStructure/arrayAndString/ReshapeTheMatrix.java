@@ -37,28 +37,28 @@
 //<div><li>👍 355</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//566.重塑矩阵
-//开题时间：2022-12-01 11:53:07
+// 566.重塑矩阵
+// 开题时间：2022-12-01 11:53:07
 public class ReshapeTheMatrix {
-    public static void main(String[] args) {
-        Solution solution = new ReshapeTheMatrix().new Solution();
-        System.out.println(solution.matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4));
+  public static void main(String[] args) {
+    Solution solution = new ReshapeTheMatrix().new Solution();
+    System.out.println(solution.matrixReshape(new int[][]{{1, 2}, {3, 4}}, 1, 4));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[][] matrixReshape(int[][] mat, int r, int c) {
+      int m = mat.length;
+      int n = mat[0].length;
+      int size = m * n;
+      if (size != r * c)
+        return mat;
+      
+      int[][] reshaped = new int[r][c];
+      for (int i = 0; i < size; i++)
+        reshaped[i / c][i % c] = mat[i / n][i % n];
+      return reshaped;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[][] matrixReshape(int[][] mat, int r, int c) {
-            int m = mat.length;
-            int n = mat[0].length;
-            int size = m * n;
-            if (size != r * c)
-                return mat;
-
-            int[][] reshaped = new int[r][c];
-            for (int i = 0; i < size; i++)
-                reshaped[i / c][i % c] = mat[i / n][i % n];
-            return reshaped;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

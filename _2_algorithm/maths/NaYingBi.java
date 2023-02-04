@@ -28,21 +28,21 @@
 //<div><li>👍 56</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//LCP 06.拿硬币
-//开题时间：2022-11-14 15:41:12
+// LCP 06.拿硬币
+// 开题时间：2022-11-14 15:41:12
 public class NaYingBi {
-    public static void main(String[] args) {
-        Solution solution = new NaYingBi().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new NaYingBi().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minCount(int[] coins) {
+      int cnt = 0;
+      for (int coin : coins)
+        cnt += (coin + 1) >> 1;
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minCount(int[] coins) {
-            int cnt = 0;
-            for (int coin : coins)
-                cnt += (coin + 1) >> 1;
-            return cnt;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

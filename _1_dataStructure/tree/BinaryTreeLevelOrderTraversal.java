@@ -42,37 +42,37 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
-//102.二叉树的层序遍历
-//开题时间：2022-09-13 18:29:51
+// 102.二叉树的层序遍历
+// 开题时间：2022-09-13 18:29:51
 public class BinaryTreeLevelOrderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new BinaryTreeLevelOrderTraversal().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //BFS+queue
-        public List<List<Integer>> levelOrder(TreeNode root) {
-            List<List<Integer>> tiers = new ArrayList<>();
-            if (root == null)
-                return tiers;
-            Queue<TreeNode> q = new LinkedList<>();
-            q.offer(root);
-
-            while (!q.isEmpty()) {
-                List<Integer> tier = new ArrayList<>();
-                for (int i = q.size(); i > 0; i--) {
-                    TreeNode poll = q.poll();
-                    tier.add(poll.val);
-                    if (poll.left != null) q.offer(poll.left);
-                    if (poll.right != null) q.offer(poll.right);
-                }
-
-                tiers.add(tier);
-            }
-
-            return tiers;
+  public static void main(String[] args) {
+    Solution solution = new BinaryTreeLevelOrderTraversal().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // BFS+queue
+    public List<List<Integer>> levelOrder(TreeNode root) {
+      List<List<Integer>> tiers = new ArrayList<>();
+      if (root == null)
+        return tiers;
+      Queue<TreeNode> q = new LinkedList<>();
+      q.offer(root);
+      
+      while (!q.isEmpty()) {
+        List<Integer> tier = new ArrayList<>();
+        for (int i = q.size(); i > 0; i--) {
+          TreeNode poll = q.poll();
+          tier.add(poll.val);
+          if (poll.left != null) q.offer(poll.left);
+          if (poll.right != null) q.offer(poll.right);
         }
+        
+        tiers.add(tier);
+      }
+      
+      return tiers;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

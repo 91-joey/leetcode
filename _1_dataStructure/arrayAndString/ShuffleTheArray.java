@@ -38,113 +38,113 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//1470.重新排列数组
-//开题时间：2022-11-07 09:07:24
+// 1470.重新排列数组
+// 开题时间：2022-11-07 09:07:24
 public class ShuffleTheArray {
-    public static void main(String[] args) {
-        Solution solution = new ShuffleTheArray().new Solution();
-//        System.out.println(solution.shuffle(new int[]{2, 5, 1, 3, 4, 7}, 3));
-        System.out.println(Arrays.toString(solution.shuffle(new int[]{2, 5, 1, 8, 3, 4, 7, 10}, 4)));
-//        for (int j = 0; j < 6; j++) {
-//            System.out.println(((j % 3) << 1) + (j < 3 ? 0 : 1));
-//        }
+  public static void main(String[] args) {
+    Solution solution = new ShuffleTheArray().new Solution();
+    //        System.out.println(solution.shuffle(new int[]{2, 5, 1, 3, 4, 7}, 3));
+    System.out.println(Arrays.toString(solution.shuffle(new int[]{2, 5, 1, 8, 3, 4, 7, 10}, 4)));
+    //        for (int j = 0; j < 6; j++) {
+    //            System.out.println(((j % 3) << 1) + (j < 3 ? 0 : 1));
+    //        }
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] shuffle9(int[] nums, int n) {
+      int[] ans = new int[nums.length];
+      
+      for (int i = 0; i < ans.length; i++)
+        ans[i] = nums[(i >> 1) + ((i & 1) == 0 ? 0 : n)];
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] shuffle9(int[] nums, int n) {
-            int[] ans = new int[nums.length];
-
-            for (int i = 0; i < ans.length; i++)
-                ans[i] = nums[(i >> 1) + ((i & 1) == 0 ? 0 : n)];
-
-            return ans;
-        }
-
-        public int[] shuffle8(int[] nums, int n) {
-            int[] ans = new int[nums.length];
-
-            for (int i = 0; i < n; i++)
-                ans[i << 1] = nums[i];
-            for (int i = n; i < nums.length; i++)
-                ans[((i - n) << 1) + 1] = nums[i];
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 高位存储  n   1
-        public int[] shuffle7(int[] nums, int n) {
-            for (int i = 0, mask = 1023; i < nums.length; i++)
-                nums[i] |= (nums[(i >> 1) + ((i & 1) == 0 ? 0 : n)] & mask) << 10;
-            for (int i = 0; i < nums.length; i++)
-                nums[i] >>= 10;
-
-            return nums;
-        }
-
-        //☆☆☆☆ GJ    n   n
-        public int[] shuffle6(int[] nums, int n) {
-            int[] ans = new int[nums.length];
-
-            for (int i = 0; i < n; i++) {
-                ans[i << 1] = nums[i];
-                ans[(i << 1) + 1] = nums[i + n];
-            }
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 置换、取反 n   1
-        public int[] shuffle5(int[] nums, int n) {
-            for (int i = 0; i < nums.length; i++)
-                if (nums[i] > 0)
-                    for (int j = i; nums[i] > 0; ) {
-                        j = ((j % n) << 1) + (j < n ? 0 : 1);
-                        swap(nums, i, j);
-                        nums[j] = ~nums[j];
-                    }
-
-            for (int i = 0; i < nums.length; i++)
-                nums[i] = ~nums[i];
-
-            return nums;
-        }
-
-        //置换、取反（优化） n   1
-        public int[] shuffle4(int[] nums, int n) {
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] > 0)
-                    for (int j = i; nums[i] > 0; ) {
-                        j = ((j % n) << 1) + (j < n ? 0 : 1);
-                        swap(nums, i, j);
-                        nums[j] = ~nums[j];
-                    }
-                nums[i] = ~nums[i];
-            }
-            return nums;
-        }
-
-        //☆☆☆☆☆ 置换、取反（再优化） n   1
-        public int[] shuffle(int[] nums, int n) {
-            for (int i = 0; i < nums.length; i++) {
-                if (nums[i] > 0) {
-                    int j = i;
-                    int tmp = ~nums[i];
-                    do {
-                        nums[j] = ~nums[(j = (j >> 1) + ((j & 1) == 0 ? 0 : n))];
-                    } while (j != i);
-                    nums[((i % n) << 1) + (i < n ? 0 : 1)] = tmp;
-                }
-                nums[i] = ~nums[i];
-            }
-            return nums;
-        }
-
-        public void swap(int[] arr, int i, int j) {
-            int tmp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = tmp;
-        }
+    
+    public int[] shuffle8(int[] nums, int n) {
+      int[] ans = new int[nums.length];
+      
+      for (int i = 0; i < n; i++)
+        ans[i << 1] = nums[i];
+      for (int i = n; i < nums.length; i++)
+        ans[((i - n) << 1) + 1] = nums[i];
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 高位存储  n   1
+    public int[] shuffle7(int[] nums, int n) {
+      for (int i = 0, mask = 1023; i < nums.length; i++)
+        nums[i] |= (nums[(i >> 1) + ((i & 1) == 0 ? 0 : n)] & mask) << 10;
+      for (int i = 0; i < nums.length; i++)
+        nums[i] >>= 10;
+      
+      return nums;
+    }
+    
+    //☆☆☆☆ GJ    n   n
+    public int[] shuffle6(int[] nums, int n) {
+      int[] ans = new int[nums.length];
+      
+      for (int i = 0; i < n; i++) {
+        ans[i << 1] = nums[i];
+        ans[(i << 1) + 1] = nums[i + n];
+      }
+      
+      return ans;
+    }
+    
+    //☆☆☆☆☆ 置换、取反 n   1
+    public int[] shuffle5(int[] nums, int n) {
+      for (int i = 0; i < nums.length; i++)
+        if (nums[i] > 0)
+          for (int j = i; nums[i] > 0; ) {
+            j = ((j % n) << 1) + (j < n ? 0 : 1);
+            swap(nums, i, j);
+            nums[j] = ~nums[j];
+          }
+      
+      for (int i = 0; i < nums.length; i++)
+        nums[i] = ~nums[i];
+      
+      return nums;
+    }
+    
+    // 置换、取反（优化） n   1
+    public int[] shuffle4(int[] nums, int n) {
+      for (int i = 0; i < nums.length; i++) {
+        if (nums[i] > 0)
+          for (int j = i; nums[i] > 0; ) {
+            j = ((j % n) << 1) + (j < n ? 0 : 1);
+            swap(nums, i, j);
+            nums[j] = ~nums[j];
+          }
+        nums[i] = ~nums[i];
+      }
+      return nums;
+    }
+    
+    //☆☆☆☆☆ 置换、取反（再优化） n   1
+    public int[] shuffle(int[] nums, int n) {
+      for (int i = 0; i < nums.length; i++) {
+        if (nums[i] > 0) {
+          int j = i;
+          int tmp = ~nums[i];
+          do {
+            nums[j] = ~nums[(j = (j >> 1) + ((j & 1) == 0 ? 0 : n))];
+          } while (j != i);
+          nums[((i % n) << 1) + (i < n ? 0 : 1)] = tmp;
+        }
+        nums[i] = ~nums[i];
+      }
+      return nums;
+    }
+    
+    public void swap(int[] arr, int i, int j) {
+      int tmp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = tmp;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

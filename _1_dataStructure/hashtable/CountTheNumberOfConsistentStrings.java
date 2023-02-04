@@ -45,68 +45,68 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 
 import java.util.HashSet;
 
-//1684.统计一致字符串的数目
-//开题时间：2022-11-08 10:51:31
+// 1684.统计一致字符串的数目
+// 开题时间：2022-11-08 10:51:31
 public class CountTheNumberOfConsistentStrings {
-    public static void main(String[] args) {
-        Solution solution = new CountTheNumberOfConsistentStrings().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CountTheNumberOfConsistentStrings().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 哈希集合
+    public int countConsistentStrings9(String allowed, String[] words) {
+      HashSet<Character> set = new HashSet<>();
+      for (int i = 0; i < allowed.length(); i++)
+        set.add(allowed.charAt(i));
+      
+      int cnt = 0;
+      out:
+      for (String word : words) {
+        for (int i = 0; i < word.length(); i++)
+          if (!set.contains(word.charAt(i)))
+            continue out;
+        cnt++;
+      }
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //哈希集合
-        public int countConsistentStrings9(String allowed, String[] words) {
-            HashSet<Character> set = new HashSet<>();
-            for (int i = 0; i < allowed.length(); i++)
-                set.add(allowed.charAt(i));
-
-            int cnt = 0;
-            out:
-            for (String word : words) {
-                for (int i = 0; i < word.length(); i++)
-                    if (!set.contains(word.charAt(i)))
-                        continue out;
-                cnt++;
-            }
-
-            return cnt;
-        }
-
-        //布尔数组
-        public int countConsistentStrings8(String allowed, String[] words) {
-            boolean[] allows = new boolean[123];
-            for (int i = 0; i < allowed.length(); i++)
-                allows[allowed.charAt(i)] = true;
-
-            int cnt = 0;
-            out:
-            for (String word : words) {
-                for (int i = 0; i < word.length(); i++)
-                    if (!allows[word.charAt(i)])
-                        continue out;
-                cnt++;
-            }
-
-            return cnt;
-        }
-
-        //位运算
-        public int countConsistentStrings(String allowed, String[] words) {
-            int mask = getMask(allowed);
-
-            int cnt = 0;
-            for (String word : words)
-                cnt += (mask | getMask(word)) == mask ? 1 : 0;
-
-            return cnt;
-        }
-
-        private int getMask(String allowed) {
-            int mask = 0;
-            for (int i = 0; i < allowed.length(); i++)
-                mask |= 1 << (allowed.charAt(i) - 'a');
-            return mask;
-        }
+    
+    // 布尔数组
+    public int countConsistentStrings8(String allowed, String[] words) {
+      boolean[] allows = new boolean[123];
+      for (int i = 0; i < allowed.length(); i++)
+        allows[allowed.charAt(i)] = true;
+      
+      int cnt = 0;
+      out:
+      for (String word : words) {
+        for (int i = 0; i < word.length(); i++)
+          if (!allows[word.charAt(i)])
+            continue out;
+        cnt++;
+      }
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 位运算
+    public int countConsistentStrings(String allowed, String[] words) {
+      int mask = getMask(allowed);
+      
+      int cnt = 0;
+      for (String word : words)
+        cnt += (mask | getMask(word)) == mask ? 1 : 0;
+      
+      return cnt;
+    }
+    
+    private int getMask(String allowed) {
+      int mask = 0;
+      for (int i = 0; i < allowed.length(); i++)
+        mask |= 1 << (allowed.charAt(i) - 'a');
+      return mask;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -37,55 +37,55 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li></div></div><br><div><li>👍 920</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//162.寻找峰值
-//开题时间：2022-10-29 12:11:28
+// 162.寻找峰值
+// 开题时间：2022-10-29 12:11:28
 public class FindPeakElement {
-    public static void main(String[] args) {
-        Solution solution = new FindPeakElement().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindPeakElement().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力
+    public int findPeakElement(int[] nums) {
+      int len = nums.length;
+      if (len == 1 || nums[0] > nums[1])
+        return 0;
+      if (nums[len - 2] < nums[len - 1])
+        return len - 1;
+      
+      for (int i = 1; i < len; i++)
+        if (nums[i] > nums[i + 1])
+          return i;
+      
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力
-        public int findPeakElement(int[] nums) {
-            int len = nums.length;
-            if (len == 1 || nums[0] > nums[1])
-                return 0;
-            if (nums[len - 2] < nums[len - 1])
-                return len - 1;
-
-            for (int i = 1; i < len; i++)
-                if (nums[i] > nums[i + 1])
-                    return i;
-
-            return -1;
-        }
-
-        //暴力（精简）
-        public int findPeakElement2(int[] nums) {
-            int len = nums.length;
-            if (len == 1)
-                return 0;
-
-            for (int i = 0; i < len - 1; i++)
-                if (nums[i] > nums[i + 1])
-                    return i;
-
-            return len - 1;
-        }
-
-        //二分查找
-        public int findPeakElement3(int[] nums) {
-            int l = 0, r = nums.length - 1;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (nums[mid] > nums[mid + 1])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return l;
-        }
+    
+    // 暴力（精简）
+    public int findPeakElement2(int[] nums) {
+      int len = nums.length;
+      if (len == 1)
+        return 0;
+      
+      for (int i = 0; i < len - 1; i++)
+        if (nums[i] > nums[i + 1])
+          return i;
+      
+      return len - 1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 二分查找
+    public int findPeakElement3(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (nums[mid] > nums[mid + 1])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return l;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

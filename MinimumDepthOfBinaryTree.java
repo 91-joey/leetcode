@@ -27,7 +27,7 @@ public class MinimumDepthOfBinaryTree {
               ? Math.min(minDepth9(root.left), minDepth9(root.right)) + 1
               : minDepth9(root.right == null ? root.left : root.right) + 1;
     }
-  
+    
     /*
      * dfs（自底向上）（当某个节点只有一侧节点（左或右）时，用加法运算（加零等于没加））
      * 注意：这题和「104. 二叉树的最小深度」不同之处在于：
@@ -42,7 +42,7 @@ public class MinimumDepthOfBinaryTree {
     }
     
     int minDepth = Integer.MAX_VALUE;
-  
+    
     // dfs（自顶向下）
     public int minDepth8(TreeNode root) {
       dfs(root, 1);

@@ -41,82 +41,87 @@
 //<div><li>👍 124</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.sort;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeMap;
 
-//1331.数组序号转换
-//开题时间：2022-12-26 09:58:26
+// 1331.数组序号转换
+// 开题时间：2022-12-26 09:58:26
 public class RankTransformOfAnArray {
-    public static void main(String[] args) {
-        Solution solution = new RankTransformOfAnArray().new Solution();
-        System.out.println(Arrays.toString(solution.arrayRankTransform(new int[]{})));
+  public static void main(String[] args) {
+    Solution solution = new RankTransformOfAnArray().new Solution();
+    System.out.println(Arrays.toString(solution.arrayRankTransform(new int[]{})));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 二维数组（值、索引）排序
+    public int[] arrayRankTransform9(int[] arr) {
+      int n = arr.length;
+      if (n <= 0)
+        return arr;
+      
+      int[][] val2idx = new int[n][2];
+      for (int i = 0; i < n; i++) {
+        val2idx[i][0] = arr[i];
+        val2idx[i][1] = i;
+      }
+      Arrays.sort(val2idx, Comparator.comparingInt(a -> a[0]));
+      
+      arr[val2idx[0][1]] = 1;
+      for (int i = 1, rank = 1; i < n; i++)
+        if (val2idx[i - 1][0] == val2idx[i][0])
+          arr[val2idx[i][1]] = rank;
+        else
+          arr[val2idx[i][1]] = ++rank;
+      
+      return arr;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //二维数组（值、索引）排序
-        public int[] arrayRankTransform9(int[] arr) {
-            int n = arr.length;
-            if (n <= 0)
-                return arr;
-
-            int[][] val2idx = new int[n][2];
-            for (int i = 0; i < n; i++) {
-                val2idx[i][0] = arr[i];
-                val2idx[i][1] = i;
-            }
-            Arrays.sort(val2idx, Comparator.comparingInt(a -> a[0]));
-
-            arr[val2idx[0][1]] = 1;
-            for (int i = 1, rank = 1; i < n; i++)
-                if (val2idx[i - 1][0] == val2idx[i][0])
-                    arr[val2idx[i][1]] = rank;
-                else
-                    arr[val2idx[i][1]] = ++rank;
-
-            return arr;
+    
+    // TreeMap<Integer, Set<Integer>>
+    public int[] arrayRankTransform8(int[] arr) {
+      int n = arr.length;
+      if (n <= 0)
+        return arr;
+      
+      TreeMap<Integer, Set<Integer>> val2inidces = new TreeMap<>();
+      for (int i = 0; i < n; i++) {
+        if (val2inidces.containsKey(arr[i])) {
+          val2inidces.get(arr[i]).add(i);
+        } else {
+          HashSet<Integer> set = new HashSet<>();
+          set.add(i);
+          val2inidces.put(arr[i], set);
         }
-
-        //TreeMap<Integer, Set<Integer>>
-        public int[] arrayRankTransform8(int[] arr) {
-            int n = arr.length;
-            if (n <= 0)
-                return arr;
-
-            TreeMap<Integer, Set<Integer>> val2inidces = new TreeMap<>();
-            for (int i = 0; i < n; i++) {
-                if (val2inidces.containsKey(arr[i])) {
-                    val2inidces.get(arr[i]).add(i);
-                } else {
-                    HashSet<Integer> set = new HashSet<>();
-                    set.add(i);
-                    val2inidces.put(arr[i], set);
-                }
-            }
-
-            final int[] rank = {1};
-            val2inidces.forEach((k, v) -> {
-                v.forEach(idx -> arr[idx] = rank[0]);
-                rank[0]++;
-            });
-
-            return arr;
-        }
-
-        //☆☆☆☆☆ 数组拷贝排序 + HashMap
-        public int[] arrayRankTransform(int[] arr) {
-            int n = arr.length;
-            int[] sorted = Arrays.copyOf(arr, n);
-            Arrays.sort(sorted);
-
-            HashMap<Integer, Integer> val2rank = new HashMap<>();
-            for (int x : sorted)
-                val2rank.putIfAbsent(x, val2rank.size() + 1);
-
-            for (int i = 0; i < n; i++)
-                arr[i] = val2rank.get(arr[i]);
-
-            return arr;
-        }
+      }
+      
+      final int[] rank = {1};
+      val2inidces.forEach((k, v) -> {
+        v.forEach(idx -> arr[idx] = rank[0]);
+        rank[0]++;
+      });
+      
+      return arr;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 数组拷贝排序 + HashMap
+    public int[] arrayRankTransform(int[] arr) {
+      int n = arr.length;
+      int[] sorted = Arrays.copyOf(arr, n);
+      Arrays.sort(sorted);
+      
+      HashMap<Integer, Integer> val2rank = new HashMap<>();
+      for (int x : sorted)
+        val2rank.putIfAbsent(x, val2rank.size() + 1);
+      
+      for (int i = 0; i < n; i++)
+        arr[i] = val2rank.get(arr[i]);
+      
+      return arr;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

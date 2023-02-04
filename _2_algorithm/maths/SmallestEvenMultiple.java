@@ -1,4 +1,4 @@
-//给你一个正整数 <code>n</code> ，返回 <code>2</code><em> </em>和<em> </em><code>n</code> 的最小公倍数（正整数）。
+// 给你一个正整数 <code>n</code> ，返回 <code>2</code><em> </em>和<em> </em><code>n</code> 的最小公倍数（正整数）。
 //
 //<p>&nbsp;</p>
 //
@@ -27,22 +27,22 @@
 //<div><div>Related Topics</div><div><li>数学</li><li>数论</li></div></div><br><div><li>👍 12</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//2413.最小偶倍数
-//开题时间：2022-11-01 14:52:44
+// 2413.最小偶倍数
+// 开题时间：2022-11-01 14:52:44
 public class SmallestEvenMultiple {
-    public static void main(String[] args) {
-        Solution solution = new SmallestEvenMultiple().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SmallestEvenMultiple().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int smallestEvenMultiple(int n) {
+      return (n & 1) == 1 ? n * 2 : n;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int smallestEvenMultiple(int n) {
-            return (n & 1) == 1 ? n * 2 : n;
-        }
-
-        public int smallestEvenMultiple2(int n) {
-            return n << (n & 1);
-        }
+    
+    public int smallestEvenMultiple2(int n) {
+      return n << (n & 1);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

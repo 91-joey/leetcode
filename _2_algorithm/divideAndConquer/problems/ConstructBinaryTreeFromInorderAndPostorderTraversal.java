@@ -38,37 +38,37 @@ import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 import java.util.HashMap;
 import java.util.Map;
 
-//106.从中序与后序遍历序列构造二叉树
-//开题时间：2022-11-17 17:14:42
+// 106.从中序与后序遍历序列构造二叉树
+// 开题时间：2022-11-17 17:14:42
 public class ConstructBinaryTreeFromInorderAndPostorderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ConstructBinaryTreeFromInorderAndPostorderTraversal().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  class Solution {
+    Map<Integer, Integer> val2idx = new HashMap<>();
+    
+    public TreeNode buildTree(int[] inorder, int[] postorder) {
+      int len = inorder.length;
+      for (int i = 0; i < len; i++)
+        val2idx.put(inorder[i], i);
+      
+      return buildTree(postorder, 0, len - 1, 0, len - 1);
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    class Solution {
-        Map<Integer, Integer> val2idx = new HashMap<>();
-
-        public TreeNode buildTree(int[] inorder, int[] postorder) {
-            int len = inorder.length;
-            for (int i = 0; i < len; i++)
-                val2idx.put(inorder[i], i);
-
-            return buildTree(postorder, 0, len - 1, 0, len - 1);
-        }
-
-        private TreeNode buildTree(int[] postorder, int l1, int r1, int l2, int r2) {
-            if (l1 > r1)
-                return null;
-
-            TreeNode root = new TreeNode(postorder[r2]);
-            int rootIdxIn = val2idx.get(postorder[r2]);
-            int rightStart = l2 + rootIdxIn - l1;
-            root.left = buildTree(postorder, l1, rootIdxIn - 1, l2, rightStart - 1);
-            root.right = buildTree(postorder, rootIdxIn + 1, r1, rightStart, r2 - 1);
-
-            return root;
-        }
+    
+    private TreeNode buildTree(int[] postorder, int l1, int r1, int l2, int r2) {
+      if (l1 > r1)
+        return null;
+      
+      TreeNode root = new TreeNode(postorder[r2]);
+      int rootIdxIn = val2idx.get(postorder[r2]);
+      int rightStart = l2 + rootIdxIn - l1;
+      root.left = buildTree(postorder, l1, rootIdxIn - 1, l2, rightStart - 1);
+      root.right = buildTree(postorder, rootIdxIn + 1, r1, rightStart, r2 - 1);
+      
+      return root;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

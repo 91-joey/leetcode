@@ -52,42 +52,42 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//1290.二进制链表转整数
-//开题时间：2022-12-10 09:33:12
+// 1290.二进制链表转整数
+// 开题时间：2022-12-10 09:33:12
 public class ConvertBinaryNumberInALinkedListToInteger {
-    public static void main(String[] args) {
-        Solution solution = new ConvertBinaryNumberInALinkedListToInteger().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ConvertBinaryNumberInALinkedListToInteger().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int getDecimalValue9(ListNode head) {
+      int n = head.val;
+      head = head.next;
+      while (head != null) {
+        n <<= 1;
+        n |= head.val;
+        head = head.next;
+      }
+      return n;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int getDecimalValue9(ListNode head) {
-            int n = head.val;
-            head = head.next;
-            while (head != null) {
-                n <<= 1;
-                n |= head.val;
-                head = head.next;
-            }
-            return n;
-        }
-
-        public int getDecimalValue8(ListNode head) {
-            String s = "";
-            for (ListNode node = head; node != null; node = node.next)
-                s += node.val;
-            return Integer.parseInt(s, 2);
-        }
-
-        public int getDecimalValue(ListNode head) {
-            int n = 0;
-            while (head != null) {
-                n <<= 1;
-                n |= head.val;
-                head = head.next;
-            }
-            return n;
-        }
+    
+    public int getDecimalValue8(ListNode head) {
+      String s = "";
+      for (ListNode node = head; node != null; node = node.next)
+        s += node.val;
+      return Integer.parseInt(s, 2);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int getDecimalValue(ListNode head) {
+      int n = 0;
+      while (head != null) {
+        n <<= 1;
+        n |= head.val;
+        head = head.next;
+      }
+      return n;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

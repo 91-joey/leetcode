@@ -41,42 +41,42 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import java.util.ArrayList;
 import java.util.List;
 
-//1557.可以到达所有点的最少点数目
-//开题时间：2023-01-13 10:43:51
+// 1557.可以到达所有点的最少点数目
+// 开题时间：2023-01-13 10:43:51
 public class MinimumNumberOfVerticesToReachAllNodes {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfVerticesToReachAllNodes().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfVerticesToReachAllNodes().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 答案为所有入度为 0 的节点集
+    public List<Integer> findSmallestSetOfVertices9(int n, List<List<Integer>> edges) {
+      int[] inDeg = new int[n];
+      for (List<Integer> edge : edges)
+        inDeg[edge.get(1)]++;
+      
+      ArrayList<Integer> ans = new ArrayList<>();
+      for (int i = 0; i < n; i++)
+        if (inDeg[i] == 0)
+          ans.add(i);
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //答案为所有入度为 0 的节点集
-        public List<Integer> findSmallestSetOfVertices9(int n, List<List<Integer>> edges) {
-            int[] inDeg = new int[n];
-            for (List<Integer> edge : edges)
-                inDeg[edge.get(1)]++;
-
-            ArrayList<Integer> ans = new ArrayList<>();
-            for (int i = 0; i < n; i++)
-                if (inDeg[i] == 0)
-                    ans.add(i);
-
-            return ans;
-        }
-
-        //☆☆☆☆☆ 答案为所有入度为 0 的节点集（布尔数组优化）
-        public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {
-            boolean[] hasInDeg = new boolean[n];
-            for (List<Integer> edge : edges)
-                hasInDeg[edge.get(1)] = true;
-
-            ArrayList<Integer> ans = new ArrayList<>();
-            for (int i = 0; i < n; i++)
-                if (!hasInDeg[i])
-                    ans.add(i);
-
-            return ans;
-        }
+    
+    //☆☆☆☆☆ 答案为所有入度为 0 的节点集（布尔数组优化）
+    public List<Integer> findSmallestSetOfVertices(int n, List<List<Integer>> edges) {
+      boolean[] hasInDeg = new boolean[n];
+      for (List<Integer> edge : edges)
+        hasInDeg[edge.get(1)] = true;
+      
+      ArrayList<Integer> ans = new ArrayList<>();
+      for (int i = 0; i < n; i++)
+        if (!hasInDeg[i])
+          ans.add(i);
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

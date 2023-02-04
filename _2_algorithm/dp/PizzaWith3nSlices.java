@@ -48,59 +48,59 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//1388.3n 块披萨
-//开题时间：2022-11-26 16:39:40
+// 1388.3n 块披萨
+// 开题时间：2022-11-26 16:39:40
 public class PizzaWith3nSlices {
-    public static void main(String[] args) {
-        Solution solution = new PizzaWith3nSlices().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new PizzaWith3nSlices().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // DP官解（拷贝数组）
+    public int maxSizeSlices9(int[] slices) {
+      int n = slices.length;
+      return Math.max(
+          getMax(Arrays.copyOfRange(slices, 0, n - 1)),
+          getMax(Arrays.copyOfRange(slices, 1, n))
+      );
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //DP官解（拷贝数组）
-        public int maxSizeSlices9(int[] slices) {
-            int n = slices.length;
-            return Math.max(
-                    getMax(Arrays.copyOfRange(slices, 0, n - 1)),
-                    getMax(Arrays.copyOfRange(slices, 1, n))
-            );
+    
+    private int getMax(int[] slices) {
+      int n = slices.length;
+      int choose = (n + 1) / 3;
+      int[][] dp = new int[n + 1][choose + 1];
+      for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= Math.min(choose, i / 2 + 1); j++) {
+          dp[i][j] = Math.max(
+              (i >= 2 ? dp[i - 2][j - 1] : 0) + slices[i - 1],
+              dp[i - 1][j]);
         }
-
-        private int getMax(int[] slices) {
-            int n = slices.length;
-            int choose = (n + 1) / 3;
-            int[][] dp = new int[n + 1][choose + 1];
-            for (int i = 1; i <= n; i++) {
-                for (int j = 1; j <= Math.min(choose, i / 2 + 1); j++) {
-                    dp[i][j] = Math.max(
-                            (i >= 2 ? dp[i - 2][j - 1] : 0) + slices[i - 1],
-                            dp[i - 1][j]);
-                }
-            }
-            return dp[n][choose];
-        }
-
-        //DP官解（不拷贝数组）
-        public int maxSizeSlices(int[] slices) {
-            return Math.max(
-                    getMax(slices, 0),
-                    getMax(slices, 1)
-            );
-        }
-
-        private int getMax(int[] slices, int start) {
-            int n = slices.length;
-            int choose = n / 3;
-            int[][] dp = new int[n + 1][choose + 1];
-
-            for (int i = 2; i <= n; i++)
-                for (int j = 1; j <= choose; j++)
-                    dp[i][j] = Math.max(
-                            dp[i - 2][j - 1] + slices[start + i - 2],
-                            dp[i - 1][j]);
-
-            return dp[n][choose];
-        }
+      }
+      return dp[n][choose];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // DP官解（不拷贝数组）
+    public int maxSizeSlices(int[] slices) {
+      return Math.max(
+          getMax(slices, 0),
+          getMax(slices, 1)
+      );
+    }
+    
+    private int getMax(int[] slices, int start) {
+      int n = slices.length;
+      int choose = n / 3;
+      int[][] dp = new int[n + 1][choose + 1];
+      
+      for (int i = 2; i <= n; i++)
+        for (int j = 1; j <= choose; j++)
+          dp[i][j] = Math.max(
+              dp[i - 2][j - 1] + slices[start + i - 2],
+              dp[i - 1][j]);
+      
+      return dp[n][choose];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

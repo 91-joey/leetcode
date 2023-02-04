@@ -47,34 +47,34 @@ package org.example.leetcode.problems._2_algorithm.sort.problems;
 
 import java.util.Arrays;
 
-//908.最小差值 I
-//开题时间：2022-09-29 10:59:43
+// 908.最小差值 I
+// 开题时间：2022-09-29 10:59:43
 public class SmallestRangeI {
-    public static void main(String[] args) {
-        Solution solution = new SmallestRangeI().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SmallestRangeI().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 笨办法：排序
+    public int smallestRangeI(int[] nums, int k) {
+      int length = nums.length;
+      if (length == 1) return 0;
+      Arrays.sort(nums);
+      return nums[length - 1] - nums[0] > 2 * k ? nums[length - 1] - nums[0] - 2 * k : 0;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //笨办法：排序
-        public int smallestRangeI(int[] nums, int k) {
-            int length = nums.length;
-            if (length == 1) return 0;
-            Arrays.sort(nums);
-            return nums[length - 1] - nums[0] > 2 * k ? nums[length - 1] - nums[0] - 2 * k : 0;
-        }
-
-        //数学法（求最值）
-        public int smallestRangeI2(int[] nums, int k) {
-            int min = nums[0];
-            int max = nums[0];
-            for (int e : nums) {
-                if (e < min) min = e;
-                else if (max < e) max = e;
-            }
-
-            return Math.max(max - min - 2 * k, 0);
-        }
+    
+    // 数学法（求最值）
+    public int smallestRangeI2(int[] nums, int k) {
+      int min = nums[0];
+      int max = nums[0];
+      for (int e : nums) {
+        if (e < min) min = e;
+        else if (max < e) max = e;
+      }
+      
+      return Math.max(max - min - 2 * k, 0);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -42,112 +42,112 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//658.找到 K 个最接近的元素
-//开题时间：2022-10-24 18:50:02
+// 658.找到 K 个最接近的元素
+// 开题时间：2022-10-24 18:50:02
 public class FindKClosestElements {
-    public static void main(String[] args) {
-        Solution solution = new FindKClosestElements().new Solution();
-        System.out.println(solution.findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
+  public static void main(String[] args) {
+    Solution solution = new FindKClosestElements().new Solution();
+    System.out.println(solution.findClosestElements(new int[]{1, 1, 1, 10, 10, 10}, 1, 9));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<Integer> findClosestElements(int[] arr, int k, int x) {
+      ArrayList<Integer> list = new ArrayList<>();
+      int len = arr.length;
+      if (x <= arr[0])
+        for (int i = 0; i < k; i++)
+          list.add(arr[i]);
+      else if (arr[len - 1] <= x)
+        for (int i = len - k; i < len; i++)
+          list.add(arr[i]);
+      else {
+        int search = Arrays.binarySearch(arr, x);
+        if (search < 0)
+          search = -search - 1;
+        int l = search - 1;
+        int r = search;
+        while (l >= 0 && r < len && l + k >= r)
+          if (x - arr[l] <= arr[r] - x)
+            l--;
+          else
+            r++;
+        if (l < 0)
+          for (int i = 0; i < k; i++)
+            list.add(arr[i]);
+        else if (r >= len)
+          for (int i = len - k; i < len; i++)
+            list.add(arr[i]);
+        else
+          for (int i = l + 1; i < r; i++)
+            list.add(arr[i]);
+      }
+      return list;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<Integer> findClosestElements(int[] arr, int k, int x) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int len = arr.length;
-            if (x <= arr[0])
-                for (int i = 0; i < k; i++)
-                    list.add(arr[i]);
-            else if (arr[len - 1] <= x)
-                for (int i = len - k; i < len; i++)
-                    list.add(arr[i]);
-            else {
-                int search = Arrays.binarySearch(arr, x);
-                if (search < 0)
-                    search = -search - 1;
-                int l = search - 1;
-                int r = search;
-                while (l >= 0 && r < len && l + k >= r)
-                    if (x - arr[l] <= arr[r] - x)
-                        l--;
-                    else
-                        r++;
-                if (l < 0)
-                    for (int i = 0; i < k; i++)
-                        list.add(arr[i]);
-                else if (r >= len)
-                    for (int i = len - k; i < len; i++)
-                        list.add(arr[i]);
-                else
-                    for (int i = l + 1; i < r; i++)
-                        list.add(arr[i]);
-            }
-            return list;
-        }
-
-        //排序    nlogn
-        public List<Integer> findClosestElements2(int[] arr, int k, int x) {
-            return Arrays.stream(arr)
-                    .boxed()
-                    .sorted((o1, o2) -> {
-                        int diff = Math.abs(o1 - x) - Math.abs(o2 - x);
-                        return diff == 0 ? o1 - o2 : diff;
-                    })
-                    .limit(k)
-                    .sorted()
-                    .toList();
-        }
-
-        //二分查找+双指针  logn+k
-        public List<Integer> findClosestElements3(int[] arr, int k, int x) {
-            ArrayList<Integer> list = new ArrayList<>();
-            int len = arr.length;
-            if (x <= arr[0])
-                for (int i = 0; i < k; i++)
-                    list.add(arr[i]);
-            else if (arr[len - 1] <= x)
-                for (int i = len - k; i < len; i++)
-                    list.add(arr[i]);
-            else {
-                int search = Arrays.binarySearch(arr, x);
-                if (search < 0)
-                    search = -search - 1;
-                int l = search - 1;
-                int r = search;
-                while (l >= 0 && r < len && l + k >= r)
-                    if (x - arr[l] <= arr[r] - x)
-                        l--;
-                    else
-                        r++;
-
-                if (l < 0)
-                    r = k;
-                else if (r >= len)
-                    l = len - k - 1;
-
-                for (int i = l + 1; i < r; i++)
-                    list.add(arr[i]);
-            }
-            return list;
-        }
-
-        //排除法（双指针）  n-k
-        public List<Integer> findClosestElements4(int[] arr, int k, int x) {
-            int len = arr.length;
-            int l = 0, r = len - 1;
-            for (int i = 0; i < len - k; i++) {
-                if (x - arr[l] <= arr[r] - x)
-                    r--;
-                else
-                    l++;
-            }
-            return Arrays.stream(arr)
-                    .skip(l)
-                    .limit(k)
-                    .boxed()
-                    .toList();
-        }
-
+    
+    // 排序    nlogn
+    public List<Integer> findClosestElements2(int[] arr, int k, int x) {
+      return Arrays.stream(arr)
+          .boxed()
+          .sorted((o1, o2) -> {
+            int diff = Math.abs(o1 - x) - Math.abs(o2 - x);
+            return diff == 0 ? o1 - o2 : diff;
+          })
+          .limit(k)
+          .sorted()
+          .toList();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 二分查找+双指针  logn+k
+    public List<Integer> findClosestElements3(int[] arr, int k, int x) {
+      ArrayList<Integer> list = new ArrayList<>();
+      int len = arr.length;
+      if (x <= arr[0])
+        for (int i = 0; i < k; i++)
+          list.add(arr[i]);
+      else if (arr[len - 1] <= x)
+        for (int i = len - k; i < len; i++)
+          list.add(arr[i]);
+      else {
+        int search = Arrays.binarySearch(arr, x);
+        if (search < 0)
+          search = -search - 1;
+        int l = search - 1;
+        int r = search;
+        while (l >= 0 && r < len && l + k >= r)
+          if (x - arr[l] <= arr[r] - x)
+            l--;
+          else
+            r++;
+        
+        if (l < 0)
+          r = k;
+        else if (r >= len)
+          l = len - k - 1;
+        
+        for (int i = l + 1; i < r; i++)
+          list.add(arr[i]);
+      }
+      return list;
+    }
+    
+    // 排除法（双指针）  n-k
+    public List<Integer> findClosestElements4(int[] arr, int k, int x) {
+      int len = arr.length;
+      int l = 0, r = len - 1;
+      for (int i = 0; i < len - k; i++) {
+        if (x - arr[l] <= arr[r] - x)
+          r--;
+        else
+          l++;
+      }
+      return Arrays.stream(arr)
+          .skip(l)
+          .limit(k)
+          .boxed()
+          .toList();
+    }
+    
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

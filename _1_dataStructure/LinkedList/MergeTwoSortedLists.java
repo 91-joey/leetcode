@@ -38,44 +38,44 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//21.合并两个有序链表
-//开题时间：2022-08-31 14:40:02
+// 21.合并两个有序链表
+// 开题时间：2022-08-31 14:40:02
 public class MergeTwoSortedLists {
-    public static void main(String[] args) {
-        Solution solution = new MergeTwoSortedLists().new Solution();
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        //1.迭代  n+m 1
-        public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
-            ListNode dummy = new ListNode();
-            ListNode pointer = dummy;
-
-            while (list1 != null && list2 != null) {
-                if (list1.val < list2.val) {
-                    pointer.next = list1;
-                    list1 = list1.next;
-                } else {
-                    pointer.next = list2;
-                    list2 = list2.next;
-                }
-                pointer = pointer.next;
-            }
-            pointer.next = list1 == null ? list2 : list1;
-
-            return dummy.next;
+  public static void main(String[] args) {
+    Solution solution = new MergeTwoSortedLists().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    // 1.迭代  n+m 1
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+      ListNode dummy = new ListNode();
+      ListNode pointer = dummy;
+      
+      while (list1 != null && list2 != null) {
+        if (list1.val < list2.val) {
+          pointer.next = list1;
+          list1 = list1.next;
+        } else {
+          pointer.next = list2;
+          list2 = list2.next;
         }
+        pointer = pointer.next;
+      }
+      pointer.next = list1 == null ? list2 : list1;
+      
+      return dummy.next;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

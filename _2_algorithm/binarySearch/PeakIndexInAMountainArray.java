@@ -1,4 +1,4 @@
-//符合下列属性的数组 <code>arr</code> 称为 <strong>山脉数组</strong> ：
+// 符合下列属性的数组 <code>arr</code> 称为 <strong>山脉数组</strong> ：
 //
 //<ul> 
 // <li><code>arr.length &gt;= 3</code></li> 
@@ -65,26 +65,26 @@
 //<div><li>👍 316</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//852.山脉数组的峰顶索引
-//开题时间：2022-11-21 10:55:51
+// 852.山脉数组的峰顶索引
+// 开题时间：2022-11-21 10:55:51
 public class PeakIndexInAMountainArray {
-    public static void main(String[] args) {
-        Solution solution = new PeakIndexInAMountainArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new PeakIndexInAMountainArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int peakIndexInMountainArray(int[] arr) {
+      int l = 1, r = arr.length - 2;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (arr[mid] > arr[mid + 1])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int peakIndexInMountainArray(int[] arr) {
-            int l = 1, r = arr.length - 2;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (arr[mid] > arr[mid + 1])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

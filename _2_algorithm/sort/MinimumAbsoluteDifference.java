@@ -49,29 +49,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//1200.最小绝对差
-//开题时间：2022-12-21 10:44:56
+// 1200.最小绝对差
+// 开题时间：2022-12-21 10:44:56
 public class MinimumAbsoluteDifference {
-    public static void main(String[] args) {
-        Solution solution = new MinimumAbsoluteDifference().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumAbsoluteDifference().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<List<Integer>> minimumAbsDifference(int[] arr) {
+      Arrays.sort(arr);
+      
+      int min = Integer.MAX_VALUE;
+      for (int i = 1; i < arr.length; i++)
+        min = Math.min(min, arr[i] - arr[i - 1]);
+      
+      ArrayList<List<Integer>> ans = new ArrayList<>();
+      for (int i = 1; i < arr.length; i++)
+        if (min == arr[i] - arr[i - 1])
+          ans.add(List.of(arr[i - 1], arr[i]));
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<List<Integer>> minimumAbsDifference(int[] arr) {
-            Arrays.sort(arr);
-
-            int min = Integer.MAX_VALUE;
-            for (int i = 1; i < arr.length; i++)
-                min = Math.min(min, arr[i] - arr[i - 1]);
-
-            ArrayList<List<Integer>> ans = new ArrayList<>();
-            for (int i = 1; i < arr.length; i++)
-                if (min == arr[i] - arr[i - 1])
-                    ans.add(List.of(arr[i - 1], arr[i]));
-
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

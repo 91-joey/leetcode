@@ -40,61 +40,61 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-//219.存在重复元素 II
-//开题时间：2022-09-06 08:39:52
+// 219.存在重复元素 II
+// 开题时间：2022-09-06 08:39:52
 public class ContainsDuplicateIi {
-    public static void main(String[] args) {
-        Solution solution = new ContainsDuplicateIi().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ContainsDuplicateIi().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力迭代(双指针)  n^m 1
+    public boolean containsNearbyDuplicate(int[] nums, int k) {
+      int length = nums.length;
+      
+      for (int i = 0; i < length - 1; i++) {
+        int min = Math.min(i + k, length - 1);
+        for (int j = i + 1; j <= min; j++) {
+          if (nums[i] == nums[j]) {
+            return true;
+          }
+        }
+      }
+      
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力迭代(双指针)  n^m 1
-        public boolean containsNearbyDuplicate(int[] nums, int k) {
-            int length = nums.length;
-
-            for (int i = 0; i < length - 1; i++) {
-                int min = Math.min(i + k, length - 1);
-                for (int j = i + 1; j <= min; j++) {
-                    if (nums[i] == nums[j]) {
-                        return true;
-                    }
-                }
-            }
-
-            return false;
+    
+    // 哈希表（hashmap）   n   n
+    public boolean containsNearbyDuplicate2(int[] nums, int k) {
+      Map<Integer, Integer> map = new HashMap<>();
+      
+      for (int i = 0; i < nums.length; i++) {
+        int e = nums[i];
+        Integer lst = map.get(e);
+        if (lst == null || i - lst > k) {
+          map.put(e, i);
+        } else {
+          return true;
         }
-
-        //哈希表（hashmap）   n   n
-        public boolean containsNearbyDuplicate2(int[] nums, int k) {
-            Map<Integer, Integer> map = new HashMap<>();
-
-            for (int i = 0; i < nums.length; i++) {
-                int e = nums[i];
-                Integer lst = map.get(e);
-                if (lst == null || i - lst > k) {
-                    map.put(e, i);
-                } else {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
-        //滑动窗口（hashset） n   k
-        public boolean containsNearbyDuplicate3(int[] nums, int k) {
-            Set<Integer> set = new HashSet<>();
-
-            for (int i = 0; i < nums.length; i++) {
-                if (i > k)
-                    set.remove(nums[i - k - 1]);
-                if(!set.add(nums[i]))
-                    return true;
-            }
-
-            return false;
-        }
+      }
+      
+      return false;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 滑动窗口（hashset） n   k
+    public boolean containsNearbyDuplicate3(int[] nums, int k) {
+      Set<Integer> set = new HashSet<>();
+      
+      for (int i = 0; i < nums.length; i++) {
+        if (i > k)
+          set.remove(nums[i - k - 1]);
+        if (!set.add(nums[i]))
+          return true;
+      }
+      
+      return false;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

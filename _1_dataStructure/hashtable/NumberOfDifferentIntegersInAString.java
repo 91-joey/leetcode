@@ -47,66 +47,66 @@ import java.math.BigInteger;
 import java.util.Arrays;
 import java.util.HashSet;
 
-//1805.字符串中不同整数的数目
-//开题时间：2022-12-06 13:11:03
+// 1805.字符串中不同整数的数目
+// 开题时间：2022-12-06 13:11:03
 public class NumberOfDifferentIntegersInAString {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfDifferentIntegersInAString().new Solution();
-        System.out.println(Integer.valueOf("001"));
-        System.out.println("new BigInteger(\"001\") = " + new BigInteger("001"));
-//        System.out.println(solution.numDifferentIntegers("xtimt5kqkz9osexe56ezwwninlyeeqsq5m99904os3ygs12t31n1et4uwzmt5kvv6teisobuxt10k33v1aaxysg4y8nsivxdp3fo9dr7x58m8uc4ofm41ai77u8cvzr5r3s97f5otns59ubqk57xwl00xsp9w2oodt6yxcbscloyr9c2su8gca1ly6rrjufm25luhxhesxwn7bk1as9na4cbabxk"));
-        System.out.println(solution.numDifferentIntegers("a1b01c001"));
-//        System.out.println(solution.numDifferentIntegers("a123bc34d8ef34"));
+  public static void main(String[] args) {
+    Solution solution = new NumberOfDifferentIntegersInAString().new Solution();
+    System.out.println(Integer.valueOf("001"));
+    System.out.println("new BigInteger(\"001\") = " + new BigInteger("001"));
+    //        System.out.println(solution.numDifferentIntegers("xtimt5kqkz9osexe56ezwwninlyeeqsq5m99904os3ygs12t31n1et4uwzmt5kvv6teisobuxt10k33v1aaxysg4y8nsivxdp3fo9dr7x58m8uc4ofm41ai77u8cvzr5r3s97f5otns59ubqk57xwl00xsp9w2oodt6yxcbscloyr9c2su8gca1ly6rrjufm25luhxhesxwn7bk1as9na4cbabxk"));
+    System.out.println(solution.numDifferentIntegers("a1b01c001"));
+    //        System.out.println(solution.numDifferentIntegers("a123bc34d8ef34"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  //    import java.math.BigInteger;
+  
+  class Solution {
+    public int numDifferentIntegers9(String word) {
+      return (int) Arrays.stream(word.split("\\p{Lower}+"))
+          .filter(s -> !s.isEmpty())
+          .map(BigInteger::new)
+          .distinct()
+          .count();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-//    import java.math.BigInteger;
-
-    class Solution {
-        public int numDifferentIntegers9(String word) {
-            return (int) Arrays.stream(word.split("\\p{Lower}+"))
-                    .filter(s -> !s.isEmpty())
-                    .map(BigInteger::new)
-                    .distinct()
-                    .count();
+    
+    public int numDifferentIntegers8(String word) {
+      String[] split = word.split("\\p{Lower}+");
+      HashSet<String> set = new HashSet<>();
+      for (String s : split)
+        if (!s.isEmpty()) {
+          int i = 0;
+          while (i < s.length() && s.charAt(i) == '0')
+            i++;
+          if (i != s.length())
+            set.add(s.substring(i));
+          else
+            set.add("0");
         }
-
-        public int numDifferentIntegers8(String word) {
-            String[] split = word.split("\\p{Lower}+");
-            HashSet<String> set = new HashSet<>();
-            for (String s : split)
-                if (!s.isEmpty()) {
-                    int i = 0;
-                    while (i < s.length() && s.charAt(i) == '0')
-                        i++;
-                    if (i != s.length())
-                        set.add(s.substring(i));
-                    else
-                        set.add("0");
-                }
-            return set.size();
-        }
-
-
-        public int numDifferentIntegers(String word) {
-            HashSet<String> set = new HashSet<>();
-            int n = word.length();
-            for (int l = 0, r; l < n; l = r + 1) {
-                while (l < n && !Character.isDigit(word.charAt(l)))
-                    l++;
-
-                r = l + 1;
-                while (r < n && Character.isDigit(word.charAt(r)))
-                    r++;
-
-                while (r - l > 1 && word.charAt(l) == '0')
-                    l++;
-
-                if (l < n)
-                    set.add(word.substring(l, r));
-            }
-            return set.size();
-        }
+      return set.size();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    
+    public int numDifferentIntegers(String word) {
+      HashSet<String> set = new HashSet<>();
+      int n = word.length();
+      for (int l = 0, r; l < n; l = r + 1) {
+        while (l < n && !Character.isDigit(word.charAt(l)))
+          l++;
+        
+        r = l + 1;
+        while (r < n && Character.isDigit(word.charAt(r)))
+          r++;
+        
+        while (r - l > 1 && word.charAt(l) == '0')
+          l++;
+        
+        if (l < n)
+          set.add(word.substring(l, r));
+      }
+      return set.size();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

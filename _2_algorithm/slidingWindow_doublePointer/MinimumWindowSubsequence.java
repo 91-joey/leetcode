@@ -5,7 +5,7 @@
 //<p><strong>示例 1：</strong></p>
 //
 //<pre><strong>输入：</strong>
-//S = "abcdebdde", T = "bde"
+// S = "abcdebdde", T = "bde"
 //<strong>输出：</strong>"bcde"
 //<strong>解释：</strong>
 //"bcde" 是答案，因为它在相同长度的字符串 "bdde" 出现之前。
@@ -26,53 +26,53 @@
 //<div><div>Related Topics</div><div><li>字符串</li><li>动态规划</li><li>滑动窗口</li></div></div><br><div><li>👍 133</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//727.最小窗口子序列
-//开题时间：2022-10-12 12:10:08
+// 727.最小窗口子序列
+// 开题时间：2022-10-12 12:10:08
 public class MinimumWindowSubsequence {
-    public static void main(String[] args) {
-        Solution solution = new MinimumWindowSubsequence().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力
-        public String minWindow(String s1, String s2) {
-            char[] charsS = s1.toCharArray();
-            char[] charsT = s2.toCharArray();
-            int start = 0;
-            int end = Integer.MAX_VALUE;
-            int lenS = charsS.length;
-            outer:
-            for (int l = 0, r = 0; l < lenS; l++) {
-                //find first char of target
-                int i = l;
-                for (; i < lenS; i++)
-                    if (charsS[i] == charsT[0]) {
-                        l = i;
-                        break;
-                    }
-                if (i == lenS)
-                    break;
-                r = l + 1;
-                //find consecutive chars of target
-                for (int j = 1; j < charsT.length; j++) {
-                    for (i = r; i < lenS; i++)
-                        if (charsS[i] == charsT[j]) {
-                            r = i + 1;
-                            break;
-                        }
-                    if (i == lenS)
-                        break outer;
-                }
-
-                if (r - l < end - start) {
-                    start = l;
-                    end = r;
-                }
+  public static void main(String[] args) {
+    Solution solution = new MinimumWindowSubsequence().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力
+    public String minWindow(String s1, String s2) {
+      char[] charsS = s1.toCharArray();
+      char[] charsT = s2.toCharArray();
+      int start = 0;
+      int end = Integer.MAX_VALUE;
+      int lenS = charsS.length;
+      outer:
+      for (int l = 0, r = 0; l < lenS; l++) {
+        // find first char of target
+        int i = l;
+        for (; i < lenS; i++)
+          if (charsS[i] == charsT[0]) {
+            l = i;
+            break;
+          }
+        if (i == lenS)
+          break;
+        r = l + 1;
+        // find consecutive chars of target
+        for (int j = 1; j < charsT.length; j++) {
+          for (i = r; i < lenS; i++)
+            if (charsS[i] == charsT[j]) {
+              r = i + 1;
+              break;
             }
-
-            return end == Integer.MAX_VALUE ? "" : s1.substring(start, end);
+          if (i == lenS)
+            break outer;
         }
+        
+        if (r - l < end - start) {
+          start = l;
+          end = r;
+        }
+      }
+      
+      return end == Integer.MAX_VALUE ? "" : s1.substring(start, end);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

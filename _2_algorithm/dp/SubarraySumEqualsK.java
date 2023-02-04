@@ -31,31 +31,31 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.HashMap;
 
-//560.和为 K 的子数组
-//开题时间：2022-12-17 14:17:23
+// 560.和为 K 的子数组
+// 开题时间：2022-12-17 14:17:23
 public class SubarraySumEqualsK {
-    public static void main(String[] args) {
-        Solution solution = new SubarraySumEqualsK().new Solution();
-        System.out.println(solution.subarraySum(new int[]{1, 1, 1}, 2));
+  public static void main(String[] args) {
+    Solution solution = new SubarraySumEqualsK().new Solution();
+    System.out.println(solution.subarraySum(new int[]{1, 1, 1}, 2));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 前缀和 + 哈希映射（键：前缀和，值：个数）
+    public int subarraySum(int[] nums, int k) {
+      HashMap<Integer, Integer> sum2cnt = new HashMap<>();
+      int sum = 0;
+      sum2cnt.put(sum, 1);
+      
+      int ans = 0;
+      for (int x : nums) {
+        sum += x;
+        ans += sum2cnt.getOrDefault(sum - k, 0);
+        sum2cnt.merge(sum, 1, Integer::sum);
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //前缀和 + 哈希映射（键：前缀和，值：个数）
-        public int subarraySum(int[] nums, int k) {
-            HashMap<Integer, Integer> sum2cnt = new HashMap<>();
-            int sum = 0;
-            sum2cnt.put(sum, 1);
-
-            int ans = 0;
-            for (int x : nums) {
-                sum += x;
-                ans += sum2cnt.getOrDefault(sum - k, 0);
-                sum2cnt.merge(sum, 1, Integer::sum);
-            }
-
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

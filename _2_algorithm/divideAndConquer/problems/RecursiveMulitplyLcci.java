@@ -23,41 +23,41 @@
 //<div><li>👍 80</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
-//面试题 08.05.递归乘法
-//开题时间：2022-11-10 15:06:20
+// 面试题 08.05.递归乘法
+// 开题时间：2022-11-10 15:06:20
 public class RecursiveMulitplyLcci {
-    public static void main(String[] args) {
-        Solution solution = new RecursiveMulitplyLcci().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RecursiveMulitplyLcci().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 递归 （注意，较小数作为右乘数）
+    public int multiply9(int A, int B) {
+      if (A < B) return multiply9(B, A);
+      return multiplyByRecursion(A, B);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //递归 （注意，较小数作为右乘数）
-        public int multiply9(int A, int B) {
-            if (A < B) return multiply9(B, A);
-            return multiplyByRecursion(A, B);
-        }
-
-        private int multiplyByRecursion(int A, int B) {
-            if (B == 1)
-                return A;
-            int half = multiply9(A, B / 2);
-            return (B & 1) == 0 ? half << 1 : (half << 1) + A;
-        }
-
-        //☆☆☆☆☆ 迭代（快速幂）
-        public int multiply(int A, int B) {
-            if (A < B) return multiply(B, A);
-
-            int ans = 0;
-            while (B != 0) {
-                if ((B & 1) == 1)
-                    ans += A;
-                A <<= 1;
-                B >>= 1;
-            }
-            return ans;
-        }
+    
+    private int multiplyByRecursion(int A, int B) {
+      if (B == 1)
+        return A;
+      int half = multiply9(A, B / 2);
+      return (B & 1) == 0 ? half << 1 : (half << 1) + A;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 迭代（快速幂）
+    public int multiply(int A, int B) {
+      if (A < B) return multiply(B, A);
+      
+      int ans = 0;
+      while (B != 0) {
+        if ((B & 1) == 1)
+          ans += A;
+        A <<= 1;
+        B >>= 1;
+      }
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

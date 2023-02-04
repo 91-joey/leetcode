@@ -56,98 +56,98 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-//394.字符串解码
-//开题时间：2022-08-23 11:34:45
+// 394.字符串解码
+// 开题时间：2022-08-23 11:34:45
 public class DecodeString {
-    public static void main(String[] args) {
-        Solution solution = new DecodeString().new Solution();
-        System.out.println(solution.decodeString3("a2[b]3[c4[d]]xyz"));
+  public static void main(String[] args) {
+    Solution solution = new DecodeString().new Solution();
+    System.out.println(solution.decodeString3("a2[b]3[c4[d]]xyz"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    //"a2[b]3[c4[d]]xyz"    abbcddddcddddcddddxyz
+    // 1.递归
+    public String decodeString(String s) {
+      return decode(s, 0)[0];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //"a2[b]3[c4[d]]xyz"    abbcddddcddddcddddxyz
-        //1.递归
-        public String decodeString(String s) {
-            return decode(s, 0)[0];
+    
+    private String[] decode(String s, int idx) {
+      StringBuilder cur = new StringBuilder();
+      
+      int i = idx;
+      for (; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if ('a' <= c && c <= 'z') {
+          cur.append(c);
+        } else if ('0' <= c && c <= '9') {
+          int start = s.indexOf("[", i + 1);
+          int dupCnt = Integer.parseInt(s.substring(i, start));
+          String[] dup = decode(s, start + 1);
+          cur.append(String.valueOf(dup[0]).repeat(dupCnt));
+          i = Integer.parseInt(dup[1]);
+          //"]"
+        } else {
+          break;
         }
-
-        private String[] decode(String s, int idx) {
-            StringBuilder cur = new StringBuilder();
-
-            int i = idx;
-            for (; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if ('a' <= c && c <= 'z') {
-                    cur.append(c);
-                } else if ('0' <= c && c <= '9') {
-                    int start = s.indexOf("[", i + 1);
-                    int dupCnt = Integer.parseInt(s.substring(i, start));
-                    String[] dup = decode(s, start + 1);
-                    cur.append(String.valueOf(dup[0]).repeat(dupCnt));
-                    i = Integer.parseInt(dup[1]);
-                    //"]"
-                } else {
-                    break;
-                }
-            }
-
-            return new String[]{cur.toString(), String.valueOf(i)};
-        }
-
-        //2.栈
-        //"a2[b]3[c4[d]]xyz"
-        public String decodeString2(String s) {
-            StringBuilder ans = new StringBuilder();
-            Deque<Integer> dups = new ArrayDeque<>();
-
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if ('0' <= c && c <= '9') {
-                    int start = s.indexOf("[", i + 1);
-                    int dup = Integer.parseInt(s.substring(i, start));
-                    dups.push(dup);
-                    i = start - 1;
-                } else if (c == ']') {
-                    int start = ans.lastIndexOf("[");
-                    String dupString = ans.substring(start + 1);
-                    int dupCnt = dups.pop();
-                    ans.replace(start, ans.length(), dupString.repeat(dupCnt));
-                } else {
-                    ans.append(c);
-                }
-            }
-
-            return ans.toString();
-        }
-
-        //3.辅助栈
-        //"a2[b]3[c4[d]]xyz"
-        public String decodeString3(String s) {
-            StringBuilder ans = new StringBuilder();
-            Deque<Integer> dups = new ArrayDeque<>();
-            Deque<String> strings = new ArrayDeque<>();
-
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if ('0' <= c && c <= '9') {
-                    int start = s.indexOf("[", i + 1);
-                    int dup = Integer.parseInt(s.substring(i, start));
-                    dups.push(dup);
-                    //"["
-                    strings.push(ans.toString());
-                    ans = new StringBuilder();
-                    i = start;
-                } else if (c == ']') {
-                    int dupCnt = dups.pop();
-                    ans = new StringBuilder(strings.pop() + ans.toString().repeat(dupCnt));
-                } else {
-                    ans.append(c);
-                }
-            }
-
-            return ans.toString();
-        }
+      }
+      
+      return new String[]{cur.toString(), String.valueOf(i)};
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 2.栈
+    //"a2[b]3[c4[d]]xyz"
+    public String decodeString2(String s) {
+      StringBuilder ans = new StringBuilder();
+      Deque<Integer> dups = new ArrayDeque<>();
+      
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if ('0' <= c && c <= '9') {
+          int start = s.indexOf("[", i + 1);
+          int dup = Integer.parseInt(s.substring(i, start));
+          dups.push(dup);
+          i = start - 1;
+        } else if (c == ']') {
+          int start = ans.lastIndexOf("[");
+          String dupString = ans.substring(start + 1);
+          int dupCnt = dups.pop();
+          ans.replace(start, ans.length(), dupString.repeat(dupCnt));
+        } else {
+          ans.append(c);
+        }
+      }
+      
+      return ans.toString();
+    }
+    
+    // 3.辅助栈
+    //"a2[b]3[c4[d]]xyz"
+    public String decodeString3(String s) {
+      StringBuilder ans = new StringBuilder();
+      Deque<Integer> dups = new ArrayDeque<>();
+      Deque<String> strings = new ArrayDeque<>();
+      
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if ('0' <= c && c <= '9') {
+          int start = s.indexOf("[", i + 1);
+          int dup = Integer.parseInt(s.substring(i, start));
+          dups.push(dup);
+          //"["
+          strings.push(ans.toString());
+          ans = new StringBuilder();
+          i = start;
+        } else if (c == ']') {
+          int dupCnt = dups.pop();
+          ans = new StringBuilder(strings.pop() + ans.toString().repeat(dupCnt));
+        } else {
+          ans.append(c);
+        }
+      }
+      
+      return ans.toString();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

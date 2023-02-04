@@ -18,7 +18,7 @@
 //<strong>输入：</strong>s = "1 box has 3 blue 4 red 6 green and 12 yellow marbles"
 //<strong>输出：</strong>true
 //<strong>解释：</strong>句子中的数字是：1, 3, 4, 6, 12 。
-//这些数字是按从左到右严格递增的 1 &lt; 3 &lt; 4 &lt; 6 &lt; 12 。
+// 这些数字是按从左到右严格递增的 1 &lt; 3 &lt; 4 &lt; 6 &lt; 12 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -45,7 +45,7 @@
 //<strong>输入：</strong>s = "4 5 11 26"
 //<strong>输出：</strong>true
 //<strong>解释：</strong>s 中的数字是：4, 5, 11, 26 。
-//这些数字是按从左到右严格递增的：4 &lt; 5 &lt; 11 &lt; 26 。
+// 这些数字是按从左到右严格递增的：4 &lt; 5 &lt; 11 &lt; 26 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -67,39 +67,39 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//2042.检查句子中的数字是否递增
-//开题时间：2023-01-03 08:58:23
+// 2042.检查句子中的数字是否递增
+// 开题时间：2023-01-03 08:58:23
 public class CheckIfNumbersAreAscendingInASentence {
-    public static void main(String[] args) {
-        Solution solution = new CheckIfNumbersAreAscendingInASentence().new Solution();
-        System.out.println(solution.areNumbersAscending("1 box has 3 blue 4 red 6 green and 12 yellow marbles"));
+  public static void main(String[] args) {
+    Solution solution = new CheckIfNumbersAreAscendingInASentence().new Solution();
+    System.out.println(solution.areNumbersAscending("1 box has 3 blue 4 red 6 green and 12 yellow marbles"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean areNumbersAscending9(String s) {
+      Object[] arr = Arrays.stream(s.split(" ")).filter(str -> Character.isDigit(str.charAt(0))).toArray();
+      for (int i = 1; i < arr.length; i++)
+        if (Integer.parseInt((String) arr[i - 1]) >= Integer.parseInt((String) arr[i]))
+          return false;
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean areNumbersAscending9(String s) {
-            Object[] arr = Arrays.stream(s.split(" ")).filter(str -> Character.isDigit(str.charAt(0))).toArray();
-            for (int i = 1; i < arr.length; i++)
-                if (Integer.parseInt((String) arr[i - 1]) >= Integer.parseInt((String) arr[i]))
-                    return false;
-            return true;
+    
+    public boolean areNumbersAscending(String s) {
+      char[] cs = s.toCharArray();
+      for (int i = 0, pre = -1, cur = 0; i < cs.length; i++)
+        if (Character.isDigit(cs[i])) {
+          int idxSpace = s.indexOf(" ", i + 1);
+          if (idxSpace == -1)
+            idxSpace = cs.length;
+          cur = Integer.parseInt(s.substring(i, idxSpace));
+          if (pre >= cur)
+            return false;
+          pre = cur;
+          i = idxSpace;
         }
-
-        public boolean areNumbersAscending(String s) {
-            char[] cs = s.toCharArray();
-            for (int i = 0, pre = -1, cur = 0; i < cs.length; i++)
-                if (Character.isDigit(cs[i])) {
-                    int idxSpace = s.indexOf(" ", i + 1);
-                    if (idxSpace == -1)
-                        idxSpace = cs.length;
-                    cur = Integer.parseInt(s.substring(i, idxSpace));
-                    if (pre >= cur)
-                        return false;
-                    pre = cur;
-                    i = idxSpace;
-                }
-            return true;
-        }
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

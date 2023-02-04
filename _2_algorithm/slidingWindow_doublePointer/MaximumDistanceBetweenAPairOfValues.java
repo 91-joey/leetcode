@@ -14,7 +14,7 @@
 //<strong>输入：</strong>nums1 = [55,30,5,4,2], nums2 = [100,20,10,10,5]
 //<strong>输出：</strong>2
 //<strong>解释：</strong>有效下标对是 (0,0), (2,2), (2,3), (2,4), (3,3), (3,4) 和 (4,4) 。
-//最大距离是 2 ，对应下标对 (2,4) 。
+// 最大距离是 2 ，对应下标对 (2,4) 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -23,7 +23,7 @@
 //<strong>输入：</strong>nums1 = [2,2,2], nums2 = [10,10,1]
 //<strong>输出：</strong>1
 //<strong>解释：</strong>有效下标对是 (0,0), (0,1) 和 (1,1) 。
-//最大距离是 1 ，对应下标对 (0,1) 。</pre>
+// 最大距离是 1 ，对应下标对 (0,1) 。</pre>
 //
 //<p><strong>示例 3：</strong></p>
 //
@@ -31,7 +31,7 @@
 //<strong>输入：</strong>nums1 = [30,29,19,5], nums2 = [25,25,25,25,25]
 //<strong>输出：</strong>2
 //<strong>解释：</strong>有效下标对是 (2,2), (2,3), (2,4), (3,3) 和 (3,4) 。
-//最大距离是 2 ，对应下标对 (2,4) 。
+// 最大距离是 2 ，对应下标对 (2,4) 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -48,35 +48,35 @@
 //<div><li>👍 57</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1855.下标对中的最大距离
-//开题时间：2022-11-30 10:18:56
+// 1855.下标对中的最大距离
+// 开题时间：2022-11-30 10:18:56
 public class MaximumDistanceBetweenAPairOfValues {
-    public static void main(String[] args) {
-        Solution solution = new MaximumDistanceBetweenAPairOfValues().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumDistanceBetweenAPairOfValues().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxDistance9(int[] nums1, int[] nums2) {
+      int max = 0;
+      
+      for (int i = 0, j = 0; i < nums1.length && j <= nums2.length; j++)
+        if (i < j && (j >= nums2.length || nums1[i] > nums2[j]))
+          max = Math.max(max, j - i++ - 1);
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxDistance9(int[] nums1, int[] nums2) {
-            int max = 0;
-
-            for (int i = 0, j = 0; i < nums1.length && j <= nums2.length; j++)
-                if (i < j && (j >= nums2.length || nums1[i] > nums2[j]))
-                    max = Math.max(max, j - i++ - 1);
-
-            return max;
-        }
-
-        //☆☆☆☆☆ 滑动窗口
-        public int maxDistance(int[] nums1, int[] nums2) {
-            int i = 0, j = 0;
-            while (i < nums1.length && j < nums2.length) {
-                if (nums1[i] > nums2[j])
-                    i++;
-                j++;
-            }
-            return Math.max(0, j - i - 1);
-        }
+    
+    //☆☆☆☆☆ 滑动窗口
+    public int maxDistance(int[] nums1, int[] nums2) {
+      int i = 0, j = 0;
+      while (i < nums1.length && j < nums2.length) {
+        if (nums1[i] > nums2[j])
+          i++;
+        j++;
+      }
+      return Math.max(0, j - i - 1);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

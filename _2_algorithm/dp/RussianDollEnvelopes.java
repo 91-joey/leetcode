@@ -38,71 +38,71 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 import java.util.Arrays;
 import java.util.Comparator;
 
-//354.俄罗斯套娃信封问题
-//开题时间：2022-11-22 15:44:14
+// 354.俄罗斯套娃信封问题
+// 开题时间：2022-11-22 15:44:14
 public class RussianDollEnvelopes {
-    public static void main(String[] args) {
-        Solution solution = new RussianDollEnvelopes().new Solution();
-//        System.out.println(solution.maxEnvelopes(new int[][]{
-//                {5, 4},
-//                {6, 4},
-//                {6, 7},
-//                {2, 3}
-//        }));
-        System.out.println(solution.maxEnvelopes(Tools.to2DIntArray("[[5,4],[6,4],[6,7],[2,3]]")));
+  public static void main(String[] args) {
+    Solution solution = new RussianDollEnvelopes().new Solution();
+    //        System.out.println(solution.maxEnvelopes(new int[][]{
+    //                {5, 4},
+    //                {6, 4},
+    //                {6, 7},
+    //                {2, 3}
+    //        }));
+    System.out.println(solution.maxEnvelopes(Tools.to2DIntArray("[[5,4],[6,4],[6,7],[2,3]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // TLE
+    public int maxEnvelopesX(int[][] envelopes) {
+      Arrays.sort(envelopes, Comparator.<int[]>comparingInt(i -> i[0]).thenComparingInt(i -> i[1]));
+      int n = envelopes.length;
+      //            int size = envelopes.length;
+      //            int n = 1;
+      //            for (int i = 1; i < size; i++)
+      //                if (envelopes[i - 1][0] != envelopes[i][0])
+      //                    envelopes[n++] = envelopes[i];
+      
+      int max = 1;
+      int[] maxDolls = new int[n];
+      Arrays.fill(maxDolls, 1);
+      for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++)
+          if (envelopes[i][0] > envelopes[j][0] && envelopes[i][1] > envelopes[j][1])
+            if (maxDolls[j] >= maxDolls[i])
+              maxDolls[i] = maxDolls[j] + 1;
+        //                        maxDolls[i] = Math.max(maxDolls[i], maxDolls[j] + 1);
+        if (maxDolls[i] > max)
+          max = maxDolls[i];
+        //                max = Math.max(max, maxDolls[i]);
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //TLE
-        public int maxEnvelopesX(int[][] envelopes) {
-            Arrays.sort(envelopes, Comparator.<int[]>comparingInt(i -> i[0]).thenComparingInt(i -> i[1]));
-            int n = envelopes.length;
-//            int size = envelopes.length;
-//            int n = 1;
-//            for (int i = 1; i < size; i++)
-//                if (envelopes[i - 1][0] != envelopes[i][0])
-//                    envelopes[n++] = envelopes[i];
-
-            int max = 1;
-            int[] maxDolls = new int[n];
-            Arrays.fill(maxDolls, 1);
-            for (int i = 1; i < n; i++) {
-                for (int j = 0; j < i; j++)
-                    if (envelopes[i][0] > envelopes[j][0] && envelopes[i][1] > envelopes[j][1])
-                        if (maxDolls[j] >= maxDolls[i])
-                            maxDolls[i] = maxDolls[j] + 1;
-//                        maxDolls[i] = Math.max(maxDolls[i], maxDolls[j] + 1);
-                if (maxDolls[i] > max)
-                    max = maxDolls[i];
-//                max = Math.max(max, maxDolls[i]);
-            }
-            return max;
-        }
-
-        //排序+二分+DP(LIS)
-        public int maxEnvelopes(int[][] envelopes) {
-            //按照「 `w` 升序，`h` 降序」排序，就不用考虑相同 `w` 时的情况了（即 `envelopes[i][0] > envelopes[j][0]` 可以舍去）。
-            Arrays.sort(envelopes, Comparator.<int[]>comparingInt(i -> i[0]).thenComparing(Comparator.<int[]>comparingInt(i -> i[1]).reversed()));
-
-            return lengthOfLIS(Arrays.stream(envelopes).mapToInt(env -> env[1]).toArray());
-        }
-
-        public int lengthOfLIS(int[] nums) {
-            int[] tails = new int[nums.length];
-            int res = 0;
-            for (int num : nums) {
-                int i = 0, j = res;
-                while (i < j) {
-                    int m = (i + j) / 2;
-                    if (tails[m] < num) i = m + 1;
-                    else j = m;
-                }
-                tails[i] = num;
-                if (res == j) res++;
-            }
-            return res;
-        }
+    
+    // 排序+二分+DP(LIS)
+    public int maxEnvelopes(int[][] envelopes) {
+      // 按照「 `w` 升序，`h` 降序」排序，就不用考虑相同 `w` 时的情况了（即 `envelopes[i][0] > envelopes[j][0]` 可以舍去）。
+      Arrays.sort(envelopes, Comparator.<int[]>comparingInt(i -> i[0]).thenComparing(Comparator.<int[]>comparingInt(i -> i[1]).reversed()));
+      
+      return lengthOfLIS(Arrays.stream(envelopes).mapToInt(env -> env[1]).toArray());
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int lengthOfLIS(int[] nums) {
+      int[] tails = new int[nums.length];
+      int res = 0;
+      for (int num : nums) {
+        int i = 0, j = res;
+        while (i < j) {
+          int m = (i + j) / 2;
+          if (tails[m] < num) i = m + 1;
+          else j = m;
+        }
+        tails[i] = num;
+        if (res == j) res++;
+      }
+      return res;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

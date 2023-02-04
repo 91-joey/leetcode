@@ -32,100 +32,100 @@
 //<div><div>Related Topics</div><div><li>双指针</li><li>字符串</li></div></div><br><div><li>👍 250</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//925.长按键入
-//开题时间：2022-10-27 15:02:46
+// 925.长按键入
+// 开题时间：2022-10-27 15:02:46
 public class LongPressedName {
-    public static void main(String[] args) {
-        Solution solution = new LongPressedName().new Solution();
-        System.out.println(solution.isLongPressedName("pyplrz", "ppyypllr"));
+  public static void main(String[] args) {
+    Solution solution = new LongPressedName().new Solution();
+    System.out.println(solution.isLongPressedName("pyplrz", "ppyypllr"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean isLongPressedName(String name, String typed) {
+      int len1 = name.length();
+      int len2 = typed.length();
+      if (len1 > len2)
+        return false;
+      
+      char[] chars1 = name.toCharArray();
+      char[] chars2 = typed.toCharArray();
+      int i = 0, j = 0;
+      for (; i < len1 && j < len2; i++, j++) {
+        if (chars1[i] != chars2[j]) {
+          while (0 < j && j < len2 && chars2[j - 1] == chars2[j])
+            j++;
+          if (j == len2 || chars1[i] != chars2[j])
+            return false;
+        }
+      }
+      
+      if (i < len1)
+        return false;
+      while (j < len2) {
+        if (chars2[j - 1] != chars2[j])
+          return false;
+        j++;
+      }
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean isLongPressedName(String name, String typed) {
-            int len1 = name.length();
-            int len2 = typed.length();
-            if (len1 > len2)
-                return false;
-
-            char[] chars1 = name.toCharArray();
-            char[] chars2 = typed.toCharArray();
-            int i = 0, j = 0;
-            for (; i < len1 && j < len2; i++, j++) {
-                if (chars1[i] != chars2[j]) {
-                    while (0 < j && j < len2 && chars2[j - 1] == chars2[j])
-                        j++;
-                    if (j == len2 || chars1[i] != chars2[j])
-                        return false;
-                }
-            }
-
-            if (i < len1)
-                return false;
-            while (j < len2) {
-                if (chars2[j - 1] != chars2[j])
-                    return false;
-                j++;
-            }
-            return true;
+    
+    //☆☆☆☆☆ 双指针（优雅精简）
+    public boolean isLongPressedName2(String name, String typed) {
+      int len1 = name.length();
+      int len2 = typed.length();
+      if (len1 > len2)
+        return false;
+      
+      char[] chars1 = name.toCharArray();
+      char[] chars2 = typed.toCharArray();
+      int i = 0, j = 0;
+      
+      while (j < len2) {
+        if (i < len1 && chars1[i] == chars2[j]) {
+          i++;
+          j++;
+        } else if (0 < j && chars2[j - 1] == chars2[j]) {
+          j++;
+        } else {
+          return false;
         }
-
-        //☆☆☆☆☆ 双指针（优雅精简）
-        public boolean isLongPressedName2(String name, String typed) {
-            int len1 = name.length();
-            int len2 = typed.length();
-            if (len1 > len2)
-                return false;
-
-            char[] chars1 = name.toCharArray();
-            char[] chars2 = typed.toCharArray();
-            int i = 0, j = 0;
-
-            while (j < len2) {
-                if (i < len1 && chars1[i] == chars2[j]) {
-                    i++;
-                    j++;
-                } else if (0 < j && chars2[j - 1] == chars2[j]) {
-                    j++;
-                } else {
-                    return false;
-                }
-            }
-
-            return i == len1;
-        }
-
-
-        //计数
-        public boolean isLongPressedName3(String name, String typed) {
-            int len1 = name.length();
-            int len2 = typed.length();
-            if (len1 > len2)
-                return false;
-
-            char[] chars1 = name.toCharArray();
-            char[] chars2 = typed.toCharArray();
-            int i = 0, j = 0;
-
-            while (i < len1) {
-                char c = chars1[i];
-                int cnt = 0;
-                do {
-                    i++;
-                    cnt++;
-                } while (i < len1 && chars1[i] == c);
-
-                while (j < len2 && chars2[j] == c) {
-                    j++;
-                    cnt--;
-                }
-
-                if (cnt > 0)
-                    return false;
-            }
-
-            return j == len2;
-        }
+      }
+      
+      return i == len1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    
+    // 计数
+    public boolean isLongPressedName3(String name, String typed) {
+      int len1 = name.length();
+      int len2 = typed.length();
+      if (len1 > len2)
+        return false;
+      
+      char[] chars1 = name.toCharArray();
+      char[] chars2 = typed.toCharArray();
+      int i = 0, j = 0;
+      
+      while (i < len1) {
+        char c = chars1[i];
+        int cnt = 0;
+        do {
+          i++;
+          cnt++;
+        } while (i < len1 && chars1[i] == c);
+        
+        while (j < len2 && chars2[j] == c) {
+          j++;
+          cnt--;
+        }
+        
+        if (cnt > 0)
+          return false;
+      }
+      
+      return j == len2;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

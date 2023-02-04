@@ -35,33 +35,33 @@
 //<div><li>👍 742</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//74.搜索二维矩阵
-//开题时间：2022-11-27 21:40:51
+// 74.搜索二维矩阵
+// 开题时间：2022-11-27 21:40:51
 public class SearchA2dMatrix {
-    public static void main(String[] args) {
-        Solution solution = new SearchA2dMatrix().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SearchA2dMatrix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 2D坐标转换为1D坐标
+    public boolean searchMatrix(int[][] matrix, int target) {
+      int m = matrix.length;
+      int n = matrix[0].length;
+      
+      int l = 0, r = m * n - 1;
+      while (l <= r) {
+        int mid = ((r - l) >> 1) + l;
+        int val = matrix[mid / n][mid % n];
+        if (target == val)
+          return true;
+        else if (target < val)
+          r = mid - 1;
+        else
+          l = mid + 1;
+      }
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //2D坐标转换为1D坐标
-        public boolean searchMatrix(int[][] matrix, int target) {
-            int m = matrix.length;
-            int n = matrix[0].length;
-
-            int l = 0, r = m * n - 1;
-            while (l <= r) {
-                int mid = ((r - l) >> 1) + l;
-                int val = matrix[mid / n][mid % n];
-                if (target == val)
-                    return true;
-                else if (target < val)
-                    r = mid - 1;
-                else
-                    l = mid + 1;
-            }
-            return false;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

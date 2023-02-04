@@ -38,7 +38,7 @@ public class T1 {
       }
       return res;
     }
-  
+    
     // DFS
     public int distinctIntegers8(int n) {
       vis = new boolean[n + 1];

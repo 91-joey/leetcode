@@ -33,55 +33,55 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 
 import java.util.Arrays;
 
-//976.三角形的最大周长
-//开题时间：2022-12-03 11:25:33
+// 976.三角形的最大周长
+// 开题时间：2022-12-03 11:25:33
 public class LargestPerimeterTriangle {
-    public static void main(String[] args) {
-        Solution solution = new LargestPerimeterTriangle().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LargestPerimeterTriangle().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int largestPerimeter9(int[] nums) {
+      Arrays.sort(nums);
+      
+      int max = 0;
+      int n = nums.length;
+      for (int i = 0; i < n - 2; i++) {
+        for (int j = i + 1; j < n - 1; j++) {
+          int sum = nums[i] + nums[j];
+          int k = lstLessThan(nums, j, n - 1, sum);
+          if (k != j)
+            max = Math.max(max, sum + nums[k]);
+        }
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int largestPerimeter9(int[] nums) {
-            Arrays.sort(nums);
-
-            int max = 0;
-            int n = nums.length;
-            for (int i = 0; i < n - 2; i++) {
-                for (int j = i + 1; j < n - 1; j++) {
-                    int sum = nums[i] + nums[j];
-                    int k = lstLessThan(nums, j, n - 1, sum);
-                    if (k != j)
-                        max = Math.max(max, sum + nums[k]);
-                }
-            }
-            return max;
-        }
-
-        public static int lstLessThan(int[] arr, int l, int r, int target) {
-            while (l < r) {
-                int mid = ((r - l + 1) >> 1) + l;
-                if (target <= arr[mid])
-                    r = mid - 1;
-                else
-                    l = mid;
-            }
-            return r;
-        }
-
-        /*
-        * 排序+贪心：
-        *   设 a<=b<=c，倒序枚举 c，第一个满足nums[i - 2] + nums[i - 1] > nums[i]的，即为最大值
-        */
-        public int largestPerimeter(int[] nums) {
-            Arrays.sort(nums);
-
-            for (int i = nums.length - 1; i >= 2; i--)
-                if (nums[i - 2] + nums[i - 1] > nums[i])
-                    return nums[i - 2] + nums[i - 1] + nums[i];
-
-            return 0;
-        }
+    
+    public static int lstLessThan(int[] arr, int l, int r, int target) {
+      while (l < r) {
+        int mid = ((r - l + 1) >> 1) + l;
+        if (target <= arr[mid])
+          r = mid - 1;
+        else
+          l = mid;
+      }
+      return r;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * 排序+贪心：
+     *   设 a<=b<=c，倒序枚举 c，第一个满足nums[i - 2] + nums[i - 1] > nums[i]的，即为最大值
+     */
+    public int largestPerimeter(int[] nums) {
+      Arrays.sort(nums);
+      
+      for (int i = nums.length - 1; i >= 2; i--)
+        if (nums[i - 2] + nums[i - 1] > nums[i])
+          return nums[i - 2] + nums[i - 1] + nums[i];
+      
+      return 0;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -29,22 +29,22 @@
 //<div><div>Related Topics</div><div><li>双指针</li><li>字符串</li></div></div><br><div><li>👍 677</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//344.反转字符串
-//开题时间：2022-10-23 18:18:42
+// 344.反转字符串
+// 开题时间：2022-10-23 18:18:42
 public class ReverseString {
-    public static void main(String[] args) {
-        Solution solution = new ReverseString().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ReverseString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public void reverseString(char[] s) {
+      for (int l = 0, r = s.length - 1; l < r; ) {
+        char tmp = s[l];
+        s[l++] = s[r];
+        s[r--] = tmp;
+      }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public void reverseString(char[] s) {
-            for (int l = 0, r = s.length - 1; l < r; ) {
-                char tmp = s[l];
-                s[l++] = s[r];
-                s[r--] = tmp;
-            }
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

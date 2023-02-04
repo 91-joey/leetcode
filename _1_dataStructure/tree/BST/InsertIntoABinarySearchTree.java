@@ -49,82 +49,82 @@ package org.example.leetcode.problems._1_dataStructure.tree.BST;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//701.二叉搜索树中的插入操作
-//开题时间：2022-12-10 11:21:18
+// 701.二叉搜索树中的插入操作
+// 开题时间：2022-12-10 11:21:18
 public class InsertIntoABinarySearchTree {
-    public static void main(String[] args) {
-        Solution solution = new InsertIntoABinarySearchTree().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new InsertIntoABinarySearchTree().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // recursive(sophisticated)
+    public TreeNode insertIntoBST9(TreeNode root, int val) {
+      TreeNode newbie = new TreeNode(val);
+      if (root == null)
+        return newbie;
+      
+      TreeNode l = root, r = root;
+      
+      for (TreeNode node = root; node != null; )
+        if (val < node.val) {
+          r = node;
+          node = node.left;
+        } else {
+          l = node;
+          node = node.right;
+        }
+      
+      if (l.right == null)
+        l.right = newbie;
+      else
+        r.left = newbie;
+      
+      return root;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //recursive(sophisticated)
-        public TreeNode insertIntoBST9(TreeNode root, int val) {
-            TreeNode newbie = new TreeNode(val);
-            if (root == null)
-                return newbie;
-
-            TreeNode l = root, r = root;
-
-            for (TreeNode node = root; node != null; )
-                if (val < node.val) {
-                    r = node;
-                    node = node.left;
-                } else {
-                    l = node;
-                    node = node.right;
-                }
-
-            if (l.right == null)
-                l.right = newbie;
-            else
-                r.left = newbie;
-
-            return root;
-        }
-
-        /*
-         *☆☆☆☆☆ recursive
-         *  插入值位于左侧:
-         *      左节点为空，赋予左节点
-         *      左节点非空，插入左节点中
-         *  插入值位于右侧:
-         *      右节点为空，赋予右节点
-         *      右节点非空，插入右节点中
-         */
-        public TreeNode insertIntoBST8(TreeNode root, int val) {
-            if (root == null)
-                return new TreeNode(val);
-
-            if (val < root.val)
-                root.left = insertIntoBST(root.left, val);
-            else
-                root.right = insertIntoBST(root.right, val);
-
-            return root;
-        }
-
-        //relative
-        public TreeNode insertIntoBST(TreeNode root, int val) {
-            TreeNode newbie = new TreeNode(val);
-            if (root == null)
-                return newbie;
-
-            for (TreeNode node = root; node != null; )
-                if (val < node.val) {
-                    if (node.left == null) {
-                        node.left = newbie;
-                        break;
-                    }
-                    node = node.left;
-                } else if (node.right == null) {
-                    node.right = newbie;
-                    break;
-                } else
-                    node = node.right;
-
-            return root;
-        }
+    
+    /*
+     *☆☆☆☆☆ recursive
+     *  插入值位于左侧:
+     *      左节点为空，赋予左节点
+     *      左节点非空，插入左节点中
+     *  插入值位于右侧:
+     *      右节点为空，赋予右节点
+     *      右节点非空，插入右节点中
+     */
+    public TreeNode insertIntoBST8(TreeNode root, int val) {
+      if (root == null)
+        return new TreeNode(val);
+      
+      if (val < root.val)
+        root.left = insertIntoBST(root.left, val);
+      else
+        root.right = insertIntoBST(root.right, val);
+      
+      return root;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // relative
+    public TreeNode insertIntoBST(TreeNode root, int val) {
+      TreeNode newbie = new TreeNode(val);
+      if (root == null)
+        return newbie;
+      
+      for (TreeNode node = root; node != null; )
+        if (val < node.val) {
+          if (node.left == null) {
+            node.left = newbie;
+            break;
+          }
+          node = node.left;
+        } else if (node.right == null) {
+          node.right = newbie;
+          break;
+        } else
+          node = node.right;
+      
+      return root;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

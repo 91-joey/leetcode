@@ -41,43 +41,43 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 
 import java.util.Arrays;
 
-//1663.具有给定数值的最小字符串
-//开题时间：2023-01-26 17:39:29
+// 1663.具有给定数值的最小字符串
+// 开题时间：2023-01-26 17:39:29
 public class SmallestStringWithAGivenNumericValue {
-    public static void main(String[] args) {
-        Solution solution = new SmallestStringWithAGivenNumericValue().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new SmallestStringWithAGivenNumericValue().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 贪心
+     * 左边尽可能填充 'a' ，右边尽可能填充 'z'，类似 “aaa?zzzzzz” 的形式
+     */
+    public String getSmallestString9(int n, int k) {
+      char[] ans = new char[n];
+      Arrays.fill(ans, 'a');
+      k -= n;
+      for (int i = n - 1; k > 0; i--) {
+        int incr = Math.min(k, 25);
+        ans[i] += incr;
+        k -= incr;
+      }
+      return new String(ans);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 贪心
-         * 左边尽可能填充 'a' ，右边尽可能填充 'z'，类似 “aaa?zzzzzz” 的形式
-         */
-        public String getSmallestString9(int n, int k) {
-            char[] ans = new char[n];
-            Arrays.fill(ans, 'a');
-            k -= n;
-            for (int i = n - 1; k > 0; i--) {
-                int incr = Math.min(k, 25);
-                ans[i] += incr;
-                k -= incr;
-            }
-            return new String(ans);
-        }
-
-        //优化之直接计算 'z' 的个数
-        public String getSmallestString(int n, int k) {
-            char[] ans = new char[n];
-            k -= n;
-            int fromIndex = n - (k / 25);
-            Arrays.fill(ans, fromIndex, n, 'z');
-            Arrays.fill(ans, 0, fromIndex, 'a');
-            if (fromIndex > 0)
-                ans[fromIndex - 1] += k % 25;
-            return new String(ans);
-        }
+    
+    // 优化之直接计算 'z' 的个数
+    public String getSmallestString(int n, int k) {
+      char[] ans = new char[n];
+      k -= n;
+      int fromIndex = n - (k / 25);
+      Arrays.fill(ans, fromIndex, n, 'z');
+      Arrays.fill(ans, 0, fromIndex, 'a');
+      if (fromIndex > 0)
+        ans[fromIndex - 1] += k % 25;
+      return new String(ans);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

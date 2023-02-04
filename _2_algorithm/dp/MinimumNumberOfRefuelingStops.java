@@ -31,11 +31,11 @@
 //<pre><strong>输入：</strong>target = 100, startFuel = 10, stations = [[10,60],[20,30],[30,30],[60,40]]
 //<strong>输出：</strong>2
 //<strong>解释：</strong>
-//我们出发时有 10 升燃料。
-//我们开车来到距起点 10 英里处的加油站，消耗 10 升燃料。将汽油从 0 升加到 60 升。
-//然后，我们从 10 英里处的加油站开到 60 英里处的加油站（消耗 50 升燃料），
-//并将汽油从 10 升加到 50 升。然后我们开车抵达目的地。
-//我们沿途在1两个加油站停靠，所以返回 2 。
+// 我们出发时有 10 升燃料。
+// 我们开车来到距起点 10 英里处的加油站，消耗 10 升燃料。将汽油从 0 升加到 60 升。
+// 然后，我们从 10 英里处的加油站开到 60 英里处的加油站（消耗 50 升燃料），
+// 并将汽油从 10 升加到 50 升。然后我们开车抵达目的地。
+// 我们沿途在1两个加油站停靠，所以返回 2 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -55,84 +55,84 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.PriorityQueue;
 
-//871.最低加油次数
-//开题时间：2022-12-07 15:12:56
+// 871.最低加油次数
+// 开题时间：2022-12-07 15:12:56
 public class MinimumNumberOfRefuelingStops {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfRefuelingStops().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfRefuelingStops().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    //☆☆☆☆☆ 贪心+优先队列
+    public int minRefuelStops9(int target, int startFuel, int[][] stations) {
+      int ans = 0;
+      
+      PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
+      
+      int i = 0, n = stations.length;
+      while (startFuel < target)
+        if (i < n && startFuel >= stations[i][0])
+          pq.offer(stations[i++][1]);
+        else if (pq.isEmpty())
+          return -1;
+        else {
+          startFuel += pq.poll();
+          ans++;
+        }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //☆☆☆☆☆ 贪心+优先队列
-        public int minRefuelStops9(int target, int startFuel, int[][] stations) {
-            int ans = 0;
-
-            PriorityQueue<Integer> pq = new PriorityQueue<>(Comparator.reverseOrder());
-
-            int i = 0, n = stations.length;
-            while (startFuel < target)
-                if (i < n && startFuel >= stations[i][0])
-                    pq.offer(stations[i++][1]);
-                else if (pq.isEmpty())
-                    return -1;
-                else {
-                    startFuel += pq.poll();
-                    ans++;
-                }
-
-            return ans;
+    
+    // dp[i][j]：经过 i 个加油站，停靠 j 次，能达到的最远距离
+    public int minRefuelStops8(int target, int startFuel, int[][] stations) {
+      if (startFuel >= target)
+        return 0;
+      
+      int n = stations.length + 1;
+      int[][] f = new int[n][n];
+      
+      for (int i = 0; i < n; i++) f[i][0] = startFuel;
+      for (int i = 1; i < n; i++)
+        for (int j = 1; j <= i; j++) {
+          int[] station = stations[i - 1];
+          f[i][j] = Math.max(
+              f[i - 1][j - 1] >= station[0] ? f[i - 1][j - 1] + station[1] : 0,
+              f[i - 1][j] >= station[0] ? f[i - 1][j] : 0
+          );
         }
-
-        //dp[i][j]：经过 i 个加油站，停靠 j 次，能达到的最远距离
-        public int minRefuelStops8(int target, int startFuel, int[][] stations) {
-            if (startFuel >= target)
-                return 0;
-
-            int n = stations.length + 1;
-            int[][] f = new int[n][n];
-
-            for (int i = 0; i < n; i++) f[i][0] = startFuel;
-            for (int i = 1; i < n; i++)
-                for (int j = 1; j <= i; j++) {
-                    int[] station = stations[i - 1];
-                    f[i][j] = Math.max(
-                            f[i - 1][j - 1] >= station[0] ? f[i - 1][j - 1] + station[1] : 0,
-                            f[i - 1][j] >= station[0] ? f[i - 1][j] : 0
-                    );
-                }
-
-            for (int j = 0; j < f[n - 1].length; j++)
-                if (f[n - 1][j] >= target)
-                    return j;
-
-            return -1;
-        }
-
-        //dp 空间优化（降维）
-        public int minRefuelStops(int target, int startFuel, int[][] stations) {
-            if (startFuel >= target)
-                return 0;
-
-            int n = stations.length + 1;
-            int[] f = new int[n];
-
-            Arrays.fill(f, startFuel);
-            for (int i = 1; i < n; i++) {
-                int[] station = stations[i - 1];
-                for (int j = i; j >= 1; j--)
-                    f[j] = Math.max(
-                            f[j - 1] >= station[0] ? f[j - 1] + station[1] : 0,
-                            f[j] >= station[0] ? f[j] : 0
-                    );
-            }
-
-            for (int j = 0; j < n; j++)
-                if (f[j] >= target)
-                    return j;
-
-            return -1;
-        }
+      
+      for (int j = 0; j < f[n - 1].length; j++)
+        if (f[n - 1][j] >= target)
+          return j;
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // dp 空间优化（降维）
+    public int minRefuelStops(int target, int startFuel, int[][] stations) {
+      if (startFuel >= target)
+        return 0;
+      
+      int n = stations.length + 1;
+      int[] f = new int[n];
+      
+      Arrays.fill(f, startFuel);
+      for (int i = 1; i < n; i++) {
+        int[] station = stations[i - 1];
+        for (int j = i; j >= 1; j--)
+          f[j] = Math.max(
+              f[j - 1] >= station[0] ? f[j - 1] + station[1] : 0,
+              f[j] >= station[0] ? f[j] : 0
+          );
+      }
+      
+      for (int j = 0; j < n; j++)
+        if (f[j] >= target)
+          return j;
+      
+      return -1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

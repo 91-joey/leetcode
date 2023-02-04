@@ -13,12 +13,12 @@
 //<strong>输出：</strong>[[3,0],
 //      [1,7]]
 //<strong>解释：</strong>
-//第 0 行：3 + 0 = 3 == rowSum[0]
-//第 1 行：1 + 7 = 8 == rowSum[1]
-//第 0 列：3 + 1 = 4 == colSum[0]
-//第 1 列：0 + 7 = 7 == colSum[1]
-//行和列的和都满足题目要求，且所有矩阵元素都是非负的。
-//另一个可行的矩阵为：[[1,2],
+// 第 0 行：3 + 0 = 3 == rowSum[0]
+// 第 1 行：1 + 7 = 8 == rowSum[1]
+// 第 0 列：3 + 1 = 4 == colSum[0]
+// 第 1 列：0 + 7 = 7 == colSum[1]
+// 行和列的和都满足题目要求，且所有矩阵元素都是非负的。
+// 另一个可行的矩阵为：[[1,2],
 //                  [3,5]]
 //</pre>
 //
@@ -67,34 +67,34 @@
 //<div><li>👍 55</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//1605.给定行和列的和求可行矩阵
-//开题时间：2023-01-25 17:55:11
+// 1605.给定行和列的和求可行矩阵
+// 开题时间：2023-01-25 17:55:11
 public class FindValidMatrixGivenRowAndColumnSums {
-    public static void main(String[] args) {
-        Solution solution = new FindValidMatrixGivenRowAndColumnSums().new Solution();
-        System.out.println(solution);
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 贪心
-         * 双重循环：将 ans[i][j] 设为 min(rowSum[i], colSum[j])，并更新 rowSum[i]、colSum[j]
-         * 最后总能保证 rowSum[i] = colSum[j] = 0，即该矩阵满足要求
-         */
-        public int[][] restoreMatrix(int[] rowSum, int[] colSum) {
-            int m = rowSum.length;
-            int n = colSum.length;
-            int[][] ans = new int[m][n];
-            for (int i = 0; i < m; i++) {
-                for (int j = 0; j < n; j++) {
-                    ans[i][j] = Math.min(rowSum[i], colSum[j]);
-                    rowSum[i] -= ans[i][j];
-                    colSum[j] -= ans[i][j];
-                }
-            }
-            return ans;
+  public static void main(String[] args) {
+    Solution solution = new FindValidMatrixGivenRowAndColumnSums().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 贪心
+     * 双重循环：将 ans[i][j] 设为 min(rowSum[i], colSum[j])，并更新 rowSum[i]、colSum[j]
+     * 最后总能保证 rowSum[i] = colSum[j] = 0，即该矩阵满足要求
+     */
+    public int[][] restoreMatrix(int[] rowSum, int[] colSum) {
+      int m = rowSum.length;
+      int n = colSum.length;
+      int[][] ans = new int[m][n];
+      for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+          ans[i][j] = Math.min(rowSum[i], colSum[j]);
+          rowSum[i] -= ans[i][j];
+          colSum[j] -= ans[i][j];
         }
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

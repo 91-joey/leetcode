@@ -58,105 +58,105 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//1654.到家的最少跳跃次数
-//开题时间：2023-01-11 15:34:12
+// 1654.到家的最少跳跃次数
+// 开题时间：2023-01-11 15:34:12
 public class MinimumJumpsToReachHome {
-    public static void main(String[] args) {
-        Solution solution = new MinimumJumpsToReachHome().new Solution();
-        System.out.println(solution.minimumJumps(new int[]{1998}, 1999, 2000, 2000));
-//        System.out.println(solution.minimumJumps(new int[]{198,159,151,166,33,155,90,43,104,102,186,137,2,3,24,139,150,5}, 144, 89, 199));
-//        System.out.println(solution.minimumJumps(new int[]{1, 6, 2, 14, 5, 17, 4}, 16, 9, 7));
-//        System.out.println(solution.minimumJumps(new int[]{8, 3, 16, 6, 12, 20}, 15, 13, 11));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minimumJumpsX(int[] forbidden, int a, int b, int x) {
-            Queue<int[]> q = new LinkedList<>();
-            q.offer(new int[]{0, 0});
-//            boolean[][] vis = new boolean[4001][2];
-            HashSet<Integer> vis = new HashSet<>();
-            for (int i : forbidden) {
-//                vis[i][0] = vis[i][1] = true;
-                vis.add(i << 1);
-                vis.add((i << 1) | 1);
-            }
-//            vis[0][0] = true;
-            vis.add(0);
-
-            HashSet<Integer> set = new HashSet<>();
-            set.add(0);
-
-            int max = Math.max(Arrays.stream(forbidden).max().getAsInt() + a + b, x + b);
-
-            int step = 0;
-            while (!q.isEmpty()) {
-//                if (step > 1 && a >= b && q.peek()[0] > x)
-                if (q.peek()[0] > max)
-                    return -1;
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    if (poll[0] == x)
-                        return step;
-
-                    if (poll[1] == 0 && poll[0] - b >= 0 && !vis.contains(((poll[0] - b) << 1) | 1)) {
-//                    if (poll[1] == 0 && poll[0] - b >= 0 && !vis[poll[0] - b][1]) {
-                        vis.add(((poll[0] - b) << 1) | 1);
-                        set.add(poll[0] - b);
-                        q.offer(new int[]{poll[0] - b, 1});
-                    }
-                    if (!vis.contains((poll[0] + a) << 1)) {
-//                    if (!vis[poll[0] + a][0]) {
-//                        vis[poll[0] + a][0] = true;
-                        vis.add((poll[0] + a) << 1);
-                        set.add(poll[0] + a);
-                        q.offer(new int[]{poll[0] + a, 0});
-                    }
-                }
-                step++;
-            }
-
-            return -1;
+  public static void main(String[] args) {
+    Solution solution = new MinimumJumpsToReachHome().new Solution();
+    System.out.println(solution.minimumJumps(new int[]{1998}, 1999, 2000, 2000));
+    //        System.out.println(solution.minimumJumps(new int[]{198,159,151,166,33,155,90,43,104,102,186,137,2,3,24,139,150,5}, 144, 89, 199));
+    //        System.out.println(solution.minimumJumps(new int[]{1, 6, 2, 14, 5, 17, 4}, 16, 9, 7));
+    //        System.out.println(solution.minimumJumps(new int[]{8, 3, 16, 6, 12, 20}, 15, 13, 11));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minimumJumpsX(int[] forbidden, int a, int b, int x) {
+      Queue<int[]> q = new LinkedList<>();
+      q.offer(new int[]{0, 0});
+      //            boolean[][] vis = new boolean[4001][2];
+      HashSet<Integer> vis = new HashSet<>();
+      for (int i : forbidden) {
+        //                vis[i][0] = vis[i][1] = true;
+        vis.add(i << 1);
+        vis.add((i << 1) | 1);
+      }
+      //            vis[0][0] = true;
+      vis.add(0);
+      
+      HashSet<Integer> set = new HashSet<>();
+      set.add(0);
+      
+      int max = Math.max(Arrays.stream(forbidden).max().getAsInt() + a + b, x + b);
+      
+      int step = 0;
+      while (!q.isEmpty()) {
+        //                if (step > 1 && a >= b && q.peek()[0] > x)
+        if (q.peek()[0] > max)
+          return -1;
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          if (poll[0] == x)
+            return step;
+          
+          if (poll[1] == 0 && poll[0] - b >= 0 && !vis.contains(((poll[0] - b) << 1) | 1)) {
+            //                    if (poll[1] == 0 && poll[0] - b >= 0 && !vis[poll[0] - b][1]) {
+            vis.add(((poll[0] - b) << 1) | 1);
+            set.add(poll[0] - b);
+            q.offer(new int[]{poll[0] - b, 1});
+          }
+          if (!vis.contains((poll[0] + a) << 1)) {
+            //                    if (!vis[poll[0] + a][0]) {
+            //                        vis[poll[0] + a][0] = true;
+            vis.add((poll[0] + a) << 1);
+            set.add(poll[0] + a);
+            q.offer(new int[]{poll[0] + a, 0});
+          }
         }
-
-        /*
-         * ☆☆☆☆☆ bfs + 限定右边界（先向前跳几次，再向前向后交替跳跃，这种方案和先向前向后交替跳跃、再向前跳跃几次是等价的）
-         * 以下两种方案是等价的：
-         * - 先向前跳跃几次，再向前向后交替跳跃
-         * - 先向前向后交替跳跃、再向前跳跃几次
-         * 当 `a<b` 时，向前向后交替跳跃一次会回退，方案一的极值会大于方案二。
-         */
-        public int minimumJumps(int[] forbidden, int a, int b, int x) {
-            int bound = Math.max(Arrays.stream(forbidden).max().getAsInt() + a + b, x + b) + 1;
-            boolean[][] vis = new boolean[bound][2];
-            for (int i : forbidden)
-                vis[i][0] = vis[i][1] = true;
-            vis[0][0] = true;
-
-            Queue<int[]> q = new LinkedList<>();
-            q.offer(new int[]{0, 0});
-            int step = 0;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    int cur = poll[0];
-                    if (cur == x)
-                        return step;
-
-                    if (poll[1] == 0 && cur - b >= 0 && !vis[cur - b][1]) {
-                        vis[cur - b][1] = true;
-                        q.offer(new int[]{cur - b, 1});
-                    }
-                    if (cur + a < bound && !vis[cur + a][0]) {
-                        vis[cur + a][0] = true;
-                        q.offer(new int[]{cur + a, 0});
-                    }
-                }
-                step++;
-            }
-
-            return -1;
-        }
+        step++;
+      }
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * ☆☆☆☆☆ bfs + 限定右边界（先向前跳几次，再向前向后交替跳跃，这种方案和先向前向后交替跳跃、再向前跳跃几次是等价的）
+     * 以下两种方案是等价的：
+     * - 先向前跳跃几次，再向前向后交替跳跃
+     * - 先向前向后交替跳跃、再向前跳跃几次
+     * 当 `a<b` 时，向前向后交替跳跃一次会回退，方案一的极值会大于方案二。
+     */
+    public int minimumJumps(int[] forbidden, int a, int b, int x) {
+      int bound = Math.max(Arrays.stream(forbidden).max().getAsInt() + a + b, x + b) + 1;
+      boolean[][] vis = new boolean[bound][2];
+      for (int i : forbidden)
+        vis[i][0] = vis[i][1] = true;
+      vis[0][0] = true;
+      
+      Queue<int[]> q = new LinkedList<>();
+      q.offer(new int[]{0, 0});
+      int step = 0;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          int cur = poll[0];
+          if (cur == x)
+            return step;
+          
+          if (poll[1] == 0 && cur - b >= 0 && !vis[cur - b][1]) {
+            vis[cur - b][1] = true;
+            q.offer(new int[]{cur - b, 1});
+          }
+          if (cur + a < bound && !vis[cur + a][0]) {
+            vis[cur + a][0] = true;
+            q.offer(new int[]{cur + a, 0});
+          }
+        }
+        step++;
+      }
+      
+      return -1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

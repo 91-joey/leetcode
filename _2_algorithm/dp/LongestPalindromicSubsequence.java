@@ -32,57 +32,57 @@
 //<div><li>👍 917</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//516.最长回文子序列
-//开题时间：2022-12-20 15:55:23
+// 516.最长回文子序列
+// 开题时间：2022-12-20 15:55:23
 public class LongestPalindromicSubsequence {
-    public static void main(String[] args) {
-        Solution solution = new LongestPalindromicSubsequence().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //DP
-        public int longestPalindromeSubseq9(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            int[][] f = new int[n][n];
-
-            for (int i = n - 1; i >= 0; i--) {
-                f[i][i] = 1;
-                for (int j = i + 1; j < n; j++) {
-//                    f[i][j] = Math.max(f[i + 1][j], f[i][j - 1]);
-//                    if (cs[i] == cs[j])
-//                        f[i][j] = Math.max(f[i][j], f[i + 1][j - 1] + 2);
-                    if (cs[i] == cs[j])
-                        f[i][j] = f[i + 1][j - 1] + 2;
-                    else
-                        f[i][j] = Math.max(f[i + 1][j], f[i][j - 1]);
-                }
-            }
-
-            return f[0][n - 1];
+  public static void main(String[] args) {
+    Solution solution = new LongestPalindromicSubsequence().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // DP
+    public int longestPalindromeSubseq9(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      int[][] f = new int[n][n];
+      
+      for (int i = n - 1; i >= 0; i--) {
+        f[i][i] = 1;
+        for (int j = i + 1; j < n; j++) {
+          //                    f[i][j] = Math.max(f[i + 1][j], f[i][j - 1]);
+          //                    if (cs[i] == cs[j])
+          //                        f[i][j] = Math.max(f[i][j], f[i + 1][j - 1] + 2);
+          if (cs[i] == cs[j])
+            f[i][j] = f[i + 1][j - 1] + 2;
+          else
+            f[i][j] = Math.max(f[i + 1][j], f[i][j - 1]);
         }
-
-        //☆☆☆☆☆ DP（滚动数组）
-        public int longestPalindromeSubseq(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            int[] f = new int[n];
-
-            for (int i = n - 1; i >= 0; i--) {
-                f[i] = 1;
-                for (int j = i + 1, leftDown = 0; j < n; j++) {
-                    int tmp = f[j];
-                    if (cs[i] == cs[j])
-                        f[j] = leftDown + 2;
-                    else
-                        f[j] = Math.max(f[j], f[j - 1]);
-                    leftDown = tmp;
-                }
-            }
-
-            return f[n - 1];
-        }
+      }
+      
+      return f[0][n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ DP（滚动数组）
+    public int longestPalindromeSubseq(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      int[] f = new int[n];
+      
+      for (int i = n - 1; i >= 0; i--) {
+        f[i] = 1;
+        for (int j = i + 1, leftDown = 0; j < n; j++) {
+          int tmp = f[j];
+          if (cs[i] == cs[j])
+            f[j] = leftDown + 2;
+          else
+            f[j] = Math.max(f[j], f[j - 1]);
+          leftDown = tmp;
+        }
+      }
+      
+      return f[n - 1];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

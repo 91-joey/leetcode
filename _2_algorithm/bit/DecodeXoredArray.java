@@ -37,51 +37,51 @@
 //<div><li>👍 106</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//1720.解码异或后的数组
-//开题时间：2022-11-05 08:51:32
+// 1720.解码异或后的数组
+// 开题时间：2022-11-05 08:51:32
 public class DecodeXoredArray {
-    public static void main(String[] args) {
-        Solution solution = new DecodeXoredArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DecodeXoredArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // a^b=c,已知a、c，求b
+    public int[] decode2(int[] encoded, int first) {
+      int[] decoded = new int[encoded.length + 1];
+      decoded[0] = first;
+      for (int i = 0; i < encoded.length; i++)
+        decoded[i + 1] = reverseXor(decoded[i], encoded[i]);
+      return decoded;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //a^b=c,已知a、c，求b
-        public int[] decode2(int[] encoded, int first) {
-            int[] decoded = new int[encoded.length + 1];
-            decoded[0] = first;
-            for (int i = 0; i < encoded.length; i++)
-                decoded[i + 1] = reverseXor(decoded[i], encoded[i]);
-            return decoded;
-        }
-
-        //11010^01011=10001
-        private int reverseXor(int a, int r) {
-            int b = 0;
-            for (int mask = 1; mask <= 150000; mask <<= 1) {
-                int incre = a & mask;
-                if ((r & mask) == mask) {
-                    if (incre != mask)
-                        b += mask;
-                } else
-                    b += incre;
-            }
-            return b;
-        }
-
-        /*
-         * encoded[i] = arr[i] ^ arr[i + 1]
-         * arr[i] ^ encoded[i] = arr[i] ^ arr[i] ^ arr[i + 1]
-         * arr[i] ^ encoded[i] = arr[i + 1]
-         * arr[i + 1] = arr[i] ^ encoded[i]
-         */
-        public int[] decode(int[] encoded, int first) {
-            int[] arr = new int[encoded.length + 1];
-            arr[0] = first;
-            for (int i = 0; i < encoded.length; i++)
-                arr[i + 1] = arr[i] ^ encoded[i];
-            return arr;
-        }
+    
+    // 11010^01011=10001
+    private int reverseXor(int a, int r) {
+      int b = 0;
+      for (int mask = 1; mask <= 150000; mask <<= 1) {
+        int incre = a & mask;
+        if ((r & mask) == mask) {
+          if (incre != mask)
+            b += mask;
+        } else
+          b += incre;
+      }
+      return b;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * encoded[i] = arr[i] ^ arr[i + 1]
+     * arr[i] ^ encoded[i] = arr[i] ^ arr[i] ^ arr[i + 1]
+     * arr[i] ^ encoded[i] = arr[i + 1]
+     * arr[i + 1] = arr[i] ^ encoded[i]
+     */
+    public int[] decode(int[] encoded, int first) {
+      int[] arr = new int[encoded.length + 1];
+      arr[0] = first;
+      for (int i = 0; i < encoded.length; i++)
+        arr[i + 1] = arr[i] ^ encoded[i];
+      return arr;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

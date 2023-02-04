@@ -45,33 +45,33 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 
 import java.util.Arrays;
 
-//1640.能否连接形成数组
-//开题时间：2023-01-10 12:20:25
+// 1640.能否连接形成数组
+// 开题时间：2023-01-10 12:20:25
 public class CheckArrayFormationThroughConcatenation {
-    public static void main(String[] args) {
-        Solution solution = new CheckArrayFormationThroughConcatenation().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CheckArrayFormationThroughConcatenation().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean canFormArray(int[] arr, int[][] pieces) {
+      int[] val2idx = new int[101];
+      Arrays.fill(val2idx, -1);
+      for (int i = 0; i < pieces.length; i++)
+        val2idx[pieces[i][0]] = i;
+      
+      for (int i = 0; i < arr.length; ) {
+        int idx = val2idx[arr[i]];
+        if (idx == -1)
+          return false;
+        
+        for (int x : pieces[idx])
+          if (x != arr[i++])
+            return false;
+      }
+      
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean canFormArray(int[] arr, int[][] pieces) {
-            int[] val2idx = new int[101];
-            Arrays.fill(val2idx, -1);
-            for (int i = 0; i < pieces.length; i++)
-                val2idx[pieces[i][0]] = i;
-
-            for (int i = 0; i < arr.length; ) {
-                int idx = val2idx[arr[i]];
-                if (idx == -1)
-                    return false;
-
-                for (int x : pieces[idx])
-                    if (x != arr[i++])
-                        return false;
-            }
-
-            return true;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

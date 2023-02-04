@@ -34,39 +34,39 @@
 //<div><li>👍 426</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//201.数字范围按位与
-//开题时间：2023-01-12 18:28:10
+// 201.数字范围按位与
+// 开题时间：2023-01-12 18:28:10
 public class BitwiseAndOfNumbersRange {
-    public static void main(String[] args) {
-        Solution solution = new BitwiseAndOfNumbersRange().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BitwiseAndOfNumbersRange().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 公共前缀（递归）
+    public int rangeBitwiseAnd9(int left, int right) {
+      if (left == right)
+        return left;
+      return rangeBitwiseAnd(left >> 1, right >> 1) << 1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        // 公共前缀（递归）
-        public int rangeBitwiseAnd9(int left, int right) {
-            if (left == right)
-                return left;
-            return rangeBitwiseAnd(left >> 1, right >> 1) << 1;
-        }
-
-        //☆☆☆ 公共前缀（迭代）
-        public int rangeBitwiseAnd8(int left, int right) {
-            int shift = 0;
-            while (left < right) {
-                left >>= 1;
-                right >>= 1;
-                shift++;
-            }
-            return left << shift;
-        }
-
-        //☆☆☆☆☆ Brian Kernighan 算法 （每次运算，清除二进制最右侧的 1 ）
-        public int rangeBitwiseAnd(int left, int right) {
-            while (left < right)
-                right &= right - 1;
-            return right;
-        }
+    
+    //☆☆☆ 公共前缀（迭代）
+    public int rangeBitwiseAnd8(int left, int right) {
+      int shift = 0;
+      while (left < right) {
+        left >>= 1;
+        right >>= 1;
+        shift++;
+      }
+      return left << shift;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ Brian Kernighan 算法 （每次运算，清除二进制最右侧的 1 ）
+    public int rangeBitwiseAnd(int left, int right) {
+      while (left < right)
+        right &= right - 1;
+      return right;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

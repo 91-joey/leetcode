@@ -32,29 +32,29 @@
 //<div><li>👍 217</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//795.区间子数组个数
-//开题时间：2022-11-24 08:53:57
+// 795.区间子数组个数
+// 开题时间：2022-11-24 08:53:57
 public class NumberOfSubarraysWithBoundedMaximum {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfSubarraysWithBoundedMaximum().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new NumberOfSubarraysWithBoundedMaximum().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int numSubarrayBoundedMax(int[] nums, int left, int right) {
+      return numSubarrayBoundedMax(nums, left) - numSubarrayBoundedMax(nums, right + 1);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int numSubarrayBoundedMax(int[] nums, int left, int right) {
-            return numSubarrayBoundedMax(nums, left) - numSubarrayBoundedMax(nums, right + 1);
-        }
-
-        private int numSubarrayBoundedMax(int[] nums, int min) {
-            int n = nums.length;
-            int cnt = 0;
-            for (int i = 0, cur = 0; i < n; i++) {
-                if (nums[i] >= min)
-                    cur = i + 1;
-                cnt += cur;
-            }
-            return cnt;
-        }
+    
+    private int numSubarrayBoundedMax(int[] nums, int min) {
+      int n = nums.length;
+      int cnt = 0;
+      for (int i = 0, cur = 0; i < n; i++) {
+        if (nums[i] >= min)
+          cur = i + 1;
+        cnt += cur;
+      }
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

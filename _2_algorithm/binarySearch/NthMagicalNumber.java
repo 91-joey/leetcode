@@ -35,73 +35,73 @@
 //<div><li>👍 120</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//878.第 N 个神奇数字
-//开题时间：2022-11-22 08:38:56
+// 878.第 N 个神奇数字
+// 开题时间：2022-11-22 08:38:56
 public class NthMagicalNumber {
-    public static void main(String[] args) {
-        Solution solution = new NthMagicalNumber().new Solution();
-//        System.out.println(solution.nthMagicalNumber(4, 2, 3));
-        System.out.println(solution.nthMagicalNumber(307673195, 37340, 36427));
+  public static void main(String[] args) {
+    Solution solution = new NthMagicalNumber().new Solution();
+    //        System.out.println(solution.nthMagicalNumber(4, 2, 3));
+    System.out.println(solution.nthMagicalNumber(307673195, 37340, 36427));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int MOD = 10_0000_0007;
+    
+    public int nthMagicalNumber9(int n, int a, int b) {
+      if (a > b)
+        return nthMagicalNumber(n, b, a);
+      
+      if (b % a == 0)
+        return (int) ((long) n * a % MOD);
+      
+      int lcm = lcm(a, b);
+      int circles = lcm / a + lcm / b - 1;
+      long ans = (long) n / circles * lcm % MOD;
+      
+      int incr = 0;
+      for (int i = 0, limit = n % circles, x = 0, y = 0; i < limit; i++) {
+        if (x + a < y + b)
+          incr = (x = x + a);
+        else
+          incr = (y = y + b);
+      }
+      return (int) ((ans + incr) % MOD);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int MOD = 10_0000_0007;
-
-        public int nthMagicalNumber9(int n, int a, int b) {
-            if (a > b)
-                return nthMagicalNumber(n, b, a);
-
-            if (b % a == 0)
-                return (int) ((long) n * a % MOD);
-
-            int lcm = lcm(a, b);
-            int circles = lcm / a + lcm / b - 1;
-            long ans = (long) n / circles * lcm % MOD;
-
-            int incr = 0;
-            for (int i = 0, limit = n % circles, x = 0, y = 0; i < limit; i++) {
-                if (x + a < y + b)
-                    incr = (x = x + a);
-                else
-                    incr = (y = y + b);
-            }
-            return (int) ((ans + incr) % MOD);
-        }
-
-
-        //二分，设f(x)表示<=x的神奇数的个数，则f(x)为单调递增函数，f(x)=x/a+x/b+x/lcm
-        public int nthMagicalNumber(int n, int a, int b) {
-//            if (a > b)
-//                return nthMagicalNumber(n, b, a);
-//            if (b % a == 0)
-//                return (int) ((long) n * a % MOD);
-
-            int lcm = lcm(a, b);
-            //最小公倍数范围内的神奇数个数
-            int circles = lcm / a + lcm / b - 1;
-            long ans = (long) n / circles * lcm;
-            int l = 0, r = lcm - 1, target = n % circles;
-            while (l < r) {
-                int mid = l + ((r - l) >> 1);
-                int cnt = mid / a + mid / b;
-                if (target <= cnt)
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return (int) ((ans + r) % MOD);
-        }
-
-        public static int gcd(int a, int b) {
-            return b != 0 ?
-                    gcd(b, a % b) :
-                    a;
-        }
-
-        public static int lcm(int a, int b) {
-            return a * b / gcd(a, b);
-        }
+    
+    
+    // 二分，设f(x)表示<=x的神奇数的个数，则f(x)为单调递增函数，f(x)=x/a+x/b+x/lcm
+    public int nthMagicalNumber(int n, int a, int b) {
+      //            if (a > b)
+      //                return nthMagicalNumber(n, b, a);
+      //            if (b % a == 0)
+      //                return (int) ((long) n * a % MOD);
+      
+      int lcm = lcm(a, b);
+      // 最小公倍数范围内的神奇数个数
+      int circles = lcm / a + lcm / b - 1;
+      long ans = (long) n / circles * lcm;
+      int l = 0, r = lcm - 1, target = n % circles;
+      while (l < r) {
+        int mid = l + ((r - l) >> 1);
+        int cnt = mid / a + mid / b;
+        if (target <= cnt)
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return (int) ((ans + r) % MOD);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public static int gcd(int a, int b) {
+      return b != 0 ?
+          gcd(b, a % b) :
+          a;
+    }
+    
+    public static int lcm(int a, int b) {
+      return a * b / gcd(a, b);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

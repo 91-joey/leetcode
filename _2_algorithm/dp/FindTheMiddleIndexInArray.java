@@ -14,8 +14,8 @@
 //<b>输入：</b>nums = [2,3,-1,<em><strong>8</strong></em>,4]
 //<b>输出：</b>3
 //<strong>解释：</strong>
-//下标 3 之前的数字和为：2 + 3 + -1 = 4
-//下标 3 之后的数字和为：4 = 4
+// 下标 3 之前的数字和为：2 + 3 + -1 = 4
+// 下标 3 之后的数字和为：4 = 4
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -24,8 +24,8 @@
 //<b>输入：</b>nums = [1,-1,<em><strong>4</strong></em>]
 //<b>输出：</b>2
 //<strong>解释：</strong>
-//下标 2 之前的数字和为：1 + -1 = 0
-//下标 2 之后的数字和为：0
+// 下标 2 之前的数字和为：1 + -1 = 0
+// 下标 2 之后的数字和为：0
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -34,7 +34,7 @@
 //<b>输入：</b>nums = [2,5]
 //<b>输出：</b>-1
 //<b>解释：</b>
-//不存在符合要求的 middleIndex 。
+// 不存在符合要求的 middleIndex 。
 //</pre>
 //
 //<p><strong>示例 4：</strong></p>
@@ -43,8 +43,8 @@
 //<b>输入：</b>nums = [<em><strong>1</strong></em>]
 //<b>输出：</b>0
 //<strong>解释：</strong>
-//下标 0 之前的数字和为：0
-//下标 0 之后的数字和为：0
+// 下标 0 之前的数字和为：0
+// 下标 0 之后的数字和为：0
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -65,42 +65,42 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.Arrays;
 
-//1991.找到数组的中间位置
-//开题时间：2022-12-18 10:05:10
+// 1991.找到数组的中间位置
+// 开题时间：2022-12-18 10:05:10
 public class FindTheMiddleIndexInArray {
-    public static void main(String[] args) {
-        Solution solution = new FindTheMiddleIndexInArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindTheMiddleIndexInArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int findMiddleIndex9(int[] nums) {
+      int n = nums.length;
+      int[] prefix = new int[n + 1];
+      
+      for (int i = 1; i <= n; i++)
+        prefix[i] = prefix[i - 1] + nums[i - 1];
+      
+      int ans = -1;
+      for (int i = n - 1, suf = 0; i >= 0; i--) {
+        if (prefix[i] == suf)
+          ans = i;
+        suf += nums[i];
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int findMiddleIndex9(int[] nums) {
-            int n = nums.length;
-            int[] prefix = new int[n + 1];
-
-            for (int i = 1; i <= n; i++)
-                prefix[i] = prefix[i - 1] + nums[i - 1];
-
-            int ans = -1;
-            for (int i = n - 1, suf = 0; i >= 0; i--) {
-                if (prefix[i] == suf)
-                    ans = i;
-                suf += nums[i];
-            }
-
-            return ans;
-        }
-
-        //☆☆☆☆☆
-        public int findMiddleIndex(int[] nums) {
-            for (int i = 0, pre = 0, suf = Arrays.stream(nums).sum(); i < nums.length; i++) {
-                suf -= nums[i];
-                if (pre == suf)
-                    return i;
-                pre += nums[i];
-            }
-            return -1;
-        }
+    
+    //☆☆☆☆☆
+    public int findMiddleIndex(int[] nums) {
+      for (int i = 0, pre = 0, suf = Arrays.stream(nums).sum(); i < nums.length; i++) {
+        suf -= nums[i];
+        if (pre == suf)
+          return i;
+        pre += nums[i];
+      }
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -41,31 +41,31 @@
 //<div><div>Related Topics</div><div><li>字符串</li><li>字符串匹配</li></div></div><br><div><li>👍 63</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1668.最大重复子字符串
-//开题时间：2022-11-03 10:31:16
+// 1668.最大重复子字符串
+// 开题时间：2022-11-03 10:31:16
 public class MaximumRepeatingSubstring {
-    public static void main(String[] args) {
-        Solution solution = new MaximumRepeatingSubstring().new Solution();
-//        System.out.println(solution.maxRepeating2("ababc", "ab"));
-        System.out.println(solution.maxRepeating2("aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba"));
+  public static void main(String[] args) {
+    Solution solution = new MaximumRepeatingSubstring().new Solution();
+    //        System.out.println(solution.maxRepeating2("ababc", "ab"));
+    System.out.println(solution.maxRepeating2("aaabaaaabaaabaaaabaaaabaaaabaaaaba", "aaaba"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 暴力
+    public int maxRepeating(String sequence, String word) {
+      if (!sequence.contains(word))
+        return 0;
+      
+      int max = sequence.length() / word.length();
+      while (true) {
+        if (sequence.contains(word.repeat(max)))
+          return max;
+        max--;
+      }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //暴力
-        public int maxRepeating(String sequence, String word) {
-            if (!sequence.contains(word))
-                return 0;
-
-            int max = sequence.length() / word.length();
-            while (true) {
-                if (sequence.contains(word.repeat(max)))
-                    return max;
-                max--;
-            }
-        }
-
-        public int maxRepeating2(String sequence, String word) {
+    
+    public int maxRepeating2(String sequence, String word) {
             /*int max = 0;
             char[] chars = word.toCharArray();
             int len = chars.length;
@@ -88,26 +88,26 @@ public class MaximumRepeatingSubstring {
             if (l != -1)
                 max = Math.max(max, (r - l) / len);
             return max;*/
-            return 0;
-        }
-
-        public int maxRepeating3(String sequence, String word) {
-            int max = 1;
-            while (sequence.contains(word.repeat(max))) {
-                max++;
-            }
-            return max - 1;
-        }
-
-        public int maxRepeating4(String sequence, String word) {
-            int max = 0;
-            StringBuilder sb = new StringBuilder(word);
-            while (sequence.contains(sb.toString())) {
-                sb.append(word);
-                max++;
-            }
-            return max;
-        }
+      return 0;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int maxRepeating3(String sequence, String word) {
+      int max = 1;
+      while (sequence.contains(word.repeat(max))) {
+        max++;
+      }
+      return max - 1;
+    }
+    
+    public int maxRepeating4(String sequence, String word) {
+      int max = 0;
+      StringBuilder sb = new StringBuilder(word);
+      while (sequence.contains(sb.toString())) {
+        sb.append(word);
+        max++;
+      }
+      return max;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

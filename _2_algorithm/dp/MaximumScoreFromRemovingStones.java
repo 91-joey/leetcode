@@ -16,7 +16,7 @@
 //- 从第二和第三堆取，石子状态现在是 (0, 2, 2)
 //- 从第二和第三堆取，石子状态现在是 (0, 1, 1)
 //- 从第二和第三堆取，石子状态现在是 (0, 0, 0)
-//总分：6 分 。
+// 总分：6 分 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -32,7 +32,7 @@
 //- 从第二和第三堆取，石子状态现在是 (0, 2, 2)
 //- 从第二和第三堆取，石子状态现在是 (0, 1, 1)
 //- 从第二和第三堆取，石子状态现在是 (0, 0, 0)
-//总分：7 分 。
+// 总分：7 分 。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -41,7 +41,7 @@
 //<strong>输入：</strong>a = 1, b = 8, c = 8
 //<strong>输出：</strong>8
 //<strong>解释：</strong>最优的一组操作是连续从第二和第三堆取 8 回合，直到将它们取空。
-//注意，由于第二和第三堆已经空了，游戏结束，不能继续从第一堆中取石子。
+// 注意，由于第二和第三堆已经空了，游戏结束，不能继续从第一堆中取石子。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -61,75 +61,75 @@ import java.util.List;
 import java.util.PriorityQueue;
 import java.util.stream.Stream;
 
-//1753.移除石子的最大得分
-//开题时间：2022-12-21 10:58:06
+// 1753.移除石子的最大得分
+// 开题时间：2022-12-21 10:58:06
 public class MaximumScoreFromRemovingStones {
-    public static void main(String[] args) {
-        Solution solution = new MaximumScoreFromRemovingStones().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumScoreFromRemovingStones().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maximumScoreX(int a, int b, int c) {
+      int[] arr = Stream.of(a, b, c)
+          .sorted()
+          .mapToInt(Integer::intValue)
+          .toArray();
+      
+      return Math.max(arr[1], Math.max(
+          arr[0] + Math.min(arr[2] - arr[0], arr[1]),
+          arr[1] + Math.min(arr[2] - arr[1], arr[0])
+      ));
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maximumScoreX(int a, int b, int c) {
-            int[] arr = Stream.of(a, b, c)
-                    .sorted()
-                    .mapToInt(Integer::intValue)
-                    .toArray();
-
-            return Math.max(arr[1], Math.max(
-                    arr[0] + Math.min(arr[2] - arr[0], arr[1]),
-                    arr[1] + Math.min(arr[2] - arr[1], arr[0])
-            ));
-        }
-
-        //贪心 + 排序
-        public int maximumScore9(int a, int b, int c) {
-            int[] arr = Stream.of(a, b, c)
-                    .sorted()
-                    .mapToInt(Integer::intValue)
-                    .toArray();
-
-            int ans = 0;
-            while (arr[1] > 0 && arr[2] > 0) {
-                arr[1]--;
-                arr[2]--;
-                ans++;
-                Arrays.sort(arr);
-            }
-
-            return ans;
-        }
-
-        /*
-         * ☆☆☆☆☆ 贪心 + 数学
-         * 设 a<=b<=c，分类讨论：
-         *      a+b<=c  不管怎样，c始终>=0，所以拿c和a、b匹配
-         *      a+b>c
-         *          解释一：拿c和a、b匹配，使得a、b尽可能的相等（相差小于1），最后拿a、b匹配
-         *          解释二：拿a、b匹配，直到a+b<=c，转为情况一
-         */
-        public int maximumScore8(int a, int b, int c) {
-            int sum = a + b + c;
-            int max = Math.max(a, Math.max(b, c));
-            return Math.min(sum - max, sum >> 1);
-        }
-
-        //贪心 + 优先队列
-        public int maximumScore(int a, int b, int c) {
-            PriorityQueue<Integer> pq = new PriorityQueue<>(3, Comparator.reverseOrder());
-            pq.addAll(List.of(a, b, c));
-
-            int ans = 0;
-            while (true) {
-                int first = pq.poll();
-                int second = pq.poll();
-                if (second == 0)
-                    return ans;
-                ans++;
-                pq.offer(first - 1);
-                pq.offer(second - 1);
-            }
-        }
+    
+    // 贪心 + 排序
+    public int maximumScore9(int a, int b, int c) {
+      int[] arr = Stream.of(a, b, c)
+          .sorted()
+          .mapToInt(Integer::intValue)
+          .toArray();
+      
+      int ans = 0;
+      while (arr[1] > 0 && arr[2] > 0) {
+        arr[1]--;
+        arr[2]--;
+        ans++;
+        Arrays.sort(arr);
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * ☆☆☆☆☆ 贪心 + 数学
+     * 设 a<=b<=c，分类讨论：
+     *      a+b<=c  不管怎样，c始终>=0，所以拿c和a、b匹配
+     *      a+b>c
+     *          解释一：拿c和a、b匹配，使得a、b尽可能的相等（相差小于1），最后拿a、b匹配
+     *          解释二：拿a、b匹配，直到a+b<=c，转为情况一
+     */
+    public int maximumScore8(int a, int b, int c) {
+      int sum = a + b + c;
+      int max = Math.max(a, Math.max(b, c));
+      return Math.min(sum - max, sum >> 1);
+    }
+    
+    // 贪心 + 优先队列
+    public int maximumScore(int a, int b, int c) {
+      PriorityQueue<Integer> pq = new PriorityQueue<>(3, Comparator.reverseOrder());
+      pq.addAll(List.of(a, b, c));
+      
+      int ans = 0;
+      while (true) {
+        int first = pq.poll();
+        int second = pq.poll();
+        if (second == 0)
+          return ans;
+        ans++;
+        pq.offer(first - 1);
+        pq.offer(second - 1);
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

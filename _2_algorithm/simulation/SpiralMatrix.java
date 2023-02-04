@@ -33,33 +33,33 @@ package org.example.leetcode.problems._2_algorithm.simulation;
 import java.util.ArrayList;
 import java.util.List;
 
-//54.螺旋矩阵
-//开题时间：2022-12-22 12:45:53
+// 54.螺旋矩阵
+// 开题时间：2022-12-22 12:45:53
 public class SpiralMatrix {
-    public static void main(String[] args) {
-        Solution solution = new SpiralMatrix().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SpiralMatrix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+      int m = matrix.length;
+      int n = matrix[0].length;
+      ArrayList<Integer> ans = new ArrayList<>(m * n);
+      
+      for (int l = 0, r = n - 1, t = 0, b = m - 1, idx = 0; ; ) {
+        for (int i = l; i <= r; i++) ans.add(matrix[t][i]);
+        if (++t > b) break;
+        for (int i = t; i <= b; i++) ans.add(matrix[i][r]);
+        if (l > --r) break;
+        for (int i = r; i >= l; i--) ans.add(matrix[b][i]);
+        if (t > --b) break;
+        for (int i = b; i >= t; i--) ans.add(matrix[i][l]);
+        if (++l > r) break;
+      }
+      
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public List<Integer> spiralOrder(int[][] matrix) {
-            int m = matrix.length;
-            int n = matrix[0].length;
-            ArrayList<Integer> ans = new ArrayList<>(m * n);
-
-            for (int l = 0, r = n - 1, t = 0, b = m - 1, idx = 0; ; ) {
-                for (int i = l; i <= r; i++) ans.add(matrix[t][i]);
-                if (++t > b) break;
-                for (int i = t; i <= b; i++) ans.add(matrix[i][r]);
-                if (l > --r) break;
-                for (int i = r; i >= l; i--) ans.add(matrix[b][i]);
-                if (t > --b) break;
-                for (int i = b; i >= t; i--) ans.add(matrix[i][l]);
-                if (++l > r) break;
-            }
-
-            return ans;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

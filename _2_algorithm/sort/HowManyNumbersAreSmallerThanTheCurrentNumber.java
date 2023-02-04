@@ -11,11 +11,11 @@
 //<pre><strong>输入：</strong>nums = [8,1,2,2,3]
 //<strong>输出：</strong>[4,0,1,1,3]
 //<strong>解释：</strong> 
-//对于 nums[0]=8 存在四个比它小的数字：（1，2，2 和 3）。 
-//对于 nums[1]=1 不存在比它小的数字。
-//对于 nums[2]=2 存在一个比它小的数字：（1）。 
-//对于 nums[3]=2 存在一个比它小的数字：（1）。 
-//对于 nums[4]=3 存在三个比它小的数字：（1，2 和 2）。
+// 对于 nums[0]=8 存在四个比它小的数字：（1，2，2 和 3）。
+// 对于 nums[1]=1 不存在比它小的数字。
+// 对于 nums[2]=2 存在一个比它小的数字：（1）。
+// 对于 nums[3]=2 存在一个比它小的数字：（1）。
+// 对于 nums[4]=3 存在三个比它小的数字：（1，2 和 2）。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -42,30 +42,30 @@
 //<div><li>👍 242</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.sort;
 
-//1365.有多少小于当前数字的数字
-//开题时间：2023-01-07 17:42:31
+// 1365.有多少小于当前数字的数字
+// 开题时间：2023-01-07 17:42:31
 public class HowManyNumbersAreSmallerThanTheCurrentNumber {
-    public static void main(String[] args) {
-        Solution solution = new HowManyNumbersAreSmallerThanTheCurrentNumber().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new HowManyNumbersAreSmallerThanTheCurrentNumber().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 计数排序 + 前缀和
+    public int[] smallerNumbersThanCurrent(int[] nums) {
+      int[] freq = new int[101];
+      for (int x : nums)
+        freq[x]++;
+      
+      for (int i = 1; i < freq.length; i++)
+        freq[i] += freq[i - 1];
+      
+      for (int i = 0; i < nums.length; i++)
+        if (nums[i] > 0)
+          nums[i] = freq[nums[i] - 1];
+      
+      return nums;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //计数排序 + 前缀和
-        public int[] smallerNumbersThanCurrent(int[] nums) {
-            int[] freq = new int[101];
-            for (int x : nums)
-                freq[x]++;
-
-            for (int i = 1; i < freq.length; i++)
-                freq[i] += freq[i - 1];
-
-            for (int i = 0; i < nums.length; i++)
-                if (nums[i] > 0)
-                    nums[i] = freq[nums[i] - 1];
-
-            return nums;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

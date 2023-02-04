@@ -20,12 +20,12 @@
 //[null, null, null, null, true, false]
 //
 //<strong>解释：</strong>
-//TwoSum twoSum = new TwoSum();
-//twoSum.add(1);   // [] --&gt; [1]
-//twoSum.add(3);   // [1] --&gt; [1,3]
-//twoSum.add(5);   // [1,3] --&gt; [1,3,5]
-//twoSum.find(4);  // 1 + 3 = 4，返回 true
-//twoSum.find(7);  // 没有两个整数加起来等于 7 ，返回 false</pre>
+// TwoSum twoSum = new TwoSum();
+// twoSum.add(1);   // [] --&gt; [1]
+// twoSum.add(3);   // [1] --&gt; [1,3]
+// twoSum.add(5);   // [1,3] --&gt; [1,3,5]
+// twoSum.find(4);  // 1 + 3 = 4，返回 true
+// twoSum.find(7);  // 没有两个整数加起来等于 7 ，返回 false</pre>
 //
 //<p>&nbsp;</p>
 //
@@ -45,79 +45,79 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-//170.两数之和 III - 数据结构设计
-//开题时间：2022-09-10 10:34:41
+// 170.两数之和 III - 数据结构设计
+// 开题时间：2022-09-10 10:34:41
 public class TwoSumIiiDataStructureDesign {
-    public static void main(String[] args) {
-        TwoSum2 twoSum2 = new TwoSum2();
-        twoSum2.add(0);
-        twoSum2.add(-1);
-        twoSum2.add(-1);
-        twoSum2.add(0);
-        System.out.println(twoSum2.find(1));
+  public static void main(String[] args) {
+    TwoSum2 twoSum2 = new TwoSum2();
+    twoSum2.add(0);
+    twoSum2.add(-1);
+    twoSum2.add(-1);
+    twoSum2.add(0);
+    System.out.println(twoSum2.find(1));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class TwoSum {
+    Set<Integer> distincts = new HashSet<>();
+    Set<Integer> duplicates = new HashSet<>();
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+    
+    public TwoSum() {
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class TwoSum {
-        Set<Integer> distincts = new HashSet<>();
-        Set<Integer> duplicates = new HashSet<>();
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-
-        public TwoSum() {
-        }
-
-        public void add(int number) {
-            min = Math.min(min, number);
-            max = Math.max(max, number);
-            if (!distincts.add(number)) {
-                duplicates.add(number);
-            }
-        }
-
-        public boolean find(int value) {
-            if (distincts.isEmpty() || value > (2 * max) || value < (2 * min)) return false;
-            for (Integer distinct : distincts)
-                if (distinct * 2 != value && distincts.contains(value - distinct))
-                    return true;
-            for (Integer duplicate : duplicates)
-                if (duplicate * 2 == value)
-                    return true;
-            return false;
-        }
+    
+    public void add(int number) {
+      min = Math.min(min, number);
+      max = Math.max(max, number);
+      if (!distincts.add(number)) {
+        duplicates.add(number);
+      }
     }
-
-    static class TwoSum2 {
-        Map<Integer, Boolean> nums = new HashMap<>();
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-
-        public TwoSum2() {
-        }
-
-        public void add(int number) {
-            min = Math.min(min, number);
-            max = Math.max(max, number);
-            nums.merge(number, false, (bool1, bool2) -> true);
-        }
-
-        public boolean find(int value) {
-            if (nums.isEmpty() || value > (2 * max) || value < (2 * min)) return false;
-            for (Map.Entry<Integer, Boolean> entry : nums.entrySet()) {
-                int key1 = entry.getKey();
-                int key2 = value - key1;
-                if (nums.containsKey(key2) && (key1 != key2 || entry.getValue()))
-                    return true;
-            }
-            return false;
-        }
+    
+    public boolean find(int value) {
+      if (distincts.isEmpty() || value > (2 * max) || value < (2 * min)) return false;
+      for (Integer distinct : distincts)
+        if (distinct * 2 != value && distincts.contains(value - distinct))
+          return true;
+      for (Integer duplicate : duplicates)
+        if (duplicate * 2 == value)
+          return true;
+      return false;
     }
-
-/**
- * Your TwoSum object will be instantiated and called as such:
- * TwoSum obj = new TwoSum();
- * obj.add(number);
- * boolean param_2 = obj.find(value);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  static class TwoSum2 {
+    Map<Integer, Boolean> nums = new HashMap<>();
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+    
+    public TwoSum2() {
+    }
+    
+    public void add(int number) {
+      min = Math.min(min, number);
+      max = Math.max(max, number);
+      nums.merge(number, false, (bool1, bool2) -> true);
+    }
+    
+    public boolean find(int value) {
+      if (nums.isEmpty() || value > (2 * max) || value < (2 * min)) return false;
+      for (Map.Entry<Integer, Boolean> entry : nums.entrySet()) {
+        int key1 = entry.getKey();
+        int key2 = value - key1;
+        if (nums.containsKey(key2) && (key1 != key2 || entry.getValue()))
+          return true;
+      }
+      return false;
+    }
+  }
+  
+  /**
+   * Your TwoSum object will be instantiated and called as such:
+   * TwoSum obj = new TwoSum();
+   * obj.add(number);
+   * boolean param_2 = obj.find(value);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

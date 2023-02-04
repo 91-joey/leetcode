@@ -60,47 +60,47 @@ import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
 import java.util.HashSet;
 
-//142.环形链表 II
-//开题时间：2022-10-22 08:29:14
+// 142.环形链表 II
+// 开题时间：2022-10-22 08:29:14
 public class LinkedListCycleIi {
-    public static void main(String[] args) {
-        Solution solution = new LinkedListCycleIi().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LinkedListCycleIi().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode(int x) {
+   * val = x;
+   * next = null;
+   * }
+   * }
+   */
+  public class Solution {
+    // hash
+    public ListNode detectCycle2(ListNode head) {
+      HashSet<ListNode> seen = new HashSet<>();
+      for (ListNode p = head; p != null; p = p.next)
+        if (!seen.add(p))
+          return p;
+      return null;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode(int x) {
-     * val = x;
-     * next = null;
-     * }
-     * }
-     */
-    public class Solution {
-        //hash
-        public ListNode detectCycle2(ListNode head) {
-            HashSet<ListNode> seen = new HashSet<>();
-            for (ListNode p = head; p != null; p = p.next)
-                if (!seen.add(p))
-                    return p;
-            return null;
-        }
-
-        //a: 起点 -> 入环点，
-        //b：入环点 -> 第一次相遇点,
-        //c: 第一次相遇点 -> 入环点
-        //a=c+(n-1)*(b+c)
-        public ListNode detectCycle(ListNode head) {
-            for (ListNode slow = head, fast = head; fast != null && fast.next != null; )
-                if ((slow = slow.next) == (fast = fast.next.next))
-                    for (slow = head; ; slow = slow.next, fast = fast.next)
-                        if (slow == fast)
-                            return slow;
-            return null;
-        }
+    
+    // a: 起点 -> 入环点，
+    // b：入环点 -> 第一次相遇点,
+    // c: 第一次相遇点 -> 入环点
+    // a=c+(n-1)*(b+c)
+    public ListNode detectCycle(ListNode head) {
+      for (ListNode slow = head, fast = head; fast != null && fast.next != null; )
+        if ((slow = slow.next) == (fast = fast.next.next))
+          for (slow = head; ; slow = slow.next, fast = fast.next)
+            if (slow == fast)
+              return slow;
+      return null;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

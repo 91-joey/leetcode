@@ -38,35 +38,35 @@
 //<div><li>👍 2018</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//34.在排序数组中查找元素的第一个和最后一个位置
-//开题时间：2022-11-24 11:02:27
+// 34.在排序数组中查找元素的第一个和最后一个位置
+// 开题时间：2022-11-24 11:02:27
 public class FindFirstAndLastPositionOfElementInSortedArray {
-    public static void main(String[] args) {
-        Solution solution = new FindFirstAndLastPositionOfElementInSortedArray().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindFirstAndLastPositionOfElementInSortedArray().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] searchRange(int[] nums, int target) {
+      int n = nums.length;
+      
+      int start = binarySearch(nums, 0, n, target);
+      if (start == n || nums[start] != target)
+        return new int[]{-1, -1};
+      
+      return new int[]{start, binarySearch(nums, start, n, target + 1) - 1};
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] searchRange(int[] nums, int target) {
-            int n = nums.length;
-
-            int start = binarySearch(nums, 0, n, target);
-            if (start == n || nums[start] != target)
-                return new int[]{-1, -1};
-
-            return new int[]{start, binarySearch(nums, start, n, target + 1) - 1};
-        }
-
-        public static int binarySearch(int[] nums, int l, int r, int target) {
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (target <= nums[mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
+    
+    public static int binarySearch(int[] nums, int l, int r, int target) {
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (target <= nums[mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

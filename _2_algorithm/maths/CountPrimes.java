@@ -35,48 +35,48 @@
 //<div><li>👍 991</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//204.计数质数
-//开题时间：2023-01-01 12:41:52
+// 204.计数质数
+// 开题时间：2023-01-01 12:41:52
 public class CountPrimes {
-    public static void main(String[] args) {
-        Solution solution = new CountPrimes().new Solution();
-        System.out.println(solution.countPrimes(10));
+  public static void main(String[] args) {
+    Solution solution = new CountPrimes().new Solution();
+    System.out.println(solution.countPrimes(10));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 枚举 n*sqrt(n)
+    public int countPrimesX(int n) {
+      int ans = 0;
+      for (int i = 2; i < n; i++)
+        if (isPrime(i))
+          ans++;
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //枚举 n*sqrt(n)
-        public int countPrimesX(int n) {
-            int ans = 0;
-            for (int i = 2; i < n; i++)
-                if (isPrime(i))
-                    ans++;
-            return ans;
-        }
-
-        //☆☆☆☆☆ 埃氏筛   n * log log n
-        public int countPrimes(int n) {
-            boolean[] notPrime = new boolean[n];
-            int sqrt = (int) Math.sqrt(n);
-            for (int i = 2; i <= sqrt; i++)
-                if (!notPrime[i])
-                    for (int j = i * i; j < n; j += i)
-                        notPrime[j] = true;
-
-            int ans = 0;
-            for (int i = 2; i < n; i++)
-                if (!notPrime[i])
-                    ans++;
-            return ans;
-        }
-
-        private static boolean isPrime(int x) {
-            int sqrt = (int) Math.sqrt(x);
-            for (int i = 2; i <= sqrt; i++)
-                if (x % i == 0)
-                    return false;
-            return true;
-        }
+    
+    //☆☆☆☆☆ 埃氏筛   n * log log n
+    public int countPrimes(int n) {
+      boolean[] notPrime = new boolean[n];
+      int sqrt = (int) Math.sqrt(n);
+      for (int i = 2; i <= sqrt; i++)
+        if (!notPrime[i])
+          for (int j = i * i; j < n; j += i)
+            notPrime[j] = true;
+      
+      int ans = 0;
+      for (int i = 2; i < n; i++)
+        if (!notPrime[i])
+          ans++;
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private static boolean isPrime(int x) {
+      int sqrt = (int) Math.sqrt(x);
+      for (int i = 2; i <= sqrt; i++)
+        if (x % i == 0)
+          return false;
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

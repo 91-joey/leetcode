@@ -22,9 +22,9 @@
 //<strong>输入:</strong> nums1 = [1,3,5,4], nums2 = [1,2,3,7]
 //<strong>输出:</strong> 1
 //<strong>解释: </strong>
-//交换 A[3] 和 B[3] 后，两个数组如下:
-//A = [1, 3, 5, 7] ， B = [1, 2, 3, 4]
-//两个数组均为严格递增的。</pre>
+// 交换 A[3] 和 B[3] 后，两个数组如下:
+// A = [1, 3, 5, 7] ， B = [1, 2, 3, 4]
+// 两个数组均为严格递增的。</pre>
 //
 //<p><strong>示例 2:</strong></p>
 //
@@ -46,66 +46,66 @@
 //<div><li>👍 420</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//801.使序列递增的最小交换次数
-//开题时间：2022-12-07 12:17:09
+// 801.使序列递增的最小交换次数
+// 开题时间：2022-12-07 12:17:09
 public class MinimumSwapsToMakeSequencesIncreasing {
-    public static void main(String[] args) {
-        Solution solution = new MinimumSwapsToMakeSequencesIncreasing().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //题解：https://leetcode.cn/problems/minimum-swaps-to-make-sequences-increasing/solutions/1880968/zhua-wa-mou-si-tu-jie-leetcode-by-muse-7-kmio/?orderBy=hot
-        public int minSwap9(int[] nums1, int[] nums2) {
-            int n = nums1.length;
-            int[][] f = new int[n][2];
-            f[0][1] = 1;
-
-            for (int i = 1; i < n; i++) {
-                int a1 = nums1[i - 1];
-                int a2 = nums1[i];
-                int b1 = nums2[i - 1];
-                int b2 = nums2[i];
-                if (a1 < a2 && b1 < b2)
-                    if (b1 < a2 && a1 < b2) {
-                        f[i][0] = Math.min(f[i - 1][0], f[i - 1][1]);// 如果i【不互换】，则i-1可【互换】也可【不互换】
-                        f[i][1] = f[i][0] + 1;// 如果i【互换】，则i-1可【互换】也可【不互换】
-                    } else {
-                        f[i][0] = f[i - 1][0];// 如果i【不互换】，则i-1必须【不互换】
-                        f[i][1] = f[i - 1][1] + 1; // 如果i【互换】，则i-1必须【互换】
-                    }
-                else {
-                    f[i][0] = f[i - 1][1];// 如果i【不互换】，则i-1必须【互换】
-                    f[i][1] = f[i - 1][0] + 1;// 如果i【互换】，则i-1必须【不互换】
-                }
-            }
-
-            return Math.min(f[n - 1][0], f[n - 1][1]);
+  public static void main(String[] args) {
+    Solution solution = new MinimumSwapsToMakeSequencesIncreasing().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 题解：https://leetcode.cn/problems/minimum-swaps-to-make-sequences-increasing/solutions/1880968/zhua-wa-mou-si-tu-jie-leetcode-by-muse-7-kmio/?orderBy=hot
+    public int minSwap9(int[] nums1, int[] nums2) {
+      int n = nums1.length;
+      int[][] f = new int[n][2];
+      f[0][1] = 1;
+      
+      for (int i = 1; i < n; i++) {
+        int a1 = nums1[i - 1];
+        int a2 = nums1[i];
+        int b1 = nums2[i - 1];
+        int b2 = nums2[i];
+        if (a1 < a2 && b1 < b2)
+          if (b1 < a2 && a1 < b2) {
+            f[i][0] = Math.min(f[i - 1][0], f[i - 1][1]);// 如果i【不互换】，则i-1可【互换】也可【不互换】
+            f[i][1] = f[i][0] + 1;// 如果i【互换】，则i-1可【互换】也可【不互换】
+          } else {
+            f[i][0] = f[i - 1][0];// 如果i【不互换】，则i-1必须【不互换】
+            f[i][1] = f[i - 1][1] + 1; // 如果i【互换】，则i-1必须【互换】
+          }
+        else {
+          f[i][0] = f[i - 1][1];// 如果i【不互换】，则i-1必须【互换】
+          f[i][1] = f[i - 1][0] + 1;// 如果i【互换】，则i-1必须【不互换】
         }
-
-        //☆☆☆☆☆ dp 空间优化
-        public int minSwap(int[] nums1, int[] nums2) {
-            int a = 0, b = 1;
-
-            for (int i = 1; i < nums1.length; i++) {
-                int a1 = nums1[i - 1], a2 = nums1[i];
-                int b1 = nums2[i - 1], b2 = nums2[i];
-                if (a1 < a2 && b1 < b2)
-                    if (b1 < a2 && a1 < b2) {
-                        a = Math.min(a, b);
-                        b = a + 1;
-                    } else {
-                        b++;
-                    }
-                else {
-                    int tmp = a;
-                    a = b;
-                    b = tmp + 1;
-                }
-            }
-
-            return Math.min(a, b);
-        }
+      }
+      
+      return Math.min(f[n - 1][0], f[n - 1][1]);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ dp 空间优化
+    public int minSwap(int[] nums1, int[] nums2) {
+      int a = 0, b = 1;
+      
+      for (int i = 1; i < nums1.length; i++) {
+        int a1 = nums1[i - 1], a2 = nums1[i];
+        int b1 = nums2[i - 1], b2 = nums2[i];
+        if (a1 < a2 && b1 < b2)
+          if (b1 < a2 && a1 < b2) {
+            a = Math.min(a, b);
+            b = a + 1;
+          } else {
+            b++;
+          }
+        else {
+          int tmp = a;
+          a = b;
+          b = tmp + 1;
+        }
+      }
+      
+      return Math.min(a, b);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

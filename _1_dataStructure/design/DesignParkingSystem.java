@@ -19,11 +19,11 @@
 //[null, true, true, false, false]
 //
 //<strong>解释：</strong>
-//ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
-//parkingSystem.addCar(1); // 返回 true ，因为有 1 个空的大车位
-//parkingSystem.addCar(2); // 返回 true ，因为有 1 个空的中车位
-//parkingSystem.addCar(3); // 返回 false ，因为没有空的小车位
-//parkingSystem.addCar(1); // 返回 false ，因为没有空的大车位，唯一一个大车位已经被占据了
+// ParkingSystem parkingSystem = new ParkingSystem(1, 1, 0);
+// parkingSystem.addCar(1); // 返回 true ，因为有 1 个空的大车位
+// parkingSystem.addCar(2); // 返回 true ，因为有 1 个空的中车位
+// parkingSystem.addCar(3); // 返回 false ，因为没有空的小车位
+// parkingSystem.addCar(1); // 返回 false ，因为没有空的大车位，唯一一个大车位已经被占据了
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -39,37 +39,37 @@
 //<div><li>👍 123</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.design;
 
-//1603.设计停车系统
-//开题时间：2022-12-12 03:27:49
+// 1603.设计停车系统
+// 开题时间：2022-12-12 03:27:49
 public class DesignParkingSystem {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class ParkingSystem {
+    int big;
+    int medium;
+    int small;
+    
+    public ParkingSystem(int big, int medium, int small) {
+      this.big = big;
+      this.medium = medium;
+      this.small = small;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class ParkingSystem {
-        int big;
-        int medium;
-        int small;
-
-        public ParkingSystem(int big, int medium, int small) {
-            this.big = big;
-            this.medium = medium;
-            this.small = small;
-        }
-
-        public boolean addCar(int carType) {
-            return switch (carType) {
-                case 1 -> big-- > 0;
-                case 2 -> medium-- > 0;
-                default -> small-- > 0;
-            };
-        }
+    
+    public boolean addCar(int carType) {
+      return switch (carType) {
+        case 1 -> big-- > 0;
+        case 2 -> medium-- > 0;
+        default -> small-- > 0;
+      };
     }
-
-/**
- * Your ParkingSystem object will be instantiated and called as such:
- * ParkingSystem obj = new ParkingSystem(big, medium, small);
- * boolean param_1 = obj.addCar(carType);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  /**
+   * Your ParkingSystem object will be instantiated and called as such:
+   * ParkingSystem obj = new ParkingSystem(big, medium, small);
+   * boolean param_1 = obj.addCar(carType);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

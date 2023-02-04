@@ -15,9 +15,9 @@
 //<pre><b>输入：</b>nums = [1,1,1]
 //<b>输出：</b>3
 //<b>解释：</b>你可以进行如下操作：
-//1) 增加 nums[2] ，数组变为 [1,1,<strong>2</strong>] 。
-//2) 增加 nums[1] ，数组变为 [1,<strong>2</strong>,2] 。
-//3) 增加 nums[2] ，数组变为 [1,2,<strong>3</strong>] 。
+// 1) 增加 nums[2] ，数组变为 [1,1,<strong>2</strong>] 。
+// 2) 增加 nums[1] ，数组变为 [1,<strong>2</strong>,2] 。
+// 3) 增加 nums[2] ，数组变为 [1,2,<strong>3</strong>] 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -44,34 +44,34 @@
 //<div><li>👍 36</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//1827.最少操作使数组递增
-//开题时间：2022-12-11 09:06:14
+// 1827.最少操作使数组递增
+// 开题时间：2022-12-11 09:06:14
 public class MinimumOperationsToMakeTheArrayIncreasing {
-    public static void main(String[] args) {
-        Solution solution = new MinimumOperationsToMakeTheArrayIncreasing().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minOperations9(int[] nums) {
-            int ans = 0;
-            for (int i = 1; i < nums.length; i++)
-                if (nums[i - 1] >= nums[i]) {
-                    ans += nums[i - 1] - nums[i] + 1;
-                    nums[i] = nums[i - 1] + 1;
-                }
-            return ans;
+  public static void main(String[] args) {
+    Solution solution = new MinimumOperationsToMakeTheArrayIncreasing().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minOperations9(int[] nums) {
+      int ans = 0;
+      for (int i = 1; i < nums.length; i++)
+        if (nums[i - 1] >= nums[i]) {
+          ans += nums[i - 1] - nums[i] + 1;
+          nums[i] = nums[i - 1] + 1;
         }
-
-        public int minOperations(int[] nums) {
-            int ans = 0, pre = 0;
-            for (int cur : nums)
-                if (pre < cur)
-                    pre = cur;
-                else
-                    ans += ++pre - cur;
-            return ans;
-        }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int minOperations(int[] nums) {
+      int ans = 0, pre = 0;
+      for (int cur : nums)
+        if (pre < cur)
+          pre = cur;
+        else
+          ans += ++pre - cur;
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

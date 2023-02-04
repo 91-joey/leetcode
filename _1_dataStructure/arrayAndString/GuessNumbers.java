@@ -32,22 +32,22 @@
 //<div><li>👍 148</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//LCP 01.猜数字
-//开题时间：2022-11-10 20:57:12
+// LCP 01.猜数字
+// 开题时间：2022-11-10 20:57:12
 public class GuessNumbers {
-    public static void main(String[] args) {
-        Solution solution = new GuessNumbers().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new GuessNumbers().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int game(int[] guess, int[] answer) {
+      int cnt = 0;
+      for (int i = 0; i < 3; i++)
+        if (guess[i] == answer[i])
+          cnt++;
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int game(int[] guess, int[] answer) {
-            int cnt = 0;
-            for (int i = 0; i < 3; i++)
-                if (guess[i] == answer[i])
-                    cnt++;
-            return cnt;
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

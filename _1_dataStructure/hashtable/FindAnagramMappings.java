@@ -7,7 +7,7 @@
 //<p>例如，给定</p>
 //
 //<pre>A = [12, 28, 46, 32, 50]
-//B = [50, 12, 32, 46, 28]
+// B = [50, 12, 32, 46, 28]
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -35,46 +35,46 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 
 import java.util.HashMap;
 
-//760.找出变位映射
-//开题时间：2022-11-16 19:38:17
+// 760.找出变位映射
+// 开题时间：2022-11-16 19:38:17
 public class FindAnagramMappings {
-    public static void main(String[] args) {
-        Solution solution = new FindAnagramMappings().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindAnagramMappings().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] anagramMappings9(int[] nums1, int[] nums2) {
+      HashMap<Integer, Integer> val2idx = new HashMap<>();
+      for (int i = 0; i < nums2.length; i++)
+        val2idx.put(nums2[i], i);
+      
+      for (int i = 0; i < nums1.length; i++)
+        nums1[i] = val2idx.get(nums1[i]);
+      
+      return nums1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] anagramMappings9(int[] nums1, int[] nums2) {
-            HashMap<Integer, Integer> val2idx = new HashMap<>();
-            for (int i = 0; i < nums2.length; i++)
-                val2idx.put(nums2[i], i);
-
-            for (int i = 0; i < nums1.length; i++)
-                nums1[i] = val2idx.get(nums1[i]);
-
-            return nums1;
-        }
-
-        public int[] anagramMappings8(int[] nums1, int[] nums2) {
-            int[] indices = new int[(int) 1e5];
-            for (int i = 0; i < nums2.length; i++)
-                indices[nums2[i]] = i;
-
-            for (int i = 0; i < nums1.length; i++)
-                nums1[i] = indices[nums1[i]];
-
-            return nums1;
-        }
-
-        public int[] anagramMappings(int[] nums1, int[] nums2) {
-            for (int i = 0; i < nums1.length; i++)
-                for (int j = 0; j < nums2.length; j++)
-                    if (nums1[i] == nums2[j]) {
-                        nums1[i] = j;
-                        break;
-                    }
-            return nums1;
-        }
+    
+    public int[] anagramMappings8(int[] nums1, int[] nums2) {
+      int[] indices = new int[(int) 1e5];
+      for (int i = 0; i < nums2.length; i++)
+        indices[nums2[i]] = i;
+      
+      for (int i = 0; i < nums1.length; i++)
+        nums1[i] = indices[nums1[i]];
+      
+      return nums1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int[] anagramMappings(int[] nums1, int[] nums2) {
+      for (int i = 0; i < nums1.length; i++)
+        for (int j = 0; j < nums2.length; j++)
+          if (nums1[i] == nums2[j]) {
+            nums1[i] = j;
+            break;
+          }
+      return nums1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

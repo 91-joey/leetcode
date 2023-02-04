@@ -9,7 +9,7 @@
 //<pre><strong>输入：</strong>salary = [4000,3000,1000,2000]
 //<strong>输出：</strong>2500.00000
 //<strong>解释：</strong>最低工资和最高工资分别是 1000 和 4000 。
-//去掉最低工资和最高工资以后的平均工资是 (2000+3000)/2= 2500
+// 去掉最低工资和最高工资以后的平均工资是 (2000+3000)/2= 2500
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -17,7 +17,7 @@
 //<pre><strong>输入：</strong>salary = [1000,2000,3000]
 //<strong>输出：</strong>2000.00000
 //<strong>解释：</strong>最低工资和最高工资分别是 1000 和 3000 。
-//去掉最低工资和最高工资以后的平均工资是 (2000)/1= 2000
+// 去掉最低工资和最高工资以后的平均工资是 (2000)/1= 2000
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -48,34 +48,34 @@ package org.example.leetcode.problems._2_algorithm.sort;
 
 import java.util.Arrays;
 
-//1491.去掉最低工资和最高工资后的工资平均值
-//开题时间：2022-12-01 17:40:25
+// 1491.去掉最低工资和最高工资后的工资平均值
+// 开题时间：2022-12-01 17:40:25
 public class AverageSalaryExcludingTheMinimumAndMaximumSalary {
-    public static void main(String[] args) {
-        Solution solution = new AverageSalaryExcludingTheMinimumAndMaximumSalary().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new AverageSalaryExcludingTheMinimumAndMaximumSalary().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public double average9(int[] salary) {
+      int min = Integer.MAX_VALUE;
+      int max = Integer.MIN_VALUE;
+      int sum = 0;
+      for (int e : salary) {
+        min = Math.min(min, e);
+        max = Math.max(max, e);
+        sum += e;
+      }
+      return (double) (sum - min - max) / (salary.length - 2);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public double average9(int[] salary) {
-            int min = Integer.MAX_VALUE;
-            int max = Integer.MIN_VALUE;
-            int sum = 0;
-            for (int e : salary) {
-                min = Math.min(min, e);
-                max = Math.max(max, e);
-                sum += e;
-            }
-            return (double) (sum - min - max) / (salary.length - 2);
-        }
-
-        public double average(int[] salary) {
-            return (double) (
-                    Arrays.stream(salary).sum()
-                    - Arrays.stream(salary).min().getAsInt()
-                    - Arrays.stream(salary).max().getAsInt()
-            ) / (salary.length - 2);
-        }
+    
+    public double average(int[] salary) {
+      return (double) (
+          Arrays.stream(salary).sum()
+              - Arrays.stream(salary).min().getAsInt()
+              - Arrays.stream(salary).max().getAsInt()
+      ) / (salary.length - 2);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

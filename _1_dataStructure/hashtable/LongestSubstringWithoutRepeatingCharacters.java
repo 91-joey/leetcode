@@ -42,76 +42,76 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.HashSet;
 import java.util.Set;
 
-//3.无重复字符的最长子串
-//开题时间：2022-09-10 09:32:03
+// 3.无重复字符的最长子串
+// 开题时间：2022-09-10 09:32:03
 public class LongestSubstringWithoutRepeatingCharacters {
-    public static void main(String[] args) {
-        Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new LongestSubstringWithoutRepeatingCharacters().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 1.hashset
+    public int lengthOfLongestSubstring1(String s) {
+      char[] chars = s.toCharArray();
+      Set<Character> set = new HashSet<>();
+      int l = 0, r = 0, max = 0;
+      int length = s.length();
+      
+      while (r < length) {
+        if (!set.add(chars[r])) {
+          max = Math.max(max, r - l);
+          while (chars[l] != chars[r]) {
+            set.remove(chars[l++]);
+          }
+          l++;
+        }
+        r++;
+      }
+      
+      max = Math.max(max, length - l);
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //1.hashset
-        public int lengthOfLongestSubstring1(String s) {
-            char[] chars = s.toCharArray();
-            Set<Character> set = new HashSet<>();
-            int l = 0, r = 0, max = 0;
-            int length = s.length();
-
-            while (r < length) {
-                if (!set.add(chars[r])) {
-                    max = Math.max(max, r - l);
-                    while (chars[l] != chars[r]) {
-                        set.remove(chars[l++]);
-                    }
-                    l++;
-                }
-                r++;
-            }
-
-            max = Math.max(max, length - l);
-            return max;
+    
+    // 2.数组
+    public int lengthOfLongestSubstring2(String s) {
+      char[] chars = s.toCharArray();
+      boolean[] set = new boolean[128];
+      int l = 0, r = 0, max = 0;
+      int length = s.length();
+      
+      while (r < length) {
+        if (set[chars[r]]) {
+          max = Math.max(max, r - l);
+          while (chars[l] != chars[r]) {
+            set[chars[l++]] = false;
+          }
+          l++;
         }
-
-        //2.数组
-        public int lengthOfLongestSubstring2(String s) {
-            char[] chars = s.toCharArray();
-            boolean[] set = new boolean[128];
-            int l = 0, r = 0, max = 0;
-            int length = s.length();
-
-            while (r < length) {
-                if (set[chars[r]]) {
-                    max = Math.max(max, r - l);
-                    while (chars[l] != chars[r]) {
-                        set[chars[l++]] = false;
-                    }
-                    l++;
-                }
-                set[chars[r++]] = true;
-            }
-
-            max = Math.max(max, length - l);
-            return max;
-        }
-
-        /*
-         * ☆☆☆☆☆ 长度不会变小的滑窗
-         * 维护重复字符的种类数 diff
-         */
-        public int lengthOfLongestSubstring(String s) {
-            int[] freq = new int[128];
-            char[] cs = s.toCharArray();
-            int l = 0, r = 0, diff = 0;
-            while (r < cs.length) {
-                if (freq[cs[r++]]++ == 1)
-                    diff++;
-                if (diff > 0)
-                    if (--freq[cs[l++]] == 1)
-                        diff--;
-            }
-            return r - l;
-        }
+        set[chars[r++]] = true;
+      }
+      
+      max = Math.max(max, length - l);
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * ☆☆☆☆☆ 长度不会变小的滑窗
+     * 维护重复字符的种类数 diff
+     */
+    public int lengthOfLongestSubstring(String s) {
+      int[] freq = new int[128];
+      char[] cs = s.toCharArray();
+      int l = 0, r = 0, diff = 0;
+      while (r < cs.length) {
+        if (freq[cs[r++]]++ == 1)
+          diff++;
+        if (diff > 0)
+          if (--freq[cs[l++]] == 1)
+            diff--;
+      }
+      return r - l;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -9,10 +9,10 @@
 //<pre><strong>输入：</strong>command = "G()(al)"
 //<strong>输出：</strong>"Goal"
 //<strong>解释：</strong>Goal 解析器解释命令的步骤如下所示：
-//G -&gt; G
+// G -&gt; G
 //() -&gt; o
 //(al) -&gt; al
-//最后连接得到的结果是 "Goal"
+// 最后连接得到的结果是 "Goal"
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -39,66 +39,66 @@
 //<div><li>👍 65</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1678.设计 Goal 解析器
-//开题时间：2022-11-06 17:51:37
+// 1678.设计 Goal 解析器
+// 开题时间：2022-11-06 17:51:37
 public class GoalParserInterpretation {
-    public static void main(String[] args) {
-        Solution solution = new GoalParserInterpretation().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new GoalParserInterpretation().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public String interpret9(String command) {
+      return command.replace("()", "o").replace("(al)", "al");
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public String interpret9(String command) {
-            return command.replace("()", "o").replace("(al)", "al");
+    
+    public String interpret(String command) {
+      StringBuilder sb = new StringBuilder();
+      
+      for (int i = 0, len = command.length(); i < len; ) {
+        char c = command.charAt(i);
+        if (c != '(') {
+          sb.append(c);
+          i++;
+        } else if (command.charAt(i + 1) == ')') {
+          sb.append('o');
+          i += 2;
+        } else {
+          sb.append("al");
+          i += 4;
         }
-
-        public String interpret(String command) {
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 0, len = command.length(); i < len; ) {
-                char c = command.charAt(i);
-                if (c != '(') {
-                    sb.append(c);
-                    i++;
-                } else if (command.charAt(i + 1) == ')') {
-                    sb.append('o');
-                    i += 2;
-                } else {
-                    sb.append("al");
-                    i += 4;
-                }
-            }
-
-            return sb.toString();
-        }
-
-        public String interpret8(String command) {
-            StringBuilder sb = new StringBuilder();
-
-            for (int i = 0; i < command.length(); ) {
-                char c = command.charAt(i);
-                switch (c) {
-                    case '(' -> {
-                        switch (command.charAt(i + 1)) {
-                            case ')' -> {
-                                sb.append('o');
-                                i += 2;
-                            }
-                            default -> {
-                                sb.append("al");
-                                i += 4;
-                            }
-                        }
-                    }
-                    default -> {
-                        sb.append(c);
-                        i++;
-                    }
-                }
-            }
-
-            return sb.toString();
-        }
+      }
+      
+      return sb.toString();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public String interpret8(String command) {
+      StringBuilder sb = new StringBuilder();
+      
+      for (int i = 0; i < command.length(); ) {
+        char c = command.charAt(i);
+        switch (c) {
+          case '(' -> {
+            switch (command.charAt(i + 1)) {
+              case ')' -> {
+                sb.append('o');
+                i += 2;
+              }
+              default -> {
+                sb.append("al");
+                i += 4;
+              }
+            }
+          }
+          default -> {
+            sb.append(c);
+            i++;
+          }
+        }
+      }
+      
+      return sb.toString();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

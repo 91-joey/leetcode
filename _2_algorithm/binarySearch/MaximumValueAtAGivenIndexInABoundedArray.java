@@ -39,59 +39,59 @@
 //<div><li>👍 122</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//1802.有界数组中指定下标处的最大值
-//开题时间：2023-01-04 17:36:39
+// 1802.有界数组中指定下标处的最大值
+// 开题时间：2023-01-04 17:36:39
 public class MaximumValueAtAGivenIndexInABoundedArray {
-    public static void main(String[] args) {
-        Solution solution = new MaximumValueAtAGivenIndexInABoundedArray().new Solution();
-//        System.out.println(solution.maxValue(4, 2, 6));
-        System.out.println(solution.maxValue(3, 0, 815094800));
+  public static void main(String[] args) {
+    Solution solution = new MaximumValueAtAGivenIndexInABoundedArray().new Solution();
+    //        System.out.println(solution.maxValue(4, 2, 6));
+    System.out.println(solution.maxValue(3, 0, 815094800));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxValue9(int n, int index, int sum) {
+      int l = (sum + n - 1) / n, r = sum;
+      while (l < r) {
+        int mid = ((r - l + 1) >> 1) + l;
+        if (canFormArr(n, index, sum, mid))
+          l = mid;
+        else
+          r = mid - 1;
+      }
+      return r;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxValue9(int n, int index, int sum) {
-            int l = (sum + n - 1) / n, r = sum;
-            while (l < r) {
-                int mid = ((r - l + 1) >> 1) + l;
-                if (canFormArr(n, index, sum, mid))
-                    l = mid;
-                else
-                    r = mid - 1;
-            }
-            return r;
-        }
-
-        //☆☆☆☆☆ 贪心 + 二分
-        public int maxValue(int n, int index, int sum) {
-            int l = (sum + n - 1) / n, r = sum;
-            while (l < r) {
-                int mid = ((r - l + 1) >> 1) + l;
-                if (sum(index, mid) + sum(n - 1 - index, mid) + mid <= sum)
-                    l = mid;
-                else
-                    r = mid - 1;
-            }
-            return r;
-        }
-
-        private long sum(int idx, long x) {
-            return x - 1 >= idx ?
-                    (2 * x - idx - 1) * idx / 2 :
-                    x * (x - 3) / 2 + idx + 1;
-        }
-
-        private boolean canFormArr(int n, int index, int sum, int x) {
-            return (long) n * x >= sum &&
-                    (long) x + getPartSum(index, x) + getPartSum(n - 1 - index, x) <= sum;
-        }
-
-        private long getPartSum(int index, int x) {
-            if (x - 1 >= index)
-                return (2L * x - index - 1) * index / 2;
-            else
-                return (long) x * (x - 1) / 2 + index + 1 - x;
-        }
+    
+    //☆☆☆☆☆ 贪心 + 二分
+    public int maxValue(int n, int index, int sum) {
+      int l = (sum + n - 1) / n, r = sum;
+      while (l < r) {
+        int mid = ((r - l + 1) >> 1) + l;
+        if (sum(index, mid) + sum(n - 1 - index, mid) + mid <= sum)
+          l = mid;
+        else
+          r = mid - 1;
+      }
+      return r;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    private long sum(int idx, long x) {
+      return x - 1 >= idx ?
+          (2 * x - idx - 1) * idx / 2 :
+          x * (x - 3) / 2 + idx + 1;
+    }
+    
+    private boolean canFormArr(int n, int index, int sum, int x) {
+      return (long) n * x >= sum &&
+          (long) x + getPartSum(index, x) + getPartSum(n - 1 - index, x) <= sum;
+    }
+    
+    private long getPartSum(int index, int x) {
+      if (x - 1 >= index)
+        return (2L * x - index - 1) * index / 2;
+      else
+        return (long) x * (x - 1) / 2 + index + 1 - x;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

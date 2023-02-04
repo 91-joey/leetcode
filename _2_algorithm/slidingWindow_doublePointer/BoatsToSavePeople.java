@@ -44,96 +44,96 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import java.util.Arrays;
 
-//881.救生艇
-//开题时间：2022-10-27 12:10:08
+// 881.救生艇
+// 开题时间：2022-10-27 12:10:08
 public class BoatsToSavePeople {
-    public static void main(String[] args) {
-        Solution solution = new BoatsToSavePeople().new Solution();
-//        System.out.println(solution.numRescueBoats(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, 13));
-        System.out.println(solution.numRescueBoats(new int[]{3, 2, 2, 1}, 3));
+  public static void main(String[] args) {
+    Solution solution = new BoatsToSavePeople().new Solution();
+    //        System.out.println(solution.numRescueBoats(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, 13));
+    System.out.println(solution.numRescueBoats(new int[]{3, 2, 2, 1}, 3));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int numRescueBoats(int[] people, int limit) {
+      int cnt = 0;
+      Arrays.sort(people);
+      
+      
+      for (int l = 0, r = people.length - 1; l < r; ) {
+        while (l < r && people[l] + people[r] > limit) {
+          r--;
+          cnt++;
+        }
+        
+        if (l != r) {
+          l++;
+          r--;
+          if (l == r)
+            cnt++;
+        }
+        
+        cnt++;
+      }
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int numRescueBoats(int[] people, int limit) {
-            int cnt = 0;
-            Arrays.sort(people);
-
-
-            for (int l = 0, r = people.length - 1; l < r; ) {
-                while (l < r && people[l] + people[r] > limit) {
-                    r--;
-                    cnt++;
-                }
-
-                if (l != r) {
-                    l++;
-                    r--;
-                    if (l == r)
-                        cnt++;
-                }
-
-                cnt++;
-            }
-
-            return cnt;
-        }
-
-        public int numRescueBoats2(int[] people, int limit) {
-            int cnt = 0;
-            Arrays.sort(people);
-
-            for (int l = 0, r = people.length - 1; l < r; ) {
-                int t = limit - people[l];
-                int tmp = r;
-                while (l < r && people[r] > t)
-                    r--;
-                cnt += tmp - r;
-
-                if (l != r) {
-                    tmp = r;
-                    do {
-                        l++;
-                        r--;
-                    } while (l < r && people[l] + people[r] <= limit);
-                    cnt += tmp - r;
-                    if (l == r)
-                        cnt++;
-                } else
-                    cnt++;
-            }
-
-            return cnt;
-        }
-
-        //贪心
-        public int numRescueBoats3(int[] people, int limit) {
-            int cnt = 0;
-            Arrays.sort(people);
-
-            for (int l = 0, r = people.length - 1; l <= r; ) {
-                if (people[l] + people[r] <= limit)
-                    l++;
-                r--;
-                cnt++;
-            }
-
-            return cnt;
-        }
-
-
-        //贪心（优化）
-        public int numRescueBoats4(int[] people, int limit) {
-            Arrays.sort(people);
-
-            int lst = people.length - 1;
-            int r = lst;
-            for (int l = 0; l <= r; r--)
-                if (people[l] + people[r] <= limit)
-                    l++;
-
-            return lst - r;
-        }
+    
+    public int numRescueBoats2(int[] people, int limit) {
+      int cnt = 0;
+      Arrays.sort(people);
+      
+      for (int l = 0, r = people.length - 1; l < r; ) {
+        int t = limit - people[l];
+        int tmp = r;
+        while (l < r && people[r] > t)
+          r--;
+        cnt += tmp - r;
+        
+        if (l != r) {
+          tmp = r;
+          do {
+            l++;
+            r--;
+          } while (l < r && people[l] + people[r] <= limit);
+          cnt += tmp - r;
+          if (l == r)
+            cnt++;
+        } else
+          cnt++;
+      }
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 贪心
+    public int numRescueBoats3(int[] people, int limit) {
+      int cnt = 0;
+      Arrays.sort(people);
+      
+      for (int l = 0, r = people.length - 1; l <= r; ) {
+        if (people[l] + people[r] <= limit)
+          l++;
+        r--;
+        cnt++;
+      }
+      
+      return cnt;
+    }
+    
+    
+    // 贪心（优化）
+    public int numRescueBoats4(int[] people, int limit) {
+      Arrays.sort(people);
+      
+      int lst = people.length - 1;
+      int r = lst;
+      for (int l = 0; l <= r; r--)
+        if (people[l] + people[r] <= limit)
+          l++;
+      
+      return lst - r;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

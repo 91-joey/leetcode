@@ -32,19 +32,19 @@ public class MergeInBetweenLinkedLists {
       
       return list1;
     }
-  
+    
     public ListNode mergeInBetween8(ListNode list1, int a, int b, ListNode list2) {
       ListNode reer = list1;
       for (int i = 0; i < b - a + 2; i++) {
         reer = reer.next;
       }
-    
+      
       ListNode front = list1;
       for (int i = 0; i < a - 1; i++) {
         front = front.next;
         reer = reer.next;
       }
-    
+      
       front.next = list2;
       while (front.next != null) {
         front = front.next;
@@ -52,14 +52,14 @@ public class MergeInBetweenLinkedLists {
       front.next = reer;
       return list1;
     }
-  
+    
     // ☆☆☆☆☆ 双指针模拟
     public ListNode mergeInBetween(ListNode list1, int a, int b, ListNode list2) {
       ListNode preA = list1;
       for (int i = 0; i < a - 1; i++) {
         preA = preA.next;
       }
-  
+      
       ListNode aftB = preA;
       for (int i = 0; i < b - a + 2; i++) {
         aftB = aftB.next;

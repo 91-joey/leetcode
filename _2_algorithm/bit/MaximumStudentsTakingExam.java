@@ -56,89 +56,89 @@ package org.example.leetcode.problems._2_algorithm.bit;
 
 import java.util.Arrays;
 
-//1349.参加考试的最大学生数
-//开题时间：2023-01-13 15:42:35
+// 1349.参加考试的最大学生数
+// 开题时间：2023-01-13 15:42:35
 public class MaximumStudentsTakingExam {
-    public static void main(String[] args) {
-        Solution solution = new MaximumStudentsTakingExam().new Solution();
-        System.out.println(solution.maxStudents(new char[][]{
-                {'.', '#', '#', '.'},
-                {'.', '.', '.', '#'},
-                {'.', '.', '.', '.'},
-                {'#', '.', '#', '#'}
-        }));
+  public static void main(String[] args) {
+    Solution solution = new MaximumStudentsTakingExam().new Solution();
+    System.out.println(solution.maxStudents(new char[][]{
+        {'.', '#', '#', '.'},
+        {'.', '.', '.', '#'},
+        {'.', '.', '.', '.'},
+        {'#', '.', '#', '#'}
+    }));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxStudents9(char[][] seats) {
+      int m = seats.length;
+      int n = seats[0].length;
+      int bound = 1 << n;
+      int[][] f = new int[m + 1][bound];
+      
+      for (int i = 1; i < m + 1; i++)
+        for (int j = 0; j < bound; j++)
+          if ((j & (j << 1)) == 0 && (j & (j >> 1)) == 0 && isNotBroken(j, seats[i - 1]))
+            for (int k = 0; k < bound; k++)
+              if ((j & (k << 1)) == 0 && (j & (k >> 1)) == 0)
+                f[i][j] = Math.max(f[i][j], f[i - 1][k] + Integer.bitCount(j));
+      
+      return Arrays.stream(f[m]).max().getAsInt();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxStudents9(char[][] seats) {
-            int m = seats.length;
-            int n = seats[0].length;
-            int bound = 1 << n;
-            int[][] f = new int[m + 1][bound];
-
-            for (int i = 1; i < m + 1; i++)
-                for (int j = 0; j < bound; j++)
-                    if ((j & (j << 1)) == 0 && (j & (j >> 1)) == 0 && isNotBroken(j, seats[i - 1]))
-                        for (int k = 0; k < bound; k++)
-                            if ((j & (k << 1)) == 0 && (j & (k >> 1)) == 0)
-                                f[i][j] = Math.max(f[i][j], f[i - 1][k] + Integer.bitCount(j));
-
-            return Arrays.stream(f[m]).max().getAsInt();
-        }
-
-        private boolean isNotBroken(int state, char[] seat) {
-            for (int i = 0; i < seat.length; i++) {
-                if ((state & 1) == 1 && seat[i] == '#')
-                    return false;
-                state >>= 1;
-            }
-            return true;
-        }
-
-        /*
-         * ☆☆☆☆☆ 状压dp + 预处理位1数量
-         * 状态定义：f[i][state] 表示第 i 行、就座状态为 state 时前 i 行的最大学生数
-         * 状态转移：f[i][j] = max(f[i-1][k]+bitCount(j))
-         *      f[i][j]、f[i-1][k]均为有效就座状态
-         *          1.不能坐在坏座位上
-         *          2.左右两侧不能就座（当前行不能相邻而坐）
-         *          3.左上、右上不能就座
-         * 小技巧：运用哨兵思想，设置第 0 行的所有状态值为 0
-         * 最终结果：max(f[m])
-         */
-        public int maxStudents(char[][] seats) {
-            int m = seats.length;
-            int n = seats[0].length;
-            int bound = 1 << n;
-            int[][] f = new int[m + 1][bound];
-            int[] bitCount = new int[bound];
-            for (int i = 1; i < bound; i++)
-                bitCount[i] = bitCount[i & (i - 1)] + 1;
-
-            for (int i = 1; i < m + 1; i++) {
-                //每行座位的好坏（好为1，坏为0）
-                int validSeats = 0;
-                for (int j = 0; j < n; j++)
-                    if (seats[i - 1][j] == '.')
-                        validSeats |= (1 << j);
-                for (int j = 0; j < bound; j++) {
-                    int adjacentMask1 = j << 1;
-                    //无效状态：1.学生相邻而坐 或 2.学生坐在坏座位上
-                    if ((j & adjacentMask1) != 0 || (j | validSeats) != validSeats) {
-                        f[i][j] = -1;
-                        continue;
-                    }
-                    int adjacentMask2 = j >> 1;
-                    for (int k = 0; k < bound; k++)
-                        //上一行的就座状态有效，且当前行的学生的左上、右上没有学生就座
-                        if (f[i - 1][k] != -1 && (k & adjacentMask1) == 0 && (k & adjacentMask2) == 0)
-                            f[i][j] = Math.max(f[i][j], f[i - 1][k] + bitCount[j]);
-                }
-            }
-
-            return Arrays.stream(f[m]).max().getAsInt();
-        }
+    
+    private boolean isNotBroken(int state, char[] seat) {
+      for (int i = 0; i < seat.length; i++) {
+        if ((state & 1) == 1 && seat[i] == '#')
+          return false;
+        state >>= 1;
+      }
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * ☆☆☆☆☆ 状压dp + 预处理位1数量
+     * 状态定义：f[i][state] 表示第 i 行、就座状态为 state 时前 i 行的最大学生数
+     * 状态转移：f[i][j] = max(f[i-1][k]+bitCount(j))
+     *      f[i][j]、f[i-1][k]均为有效就座状态
+     *          1.不能坐在坏座位上
+     *          2.左右两侧不能就座（当前行不能相邻而坐）
+     *          3.左上、右上不能就座
+     * 小技巧：运用哨兵思想，设置第 0 行的所有状态值为 0
+     * 最终结果：max(f[m])
+     */
+    public int maxStudents(char[][] seats) {
+      int m = seats.length;
+      int n = seats[0].length;
+      int bound = 1 << n;
+      int[][] f = new int[m + 1][bound];
+      int[] bitCount = new int[bound];
+      for (int i = 1; i < bound; i++)
+        bitCount[i] = bitCount[i & (i - 1)] + 1;
+      
+      for (int i = 1; i < m + 1; i++) {
+        // 每行座位的好坏（好为1，坏为0）
+        int validSeats = 0;
+        for (int j = 0; j < n; j++)
+          if (seats[i - 1][j] == '.')
+            validSeats |= (1 << j);
+        for (int j = 0; j < bound; j++) {
+          int adjacentMask1 = j << 1;
+          // 无效状态：1.学生相邻而坐 或 2.学生坐在坏座位上
+          if ((j & adjacentMask1) != 0 || (j | validSeats) != validSeats) {
+            f[i][j] = -1;
+            continue;
+          }
+          int adjacentMask2 = j >> 1;
+          for (int k = 0; k < bound; k++)
+            // 上一行的就座状态有效，且当前行的学生的左上、右上没有学生就座
+            if (f[i - 1][k] != -1 && (k & adjacentMask1) == 0 && (k & adjacentMask2) == 0)
+              f[i][j] = Math.max(f[i][j], f[i - 1][k] + bitCount[j]);
+        }
+      }
+      
+      return Arrays.stream(f[m]).max().getAsInt();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

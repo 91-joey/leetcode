@@ -39,45 +39,45 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//328.奇偶链表
-//开题时间：2022-08-30 10:01:59
+// 328.奇偶链表
+// 开题时间：2022-08-30 10:01:59
 public class OddEvenLinkedList {
-    public static void main(String[] args) {
-        Solution solution = new OddEvenLinkedList().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new OddEvenLinkedList().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    // 1.双指针 n   1
+    public ListNode oddEvenList(ListNode head) {
+      if (head == null) {
+        return null;
+      }
+      
+      ListNode odd = head;
+      ListNode even = head.next;
+      ListNode firstEven = even;
+      while (even != null && even.next != null) {
+        odd.next = odd.next.next;
+        odd = odd.next;
+        even.next = even.next.next;
+        even = even.next;
+      }
+      odd.next = firstEven;
+      
+      return head;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        //1.双指针 n   1
-        public ListNode oddEvenList(ListNode head) {
-            if (head == null) {
-                return null;
-            }
-
-            ListNode odd = head;
-            ListNode even = head.next;
-            ListNode firstEven = even;
-            while (even != null && even.next != null) {
-                odd.next = odd.next.next;
-                odd = odd.next;
-                even.next = even.next.next;
-                even = even.next;
-            }
-            odd.next = firstEven;
-
-            return head;
-        }
-    }
-
-    //leetcode submit region end(Prohibit modification and deletion)
+  }
+  
+  // leetcode submit region end(Prohibit modification and deletion)
 }

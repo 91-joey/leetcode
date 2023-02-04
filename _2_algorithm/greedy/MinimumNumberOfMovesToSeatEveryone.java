@@ -20,7 +20,7 @@
 //- 第一位学生从位置 2 移动到位置 1 ，移动 1 次。
 //- 第二位学生从位置 7 移动到位置 5 ，移动 2 次。
 //- 第三位学生从位置 4 移动到位置 3 ，移动 1 次。
-//总共 1 + 2 + 1 = 4 次移动。
+// 总共 1 + 2 + 1 = 4 次移动。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -32,7 +32,7 @@
 //- 第二位学生从位置 3 移动到位置 4 ，移动 1 次。
 //- 第三位学生从位置 2 移动到位置 5 ，移动 3 次。
 //- 第四位学生从位置 6 移动到位置 9 ，移动 3 次。
-//总共 0 + 1 + 3 + 3 = 7 次移动。
+// 总共 0 + 1 + 3 + 3 = 7 次移动。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -44,7 +44,7 @@
 //- 第二位学生从位置 3 移动到位置 6 ，移动 3 次。
 //- 第三位学生不移动。
 //- 第四位学生不移动。
-//总共 1 + 3 + 0 + 0 = 4 次移动。
+// 总共 1 + 3 + 0 + 0 = 4 次移动。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -65,51 +65,51 @@ import java.util.Arrays;
 import java.util.PrimitiveIterator;
 import java.util.TreeMap;
 
-//2037.使每位学生都有座位的最少移动次数
-//开题时间：2022-12-31 09:07:18
+// 2037.使每位学生都有座位的最少移动次数
+// 开题时间：2022-12-31 09:07:18
 public class MinimumNumberOfMovesToSeatEveryone {
-    public static void main(String[] args) {
-        Solution solution = new MinimumNumberOfMovesToSeatEveryone().new Solution();
-        System.out.println(solution.minMovesToSeat(new int[]{3, 1, 5}, new int[]{2, 7, 4}));
-//        System.out.println(solution.minMovesToSeat(new int[]{3, 20, 17, 2, 12, 15, 17, 4, 15, 20}, new int[]{10, 13, 14, 15, 5, 2, 3, 14, 3, 18}));
+  public static void main(String[] args) {
+    Solution solution = new MinimumNumberOfMovesToSeatEveryone().new Solution();
+    System.out.println(solution.minMovesToSeat(new int[]{3, 1, 5}, new int[]{2, 7, 4}));
+    //        System.out.println(solution.minMovesToSeat(new int[]{3, 20, 17, 2, 12, 15, 17, 4, 15, 20}, new int[]{10, 13, 14, 15, 5, 2, 3, 14, 3, 18}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  //    import java.util.*;
+  class Solution {
+    public int minMovesToSeatX(int[] seats, int[] students) {
+      //            Map<Integer, Long> val2cnt = Arrays.stream(seats).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+      TreeMap<Integer, Integer> val2cnt = new TreeMap<>();
+      for (int x : seats)
+        val2cnt.merge(x, 1, Integer::sum);
+      int ans = 0;
+      for (int x : students) {
+        Integer high = val2cnt.ceilingKey(x);
+        Integer low = val2cnt.floorKey(x);
+        int seat = high == null || (low != null && x - low >= high - x) ? low : high;
+        if (val2cnt.get(seat) == 1)
+          val2cnt.remove(seat);
+        else
+          val2cnt.merge(seat, -1, Integer::sum);
+        ans += Math.abs(x - seat);
+      }
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-//    import java.util.*;
-    class Solution {
-        public int minMovesToSeatX(int[] seats, int[] students) {
-//            Map<Integer, Long> val2cnt = Arrays.stream(seats).boxed().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
-            TreeMap<Integer, Integer> val2cnt = new TreeMap<>();
-            for (int x : seats)
-                val2cnt.merge(x, 1, Integer::sum);
-            int ans = 0;
-            for (int x : students) {
-                Integer high = val2cnt.ceilingKey(x);
-                Integer low = val2cnt.floorKey(x);
-                int seat = high == null || (low != null && x - low >= high - x) ? low : high;
-                if (val2cnt.get(seat) == 1)
-                    val2cnt.remove(seat);
-                else
-                    val2cnt.merge(seat, -1, Integer::sum);
-                ans += Math.abs(x - seat);
-            }
-            return ans;
-        }
-
-        //☆☆☆☆☆ 排序+贪心
-        public int minMovesToSeat9(int[] seats, int[] students) {
-            Arrays.sort(seats);
-            Arrays.sort(students);
-            int ans = 0;
-            for (int i = 0; i < seats.length; i++)
-                ans += Math.abs(seats[i] - students[i]);
-            return ans;
-        }
-
-        public int minMovesToSeat(int[] seats, int[] students) {
-            PrimitiveIterator.OfInt iterator = Arrays.stream(students).sorted().iterator();
-            return Arrays.stream(seats).sorted().map(x -> Math.abs(x - iterator.nextInt())).sum();
-        }
+    
+    //☆☆☆☆☆ 排序+贪心
+    public int minMovesToSeat9(int[] seats, int[] students) {
+      Arrays.sort(seats);
+      Arrays.sort(students);
+      int ans = 0;
+      for (int i = 0; i < seats.length; i++)
+        ans += Math.abs(seats[i] - students[i]);
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int minMovesToSeat(int[] seats, int[] students) {
+      PrimitiveIterator.OfInt iterator = Arrays.stream(students).sorted().iterator();
+      return Arrays.stream(seats).sorted().map(x -> Math.abs(x - iterator.nextInt())).sum();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

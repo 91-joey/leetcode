@@ -53,45 +53,45 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 
 import java.util.ArrayList;
 
-//997.找到小镇的法官
-//开题时间：2023-01-13 10:29:21
+// 997.找到小镇的法官
+// 开题时间：2023-01-13 10:29:21
 public class FindTheTownJudge {
-    public static void main(String[] args) {
-        Solution solution = new FindTheTownJudge().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FindTheTownJudge().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int findJudgeX(int n, int[][] trust) {
+      ArrayList<Integer>[] g = new ArrayList[n + 1];
+      for (int i = 1; i < n + 1; i++)
+        g[i] = new ArrayList<>();
+      
+      for (int[] edge : trust)
+        g[edge[0]].add(edge[1]);
+      
+      for (int i = 1; i < n + 1; i++)
+        if (g[i].isEmpty())
+          return i;
+      
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int findJudgeX(int n, int[][] trust) {
-            ArrayList<Integer>[] g = new ArrayList[n + 1];
-            for (int i = 1; i < n + 1; i++)
-                g[i] = new ArrayList<>();
-
-            for (int[] edge : trust)
-                g[edge[0]].add(edge[1]);
-
-            for (int i = 1; i < n + 1; i++)
-                if (g[i].isEmpty())
-                    return i;
-
-            return -1;
-        }
-
-        //统计出入度
-        public int findJudge(int n, int[][] trust) {
-            int[] inDeg = new int[n + 1];
-            int[] outDeg = new int[n + 1];
-            for (int[] edge : trust) {
-                inDeg[edge[1]]++;
-                outDeg[edge[0]]++;
-            }
-
-            for (int i = 1; i < n + 1; i++)
-                if (outDeg[i] == 0 && inDeg[i] == n - 1)
-                    return i;
-
-            return -1;
-        }
+    
+    // 统计出入度
+    public int findJudge(int n, int[][] trust) {
+      int[] inDeg = new int[n + 1];
+      int[] outDeg = new int[n + 1];
+      for (int[] edge : trust) {
+        inDeg[edge[1]]++;
+        outDeg[edge[0]]++;
+      }
+      
+      for (int i = 1; i < n + 1; i++)
+        if (outDeg[i] == 0 && inDeg[i] == n - 1)
+          return i;
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

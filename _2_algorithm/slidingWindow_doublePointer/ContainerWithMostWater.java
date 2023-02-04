@@ -37,58 +37,58 @@
 //<div><div>Related Topics</div><div><li>贪心</li><li>数组</li><li>双指针</li></div></div><br><div><li>👍 3849</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//11.盛最多水的容器
-//开题时间：2022-10-22 11:57:45
+// 11.盛最多水的容器
+// 开题时间：2022-10-22 11:57:45
 public class ContainerWithMostWater {
-    public static void main(String[] args) {
-        Solution solution = new ContainerWithMostWater().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ContainerWithMostWater().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // TLE
+    public int maxArea(int[] height) {
+      int len = height.length;
+      int maxArea = 0;
+      for (int i = 0; i < len - 1; i++)
+        for (int j = i + 1; j < len; j++)
+          maxArea = Math.max(maxArea, (j - i) * Math.min(height[i], height[j]));
+      return maxArea;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //TLE
-        public int maxArea(int[] height) {
-            int len = height.length;
-            int maxArea = 0;
-            for (int i = 0; i < len - 1; i++)
-                for (int j = i + 1; j < len; j++)
-                    maxArea = Math.max(maxArea, (j - i) * Math.min(height[i], height[j]));
-            return maxArea;
-        }
-
-        public int maxArea2(int[] height) {
-            int maxArea = 0;
-            for (int l = 0, r = height.length - 1; l < r; ) {
-                int minHeight = Math.min(height[l], height[r]);
-                maxArea = Math.max(maxArea, (r - l) * minHeight);
-                if (minHeight == height[l])
-                    l++;
-                else
-                    r--;
-            }
-            return maxArea;
-        }
-
-        public int maxArea3(int[] height) {
-            int maxArea = 0;
-            for (int l = 0, r = height.length - 1; l < r; ) {
-                maxArea = (height[l] < height[r]) ?
-                        Math.max(maxArea, (r - l) * height[l++]) :
-                        Math.max(maxArea, (r - l) * height[r--]);
-            }
-            return maxArea;
-        }
-
-        public int maxArea4(int[] height) {
-            int maxArea = 0;
-            for (int l = 0, r = height.length - 1; l < r; ) {
-                int minHeight = Math.min(height[l], height[r]);
-                maxArea = Math.max(maxArea, (r - l) * minHeight);
-                while (l < r && height[l] <= minHeight) l++;
-                while (l < r && height[r] <= minHeight) r--;
-            }
-            return maxArea;
-        }
+    
+    public int maxArea2(int[] height) {
+      int maxArea = 0;
+      for (int l = 0, r = height.length - 1; l < r; ) {
+        int minHeight = Math.min(height[l], height[r]);
+        maxArea = Math.max(maxArea, (r - l) * minHeight);
+        if (minHeight == height[l])
+          l++;
+        else
+          r--;
+      }
+      return maxArea;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int maxArea3(int[] height) {
+      int maxArea = 0;
+      for (int l = 0, r = height.length - 1; l < r; ) {
+        maxArea = (height[l] < height[r]) ?
+            Math.max(maxArea, (r - l) * height[l++]) :
+            Math.max(maxArea, (r - l) * height[r--]);
+      }
+      return maxArea;
+    }
+    
+    public int maxArea4(int[] height) {
+      int maxArea = 0;
+      for (int l = 0, r = height.length - 1; l < r; ) {
+        int minHeight = Math.min(height[l], height[r]);
+        maxArea = Math.max(maxArea, (r - l) * minHeight);
+        while (l < r && height[l] <= minHeight) l++;
+        while (l < r && height[r] <= minHeight) r--;
+      }
+      return maxArea;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

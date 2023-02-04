@@ -57,88 +57,88 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//1582.二进制矩阵中的特殊位置
-//开题时间：2022-12-25 12:14:57
+// 1582.二进制矩阵中的特殊位置
+// 开题时间：2022-12-25 12:14:57
 public class SpecialPositionsInABinaryMatrix {
-    public static void main(String[] args) {
-        Solution solution = new SpecialPositionsInABinaryMatrix().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SpecialPositionsInABinaryMatrix().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int numSpecial9(int[][] mat) {
+      int m = mat.length;
+      int n = mat[0].length;
+      int[] rows = new int[m];
+      for (int i = 0; i < m; i++)
+        rows[i] = Arrays.stream(mat[i]).sum();
+      
+      int cnt = 0;
+      out:
+      for (int c = 0; c < n; c++) {
+        int row = -1;
+        for (int r = 0; r < m; r++)
+          if (1 == mat[r][c])
+            if (row == -1)
+              row = r;
+            else
+              continue out;
+        if (row != -1 && rows[row] == 1)
+          cnt++;
+      }
+      
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int numSpecial9(int[][] mat) {
-            int m = mat.length;
-            int n = mat[0].length;
-            int[] rows = new int[m];
-            for (int i = 0; i < m; i++)
-                rows[i] = Arrays.stream(mat[i]).sum();
-
-            int cnt = 0;
-            out:
-            for (int c = 0; c < n; c++) {
-                int row = -1;
-                for (int r = 0; r < m; r++)
-                    if (1 == mat[r][c])
-                        if (row == -1)
-                            row = r;
-                        else
-                            continue out;
-                if (row != -1 && rows[row] == 1)
-                    cnt++;
-            }
-
-            return cnt;
-        }
-
-        /*
-         * ☆☆☆☆ 预处理行列的 1 个数
-         * 遍历矩阵，计数 元素值、行列中 1 个数均为 1 的元素
-         */
-        public int numSpecial8(int[][] mat) {
-            int m = mat.length;
-            int n = mat[0].length;
-            int[] rows = new int[m];
-            int[] cols = new int[n];
-            for (int i = 0; i < m; i++)
-                rows[i] = Arrays.stream(mat[i]).sum();
-            for (int i = 0; i < n; i++) {
-                int finalI = i;
-                cols[i] = Arrays.stream(mat).mapToInt(arr -> arr[finalI]).sum();
-            }
-
-            int cnt = 0;
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++)
-                    if (mat[i][j] == 1 && rows[i] == 1 && cols[j] == 1)
-                        cnt++;
-
-            return cnt;
-        }
-
-        /*
-         * 官解：
-         * 列标记值：表示每一列的所有值为 1 所在行所有 1 的个数之和 之和
-         * 当且仅当列标记值为 1 时，为特殊位置
-         */
-        public int numSpecial7(int[][] mat) {
-            int m = mat.length;
-            int n = mat[0].length;
-            for (int i = 0; i < m; i++) {
-                int cnt = 0;
-                for (int j = 0; j < n; j++)
-                    cnt += mat[i][j];
-                if (i == 0)
-                    cnt--;
-                if (cnt > 0)
-                    for (int j = 0; j < n; j++)
-                        if (mat[i][j] == 1)
-                            mat[0][j] += cnt;
-            }
-
-            return Arrays.stream(mat[0])
-                    .filter(x -> x == 1)
-                    .sum();
-        }
+    
+    /*
+     * ☆☆☆☆ 预处理行列的 1 个数
+     * 遍历矩阵，计数 元素值、行列中 1 个数均为 1 的元素
+     */
+    public int numSpecial8(int[][] mat) {
+      int m = mat.length;
+      int n = mat[0].length;
+      int[] rows = new int[m];
+      int[] cols = new int[n];
+      for (int i = 0; i < m; i++)
+        rows[i] = Arrays.stream(mat[i]).sum();
+      for (int i = 0; i < n; i++) {
+        int finalI = i;
+        cols[i] = Arrays.stream(mat).mapToInt(arr -> arr[finalI]).sum();
+      }
+      
+      int cnt = 0;
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++)
+          if (mat[i][j] == 1 && rows[i] == 1 && cols[j] == 1)
+            cnt++;
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * 官解：
+     * 列标记值：表示每一列的所有值为 1 所在行所有 1 的个数之和 之和
+     * 当且仅当列标记值为 1 时，为特殊位置
+     */
+    public int numSpecial7(int[][] mat) {
+      int m = mat.length;
+      int n = mat[0].length;
+      for (int i = 0; i < m; i++) {
+        int cnt = 0;
+        for (int j = 0; j < n; j++)
+          cnt += mat[i][j];
+        if (i == 0)
+          cnt--;
+        if (cnt > 0)
+          for (int j = 0; j < n; j++)
+            if (mat[i][j] == 1)
+              mat[0][j] += cnt;
+      }
+      
+      return Arrays.stream(mat[0])
+          .filter(x -> x == 1)
+          .sum();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

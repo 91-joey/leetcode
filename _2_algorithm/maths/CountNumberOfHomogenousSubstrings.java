@@ -18,7 +18,7 @@
 //"c"   出现 3 次。
 //"cc"  出现 2 次。
 //"ccc" 出现 1 次。
-//3 + 1 + 2 + 1 + 3 + 2 + 1 = 13</pre>
+// 3 + 1 + 2 + 1 + 3 + 2 + 1 = 13</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -44,29 +44,29 @@
 //<div><li>👍 37</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//1759.统计同构子字符串的数目
-//开题时间：2022-12-26 11:14:02
+// 1759.统计同构子字符串的数目
+// 开题时间：2022-12-26 11:14:02
 public class CountNumberOfHomogenousSubstrings {
-    public static void main(String[] args) {
-        Solution solution = new CountNumberOfHomogenousSubstrings().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int MOD = 10_0000_0007;
-
-        public int countHomogenous(String s) {
-            char[] cs = s.toCharArray();
-            int n = cs.length;
-            long ans = 0;
-            for (int l = 0, r = 1; r <= n; r++)
-                if (r == n || cs[l] != cs[r]) {
-                    int len = r - l;
-                    ans += (long) len * (len + 1) / 2;
-                    l = r;
-                }
-            return (int) (ans % MOD);
+  public static void main(String[] args) {
+    Solution solution = new CountNumberOfHomogenousSubstrings().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int MOD = 10_0000_0007;
+    
+    public int countHomogenous(String s) {
+      char[] cs = s.toCharArray();
+      int n = cs.length;
+      long ans = 0;
+      for (int l = 0, r = 1; r <= n; r++)
+        if (r == n || cs[l] != cs[r]) {
+          int len = r - l;
+          ans += (long) len * (len + 1) / 2;
+          l = r;
         }
+      return (int) (ans % MOD);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

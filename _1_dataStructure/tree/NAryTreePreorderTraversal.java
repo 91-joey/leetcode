@@ -47,50 +47,50 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//589.N 叉树的前序遍历
-//开题时间：2022-12-05 11:26:46
+// 589.N 叉树的前序遍历
+// 开题时间：2022-12-05 11:26:46
 public class NAryTreePreorderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new NAryTreePreorderTraversal().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new NAryTreePreorderTraversal().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    List<Integer> list = new ArrayList<Integer>();
+    
+    // Recursive
+    public List<Integer> preorder9(Node root) {
+      dfs(root);
+      return list;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        List<Integer> list = new ArrayList<Integer>();
-
-        //Recursive
-        public List<Integer> preorder9(Node root) {
-            dfs(root);
-            return list;
-        }
-
-        private void dfs(Node root) {
-            if (root == null)
-                return;
-
-            list.add(root.val);
-            if (root.children != null)
-                root.children.forEach(this::dfs);
-        }
-
-        //Relative
-        public List<Integer> preorder(Node root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-            Deque<Node> stack = new LinkedList<>();
-            stack.push(root);
-
-            while (!stack.isEmpty()) {
-                Node pop = stack.pop();
-                list.add(pop.val);
-                if (pop.children != null)
-                    for (int i = pop.children.size() - 1; i >= 0; i--)
-                        stack.push(pop.children.get(i));
-            }
-
-            return list;
-        }
+    
+    private void dfs(Node root) {
+      if (root == null)
+        return;
+      
+      list.add(root.val);
+      if (root.children != null)
+        root.children.forEach(this::dfs);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // Relative
+    public List<Integer> preorder(Node root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      Deque<Node> stack = new LinkedList<>();
+      stack.push(root);
+      
+      while (!stack.isEmpty()) {
+        Node pop = stack.pop();
+        list.add(pop.val);
+        if (pop.children != null)
+          for (int i = pop.children.size() - 1; i >= 0; i--)
+            stack.push(pop.children.get(i));
+      }
+      
+      return list;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -34,43 +34,43 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>滑动窗口</li></div></div><br><div><li>👍 57</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1695.删除子数组的最大得分
-//开题时间：2022-10-06 17:46:15
+// 1695.删除子数组的最大得分
+// 开题时间：2022-10-06 17:46:15
 public class MaximumErasureValue {
-    public static void main(String[] args) {
-        Solution solution = new MaximumErasureValue().new Solution();
-        System.out.println(solution.maximumUniqueSubarray(new int[]{4, 2, 4, 5, 6}));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 1.r++ 直到出现第一个重复元素 a，计算最大得分
-         * 2.l++ 直到元素 a
-         * 3.重复步骤1
-         */
-        public int maximumUniqueSubarray(int[] nums) {
-            int max = nums[0];
-            int sum = 0;
-            boolean[] exists = new boolean[10001];
-
-            for (int l = 0, r = 0; r < nums.length; r++) {
-                if (exists[nums[r]]) {
-                    max = Math.max(max, sum);
-                    while (nums[r] != nums[l]) {
-                        sum -= nums[l];
-                        exists[nums[l++]] = false;
-                    }
-                    l++;
-                } else {
-                    sum += nums[r];
-                    exists[nums[r]] = true;
-                }
-            }
-
-            max = Math.max(max, sum);
-            return max;
+  public static void main(String[] args) {
+    Solution solution = new MaximumErasureValue().new Solution();
+    System.out.println(solution.maximumUniqueSubarray(new int[]{4, 2, 4, 5, 6}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 1.r++ 直到出现第一个重复元素 a，计算最大得分
+     * 2.l++ 直到元素 a
+     * 3.重复步骤1
+     */
+    public int maximumUniqueSubarray(int[] nums) {
+      int max = nums[0];
+      int sum = 0;
+      boolean[] exists = new boolean[10001];
+      
+      for (int l = 0, r = 0; r < nums.length; r++) {
+        if (exists[nums[r]]) {
+          max = Math.max(max, sum);
+          while (nums[r] != nums[l]) {
+            sum -= nums[l];
+            exists[nums[l++]] = false;
+          }
+          l++;
+        } else {
+          sum += nums[r];
+          exists[nums[r]] = true;
         }
+      }
+      
+      max = Math.max(max, sum);
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

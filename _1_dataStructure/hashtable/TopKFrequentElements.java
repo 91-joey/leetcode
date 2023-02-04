@@ -32,43 +32,49 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>分治</li><li>桶排序</li><li>计数</li><li>快速选择</li><li>排序</li><li>堆（优先队列）</li></div></div><br><div><li>👍 1316</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.hashtable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
-//347.前 K 个高频元素
-//开题时间：2022-09-11 08:12:53
+// 347.前 K 个高频元素
+// 开题时间：2022-09-11 08:12:53
 public class TopKFrequentElements {
-    public static void main(String[] args) {
-        Solution solution = new TopKFrequentElements().new Solution();
-        System.out.println(Arrays.toString(solution.topKFrequent(new int[]{1, 2}, 2)));
-//        System.out.println(Arrays.toString(solution.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2)));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //TreeMap
-        public int[] topKFrequent(int[] nums, int k) {
-            //计数
-            Map<Integer, Integer> map = new HashMap<>();
-            for (int num : nums)
-                map.merge(num, 1, Integer::sum);
-            //倒转键值，并按逆序排序
-            Map<Integer, List<Integer>> treeMap = new TreeMap<>(Comparator.reverseOrder());
-            for (Map.Entry<Integer, Integer> entry : map.entrySet())
-                treeMap.merge(entry.getValue(), new ArrayList<>(List.of(entry.getKey())), (oldVal, val) -> {
-                    oldVal.add(entry.getKey());
-                    return oldVal;
-                });
-            //遍历，返回结果
-            int[] ans = new int[k];
-            int idx = 0;
-            for (Integer integer : treeMap.keySet())
-                for (Integer e : treeMap.get(integer)) {
-                    if (idx >= k)
-                        return ans;
-                    ans[idx++] = e;
-                }
+  public static void main(String[] args) {
+    Solution solution = new TopKFrequentElements().new Solution();
+    System.out.println(Arrays.toString(solution.topKFrequent(new int[]{1, 2}, 2)));
+    //        System.out.println(Arrays.toString(solution.topKFrequent(new int[]{1, 1, 1, 2, 2, 3}, 2)));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // TreeMap
+    public int[] topKFrequent(int[] nums, int k) {
+      // 计数
+      Map<Integer, Integer> map = new HashMap<>();
+      for (int num : nums)
+        map.merge(num, 1, Integer::sum);
+      // 倒转键值，并按逆序排序
+      Map<Integer, List<Integer>> treeMap = new TreeMap<>(Comparator.reverseOrder());
+      for (Map.Entry<Integer, Integer> entry : map.entrySet())
+        treeMap.merge(entry.getValue(), new ArrayList<>(List.of(entry.getKey())), (oldVal, val) -> {
+          oldVal.add(entry.getKey());
+          return oldVal;
+        });
+      // 遍历，返回结果
+      int[] ans = new int[k];
+      int idx = 0;
+      for (Integer integer : treeMap.keySet())
+        for (Integer e : treeMap.get(integer)) {
+          if (idx >= k)
             return ans;
+          ans[idx++] = e;
         }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

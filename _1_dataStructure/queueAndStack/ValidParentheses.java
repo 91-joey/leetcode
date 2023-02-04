@@ -55,76 +55,80 @@
 //<div><div>Related Topics</div><div><li>栈</li><li>字符串</li></div></div><br><div><li>👍 3456</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
-import java.util.*;
+import java.util.Deque;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Stack;
 
-//20.有效的括号
-//开题时间：2022-08-18 08:53:27
+// 20.有效的括号
+// 开题时间：2022-08-18 08:53:27
 public class ValidParentheses {
-    public static void main(String[] args) {
-        Solution solution = new ValidParentheses().new Solution();
-        System.out.println(solution.isValid("(([]){})"));
+  public static void main(String[] args) {
+    Solution solution = new ValidParentheses().new Solution();
+    System.out.println(solution.isValid("(([]){})"));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final char OPEN_BRACE = '{';
+    public static final char CLOSE_BRACE = '}';
+    public static final char OPEN_PAREN = '(';
+    public static final char CLOSE_PAREN = ')';
+    public static final char OPEN_BRACKET = '[';
+    public static final char CLOSE_BRACKET = ']';
+    
+    // 栈 + hashtable n   n
+    public boolean isValid(String s) {
+      int length = s.length();
+      if (length % 2 != 0)
+        return false;
+      
+      Map<Character, Character> braces = new HashMap<>(4);
+      braces.put(OPEN_BRACE, CLOSE_BRACE);
+      braces.put(OPEN_PAREN, CLOSE_PAREN);
+      braces.put(OPEN_BRACKET, CLOSE_BRACKET);
+      Stack<Character> opens = new Stack<>();
+      
+      for (int i = 0; i < length; i++) {
+        char c = s.charAt(i);
+        // opens
+        if (braces.containsKey(c))
+          opens.push(c);
+          // closes
+        else if (opens.empty() || braces.get(opens.pop()) != c)
+          return false;
+      }
+      
+      return opens.empty();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final char OPEN_BRACE = '{';
-        public static final char CLOSE_BRACE = '}';
-        public static final char OPEN_PAREN = '(';
-        public static final char CLOSE_PAREN = ')';
-        public static final char OPEN_BRACKET = '[';
-        public static final char CLOSE_BRACKET = ']';
-
-        //栈 + hashtable n   n
-        public boolean isValid(String s) {
-            int length = s.length();
-            if (length % 2 != 0)
-                return false;
-
-            Map<Character, Character> braces = new HashMap<>(4);
-            braces.put(OPEN_BRACE, CLOSE_BRACE);
-            braces.put(OPEN_PAREN, CLOSE_PAREN);
-            braces.put(OPEN_BRACKET, CLOSE_BRACKET);
-            Stack<Character> opens = new Stack<>();
-
-            for (int i = 0; i < length; i++) {
-                char c = s.charAt(i);
-                //opens
-                if (braces.containsKey(c))
-                    opens.push(c);
-                    //closes
-                else if (opens.empty() || braces.get(opens.pop()) != c)
-                    return false;
-            }
-
-            return opens.empty();
+    
+    // 栈
+    public boolean isValid9(String s) {
+      int n = s.length();
+      if (n % 2 != 0)
+        return false;
+      
+      Deque<Character> stack = new LinkedList<>();
+      
+      for (int i = 0; i < n; i++) {
+        char c = s.charAt(i);
+        switch (c) {
+          case CLOSE_PAREN -> {
+            if (stack.isEmpty() || stack.pop() != OPEN_PAREN) return false;
+          }
+          case CLOSE_BRACE -> {
+            if (stack.isEmpty() || stack.pop() != OPEN_BRACE) return false;
+          }
+          case CLOSE_BRACKET -> {
+            if (stack.isEmpty() || stack.pop() != OPEN_BRACKET) return false;
+          }
+          default -> stack.push(c);
         }
-
-        //栈
-        public boolean isValid9(String s) {
-            int n = s.length();
-            if (n % 2 != 0)
-                return false;
-
-            Deque<Character> stack = new LinkedList<>();
-
-            for (int i = 0; i < n; i++) {
-                char c = s.charAt(i);
-                switch (c) {
-                    case CLOSE_PAREN -> {
-                        if (stack.isEmpty() || stack.pop() != OPEN_PAREN) return false;
-                    }
-                    case CLOSE_BRACE -> {
-                        if (stack.isEmpty() || stack.pop() != OPEN_BRACE) return false;
-                    }
-                    case CLOSE_BRACKET -> {
-                        if (stack.isEmpty() || stack.pop() != OPEN_BRACKET) return false;
-                    }
-                    default -> stack.push(c);
-                }
-            }
-
-            return stack.isEmpty();
-        }
+      }
+      
+      return stack.isEmpty();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

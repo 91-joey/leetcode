@@ -48,73 +48,73 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-//2299.强密码检验器 II
-//开题时间：2023-01-19 10:26:49
+// 2299.强密码检验器 II
+// 开题时间：2023-01-19 10:26:49
 public class StrongPasswordCheckerIi {
-    public static void main(String[] args) {
-        Solution solution = new StrongPasswordCheckerIi().new Solution();
-        System.out.println(solution);
-        String s = "!@#$%^&*()-+";
-//        for (int i = 0; i < s.length(); i++) {
-//            System.out.println((int) s.charAt(i));
-//        }
-        s.chars().sorted().forEach(System.out::println);
+  public static void main(String[] args) {
+    Solution solution = new StrongPasswordCheckerIi().new Solution();
+    System.out.println(solution);
+    String s = "!@#$%^&*()-+";
+    //        for (int i = 0; i < s.length(); i++) {
+    //            System.out.println((int) s.charAt(i));
+    //        }
+    s.chars().sorted().forEach(System.out::println);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final String SPECIALS = "!@#$%^&*()-+";
+    public static final Set<Character> SPECIALS_SET = SPECIALS.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
+    
+    public boolean strongPasswordCheckerII9(String password) {
+      if (password.length() < 8)
+        return false;
+      
+      boolean hasLower = false, hasUpper = false, hasDigit = false, hasSpecial = false;
+      char[] cs = password.toCharArray();
+      for (int i = 0; i < cs.length; i++) {
+        char c = cs[i];
+        if (i > 0 && cs[i - 1] == c)
+          return false;
+        
+        if (Character.isLowerCase(c))
+          hasLower = true;
+        else if (Character.isUpperCase(c))
+          hasUpper = true;
+        else if (Character.isDigit(c))
+          hasDigit = true;
+          //                else if (SPECIALS.indexOf(c) != -1)
+        else if (SPECIALS_SET.contains(c))
+          hasSpecial = true;
+      }
+      
+      return hasLower && hasUpper && hasDigit && hasSpecial;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final String SPECIALS = "!@#$%^&*()-+";
-        public static final Set<Character> SPECIALS_SET = SPECIALS.chars().mapToObj(c -> (char) c).collect(Collectors.toSet());
-
-        public boolean strongPasswordCheckerII9(String password) {
-            if (password.length() < 8)
-                return false;
-
-            boolean hasLower = false, hasUpper = false, hasDigit = false, hasSpecial = false;
-            char[] cs = password.toCharArray();
-            for (int i = 0; i < cs.length; i++) {
-                char c = cs[i];
-                if (i > 0 && cs[i - 1] == c)
-                    return false;
-
-                if (Character.isLowerCase(c))
-                    hasLower = true;
-                else if (Character.isUpperCase(c))
-                    hasUpper = true;
-                else if (Character.isDigit(c))
-                    hasDigit = true;
-//                else if (SPECIALS.indexOf(c) != -1)
-                else if (SPECIALS_SET.contains(c))
-                    hasSpecial = true;
-            }
-
-            return hasLower && hasUpper && hasDigit && hasSpecial;
-        }
-
-        //☆☆☆☆☆ 状态压缩
-        public boolean strongPasswordCheckerII(String password) {
-            if (password.length() < 8)
-                return false;
-
-            int mask = 0;
-            char[] cs = password.toCharArray();
-            for (int i = 0; i < cs.length; i++) {
-                char c = cs[i];
-                if (i > 0 && cs[i - 1] == c)
-                    return false;
-
-                if (Character.isLowerCase(c))
-                    mask |= 1;
-                else if (Character.isUpperCase(c))
-                    mask |= 2;
-                else if (Character.isDigit(c))
-                    mask |= 4;
-                else
-                    mask |= 8;
-            }
-
-            return mask == 15;
-        }
+    
+    //☆☆☆☆☆ 状态压缩
+    public boolean strongPasswordCheckerII(String password) {
+      if (password.length() < 8)
+        return false;
+      
+      int mask = 0;
+      char[] cs = password.toCharArray();
+      for (int i = 0; i < cs.length; i++) {
+        char c = cs[i];
+        if (i > 0 && cs[i - 1] == c)
+          return false;
+        
+        if (Character.isLowerCase(c))
+          mask |= 1;
+        else if (Character.isUpperCase(c))
+          mask |= 2;
+        else if (Character.isDigit(c))
+          mask |= 4;
+        else
+          mask |= 8;
+      }
+      
+      return mask == 15;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

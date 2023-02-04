@@ -14,7 +14,7 @@
 //<strong>输入：</strong>nums = [3,4,5,1,2]
 //<strong>输出：</strong>true
 //<strong>解释：</strong>[1,2,3,4,5] 为有序的源数组。
-//可以轮转 x = 3 个位置，使新数组从值为 3 的元素开始：[3,4,5,1,2] 。
+// 可以轮转 x = 3 个位置，使新数组从值为 3 的元素开始：[3,4,5,1,2] 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -31,7 +31,7 @@
 //<strong>输入：</strong>nums = [1,2,3]
 //<strong>输出：</strong>true
 //<strong>解释：</strong>[1,2,3] 为有序的源数组。
-//可以轮转 x = 0 个位置（即不轮转）得到 nums 。
+// 可以轮转 x = 0 个位置（即不轮转）得到 nums 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -46,23 +46,23 @@
 //<div><li>👍 30</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//1752.检查数组是否经排序和轮转得到
-//开题时间：2022-11-27 09:12:58
+// 1752.检查数组是否经排序和轮转得到
+// 开题时间：2022-11-27 09:12:58
 public class CheckIfArrayIsSortedAndRotated {
-    public static void main(String[] args) {
-        Solution solution = new CheckIfArrayIsSortedAndRotated().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CheckIfArrayIsSortedAndRotated().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean check(int[] nums) {
+      int gt = 0;
+      for (int i = 1; i < nums.length; i++)
+        if (nums[i - 1] > nums[i])
+          if (gt++ == 1)
+            return false;
+      return gt == 0 || nums[0] >= nums[nums.length - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean check(int[] nums) {
-            int gt = 0;
-            for (int i = 1; i < nums.length; i++)
-                if (nums[i - 1] > nums[i])
-                    if (gt++ == 1)
-                        return false;
-            return gt == 0 || nums[0] >= nums[nums.length - 1];
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

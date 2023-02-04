@@ -17,10 +17,10 @@
 //<strong>输入：</strong>operations = ["--X","X++","X++"]
 //<strong>输出：</strong>1
 //<strong>解释：</strong>操作按下述步骤执行：
-//最初，X = 0
+// 最初，X = 0
 //--X：X 减 1 ，X =  0 - 1 = -1
-//X++：X 加 1 ，X = -1 + 1 =  0
-//X++：X 加 1 ，X =  0 + 1 =  1
+// X++：X 加 1 ，X = -1 + 1 =  0
+// X++：X 加 1 ，X =  0 + 1 =  1
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -29,10 +29,10 @@
 //<strong>输入：</strong>operations = ["++X","++X","X++"]
 //<strong>输出：</strong>3
 //<strong>解释：</strong>操作按下述步骤执行： 
-//最初，X = 0
+// 最初，X = 0
 //++X：X 加 1 ，X = 0 + 1 = 1
 //++X：X 加 1 ，X = 1 + 1 = 2
-//X++：X 加 1 ，X = 2 + 1 = 3
+// X++：X 加 1 ，X = 2 + 1 = 3
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -41,11 +41,11 @@
 //<strong>输入：</strong>operations = ["X++","++X","--X","X--"]
 //<strong>输出：</strong>0
 //<strong>解释：</strong>操作按下述步骤执行：
-//最初，X = 0
-//X++：X 加 1 ，X = 0 + 1 = 1
+// 最初，X = 0
+// X++：X 加 1 ，X = 0 + 1 = 1
 //++X：X 加 1 ，X = 1 + 1 = 2
 //--X：X 减 1 ，X = 2 - 1 = 1
-//X--：X 减 1 ，X = 1 - 1 = 0
+// X--：X 减 1 ，X = 1 - 1 = 0
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -62,38 +62,38 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 
-//2011.执行操作后的变量值
-//开题时间：2022-11-06 09:02:13
+// 2011.执行操作后的变量值
+// 开题时间：2022-11-06 09:02:13
 public class FinalValueOfVariableAfterPerformingOperations {
-    public static void main(String[] args) {
-        Solution solution = new FinalValueOfVariableAfterPerformingOperations().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new FinalValueOfVariableAfterPerformingOperations().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int finalValueAfterOperations2(String[] operations) {
+      int var = 0;
+      for (String operation : operations) {
+        switch (operation) {
+          case "X++", "++X" -> var++;
+          case "--X", "X--" -> var--;
+        }
+      }
+      return var;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int finalValueAfterOperations2(String[] operations) {
-            int var = 0;
-            for (String operation : operations) {
-                switch (operation) {
-                    case "X++", "++X" -> var++;
-                    case "--X", "X--" -> var--;
-                }
-            }
-            return var;
-        }
-
-        public int finalValueAfterOperations3(String[] operations) {
-            int var = 0;
-            for (String operation : operations)
-                var += 44 - operation.charAt(1);
-            return var;
-        }
-
-        public int finalValueAfterOperations(String[] operations) {
-            return Arrays.stream(operations)
-                    .mapToInt(s -> 44 - s.charAt(1))
-                    .sum();
-        }
+    
+    public int finalValueAfterOperations3(String[] operations) {
+      int var = 0;
+      for (String operation : operations)
+        var += 44 - operation.charAt(1);
+      return var;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int finalValueAfterOperations(String[] operations) {
+      return Arrays.stream(operations)
+          .mapToInt(s -> 44 - s.charAt(1))
+          .sum();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

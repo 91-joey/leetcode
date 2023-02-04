@@ -43,72 +43,72 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>二分查找</li></div></div><br><div><li>👍 913</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//167.两数之和 II - 输入有序数组
-//开题时间：2022-11-03 17:23:41
+// 167.两数之和 II - 输入有序数组
+// 开题时间：2022-11-03 17:23:41
 public class TwoSumIiInputArrayIsSorted {
-    public static void main(String[] args) {
-        Solution solution = new TwoSumIiInputArrayIsSorted().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new TwoSumIiInputArrayIsSorted().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 双指针   n
+    public int[] twoSum2(int[] numbers, int target) {
+      int l = 0, r = numbers.length - 1;
+      while (l < r) {
+        int sum = numbers[l] + numbers[r];
+        if (sum == target)
+          return new int[]{l + 1, r + 1};
+        else if (sum < target)
+          l++;
+        else
+          r--;
+      }
+      return new int[]{-1, -1};
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //双指针   n
-        public int[] twoSum2(int[] numbers, int target) {
-            int l = 0, r = numbers.length - 1;
-            while (l < r) {
-                int sum = numbers[l] + numbers[r];
-                if (sum == target)
-                    return new int[]{l + 1, r + 1};
-                else if (sum < target)
-                    l++;
-                else
-                    r--;
-            }
-            return new int[]{-1, -1};
+    
+    // 单指针+二分
+    public int[] twoSum(int[] numbers, int target) {
+      int i = 0, r = numbers.length - 1;
+      while (i < numbers.length - 1) {
+        int l = i + 1;
+        int t = target - numbers[i];
+        while (l < r) {
+          int mid = l + r >> 1;
+          if (numbers[mid] == t)
+            return new int[]{i + 1, mid + 1};
+          else if (numbers[mid] < t)
+            l = mid + 1;// l
+          else
+            r = mid - 1;// l
         }
-
-        //单指针+二分
-        public int[] twoSum(int[] numbers, int target) {
-            int i = 0, r = numbers.length - 1;
-            while (i < numbers.length - 1) {
-                int l = i + 1;
-                int t = target - numbers[i];
-                while (l < r) {
-                    int mid = l + r >> 1;
-                    if (numbers[mid] == t)
-                        return new int[]{i + 1, mid + 1};
-                    else if (numbers[mid] < t)
-                        l = mid + 1;//l
-                    else
-                        r = mid - 1;//l
-                }
-                if (numbers[r] == t)
-                    return new int[]{i + 1, r + 1};
-                i++;
-            }
-            return new int[]{-1, -1};
-        }
-
-        //☆☆☆☆☆ 双指针+二分  logn ~ n
-        public int[] twoSum3(int[] numbers, int target) {
-            int l = 0, r = numbers.length - 1;
-            while (l < r) {
-                int mid = l + r >> 1;
-                int sum = numbers[l] + numbers[r];
-
-                if (numbers[l] + numbers[mid] > target)
-                    r = mid - 1;
-                else if (numbers[mid] + numbers[r] < target)
-                    l = mid + 1;
-                else if (sum == target)
-                    return new int[]{l + 1, r + 1};
-                else if (sum < target)
-                    l++;
-                else
-                    r--;
-            }
-            return new int[]{-1, -1};
-        }
+        if (numbers[r] == t)
+          return new int[]{i + 1, r + 1};
+        i++;
+      }
+      return new int[]{-1, -1};
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 双指针+二分  logn ~ n
+    public int[] twoSum3(int[] numbers, int target) {
+      int l = 0, r = numbers.length - 1;
+      while (l < r) {
+        int mid = l + r >> 1;
+        int sum = numbers[l] + numbers[r];
+        
+        if (numbers[l] + numbers[mid] > target)
+          r = mid - 1;
+        else if (numbers[mid] + numbers[r] < target)
+          l = mid + 1;
+        else if (sum == target)
+          return new int[]{l + 1, r + 1};
+        else if (sum < target)
+          l++;
+        else
+          r--;
+      }
+      return new int[]{-1, -1};
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

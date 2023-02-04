@@ -32,53 +32,54 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//83.删除排序链表中的重复元素
-//开题时间：2022-12-05 10:24:13
+// 83.删除排序链表中的重复元素
+// 开题时间：2022-12-05 10:24:13
 public class RemoveDuplicatesFromSortedList {
-    public static void main(String[] args) {
-        Solution solution = new RemoveDuplicatesFromSortedList().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new RemoveDuplicatesFromSortedList().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 找到第一个与当前节点值不同的节点
+    public ListNode deleteDuplicates9(ListNode head) {
+      if (head == null)
+        return null;
+      
+      ListNode pre = head;
+      for (ListNode cur = head.next; cur != null; cur = cur.next) {
+        if (pre.val != cur.val) {
+          pre.next = cur;
+          pre = cur;
+        }
+      }
+      pre.next = null;
+      
+      return head;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //找到第一个与当前节点值不同的节点
-        public ListNode deleteDuplicates9(ListNode head) {
-            if (head == null)
-                return null;
-
-            ListNode pre = head;
-            for (ListNode cur = head.next; cur != null; cur = cur.next) {
-                if (pre.val != cur.val) {
-                    pre.next = cur;
-                    pre = cur;
-                }
-            }
-            pre.next = null;
-
-            return head;
-        }
-
-        //递归
-        public ListNode deleteDuplicates8(ListNode head) {
-            if (head == null)
-                return null;
-
-            ListNode next = deleteDuplicates(head.next);
-            if (next != null && head.val == next.val)
-                head.next = next.next;
-
-            return head;
-        }
-
-        //下一个节点与当前节点值相同，就更新指针
-        public ListNode deleteDuplicates(ListNode head) {
-            for (ListNode cur = head; cur != null && cur.next != null; ) {
-                if (cur.val == cur.next.val)
-                    cur.next = cur.next.next;
-                else
-                    cur = cur.next;
-            }
-            return head;
-        }
+    
+    // 递归
+    public ListNode deleteDuplicates8(ListNode head) {
+      if (head == null)
+        return null;
+      
+      ListNode next = deleteDuplicates(head.next);
+      if (next != null && head.val == next.val)
+        head.next = next.next;
+      
+      return head;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 下一个节点与当前节点值相同，就更新指针
+    public ListNode deleteDuplicates(ListNode head) {
+      for (ListNode cur = head; cur != null && cur.next != null; ) {
+        if (cur.val == cur.next.val)
+          cur.next = cur.next.next;
+        else
+          cur = cur.next;
+      }
+      return head;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

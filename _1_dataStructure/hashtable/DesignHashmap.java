@@ -21,15 +21,15 @@
 //[null, null, null, 1, -1, null, 1, null, -1]
 //
 //<strong>解释</strong>：
-//MyHashMap myHashMap = new MyHashMap();
-//myHashMap.put(1, 1); // myHashMap 现在为 [[1,1]]
-//myHashMap.put(2, 2); // myHashMap 现在为 [[1,1], [2,2]]
-//myHashMap.get(1);    // 返回 1 ，myHashMap 现在为 [[1,1], [2,2]]
-//myHashMap.get(3);    // 返回 -1（未找到），myHashMap 现在为 [[1,1], [2,2]]
-//myHashMap.put(2, 1); // myHashMap 现在为 [[1,1], [2,1]]（更新已有的值）
-//myHashMap.get(2);    // 返回 1 ，myHashMap 现在为 [[1,1], [2,1]]
-//myHashMap.remove(2); // 删除键为 2 的数据，myHashMap 现在为 [[1,1]]
-//myHashMap.get(2);    // 返回 -1（未找到），myHashMap 现在为 [[1,1]]
+// MyHashMap myHashMap = new MyHashMap();
+// myHashMap.put(1, 1); // myHashMap 现在为 [[1,1]]
+// myHashMap.put(2, 2); // myHashMap 现在为 [[1,1], [2,2]]
+// myHashMap.get(1);    // 返回 1 ，myHashMap 现在为 [[1,1], [2,2]]
+// myHashMap.get(3);    // 返回 -1（未找到），myHashMap 现在为 [[1,1], [2,2]]
+// myHashMap.put(2, 1); // myHashMap 现在为 [[1,1], [2,1]]（更新已有的值）
+// myHashMap.get(2);    // 返回 1 ，myHashMap 现在为 [[1,1], [2,1]]
+// myHashMap.remove(2); // 删除键为 2 的数据，myHashMap 现在为 [[1,1]]
+// myHashMap.get(2);    // 返回 -1（未找到），myHashMap 现在为 [[1,1]]
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -49,67 +49,67 @@ import org.example.leetcode.problems._3_common.entity.Entry;
 import java.util.Arrays;
 import java.util.LinkedList;
 
-//706.设计哈希映射
-//开题时间：2022-09-03 14:10:57
+// 706.设计哈希映射
+// 开题时间：2022-09-03 14:10:57
 public class DesignHashmap {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class MyHashMap {
+    private final int base = 769;
+    private final LinkedList[] table = new LinkedList[base];
+    
+    public MyHashMap() {
+      Arrays.fill(table, new LinkedList<Entry<Integer, Integer>>());
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class MyHashMap {
-        private final int base = 769;
-        private final LinkedList[] table = new LinkedList[base];
-
-        public MyHashMap() {
-            Arrays.fill(table, new LinkedList<Entry<Integer,Integer>>());
-        }
-
-        public void put(int key, int value) {
-            Entry<Integer, Integer> entry = getEntry(key);
-            if (entry != null) {
-                entry.value = value;
-            } else {
-                table[hash(key)].offer(new Entry<>(key, value));
-            }
-        }
-
-        public int get(int key) {
-            Entry<Integer,Integer> entry = getEntry(key);
-            if (entry != null) {
-                return entry.value;
-            } else {
-                return -1;
-            }
-        }
-
-        public void remove(int key) {
-            Entry<Integer, Integer> entry = getEntry(key);
-            if (entry != null) {
-                table[hash(key)].remove(entry);
-            }
-        }
-
-        private Entry<Integer,Integer> getEntry(int key) {
-            LinkedList<Entry<Integer,Integer>> bucket = table[hash(key)];
-            for (Entry<Integer,Integer> entry : bucket) {
-                if (entry.key == key) {
-                    return entry;
-                }
-            }
-            return null;
-        }
-
-        private int hash(int key) {
-            return key % base;
-        }
+    
+    public void put(int key, int value) {
+      Entry<Integer, Integer> entry = getEntry(key);
+      if (entry != null) {
+        entry.value = value;
+      } else {
+        table[hash(key)].offer(new Entry<>(key, value));
+      }
     }
-
-    /**
- * Your MyHashMap object will be instantiated and called as such:
- * MyHashMap obj = new MyHashMap();
- * obj.put(key,value);
- * int param_2 = obj.get(key);
- * obj.remove(key);
- */
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int get(int key) {
+      Entry<Integer, Integer> entry = getEntry(key);
+      if (entry != null) {
+        return entry.value;
+      } else {
+        return -1;
+      }
+    }
+    
+    public void remove(int key) {
+      Entry<Integer, Integer> entry = getEntry(key);
+      if (entry != null) {
+        table[hash(key)].remove(entry);
+      }
+    }
+    
+    private Entry<Integer, Integer> getEntry(int key) {
+      LinkedList<Entry<Integer, Integer>> bucket = table[hash(key)];
+      for (Entry<Integer, Integer> entry : bucket) {
+        if (entry.key == key) {
+          return entry;
+        }
+      }
+      return null;
+    }
+    
+    private int hash(int key) {
+      return key % base;
+    }
+  }
+  
+  /**
+   * Your MyHashMap object will be instantiated and called as such:
+   * MyHashMap obj = new MyHashMap();
+   * obj.put(key,value);
+   * int param_2 = obj.get(key);
+   * obj.remove(key);
+   */
+  // leetcode submit region end(Prohibit modification and deletion)
 }

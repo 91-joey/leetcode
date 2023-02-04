@@ -19,7 +19,7 @@
 //[4] 最大绝对差 |4-4| = 0 &lt;= 4.
 //[4,7] 最大绝对差 |4-7| = 3 &lt;= 4.
 //[7] 最大绝对差 |7-7| = 0 &lt;= 4. 
-//因此，满足题意的最长子数组的长度为 2 。
+// 因此，满足题意的最长子数组的长度为 2 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -50,45 +50,45 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import java.util.LinkedList;
 
-//1438.绝对差不超过限制的最长连续子数组
-//开题时间：2022-10-19 11:40:42
+// 1438.绝对差不超过限制的最长连续子数组
+// 开题时间：2022-10-19 11:40:42
 public class LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit {
-    public static void main(String[] args) {
-        Solution solution = new LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit().new Solution();
-        System.out.println(solution.longestSubarray(new int[]{4, 2, 2, 2, 4, 4, 2, 2}, 0));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //双单调队列
-        public int longestSubarray(int[] nums, int limit) {
-            if (limit >= 1E9 - 1)
-                return 0;
-
-            LinkedList<Integer> qIncre = new LinkedList<>();
-            LinkedList<Integer> qDecre = new LinkedList<>();
-            qIncre.offer(nums[0]);
-            qDecre.offer(nums[0]);
-            int l = 0;
-            int r = 1;
-            while (r < nums.length) {
-                int e = nums[r++];
-                while (!qIncre.isEmpty() && qIncre.peekLast() > e) qIncre.pollLast();
-                while (!qDecre.isEmpty() && qDecre.peekLast() < e) qDecre.pollLast();
-                qIncre.offerLast(e);
-                qDecre.offerLast(e);
-
-                int min = qIncre.peekFirst();
-                int max = qDecre.peekFirst();
-                if (max - min > limit) {
-                    int e2 = nums[l++];
-                    if (min == e2) qIncre.pollFirst();
-                    if (max == e2) qDecre.pollFirst();
-                }
-            }
-
-            return r - l;
+  public static void main(String[] args) {
+    Solution solution = new LongestContinuousSubarrayWithAbsoluteDiffLessThanOrEqualToLimit().new Solution();
+    System.out.println(solution.longestSubarray(new int[]{4, 2, 2, 2, 4, 4, 2, 2}, 0));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 双单调队列
+    public int longestSubarray(int[] nums, int limit) {
+      if (limit >= 1E9 - 1)
+        return 0;
+      
+      LinkedList<Integer> qIncre = new LinkedList<>();
+      LinkedList<Integer> qDecre = new LinkedList<>();
+      qIncre.offer(nums[0]);
+      qDecre.offer(nums[0]);
+      int l = 0;
+      int r = 1;
+      while (r < nums.length) {
+        int e = nums[r++];
+        while (!qIncre.isEmpty() && qIncre.peekLast() > e) qIncre.pollLast();
+        while (!qDecre.isEmpty() && qDecre.peekLast() < e) qDecre.pollLast();
+        qIncre.offerLast(e);
+        qDecre.offerLast(e);
+        
+        int min = qIncre.peekFirst();
+        int max = qDecre.peekFirst();
+        if (max - min > limit) {
+          int e2 = nums[l++];
+          if (min == e2) qIncre.pollFirst();
+          if (max == e2) qDecre.pollFirst();
         }
+      }
+      
+      return r - l;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

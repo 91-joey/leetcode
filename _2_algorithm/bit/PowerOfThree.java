@@ -47,43 +47,43 @@
 //<div><li>👍 283</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.bit;
 
-//326.3 的幂
-//开题时间：2023-01-14 20:59:56
+// 326.3 的幂
+// 开题时间：2023-01-14 20:59:56
 public class PowerOfThree {
-    public static void main(String[] args) {
-        Solution solution = new PowerOfThree().new Solution();
-
-        for (int i = 1; i > 0; i *= 3)
-            System.out.println(Integer.toBinaryString(i));
-
-        System.out.println("_________________");
-        for (int i = 1; i > 0; i *= 5)
-            System.out.println(i);
+  public static void main(String[] args) {
+    Solution solution = new PowerOfThree().new Solution();
+    
+    for (int i = 1; i > 0; i *= 3)
+      System.out.println(Integer.toBinaryString(i));
+    
+    System.out.println("_________________");
+    for (int i = 1; i > 0; i *= 5)
+      System.out.println(i);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 枚举所有 3 的幂
+    public boolean isPowerOfThree9(int n) {
+      if (n <= 0)
+        return false;
+      for (int i = 1; i > 0; i *= 3)
+        if (i == n)
+          return true;
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //枚举所有 3 的幂
-        public boolean isPowerOfThree9(int n) {
-            if (n <= 0)
-                return false;
-            for (int i = 1; i > 0; i *= 3)
-                if (i == n)
-                    return true;
-            return false;
-        }
-
-        //☆☆☆☆☆ 判断是否为最大 3 的幂的约数
-        public boolean isPowerOfThree8(int n) {
-            return n > 0 && 1162261467 % n == 0;
-        }
-
-        //试除法
-        public boolean isPowerOfThree(int n) {
-            while (n > 0 && n % 3 == 0)
-                n /= 3;
-            return n == 1;
-        }
+    
+    //☆☆☆☆☆ 判断是否为最大 3 的幂的约数
+    public boolean isPowerOfThree8(int n) {
+      return n > 0 && 1162261467 % n == 0;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 试除法
+    public boolean isPowerOfThree(int n) {
+      while (n > 0 && n % 3 == 0)
+        n /= 3;
+      return n == 1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

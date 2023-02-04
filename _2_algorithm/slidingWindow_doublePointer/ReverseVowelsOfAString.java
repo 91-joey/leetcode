@@ -29,36 +29,36 @@
 //<div><div>Related Topics</div><div><li>双指针</li><li>字符串</li></div></div><br><div><li>👍 268</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//345.反转字符串中的元音字母
-//开题时间：2022-10-23 18:27:29
+// 345.反转字符串中的元音字母
+// 开题时间：2022-10-23 18:27:29
 public class ReverseVowelsOfAString {
-    public static void main(String[] args) {
-        Solution solution = new ReverseVowelsOfAString().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public String reverseVowels(String s) {
-            char[] chars = s.toCharArray();
-            for (int l = 0, r = chars.length - 1; l < r; ) {
-                while (l < r && isNotVowel(chars[l])) l++;
-                while (l < r && isNotVowel(chars[r])) r--;
-                if (l < r) {
-                    char tmp = chars[l];
-                    chars[l++] = chars[r];
-                    chars[r--] = tmp;
-                }
-            }
-            return new String(chars);
+  public static void main(String[] args) {
+    Solution solution = new ReverseVowelsOfAString().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public String reverseVowels(String s) {
+      char[] chars = s.toCharArray();
+      for (int l = 0, r = chars.length - 1; l < r; ) {
+        while (l < r && isNotVowel(chars[l])) l++;
+        while (l < r && isNotVowel(chars[r])) r--;
+        if (l < r) {
+          char tmp = chars[l];
+          chars[l++] = chars[r];
+          chars[r--] = tmp;
         }
-
-        public static boolean isNotVowel(char c) {
-            return switch (c) {
-                case 'a', 'e', 'i', 'o', 'u',
-                        'A', 'E', 'I', 'O', 'U' -> false;
-                default -> true;
-            };
-        }
+      }
+      return new String(chars);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public static boolean isNotVowel(char c) {
+      return switch (c) {
+        case 'a', 'e', 'i', 'o', 'u',
+            'A', 'E', 'I', 'O', 'U' -> false;
+        default -> true;
+      };
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

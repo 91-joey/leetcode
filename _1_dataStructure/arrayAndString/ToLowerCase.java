@@ -35,47 +35,47 @@
 //<div><li>👍 220</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
-//709.转换成小写字母
-//开题时间：2022-12-09 10:31:59
+// 709.转换成小写字母
+// 开题时间：2022-12-09 10:31:59
 public class ToLowerCase {
-    public static void main(String[] args) {
-        Solution solution = new ToLowerCase().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ToLowerCase().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public String toLowerCase9(String s) {
+      return s.toLowerCase();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public String toLowerCase9(String s) {
-            return s.toLowerCase();
-        }
-
-        public String toLowerCase8(String s) {
-            int n = s.length();
-            StringBuilder sb = new StringBuilder(n);
-
-            for (int i = 0; i < n; i++) {
-                char c = s.charAt(i);
-                if (Character.isUpperCase(c))
-                    c = Character.toLowerCase(c);
-                sb.append(c);
-            }
-
-            return sb.toString();
-        }
-
-        //☆☆☆☆☆ 位运算
-        public String toLowerCase(String s) {
-            int n = s.length();
-            StringBuilder sb = new StringBuilder(n);
-
-            for (int i = 0; i < n; i++) {
-                char c = s.charAt(i);
-                if (65 <= c && c <= 90)
-                    c |= 32;
-                sb.append(c);
-            }
-
-            return sb.toString();
-        }
+    
+    public String toLowerCase8(String s) {
+      int n = s.length();
+      StringBuilder sb = new StringBuilder(n);
+      
+      for (int i = 0; i < n; i++) {
+        char c = s.charAt(i);
+        if (Character.isUpperCase(c))
+          c = Character.toLowerCase(c);
+        sb.append(c);
+      }
+      
+      return sb.toString();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 位运算
+    public String toLowerCase(String s) {
+      int n = s.length();
+      StringBuilder sb = new StringBuilder(n);
+      
+      for (int i = 0; i < n; i++) {
+        char c = s.charAt(i);
+        if (65 <= c && c <= 90)
+          c |= 32;
+        sb.append(c);
+      }
+      
+      return sb.toString();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

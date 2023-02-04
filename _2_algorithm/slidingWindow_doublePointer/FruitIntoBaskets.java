@@ -26,7 +26,7 @@
 //<strong>输入：</strong>fruits = [0,<em><strong>1,2,2</strong></em>]
 //<strong>输出：</strong>3
 //<strong>解释：</strong>可以采摘 [1,2,2] 这三棵树。
-//如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。
+// 如果从第一棵树开始采摘，则只能采摘 [0,1] 这两棵树。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -35,7 +35,7 @@
 //<strong>输入：</strong>fruits = [1,<em><strong>2,3,2,2</strong></em>]
 //<strong>输出：</strong>4
 //<strong>解释：</strong>可以采摘 [2,3,2,2] 这四棵树。
-//如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。
+// 如果从第一棵树开始采摘，则只能采摘 [1,2] 这两棵树。
 //</pre>
 //
 //<p><strong>示例 4：</strong></p>
@@ -58,35 +58,36 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>滑动窗口</li></div></div><br><div><li>👍 282</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//904.水果成篮
-//开题时间：2022-10-14 17:53:41
+// 904.水果成篮
+// 开题时间：2022-10-14 17:53:41
 public class FruitIntoBaskets {
-    public static void main(String[] args) {
-        Solution solution = new FruitIntoBaskets().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //滑动窗口
-        public int totalFruit(int[] fruits) {
-            int len = fruits.length;
-            int[] cnt = new int[len];
-            int max = 1;
-            int l = 0;
-
-            for (int r = 0, size = 0; r < len; r++) {
-                if (cnt[fruits[r]]++ == 0)
-                    size++;
-                if (size > 2) {
-                    max = Math.max(max, r - l);
-                    while (--cnt[fruits[l++]] != 0) {}
-                    size = 2;
-                }
-            }
-            max = Math.max(max, len - l);
-
-            return max;
+  public static void main(String[] args) {
+    Solution solution = new FruitIntoBaskets().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 滑动窗口
+    public int totalFruit(int[] fruits) {
+      int len = fruits.length;
+      int[] cnt = new int[len];
+      int max = 1;
+      int l = 0;
+      
+      for (int r = 0, size = 0; r < len; r++) {
+        if (cnt[fruits[r]]++ == 0)
+          size++;
+        if (size > 2) {
+          max = Math.max(max, r - l);
+          while (--cnt[fruits[l++]] != 0) {
+          }
+          size = 2;
         }
+      }
+      max = Math.max(max, len - l);
+      
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

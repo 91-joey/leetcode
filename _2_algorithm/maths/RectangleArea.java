@@ -36,71 +36,71 @@
 //<div><li>👍 221</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.maths;
 
-//223.矩形面积
-//开题时间：2023-01-17 11:19:32
+// 223.矩形面积
+// 开题时间：2023-01-17 11:19:32
 public class RectangleArea {
-    public static void main(String[] args) {
-        Solution solution = new RectangleArea().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new RectangleArea().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int computeArea9(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+      return getArea(ax1, ay1, ax2, ay2)
+          + getArea(bx1, by1, bx2, by2)
+          - ((isRectangleOverlap(new int[]{ax1, ay1, ax2, ay2}, new int[]{bx1, by1, bx2, by2})) ?
+          getOverlapLine(ax1, ax2, bx1, bx2) * getOverlapLine(ay1, ay2, by1, by2) :
+          0);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int computeArea9(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
-            return getArea(ax1, ay1, ax2, ay2)
-                    + getArea(bx1, by1, bx2, by2)
-                    - ((isRectangleOverlap(new int[]{ax1, ay1, ax2, ay2}, new int[]{bx1, by1, bx2, by2})) ?
-                    getOverlapLine(ax1, ax2, bx1, bx2) * getOverlapLine(ay1, ay2, by1, by2) :
-                    0);
-        }
-
-        public int computeArea8(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
-            int overlapLine1 = getOverlapLine(ax1, ax2, bx1, bx2);
-            int overlapLine2 = getOverlapLine(ay1, ay2, by1, by2);
-            return getArea(ax1, ay1, ax2, ay2)
-                    + getArea(bx1, by1, bx2, by2)
-                    - (overlapLine1 > 0 && overlapLine2 > 0 ? overlapLine1 * overlapLine2 : 0);
-        }
-
-        public int computeArea7(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
-            return getArea(ax1, ay1, ax2, ay2)
-                    + getArea(bx1, by1, bx2, by2)
-                    - getOverlapArea(
-                    Math.max(ax1, bx1),
-                    Math.max(ay1, by1),
-                    Math.min(ax2, bx2),
-                    Math.min(ay2, by2)
-            );
-        }
-
-        //☆☆☆☆☆ 容斥原理 + 降维运算（相交面积 = 横竖轴上的投影相交线段（必须是正数）相乘）
-        public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
-            return getArea(ax1, ay1, ax2, ay2)
-                    + getArea(bx1, by1, bx2, by2)
-                    - getOverlapLine(ax1, ax2, bx1, bx2) * getOverlapLine(ay1, ay2, by1, by2);
-        }
-
-        private int getOverlapArea(int x1, int y1, int x2, int y2) {
-            return x1 < x2 && y1 < y2 ? getArea(x1, y1, x2, y2) : 0;
-        }
-
-        private int getOverlapLine(int l1, int r1, int l2, int r2) {
-            return Math.max(0, Math.min(r1, r2) - Math.max(l1, l2));
-        }
-
-        private int getArea(int x1, int y1, int x2, int y2) {
-            return (x2 - x1) * (y2 - y1);
-        }
-
-        //二维重叠 = 双一维重叠（x、y轴的投影线段都重叠，这可以通过不重叠的情况取反）
-        public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
-            return isLineOverlap(rec1[0], rec1[2], rec2[0], rec2[2])
-                    && isLineOverlap(rec1[1], rec1[3], rec2[1], rec2[3]);
-        }
-
-        private boolean isLineOverlap(int l1, int r1, int l2, int r2) {
-            return !(l1 >= r2 || l2 >= r1);
-        }
+    
+    public int computeArea8(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+      int overlapLine1 = getOverlapLine(ax1, ax2, bx1, bx2);
+      int overlapLine2 = getOverlapLine(ay1, ay2, by1, by2);
+      return getArea(ax1, ay1, ax2, ay2)
+          + getArea(bx1, by1, bx2, by2)
+          - (overlapLine1 > 0 && overlapLine2 > 0 ? overlapLine1 * overlapLine2 : 0);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int computeArea7(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+      return getArea(ax1, ay1, ax2, ay2)
+          + getArea(bx1, by1, bx2, by2)
+          - getOverlapArea(
+          Math.max(ax1, bx1),
+          Math.max(ay1, by1),
+          Math.min(ax2, bx2),
+          Math.min(ay2, by2)
+      );
+    }
+    
+    //☆☆☆☆☆ 容斥原理 + 降维运算（相交面积 = 横竖轴上的投影相交线段（必须是正数）相乘）
+    public int computeArea(int ax1, int ay1, int ax2, int ay2, int bx1, int by1, int bx2, int by2) {
+      return getArea(ax1, ay1, ax2, ay2)
+          + getArea(bx1, by1, bx2, by2)
+          - getOverlapLine(ax1, ax2, bx1, bx2) * getOverlapLine(ay1, ay2, by1, by2);
+    }
+    
+    private int getOverlapArea(int x1, int y1, int x2, int y2) {
+      return x1 < x2 && y1 < y2 ? getArea(x1, y1, x2, y2) : 0;
+    }
+    
+    private int getOverlapLine(int l1, int r1, int l2, int r2) {
+      return Math.max(0, Math.min(r1, r2) - Math.max(l1, l2));
+    }
+    
+    private int getArea(int x1, int y1, int x2, int y2) {
+      return (x2 - x1) * (y2 - y1);
+    }
+    
+    // 二维重叠 = 双一维重叠（x、y轴的投影线段都重叠，这可以通过不重叠的情况取反）
+    public boolean isRectangleOverlap(int[] rec1, int[] rec2) {
+      return isLineOverlap(rec1[0], rec1[2], rec2[0], rec2[2])
+          && isLineOverlap(rec1[1], rec1[3], rec2[1], rec2[3]);
+    }
+    
+    private boolean isLineOverlap(int l1, int r1, int l2, int r2) {
+      return !(l1 >= r2 || l2 >= r1);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -22,7 +22,7 @@
 //<strong>解释：</strong>操作如下：
 //- 转化："iiii" ➝ "(9)(9)(9)(9)" ➝ "9999" ➝ 9999
 //- 转换 #1：9999 ➝ 9 + 9 + 9 + 9 ➝ 36
-//因此，结果整数为 36 。
+// 因此，结果整数为 36 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -34,7 +34,7 @@
 //- 转化："leetcode" ➝ "(12)(5)(5)(20)(3)(15)(4)(5)" ➝ "12552031545" ➝ 12552031545
 //- 转换 #1：12552031545 ➝ 1 + 2 + 5 + 5 + 2 + 0 + 3 + 1 + 5 + 4 + 5 ➝ 33
 //- 转换 #2：33 ➝ 3 + 3 ➝ 6
-//因此，结果整数为 6 。
+// 因此，结果整数为 6 。
 //</pre>
 //
 //<p>&nbsp;</p>
@@ -50,48 +50,48 @@
 //<div><li>👍 18</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.simulation;
 
-//1945.字符串转化后的各位数字之和
-//开题时间：2022-12-15 07:52:06
+// 1945.字符串转化后的各位数字之和
+// 开题时间：2022-12-15 07:52:06
 public class SumOfDigitsOfStringAfterConvert {
-    public static void main(String[] args) {
-        Solution solution = new SumOfDigitsOfStringAfterConvert().new Solution();
-        System.out.println(solution.getLucky("dbvmfhnttvr", 5));
+  public static void main(String[] args) {
+    Solution solution = new SumOfDigitsOfStringAfterConvert().new Solution();
+    System.out.println(solution.getLucky("dbvmfhnttvr", 5));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int getLucky9(String s, int k) {
+      int num = 0;
+      for (int i = 0; i < s.length(); i++)
+        for (int x = s.charAt(i) - 96; x != 0; x /= 10)
+          num += x % 10;
+      
+      for (int i = 1; i < k; i++) {
+        int transformed = 0;
+        for (; num != 0; num /= 10)
+          transformed += num % 10;
+        num = transformed;
+      }
+      
+      return num;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int getLucky9(String s, int k) {
-            int num = 0;
-            for (int i = 0; i < s.length(); i++)
-                for (int x = s.charAt(i) - 96; x != 0; x /= 10)
-                    num += x % 10;
-
-            for (int i = 1; i < k; i++) {
-                int transformed = 0;
-                for (; num != 0; num /= 10)
-                    transformed += num % 10;
-                num = transformed;
-            }
-
-            return num;
-        }
-
-        public int getLucky(String s, int k) {
-            int ans = 0;
-            for (int i = 0; i < s.length(); i++) {
-                int x = s.charAt(i) - 96;
-                ans += x % 10 + x / 10;
-            }
-
-            for (int i = 1; i < Math.min(k, 4); i++) {
-                int tmp = 0;
-                for (; ans != 0; ans /= 10)
-                    tmp += ans % 10;
-                ans = tmp;
-            }
-
-            return ans;
-        }
+    
+    public int getLucky(String s, int k) {
+      int ans = 0;
+      for (int i = 0; i < s.length(); i++) {
+        int x = s.charAt(i) - 96;
+        ans += x % 10 + x / 10;
+      }
+      
+      for (int i = 1; i < Math.min(k, 4); i++) {
+        int tmp = 0;
+        for (; ans != 0; ans /= 10)
+          tmp += ans % 10;
+        ans = tmp;
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

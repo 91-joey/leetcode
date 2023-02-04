@@ -40,39 +40,39 @@ package org.example.leetcode.problems._1_dataStructure.tree.BST;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//700.二叉搜索树中的搜索
-//开题时间：2022-12-10 11:11:53
+// 700.二叉搜索树中的搜索
+// 开题时间：2022-12-10 11:11:53
 public class SearchInABinarySearchTree {
-    public static void main(String[] args) {
-        Solution solution = new SearchInABinarySearchTree().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new SearchInABinarySearchTree().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // recursive
+    public TreeNode searchBST9(TreeNode root, int val) {
+      if (root == null)
+        return null;
+      
+      if (root.val == val)
+        return root;
+      else if (root.val < val)
+        return searchBST(root.right, val);
+      else
+        return searchBST(root.left, val);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //recursive
-        public TreeNode searchBST9(TreeNode root, int val) {
-            if (root == null)
-                return null;
-
-            if (root.val == val)
-                return root;
-            else if (root.val < val)
-                return searchBST(root.right, val);
-            else
-                return searchBST(root.left, val);
-        }
-
-        //☆☆☆☆☆ relative
-        public TreeNode searchBST(TreeNode root, int val) {
-            while (root != null)
-                if (root.val == val)
-                    return root;
-                else if (root.val < val)
-                    root = root.right;
-                else
-                    root = root.left;
-            return null;
-        }
+    
+    //☆☆☆☆☆ relative
+    public TreeNode searchBST(TreeNode root, int val) {
+      while (root != null)
+        if (root.val == val)
+          return root;
+        else if (root.val < val)
+          root = root.right;
+        else
+          root = root.left;
+      return null;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -33,47 +33,47 @@
 //<div><li>👍 702</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.hashtable;
 
-//242.有效的字母异位词
-//开题时间：2022-12-03 14:05:17
+// 242.有效的字母异位词
+// 开题时间：2022-12-03 14:05:17
 public class ValidAnagram {
-    public static void main(String[] args) {
-        Solution solution = new ValidAnagram().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ValidAnagram().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public boolean isAnagram9(String s, String t) {
+      int[] freq = new int[123];
+      
+      for (int i = 0; i < s.length(); i++)
+        freq[s.charAt(i)]++;
+      
+      for (int i = 0; i < t.length(); i++)
+        if (freq[t.charAt(i)]-- <= 0)
+          return false;
+      
+      for (int i = 97; i < freq.length; i++)
+        if (freq[i] > 0)
+          return false;
+      
+      return true;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public boolean isAnagram9(String s, String t) {
-            int[] freq = new int[123];
-
-            for (int i = 0; i < s.length(); i++)
-                freq[s.charAt(i)]++;
-
-            for (int i = 0; i < t.length(); i++)
-                if (freq[t.charAt(i)]-- <= 0)
-                    return false;
-
-            for (int i = 97; i < freq.length; i++)
-                if (freq[i] > 0)
-                    return false;
-
-            return true;
-        }
-
-        //官解：先判断长度是否相同
-        public boolean isAnagram(String s, String t) {
-            if (s.length() != t.length())
-                return false;
-
-            int[] freq = new int[123];
-            for (int i = 0; i < s.length(); i++)
-                freq[s.charAt(i)]++;
-
-            for (int i = 0; i < t.length(); i++)
-                if (freq[t.charAt(i)]-- <= 0)
-                    return false;
-
-            return true;
-        }
+    
+    // 官解：先判断长度是否相同
+    public boolean isAnagram(String s, String t) {
+      if (s.length() != t.length())
+        return false;
+      
+      int[] freq = new int[123];
+      for (int i = 0; i < s.length(); i++)
+        freq[s.charAt(i)]++;
+      
+      for (int i = 0; i < t.length(); i++)
+        if (freq[t.charAt(i)]-- <= 0)
+          return false;
+      
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -36,30 +36,30 @@ package org.example.leetcode.problems._1_dataStructure.tree;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//617.合并二叉树
-//开题时间：2023-01-26 08:44:45
+// 617.合并二叉树
+// 开题时间：2023-01-26 08:44:45
 public class MergeTwoBinaryTrees {
-    public static void main(String[] args) {
-        Solution solution = new MergeTwoBinaryTrees().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new MergeTwoBinaryTrees().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
+      if (root1 == null && root2 == null)
+        return null;
+      
+      if (root1 == null)
+        return root2;
+      else if (root2 == null)
+        return root1;
+      else {
+        return new TreeNode(root1.val + root2.val,
+            mergeTrees(root1.left, root2.left),
+            mergeTrees(root1.right, root2.right));
+      }
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
-            if (root1 == null && root2 == null)
-                return null;
-
-            if (root1 == null)
-                return root2;
-            else if (root2 == null)
-                return root1;
-            else {
-                return new TreeNode(root1.val + root2.val,
-                        mergeTrees(root1.left, root2.left),
-                        mergeTrees(root1.right, root2.right));
-            }
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

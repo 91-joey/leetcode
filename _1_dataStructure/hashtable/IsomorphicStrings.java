@@ -44,60 +44,60 @@ package org.example.leetcode.problems._1_dataStructure.hashtable;
 import java.util.HashMap;
 import java.util.Map;
 
-//205.同构字符串
-//开题时间：2022-09-05 10:30:52
+// 205.同构字符串
+// 开题时间：2022-09-05 10:30:52
 public class IsomorphicStrings {
-    public static void main(String[] args) {
-        Solution solution = new IsomorphicStrings().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //1.joey(hashtable*2)   n   m
-        //执行用时：8 ms, 在所有 Java 提交中击败了86.44%的用户
-        //内存消耗：40.9 MB, 在所有 Java 提交中击败了97.04%的用户
-        public boolean isIsomorphic(String s, String t) {
-            Map<Character, Character> s2t = new HashMap<>();
-            Map<Character, Character> t2s = new HashMap<>();
-
-            for (int i = 0; i < s.length(); i++) {
-                char x = s.charAt(i);
-                char y = t.charAt(i);
-                Character val = s2t.get(x);
-                if (val == null) {
-                    if (t2s.containsKey(y)) {
-                        return false;
-                    }
-                    s2t.put(x, y);
-                    t2s.put(y, x);
-                } else if (y != val) {
-                    return false;
-                }
-            }
-
-            return true;
+  public static void main(String[] args) {
+    Solution solution = new IsomorphicStrings().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 1.joey(hashtable*2)   n   m
+    // 执行用时：8 ms, 在所有 Java 提交中击败了86.44%的用户
+    // 内存消耗：40.9 MB, 在所有 Java 提交中击败了97.04%的用户
+    public boolean isIsomorphic(String s, String t) {
+      Map<Character, Character> s2t = new HashMap<>();
+      Map<Character, Character> t2s = new HashMap<>();
+      
+      for (int i = 0; i < s.length(); i++) {
+        char x = s.charAt(i);
+        char y = t.charAt(i);
+        Character val = s2t.get(x);
+        if (val == null) {
+          if (t2s.containsKey(y)) {
+            return false;
+          }
+          s2t.put(x, y);
+          t2s.put(y, x);
+        } else if (y != val) {
+          return false;
         }
-
-        //高分解（数组）   n   m
-        public boolean isIsomorphic2(String s, String t) {
-            int[] sArr = new int[128];
-            int[] tArr = new int[128];
-
-            for (int i = 0; i < s.length(); i++) {
-                char x = s.charAt(i);
-                char y = t.charAt(i);
-                if (sArr[x] == tArr[y]) {
-                    if (sArr[x] == 0) {
-                        sArr[x] = i + 1;
-                        tArr[y] = i + 1;
-                    }
-                } else {
-                    return false;
-                }
-            }
-
-            return true;
-        }
+      }
+      
+      return true;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 高分解（数组）   n   m
+    public boolean isIsomorphic2(String s, String t) {
+      int[] sArr = new int[128];
+      int[] tArr = new int[128];
+      
+      for (int i = 0; i < s.length(); i++) {
+        char x = s.charAt(i);
+        char y = t.charAt(i);
+        if (sArr[x] == tArr[y]) {
+          if (sArr[x] == 0) {
+            sArr[x] = i + 1;
+            tArr[y] = i + 1;
+          }
+        } else {
+          return false;
+        }
+      }
+      
+      return true;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -45,58 +45,58 @@ package org.example.leetcode.problems._2_algorithm.greedy;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
-//921.使括号有效的最少添加
-//开题时间：2023-01-25 14:29:03
+// 921.使括号有效的最少添加
+// 开题时间：2023-01-25 14:29:03
 public class MinimumAddToMakeParenthesesValid {
-    public static void main(String[] args) {
-        Solution solution = new MinimumAddToMakeParenthesesValid().new Solution();
-        System.out.println(solution);
+  public static void main(String[] args) {
+    Solution solution = new MinimumAddToMakeParenthesesValid().new Solution();
+    System.out.println(solution);
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 错误写法：少考虑了 「)))(((((」 的情况
+    public int minAddToMakeValidX(String s) {
+      int cnt = (int) s.chars().filter(ch -> ch == '(').count();
+      return Math.abs(cnt * 2 - s.length());
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //错误写法：少考虑了 「)))(((((」 的情况
-        public int minAddToMakeValidX(String s) {
-            int cnt = (int) s.chars().filter(ch -> ch == '(').count();
-            return Math.abs(cnt * 2 - s.length());
+    
+    // 栈 最终遗留在栈中的元素是 「)))(((((」 的形式，每个括号都需要添加对应的括号
+    public int minAddToMakeValid9(String s) {
+      Deque<Character> stack = new ArrayDeque<>();
+      for (int i = 0; i < s.length(); i++) {
+        char c = s.charAt(i);
+        if (c == ')' && !stack.isEmpty() && stack.peek() == '(') {
+          stack.pop();
+          continue;
         }
-
-        //栈 最终遗留在栈中的元素是 「)))(((((」 的形式，每个括号都需要添加对应的括号
-        public int minAddToMakeValid9(String s) {
-            Deque<Character> stack = new ArrayDeque<>();
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (c == ')' && !stack.isEmpty() && stack.peek() == '(') {
-                    stack.pop();
-                    continue;
-                }
-                stack.push(c);
-            }
-            return stack.size();
-        }
-
-        //☆☆☆☆☆ 贪心：将「有效括号问题」转化为「分值有效性」的数学判定
-        public int minAddToMakeValid8(String s) {
-            int addOpening = 0, addClosing = 0;
-            for (int i = 0; i < s.length(); i++) {
-                addClosing += s.charAt(i) == '(' ? 1 : -1;
-                if (addClosing < 0) {
-                    addOpening++;
-                    addClosing = 0;
-                }
-            }
-            return addOpening + addClosing;
-        }
-
-        //取巧：字符串替换
-        public int minAddToMakeValid(String s) {
-            String tmp = s;
-            do {
-                s = tmp;
-                tmp = s.replace("()", "");
-            } while (tmp.length() != s.length());
-            return s.length();
-        }
+        stack.push(c);
+      }
+      return stack.size();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 贪心：将「有效括号问题」转化为「分值有效性」的数学判定
+    public int minAddToMakeValid8(String s) {
+      int addOpening = 0, addClosing = 0;
+      for (int i = 0; i < s.length(); i++) {
+        addClosing += s.charAt(i) == '(' ? 1 : -1;
+        if (addClosing < 0) {
+          addOpening++;
+          addClosing = 0;
+        }
+      }
+      return addOpening + addClosing;
+    }
+    
+    // 取巧：字符串替换
+    public int minAddToMakeValid(String s) {
+      String tmp = s;
+      do {
+        s = tmp;
+        tmp = s.replace("()", "");
+      } while (tmp.length() != s.length());
+      return s.length();
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -36,31 +36,31 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 
-//643.子数组最大平均数 I
-//开题时间：2022-10-02 17:05:41
+// 643.子数组最大平均数 I
+// 开题时间：2022-10-02 17:05:41
 public class MaximumAverageSubarrayI {
-    public static void main(String[] args) {
-        Solution solution = new MaximumAverageSubarrayI().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MaximumAverageSubarrayI().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 固长滑动窗口
+    public double findMaxAverage(int[] nums, int k) {
+      int sumMax = 0;
+      for (int i = 0; i < k; i++)
+        sumMax += nums[i];
+      for (int l = 0, r = k, sumCur = sumMax; r < nums.length; l++, r++) {
+        sumCur += nums[r] - nums[l];
+        sumMax = Math.max(sumMax, sumCur);
+      }
+      return (double) sumMax / k;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //固长滑动窗口
-        public double findMaxAverage(int[] nums, int k) {
-            int sumMax = 0;
-            for (int i = 0; i < k; i++)
-                sumMax += nums[i];
-            for (int l = 0, r = k, sumCur = sumMax; r < nums.length; l++, r++) {
-                sumCur += nums[r] - nums[l];
-                sumMax = Math.max(sumMax, sumCur);
-            }
-            return (double) sumMax / k;
-        }
-
-        public double findMaxAverage2(int[] nums, int k) {
-            int sumMax = Tools.maxWindow(nums, k);
-            return (double) sumMax / k;
-        }
+    
+    public double findMaxAverage2(int[] nums, int k) {
+      int sumMax = Tools.maxWindow(nums, k);
+      return (double) sumMax / k;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

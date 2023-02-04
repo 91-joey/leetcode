@@ -60,64 +60,64 @@ package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.HashMap;
 
-//1442.形成两个异或相等数组的三元组数目
-//开题时间：2022-12-19 20:44:42
+// 1442.形成两个异或相等数组的三元组数目
+// 开题时间：2022-12-19 20:44:42
 public class CountTripletsThatCanFormTwoArraysOfEqualXor {
-    public static void main(String[] args) {
-        Solution solution = new CountTripletsThatCanFormTwoArraysOfEqualXor().new Solution();
-        System.out.println(solution.countTriplets(new int[]{2, 3, 1, 6, 7}));
+  public static void main(String[] args) {
+    Solution solution = new CountTripletsThatCanFormTwoArraysOfEqualXor().new Solution();
+    System.out.println(solution.countTriplets(new int[]{2, 3, 1, 6, 7}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 双重循环
+    public int countTriplets9(int[] arr) {
+      int ans = 0;
+      int n = arr.length;
+      for (int i = 0; i < n - 1; i++) {
+        int xors = arr[i];
+        for (int j = i + 1; j < n; j++) {
+          xors ^= arr[j];
+          if (xors == 0)
+            ans += j - i;
+        }
+      }
+      return ans;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //双重循环
-        public int countTriplets9(int[] arr) {
-            int ans = 0;
-            int n = arr.length;
-            for (int i = 0; i < n - 1; i++) {
-                int xors = arr[i];
-                for (int j = i + 1; j < n; j++) {
-                    xors ^= arr[j];
-                    if (xors == 0)
-                        ans += j - i;
-                }
-            }
-            return ans;
-        }
-
-        //双哈希表（一重循环）
-        public int countTriplets8(int[] arr) {
-            int ans = 0;
-            HashMap<Integer, Integer> sum2cnt = new HashMap<>();
-            sum2cnt.put(0, 1);
-            HashMap<Integer, Integer> sum2indices = new HashMap<>();
-            sum2indices.put(0, -1);
-            for (int i = 0, sum = 0; i < arr.length; i++) {
-                sum ^= arr[i];
-                ans += (i - 1) * sum2cnt.getOrDefault(sum, 0) - sum2indices.getOrDefault(sum, 0);
-                sum2cnt.merge(sum, 1, Integer::sum);
-                sum2indices.merge(sum, i, Integer::sum);
-            }
-            return ans;
-        }
-
-        //☆☆☆☆☆ 单哈希表（一重循环） + 高位存值
-        public int countTriplets(int[] arr) {
-            int ans = 0;
-            HashMap<Integer, Integer> map = new HashMap<>();
-            map.put(0, 1 << 20);
-            for (int i = 1, sum = 0, mask = (1 << 20) - 1; i < arr.length + 1; i++) {
-                sum ^= arr[i - 1];
-
-                int num = map.getOrDefault(sum, 0);
-                int indices = num & mask;
-                int cnt = num >> 20;
-
-                ans += (i - 1) * cnt - indices;
-                map.put(sum, (indices + i) | ((cnt + 1) << 20));
-            }
-            return ans;
-        }
+    
+    // 双哈希表（一重循环）
+    public int countTriplets8(int[] arr) {
+      int ans = 0;
+      HashMap<Integer, Integer> sum2cnt = new HashMap<>();
+      sum2cnt.put(0, 1);
+      HashMap<Integer, Integer> sum2indices = new HashMap<>();
+      sum2indices.put(0, -1);
+      for (int i = 0, sum = 0; i < arr.length; i++) {
+        sum ^= arr[i];
+        ans += (i - 1) * sum2cnt.getOrDefault(sum, 0) - sum2indices.getOrDefault(sum, 0);
+        sum2cnt.merge(sum, 1, Integer::sum);
+        sum2indices.merge(sum, i, Integer::sum);
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 单哈希表（一重循环） + 高位存值
+    public int countTriplets(int[] arr) {
+      int ans = 0;
+      HashMap<Integer, Integer> map = new HashMap<>();
+      map.put(0, 1 << 20);
+      for (int i = 1, sum = 0, mask = (1 << 20) - 1; i < arr.length + 1; i++) {
+        sum ^= arr[i - 1];
+        
+        int num = map.getOrDefault(sum, 0);
+        int indices = num & mask;
+        int cnt = num >> 20;
+        
+        ans += (i - 1) * cnt - indices;
+        map.put(sum, (indices + i) | ((cnt + 1) << 20));
+      }
+      return ans;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

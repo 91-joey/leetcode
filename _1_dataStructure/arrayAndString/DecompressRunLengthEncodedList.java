@@ -12,8 +12,8 @@
 //<strong>输入：</strong>nums = [1,2,3,4]
 //<strong>输出：</strong>[2,4,4,4]
 //<strong>解释：</strong>第一对 [1,2] 代表着 2 的出现频次为 1，所以生成数组 [2]。
-//第二对 [3,4] 代表着 4 的出现频次为 3，所以生成数组 [4,4,4]。
-//最后将它们串联到一起 [2] + [4,4,4] = [2,4,4,4]。</pre>
+// 第二对 [3,4] 代表着 4 的出现频次为 3，所以生成数组 [4,4,4]。
+// 最后将它们串联到一起 [2] + [4,4,4] = [2,4,4,4]。</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -38,35 +38,35 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-//1313.解压缩编码列表
-//开题时间：2022-11-19 17:01:50
+// 1313.解压缩编码列表
+// 开题时间：2022-11-19 17:01:50
 public class DecompressRunLengthEncodedList {
-    public static void main(String[] args) {
-        Solution solution = new DecompressRunLengthEncodedList().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new DecompressRunLengthEncodedList().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] decompressRLElist9(int[] nums) {
+      ArrayList<Integer> list = new ArrayList<>();
+      for (int i = 0; i < nums.length; i += 2)
+        for (int j = 0; j < nums[i]; j++)
+          list.add(nums[i + 1]);
+      return list.stream().mapToInt(Integer::intValue).toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] decompressRLElist9(int[] nums) {
-            ArrayList<Integer> list = new ArrayList<>();
-            for (int i = 0; i < nums.length; i += 2)
-                for (int j = 0; j < nums[i]; j++)
-                    list.add(nums[i + 1]);
-            return list.stream().mapToInt(Integer::intValue).toArray();
-        }
-
-        public int[] decompressRLElist(int[] nums) {
-            int n = nums.length;
-            int len = 0;
-            for (int i = 0; i < n; i += 2)
-                len += nums[i];
-
-            int[] ans = new int[len];
-            for (int i = 0, start = 0; i < n; i += 2)
-                Arrays.fill(ans, start, (start = start + nums[i]), nums[i + 1]);
-
-            return ans;
-        }
+    
+    public int[] decompressRLElist(int[] nums) {
+      int n = nums.length;
+      int len = 0;
+      for (int i = 0; i < n; i += 2)
+        len += nums[i];
+      
+      int[] ans = new int[len];
+      for (int i = 0, start = 0; i < n; i += 2)
+        Arrays.fill(ans, start, (start = start + nums[i]), nums[i + 1]);
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

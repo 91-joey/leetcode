@@ -43,87 +43,91 @@
 //<div><li>👍 78</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 
-//1346.检查整数及其两倍数是否存在
-//开题时间：2022-11-28 16:31:07
+// 1346.检查整数及其两倍数是否存在
+// 开题时间：2022-11-28 16:31:07
 public class CheckIfNAndItsDoubleExist {
-    public static void main(String[] args) {
-        Solution solution = new CheckIfNAndItsDoubleExist().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CheckIfNAndItsDoubleExist().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 哈希映射
+    public boolean checkIfExist9(int[] arr) {
+      int n = arr.length;
+      HashMap<Integer, Integer> val2idx = new HashMap<>(n);
+      for (int i = 0; i < arr.length; i++)
+        val2idx.put(arr[i], i);
+      
+      for (int i = 0; i < arr.length; i++) {
+        Integer idx = val2idx.get(2 * arr[i]);
+        if (idx != null && idx != i)
+          return true;
+      }
+      
+      return false;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //哈希映射
-        public boolean checkIfExist9(int[] arr) {
-            int n = arr.length;
-            HashMap<Integer, Integer> val2idx = new HashMap<>(n);
-            for (int i = 0; i < arr.length; i++)
-                val2idx.put(arr[i], i);
-
-            for (int i = 0; i < arr.length; i++) {
-                Integer idx = val2idx.get(2 * arr[i]);
-                if (idx != null && idx != i)
-                    return true;
-            }
-
-            return false;
-        }
-
-        //☆☆☆☆☆ 哈希集合（提前返回）
-        public boolean checkIfExist8(int[] arr) {
-            int n = arr.length;
-            HashSet<Integer> set = new HashSet<>();
-
-            for (int e : arr) {
-                if (set.contains(e) || set.contains(e * 4))
-                    return true;
-                else
-                    set.add(e * 2);
-            }
-
-            return false;
-        }
-
-        //排序+二分
-        public boolean checkIfExist(int[] arr) {
-            List<Integer> neg = new ArrayList<>();
-            List<Integer> pos = new ArrayList<>();
-            for (int e : arr) {
-                if (e >= 0)
-                    pos.add(e);
-                else
-                    neg.add(-e);
-            }
-
-            return checkIfExist(neg) || checkIfExist(pos);
-        }
-
-        private boolean checkIfExist(List<Integer> list) {
-            int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
-            Arrays.sort(arr);
-
-            int n = arr.length;
-            for (int i = 0, l = i + 1; i < n; i++) {
-                int target = arr[i] * 2;
-                l = firstIdxGreaterOrEqualDouble(arr, l, n - 1, target);
-                if (target == arr[l])
-                    return true;
-            }
-
-            return false;
-        }
-
-        public static int firstIdxGreaterOrEqualDouble(int[] arr, int l, int r, int target) {
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (target <= arr[mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
+    
+    //☆☆☆☆☆ 哈希集合（提前返回）
+    public boolean checkIfExist8(int[] arr) {
+      int n = arr.length;
+      HashSet<Integer> set = new HashSet<>();
+      
+      for (int e : arr) {
+        if (set.contains(e) || set.contains(e * 4))
+          return true;
+        else
+          set.add(e * 2);
+      }
+      
+      return false;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 排序+二分
+    public boolean checkIfExist(int[] arr) {
+      List<Integer> neg = new ArrayList<>();
+      List<Integer> pos = new ArrayList<>();
+      for (int e : arr) {
+        if (e >= 0)
+          pos.add(e);
+        else
+          neg.add(-e);
+      }
+      
+      return checkIfExist(neg) || checkIfExist(pos);
+    }
+    
+    private boolean checkIfExist(List<Integer> list) {
+      int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
+      Arrays.sort(arr);
+      
+      int n = arr.length;
+      for (int i = 0, l = i + 1; i < n; i++) {
+        int target = arr[i] * 2;
+        l = firstIdxGreaterOrEqualDouble(arr, l, n - 1, target);
+        if (target == arr[l])
+          return true;
+      }
+      
+      return false;
+    }
+    
+    public static int firstIdxGreaterOrEqualDouble(int[] arr, int l, int r, int target) {
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (target <= arr[mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

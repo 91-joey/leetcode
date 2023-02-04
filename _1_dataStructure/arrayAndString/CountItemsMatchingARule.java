@@ -45,17 +45,17 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.List;
 
-//1773.统计匹配检索规则的物品数量
-//开题时间：2022-11-02 11:58:59
+// 1773.统计匹配检索规则的物品数量
+// 开题时间：2022-11-02 11:58:59
 public class CountItemsMatchingARule {
-    public static void main(String[] args) {
-        Solution solution = new CountItemsMatchingARule().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
-            int cnt = 0;
+  public static void main(String[] args) {
+    Solution solution = new CountItemsMatchingARule().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+      int cnt = 0;
 
             /* switch
             int idx = switch (ruleKey) {
@@ -73,20 +73,20 @@ public class CountItemsMatchingARule {
             else if (ruleKey.charAt(0) == 'n')
                 idx = 2;
             */
-
-            //三元运算符
-            int idx = ruleKey.charAt(0) == 't' ?
-                    0 :
-                    ruleKey.charAt(0) == 'c' ?
-                            1 :
-                            2;
-
-            for (List<String> item : items)
-                if (item.get(idx).equals(ruleValue))
-                    cnt++;
-
-            return cnt;
-        }
+      
+      // 三元运算符
+      int idx = ruleKey.charAt(0) == 't' ?
+          0 :
+          ruleKey.charAt(0) == 'c' ?
+              1 :
+              2;
+      
+      for (List<String> item : items)
+        if (item.get(idx).equals(ruleValue))
+          cnt++;
+      
+      return cnt;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

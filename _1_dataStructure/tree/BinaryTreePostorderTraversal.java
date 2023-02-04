@@ -46,112 +46,112 @@ import java.util.Deque;
 import java.util.LinkedList;
 import java.util.List;
 
-//145.二叉树的后序遍历
-//开题时间：2022-09-13 15:46:08
+// 145.二叉树的后序遍历
+// 开题时间：2022-09-13 15:46:08
 public class BinaryTreePostorderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new BinaryTreePostorderTraversal().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BinaryTreePostorderTraversal().new Solution();
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for a binary tree node.
+   * public class TreeNode {
+   * int val;
+   * TreeNode left;
+   * TreeNode right;
+   * TreeNode() {}
+   * TreeNode(int val) { this.val = val; }
+   * TreeNode(int val, TreeNode left, TreeNode right) {
+   * this.val = val;
+   * this.left = left;
+   * this.right = right;
+   * }
+   * }
+   */
+  class Solution {
+    // DFS+递归
+    public List<Integer> postorderTraversal(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      
+      if (root == null)
+        return list;
+      list.addAll(postorderTraversal(root.left));
+      list.addAll(postorderTraversal(root.right));
+      list.add(root.val);
+      
+      return list;
     }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for a binary tree node.
-     * public class TreeNode {
-     * int val;
-     * TreeNode left;
-     * TreeNode right;
-     * TreeNode() {}
-     * TreeNode(int val) { this.val = val; }
-     * TreeNode(int val, TreeNode left, TreeNode right) {
-     * this.val = val;
-     * this.left = left;
-     * this.right = right;
-     * }
-     * }
-     */
-    class Solution {
-        //DFS+递归
-        public List<Integer> postorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-
-            if (root == null)
-                return list;
-            list.addAll(postorderTraversal(root.left));
-            list.addAll(postorderTraversal(root.right));
-            list.add(root.val);
-
-            return list;
-        }
-
-        //DFS+栈    n   n
-        public List<Integer> postorderTraversal_stack(TreeNode root) {
-            LinkedList<Integer> list = new LinkedList<>();
-            if (root == null)
-                return list;
-            Deque<TreeNode> stack = new LinkedList<>();
-            stack.push(root);
-
-            while (!stack.isEmpty()) {
-                TreeNode pop = stack.pop();
-                list.addFirst(pop.val);
-                if (pop.left != null)
-                    stack.push(pop.left);
-                if (pop.right != null)
-                    stack.push(pop.right);
-            }
-
-            return list;
-        }
-
-        //Morris解法  n   1
-        public List<Integer> postorderTraversal_morris(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-
-            TreeNode cur = root;
-            TreeNode left;
-            while (cur != null) {
-                left = cur.left;
-                if (left != null) {
-                    while (left.right != null && left.right != cur) {
-                        left = left.right;
-                    }
-                    if (left.right == null) {
-                        left.right = cur;
-                        cur = cur.left;
-                    } else {
-                        left.right = null;
-                        addDiagonal(list, cur.left);
-                        cur = cur.right;
-                    }
-                } else {
-                    cur = cur.right;
-                }
-            }
-            addDiagonal(list, root);
-
-            return list;
-        }
-
-        //对角线反序 添加元素
-        private void addDiagonal(List<Integer> list, TreeNode root) {
-            int cnt = 0;
-            while (root != null) {
-                list.add(root.val);
-                root = root.right;
-                cnt++;
-            }
-            //reverse
-            int size = list.size();
-            int l = size - cnt;
-            int r = size - 1;
-            while (l < r) {
-                Integer tmp = list.get(l);
-                list.set(l++, list.get(r));
-                list.set(r--, tmp);
-            }
-        }
+    
+    // DFS+栈    n   n
+    public List<Integer> postorderTraversal_stack(TreeNode root) {
+      LinkedList<Integer> list = new LinkedList<>();
+      if (root == null)
+        return list;
+      Deque<TreeNode> stack = new LinkedList<>();
+      stack.push(root);
+      
+      while (!stack.isEmpty()) {
+        TreeNode pop = stack.pop();
+        list.addFirst(pop.val);
+        if (pop.left != null)
+          stack.push(pop.left);
+        if (pop.right != null)
+          stack.push(pop.right);
+      }
+      
+      return list;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // Morris解法  n   1
+    public List<Integer> postorderTraversal_morris(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      
+      TreeNode cur = root;
+      TreeNode left;
+      while (cur != null) {
+        left = cur.left;
+        if (left != null) {
+          while (left.right != null && left.right != cur) {
+            left = left.right;
+          }
+          if (left.right == null) {
+            left.right = cur;
+            cur = cur.left;
+          } else {
+            left.right = null;
+            addDiagonal(list, cur.left);
+            cur = cur.right;
+          }
+        } else {
+          cur = cur.right;
+        }
+      }
+      addDiagonal(list, root);
+      
+      return list;
+    }
+    
+    // 对角线反序 添加元素
+    private void addDiagonal(List<Integer> list, TreeNode root) {
+      int cnt = 0;
+      while (root != null) {
+        list.add(root.val);
+        root = root.right;
+        cnt++;
+      }
+      // reverse
+      int size = list.size();
+      int l = size - cnt;
+      int r = size - 1;
+      while (l < r) {
+        Integer tmp = list.get(l);
+        list.set(l++, list.get(r));
+        list.set(r--, tmp);
+      }
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

@@ -41,87 +41,87 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-//350.两个数组的交集 II
-//开题时间：2022-11-03 14:59:54
+// 350.两个数组的交集 II
+// 开题时间：2022-11-03 14:59:54
 public class IntersectionOfTwoArraysIi {
-    public static void main(String[] args) {
-        Solution solution = new IntersectionOfTwoArraysIi().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new IntersectionOfTwoArraysIi().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 哈希映射  m+n m
+    public int[] intersect(int[] nums1, int[] nums2) {
+      HashMap<Integer, Integer> num2cnt = new HashMap<>();
+      for (int e : nums1)
+        num2cnt.merge(e, 1, Integer::sum);
+      
+      //            Map<Integer, Integer> num2cnt = Arrays.stream(nums1).boxed().collect(Collectors.toMap(i -> i, i -> 1, Integer::sum));
+      
+      return Arrays.stream(nums2).filter(num -> {
+        if (!num2cnt.containsKey(num)) {
+          return false;
+        } else {
+          num2cnt.merge(num, -1, Integer::sum);
+          num2cnt.remove(num, 0);
+          //                    int cnt = num2cnt.get(num);
+          //                    if (cnt == 1)
+          //                        num2cnt.remove(num);
+          //                    else
+          //                        num2cnt.put(num, cnt - 1);
+          return true;
+        }
+      }).toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //哈希映射  m+n m
-        public int[] intersect(int[] nums1, int[] nums2) {
-            HashMap<Integer, Integer> num2cnt = new HashMap<>();
-            for (int e : nums1)
-                num2cnt.merge(e, 1, Integer::sum);
-
-//            Map<Integer, Integer> num2cnt = Arrays.stream(nums1).boxed().collect(Collectors.toMap(i -> i, i -> 1, Integer::sum));
-
-            return Arrays.stream(nums2).filter(num -> {
-                if (!num2cnt.containsKey(num)) {
-                    return false;
-                } else {
-                    num2cnt.merge(num, -1, Integer::sum);
-                    num2cnt.remove(num, 0);
-//                    int cnt = num2cnt.get(num);
-//                    if (cnt == 1)
-//                        num2cnt.remove(num);
-//                    else
-//                        num2cnt.put(num, cnt - 1);
-                    return true;
-                }
-            }).toArray();
-        }
-
-        //数组计数
-        public int[] intersect9(int[] nums1, int[] nums2) {
-            int[] freq = new int[1001];
-            for (int e : nums1)
-                freq[e]++;
-
-            return Arrays.stream(nums2).filter(value -> freq[value]-- > 0).toArray();
-        }
-
-        //排序+双指针    mlogm+nlogn 1
-        public int[] intersect2(int[] nums1, int[] nums2) {
-            Arrays.sort(nums1);
-            Arrays.sort(nums2);
-
-            ArrayList<Integer> ans = new ArrayList<>();
-            for (int i = 0, j = 0; i < nums1.length && j < nums2.length; ) {
-                if (nums1[i] == nums2[j]) {
-                    ans.add(nums1[i]);
-                    i++;
-                    j++;
-                } else if (nums1[i] < nums2[j]) {
-                    i++;
-                } else {
-                    j++;
-                }
-            }
-            return ans.stream().mapToInt(Integer::intValue).toArray();
-        }
-
-        //排序+双指针(结果存储在输入数组中)    mlogm+nlogn 1
-        public int[] intersect3(int[] nums1, int[] nums2) {
-            Arrays.sort(nums1);
-            Arrays.sort(nums2);
-
-            int idx = 0;
-            for (int i = 0, j = 0; i < nums1.length && j < nums2.length; ) {
-                if (nums1[i] == nums2[j]) {
-                    nums1[idx++] = nums1[i];
-                    i++;
-                    j++;
-                } else if (nums1[i] < nums2[j]) {
-                    i++;
-                } else {
-                    j++;
-                }
-            }
-            return Arrays.copyOfRange(nums1, 0, idx);
-        }
+    
+    // 数组计数
+    public int[] intersect9(int[] nums1, int[] nums2) {
+      int[] freq = new int[1001];
+      for (int e : nums1)
+        freq[e]++;
+      
+      return Arrays.stream(nums2).filter(value -> freq[value]-- > 0).toArray();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 排序+双指针    mlogm+nlogn 1
+    public int[] intersect2(int[] nums1, int[] nums2) {
+      Arrays.sort(nums1);
+      Arrays.sort(nums2);
+      
+      ArrayList<Integer> ans = new ArrayList<>();
+      for (int i = 0, j = 0; i < nums1.length && j < nums2.length; ) {
+        if (nums1[i] == nums2[j]) {
+          ans.add(nums1[i]);
+          i++;
+          j++;
+        } else if (nums1[i] < nums2[j]) {
+          i++;
+        } else {
+          j++;
+        }
+      }
+      return ans.stream().mapToInt(Integer::intValue).toArray();
+    }
+    
+    // 排序+双指针(结果存储在输入数组中)    mlogm+nlogn 1
+    public int[] intersect3(int[] nums1, int[] nums2) {
+      Arrays.sort(nums1);
+      Arrays.sort(nums2);
+      
+      int idx = 0;
+      for (int i = 0, j = 0; i < nums1.length && j < nums2.length; ) {
+        if (nums1[i] == nums2[j]) {
+          nums1[idx++] = nums1[i];
+          i++;
+          j++;
+        } else if (nums1[i] < nums2[j]) {
+          i++;
+        } else {
+          j++;
+        }
+      }
+      return Arrays.copyOfRange(nums1, 0, idx);
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

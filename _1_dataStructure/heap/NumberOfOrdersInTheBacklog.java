@@ -30,7 +30,7 @@
 //- 提交 2 笔销售订单，价格为 15 。没有采购订单的价格大于或等于 15 ，所以这 2 笔订单添加到积压订单中。
 //- 提交 1 笔销售订单，价格为 25 。没有采购订单的价格大于或等于 25 ，所以这 1 笔订单添加到积压订单中。
 //- 提交 4 笔采购订单，价格为 30 。前 2 笔采购订单与价格最低（价格为 15）的 2 笔销售订单匹配，从积压订单中删除这 2 笔销售订单。第 3 笔采购订单与价格最低的 1 笔销售订单匹配，销售订单价格为 25 ，从积压订单中删除这 1 笔销售订单。积压订单中不存在更多销售订单，所以第 4 笔采购订单需要添加到积压订单中。
-//最终，积压订单中有 5 笔价格为 10 的采购订单，和 1 笔价格为 30 的采购订单。所以积压订单中的订单总数为 6 。
+// 最终，积压订单中有 5 笔价格为 10 的采购订单，和 1 笔价格为 30 的采购订单。所以积压订单中的订单总数为 6 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p> 
@@ -43,7 +43,7 @@
 //- 提交 3 笔采购订单，价格为 15 。这些采购订单与价格最低（价格为 7 ）的 3 笔销售订单匹配，从积压订单中删除这 3 笔销售订单。
 //- 提交 999999995 笔采购订单，价格为 5 。销售订单的最低价为 7 ，所以这 999999995 笔订单添加到积压订单中。
 //- 提交 1 笔销售订单，价格为 5 。这笔销售订单与价格最高（价格为 5 ）的 1 笔采购订单匹配，从积压订单中删除这 1 笔采购订单。
-//最终，积压订单中有 (1000000000-3) 笔价格为 7 的销售订单，和 (999999995-1) 笔价格为 5 的采购订单。所以积压订单中的订单总数为 1999999991 ，等于 999999984 % (10<sup>9</sup> + 7) 。</pre>
+// 最终，积压订单中有 (1000000000-3) 笔价格为 7 的销售订单，和 (999999995-1) 笔价格为 5 的采购订单。所以积压订单中的订单总数为 1999999991 ，等于 999999984 % (10<sup>9</sup> + 7) 。</pre>
 //
 //<p>&nbsp;</p>
 //
@@ -65,93 +65,93 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.PriorityQueue;
 
-//1801.积压订单中的订单总数
-//开题时间：2023-01-02 11:01:07
+// 1801.积压订单中的订单总数
+// 开题时间：2023-01-02 11:01:07
 public class NumberOfOrdersInTheBacklog {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfOrdersInTheBacklog().new Solution();
-        System.out.println(solution.getNumberOfBacklogOrders(Tools.to2DIntArray("[[19,28,0],[9,4,1],[25,15,1]]")));
-//        System.out.println(solution.getNumberOfBacklogOrders(Tools.to2DIntArray("[[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]")));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int MOD = 10_0000_0007;
-
-        public int getNumberOfBacklogOrders9(int[][] orders) {
-            PriorityQueue<int[]> pqBuy = new PriorityQueue<>(Comparator.<int[]>comparingInt(arr -> arr[0]).reversed());
-            PriorityQueue<int[]> pqSell = new PriorityQueue<>(Comparator.comparingInt(arr -> arr[0]));
-            for (int[] order : orders) {
-                if (order[2] == 0) {
-                    while (!pqSell.isEmpty() && pqSell.peek()[0] <= order[0]) {
-                        int[] poll = pqSell.poll();
-                        if (order[1] > poll[1])
-                            order[1] -= poll[1];
-                        else {
-                            if (order[1] < poll[1]) {
-                                poll[1] -= order[1];
-                                pqSell.offer(poll);
-                            }
-                            order[1] = 0;
-                            break;
-                        }
-                    }
-                    if (order[1] > 0)
-                        pqBuy.offer(new int[]{order[0], order[1]});
-                } else {
-                    while (!pqBuy.isEmpty() && pqBuy.peek()[0] >= order[0]) {
-                        int[] poll = pqBuy.poll();
-                        if (order[1] > poll[1])
-                            order[1] -= poll[1];
-                        else {
-                            if (order[1] < poll[1]) {
-                                poll[1] -= order[1];
-                                pqBuy.offer(poll);
-                            }
-                            order[1] = 0;
-                            break;
-                        }
-                    }
-                    if (order[1] > 0)
-                        pqSell.offer(new int[]{order[0], order[1]});
-                }
+  public static void main(String[] args) {
+    Solution solution = new NumberOfOrdersInTheBacklog().new Solution();
+    System.out.println(solution.getNumberOfBacklogOrders(Tools.to2DIntArray("[[19,28,0],[9,4,1],[25,15,1]]")));
+    //        System.out.println(solution.getNumberOfBacklogOrders(Tools.to2DIntArray("[[7,1000000000,1],[15,3,0],[5,999999995,0],[5,1,1]]")));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int MOD = 10_0000_0007;
+    
+    public int getNumberOfBacklogOrders9(int[][] orders) {
+      PriorityQueue<int[]> pqBuy = new PriorityQueue<>(Comparator.<int[]>comparingInt(arr -> arr[0]).reversed());
+      PriorityQueue<int[]> pqSell = new PriorityQueue<>(Comparator.comparingInt(arr -> arr[0]));
+      for (int[] order : orders) {
+        if (order[2] == 0) {
+          while (!pqSell.isEmpty() && pqSell.peek()[0] <= order[0]) {
+            int[] poll = pqSell.poll();
+            if (order[1] > poll[1])
+              order[1] -= poll[1];
+            else {
+              if (order[1] < poll[1]) {
+                poll[1] -= order[1];
+                pqSell.offer(poll);
+              }
+              order[1] = 0;
+              break;
             }
-
-            int ans = 0;
-            while (!pqBuy.isEmpty()) ans = (ans + pqBuy.poll()[1]) % MOD;
-            while (!pqSell.isEmpty()) ans = (ans + pqSell.poll()[1]) % MOD;
-            return ans;
-        }
-
-
-        public int getNumberOfBacklogOrders(int[][] orders) {
-            PriorityQueue<int[]> pqBuy = new PriorityQueue<>(Comparator.<int[]>comparingInt(arr -> arr[0]).reversed());
-            PriorityQueue<int[]> pqSell = new PriorityQueue<>(Comparator.comparingInt(arr -> arr[0]));
-            for (int[] order : orders)
-                if (order[2] == 0)
-                    helper(pqBuy, pqSell, order[0], order[1], true);
-                else
-                    helper(pqSell, pqBuy, order[0], order[1], false);
-
-            int ans = 0;
-            for (PriorityQueue<int[]> pq : List.of(pqBuy, pqSell))
-                while (!pq.isEmpty())
-                    ans = (ans + pq.poll()[1]) % MOD;
-            return ans;
-        }
-
-        private void helper(PriorityQueue<int[]> from, PriorityQueue<int[]> to, int price, int amount, boolean lessThan) {
-            while (amount > 0 && !to.isEmpty() && (lessThan ? to.peek()[0] <= price : to.peek()[0] >= price)) {
-                int[] poll = to.poll();
-                int min = Math.min(amount, poll[1]);
-                amount -= min;
-                poll[1] -= min;
-                if (0 < poll[1])
-                    to.offer(poll);
+          }
+          if (order[1] > 0)
+            pqBuy.offer(new int[]{order[0], order[1]});
+        } else {
+          while (!pqBuy.isEmpty() && pqBuy.peek()[0] >= order[0]) {
+            int[] poll = pqBuy.poll();
+            if (order[1] > poll[1])
+              order[1] -= poll[1];
+            else {
+              if (order[1] < poll[1]) {
+                poll[1] -= order[1];
+                pqBuy.offer(poll);
+              }
+              order[1] = 0;
+              break;
             }
-            if (amount > 0)
-                from.offer(new int[]{price, amount});
+          }
+          if (order[1] > 0)
+            pqSell.offer(new int[]{order[0], order[1]});
         }
+      }
+      
+      int ans = 0;
+      while (!pqBuy.isEmpty()) ans = (ans + pqBuy.poll()[1]) % MOD;
+      while (!pqSell.isEmpty()) ans = (ans + pqSell.poll()[1]) % MOD;
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    
+    public int getNumberOfBacklogOrders(int[][] orders) {
+      PriorityQueue<int[]> pqBuy = new PriorityQueue<>(Comparator.<int[]>comparingInt(arr -> arr[0]).reversed());
+      PriorityQueue<int[]> pqSell = new PriorityQueue<>(Comparator.comparingInt(arr -> arr[0]));
+      for (int[] order : orders)
+        if (order[2] == 0)
+          helper(pqBuy, pqSell, order[0], order[1], true);
+        else
+          helper(pqSell, pqBuy, order[0], order[1], false);
+      
+      int ans = 0;
+      for (PriorityQueue<int[]> pq : List.of(pqBuy, pqSell))
+        while (!pq.isEmpty())
+          ans = (ans + pq.poll()[1]) % MOD;
+      return ans;
+    }
+    
+    private void helper(PriorityQueue<int[]> from, PriorityQueue<int[]> to, int price, int amount, boolean lessThan) {
+      while (amount > 0 && !to.isEmpty() && (lessThan ? to.peek()[0] <= price : to.peek()[0] >= price)) {
+        int[] poll = to.poll();
+        int min = Math.min(amount, poll[1]);
+        amount -= min;
+        poll[1] -= min;
+        if (0 < poll[1])
+          to.offer(poll);
+      }
+      if (amount > 0)
+        from.offer(new int[]{price, amount});
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

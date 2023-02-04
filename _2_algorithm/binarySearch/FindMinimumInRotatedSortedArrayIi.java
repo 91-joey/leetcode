@@ -1,4 +1,4 @@
-//已知一个长度为 <code>n</code> 的数组，预先按照升序排列，经由 <code>1</code> 到 <code>n</code> 次 <strong>旋转</strong> 后，得到输入数组。例如，原数组 <code>nums = [0,1,4,4,5,6,7]</code> 在变化后可能得到：
+// 已知一个长度为 <code>n</code> 的数组，预先按照升序排列，经由 <code>1</code> 到 <code>n</code> 次 <strong>旋转</strong> 后，得到输入数组。例如，原数组 <code>nums = [0,1,4,4,5,6,7]</code> 在变化后可能得到：
 //
 //<ul> 
 // <li>若旋转 <code>4</code> 次，则可以得到 <code>[4,5,6,7,0,1,4]</code></li> 
@@ -45,55 +45,55 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li></div></div><br><div><li>👍 554</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.binarySearch;
 
-//154.寻找旋转排序数组中的最小值 II
-//开题时间：2022-11-02 17:38:04
+// 154.寻找旋转排序数组中的最小值 II
+// 开题时间：2022-11-02 17:38:04
 public class FindMinimumInRotatedSortedArrayIi {
-    public static void main(String[] args) {
-        Solution solution = new FindMinimumInRotatedSortedArrayIi().new Solution();
-//        System.out.println(solution.findMin2(new int[]{4, 5, 6, 7, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4}));
-//        System.out.println(solution.findMin2(new int[]{4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 0, 4, 4}));
-//        System.out.println(solution.findMin(new int[]{10, 1, 10, 10, 10}));
-        System.out.println(solution.findMin(new int[]{2, 2, 2, 0, 2, 2}));
+  public static void main(String[] args) {
+    Solution solution = new FindMinimumInRotatedSortedArrayIi().new Solution();
+    //        System.out.println(solution.findMin2(new int[]{4, 5, 6, 7, 0, 4, 4, 4, 4, 4, 4, 4, 4, 4}));
+    //        System.out.println(solution.findMin2(new int[]{4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 6, 0, 4, 4}));
+    //        System.out.println(solution.findMin(new int[]{10, 1, 10, 10, 10}));
+    System.out.println(solution.findMin(new int[]{2, 2, 2, 0, 2, 2}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int findMin2(int[] nums) {
+      for (int i = 0; i < nums.length - 1; i++)
+        if (nums[i] > nums[i + 1])
+          return nums[i + 1];
+      return nums[0];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int findMin2(int[] nums) {
-            for (int i = 0; i < nums.length - 1; i++)
-                if (nums[i] > nums[i + 1])
-                    return nums[i + 1];
-            return nums[0];
-        }
-
-        public int findMin(int[] nums) {
-            int l = 0, r = nums.length - 1;
-            while (l < r && nums[l] == nums[r])
-                l++;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (nums[mid] <= nums[r])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return nums[r];
-        }
-
-        //☆☆☆☆☆ 直接二分，相等时不再折半缩小搜索区间、改为迭代。
-        public int findMin3(int[] nums) {
-            int l = 0, r = nums.length - 1;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (nums[mid] == nums[r])
-                    //精髓之处
-                    r--;
-                else if (nums[mid] < nums[r])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return nums[r];
-        }
+    
+    public int findMin(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      while (l < r && nums[l] == nums[r])
+        l++;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (nums[mid] <= nums[r])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return nums[r];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 直接二分，相等时不再折半缩小搜索区间、改为迭代。
+    public int findMin3(int[] nums) {
+      int l = 0, r = nums.length - 1;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (nums[mid] == nums[r])
+          // 精髓之处
+          r--;
+        else if (nums[mid] < nums[r])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return nums[r];
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

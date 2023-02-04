@@ -35,57 +35,57 @@
 //<div><li>👍 2677</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.dp;
 
-//121.买卖股票的最佳时机
-//开题时间：2022-11-30 08:51:40
+// 121.买卖股票的最佳时机
+// 开题时间：2022-11-30 08:51:40
 public class BestTimeToBuyAndSellStock {
-    public static void main(String[] args) {
-        Solution solution = new BestTimeToBuyAndSellStock().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new BestTimeToBuyAndSellStock().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // max[i]=max(arr[i+1...n-1])-arr[i]
+    // max=max(arr[0...n-1])
+    public int maxProfit9(int[] prices) {
+      int max = 0;
+      int n = prices.length;
+      
+      int[] maxes = new int[n];
+      maxes[n - 1] = prices[n - 1];
+      
+      for (int i = n - 2; i >= 0; i--) {
+        maxes[i] = Math.max(maxes[i + 1], prices[i]);
+        max = Math.max(max, maxes[i + 1] - prices[i]);
+      }
+      
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //max[i]=max(arr[i+1...n-1])-arr[i]
-        //max=max(arr[0...n-1])
-        public int maxProfit9(int[] prices) {
-            int max = 0;
-            int n = prices.length;
-
-            int[] maxes = new int[n];
-            maxes[n - 1] = prices[n - 1];
-
-            for (int i = n - 2; i >= 0; i--) {
-                maxes[i] = Math.max(maxes[i + 1], prices[i]);
-                max = Math.max(max, maxes[i + 1] - prices[i]);
-            }
-
-            return max;
-        }
-
-        public int maxProfit8(int[] prices) {
-            int max = 0;
-
-            for (int i = prices.length - 1, maxPrice = Integer.MIN_VALUE; i >= 0; i--) {
-                maxPrice = Math.max(maxPrice, prices[i]);
-                max = Math.max(max, maxPrice - prices[i]);
-            }
-
-            return max;
-        }
-
-        /*
-         * dp[i]表示以arr[i]结尾的最大利润
-         * 则有dp[i]=max(dp[i-1],arr[i]-min(arr[0...i])
-         */
-        public int maxProfit(int[] prices) {
-            int max = 0;
-
-            for (int i = 0, minPrice = Integer.MAX_VALUE; i < prices.length; i++) {
-                minPrice = Math.min(minPrice, prices[i]);
-                max = Math.max(max, prices[i] - minPrice);
-            }
-
-            return max;
-        }
+    
+    public int maxProfit8(int[] prices) {
+      int max = 0;
+      
+      for (int i = prices.length - 1, maxPrice = Integer.MIN_VALUE; i >= 0; i--) {
+        maxPrice = Math.max(maxPrice, prices[i]);
+        max = Math.max(max, maxPrice - prices[i]);
+      }
+      
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * dp[i]表示以arr[i]结尾的最大利润
+     * 则有dp[i]=max(dp[i-1],arr[i]-min(arr[0...i])
+     */
+    public int maxProfit(int[] prices) {
+      int max = 0;
+      
+      for (int i = 0, minPrice = Integer.MAX_VALUE; i < prices.length; i++) {
+        minPrice = Math.min(minPrice, prices[i]);
+        max = Math.max(max, prices[i] - minPrice);
+      }
+      
+      return max;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

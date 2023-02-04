@@ -55,27 +55,27 @@ package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 
-//1456.定长子串中元音的最大数目
-//开题时间：2022-10-03 09:53:20
+// 1456.定长子串中元音的最大数目
+// 开题时间：2022-10-03 09:53:20
 public class MaximumNumberOfVowelsInASubstringOfGivenLength {
-    public static void main(String[] args) {
-        Solution solution = new MaximumNumberOfVowelsInASubstringOfGivenLength().new Solution();
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int maxVowels(String s, int k) {
-            int length = s.length();
-            int[] vowels = new int[length];
-            for (int i = 0; i < length; i++) {
-                char c = s.charAt(i);
-                switch (c) {
-                    case 'a', 'e', 'i', 'o', 'u' -> vowels[i] = 1;
-                }
-            }
-
-            return Tools.maxWindow(vowels, k);
+  public static void main(String[] args) {
+    Solution solution = new MaximumNumberOfVowelsInASubstringOfGivenLength().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int maxVowels(String s, int k) {
+      int length = s.length();
+      int[] vowels = new int[length];
+      for (int i = 0; i < length; i++) {
+        char c = s.charAt(i);
+        switch (c) {
+          case 'a', 'e', 'i', 'o', 'u' -> vowels[i] = 1;
         }
+      }
+      
+      return Tools.maxWindow(vowels, k);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

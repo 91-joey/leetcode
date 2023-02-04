@@ -70,80 +70,81 @@ package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
 import java.util.Stack;
 
-//150.逆波兰表达式求值
-//开题时间：2022-08-19 10:50:21
+// 150.逆波兰表达式求值
+// 开题时间：2022-08-19 10:50:21
 public class EvaluateReversePolishNotation {
-    public static void main(String[] args) {
-        Solution solution = new EvaluateReversePolishNotation().new Solution();
-        System.out.println(solution.evalRPN3(new String[]{"4", "13", "5", "/", "+"}));
+  public static void main(String[] args) {
+    Solution solution = new EvaluateReversePolishNotation().new Solution();
+    System.out.println(solution.evalRPN3(new String[]{"4", "13", "5", "/", "+"}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 1.栈 n   n
+    public int evalRPN(String[] tokens) {
+      Stack<Integer> stack = new Stack<>();
+      for (String token : tokens) {
+        switch (token) {
+          case "+" -> stack.push(stack.pop() + stack.pop());
+          case "-" -> {
+            Integer subtraction = stack.pop();
+            Integer minuend = stack.pop();
+            stack.push(minuend - subtraction);
+          }
+          case "*" -> stack.push(stack.pop() * stack.pop());
+          case "/" -> {
+            Integer divisor = stack.pop();
+            Integer dividend = stack.pop();
+            stack.push(dividend / divisor);
+          }
+          default -> stack.push(Integer.valueOf(token));
+        }
+      }
+      return stack.pop();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //1.栈 n   n
-        public int evalRPN(String[] tokens) {
-            Stack<Integer> stack = new Stack<>();
-            for (String token : tokens) {
-                switch (token) {
-                    case "+" -> stack.push(stack.pop() + stack.pop());
-                    case "-" -> {
-                        Integer subtraction = stack.pop();
-                        Integer minuend = stack.pop();
-                        stack.push(minuend - subtraction);
-                    }
-                    case "*" -> stack.push(stack.pop() * stack.pop());
-                    case "/" -> {
-                        Integer divisor = stack.pop();
-                        Integer dividend = stack.pop();
-                        stack.push(dividend / divisor);
-                    }
-                    default -> stack.push(Integer.valueOf(token));
-                }
-            }
-            return stack.pop();
+    
+    // 2.官解二：数组模拟栈 n   n
+    public int evalRPN2(String[] tokens) {
+      int[] stack = new int[(tokens.length + 1) / 2];
+      int idx = -1;
+      
+      for (String token : tokens) {
+        switch (token) {
+          case "+" -> stack[--idx] = stack[idx] + stack[idx + 1];
+          case "-" -> stack[--idx] = stack[idx] - stack[idx + 1];
+          case "*" -> stack[--idx] = stack[idx] * stack[idx + 1];
+          case "/" -> stack[--idx] = stack[idx] / stack[idx + 1];
+          default -> stack[++idx] = Integer.parseInt(token);
         }
-
-        //2.官解二：数组模拟栈 n   n
-        public int evalRPN2(String[] tokens) {
-            int[] stack = new int[(tokens.length + 1) / 2];
-            int idx = -1;
-
-            for (String token : tokens) {
-                switch (token) {
-                    case "+" -> stack[--idx] = stack[idx] + stack[idx + 1];
-                    case "-" -> stack[--idx] = stack[idx] - stack[idx + 1];
-                    case "*" -> stack[--idx] = stack[idx] * stack[idx + 1];
-                    case "/" -> stack[--idx] = stack[idx] / stack[idx + 1];
-                    default -> stack[++idx] = Integer.parseInt(token);
-                }
-            }
-
-            return stack[idx];
-        }
-
-        //3.高分解（递归）
-        private int idx;
-        public int evalRPN3(String[] tokens) {
-            idx=tokens.length - 1;
-            return eval(tokens);
-        }
-
-        private int eval(String[] tokens) {
-            String token = tokens[idx];
-            if (!"+-*/".contains(token)) {
-                return Integer.parseInt(token);
-            }
-            idx--;
-            int v2 = eval(tokens);
-            idx--;
-            int v1 = eval(tokens);
-            return switch (token) {
-                case "+" -> v1 + v2;
-                case "-" -> v1 - v2;
-                case "*" -> v1 * v2;
-                default -> v1 / v2;
-            };
-        }
+      }
+      
+      return stack[idx];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 3.高分解（递归）
+    private int idx;
+    
+    public int evalRPN3(String[] tokens) {
+      idx = tokens.length - 1;
+      return eval(tokens);
+    }
+    
+    private int eval(String[] tokens) {
+      String token = tokens[idx];
+      if (!"+-*/".contains(token)) {
+        return Integer.parseInt(token);
+      }
+      idx--;
+      int v2 = eval(tokens);
+      idx--;
+      int v1 = eval(tokens);
+      return switch (token) {
+        case "+" -> v1 + v2;
+        case "-" -> v1 - v2;
+        case "*" -> v1 * v2;
+        default -> v1 / v2;
+      };
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

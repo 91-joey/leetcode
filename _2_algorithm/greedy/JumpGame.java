@@ -34,56 +34,56 @@
 //<div><li>👍 2162</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.greedy;
 
-//55.跳跃游戏
-//开题时间：2023-01-20 17:55:24
+// 55.跳跃游戏
+// 开题时间：2023-01-20 17:55:24
 public class JumpGame {
-    public static void main(String[] args) {
-        Solution solution = new JumpGame().new Solution();
-        System.out.println(solution.canJump(new int[]{3, 2, 1, 0, 4}));
+  public static void main(String[] args) {
+    Solution solution = new JumpGame().new Solution();
+    System.out.println(solution.canJump(new int[]{3, 2, 1, 0, 4}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 线性dp（内层正序遍历）
+    public boolean canJump9(int[] nums) {
+      int n = nums.length;
+      boolean[] f = new boolean[n];
+      f[0] = true;
+      for (int i = 1; i < n; i++)
+        for (int j = 0; j < i; j++)
+          if (f[j] && nums[j] >= i - j) {
+            f[i] = true;
+            break;
+          }
+      return f[n - 1];
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //线性dp（内层正序遍历）
-        public boolean canJump9(int[] nums) {
-            int n = nums.length;
-            boolean[] f = new boolean[n];
-            f[0] = true;
-            for (int i = 1; i < n; i++)
-                for (int j = 0; j < i; j++)
-                    if (f[j] && nums[j] >= i - j) {
-                        f[i] = true;
-                        break;
-                    }
-            return f[n - 1];
-        }
-
-        //线性dp优化（内层逆序遍历）
-        public boolean canJump8(int[] nums) {
-            int n = nums.length;
-            boolean[] f = new boolean[n];
-            f[0] = true;
-            for (int i = 1; i < n; i++)
-                for (int j = i - 1; j >= 0; j--)
-                    if (f[j] && nums[j] >= i - j) {
-                        f[i] = true;
-                        break;
-                    }
-            return f[n - 1];
-        }
-
-        /*
-         * ☆☆☆☆☆ 贪心：维护最远可达位置
-         *  若当前索引 i <= 最远可达位置 rightmost ，则索引 i 是可达的，我们更新 rightmost
-         *      rightmost >= n -1，能够到达最后一个下标，提前返回结果 true
-         *  反之，若当前索引 i > 最远可达位置 rightmost ，则索引 i 是不可达的，之后的索引同样是不可达的，提前返回结果 false
-         */
-        public boolean canJump(int[] nums) {
-            for (int i = 0, rightmost = 0; i <= rightmost; i++)
-                if ((rightmost = Math.max(rightmost, i + nums[i])) >= nums.length - 1)
-                    return true;
-            return false;
-        }
+    
+    // 线性dp优化（内层逆序遍历）
+    public boolean canJump8(int[] nums) {
+      int n = nums.length;
+      boolean[] f = new boolean[n];
+      f[0] = true;
+      for (int i = 1; i < n; i++)
+        for (int j = i - 1; j >= 0; j--)
+          if (f[j] && nums[j] >= i - j) {
+            f[i] = true;
+            break;
+          }
+      return f[n - 1];
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+     * ☆☆☆☆☆ 贪心：维护最远可达位置
+     *  若当前索引 i <= 最远可达位置 rightmost ，则索引 i 是可达的，我们更新 rightmost
+     *      rightmost >= n -1，能够到达最后一个下标，提前返回结果 true
+     *  反之，若当前索引 i > 最远可达位置 rightmost ，则索引 i 是不可达的，之后的索引同样是不可达的，提前返回结果 false
+     */
+    public boolean canJump(int[] nums) {
+      for (int i = 0, rightmost = 0; i <= rightmost; i++)
+        if ((rightmost = Math.max(rightmost, i + nums[i])) >= nums.length - 1)
+          return true;
+      return false;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

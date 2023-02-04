@@ -17,12 +17,12 @@
 //<pre><strong>输入：</strong>nums = [0,1,2,3,4], index = [0,1,2,2,1]
 //<strong>输出：</strong>[0,4,1,3,2]
 //<strong>解释：</strong>
-//nums       index     target
-//0            0        [0]
-//1            1        [0,1]
-//2            2        [0,1,2]
-//3            2        [0,1,3,2]
-//4            1        [0,4,1,3,2]
+// nums       index     target
+// 0            0        [0]
+// 1            1        [0,1]
+// 2            2        [0,1,2]
+// 3            2        [0,1,3,2]
+// 4            1        [0,4,1,3,2]
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -30,12 +30,12 @@
 //<pre><strong>输入：</strong>nums = [1,2,3,4,0], index = [0,1,2,3,0]
 //<strong>输出：</strong>[0,1,2,3,4]
 //<strong>解释：</strong>
-//nums       index     target
-//1            0        [1]
-//2            1        [1,2]
-//3            2        [1,2,3]
-//4            3        [1,2,3,4]
-//0            0        [0,1,2,3,4]
+// nums       index     target
+// 1            0        [1]
+// 2            1        [1,2]
+// 3            2        [1,2,3]
+// 4            3        [1,2,3,4]
+// 0            0        [0,1,2,3,4]
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -60,22 +60,22 @@ package org.example.leetcode.problems._1_dataStructure.arrayAndString;
 
 import java.util.LinkedList;
 
-//1389.按既定顺序创建目标数组
-//开题时间：2022-11-24 16:46:22
+// 1389.按既定顺序创建目标数组
+// 开题时间：2022-11-24 16:46:22
 public class CreateTargetArrayInTheGivenOrder {
-    public static void main(String[] args) {
-        Solution solution = new CreateTargetArrayInTheGivenOrder().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new CreateTargetArrayInTheGivenOrder().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] createTargetArray(int[] nums, int[] index) {
+      int n = nums.length;
+      LinkedList<Integer> list = new LinkedList<>();
+      for (int i = 0; i < n; i++)
+        list.add(index[i], nums[i]);
+      return list.stream().mapToInt(Integer::intValue).toArray();
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] createTargetArray(int[] nums, int[] index) {
-            int n = nums.length;
-            LinkedList<Integer> list = new LinkedList<>();
-            for (int i = 0; i < n; i++)
-                list.add(index[i], nums[i]);
-            return list.stream().mapToInt(Integer::intValue).toArray();
-        }
-    }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

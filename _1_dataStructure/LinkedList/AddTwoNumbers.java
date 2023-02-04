@@ -43,72 +43,72 @@ package org.example.leetcode.problems._1_dataStructure.LinkedList;
 
 import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
 
-//2.两数相加
-//开题时间：2022-09-01 08:04:19
+// 2.两数相加
+// 开题时间：2022-09-01 08:04:19
 public class AddTwoNumbers {
-    public static void main(String[] args) {
-        Solution solution = new AddTwoNumbers().new Solution();
-        ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(9)));
-        ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4, new ListNode(9))));
-        System.out.println(solution.addTwoNumbers(l1, l2));
-    }
-//leetcode submit region begin(Prohibit modification and deletion)
-
-    /**
-     * Definition for singly-linked list.
-     * public class ListNode {
-     * int val;
-     * ListNode next;
-     * ListNode() {}
-     * ListNode(int val) { this.val = val; }
-     * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-     * }
-     */
-    class Solution {
-        //1.自解  max(m,n)    1
-        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-            ListNode ans = l1;
-            ListNode p = ans;
-            int incre = 0;
-            while (l1 != null || l2 != null) {
-                int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + incre;
-                p.val = sum % 10;
-                incre = sum < 10 ? 0 : 1;
-                if (incre == 1 && (l1 == null || l1.next == null) && (l2 == null || l2.next == null)) {
-                    p.next = new ListNode(incre);
-                    break;
-                }
-                l1 = l1 == null ? null : l1.next;
-                l2 = l2 == null ? null : l2.next;
-                if (p.next == null) {
-                    p.next = l2;
-                }
-                p = p.next;
-            }
-
-            return ans;
+  public static void main(String[] args) {
+    Solution solution = new AddTwoNumbers().new Solution();
+    ListNode l1 = new ListNode(2, new ListNode(4, new ListNode(9)));
+    ListNode l2 = new ListNode(5, new ListNode(6, new ListNode(4, new ListNode(9))));
+    System.out.println(solution.addTwoNumbers(l1, l2));
+  }
+  // leetcode submit region begin(Prohibit modification and deletion)
+  
+  /**
+   * Definition for singly-linked list.
+   * public class ListNode {
+   * int val;
+   * ListNode next;
+   * ListNode() {}
+   * ListNode(int val) { this.val = val; }
+   * ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+   * }
+   */
+  class Solution {
+    // 1.自解  max(m,n)    1
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+      ListNode ans = l1;
+      ListNode p = ans;
+      int incre = 0;
+      while (l1 != null || l2 != null) {
+        int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + incre;
+        p.val = sum % 10;
+        incre = sum < 10 ? 0 : 1;
+        if (incre == 1 && (l1 == null || l1.next == null) && (l2 == null || l2.next == null)) {
+          p.next = new ListNode(incre);
+          break;
         }
-
-        //2.高分解 max(m,n)    1
-        public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
-            ListNode dummy = new ListNode();
-            ListNode p = dummy;
-            //进位值
-            int carry = 0;
-            while (l1 != null || l2 != null) {
-                int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry;
-                p.next = new ListNode(sum % 10);
-                carry = sum / 10;
-                l1 = l1 == null ? null : l1.next;
-                l2 = l2 == null ? null : l2.next;
-                p = p.next;
-            }
-            if (carry > 0) {
-                p.next = new ListNode(carry);
-            }
-
-            return dummy.next;
+        l1 = l1 == null ? null : l1.next;
+        l2 = l2 == null ? null : l2.next;
+        if (p.next == null) {
+          p.next = l2;
         }
+        p = p.next;
+      }
+      
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 2.高分解 max(m,n)    1
+    public ListNode addTwoNumbers2(ListNode l1, ListNode l2) {
+      ListNode dummy = new ListNode();
+      ListNode p = dummy;
+      // 进位值
+      int carry = 0;
+      while (l1 != null || l2 != null) {
+        int sum = (l1 == null ? 0 : l1.val) + (l2 == null ? 0 : l2.val) + carry;
+        p.next = new ListNode(sum % 10);
+        carry = sum / 10;
+        l1 = l1 == null ? null : l1.next;
+        l2 = l2 == null ? null : l2.next;
+        p = p.next;
+      }
+      if (carry > 0) {
+        p.next = new ListNode(carry);
+      }
+      
+      return dummy.next;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

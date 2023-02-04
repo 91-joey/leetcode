@@ -49,115 +49,115 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
-//94.二叉树的中序遍历
-//开题时间：2022-09-13 13:53:20
+// 94.二叉树的中序遍历
+// 开题时间：2022-09-13 13:53:20
 public class BinaryTreeInorderTraversal {
-    public static void main(String[] args) {
-        Solution solution = new BinaryTreeInorderTraversal().new Solution();
-        TreeNode treeNode1 = new TreeNode(1);
-        TreeNode treeNode2 = new TreeNode(2);
-        TreeNode treeNode3 = new TreeNode(3);
-        treeNode1.right = treeNode2;
-        treeNode2.left = treeNode3;
-        System.out.println(solution.inorderTraversal_morris(treeNode1));
+  public static void main(String[] args) {
+    Solution solution = new BinaryTreeInorderTraversal().new Solution();
+    TreeNode treeNode1 = new TreeNode(1);
+    TreeNode treeNode2 = new TreeNode(2);
+    TreeNode treeNode3 = new TreeNode(3);
+    treeNode1.right = treeNode2;
+    treeNode2.left = treeNode3;
+    System.out.println(solution.inorderTraversal_morris(treeNode1));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // DFS+递归
+    public List<Integer> inorderTraversal(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      
+      inorderTraversal(root, list);
+      
+      return list;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //DFS+递归
-        public List<Integer> inorderTraversal(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-
-            inorderTraversal(root, list);
-
-            return list;
-        }
-
-        public void inorderTraversal(TreeNode root, Collection<Integer> coll) {
-            if (root == null)
-                return;
-
-            inorderTraversal(root.left, coll);
-            coll.add(root.val);
-            inorderTraversal(root.right, coll);
-        }
-
-        //DFS+栈+哈希集和    n   n
-        public List<Integer> inorderTraversal_stack_set(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-
-            Deque<TreeNode> stack = new LinkedList<>();
-            Set<TreeNode> set = new HashSet<>();
-            stack.push(root);
-            while (!stack.isEmpty()) {
-                TreeNode peek = stack.peek();
-                while (peek.left != null && !set.contains(peek.left)) {
-                    peek = peek.left;
-                    stack.push(peek);
-                }
-                stack.pop();
-                list.add(peek.val);
-                set.add(peek);
-                if (peek.right != null) {
-                    stack.push(peek.right);
-                }
-            }
-
-            return list;
-        }
-
-        //DFS+栈    n   n
-        public List<Integer> inorderTraversal_stack(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-
-            Deque<TreeNode> stack = new LinkedList<>();
-            while (root != null || !stack.isEmpty()) {
-                while (root != null) {
-                    stack.push(root);
-                    root = root.left;
-                }
-                root = stack.pop();
-                list.add(root.val);
-                root = root.right;
-            }
-
-            return list;
-        }
-
-        //Morris    n   1
-        public List<Integer> inorderTraversal_morris(TreeNode root) {
-            List<Integer> list = new ArrayList<>();
-            if (root == null)
-                return list;
-
-            TreeNode cur = root;
-            TreeNode left;
-            while (cur != null) {
-                left = cur.left;
-                if (left != null) {
-                    while (left.right != null && left.right != cur) {
-                        left = left.right;
-                    }
-                    if (left.right == null) {
-                        left.right = cur;
-                        cur = cur.left;
-                    } else {
-                        list.add(cur.val);
-                        left.right = null;
-                        cur = cur.right;
-                    }
-                } else {
-                    list.add(cur.val);
-                    cur = cur.right;
-                }
-            }
-
-            return list;
-        }
+    
+    public void inorderTraversal(TreeNode root, Collection<Integer> coll) {
+      if (root == null)
+        return;
+      
+      inorderTraversal(root.left, coll);
+      coll.add(root.val);
+      inorderTraversal(root.right, coll);
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // DFS+栈+哈希集和    n   n
+    public List<Integer> inorderTraversal_stack_set(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      
+      Deque<TreeNode> stack = new LinkedList<>();
+      Set<TreeNode> set = new HashSet<>();
+      stack.push(root);
+      while (!stack.isEmpty()) {
+        TreeNode peek = stack.peek();
+        while (peek.left != null && !set.contains(peek.left)) {
+          peek = peek.left;
+          stack.push(peek);
+        }
+        stack.pop();
+        list.add(peek.val);
+        set.add(peek);
+        if (peek.right != null) {
+          stack.push(peek.right);
+        }
+      }
+      
+      return list;
+    }
+    
+    // DFS+栈    n   n
+    public List<Integer> inorderTraversal_stack(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      
+      Deque<TreeNode> stack = new LinkedList<>();
+      while (root != null || !stack.isEmpty()) {
+        while (root != null) {
+          stack.push(root);
+          root = root.left;
+        }
+        root = stack.pop();
+        list.add(root.val);
+        root = root.right;
+      }
+      
+      return list;
+    }
+    
+    // Morris    n   1
+    public List<Integer> inorderTraversal_morris(TreeNode root) {
+      List<Integer> list = new ArrayList<>();
+      if (root == null)
+        return list;
+      
+      TreeNode cur = root;
+      TreeNode left;
+      while (cur != null) {
+        left = cur.left;
+        if (left != null) {
+          while (left.right != null && left.right != cur) {
+            left = left.right;
+          }
+          if (left.right == null) {
+            left.right = cur;
+            cur = cur.left;
+          } else {
+            list.add(cur.val);
+            left.right = null;
+            cur = cur.right;
+          }
+        } else {
+          list.add(cur.val);
+          cur = cur.right;
+        }
+      }
+      
+      return list;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

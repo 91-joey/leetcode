@@ -50,132 +50,132 @@
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>动态规划</li><li>枚举</li></div></div><br><div><li>👍 250</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//845.数组中的最长山脉
-//开题时间：2022-10-27 08:48:30
+// 845.数组中的最长山脉
+// 开题时间：2022-10-27 08:48:30
 public class LongestMountainInArray {
-    public static void main(String[] args) {
-        Solution solution = new LongestMountainInArray().new Solution();
-//        System.out.println(solution.longestMountain2(new int[]{2, 1, 4, 7, 3, 2, 5}));
-        System.out.println(solution.longestMountain4(new int[]{875, 884, 239, 731, 723, 685}));
+  public static void main(String[] args) {
+    Solution solution = new LongestMountainInArray().new Solution();
+    //        System.out.println(solution.longestMountain2(new int[]{2, 1, 4, 7, 3, 2, 5}));
+    System.out.println(solution.longestMountain4(new int[]{875, 884, 239, 731, 723, 685}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    // 枚举山顶+暴力   n^2 1
+    public int longestMountain(int[] arr) {
+      int len = arr.length;
+      if (len < 3)
+        return 0;
+      
+      int max = 0;
+      for (int i = 1; i < len - 1; i++) {
+        int l = i;
+        if (arr[l] <= arr[--l])
+          continue;
+        while (l > 0 && arr[l - 1] < arr[l])
+          l--;
+        
+        int r = i;
+        if (arr[r] <= arr[++r])
+          continue;
+        while (r < len - 1 && arr[r] > arr[r + 1])
+          r++;
+        
+        max = Math.max(max, r - l + 1);
+      }
+      return max;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        //枚举山顶+暴力   n^2 1
-        public int longestMountain(int[] arr) {
-            int len = arr.length;
-            if (len < 3)
-                return 0;
-
-            int max = 0;
-            for (int i = 1; i < len - 1; i++) {
-                int l = i;
-                if (arr[l] <= arr[--l])
-                    continue;
-                while (l > 0 && arr[l - 1] < arr[l])
-                    l--;
-
-                int r = i;
-                if (arr[r] <= arr[++r])
-                    continue;
-                while (r < len - 1 && arr[r] > arr[r + 1])
-                    r++;
-
-                max = Math.max(max, r - l + 1);
-            }
-            return max;
-        }
-
-
-        //枚举山顶+剪枝   n*3 n*2
-        public int longestMountain2(int[] arr) {
-            int len = arr.length;
-            if (len < 3)
-                return 0;
-
-            int[] l = new int[len];
-            int[] r = new int[len];
-            for (int i = 1; i < len - 1; i++)
-                l[i] = arr[i - 1] < arr[i] ? l[i - 1] + 1 : 0;
-
-            for (int i = len - 2; i > 0; i--)
-                r[i] = arr[i] > arr[i + 1] ? r[i + 1] + 1 : 0;
-
-            int max = 0;
-            for (int i = 1; i < len - 1; i++) {
-                if (l[i] != 0 && r[i] != 0)
-                    max = Math.max(max, l[i] + r[i] + 1);
-            }
-            return max;
-        }
-
-        //枚举山顶+剪枝（优化）   n*2 n
-        public int longestMountain3(int[] arr) {
-            int len = arr.length;
-            if (len < 3)
-                return 0;
-
-            int[] r = new int[len];
-            for (int i = len - 2; i > 0; i--)
-                r[i] = arr[i] > arr[i + 1] ? r[i + 1] + 1 : 0;
-
-            int max = 0;
-            for (int i = 1, l = 0; i < len - 1; i++) {
-                l = arr[i - 1] < arr[i] ? l + 1 : 0;
-                if (l != 0 && r[i] != 0)
-                    max = Math.max(max, l + r[i] + 1);
-            }
-            return max;
-        }
-
-        //☆☆☆☆☆ 枚举山脚+双指针  n   1
-        public int longestMountain4(int[] arr) {
-            int max = 0;
-            int len = arr.length;
-
-            for (int l = 0; l < len - 2; ) {
-                int r = l + 1;
-                //上坡
-                if (arr[l] < arr[r]) {
-                    while (r < len - 1 && arr[r] < arr[r + 1])
-                        r++;
-                    if (r == len - 1) {
-                        break;
-                    } else if (arr[r] == arr[r + 1]) {
-                        l = r + 1;
-                        //下坡
-                    } else {
-                        do {
-                            r++;
-                        } while (r < len - 1 && arr[r] > arr[r + 1]);
-                        max = Math.max(max, r - l + 1);
-                        l = r;
-                    }
-                } else {
-                    l = r;
-                }
-            }
-
-            return max;
-        }
-
-        //枚举山顶+暴力（优化）
-        public int longestMountain5(int[] arr) {
-            int len = arr.length;
-            int max = 0;
-
-            for (int i = 1; i < len - 1; i++) {
-                int l = i - 1;
-                int r = i + 1;
-                if (arr[l] < arr[i] && arr[i] > arr[r]) {
-                    while (l > 0 && arr[l - 1] < arr[l]) l--;
-                    while (r < len - 1 && arr[r] > arr[r + 1]) r++;
-                    max = Math.max(max, r - l + 1);
-                }
-            }
-
-            return max;
-        }
+    
+    
+    // 枚举山顶+剪枝   n*3 n*2
+    public int longestMountain2(int[] arr) {
+      int len = arr.length;
+      if (len < 3)
+        return 0;
+      
+      int[] l = new int[len];
+      int[] r = new int[len];
+      for (int i = 1; i < len - 1; i++)
+        l[i] = arr[i - 1] < arr[i] ? l[i - 1] + 1 : 0;
+      
+      for (int i = len - 2; i > 0; i--)
+        r[i] = arr[i] > arr[i + 1] ? r[i + 1] + 1 : 0;
+      
+      int max = 0;
+      for (int i = 1; i < len - 1; i++) {
+        if (l[i] != 0 && r[i] != 0)
+          max = Math.max(max, l[i] + r[i] + 1);
+      }
+      return max;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    // 枚举山顶+剪枝（优化）   n*2 n
+    public int longestMountain3(int[] arr) {
+      int len = arr.length;
+      if (len < 3)
+        return 0;
+      
+      int[] r = new int[len];
+      for (int i = len - 2; i > 0; i--)
+        r[i] = arr[i] > arr[i + 1] ? r[i + 1] + 1 : 0;
+      
+      int max = 0;
+      for (int i = 1, l = 0; i < len - 1; i++) {
+        l = arr[i - 1] < arr[i] ? l + 1 : 0;
+        if (l != 0 && r[i] != 0)
+          max = Math.max(max, l + r[i] + 1);
+      }
+      return max;
+    }
+    
+    //☆☆☆☆☆ 枚举山脚+双指针  n   1
+    public int longestMountain4(int[] arr) {
+      int max = 0;
+      int len = arr.length;
+      
+      for (int l = 0; l < len - 2; ) {
+        int r = l + 1;
+        // 上坡
+        if (arr[l] < arr[r]) {
+          while (r < len - 1 && arr[r] < arr[r + 1])
+            r++;
+          if (r == len - 1) {
+            break;
+          } else if (arr[r] == arr[r + 1]) {
+            l = r + 1;
+            // 下坡
+          } else {
+            do {
+              r++;
+            } while (r < len - 1 && arr[r] > arr[r + 1]);
+            max = Math.max(max, r - l + 1);
+            l = r;
+          }
+        } else {
+          l = r;
+        }
+      }
+      
+      return max;
+    }
+    
+    // 枚举山顶+暴力（优化）
+    public int longestMountain5(int[] arr) {
+      int len = arr.length;
+      int max = 0;
+      
+      for (int i = 1; i < len - 1; i++) {
+        int l = i - 1;
+        int r = i + 1;
+        if (arr[l] < arr[i] && arr[i] > arr[r]) {
+          while (l > 0 && arr[l - 1] < arr[l]) l--;
+          while (r < len - 1 && arr[r] > arr[r + 1]) r++;
+          max = Math.max(max, r - l + 1);
+        }
+      }
+      
+      return max;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

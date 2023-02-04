@@ -51,34 +51,34 @@ import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//297.二叉树的序列化与反序列化
-//开题时间：2022-09-18 09:00:48
+// 297.二叉树的序列化与反序列化
+// 开题时间：2022-09-18 09:00:48
 public class SerializeAndDeserializeBinaryTree {
-
-    public static void main(String[] args) {
-        TreeNode node3 = new TreeNode(3);
-        TreeNode node9 = new TreeNode(9);
-        TreeNode node15 = new TreeNode(15);
-        TreeNode node10 = new TreeNode(10);
-        TreeNode node20 = new TreeNode(20);
-        TreeNode node7 = new TreeNode(7);
-        TreeNode node5 = new TreeNode(5);
-        TreeNode node8 = new TreeNode(8);
-        node3.left = node9;
-        node3.right = node20;
-        node9.left = node15;
-        node9.right = node10;
-        node20.right = node7;
-        node7.left = node5;
-        node7.right = node8;
-        Codec codec = new SerializeAndDeserializeBinaryTree().new Codec();
-        String serialize = codec.serialize2(node3);
-        System.out.println(serialize);
-        System.out.println(codec.deserialize2(serialize));
-    }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    public class Codec {
+  
+  public static void main(String[] args) {
+    TreeNode node3 = new TreeNode(3);
+    TreeNode node9 = new TreeNode(9);
+    TreeNode node15 = new TreeNode(15);
+    TreeNode node10 = new TreeNode(10);
+    TreeNode node20 = new TreeNode(20);
+    TreeNode node7 = new TreeNode(7);
+    TreeNode node5 = new TreeNode(5);
+    TreeNode node8 = new TreeNode(8);
+    node3.left = node9;
+    node3.right = node20;
+    node9.left = node15;
+    node9.right = node10;
+    node20.right = node7;
+    node7.left = node5;
+    node7.right = node8;
+    Codec codec = new SerializeAndDeserializeBinaryTree().new Codec();
+    String serialize = codec.serialize2(node3);
+    System.out.println(serialize);
+    System.out.println(codec.deserialize2(serialize));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  public class Codec {
         /*
                  3
                 / \
@@ -90,91 +90,91 @@ public class SerializeAndDeserializeBinaryTree {
              3, 9,20, 15,10,,7, ,,,,5,8
              3,9,20,15,10,,7,,,,,5,8,,,,,
          */
-
-        public static final char DELI = ',';
-
-        //region BFS
-        public String serialize(TreeNode root) {
-            if (root == null) return null;
-            StringBuilder sb = new StringBuilder();
-            Queue<TreeNode> queue = new LinkedList<>();
-            queue.offer(root);
-
-            while (!queue.isEmpty()) {
-                TreeNode poll = queue.poll();
-                if (poll != null) {
-                    sb.append(poll.val);
-                    queue.offer(poll.left);
-                    queue.offer(poll.right);
-                }
-                sb.append(DELI);
-            }
-
-            return sb.toString();
+    
+    public static final char DELI = ',';
+    
+    // region BFS
+    public String serialize(TreeNode root) {
+      if (root == null) return null;
+      StringBuilder sb = new StringBuilder();
+      Queue<TreeNode> queue = new LinkedList<>();
+      queue.offer(root);
+      
+      while (!queue.isEmpty()) {
+        TreeNode poll = queue.poll();
+        if (poll != null) {
+          sb.append(poll.val);
+          queue.offer(poll.left);
+          queue.offer(poll.right);
         }
-
-        public TreeNode deserialize(String data) {
-            if (data == null) return null;
-            String[] split = data.split(String.valueOf(DELI), -1);
-            TreeNode root = new TreeNode(Integer.parseInt(split[0]));
-            Queue<TreeNode> queue = new LinkedList<>();
-            queue.offer(root);
-
-            int idx = 1;
-            while (!queue.isEmpty()) {
-                TreeNode poll = queue.poll();
-                for (int j = 0; j < 2; j++) {
-                    String s = split[idx++];
-                    if (!s.isEmpty()) {
-                        TreeNode node = new TreeNode(Integer.parseInt(s));
-                        if (j == 0) poll.left = node;
-                        else poll.right = node;
-                        queue.offer(node);
-                    }
-                }
-            }
-            return root;
-        }
-        //endregion
-
-
-        //region DFS(pre order)
-        public String serialize2(TreeNode root) {
-            StringBuilder sb = new StringBuilder();
-            preOrderTraverse(root, sb);
-            return sb.toString();
-        }
-
-        private void preOrderTraverse(TreeNode root, StringBuilder sb) {
-            boolean b = root != null;
-            if (b) sb.append(root.val);
-            sb.append(DELI);
-            if (b) {
-                preOrderTraverse(root.left, sb);
-                preOrderTraverse(root.right, sb);
-            }
-        }
-
-        int idx = 0;
-
-        public TreeNode deserialize2(String data) {
-            if (data == null) return null;
-            String[] split = data.split(String.valueOf(DELI), -1);
-            return helper(split);
-        }
-
-        private TreeNode helper(String[] split) {
-            String s = split[idx++];
-            if (!s.isEmpty()) {
-                TreeNode node = new TreeNode(Integer.parseInt(s));
-                node.left = helper(split);
-                node.right = helper(split);
-                return node;
-            } else {
-                return null;
-            }
-        }
-        //endregion
+        sb.append(DELI);
+      }
+      
+      return sb.toString();
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public TreeNode deserialize(String data) {
+      if (data == null) return null;
+      String[] split = data.split(String.valueOf(DELI), -1);
+      TreeNode root = new TreeNode(Integer.parseInt(split[0]));
+      Queue<TreeNode> queue = new LinkedList<>();
+      queue.offer(root);
+      
+      int idx = 1;
+      while (!queue.isEmpty()) {
+        TreeNode poll = queue.poll();
+        for (int j = 0; j < 2; j++) {
+          String s = split[idx++];
+          if (!s.isEmpty()) {
+            TreeNode node = new TreeNode(Integer.parseInt(s));
+            if (j == 0) poll.left = node;
+            else poll.right = node;
+            queue.offer(node);
+          }
+        }
+      }
+      return root;
+    }
+    // endregion
+    
+    
+    // region DFS(pre order)
+    public String serialize2(TreeNode root) {
+      StringBuilder sb = new StringBuilder();
+      preOrderTraverse(root, sb);
+      return sb.toString();
+    }
+    
+    private void preOrderTraverse(TreeNode root, StringBuilder sb) {
+      boolean b = root != null;
+      if (b) sb.append(root.val);
+      sb.append(DELI);
+      if (b) {
+        preOrderTraverse(root.left, sb);
+        preOrderTraverse(root.right, sb);
+      }
+    }
+    
+    int idx = 0;
+    
+    public TreeNode deserialize2(String data) {
+      if (data == null) return null;
+      String[] split = data.split(String.valueOf(DELI), -1);
+      return helper(split);
+    }
+    
+    private TreeNode helper(String[] split) {
+      String s = split[idx++];
+      if (!s.isEmpty()) {
+        TreeNode node = new TreeNode(Integer.parseInt(s));
+        node.left = helper(split);
+        node.right = helper(split);
+        return node;
+      } else {
+        return null;
+      }
+    }
+    // endregion
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

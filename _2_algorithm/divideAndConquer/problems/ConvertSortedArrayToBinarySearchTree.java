@@ -36,30 +36,30 @@ package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
-//108.将有序数组转换为二叉搜索树
-//开题时间：2022-11-17 17:43:31
+// 108.将有序数组转换为二叉搜索树
+// 开题时间：2022-11-17 17:43:31
 public class ConvertSortedArrayToBinarySearchTree {
-    public static void main(String[] args) {
-        Solution solution = new ConvertSortedArrayToBinarySearchTree().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new ConvertSortedArrayToBinarySearchTree().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public TreeNode sortedArrayToBST(int[] nums) {
+      return sortedArrayToBST(nums, 0, nums.length - 1);
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public TreeNode sortedArrayToBST(int[] nums) {
-            return sortedArrayToBST(nums, 0, nums.length - 1);
-        }
-
-        private TreeNode sortedArrayToBST(int[] nums, int l, int r) {
-            if (l > r)
-                return null;
-
-            int mid = l + r >> 1;
-            TreeNode root = new TreeNode(nums[mid]);
-            root.left = sortedArrayToBST(nums, l, mid - 1);
-            root.right = sortedArrayToBST(nums, mid + 1, r);
-
-            return root;
-        }
+    
+    private TreeNode sortedArrayToBST(int[] nums, int l, int r) {
+      if (l > r)
+        return null;
+      
+      int mid = l + r >> 1;
+      TreeNode root = new TreeNode(nums[mid]);
+      root.left = sortedArrayToBST(nums, l, mid - 1);
+      root.right = sortedArrayToBST(nums, mid + 1, r);
+      
+      return root;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

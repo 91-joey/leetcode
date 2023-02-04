@@ -46,66 +46,66 @@
 //<div><div>Related Topics</div><div><li>字符串</li><li>二分查找</li><li>前缀和</li><li>滑动窗口</li></div></div><br><div><li>👍 179</li><li>👎 0</li></div>
 package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
 
-//1208.尽可能使字符串相等
-//开题时间：2022-10-07 12:17:32
+// 1208.尽可能使字符串相等
+// 开题时间：2022-10-07 12:17:32
 public class GetEqualSubstringsWithinBudget {
-    public static void main(String[] args) {
-        Solution solution = new GetEqualSubstringsWithinBudget().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new GetEqualSubstringsWithinBudget().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    /*
+     * 1.r++
+     * 2.l++ if > maxCost
+     * 3.run step 1
+     */
+    public int equalSubstring(String s, String t, int maxCost) {
+      int l = 0;
+      int r = 0;
+      while (r < s.length()) {
+        maxCost -= Math.abs(s.charAt(r) - t.charAt(r++));
+        if (maxCost < 0)
+          maxCost += Math.abs(s.charAt(l) - t.charAt(l++));
+      }
+      return r - l;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        /*
-         * 1.r++
-         * 2.l++ if > maxCost
-         * 3.run step 1
-         */
-        public int equalSubstring(String s, String t, int maxCost) {
-            int l = 0;
-            int r = 0;
-            while (r < s.length()) {
-                maxCost -= Math.abs(s.charAt(r) - t.charAt(r++));
-                if (maxCost < 0)
-                    maxCost += Math.abs(s.charAt(l) - t.charAt(l++));
-            }
-            return r - l;
-        }
-
-        public int equalSubstring2(String s, String t, int maxCost) {
-            int l = 0;
-            int r = 0;
-            char[] charsS = s.toCharArray();
-            char[] charsT = t.toCharArray();
-            while (r < charsS.length) {
-                maxCost -= Math.abs(charsS[r] - charsT[r++]);
-                if (maxCost < 0)
-                    maxCost += Math.abs(charsS[l] - charsT[l++]);
-            }
-            return r - l;
-        }
-
-        /*
-        我们可以采取「空间换时间」的方法进行优化：
-            由于字符串最坏情况下，会遍历 2 遍，因此存入「字符数组」中
-            另外，左右指针每次都需要计算「字符转换开销」，因此存入「字符转换开销数组」中
-        */
-        public int equalSubstring3(String s, String t, int maxCost) {
-            int l = 0;
-            int r = 0;
-            char[] charsS = s.toCharArray();
-            char[] charsT = t.toCharArray();
-            int length = charsS.length;
-            int[] costs = new int[length];
-            for (int i = 0; i < length; i++)
-                costs[i] = Math.abs(charsS[i] - charsT[i]);
-
-            while (r < length) {
-                maxCost -= costs[r++];
-                if (maxCost < 0)
-                    maxCost += costs[l++];
-            }
-            return r - l;
-        }
+    
+    public int equalSubstring2(String s, String t, int maxCost) {
+      int l = 0;
+      int r = 0;
+      char[] charsS = s.toCharArray();
+      char[] charsT = t.toCharArray();
+      while (r < charsS.length) {
+        maxCost -= Math.abs(charsS[r] - charsT[r++]);
+        if (maxCost < 0)
+          maxCost += Math.abs(charsS[l] - charsT[l++]);
+      }
+      return r - l;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    /*
+    我们可以采取「空间换时间」的方法进行优化：
+        由于字符串最坏情况下，会遍历 2 遍，因此存入「字符数组」中
+        另外，左右指针每次都需要计算「字符转换开销」，因此存入「字符转换开销数组」中
+    */
+    public int equalSubstring3(String s, String t, int maxCost) {
+      int l = 0;
+      int r = 0;
+      char[] charsS = s.toCharArray();
+      char[] charsT = t.toCharArray();
+      int length = charsS.length;
+      int[] costs = new int[length];
+      for (int i = 0; i < length; i++)
+        costs[i] = Math.abs(charsS[i] - charsT[i]);
+      
+      while (r < length) {
+        maxCost -= costs[r++];
+        if (maxCost < 0)
+          maxCost += costs[l++];
+      }
+      return r - l;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

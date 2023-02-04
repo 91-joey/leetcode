@@ -12,7 +12,7 @@
 //<strong>输入：</strong>grid = [[1,1,1,1,1,1,1,0],[1,0,0,0,0,1,1,0],[1,0,1,0,1,1,1,0],[1,0,0,0,0,1,0,1],[1,1,1,1,1,1,1,0]]
 //<strong>输出：</strong>2
 //<strong>解释：</strong>
-//灰色区域的岛屿是封闭岛屿，因为这座岛屿完全被水域包围（即被 1 区域包围）。</pre>
+// 灰色区域的岛屿是封闭岛屿，因为这座岛屿完全被水域包围（即被 1 区域包围）。</pre>
 //
 //<p><strong>示例 2：</strong></p>
 //
@@ -48,38 +48,38 @@
 //<div><li>👍 171</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.graph;
 
-//1254.统计封闭岛屿的数目
-//开题时间：2023-01-02 10:32:15
+// 1254.统计封闭岛屿的数目
+// 开题时间：2023-01-02 10:32:15
 public class NumberOfClosedIslands {
-    public static void main(String[] args) {
-        Solution solution = new NumberOfClosedIslands().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new NumberOfClosedIslands().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final int[] DIRS = {1, 0, -1, 0, 1};
+    
+    public int closedIsland(int[][] grid) {
+      int cnt = 0;
+      for (int i = 1; i < grid.length - 1; i++)
+        for (int j = 1; j < grid[0].length - 1; j++)
+          if (grid[i][j] == 0 && dfs(grid, i, j))
+            cnt++;
+      return cnt;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final int[] DIRS = {1, 0, -1, 0, 1};
-
-        public int closedIsland(int[][] grid) {
-            int cnt = 0;
-            for (int i = 1; i < grid.length - 1; i++)
-                for (int j = 1; j < grid[0].length - 1; j++)
-                    if (grid[i][j] == 0 && dfs(grid, i, j))
-                        cnt++;
-            return cnt;
-        }
-
-        private boolean dfs(int[][] arr, int r, int c) {
-            boolean ans = r != 0 && r != arr.length - 1 && c != 0 && c != arr[0].length - 1;
-            arr[r][c] = 1;
-            for (int i = 0; i < 4; i++) {
-                int newI = r + DIRS[i];
-                int newJ = c + DIRS[i + 1];
-                if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-                        arr[newI][newJ] == 0)
-                    ans = ans & dfs(arr, newI, newJ);
-            }
-            return ans;
-        }
+    
+    private boolean dfs(int[][] arr, int r, int c) {
+      boolean ans = r != 0 && r != arr.length - 1 && c != 0 && c != arr[0].length - 1;
+      arr[r][c] = 1;
+      for (int i = 0; i < 4; i++) {
+        int newI = r + DIRS[i];
+        int newJ = c + DIRS[i + 1];
+        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
+            arr[newI][newJ] == 0)
+          ans = ans & dfs(arr, newI, newJ);
+      }
+      return ans;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

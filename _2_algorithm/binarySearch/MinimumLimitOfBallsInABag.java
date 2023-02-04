@@ -26,7 +26,7 @@
 //<b>解释：</b>
 //- 将装有 9 个球的袋子分成装有 6 个和 3 个球的袋子。[<strong>9</strong>] -&gt; [6,3] 。
 //- 将装有 6 个球的袋子分成装有 3 个和 3 个球的袋子。[<strong>6</strong>,3] -&gt; [3,3,3] 。
-//装有最多球的袋子里装有 3 个球，所以开销为 3 并返回 3 。
+// 装有最多球的袋子里装有 3 个球，所以开销为 3 并返回 3 。
 //</pre>
 //
 //<p><strong>示例 2：</strong></p>
@@ -39,7 +39,7 @@
 //- 将装有 4 个球的袋子分成装有 2 个和 2 个球的袋子。[2,<strong>4</strong>,4,4,2] -&gt; [2,2,2,4,4,2] 。
 //- 将装有 4 个球的袋子分成装有 2 个和 2 个球的袋子。[2,2,2,<strong>4</strong>,4,2] -&gt; [2,2,2,2,2,4,2] 。
 //- 将装有 4 个球的袋子分成装有 2 个和 2 个球的袋子。[2,2,2,2,2,<strong>4</strong>,2] -&gt; [2,2,2,2,2,2,2,2] 。
-//装有最多球的袋子里装有 2 个球，所以开销为 2 并返回 2 。
+// 装有最多球的袋子里装有 2 个球，所以开销为 2 并返回 2 。
 //</pre>
 //
 //<p><strong>示例 3：</strong></p>
@@ -63,33 +63,33 @@ package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.Arrays;
 
-//1760.袋子里最少数目的球
-//开题时间：2022-12-20 10:43:58
+// 1760.袋子里最少数目的球
+// 开题时间：2022-12-20 10:43:58
 public class MinimumLimitOfBallsInABag {
-    public static void main(String[] args) {
-        Solution solution = new MinimumLimitOfBallsInABag().new Solution();
+  public static void main(String[] args) {
+    Solution solution = new MinimumLimitOfBallsInABag().new Solution();
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int minimumSize(int[] nums, int maxOperations) {
+      int l = 1, r = Arrays.stream(nums).max().getAsInt();
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (maxOperations >= getOperations(nums, mid))
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int minimumSize(int[] nums, int maxOperations) {
-            int l = 1, r = Arrays.stream(nums).max().getAsInt();
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (maxOperations >= getOperations(nums, mid))
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
-
-        private long getOperations(int[] nums, int max) {
-            long operations = 0;
-            for (int x : nums)
-                operations += (x - 1) / max;
-            return operations;
-        }
+    
+    private long getOperations(int[] nums, int max) {
+      long operations = 0;
+      for (int x : nums)
+        operations += (x - 1) / max;
+      return operations;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

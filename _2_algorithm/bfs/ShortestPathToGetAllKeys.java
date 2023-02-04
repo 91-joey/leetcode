@@ -62,185 +62,185 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Queue;
 
-//864.获取所有钥匙的最短路径
-//开题时间：2022-11-10 09:10:05
+// 864.获取所有钥匙的最短路径
+// 开题时间：2022-11-10 09:10:05
 public class ShortestPathToGetAllKeys {
-    public static void main(String[] args) {
-        Solution solution = new ShortestPathToGetAllKeys().new Solution();
-        System.out.println(solution.shortestPathAllKeys(new String[]{
-"@...a",
-".###A",
-"b.BCc"}));
-//        System.out.println(solution.shortestPathAllKeys(new String[]{
-//                "@.a.#",
-//                "###.#",
-//                "b.A.B"}));
+  public static void main(String[] args) {
+    Solution solution = new ShortestPathToGetAllKeys().new Solution();
+    System.out.println(solution.shortestPathAllKeys(new String[]{
+        "@...a",
+        ".###A",
+        "b.BCc"}));
+    //        System.out.println(solution.shortestPathAllKeys(new String[]{
+    //                "@.a.#",
+    //                "###.#",
+    //                "b.A.B"}));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public static final char ROOM = '.';
+    public static final char WALL = '#';
+    public static final char START = '@';
+    public final int[][] DIRECTIONS = {
+        {0, 1},
+        {0, -1},
+        {1, 0},
+        {-1, 0}
+    };
+    
+    public static final int[] DIRS = {-1, 0, 1, 0, -1};
+    
+    public int shortestPathAllKeys9(String[] grid) {
+      HashSet<Character> keysNotHave = new HashSet<>();
+      int m = grid.length;
+      int n = grid[0].length();
+      char[][] chars = new char[m][n];
+      Queue<int[]> q = new LinkedList<>();
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+          char c = grid[i].charAt(j);
+          chars[i][j] = c;
+          if (Character.isLowerCase(c))
+            keysNotHave.add(c);
+          else if (c == START)
+            q.offer(new int[]{i, j});
+        }
+      
+      //            HashSet<Integer> visited = new HashSet<>();
+      int step = 1;
+      while (!q.isEmpty()) {
+        int size = q.size();
+        for (int i = 0; i < size; i++) {
+          int[] poll = q.poll();
+          //                    visited.add(30 * poll[0] + poll[1]);
+          for (int j = 0; j < DIRECTIONS.length; j++) {
+            int r = poll[0] + DIRECTIONS[j][0];
+            int c = poll[1] + DIRECTIONS[j][1];
+            char ch;
+            if (0 <= r && r < m && 0 <= c && c < n &&
+                //                                !visited.contains(30 * r + c) &&
+                (ch = chars[r][c]) != WALL) {
+              if (Character.isLowerCase(ch))
+                keysNotHave.remove(ch);
+              else if (ch != ROOM) {
+                if (keysNotHave.contains(Character.toLowerCase(ch)))
+                  continue;
+              }
+              if (keysNotHave.isEmpty())
+                return step;
+              q.offer(new int[]{r, c});
+            }
+          }
+        }
+        step++;
+      }
+      
+      return -1;
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public static final char ROOM = '.';
-        public static final char WALL = '#';
-        public static final char START = '@';
-        public final int[][] DIRECTIONS = {
-                {0, 1},
-                {0, -1},
-                {1, 0},
-                {-1, 0}
-        };
-
-        public static final int[] DIRS = {-1, 0, 1, 0, -1};
-
-        public int shortestPathAllKeys9(String[] grid) {
-            HashSet<Character> keysNotHave = new HashSet<>();
-            int m = grid.length;
-            int n = grid[0].length();
-            char[][] chars = new char[m][n];
-            Queue<int[]> q = new LinkedList<>();
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++) {
-                    char c = grid[i].charAt(j);
-                    chars[i][j] = c;
-                    if (Character.isLowerCase(c))
-                        keysNotHave.add(c);
-                    else if (c == START)
-                        q.offer(new int[]{i, j});
-                }
-
-//            HashSet<Integer> visited = new HashSet<>();
-            int step = 1;
-            while (!q.isEmpty()) {
-                int size = q.size();
-                for (int i = 0; i < size; i++) {
-                    int[] poll = q.poll();
-//                    visited.add(30 * poll[0] + poll[1]);
-                    for (int j = 0; j < DIRECTIONS.length; j++) {
-                        int r = poll[0] + DIRECTIONS[j][0];
-                        int c = poll[1] + DIRECTIONS[j][1];
-                        char ch;
-                        if (0 <= r && r < m && 0 <= c && c < n &&
-//                                !visited.contains(30 * r + c) &&
-                                (ch = chars[r][c]) != WALL) {
-                            if (Character.isLowerCase(ch))
-                                keysNotHave.remove(ch);
-                            else if (ch != ROOM) {
-                                if (keysNotHave.contains(Character.toLowerCase(ch)))
-                                    continue;
-                            }
-                            if (keysNotHave.isEmpty())
-                                return step;
-                            q.offer(new int[]{r, c});
-                        }
-                    }
-                }
-                step++;
-            }
-
-            return -1;
+    
+    public int shortestPathAllKeys8(String[] grid) {
+      int mask = 0;
+      int m = grid.length;
+      int n = grid[0].length();
+      char[][] chars = new char[m][n];
+      Queue<int[]> q = new LinkedList<>();
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+          char c = grid[i].charAt(j);
+          chars[i][j] = c;
+          if (Character.isLowerCase(c))
+            mask |= 1 << (c - 'a');
+          else if (c == START)
+            q.offer(new int[]{i, j, 0});
         }
-
-        public int shortestPathAllKeys8(String[] grid) {
-            int mask = 0;
-            int m = grid.length;
-            int n = grid[0].length();
-            char[][] chars = new char[m][n];
-            Queue<int[]> q = new LinkedList<>();
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++) {
-                    char c = grid[i].charAt(j);
-                    chars[i][j] = c;
-                    if (Character.isLowerCase(c))
-                        mask |= 1 << (c - 'a');
-                    else if (c == START)
-                        q.offer(new int[]{i, j, 0});
-                }
-
-            HashSet<Integer> visited = new HashSet<>();
-            int step = 1;
-            while (!q.isEmpty()) {
-                int size = q.size();
-                for (int i = 0; i < size; i++) {
-                    int[] poll = q.poll();
-                    visited.add((poll[2] << 10) + (poll[0] << 5) + poll[1]);
-                    for (int j = 0; j < DIRECTIONS.length; j++) {
-                        int r = poll[0] + DIRECTIONS[j][0];
-                        int c = poll[1] + DIRECTIONS[j][1];
-                        int keys = poll[2];
-                        char ch;
-                        if (0 <= r && r < m && 0 <= c && c < n &&
-                                !visited.contains((keys << 10) + (r << 5) + c) &&
-                                (ch = chars[r][c]) != WALL) {
-                            if (Character.isLowerCase(ch))
-                                keys |= 1 << (ch - 'a');
-                            else if (Character.isUpperCase(ch)) {
-                                if ((keys >> (Character.toLowerCase(ch) - 'a') & 1) == 0)
-                                    continue;
-                            }
-                            if (keys == mask)
-                                return step;
-                            q.offer(new int[]{r, c, keys});
-                        }
-                    }
-                }
-                step++;
+      
+      HashSet<Integer> visited = new HashSet<>();
+      int step = 1;
+      while (!q.isEmpty()) {
+        int size = q.size();
+        for (int i = 0; i < size; i++) {
+          int[] poll = q.poll();
+          visited.add((poll[2] << 10) + (poll[0] << 5) + poll[1]);
+          for (int j = 0; j < DIRECTIONS.length; j++) {
+            int r = poll[0] + DIRECTIONS[j][0];
+            int c = poll[1] + DIRECTIONS[j][1];
+            int keys = poll[2];
+            char ch;
+            if (0 <= r && r < m && 0 <= c && c < n &&
+                !visited.contains((keys << 10) + (r << 5) + c) &&
+                (ch = chars[r][c]) != WALL) {
+              if (Character.isLowerCase(ch))
+                keys |= 1 << (ch - 'a');
+              else if (Character.isUpperCase(ch)) {
+                if ((keys >> (Character.toLowerCase(ch) - 'a') & 1) == 0)
+                  continue;
+              }
+              if (keys == mask)
+                return step;
+              q.offer(new int[]{r, c, keys});
             }
-
-            return -1;
+          }
         }
-
-        public int shortestPathAllKeys(String[] grid) {
-            int k = 0, startR = 0, startC = 0;
-            int m = grid.length, n = grid[0].length();
-            char[][] chars = new char[m][n];
-            Queue<int[]> q = new LinkedList<>();
-            for (int i = 0; i < m; i++)
-                for (int j = 0; j < n; j++) {
-                    char c = grid[i].charAt(j);
-                    chars[i][j] = c;
-                    if (Character.isLowerCase(c))
-                        k++;
-                    else if (c == START) {
-                        startR = i;
-                        startC = j;
-                        q.offer(new int[]{i, j, 0});
-                    }
-                }
-
-            int stateSize = 1 << k;
-            int mask = stateSize - 1;
-            boolean[][][] visited = new boolean[m][n][stateSize];
-            visited[startR][startC][0] = true;
-            int step = 1;
-            while (!q.isEmpty()) {
-                for (int i = q.size(); i > 0; i--) {
-                    int[] poll = q.poll();
-                    for (int j = 0; j < 4; j++) {
-                        int r = poll[0] + DIRS[j];
-                        int c = poll[1] + DIRS[j + 1];
-                        int keys = poll[2];
-                        char ch;
-                        if (0 <= r && r < m && 0 <= c && c < n &&
-                                (ch = chars[r][c]) != WALL) {
-                            if (Character.isUpperCase(ch)) {
-                                if ((keys >> (ch - 'A') & 1) == 0)
-                                    continue;
-                            } else if (Character.isLowerCase(ch)) {
-                                keys |= 1 << (ch - 'a');
-                                if (keys == mask)
-                                    return step;
-                            }
-                            if (!visited[r][c][keys]) {
-                                visited[r][c][keys] = true;
-                                q.offer(new int[]{r, c, keys});
-                            }
-                        }
-                    }
-                }
-                step++;
-            }
-
-            return -1;
-        }
+        step++;
+      }
+      
+      return -1;
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    public int shortestPathAllKeys(String[] grid) {
+      int k = 0, startR = 0, startC = 0;
+      int m = grid.length, n = grid[0].length();
+      char[][] chars = new char[m][n];
+      Queue<int[]> q = new LinkedList<>();
+      for (int i = 0; i < m; i++)
+        for (int j = 0; j < n; j++) {
+          char c = grid[i].charAt(j);
+          chars[i][j] = c;
+          if (Character.isLowerCase(c))
+            k++;
+          else if (c == START) {
+            startR = i;
+            startC = j;
+            q.offer(new int[]{i, j, 0});
+          }
+        }
+      
+      int stateSize = 1 << k;
+      int mask = stateSize - 1;
+      boolean[][][] visited = new boolean[m][n][stateSize];
+      visited[startR][startC][0] = true;
+      int step = 1;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] poll = q.poll();
+          for (int j = 0; j < 4; j++) {
+            int r = poll[0] + DIRS[j];
+            int c = poll[1] + DIRS[j + 1];
+            int keys = poll[2];
+            char ch;
+            if (0 <= r && r < m && 0 <= c && c < n &&
+                (ch = chars[r][c]) != WALL) {
+              if (Character.isUpperCase(ch)) {
+                if ((keys >> (ch - 'A') & 1) == 0)
+                  continue;
+              } else if (Character.isLowerCase(ch)) {
+                keys |= 1 << (ch - 'a');
+                if (keys == mask)
+                  return step;
+              }
+              if (!visited[r][c][keys]) {
+                visited[r][c][keys] = true;
+                q.offer(new int[]{r, c, keys});
+              }
+            }
+          }
+        }
+        step++;
+      }
+      
+      return -1;
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }

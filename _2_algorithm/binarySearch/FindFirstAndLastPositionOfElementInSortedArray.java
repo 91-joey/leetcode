@@ -40,145 +40,145 @@ package org.example.leetcode.problems._2_algorithm.binarySearch;
 
 import java.util.Arrays;
 
-//34.在排序数组中查找元素的第一个和最后一个位置
-//开题时间：2022-10-30 09:37:13
+// 34.在排序数组中查找元素的第一个和最后一个位置
+// 开题时间：2022-10-30 09:37:13
 public class FindFirstAndLastPositionOfElementInSortedArray {
-    public static void main(String[] args) {
-        Solution solution = new FindFirstAndLastPositionOfElementInSortedArray().new Solution();
-        System.out.println(Arrays.toString(solution.searchRange2(new int[]{5, 7, 7, 8, 8, 10}, 8)));
+  public static void main(String[] args) {
+    Solution solution = new FindFirstAndLastPositionOfElementInSortedArray().new Solution();
+    System.out.println(Arrays.toString(solution.searchRange2(new int[]{5, 7, 7, 8, 8, 10}, 8)));
+  }
+  
+  // leetcode submit region begin(Prohibit modification and deletion)
+  class Solution {
+    public int[] searchRange(int[] nums, int target) {
+      int len = nums.length;
+      int l = 0, r = len - 1, mid = 0;
+      while (l <= r) {
+        mid = l + r >> 1;
+        if (nums[mid] == target)
+          break;
+        else if (nums[mid] < target)
+          l = mid + 1;
+        else
+          r = mid - 1;
+      }
+      if (l > r)
+        return new int[]{-1, -1};
+      
+      int l1 = 0;
+      int r1 = mid;
+      while (l1 + 1 < r1) {
+        int mid2 = l1 + r1 >> 1;
+        if (nums[mid2] == nums[mid])
+          r1 = mid2;
+        else
+          l1 = mid2;
+      }
+      
+      
+      int l2 = mid;
+      int r2 = len - 1;
+      while (l2 + 1 < r2) {
+        int mid2 = l2 + r2 >> 1;
+        if (nums[mid2] == nums[mid])
+          l2 = mid2;
+        else
+          r2 = mid2;
+      }
+      
+      return new int[]{
+          nums[l1] == nums[mid] ? l1 : r1,
+          nums[r2] == nums[mid] ? r2 : l2
+      };
     }
-
-    //leetcode submit region begin(Prohibit modification and deletion)
-    class Solution {
-        public int[] searchRange(int[] nums, int target) {
-            int len = nums.length;
-            int l = 0, r = len - 1, mid = 0;
-            while (l <= r) {
-                mid = l + r >> 1;
-                if (nums[mid] == target)
-                    break;
-                else if (nums[mid] < target)
-                    l = mid + 1;
-                else
-                    r = mid - 1;
-            }
-            if (l > r)
-                return new int[]{-1, -1};
-
-            int l1 = 0;
-            int r1 = mid;
-            while (l1 + 1 < r1) {
-                int mid2 = l1 + r1 >> 1;
-                if (nums[mid2] == nums[mid])
-                    r1 = mid2;
-                else
-                    l1 = mid2;
-            }
-
-
-            int l2 = mid;
-            int r2 = len - 1;
-            while (l2 + 1 < r2) {
-                int mid2 = l2 + r2 >> 1;
-                if (nums[mid2] == nums[mid])
-                    l2 = mid2;
-                else
-                    r2 = mid2;
-            }
-
-            return new int[]{
-                    nums[l1] == nums[mid] ? l1 : r1,
-                    nums[r2] == nums[mid] ? r2 : l2
-            };
-        }
-
-        //三重二分（笨拙）
-        public int[] searchRange2(int[] nums, int target) {
-            int len = nums.length;
-            int l = 0, r = len - 1, mid = 0;
-            while (l <= r) {
-                mid = l + r >> 1;
-                if (nums[mid] == target)
-                    break;
-                else if (nums[mid] < target)
-                    l = mid + 1;
-                else
-                    r = mid - 1;
-            }
-            if (l > r)
-                return new int[]{-1, -1};
-
-            int l1 = 0;
-            int r1 = mid;
-            while (l1 <= r1) {
-                int mid2 = l1 + r1 >> 1;
-                if (nums[mid2] == nums[mid])
-                    r1 = mid2 - 1;
-                else
-                    l1 = mid2 + 1;
-            }
-
-            int l2 = mid;
-            int r2 = len - 1;
-            while (l2 <= r2) {
-                int mid2 = l2 + r2 >> 1;
-                if (nums[mid2] == nums[mid])
-                    l2 = mid2 + 1;
-                else
-                    r2 = mid2 - 1;
-            }
-
-            return new int[]{l1, r2};
-        }
-
-        //☆☆☆☆☆ 二重二分（开始位置=第一个 >= target 的索引，结束位置=第一个 >=target + 1 的索引 - 1）
-        public int[] searchRange3(int[] nums, int target) {
-            int n = nums.length;
-
-            int start = binarySearch(nums, 0, n, target);
-            if (start == n || nums[start] != target)
-                return new int[]{-1, -1};
-
-            return new int[]{start, binarySearch(nums, start, n, target + 1) - 1};
-        }
-
-        public static int binarySearch(int[] nums, int l, int r, int target) {
-            while (l < r) {
-                int mid = ((r - l) >> 1) + l;
-                if (target <= nums[mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            return r;
-        }
-
-        //☆☆☆☆☆ 二重二分（开始位置=第一个 == target 的索引，结束位置=最后一个 ==target 的索引）
-        public int[] searchRange4(int[] nums, int target) {
-            int len = nums.length;
-
-            int l = 0, r = len - 1;
-            while (l < r) {
-                int mid = l + r >> 1;
-                if (target <= nums[mid])
-                    r = mid;
-                else
-                    l = mid + 1;
-            }
-            if (r < 0 || target != nums[r])
-                return new int[]{-1, -1};
-
-            int L = r;
-            r = len - 1;
-            while (l < r) {
-                int mid = l + r + 1 >> 1;
-                if (target < nums[mid])
-                    r = mid - 1;
-                else
-                    l = mid;
-            }
-            return new int[]{L, r};
-        }
+    
+    // 三重二分（笨拙）
+    public int[] searchRange2(int[] nums, int target) {
+      int len = nums.length;
+      int l = 0, r = len - 1, mid = 0;
+      while (l <= r) {
+        mid = l + r >> 1;
+        if (nums[mid] == target)
+          break;
+        else if (nums[mid] < target)
+          l = mid + 1;
+        else
+          r = mid - 1;
+      }
+      if (l > r)
+        return new int[]{-1, -1};
+      
+      int l1 = 0;
+      int r1 = mid;
+      while (l1 <= r1) {
+        int mid2 = l1 + r1 >> 1;
+        if (nums[mid2] == nums[mid])
+          r1 = mid2 - 1;
+        else
+          l1 = mid2 + 1;
+      }
+      
+      int l2 = mid;
+      int r2 = len - 1;
+      while (l2 <= r2) {
+        int mid2 = l2 + r2 >> 1;
+        if (nums[mid2] == nums[mid])
+          l2 = mid2 + 1;
+        else
+          r2 = mid2 - 1;
+      }
+      
+      return new int[]{l1, r2};
     }
-//leetcode submit region end(Prohibit modification and deletion)
+    
+    //☆☆☆☆☆ 二重二分（开始位置=第一个 >= target 的索引，结束位置=第一个 >=target + 1 的索引 - 1）
+    public int[] searchRange3(int[] nums, int target) {
+      int n = nums.length;
+      
+      int start = binarySearch(nums, 0, n, target);
+      if (start == n || nums[start] != target)
+        return new int[]{-1, -1};
+      
+      return new int[]{start, binarySearch(nums, start, n, target + 1) - 1};
+    }
+    
+    public static int binarySearch(int[] nums, int l, int r, int target) {
+      while (l < r) {
+        int mid = ((r - l) >> 1) + l;
+        if (target <= nums[mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      return r;
+    }
+    
+    //☆☆☆☆☆ 二重二分（开始位置=第一个 == target 的索引，结束位置=最后一个 ==target 的索引）
+    public int[] searchRange4(int[] nums, int target) {
+      int len = nums.length;
+      
+      int l = 0, r = len - 1;
+      while (l < r) {
+        int mid = l + r >> 1;
+        if (target <= nums[mid])
+          r = mid;
+        else
+          l = mid + 1;
+      }
+      if (r < 0 || target != nums[r])
+        return new int[]{-1, -1};
+      
+      int L = r;
+      r = len - 1;
+      while (l < r) {
+        int mid = l + r + 1 >> 1;
+        if (target < nums[mid])
+          r = mid - 1;
+        else
+          l = mid;
+      }
+      return new int[]{L, r};
+    }
+  }
+  // leetcode submit region end(Prohibit modification and deletion)
 }
