@@ -57,7 +57,7 @@ public class Tools {
     arr[j] = tmp;
   }
   
-  public static boolean isVowelLowerAndUpper(char c) {
+  public static boolean isVowel(char c) {
     return switch (c) {
       case 'a', 'e', 'i', 'o', 'u',
           'A', 'E', 'I', 'O', 'U' -> true;
@@ -65,9 +65,16 @@ public class Tools {
     };
   }
   
-  public static boolean isVowelLowerOnly(char c) {
+  public static boolean isLowerCaseVowel(char c) {
     return switch (c) {
       case 'a', 'e', 'i', 'o', 'u' -> true;
+      default -> false;
+    };
+  }
+  
+  public static boolean isUpperCaseVowel(char c) {
+    return switch (c) {
+      case 'A', 'E', 'I', 'O', 'U' -> true;
       default -> false;
     };
   }
