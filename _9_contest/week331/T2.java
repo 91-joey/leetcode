@@ -14,7 +14,7 @@ public class T2 {
       int[] prefix = new int[n + 1];
       for (int i = 1; i < n + 1; i++) {
         prefix[i] = prefix[i - 1];
-        if (startsAndEndWithVowel(words[i - 1])) {
+        if (startsAndEndsWithVowel(words[i - 1])) {
           prefix[i]++;
         }
       }
@@ -26,7 +26,7 @@ public class T2 {
       return ans;
     }
     
-    private boolean startsAndEndWithVowel(String word) {
+    private boolean startsAndEndsWithVowel(String word) {
       return isLowerCaseVowel(word.charAt(0))
           && isLowerCaseVowel(word.charAt(word.length() - 1));
     }
