@@ -47,6 +47,9 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -103,35 +106,83 @@ public class FindEventualSafeStates {
       return ans;
     }
     
-    //☆☆☆☆☆ 反向图 + 拓扑排序
+    // 哈希表
+    public List<Integer> eventualSafeNodes8(int[][] graph) {
+      int n = graph.length;
+      HashSet<Integer> set = new HashSet<>();
+      for (int i = 0; i < n; i++) {
+        set.add(i);
+      }
+      
+      while (true) {
+        int size = set.size();
+        Iterator<Integer> it = set.iterator();
+        out:
+        while (it.hasNext()) {
+          for (int v : graph[it.next()]) {
+            if (set.contains(v)) {
+              continue out;
+            }
+          }
+          it.remove();
+        }
+        if (size == set.size()) {
+          break;
+        }
+      }
+      
+      ArrayList<Integer> ans = new ArrayList<>();
+      for (int i = 0; i < n; i++) {
+        if (!set.contains(i)) {
+          ans.add(i);
+        }
+      }
+      return ans;
+    }
+    
+    /*
+     * ☆☆☆☆☆ 反向图 + 拓扑排序（BFS + 贪心）
+     * 拓扑排序             可用于检测   有向图       是否有环
+     * 并查集              可用于检测   无向图       是否有环
+     * Bellman-Ford算法     可用于检测   加权有向图   是否有负权环
+     */
     public List<Integer> eventualSafeNodes(int[][] graph) {
       int n = graph.length;
-      // 存反向图，记录节点入度
-      List<Integer>[] g = new ArrayList[n];
-      int[] inDeg = new int[n];
-      for (int i = 0; i < n; i++)
-        g[i] = new ArrayList<>();
-      for (int i = 0; i < n; i++)
+      // 存反向图，记录节点入度（原图的出度）
+      ArrayList<Integer>[] g = new ArrayList[n];
+      int[] outDeg = new int[n];
+      Arrays.setAll(g, i -> new ArrayList<>());
+      for (int i = 0; i < n; i++) {
         for (int j : graph[i]) {
           g[j].add(i);
-          inDeg[i]++;
         }
+        outDeg[i] = graph[i].length;
+      }
+      
+      // 队列初始化
+      Queue<Integer> q = new LinkedList<>();
+      for (int i = 0; i < n; i++) {
+        if (outDeg[i] == 0) {
+          q.offer(i);
+        }
+      }
       
       // 拓扑排序，更新节点入度
-      Queue<Integer> q = new LinkedList<>();
-      for (int i = 0; i < n; i++)
-        if (inDeg[i] == 0)
-          q.offer(i);
-      while (!q.isEmpty())
-        for (int i : g[q.poll()])
-          if (--inDeg[i] == 0)
-            q.offer(i);
+      while (!q.isEmpty()) {
+        for (int v : g[q.poll()]) {
+          if (--outDeg[v] == 0) {
+            q.offer(v);
+          }
+        }
+      }
       
       // 最后入度为 0 的节点即为安全节点
       ArrayList<Integer> ans = new ArrayList<>();
-      for (int i = 0; i < n; i++)
-        if (inDeg[i] == 0)
+      for (int i = 0; i < n; i++) {
+        if (outDeg[i] == 0) {
           ans.add(i);
+        }
+      }
       return ans;
     }
     
