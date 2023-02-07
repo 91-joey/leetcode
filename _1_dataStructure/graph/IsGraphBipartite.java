@@ -185,16 +185,17 @@ public class IsGraphBipartite {
     /*
      * 并查集
      *  原理：每个顶点的所有邻接点属于同一集合，且不与顶点处于同一集合
-     *  实操：将当前顶点的所有邻接点进行合并，并某一邻接点已经和当前顶点处于同一个集合中了，则不是二分图。
+     *  实操：将当前顶点的所有邻接点进行合并，某一邻接点已经和当前顶点处于同一个集合中了，则不是二分图。
      */
     public boolean isBipartite(int[][] graph) {
       int n = graph.length;
       UnionFind uf = new UnionFind(n);
-      for (int i = 0; i < n; i++) {
-        for (int j : graph[i]) {
-          if (uf.connected(i, j))
+      for (int u = 0; u < n; u++) {
+        for (int v : graph[u]) {
+          if (uf.connected(u, v)) {
             return false;
-          uf.union(graph[i][0], j);
+          }
+          uf.union(graph[u][0], v);
         }
       }
       return true;
