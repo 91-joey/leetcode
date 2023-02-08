@@ -51,7 +51,6 @@ import org.example.leetcode.problems._3_common.tool.Tools;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 
 // 210.课程表 II
@@ -64,61 +63,36 @@ public class CourseScheduleIi {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    // 拓扑排序 + 邻接矩阵
-    public int[] findOrder9(int numCourses, int[][] prerequisites) {
-      int[] degree = new int[numCourses];
-      boolean[][] graph = new boolean[numCourses][numCourses];
-      for (int[] prerequisite : prerequisites) {
-        graph[prerequisite[1]][prerequisite[0]] = true;
-        degree[prerequisite[0]]++;
-      }
-      
-      Queue<Integer> q = new LinkedList<>();
-      for (int i = 0; i < degree.length; i++)
-        if (degree[i] == 0)
-          q.offer(i);
-      
-      int[] ans = new int[numCourses];
-      int i = 0;
-      while (!q.isEmpty()) {
-        int poll = q.poll();
-        ans[i++] = poll;
-        for (int j = 0; j < graph[poll].length; j++)
-          if (graph[poll][j])
-            if (--degree[j] == 0)
-              q.offer(j);
-      }
-      
-      return i == numCourses ? ans : new int[0];
-    }
-    
     //☆☆☆☆☆ 拓扑排序（BFS + 贪心） + 邻接表    O(E+V) O(E+V)
     public int[] findOrder(int n, int[][] prerequisites) {
-      int[] inDegree = new int[n];
-      List<Integer>[] graph = new List[n];
-      for (int i = 0; i < n; i++)
-        graph[i] = new ArrayList<>();
-      for (int[] prerequisite : prerequisites) {
-        graph[prerequisite[1]].add(prerequisite[0]);
-        inDegree[prerequisite[0]]++;
+      ArrayList<Integer>[] g = new ArrayList[n];
+      Arrays.setAll(g, i -> new ArrayList<>());
+      int[] inDeg = new int[n];
+      for (int[] edge : prerequisites) {
+        g[edge[1]].add(edge[0]);
+        inDeg[edge[0]]++;
       }
       
       Queue<Integer> q = new LinkedList<>();
-      for (int i = 0; i < inDegree.length; i++)
-        if (inDegree[i] == 0)
+      for (int i = 0; i < n; i++) {
+        if (inDeg[i] == 0) {
           q.offer(i);
-      
-      int[] ans = new int[n];
-      int i = 0;
-      while (!q.isEmpty()) {
-        int poll = q.poll();
-        ans[i++] = poll;
-        for (int j : graph[poll])
-          if (--inDegree[j] == 0)
-            q.offer(j);
+        }
       }
       
-      return i == n ? ans : new int[0];
+      int[] ans = new int[n];
+      int idx = 0;
+      while (!q.isEmpty()) {
+        int u = q.poll();
+        ans[idx++] = u;
+        for (int v : g[u]) {
+          if (--inDeg[v] == 0) {
+            q.offer(v);
+          }
+        }
+      }
+      
+      return idx == n ? ans : new int[0];
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
