@@ -50,6 +50,7 @@ package org.example.leetcode.problems._1_dataStructure.graph;
 import org.example.leetcode.problems._3_common.tool.Tools;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // 886.可能的二分法
@@ -63,7 +64,7 @@ public class PossibleBipartition {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     // 二分图：需要注意把两人的不喜欢关系看成无向边
-    public boolean possibleBipartition(int n, int[][] dislikes) {
+    public boolean possibleBipartition9(int n, int[][] dislikes) {
       List<Integer>[] adjList = new List[++n];
       for (int i = 0; i < n; i++)
         adjList[i] = new ArrayList<>();
@@ -79,7 +80,7 @@ public class PossibleBipartition {
       return isBipartite(graph);
     }
     
-    //☆☆☆☆☆ dfs + 染色
+    //☆☆☆ dfs + 染色
     public boolean isBipartite(int[][] graph) {
       int n = graph.length;
       int[] colors = new int[n];
@@ -99,6 +100,63 @@ public class PossibleBipartition {
           return false;
       
       return true;
+    }
+  
+    // ☆☆☆☆☆ 并查集
+    public boolean possibleBipartition(int n, int[][] dislikes) {
+      ArrayList<Integer>[] g = new ArrayList[n + 1];
+      Arrays.setAll(g, i -> new ArrayList<>());
+      for (int[] edge : dislikes) {
+        g[edge[0]].add(edge[1]);
+        g[edge[1]].add(edge[0]);
+      }
+    
+      UnionFind uf = new UnionFind(n + 1);
+      for (int u = 1; u <= n; u++) {
+        for (Integer v : g[u]) {
+          if (uf.connected(u, v)) {
+            return false;
+          }
+          uf.union(v, g[u].get(0));
+        }
+      }
+    
+      return true;
+    }
+  }
+  
+  class UnionFind {
+    int[] root;
+    int[] rank;
+    
+    public UnionFind(int size) {
+      root = new int[size];
+      rank = new int[size];
+      for (int i = 0; i < size; i++)
+        root[i] = i;
+    }
+    
+    public int find(int x) {
+      if (x == root[x])
+        return x;
+      return root[x] = find(root[x]);
+    }
+    
+    public void union(int x, int y) {
+      int rootX = find(x);
+      int rootY = find(y);
+      if (rootX != rootY)
+        if (rank[rootX] == rank[rootY]) {
+          root[rootX] = rootY;
+          rank[rootY]++;
+        } else if (rank[rootX] < rank[rootY])
+          root[rootX] = rootY;
+        else
+          root[rootY] = rootX;
+    }
+    
+    public boolean connected(int x, int y) {
+      return find(x) == find(y);
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
