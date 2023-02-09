@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Queue;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class Tools {
@@ -304,6 +305,18 @@ public class Tools {
     return (List<Integer>) levelOrderTraversal(root, ArrayList::new);
   }
   // endregion
+  
+  public static <T> T[] toIntArray2(String s, Function<String, T> func) {
+    String strip = s.strip();
+    String substring = strip.substring(1, strip.length() - 1);
+    if (substring.isEmpty())
+      return (T[]) new Object[]{};
+    return Arrays.stream(substring.split(",")).map(String::strip).map(func).toArray(value -> (T[]) new Object[value]);
+  }
+  
+  public static char[][] to2DCharArray(String s) {
+    return Arrays.stream(s.substring(1, s.length() - 1).replace("\"","").split("(?<=]),")).map(s1 -> toIntArray2(s1, s2 -> s2.charAt(0))).toArray(char[][]::new);
+  }
   
   public static int[] toIntArray(String s) {
     String strip = s.strip();
@@ -627,4 +640,8 @@ public class Tools {
     }
     return new TreeNode(root.val, cloneTree(root.left), cloneTree(root.right));
   }
+  
+  /**
+   * 反序列化数组
+   */
 }
