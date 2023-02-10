@@ -22,10 +22,14 @@ public class BadgeTest {
     // contests.forEach(System.out::println);
     // others.forEach(System.out::println);
     
-    for (String s : others) {
-      if (webLinksContainKeyString(s.substring(s.indexOf("(") + 1, s.length() - 1))) {
-        System.out.println(s);
-      }
+    // for (String s : others) {
+    //   if (webLinksContainKeyString(s.substring(s.indexOf("(") + 1, s.length() - 1))) {
+    //     System.out.println(s);
+    //   }
+    // }
+    
+    for (int i = 1; i <= 12; i++) {
+      daka(String.format("%02d", i));
     }
   }
   
@@ -626,5 +630,9 @@ public class BadgeTest {
       inputStream.close();
     }
     return flag;
+  }
+  
+  public static void daka(String mo) {
+    System.out.printf("| ![image.png](https://assets.leetcode-cn.com/medals/2020-%s.png){:width=400} | ![image.png](https://assets.leetcode-cn.com/medals/2021/lg/2021-%s.png){:width=400} | ![image.png](https://assets.leetcode-cn.com/medals/2022/lg/2022-%s.png){:width=400} |  |%n", mo, mo, mo);
   }
 }
