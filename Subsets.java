@@ -23,19 +23,31 @@ public class Subsets {
     // 回溯
     public List<List<Integer>> subsets9(int[] nums) {
       backtrack(nums, 0);
+      // backtrackPower(nums, 0);
       
       return ans;
     }
     
-    private void backtrack(int[] nums, int i) {
+    // 完整二叉树回溯
+    private void backtrackPower(int[] nums, int i) {
       if (i == nums.length) {
         ans.add(new ArrayList<>(stack));
         return;
       }
-      backtrack(nums, i + 1);
+      backtrackPower(nums, i + 1);
       stack.addLast(nums[i]);
-      backtrack(nums, i + 1);
+      backtrackPower(nums, i + 1);
       stack.removeLast();
+    }
+  
+    // ☆☆☆☆☆ 不完整二叉树回溯
+    private void backtrack(int[] nums, int begin) {
+      ans.add(new ArrayList<>(stack));
+      for (int i = begin; i < nums.length; i++) {
+        stack.addLast(nums[i]);
+        backtrack(nums, i + 1);
+        stack.removeLast();
+      }
     }
     
     // 二进制枚举
