@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.week331;
+package org.example.leetcode.problems._9_contest.history.week331;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;
