@@ -12,7 +12,6 @@ public class T2 {
   }
   
   class Solution {
-    
     public long countFairPairsTLE(int[] nums, int lower, int upper) {
       long ans = 0;
       TreeMap<Integer, Integer> set = new TreeMap<>();
