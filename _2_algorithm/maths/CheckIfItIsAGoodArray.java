@@ -57,11 +57,14 @@ public class CheckIfItIsAGoodArray {
     public boolean isGoodArray(int[] nums) {
       return Arrays.stream(nums).reduce(Solution::gcd).getAsInt() == 1;
     }
-    
+  
     public static int gcd(int a, int b) {
-      return b != 0 ?
-          gcd(b, a % b) :
-          a;
+      while (a != 0) {
+        int tmp = a;
+        a = b % a;
+        b = tmp;
+      }
+      return b;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
