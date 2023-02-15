@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.week332;
+package org.example.leetcode.problems._9_contest.history.week332;
 
 import org.example.leetcode.problems._3_common.tool.Tools;
 

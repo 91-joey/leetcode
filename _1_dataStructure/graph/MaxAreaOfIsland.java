@@ -47,28 +47,38 @@ public class MaxAreaOfIsland {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     public static final int[] DIRS = {1, 0, -1, 0, 1};
+    boolean[][] vis;
     
-    // DFS
     public int maxAreaOfIsland(int[][] grid) {
-      int max = 0;
-      for (int i = 0; i < grid.length; i++)
-        for (int j = 0; j < grid[0].length; j++)
-          if (grid[i][j] == 1)
-            max = Math.max(max, dfs(grid, i, j));
-      return max;
+      int n = grid.length;
+      int m = grid[0].length;
+      vis = new boolean[n][m];
+      
+      int ans = 0;
+      for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+          if (!vis[i][j] && grid[i][j] == 1) {
+            ans = Math.max(ans, dfs(grid, i, j));
+          }
+        }
+      }
+      
+      return ans;
     }
     
     private int dfs(int[][] arr, int r, int c) {
-      int cnt = 1;
-      arr[r][c] = 0;
+      vis[r][c] = true;
+      
+      int area = 1;
       for (int i = 0; i < 4; i++) {
-        int newI = r + DIRS[i];
-        int newJ = c + DIRS[i + 1];
-        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-            arr[newI][newJ] == 1)
-          cnt += dfs(arr, newI, newJ);
+        int nr = r + DIRS[i];
+        int nc = c + DIRS[i + 1];
+        if (0 <= nr && nr < arr.length && 0 <= nc && nc < arr[0].length &&
+            !vis[nr][nc] && arr[nr][nc] == 1)
+          area += dfs(arr, nr, nc);
       }
-      return cnt;
+      
+      return area;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)

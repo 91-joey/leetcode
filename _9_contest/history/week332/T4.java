@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.week332;
+package org.example.leetcode.problems._9_contest.history.week332;
 
 // 6357. Subsequence With the Minimum Score
 public class T4 {
