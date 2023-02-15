@@ -71,7 +71,7 @@ public class PacificAtlanticWaterFlow {
     }
     
     /*
-     * ☆☆☆☆☆ 逆向思维 + DFS：水往高处流   m*n
+     * ☆☆☆☆☆ 逆向思维 + DFS + 容斥原理：水往高处流   m*n
      * 分别求出太平洋和大西洋的水所能流到（逆向）的单元格 canReachPacific、canReachAtlantic
      * 两者的交集，即为既可流向（正向）太平洋也可流向（正向）大西洋的所有单元格
      */
@@ -102,11 +102,11 @@ public class PacificAtlanticWaterFlow {
     private void contraFlow(int[][] arr, int r, int c, boolean[][] canReach) {
       canReach[r][c] = true;
       for (int i = 0; i < 4; i++) {
-        int newI = r + DIRS[i];
-        int newJ = c + DIRS[i + 1];
-        if (0 <= newI && newI < arr.length && 0 <= newJ && newJ < arr[0].length &&
-            !canReach[newI][newJ] && arr[newI][newJ] >= arr[r][c])
-          contraFlow(arr, newI, newJ, canReach);
+        int nr = r + DIRS[i];
+        int nc = c + DIRS[i + 1];
+        if (0 <= nr && nr < arr.length && 0 <= nc && nc < arr[0].length &&
+            !canReach[nr][nc] && arr[nr][nc] >= arr[r][c])
+          contraFlow(arr, nr, nc, canReach);
       }
     }
     
