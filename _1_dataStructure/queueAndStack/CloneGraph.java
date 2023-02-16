@@ -71,6 +71,8 @@
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>广度优先搜索</li><li>图</li><li>哈希表</li></div></div><br><div><li>👍 530</li><li>👎 0</li></div>
 package org.example.leetcode.problems._1_dataStructure.queueAndStack;
 
+import org.example.leetcode.problems._3_common.entity.graph.Node;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -100,34 +102,13 @@ public class CloneGraph {
     Solution solution = new CloneGraph().new Solution();
     System.out.println(solution.cloneGraph(node1));
   }
-  
-  // Definition for a Node.
-  static class Node {
-    public int val;
-    public List<Node> neighbors;
-    
-    public Node() {
-      val = 0;
-      neighbors = new ArrayList<>();
-    }
-    
-    public Node(int _val) {
-      val = _val;
-      neighbors = new ArrayList<>();
-    }
-    
-    public Node(int _val, ArrayList<Node> _neighbors) {
-      val = _val;
-      neighbors = _neighbors;
-    }
-  }
   // leetcode submit region begin(Prohibit modification and deletion)
   
   class Solution {
     private final Map<Integer, Node> map = new HashMap<>();
     
     // 1.DFS+递归
-    public Node cloneGraph(Node node) {
+    public Node cloneGraph9(Node node) {
       if (node == null) {
         return null;
       }
@@ -174,23 +155,59 @@ public class CloneGraph {
       return clone;
     }
     
-    // 3.官解一：DFS
+    // ☆☆☆☆☆ DFS + 哈希表
     public Node cloneGraph3(Node node) {
+      // 0 节点特判
       if (node == null) {
         return null;
       }
+      
       int val = node.val;
+      // 已经访问过，则直接返回（避免图中存在环时，造成死循环）
       if (map.containsKey(val)) {
         return map.get(val);
       }
-      Node clone = new Node(val, new ArrayList<>());
+      
+      // 创建克隆节点并存储在哈希表中
+      Node clone = new Node(val);
       map.put(val, clone);
+      // 递归处理相邻节点
       for (Node neighbor : node.neighbors) {
-        map.get(val).neighbors.add(cloneGraph3(neighbor));
+        clone.neighbors.add(cloneGraph3(neighbor));
       }
       
       return clone;
     }
+    
+    // 预先创建好没有邻居的节点，再dfs
+    public Node cloneGraph(Node node) {
+      if (node == null) {
+        return null;
+      }
+      
+      Node[] nodes = new Node[101];
+      for (int i = 0; i < nodes.length; i++) {
+        nodes[i] = new Node(i);
+      }
+      
+      boolean[] vis = new boolean[101];
+      
+      dfs(node, nodes, vis);
+      
+      return nodes[1];
+    }
+    
+    private void dfs(Node node, Node[] nodes, boolean[] vis) {
+      vis[node.val] = true;
+      
+      for (Node neighbor : node.neighbors) {
+        nodes[node.val].neighbors.add(nodes[neighbor.val]);
+        if (!vis[neighbor.val]) {
+          dfs(neighbor, nodes, vis);
+        }
+      }
+    }
+    
   }
   // leetcode submit region end(Prohibit modification and deletion)
 }
