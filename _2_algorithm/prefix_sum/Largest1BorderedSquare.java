@@ -86,7 +86,6 @@ public class Largest1BorderedSquare {
     public int largest1BorderedSquare(int[][] grid) {
       int n = grid.length;
       int m = grid[0].length;
-      
       int[][] sc = new int[n][m + 1];
       int[][] sr = new int[m][n + 1];
       for (int i = 0; i < n; i++) {
@@ -95,20 +94,20 @@ public class Largest1BorderedSquare {
           sr[j][i + 1] = sr[j][i] + grid[i][j];
         }
       }
-      
+  
       for (int d = Math.min(n, m); d > 0; d--) {
-        for (int i = 0; i < n - d + 1; i++) {
-          for (int j = 0; j < m - d + 1; j++) {
-            if (sr[j][i + d] - sr[j][i] == d &&
-                sc[i][j + d] - sc[i][j] == d &&
-                sc[i + d - 1][j + d] - sc[i + d - 1][j] == d &&
-                sr[j + d - 1][i + d] - sr[j + d - 1][i] == d) {
+        for (int r1 = 0, r2 = r1 + d - 1; r2 < n; r1++, r2++) {
+          for (int c1 = 0, c2 = c1 + d - 1; c2 < m; c1++, c2++) {
+            if (sc[r1][c2 + 1] - sc[r1][c1] == d &&
+                sc[r2][c2 + 1] - sc[r2][c1] == d &&
+                sr[c1][r2 + 1] - sr[c1][r1] == d &&
+                sr[c2][r2 + 1] - sr[c2][r1] == d) {
               return d * d;
             }
           }
         }
       }
-      
+  
       return 0;
     }
   }
