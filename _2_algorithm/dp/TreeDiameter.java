@@ -1,4 +1,4 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,7 +82,7 @@ public class TreeDiameter {
         if (v == fa) {
           continue;
         }
-        int depth = dfs(g, v, u) + 1;
+        int depth = dfs(g, v, u);
         if (depth > max1) {
           max2 = max1;
           max1 = depth;
@@ -93,7 +93,7 @@ public class TreeDiameter {
       // 经过 u 的最长链的长度 = 以 u 为根节点的最大路径长度 +　以 u 为根节点的次大路径长度
       ans = Math.max(ans, max1 + max2);
       
-      return max1;
+      return max1 + 1;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
