@@ -20,11 +20,14 @@ public class MinimumHeightTrees {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     int min = Integer.MAX_VALUE;
-    ArrayList<Integer> ans;
+    ArrayList<Integer> ans = new ArrayList<>();
+    ArrayList<Integer>[] graph;
+    int[] f1;
+    int[] f2;
+    int[] g;
     
+    // 枚举每个顶点作为根节点，求其高度
     public List<Integer> findMinHeightTreesTLE(int n, int[][] edges) {
-      ans = new ArrayList<>();
-      
       ArrayList<Integer>[] g = new ArrayList[n];
       Arrays.setAll(g, i -> new ArrayList<>());
       for (int[] edge : edges) {
@@ -70,8 +73,7 @@ public class MinimumHeightTrees {
         ans = new ArrayList<>(q);
         int size = q.size();
         for (int i = 0; i < size; i++) {
-          int u = q.poll();
-          for (Integer v : g[u]) {
+          for (Integer v : g[q.poll()]) {
             if (--deg[v] == 1) {
               q.offer(v);
             }
@@ -82,8 +84,8 @@ public class MinimumHeightTrees {
       return ans;
     }
     
-    // bfs（类似拓扑排序）
-    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+    // （优化）bfs（类似拓扑排序）    重要结论：所求根节点为 1 个 或 2 个
+    public List<Integer> findMinHeightTrees8(int n, int[][] edges) {
       ArrayList<Integer>[] g = new ArrayList[n];
       int[] deg = new int[n];
       Arrays.setAll(g, i -> new ArrayList<>());
@@ -117,7 +119,72 @@ public class MinimumHeightTrees {
       return new ArrayList<>(q);
     }
     
-    // todo 树形dp
+    // ☆☆☆☆☆ 树形dp
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+      graph = new ArrayList[n];
+      Arrays.setAll(graph, i -> new ArrayList<>());
+      for (int[] edge : edges) {
+        graph[edge[0]].add(edge[1]);
+        graph[edge[1]].add(edge[0]);
+      }
+      
+      // 状态定义：当前节点（包括当前节点）到叶子节点的最大路径长度，按方向（父节点方向↑、子树方向↓）划分
+      f1 = new int[n]; // 子树方向↓ 的最大值
+      f2 = new int[n]; // 子树方向↓ 的次大值（用于父节点方向↑ 的最大值的计算）
+      g = new int[n]; // 父节点方向↑ 的最大值
+      
+      // 状态转移：分别进行两次 dfs，先下↓再上↑
+      dfsDown(0, -1);
+      dfsUp(0, -1);
+      
+      for (int i = 0, min = n - 1; i < n; i++) {
+        // 当前节点（包括当前节点）到叶子节点的最大路径长度 = max （父节点方向↑，子树方向↓）
+        int cur = Math.max(f1[i], g[i]);
+        if (cur < min) {
+          min = cur;
+          ans.clear();
+          ans.add(i);
+        } else if (cur == min) {
+          ans.add(i);
+        }
+      }
+      
+      return ans;
+    }
+    
+    private int dfsDown(int u, int fa) {
+      for (Integer v : graph[u]) {
+        if (v == fa) {
+          continue;
+        }
+        int sub = dfsDown(v, u) + 1;
+        // 更新最大次大值
+        if (sub > f1[u]) {
+          f2[u] = f1[u];
+          f1[u] = sub;
+        } else if (sub > f2[u]) {
+          f2[u] = sub;
+        }
+      }
+      return f1[u];
+    }
+    
+    private void dfsUp(int u, int fa) {
+      for (Integer v : graph[u]) {
+        if (v == fa) {
+          continue;
+        }
+        // 小技巧：为避免对 fa 节点为空的处理，将「用 fa 来更新 u」调整为「用 u 来更新 v」。
+        g[v] = Math.max(g[v], 1 + g[u]); // ① 父节点的「父节点方向」最大值 + 1
+        g[v] = Math.max(g[v], 1 +
+            (f1[v] + 1 == f1[u] ?
+                f2[u] : // ② 父节点的「子树节点方向」次大值 + 1 （父节点的「子树节点方向」最长路径经过当前节点 v）
+                f1[u] // ③ 父节点的「子树节点方向」最大值 + 1 （父节点的「子树节点方向」最长路径不经过当前节点 v）
+            ));
+        
+        dfsUp(v, u);
+      }
+    }
     
     private int dfs(ArrayList<Integer>[] g, int u, int fa) {
       int max = 0;
