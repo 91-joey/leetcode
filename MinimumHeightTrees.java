@@ -47,8 +47,8 @@ public class MinimumHeightTrees {
       return ans;
     }
     
-    // bfs
-    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+    // bfs（类似拓扑排序）
+    public List<Integer> findMinHeightTrees9(int n, int[][] edges) {
       ArrayList<Integer>[] g = new ArrayList[n];
       int[] deg = new int[n];
       Arrays.setAll(g, i -> new ArrayList<>());
@@ -80,6 +80,41 @@ public class MinimumHeightTrees {
       }
       
       return ans;
+    }
+    
+    // bfs（类似拓扑排序）
+    public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+      ArrayList<Integer>[] g = new ArrayList[n];
+      int[] deg = new int[n];
+      Arrays.setAll(g, i -> new ArrayList<>());
+      for (int[] edge : edges) {
+        g[edge[0]].add(edge[1]);
+        g[edge[1]].add(edge[0]);
+        deg[edge[0]]++;
+        deg[edge[1]]++;
+      }
+      
+      LinkedList<Integer> q = new LinkedList<>();
+      for (int i = 0; i < n; i++) {
+        if (deg[i] <= 1) {
+          q.offer(i);
+        }
+      }
+      
+      int remainNodes = n;
+      while (remainNodes > 2) {
+        int size = q.size();
+        remainNodes -= size;
+        for (int i = 0; i < size; i++) {
+          for (Integer v : g[q.poll()]) {
+            if (--deg[v] == 1) {
+              q.offer(v);
+            }
+          }
+        }
+      }
+      
+      return new ArrayList<>(q);
     }
     
     // todo 树形dp
