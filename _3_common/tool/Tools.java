@@ -315,7 +315,7 @@ public class Tools {
   }
   
   public static char[][] to2DCharArray(String s) {
-    return Arrays.stream(s.substring(1, s.length() - 1).replace("\"","").split("(?<=]),")).map(s1 -> toIntArray2(s1, s2 -> s2.charAt(0))).toArray(char[][]::new);
+    return Arrays.stream(s.substring(1, s.length() - 1).replace("\"", "").split("(?<=]),")).map(s1 -> toIntArray2(s1, s2 -> s2.charAt(0))).toArray(char[][]::new);
   }
   
   public static int[] toIntArray(String s) {
@@ -652,6 +652,62 @@ public class Tools {
     }
     return sum;
   }
+  
+  //region 判断数组元素是否全部相等
+  public static boolean isAllSame(char[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] != arr[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public static boolean isAllSame(int[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] != arr[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public static boolean isAllSame(long[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] != arr[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public static boolean isAllSame(double[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] != arr[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public static boolean isAllSame(boolean[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] != arr[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  
+  public static <T> boolean isAllSame(T[] arr) {
+    for (int i = 1; i < arr.length; i++) {
+      if (arr[i] != arr[0]) {
+        return false;
+      }
+    }
+    return true;
+  }
+  //endregion
   
   /**
    * 反序列化数组
