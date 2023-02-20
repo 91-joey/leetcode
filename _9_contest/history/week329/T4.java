@@ -72,7 +72,7 @@ public class T4 {
     
     
     /*
-     * ☆☆☆☆☆ 划分型dp（优化） + 实时维护频率数组 freq 和 只出现 1 次的元素个数 uniq
+     * ☆☆☆☆ 划分型dp（优化） + 实时维护频率数组 freq 和 只出现 1 次的元素个数 uniq
      * 定义：f[i] 表示 [0,i-1] 的子数组的拆分数组的最小代价
      *      f'[i] = f[i] - i
      * 状态转移：f[i] = i + k + min{f[j]- j - uniq}  , j=[0,i-1]
@@ -80,7 +80,7 @@ public class T4 {
      *            f'[i] = k + min{f[j]    - uniq}  , j=[0,i-1]
      * 答案：f'[n] + n
      */
-    public int minCost(int[] nums, int k) {
+    public int minCost7(int[] nums, int k) {
       int n = nums.length;
       
       int[] f = new int[n + 1];
@@ -101,7 +101,35 @@ public class T4 {
       }
       return f[n] + n;
     }
-    
+  
+  
+  
+    /*
+     * ☆☆☆☆☆ 划分型dp（优化） + 实时维护频率数组 freq 和 出现 > 1 次的元素个数 trim
+     * 定义：f[i] 表示 [0,i-1] 的子数组的拆分数组的最小代价
+     * 状态转移：f[i] = k + min{f[j] + trim}  , j=[0,i-1]
+     * 答案：f[n]
+     */
+    public int minCost(int[] nums, int k) {
+      int n = nums.length;
+      int[] f = new int[n + 1];
+      Arrays.fill(f, Integer.MAX_VALUE);
+      f[0] = 0;
+      for (int i = 1; i < n + 1; i++) {
+        int[] freq = new int[n];
+        for (int j = i, trim = 0; j > 0; j--) {
+          if (++freq[nums[j - 1]] == 2) {
+            trim += 2;
+          } else if (freq[nums[j - 1]] > 2) {
+            trim++;
+          }
+          f[i] = Math.min(f[i], f[j - 1] + trim);
+        }
+        f[i] += k;
+      }
+      return f[n];
+    }
+  
     // todo 线段树
   }
 }
