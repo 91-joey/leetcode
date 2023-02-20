@@ -3,7 +3,7 @@ package org.example.leetcode.problems._9_contest.history.week333;
 import java.util.HashMap;
 import java.util.Map;
 
-//
+// 2572. Count the Number of Square-Free Subsets
 public class T3 {
   public static void main(String[] args) {
     Solution solution = new T3().new Solution();
@@ -12,8 +12,7 @@ public class T3 {
   }
   
   class Solution {
-    
-    public int squareFreeSubsets(int[] nums) {
+    public int squareFreeSubsetsX(int[] nums) {
       int ans = 0;
       HashMap<Integer, Integer> map = new HashMap<>();
       for (int x : nums) {
@@ -30,6 +29,11 @@ public class T3 {
         }
       }
       return ans;
+    }
+    
+    // todo
+    public int squareFreeSubsets(int[] nums) {
+      return 0;
     }
     
     private boolean containsNoSquare(int x) {
