@@ -1,4 +1,4 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.dfs;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.dfs;
 
 /**
  * 面试题13.机器人的运动范围 <br>

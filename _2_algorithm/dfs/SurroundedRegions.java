@@ -1,4 +1,4 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.dfs;
 
 /**
  * 130.被围绕的区域 <br>

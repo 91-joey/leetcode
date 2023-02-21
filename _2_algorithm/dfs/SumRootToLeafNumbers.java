@@ -1,14 +1,14 @@
-package org.example.leetcode.problems;
+package org.example.leetcode.problems._2_algorithm.dfs;
 
 import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
 
 /**
- * 剑指 Offer II 049.从根节点到叶节点的路径数字之和 <br>
- * 开题时间：2023-02-02 11:42:19
+ * 129.求根节点到叶节点数字之和 <br>
+ * 开题时间：2023-02-02 11:42:27
  */
-public class ThreeEtpl5 {
+public class SumRootToLeafNumbers {
   public static void main(String[] args) {
-    Solution solution = new ThreeEtpl5().new Solution();
+    Solution solution = new SumRootToLeafNumbers().new Solution();
     System.out.println(solution);
   }
   
