@@ -117,6 +117,7 @@ public class T4 {
       f[0] = 0;
       for (int i = 1; i < n + 1; i++) {
         int[] freq = new int[n];
+        // 枚举开始端点，会更容易
         for (int j = i, trim = 0; j > 0; j--) {
           if (++freq[nums[j - 1]] == 2) {
             trim += 2;
