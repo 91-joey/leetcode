@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 
 // 1342. 将数字变成 0 的操作次数

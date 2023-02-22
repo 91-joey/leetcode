@@ -34,9 +34,9 @@
 //</ul>
 //
 //<div><li>👍 1080</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 // 203.移除链表元素
 // 开题时间：2022-11-12 17:50:25

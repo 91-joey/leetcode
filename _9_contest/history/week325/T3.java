@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week325;
+package _9_contest.history.week325;
 
 import java.util.Arrays;
 

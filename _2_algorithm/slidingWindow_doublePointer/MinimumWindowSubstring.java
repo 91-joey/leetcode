@@ -47,7 +47,7 @@
 //<code>o(n)</code> 时间内解决此问题的算法吗？
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>字符串</li><li>滑动窗口</li></div></div><br><div><li>👍 2179</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 import java.util.Arrays;
 

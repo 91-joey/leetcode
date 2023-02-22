@@ -31,9 +31,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>树</li><li>数组</li><li>哈希表</li><li>分治</li><li>二叉树</li></div></div><br><div><li>👍 837</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.tree;
+package _1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 import java.util.Deque;
 import java.util.HashMap;

@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>二分查找</li><li>排序</li></div></div><br><div><li>👍 391</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 import java.util.Arrays;
 import java.util.Map;

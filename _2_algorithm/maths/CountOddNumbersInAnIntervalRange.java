@@ -23,7 +23,7 @@
 //</ul>
 //
 //<div><li>👍 77</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1523.在区间范围内统计奇数数目
 // 开题时间：2022-12-01 17:14:07

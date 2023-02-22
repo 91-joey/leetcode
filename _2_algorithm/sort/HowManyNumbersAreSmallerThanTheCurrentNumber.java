@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><li>👍 242</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort;
+package _2_algorithm.sort;
 
 // 1365.有多少小于当前数字的数字
 // 开题时间：2023-01-07 17:42:31

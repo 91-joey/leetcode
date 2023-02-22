@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.graph.leetbook.unionfind;
+package _1_dataStructure.graph.leetbook.unionfind;
 
 public class QuickUnion extends UnionFind {
   

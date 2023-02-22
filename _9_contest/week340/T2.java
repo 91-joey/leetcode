@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.week340;
+package _9_contest.week340;
 
 //
 public class T2 {

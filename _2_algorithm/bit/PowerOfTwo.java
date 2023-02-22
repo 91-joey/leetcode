@@ -54,7 +54,7 @@
 //<p><strong>进阶：</strong>你能够不使用循环/递归解决此问题吗？</p>
 //
 //<div><li>👍 564</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 231.2 的幂
 // 开题时间：2023-01-13 22:51:19

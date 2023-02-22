@@ -32,9 +32,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>滑动窗口</li></div></div><br><div><li>👍 268</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 // 643.子数组最大平均数 I
 // 开题时间：2022-10-02 17:05:41

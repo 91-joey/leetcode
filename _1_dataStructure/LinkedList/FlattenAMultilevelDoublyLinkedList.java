@@ -86,9 +86,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>链表</li><li>双向链表</li></div></div><br><div><li>👍 371</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.LinkedList;
+package _1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.Node;
+import _3_common.entity.linkedlist.Node;
 
 // 430.扁平化多级双向链表
 // 开题时间：2022-09-01 10:43:50

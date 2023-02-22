@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><li>👍 30</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.prefix_sum;
+package _2_algorithm.prefix_sum;
 
 // 1732.找到最高海拔
 // 开题时间：2022-11-19 08:58:30

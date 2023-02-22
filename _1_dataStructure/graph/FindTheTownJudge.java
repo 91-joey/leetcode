@@ -49,7 +49,7 @@
 //</ul>
 //
 //<div><li>👍 280</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.graph;
+package _1_dataStructure.graph;
 
 import java.util.ArrayList;
 

@@ -23,7 +23,7 @@
 //</ul>
 //
 //<div><li>👍 168</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 import java.util.Arrays;
 import java.util.Map;

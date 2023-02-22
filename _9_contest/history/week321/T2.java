@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week321;
+package _9_contest.history.week321;
 
 // 6246. Append Characters to String to Make Subsequence
 public class T2 {

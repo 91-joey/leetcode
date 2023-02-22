@@ -48,7 +48,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>动态规划</li><li>枚举</li></div></div><br><div><li>👍 250</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 845.数组中的最长山脉
 // 开题时间：2022-10-27 08:48:30

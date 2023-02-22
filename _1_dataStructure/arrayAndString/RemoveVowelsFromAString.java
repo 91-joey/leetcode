@@ -26,7 +26,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>字符串</li></div></div><br><div><li>👍 18</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 
 // 1119.删去字符串中的元音

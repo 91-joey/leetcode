@@ -37,10 +37,10 @@
 //<p><strong>进阶：</strong>递归法很简单，你可以使用迭代法完成此题吗?</p>
 //
 //<div><li>👍 326</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.tree;
+package _1_dataStructure.tree;
 
 
-import org.example.leetcode.problems._3_common.entity.tree.nAryTree.Node;
+import _3_common.entity.tree.nAryTree.Node;
 
 import java.util.ArrayList;
 import java.util.Deque;

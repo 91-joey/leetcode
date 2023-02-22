@@ -83,9 +83,9 @@
 //<p><strong>进阶：</strong>你能否设计一个时间复杂度 <code>O(m + n)</code> 、仅用 <code>O(1)</code> 内存的解决方案？</p>
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>链表</li><li>双指针</li></div></div><br><div><li>👍 1885</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 import java.util.HashSet;
 

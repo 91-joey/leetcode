@@ -53,7 +53,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>字符串</li></div></div><br><div><li>👍 3456</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
 import java.util.Deque;
 import java.util.HashMap;

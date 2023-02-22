@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 297</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 664.奇怪的打印机
 // 开题时间：2022-12-21 16:29:42

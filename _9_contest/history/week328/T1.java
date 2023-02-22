@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week328;
+package _9_contest.history.week328;
 
 // 6291. Difference Between Element Sum and Digit Sum of an Array
 public class T1 {

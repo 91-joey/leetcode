@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 52</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 1147.段式回文
 // 开题时间：2022-12-20 16:42:54

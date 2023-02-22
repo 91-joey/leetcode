@@ -16,7 +16,7 @@
 //</ul>
 //
 //<div><li>👍 267</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 剑指 Offer 17.打印从1到最大的n位数
 // 开题时间：2022-12-28 09:05:43

@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 1362</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 309.最佳买卖股票时机含冷冻期
 // 开题时间：2022-12-12 06:26:13

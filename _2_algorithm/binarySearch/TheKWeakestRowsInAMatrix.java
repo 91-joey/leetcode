@@ -61,7 +61,7 @@
 //</ul>
 //
 //<div><li>👍 190</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 import java.util.Arrays;
 import java.util.Comparator;

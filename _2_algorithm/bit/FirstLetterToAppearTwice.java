@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><li>👍 13</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 2351.第一个出现两次的字母
 // 开题时间：2022-11-14 14:58:27

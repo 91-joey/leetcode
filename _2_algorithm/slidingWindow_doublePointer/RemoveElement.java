@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 27. 移除元素
 public class RemoveElement {

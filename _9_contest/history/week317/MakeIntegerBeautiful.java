@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week317;
+package _9_contest.history.week317;
 
 // 6222. 美丽整数的最小增量
 public class MakeIntegerBeautiful {

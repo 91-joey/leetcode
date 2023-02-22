@@ -25,7 +25,7 @@
 //</ul>
 //
 //<div><li>👍 649</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 371.两整数之和
 // 开题时间：2023-01-05 18:35:50

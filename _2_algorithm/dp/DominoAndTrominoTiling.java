@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 149</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 790.多米诺和托米诺平铺
 // 开题时间：2022-11-12 08:58:01

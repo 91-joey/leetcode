@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><li>👍 518</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.prefix_sum;
+package _2_algorithm.prefix_sum;
 
 // 303.区域和检索 - 数组不可变
 // 开题时间：2022-12-12 03:39:42

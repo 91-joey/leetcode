@@ -47,7 +47,7 @@
 //</ul>
 //
 //<div><li>👍 119</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
 // 1614.括号的最大嵌套深度
 // 开题时间：2022-11-19 16:46:11

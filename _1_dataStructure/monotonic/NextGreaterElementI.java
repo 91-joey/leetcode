@@ -44,7 +44,7 @@
 //<p><strong>进阶：</strong>你可以设计一个时间复杂度为 <code>O(nums1.length + nums2.length)</code> 的解决方案吗？</p>
 //
 //<div><li>👍 893</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.monotonic;
+package _1_dataStructure.monotonic;
 
 import java.util.Arrays;
 import java.util.Deque;

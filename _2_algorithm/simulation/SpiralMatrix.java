@@ -28,7 +28,7 @@
 //</ul>
 //
 //<div><li>👍 1275</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
 import java.util.ArrayList;
 import java.util.List;

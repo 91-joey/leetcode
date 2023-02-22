@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.interactive;
+package _3_common.interactive;
 
 public class GuessGame {
   int pick;

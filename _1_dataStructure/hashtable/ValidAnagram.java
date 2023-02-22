@@ -31,7 +31,7 @@
 //<p><strong>进阶:&nbsp;</strong>如果输入字符串包含 unicode 字符怎么办？你能否调整你的解法来应对这种情况？</p>
 //
 //<div><li>👍 702</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 // 242.有效的字母异位词
 // 开题时间：2022-12-03 14:05:17

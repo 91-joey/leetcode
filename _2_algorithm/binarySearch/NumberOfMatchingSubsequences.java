@@ -36,7 +36,7 @@
 //<span style="display:block"><span style="height:0px"><span style="position:absolute">​​​​</span></span></span>
 //
 //<div><li>👍 243</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 import java.util.ArrayList;
 import java.util.HashMap;

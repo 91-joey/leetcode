@@ -23,7 +23,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>分治</li><li>快速选择</li><li>排序</li><li>堆（优先队列）</li></div></div><br><div><li>👍 483</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort.problems;
+package _2_algorithm.sort.problems;
 
 import java.util.Arrays;
 import java.util.PriorityQueue;

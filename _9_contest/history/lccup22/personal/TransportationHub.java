@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.lccup22.personal;
+package _9_contest.history.lccup22.personal;
 
 import java.util.HashMap;
 import java.util.HashSet;

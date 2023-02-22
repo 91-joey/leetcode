@@ -45,9 +45,9 @@
 //</ul>
 //
 //<div><li>👍 682</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 // 174.地下城游戏
 // 开题时间：2022-12-14 13:55:32

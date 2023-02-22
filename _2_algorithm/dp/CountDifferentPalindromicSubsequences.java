@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><li>👍 309</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 730.统计不同回文子序列
 // 开题时间：2022-12-21 13:54:45

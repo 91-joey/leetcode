@@ -55,9 +55,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>二分查找</li><li>交互</li></div></div><br><div><li>👍 264</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
-import org.example.leetcode.problems._3_common.interactive.GuessGame;
+import _3_common.interactive.GuessGame;
 
 // 374.猜数字大小
 // 开题时间：2022-10-28 17:21:04

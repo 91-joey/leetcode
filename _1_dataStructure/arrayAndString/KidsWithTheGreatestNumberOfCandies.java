@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><li>👍 137</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -47,7 +47,7 @@
 //</ul>
 //
 //<div><li>👍 74</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1768.交替合并字符串
 // 开题时间：2022-12-08 09:17:01

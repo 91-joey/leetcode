@@ -38,7 +38,7 @@
 //<p>你可以设计一个时间复杂度小于 O(n) 的算法解决此问题吗？</p>
 //
 //<div><li>👍 159</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 1539.第 k 个缺失的正整数
 // 开题时间：2022-11-25 15:01:35

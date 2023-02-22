@@ -34,9 +34,9 @@
 //</ul>
 //
 //<div><li>👍 193</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.graph;
+package _1_dataStructure.graph;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 /**
  * 1020.飞地的数量 <br>

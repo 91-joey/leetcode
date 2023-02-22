@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week318;
+package _9_contest.history.week318;
 
 // 6230. 长度为 K 子数组中的最大和
 public class MaximumSubarraySum {

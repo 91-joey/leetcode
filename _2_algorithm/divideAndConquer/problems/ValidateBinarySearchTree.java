@@ -35,10 +35,10 @@
 //</ul>
 //
 //<div><li>👍 1816</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.entity.tree.TreeNode;
+import _3_common.tool.Tools;
 
 import java.util.ArrayList;
 import java.util.Deque;

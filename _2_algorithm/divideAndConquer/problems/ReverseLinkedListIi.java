@@ -32,9 +32,9 @@
 //<p><strong>进阶：</strong> 你可以使用一趟扫描完成反转吗？</p>
 //
 //<div><li>👍 1438</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 // 92.反转链表 II
 // 开题时间：2022-11-15 12:02:24

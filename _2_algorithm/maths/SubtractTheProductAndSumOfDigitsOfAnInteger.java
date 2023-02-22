@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><li>👍 97</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1281.整数的各位积和之差
 // 开题时间：2022-12-02 10:41:42

@@ -66,7 +66,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>数组</li><li>数学</li></div></div><br><div><li>👍 585</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
 import java.util.Stack;
 

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.graph.leetbook.storage_of_graph;
+package _1_dataStructure.graph.leetbook.storage_of_graph;
 
 public class Test {
   public static void main(String[] args) {

@@ -33,9 +33,9 @@
 //</ul>
 //
 //<div><li>👍 1624</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 // 24.两两交换链表中的节点
 // 开题时间：2022-11-12 18:16:31

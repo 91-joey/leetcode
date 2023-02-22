@@ -49,7 +49,7 @@
 //</ul>
 //
 //<div><li>👍 64</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 1799.N 次操作后的最大分数和
 // 开题时间：2022-12-22 13:36:31

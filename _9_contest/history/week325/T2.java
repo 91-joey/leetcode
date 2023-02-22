@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week325;
+package _9_contest.history.week325;
 
 // 6270. Take K of Each Character From Left and Right
 public class T2 {

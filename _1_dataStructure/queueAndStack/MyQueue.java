@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 30</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1752.检查数组是否经排序和轮转得到
 // 开题时间：2022-11-27 09:12:58

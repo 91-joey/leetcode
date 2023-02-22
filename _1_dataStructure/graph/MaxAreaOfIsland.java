@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 904</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.graph;
+package _1_dataStructure.graph;
 
 // 695.岛屿的最大面积
 // 开题时间：2023-01-02 10:17:27

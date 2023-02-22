@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 485. 最大连续 1 的个数
 public class FindMaxConsecutiveOnes {

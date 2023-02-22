@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 94</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 1055.形成字符串的最短路径
 // 开题时间：2022-11-30 18:15:06

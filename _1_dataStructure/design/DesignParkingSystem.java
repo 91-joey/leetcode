@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><li>👍 123</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.design;
+package _1_dataStructure.design;
 
 // 1603.设计停车系统
 // 开题时间：2022-12-12 03:27:49

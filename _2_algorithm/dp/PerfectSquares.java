@@ -27,7 +27,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数学</li><li>动态规划</li></div></div><br><div><li>👍 1464</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 import java.util.ArrayList;
 import java.util.Arrays;

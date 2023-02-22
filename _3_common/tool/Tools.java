@@ -1,9 +1,10 @@
-package org.example.leetcode.problems._3_common.tool;
+package _3_common.tool;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.linkedlist.ListNode;
+import _3_common.entity.tree.TreeNode;
 
 import java.lang.reflect.InvocationTargetException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -36,6 +37,8 @@ public class Tools {
   public static final char WALL = '+';
   
   public static void main(String[] args) {
+    prettyPrintTree(stringToTreeNode("[5,1,4,null,null,3,6]"));
+    prettyPrintLinkedList(stringToListNode("[2,4,3]"));
   }
   
   public static List<Integer> toList(int[] ints) {
@@ -710,16 +713,13 @@ public class Tools {
   }
   // endregion
   
-  /**
-   * 反序列化数组
-   */
   public static int[] stringToIntegerArray(String input) {
     input = input.trim();
     input = input.substring(1, input.length() - 1);
     if (input.length() == 0) {
       return new int[0];
     }
-    
+  
     String[] parts = input.split(",");
     int[] output = new int[parts.length];
     for (int index = 0; index < parts.length; index++) {
@@ -727,6 +727,32 @@ public class Tools {
       output[index] = Integer.parseInt(part);
     }
     return output;
+  }
+  
+  public static ArrayList<Integer> stringToIntegerArrayList(String input) {
+    input = input.trim();
+    input = input.substring(1, input.length() - 1);
+    String[] parts = input.split(",");
+    ArrayList<Integer> output = new ArrayList<Integer>();
+    for (int index = 0; index < parts.length; index++) {
+      String part = parts[index].trim();
+      output.add(Integer.parseInt(part));
+    }
+    return output;
+  }
+  
+  public static ListNode stringToListNode(String input) {
+    // Generate array from the input
+    int[] nodeValues = stringToIntegerArray(input);
+    
+    // Now convert that list into linked list
+    ListNode dummyRoot = new ListNode(0);
+    ListNode ptr = dummyRoot;
+    for (int item : nodeValues) {
+      ptr.next = new ListNode(item);
+      ptr = ptr.next;
+    }
+    return dummyRoot.next;
   }
   
   public static TreeNode stringToTreeNode(String input) {
@@ -773,12 +799,159 @@ public class Tools {
     return root;
   }
   
-  // public static String[] stringToStringArray(String line) {
-  //   JsonArray jsonArray = JsonArray.readFrom(line);
-  //   String[] arr = new String[jsonArray.size()];
-  //   for (int i = 0; i < arr.length; i++) {
-  //     arr[i] = jsonArray.get(i).asString();
-  //   }
-  //   return arr;
-  // }
+  public static boolean stringToBool(String input) {
+    return input.toLowerCase() == "true";
+  }
+  
+  public static String treeNodeToString(TreeNode root) {
+    if (root == null) {
+      return "[]";
+    }
+    
+    String output = "";
+    Queue<TreeNode> nodeQueue = new LinkedList<>();
+    nodeQueue.add(root);
+    while (!nodeQueue.isEmpty()) {
+      TreeNode node = nodeQueue.remove();
+      
+      if (node == null) {
+        output += "null, ";
+        continue;
+      }
+      
+      output += String.valueOf(node.val) + ", ";
+      nodeQueue.add(node.left);
+      nodeQueue.add(node.right);
+    }
+    return "[" + output.substring(0, output.length() - 2) + "]";
+  }
+  
+  public static String integerArrayToString(int[] nums, int length) {
+    if (length == 0) {
+      return "[]";
+    }
+    
+    String result = "";
+    for (int index = 0; index < length; index++) {
+      int number = nums[index];
+      result += Integer.toString(number) + ", ";
+    }
+    return "[" + result.substring(0, result.length() - 2) + "]";
+  }
+  
+  public static String integerArrayToString(int[] nums) {
+    return integerArrayToString(nums, nums.length);
+  }
+  
+  public static String listNodeToString(ListNode node) {
+    if (node == null) {
+      return "[]";
+    }
+    
+    String result = "";
+    while (node != null) {
+      result += Integer.toString(node.val) + ", ";
+      node = node.next;
+    }
+    return "[" + result.substring(0, result.length() - 2) + "]";
+  }
+  
+  public static String booleanToString(boolean input) {
+    return input ? "True" : "False";
+  }
+  
+  public static String integerArrayListToString(List<Integer> nums, int length) {
+    if (length == 0) {
+      return "[]";
+    }
+    
+    String result = "";
+    for (int index = 0; index < length; index++) {
+      Integer number = nums.get(index);
+      result += Integer.toString(number) + ", ";
+    }
+    return "[" + result.substring(0, result.length() - 2) + "]";
+  }
+  
+  public static String integerArrayListToString(List<Integer> nums) {
+    return integerArrayListToString(nums, nums.size());
+  }
+  
+  public static void prettyPrintTree(TreeNode node, String prefix, boolean isLeft) {
+    if (node == null) {
+      System.out.println("Empty tree");
+      return;
+    }
+    
+    if (node.right != null) {
+      prettyPrintTree(node.right, prefix + (isLeft ? "│   " : "    "), false);
+    }
+    
+    System.out.println(prefix + (isLeft ? "└── " : "┌── ") + node.val);
+    
+    if (node.left != null) {
+      prettyPrintTree(node.left, prefix + (isLeft ? "    " : "│   "), true);
+    }
+  }
+  
+  public static void prettyPrintTree(TreeNode node) {
+    prettyPrintTree(node, "", true);
+  }
+  
+  public static void prettyPrintLinkedList(ListNode node) {
+    while (node != null && node.next != null) {
+      System.out.print(node.val + "->");
+      node = node.next;
+    }
+    
+    if (node != null) {
+      System.out.println(node.val);
+    } else {
+      System.out.println("Empty LinkedList");
+    }
+  }
+  
+  public static String doubleToString(double input) {
+    return new DecimalFormat("0.00000").format(input);
+  }
+  
+  public static String int2dArrayToString(int[][] array) {
+    if (array == null) {
+      return "null";
+    }
+    if (array.length == 0) {
+      return "[]";
+    }
+    
+    StringBuilder sb = new StringBuilder("[");
+    for (int[] item : array) {
+      sb.append(Arrays.toString(item));
+      sb.append(",");
+    }
+    
+    sb.setCharAt(sb.length() - 1, ']');
+    return sb.toString();
+  }
+  
+  public static String stringListToString(List<String> stringList) {
+    StringBuilder sb = new StringBuilder("[");
+    for (String item : stringList) {
+      sb.append(item);
+      sb.append(",");
+    }
+    
+    sb.setCharAt(sb.length() - 1, ']');
+    return sb.toString();
+  }
+  
+  public static String int2dListToString(List<List<Integer>> nums) {
+    StringBuilder sb = new StringBuilder("[");
+    for (List<Integer> list : nums) {
+      sb.append(integerArrayListToString(list));
+      sb.append(",");
+    }
+    
+    sb.setCharAt(sb.length() - 1, ']');
+    return sb.toString();
+  }
 }

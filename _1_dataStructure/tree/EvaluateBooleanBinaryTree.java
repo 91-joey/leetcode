@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._1_dataStructure.tree;
+package _1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 /**
  * 2331. Evaluate Boolean Binary Tree

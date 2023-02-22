@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>字符串</li><li>滑动窗口</li></div></div><br><div><li>👍 84</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1358.包含所有三种字符的子字符串数目
 // 开题时间：2022-10-15 08:58:32

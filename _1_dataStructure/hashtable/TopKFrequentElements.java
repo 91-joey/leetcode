@@ -30,7 +30,7 @@
 //<p><strong>进阶：</strong>你所设计算法的时间复杂度 <strong>必须</strong> 优于 <code>O(n log n)</code> ，其中 <code>n</code><em>&nbsp;</em>是数组大小。</p>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>分治</li><li>桶排序</li><li>计数</li><li>快速选择</li><li>排序</li><li>堆（优先队列）</li></div></div><br><div><li>👍 1316</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 import java.util.ArrayList;
 import java.util.Arrays;

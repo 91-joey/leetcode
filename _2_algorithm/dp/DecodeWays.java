@@ -57,7 +57,7 @@
 //</ul>
 //
 //<div><li>👍 1296</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 91.解码方法
 // 开题时间：2022-12-03 14:17:31

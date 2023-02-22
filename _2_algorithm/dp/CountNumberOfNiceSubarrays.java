@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 246</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 import java.util.HashMap;
 

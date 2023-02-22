@@ -46,7 +46,7 @@
 //</ul>
 //
 //<div><li>👍 57</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1855.下标对中的最大距离
 // 开题时间：2022-11-30 10:18:56

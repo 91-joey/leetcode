@@ -30,9 +30,9 @@
 //<p><strong>进阶：</strong>你能否用&nbsp;<code>O(n)</code> 时间复杂度和 <code>O(1)</code> 空间复杂度解决此题？</p>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>递归</li><li>链表</li><li>双指针</li></div></div><br><div><li>👍 1489</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.LinkedList;
+package _1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 import java.util.Deque;
 import java.util.LinkedList;

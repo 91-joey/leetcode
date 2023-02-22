@@ -24,7 +24,7 @@
 //<p>&nbsp;</p>
 //
 //<div><div>Related Topics</div><div><li>字符串</li><li>动态规划</li><li>滑动窗口</li></div></div><br><div><li>👍 133</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 727.最小窗口子序列
 // 开题时间：2022-10-12 12:10:08

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 import java.util.ArrayList;
 import java.util.Collections;

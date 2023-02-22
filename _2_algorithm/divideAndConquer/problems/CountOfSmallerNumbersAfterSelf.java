@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 911</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
-import org.example.leetcode.problems._3_common.interactive.CustomFunction;
+import _3_common.interactive.CustomFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;

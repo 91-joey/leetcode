@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.interactive;
+package _3_common.interactive;
 
 // This is the custom function interface.
 // You should not implement it, or speculate about its implementation

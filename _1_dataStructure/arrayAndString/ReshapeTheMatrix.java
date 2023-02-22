@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 355</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 566.重塑矩阵
 // 开题时间：2022-12-01 11:53:07

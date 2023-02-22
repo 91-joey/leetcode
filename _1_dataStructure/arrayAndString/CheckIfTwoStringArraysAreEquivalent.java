@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>字符串</li></div></div><br><div><li>👍 49</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1662.检查两个字符串数组是否相等
 // 开题时间：2022-11-01 11:30:59

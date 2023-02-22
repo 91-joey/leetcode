@@ -36,7 +36,7 @@
 //</ul>
 //
 //<div><li>👍 60</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.graph;
+package _1_dataStructure.graph;
 
 import java.util.ArrayList;
 import java.util.List;

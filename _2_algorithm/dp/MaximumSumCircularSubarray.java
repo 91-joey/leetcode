@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><li>👍 421</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 918.环形子数组的最大和
 // 开题时间：2022-11-23 12:13:08

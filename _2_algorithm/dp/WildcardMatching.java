@@ -56,7 +56,7 @@
 //<strong>输出:</strong> false</pre>
 //
 //<div><li>👍 973</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 44.通配符匹配
 // 开题时间：2022-12-12 17:52:52

@@ -21,7 +21,7 @@
 //</ol>
 //
 //<div><li>👍 80</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 面试题 08.05.递归乘法
 // 开题时间：2022-11-10 15:06:20

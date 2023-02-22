@@ -62,7 +62,7 @@
 //</ul>
 //
 //<div><li>👍 970</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 38.外观数列
 // 开题时间：2022-11-19 17:55:43

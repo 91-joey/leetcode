@@ -54,7 +54,7 @@
 //</ul>
 //
 //<div><li>👍 196</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 1217.玩筹码
 // 开题时间：2022-12-27 10:05:18

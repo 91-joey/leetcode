@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 /**
  * 1008.前序遍历构造二叉搜索树 <br>

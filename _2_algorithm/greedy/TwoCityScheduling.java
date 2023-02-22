@@ -44,9 +44,9 @@
 //</ul>
 //
 //<div><li>👍 279</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 /**
  * 2347.最好的扑克手牌 <br>

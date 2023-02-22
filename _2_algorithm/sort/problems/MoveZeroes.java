@@ -32,9 +32,9 @@
 //<p><b>进阶：</b>你能尽量减少完成的操作次数吗？</p>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li></div></div><br><div><li>👍 1740</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort.problems;
+package _2_algorithm.sort.problems;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.List;

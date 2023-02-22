@@ -17,7 +17,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>排序</li></div></div><br><div><li>👍 155</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort.problems;
+package _2_algorithm.sort.problems;
 
 // 面试题 10.01.合并排序的数组
 // 开题时间：2022-09-25 14:30:07

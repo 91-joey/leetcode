@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 383. 赎金信
 public class RansomNote {

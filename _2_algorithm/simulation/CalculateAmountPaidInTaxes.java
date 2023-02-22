@@ -57,9 +57,9 @@
 //</ul>
 //
 //<div><li>👍 18</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 // 2303.计算应缴税款总额
 // 开题时间：2023-01-23 09:52:03

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 /**
  * 376.摆动序列 <br>

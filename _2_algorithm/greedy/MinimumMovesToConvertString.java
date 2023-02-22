@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 31</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 2027.转换字符串的最少操作次数
 // 开题时间：2022-12-27 09:54:48

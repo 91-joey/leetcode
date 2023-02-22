@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.entity.graph;
+package _3_common.entity.graph;
 
 import java.util.ArrayList;
 import java.util.List;

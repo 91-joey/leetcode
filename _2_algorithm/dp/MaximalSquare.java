@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 1334</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 221.最大正方形
 // 开题时间：2022-12-14 10:16:37

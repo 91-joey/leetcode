@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.entity.graph;
+package _3_common.entity.graph;
 
 public class UnionFind {
   int[] root;

@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 /**
  * 剑指 Offer II 049.从根节点到叶节点的路径数字之和 <br>

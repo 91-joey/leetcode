@@ -52,7 +52,7 @@
 //</ul>
 //
 //<div><li>👍 41</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 1754.构造字典序最大的合并字符串
 // 开题时间：2022-12-24 10:09:03

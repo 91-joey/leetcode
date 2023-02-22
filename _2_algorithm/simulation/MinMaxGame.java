@@ -47,7 +47,7 @@
 //</ul>
 //
 //<div><li>👍 19</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
 // 2293.极大极小游戏
 // 开题时间：2023-01-15 08:50:43

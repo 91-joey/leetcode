@@ -39,7 +39,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li><li>排序</li></div></div><br><div><li>👍 649</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 977.有序数组的平方
 // 开题时间：2022-10-28 08:56:00

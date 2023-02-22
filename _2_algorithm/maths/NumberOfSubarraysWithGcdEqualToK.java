@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 19</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 2447.最大公因数等于 K 的子数组数目
 // 开题时间：2022-11-16 09:09:00

@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 742</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 74.搜索二维矩阵
 // 开题时间：2022-11-27 21:40:51

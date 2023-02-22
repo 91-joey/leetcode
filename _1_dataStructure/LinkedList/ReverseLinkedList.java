@@ -41,9 +41,9 @@
 //<p><strong>进阶：</strong>链表可以选用迭代或递归方式完成反转。你能否用两种方法解决这道题？</p>
 //
 //<div><div>Related Topics</div><div><li>递归</li><li>链表</li></div></div><br><div><li>👍 2725</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.LinkedList;
+package _1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 // 206.反转链表
 // 开题时间：2022-08-29 11:33:22

@@ -51,7 +51,7 @@
 //<p><strong>进阶：</strong>你可以设计实现一个时间复杂度为 <code>O(m + n)</code> 的算法解决此问题吗？</p>
 //
 //<div><li>👍 1639</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 88.合并两个有序数组
 // 开题时间：2022-11-12 15:16:47

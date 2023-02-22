@@ -31,9 +31,9 @@
 //</ul>
 //
 //<div><li>👍 1785</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 // 124.二叉树中的最大路径和
 // 开题时间：2022-11-18 15:10:32

@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><li>👍 1918</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 import java.util.Arrays;
 import java.util.stream.Stream;

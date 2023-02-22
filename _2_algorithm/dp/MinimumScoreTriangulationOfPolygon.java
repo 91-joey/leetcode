@@ -51,7 +51,7 @@
 //</ul>
 //
 //<div><li>👍 126</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 1039.多边形三角剖分的最低得分
 // 开题时间：2022-12-22 15:01:58

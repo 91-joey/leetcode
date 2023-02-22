@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>字符串</li></div></div><br><div><li>👍 79</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 import java.util.List;
 

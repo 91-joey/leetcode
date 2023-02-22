@@ -1,9 +1,9 @@
-package org.example.leetcode.problems._2_algorithm.sort.algorithm.others;
+package _2_algorithm.sort.algorithm.others;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.n.Count;
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _2_algorithm.sort.algorithm.n.Count;
+import _3_common.tool.Tools;
 
-import static org.example.leetcode.problems._2_algorithm.sort.algorithm.n.Count.count;
+import static _2_algorithm.sort.algorithm.n.Count.count;
 
 /*
  * 意大利面排序（相当于最后倒序遍历的伪计数排序）

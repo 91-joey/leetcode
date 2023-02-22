@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 27. 移除元素
 public class RemoveElement {

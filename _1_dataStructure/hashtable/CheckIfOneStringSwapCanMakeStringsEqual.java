@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 97</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 // 1790.仅执行一次字符串交换能否使两个字符串相等
 // 开题时间：2022-12-04 12:26:20

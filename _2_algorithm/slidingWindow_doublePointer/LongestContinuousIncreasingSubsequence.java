@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li></div></div><br><div><li>👍 330</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 674.最长连续递增序列
 // 开题时间：2022-10-01 11:39:08

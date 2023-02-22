@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>贪心</li><li>数组</li><li>双指针</li></div></div><br><div><li>👍 3849</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 11.盛最多水的容器
 // 开题时间：2022-10-22 11:57:45

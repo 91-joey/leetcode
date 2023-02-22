@@ -43,7 +43,7 @@
 //</ul>
 //
 //<div><li>👍 117</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1486.数组异或操作
 // 开题时间：2022-11-06 09:37:51

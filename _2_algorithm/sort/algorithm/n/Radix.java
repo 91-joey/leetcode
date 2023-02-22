@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.sort.algorithm.n;
+package _2_algorithm.sort.algorithm.n;
 
 import java.util.Arrays;
 

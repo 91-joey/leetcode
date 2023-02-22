@@ -48,7 +48,7 @@
 //</ul>
 //
 //<div><li>👍 451</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 304.二维区域和检索 - 矩阵不可变
 // 开题时间：2022-12-16 16:52:02

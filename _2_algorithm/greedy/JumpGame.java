@@ -32,7 +32,7 @@
 //</ul>
 //
 //<div><li>👍 2162</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 55.跳跃游戏
 // 开题时间：2023-01-20 17:55:24

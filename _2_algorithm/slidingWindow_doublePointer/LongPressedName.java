@@ -30,7 +30,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>双指针</li><li>字符串</li></div></div><br><div><li>👍 250</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 925.长按键入
 // 开题时间：2022-10-27 15:02:46

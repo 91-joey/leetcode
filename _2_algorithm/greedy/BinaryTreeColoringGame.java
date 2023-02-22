@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 /**
  * 1145.二叉树着色游戏 <br>

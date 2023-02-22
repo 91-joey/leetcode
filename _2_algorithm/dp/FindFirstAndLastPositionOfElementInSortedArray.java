@@ -36,7 +36,7 @@
 //</ul>
 //
 //<div><li>👍 2018</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 34.在排序数组中查找元素的第一个和最后一个位置
 // 开题时间：2022-11-24 11:02:27

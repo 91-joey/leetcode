@@ -46,7 +46,7 @@
 //</ul>
 //
 //<div><li>👍 171</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.graph;
+package _1_dataStructure.graph;
 
 // 1254.统计封闭岛屿的数目
 // 开题时间：2023-01-02 10:32:15

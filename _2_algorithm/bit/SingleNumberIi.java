@@ -29,7 +29,7 @@
 //</ul>
 //
 //<div><li>👍 962</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 137.只出现一次的数字 II
 // 开题时间：2023-01-12 21:30:04

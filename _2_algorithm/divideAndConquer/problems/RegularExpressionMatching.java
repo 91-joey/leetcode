@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 3325</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 10.正则表达式匹配
 // 开题时间：2022-11-19 10:49:27

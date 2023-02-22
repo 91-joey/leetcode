@@ -25,7 +25,7 @@
 //<p>数组的数取值为 [0, 13] .</p>
 //
 //<div><li>👍 290</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort;
+package _2_algorithm.sort;
 
 import java.util.Arrays;
 import java.util.HashSet;

@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 /**
  * 861.翻转矩阵后的得分 <br>

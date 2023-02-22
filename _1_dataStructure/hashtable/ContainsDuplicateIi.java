@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>滑动窗口</li></div></div><br><div><li>👍 514</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 import java.util.HashMap;
 import java.util.HashSet;

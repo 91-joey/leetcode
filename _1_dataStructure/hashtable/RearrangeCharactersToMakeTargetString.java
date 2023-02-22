@@ -45,7 +45,7 @@
 //</ul>
 //
 //<div><li>👍 22</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 // 2287.重排字符形成目标字符串
 // 开题时间：2023-01-13 09:45:32

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
 /**
  * 79.单词搜索 <br>

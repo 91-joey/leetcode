@@ -30,7 +30,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数学</li><li>二分查找</li></div></div><br><div><li>👍 1174</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 69.x 的平方根
 // 开题时间：2022-10-28 16:27:30

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
 /**
  * 1138.字母板上的路径 <br>

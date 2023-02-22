@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>数学</li><li>双指针</li></div></div><br><div><li>👍 1059</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 import java.util.ArrayList;
 import java.util.Arrays;

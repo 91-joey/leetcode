@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 280</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 813.最大平均值和的分组
 // 开题时间：2022-11-28 11:40:06

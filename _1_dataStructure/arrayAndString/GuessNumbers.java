@@ -30,7 +30,7 @@
 //</ol>
 //
 //<div><li>👍 148</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // LCP 01.猜数字
 // 开题时间：2022-11-10 20:57:12

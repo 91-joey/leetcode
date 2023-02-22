@@ -31,9 +31,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>链表</li><li>双指针</li></div></div><br><div><li>👍 716</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 // 876.链表的中间结点
 // 开题时间：2022-10-21 18:18:24

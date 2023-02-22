@@ -49,7 +49,7 @@
 //<p><strong>进阶：</strong>您能否仅使用 <code>O(s2.length)</code> 额外的内存空间来解决它?</p>
 //
 //<div><li>👍 802</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 97.交错字符串
 // 开题时间：2022-12-13 13:31:59

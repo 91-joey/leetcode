@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 113</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 import java.util.HashMap;
 

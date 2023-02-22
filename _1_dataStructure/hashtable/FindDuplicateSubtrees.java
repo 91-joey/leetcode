@@ -40,10 +40,10 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>树</li><li>深度优先搜索</li><li>哈希表</li><li>二叉树</li></div></div><br><div><li>👍 625</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
-import org.example.leetcode.problems._3_common.entity.Entry;
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.Entry;
+import _3_common.entity.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 512</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 583.两个字符串的删除操作
 // 开题时间：2022-12-05 14:53:11

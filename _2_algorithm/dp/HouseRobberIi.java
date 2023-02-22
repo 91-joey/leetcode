@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><li>👍 1205</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 213.打家劫舍 II
 // 开题时间：2022-11-26 14:56:23

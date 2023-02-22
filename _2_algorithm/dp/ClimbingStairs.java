@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 /**
  * 70.爬楼梯 <br>

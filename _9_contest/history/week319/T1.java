@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week319;
+package _9_contest.history.week319;
 
 // 6233. 温度转换
 public class T1 {

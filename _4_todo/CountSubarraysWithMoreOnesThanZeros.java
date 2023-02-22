@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 16</li><li>👎 0</li></div>
-package org.example.leetcode.problems._4_todo;
+package _4_todo;
 
 // 2031.1 比 0 多的子数组个数
 // 开题时间：2022-11-27 15:48:23

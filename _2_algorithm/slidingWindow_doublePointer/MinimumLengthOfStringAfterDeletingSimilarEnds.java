@@ -51,7 +51,7 @@
 //</ul>
 //
 //<div><li>👍 27</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1750.删除字符串两端相同字符后的最短长度
 // 开题时间：2022-12-28 09:20:48

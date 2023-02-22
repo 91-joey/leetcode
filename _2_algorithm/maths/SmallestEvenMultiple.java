@@ -25,7 +25,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数学</li><li>数论</li></div></div><br><div><li>👍 12</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 2413.最小偶倍数
 // 开题时间：2022-11-01 14:52:44

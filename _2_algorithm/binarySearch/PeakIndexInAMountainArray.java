@@ -63,7 +63,7 @@
 //<p><strong>进阶：</strong>很容易想到时间复杂度 <code>O(n)</code> 的解决方案，你可以设计一个 <code>O(log(n))</code> 的解决方案吗？</p>
 //
 //<div><li>👍 316</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 852.山脉数组的峰顶索引
 // 开题时间：2022-11-21 10:55:51

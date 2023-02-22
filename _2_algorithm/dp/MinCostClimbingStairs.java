@@ -41,7 +41,7 @@
 //</ul>
 //
 //<div><li>👍 1082</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 746.使用最小花费爬楼梯
 // 开题时间：2022-12-24 21:46:01

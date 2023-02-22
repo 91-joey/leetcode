@@ -36,9 +36,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>广度优先搜索</li><li>数组</li><li>动态规划</li><li>矩阵</li></div></div><br><div><li>👍 745</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.ArrayDeque;
 import java.util.Arrays;

@@ -46,7 +46,7 @@
 //</ul>
 //
 //<div><li>👍 94</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.geometry;
+package _2_algorithm.geometry;
 
 // 1266.访问所有点的最小时间
 // 开题时间：2023-01-07 12:14:28

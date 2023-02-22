@@ -73,7 +73,7 @@
 //</ul>
 //
 //<div><li>👍 93</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 1774.最接近目标价格的甜点成本
 // 开题时间：2022-12-04 14:43:13

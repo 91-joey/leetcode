@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.entity;
+package _3_common.entity;
 
 public class Entry<K, V> {
   public K key;

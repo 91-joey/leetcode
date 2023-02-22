@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.prefix_sum;
+package _2_algorithm.prefix_sum;
 
 import java.util.Arrays;
 

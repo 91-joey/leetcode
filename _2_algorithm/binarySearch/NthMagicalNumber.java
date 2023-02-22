@@ -33,7 +33,7 @@
 //<p>&nbsp;</p>
 //
 //<div><li>👍 120</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 878.第 N 个神奇数字
 // 开题时间：2022-11-22 08:38:56

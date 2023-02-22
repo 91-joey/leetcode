@@ -47,7 +47,7 @@
 //</ul>
 //
 //<div><li>👍 310</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

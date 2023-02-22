@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week324;
+package _9_contest.history.week324;
 
 // 6266. Smallest Value After Replacing With Sum of Prime Factors
 public class T2 {

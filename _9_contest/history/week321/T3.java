@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._9_contest.history.week321;
+package _9_contest.history.week321;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 import java.util.LinkedList;
 

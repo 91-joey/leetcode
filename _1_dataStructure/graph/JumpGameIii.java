@@ -43,7 +43,7 @@
 //</ul>
 //
 //<div><li>👍 136</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.graph;
+package _1_dataStructure.graph;
 
 import java.util.LinkedList;
 import java.util.Queue;

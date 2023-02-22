@@ -1,4 +1,4 @@
-package org.example.leetcode.problems.markov;
+package markov;
 
 import java.io.BufferedReader;
 import java.io.IOException;

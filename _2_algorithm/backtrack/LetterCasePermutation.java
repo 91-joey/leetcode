@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.backtrack;
+package _2_algorithm.backtrack;
 
 import java.util.ArrayList;
 import java.util.Arrays;

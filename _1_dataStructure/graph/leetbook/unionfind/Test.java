@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._1_dataStructure.graph.leetbook.unionfind;
+package _1_dataStructure.graph.leetbook.unionfind;
 
-import org.example.leetcode.problems._3_common.entity.graph.UnionFind;
+import _3_common.entity.graph.UnionFind;
 
 public class Test {
   public static void main(String[] args) throws Exception {

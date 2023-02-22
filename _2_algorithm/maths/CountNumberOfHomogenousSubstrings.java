@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 37</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1759.统计同构子字符串的数目
 // 开题时间：2022-12-26 11:14:02

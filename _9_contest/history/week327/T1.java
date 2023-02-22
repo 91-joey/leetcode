@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week327;
+package _9_contest.history.week327;
 
 // 6283. Maximum Count of Positive Integer and Negative Integer
 public class T1 {

@@ -55,7 +55,7 @@
 //</ul>
 //
 //<div><li>👍 89</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 import java.util.Arrays;
 

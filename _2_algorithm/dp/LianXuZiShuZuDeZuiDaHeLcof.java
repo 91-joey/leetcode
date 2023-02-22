@@ -24,7 +24,7 @@
 //<p>&nbsp;</p>
 //
 //<div><li>👍 628</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 剑指 Offer 42.连续子数组的最大和
 // 开题时间：2022-12-19 09:58:26

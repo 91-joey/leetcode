@@ -46,7 +46,7 @@
 //</ul>
 //
 //<div><li>👍 650</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 292.Nim 游戏
 // 开题时间：2023-01-18 15:47:06

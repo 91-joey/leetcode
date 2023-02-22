@@ -47,7 +47,7 @@
 //</ul>
 //
 //<div><li>👍 31</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 import java.util.Arrays;
 

@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 2706</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 72.编辑距离
 // 开题时间：2022-12-13 11:02:45

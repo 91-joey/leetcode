@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><li>👍 58</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1758.生成交替二进制字符串的最少操作数
 // 开题时间：2022-11-29 09:55:25

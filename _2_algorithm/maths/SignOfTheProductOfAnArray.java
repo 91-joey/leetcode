@@ -46,7 +46,7 @@
 //</ul>
 //
 //<div><li>👍 84</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1822.数组元素积的符号
 // 开题时间：2022-12-04 11:50:34

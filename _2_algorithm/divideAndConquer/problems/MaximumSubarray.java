@@ -40,7 +40,7 @@
 //<p><strong>进阶：</strong>如果你已经实现复杂度为 <code>O(n)</code> 的解法，尝试使用更为精妙的 <strong>分治法</strong> 求解。</p>
 //
 //<div><li>👍 5433</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 53.最大子数组和
 // 开题时间：2022-11-11 18:32:53

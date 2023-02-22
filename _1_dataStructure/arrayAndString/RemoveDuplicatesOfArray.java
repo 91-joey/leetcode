@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 26. 删除有序数组中的重复项
 public class RemoveDuplicatesOfArray {

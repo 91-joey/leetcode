@@ -45,7 +45,7 @@
 //</ul>
 //
 //<div><li>👍 63</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1572.矩阵对角线元素的和
 // 开题时间：2022-12-07 09:12:55

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 /**
  * 1394.找出数组中的幸运数 <br>

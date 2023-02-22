@@ -36,9 +36,9 @@
 //</ul>
 //
 //<div><li>👍 346</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.tree.BST;
+package _1_dataStructure.tree.BST;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 // 700.二叉搜索树中的搜索
 // 开题时间：2022-12-10 11:11:53

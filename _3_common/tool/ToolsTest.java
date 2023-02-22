@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.tool;
+package _3_common.tool;
 
 import org.junit.Test;
 

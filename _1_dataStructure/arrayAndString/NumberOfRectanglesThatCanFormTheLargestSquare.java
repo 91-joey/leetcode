@@ -36,7 +36,7 @@
 //</ul>
 //
 //<div><li>👍 58</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1725.可以形成最大正方形的矩形数目
 // 开题时间：2022-11-24 17:00:01

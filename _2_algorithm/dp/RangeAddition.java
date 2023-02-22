@@ -26,7 +26,7 @@
 //</pre>
 //
 //<div><li>👍 148</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 370.区间加法
 // 开题时间：2022-12-20 11:31:26

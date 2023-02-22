@@ -32,7 +32,7 @@
 //</ul>
 //
 //<div><li>👍 1852</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 152.乘积最大子数组
 // 开题时间：2022-11-22 18:14:56

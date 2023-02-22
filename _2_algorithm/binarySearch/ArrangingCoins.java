@@ -29,7 +29,7 @@
 //</ul>
 //
 //<div><li>👍 251</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 441.排列硬币
 // 开题时间：2022-11-25 13:42:48

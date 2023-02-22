@@ -49,7 +49,7 @@
 //</ul>
 //
 //<div><li>👍 1126</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 338.比特位计数
 // 开题时间：2022-12-06 17:30:01

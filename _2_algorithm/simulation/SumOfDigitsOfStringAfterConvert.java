@@ -48,7 +48,7 @@
 //</ul>
 //
 //<div><li>👍 18</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
 // 1945.字符串转化后的各位数字之和
 // 开题时间：2022-12-15 07:52:06

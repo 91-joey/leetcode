@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 2677</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 121.买卖股票的最佳时机
 // 开题时间：2022-11-30 08:51:40

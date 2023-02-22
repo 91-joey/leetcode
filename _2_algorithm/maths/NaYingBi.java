@@ -26,7 +26,7 @@
 //</ul>
 //
 //<div><li>👍 56</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // LCP 06.拿硬币
 // 开题时间：2022-11-14 15:41:12

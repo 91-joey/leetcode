@@ -25,7 +25,7 @@
 //</ul>
 //
 //<div><li>👍 195</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 504.七进制数
 // 开题时间：2023-01-03 17:57:14

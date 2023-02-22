@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 28</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.geometry;
+package _2_algorithm.geometry;
 
 import java.util.Arrays;
 import java.util.Comparator;

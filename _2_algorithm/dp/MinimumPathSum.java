@@ -31,9 +31,9 @@
 //</ul>
 //
 //<div><li>👍 1402</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 // 64.最小路径和
 // 开题时间：2022-12-13 16:14:13

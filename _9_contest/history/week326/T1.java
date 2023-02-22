@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week326;
+package _9_contest.history.week326;
 
 // 6278. Count the Digits That Divide a Number
 public class T1 {

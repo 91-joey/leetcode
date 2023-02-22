@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><li>👍 75</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1309.解码字母到整数映射
 // 开题时间：2022-12-09 09:15:17

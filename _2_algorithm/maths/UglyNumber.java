@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 359</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 263.丑数
 // 开题时间：2022-12-15 15:52:13

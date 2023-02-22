@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>设计</li><li>队列</li><li>数组</li><li>数据流</li></div></div><br><div><li>👍 89</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
 import java.util.LinkedList;
 import java.util.Queue;

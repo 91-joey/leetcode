@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 10</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 6234.最小公倍数为 K 的子数组数目
 // 开题时间：2022-11-14 08:53:37

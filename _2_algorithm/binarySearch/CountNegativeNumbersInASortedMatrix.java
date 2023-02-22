@@ -33,7 +33,7 @@
 //<p><strong>进阶：</strong>你可以设计一个时间复杂度为 <code>O(n + m)</code> 的解决方案吗？</p>
 //
 //<div><li>👍 123</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 1351.统计有序矩阵中的负数
 // 开题时间：2022-11-27 10:18:52

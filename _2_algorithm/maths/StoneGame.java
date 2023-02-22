@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><li>👍 471</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 877.石子游戏
 // 开题时间：2023-01-18 18:07:32

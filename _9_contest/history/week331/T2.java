@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week331;
+package _9_contest.history.week331;
 
 // 6347. Count Vowel Strings in Ranges
 public class T2 {

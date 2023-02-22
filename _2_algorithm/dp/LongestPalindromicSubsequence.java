@@ -30,7 +30,7 @@
 //</ul>
 //
 //<div><li>👍 917</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 516.最长回文子序列
 // 开题时间：2022-12-20 15:55:23

@@ -36,7 +36,7 @@
 //<p><strong>进阶：</strong>如果行数远大于列数，该如何设计解决方案？</p>
 //
 //<div><li>👍 430</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 import java.util.TreeSet;
 

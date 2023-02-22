@@ -23,7 +23,7 @@
 //</ol>
 //
 //<div><li>👍 198</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer;
+package _2_algorithm.divideAndConquer;
 
 import java.util.Deque;
 import java.util.LinkedList;

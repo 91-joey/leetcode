@@ -56,7 +56,7 @@
 //</ul>
 //
 //<div><li>👍 138</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bfs;
+package _2_algorithm.bfs;
 
 import java.util.HashSet;
 import java.util.LinkedList;

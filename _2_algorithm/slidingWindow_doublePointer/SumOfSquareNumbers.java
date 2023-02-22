@@ -26,7 +26,7 @@
 //</ul>
 //
 //<div><li>👍 403</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 633.平方数之和
 // 开题时间：2022-11-29 11:13:38

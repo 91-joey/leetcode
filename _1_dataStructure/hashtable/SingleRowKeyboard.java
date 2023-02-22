@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 23</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 // 1165.单行键盘
 // 开题时间：2022-11-17 15:57:39

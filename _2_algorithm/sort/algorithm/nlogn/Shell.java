@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn;
+package _2_algorithm.sort.algorithm.nlogn;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 // 希尔排序
 public class Shell {

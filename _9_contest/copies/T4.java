@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.copies;
+package _9_contest.copies;
 
 //
 public class T4 {

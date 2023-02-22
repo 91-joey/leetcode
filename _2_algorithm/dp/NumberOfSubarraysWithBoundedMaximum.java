@@ -30,7 +30,7 @@
 //</ul>
 //
 //<div><li>👍 217</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 795.区间子数组个数
 // 开题时间：2022-11-24 08:53:57

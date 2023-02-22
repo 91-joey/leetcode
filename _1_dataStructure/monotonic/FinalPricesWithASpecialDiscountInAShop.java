@@ -40,7 +40,7 @@
 //</ul>
 //
 //<div><li>👍 177</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.monotonic;
+package _1_dataStructure.monotonic;
 
 import java.util.Deque;
 import java.util.LinkedList;

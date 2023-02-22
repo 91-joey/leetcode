@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.lccup22.personal;
+package _9_contest.history.lccup22.personal;
 
 // LCP 61. 气温变化趋势
 public class TemperatureTrend {

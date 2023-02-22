@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
-import org.example.leetcode.problems._3_common.entity.tree.nAryTree.Node;
+import _3_common.entity.tree.nAryTree.Node;
 
 import java.util.ArrayList;
 import java.util.List;

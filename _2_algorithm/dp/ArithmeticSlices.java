@@ -39,7 +39,7 @@
 //</ul>
 //
 //<div><li>👍 493</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 413.等差数列划分
 // 开题时间：2022-12-02 16:08:17

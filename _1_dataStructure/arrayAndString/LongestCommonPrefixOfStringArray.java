@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 public class LongestCommonPrefixOfStringArray {
   //    1.自解(横向扫描)

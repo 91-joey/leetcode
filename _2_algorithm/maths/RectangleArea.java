@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 221</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 223.矩形面积
 // 开题时间：2023-01-17 11:19:32

@@ -65,7 +65,7 @@
 //</ul>
 //
 //<div><li>👍 55</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 1605.给定行和列的和求可行矩阵
 // 开题时间：2023-01-25 17:55:11

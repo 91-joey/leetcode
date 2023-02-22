@@ -30,7 +30,7 @@
 //</ul>
 //
 //<div><li>👍 28</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort;
+package _2_algorithm.sort;
 
 // 1796.字符串中第二大的数字
 // 开题时间：2022-12-03 11:01:21

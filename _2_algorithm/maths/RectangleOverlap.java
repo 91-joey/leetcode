@@ -39,7 +39,7 @@
 //</ul>
 //
 //<div><li>👍 276</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 836.矩形重叠
 // 开题时间：2023-01-16 21:24:25

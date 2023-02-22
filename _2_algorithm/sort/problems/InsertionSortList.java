@@ -46,9 +46,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>链表</li><li>排序</li></div></div><br><div><li>👍 548</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort.problems;
+package _2_algorithm.sort.problems;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 import java.util.HashMap;
 import java.util.Map;

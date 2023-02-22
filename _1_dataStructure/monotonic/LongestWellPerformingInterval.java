@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.monotonic;
+package _1_dataStructure.monotonic;
 
 import java.util.Arrays;
 import java.util.HashMap;

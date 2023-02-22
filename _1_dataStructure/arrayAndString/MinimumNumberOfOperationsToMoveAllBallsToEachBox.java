@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 40</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1769.移动所有球到每个盒子所需的最小操作数
 // 开题时间：2022-12-02 08:46:40

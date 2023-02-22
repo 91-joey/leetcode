@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 828</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 714.买卖股票的最佳时机含手续费
 // 开题时间：2022-12-12 07:32:51

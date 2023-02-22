@@ -36,9 +36,9 @@
 //</ul>
 //
 //<div><li>👍 783</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 import java.util.ArrayList;
 import java.util.LinkedList;

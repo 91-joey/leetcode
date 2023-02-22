@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week329;
+package _9_contest.history.week329;
 
 // 2546. Apply Bitwise Operations to Make Strings Equal
 public class T3 {

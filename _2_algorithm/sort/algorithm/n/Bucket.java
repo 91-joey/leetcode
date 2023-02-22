@@ -1,7 +1,7 @@
-package org.example.leetcode.problems._2_algorithm.sort.algorithm.n;
+package _2_algorithm.sort.algorithm.n;
 
-import org.example.leetcode.problems._2_algorithm.sort.algorithm.nlogn.Merge;
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _2_algorithm.sort.algorithm.nlogn.Merge;
+import _3_common.tool.Tools;
 
 import java.util.Arrays;
 /*

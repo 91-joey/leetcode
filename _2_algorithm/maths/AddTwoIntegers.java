@@ -27,7 +27,7 @@
 //</ul>
 //
 //<div><li>👍 80</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 2235.两整数相加
 // 开题时间：2022-11-05 08:31:52

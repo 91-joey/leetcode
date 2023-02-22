@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 import java.util.Arrays;
 import java.util.LinkedList;

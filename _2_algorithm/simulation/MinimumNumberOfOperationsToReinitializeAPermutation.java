@@ -49,7 +49,7 @@
 //</ul>
 //
 //<div><li>👍 43</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
 // 1806.还原排列的最少操作步数
 // 开题时间：2023-01-09 09:37:51

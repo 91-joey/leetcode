@@ -32,7 +32,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>二分查找</li><li>交互</li></div></div><br><div><li>👍 815</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 278.第一个错误的版本
 // 开题时间：2022-10-29 11:11:48

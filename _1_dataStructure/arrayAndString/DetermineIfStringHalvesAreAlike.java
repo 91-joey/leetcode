@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 25</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1704.判断字符串的两半是否相似
 // 开题时间：2022-11-11 08:39:46

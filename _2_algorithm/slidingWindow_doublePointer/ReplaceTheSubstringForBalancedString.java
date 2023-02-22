@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 /**
  * 1234.替换子串得到平衡字符串 <br>

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.design;
+package _1_dataStructure.design;
 
 import java.util.HashMap;
 

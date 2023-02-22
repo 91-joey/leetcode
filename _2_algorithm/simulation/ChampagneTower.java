@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 149</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.simulation;
+package _2_algorithm.simulation;
 
 // 799.香槟塔
 // 开题时间：2022-11-20 09:17:38

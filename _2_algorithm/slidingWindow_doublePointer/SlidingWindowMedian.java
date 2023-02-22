@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>哈希表</li><li>滑动窗口</li><li>堆（优先队列）</li></div></div><br><div><li>👍 395</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 import java.util.Arrays;
 import java.util.Comparator;

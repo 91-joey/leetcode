@@ -38,7 +38,7 @@
 //</ul>
 //
 //<div><li>👍 21</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.hashtable;
+package _1_dataStructure.hashtable;
 
 // 2283.判断一个数的数字计数是否等于数位的值
 // 开题时间：2023-01-11 09:39:06

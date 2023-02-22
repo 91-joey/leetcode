@@ -54,7 +54,7 @@
 //</ul>
 //
 //<div><li>👍 535</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 191.位1的个数
 // 开题时间：2022-12-02 09:51:18

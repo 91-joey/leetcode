@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._9_contest.history.week328;
+package _9_contest.history.week328;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.ArrayList;
 import java.util.Arrays;

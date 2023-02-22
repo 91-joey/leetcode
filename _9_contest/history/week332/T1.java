@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week332;
+package _9_contest.history.week332;
 
 // 6354. Find the Array Concatenation Value
 public class T1 {

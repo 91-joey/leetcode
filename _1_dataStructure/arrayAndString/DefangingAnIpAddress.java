@@ -25,7 +25,7 @@
 //</ul>
 //
 //<div><li>👍 122</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1108.IP 地址无效化
 // 开题时间：2022-11-07 08:51:57

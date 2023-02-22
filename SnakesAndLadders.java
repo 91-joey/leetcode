@@ -1,6 +1,4 @@
-package org.example.leetcode.problems;
-
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.LinkedList;
 

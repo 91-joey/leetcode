@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week325;
+package _9_contest.history.week325;
 
 // 6269. Shortest Distance to Target String in a Circular Array
 public class T1 {

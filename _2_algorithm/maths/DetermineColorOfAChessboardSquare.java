@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 21</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1812.判断国际象棋棋盘中一个格子的颜色
 // 开题时间：2022-12-08 08:51:48

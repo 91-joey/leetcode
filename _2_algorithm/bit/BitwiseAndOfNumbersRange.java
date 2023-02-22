@@ -32,7 +32,7 @@
 //</ul>
 //
 //<div><li>👍 426</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 201.数字范围按位与
 // 开题时间：2023-01-12 18:28:10

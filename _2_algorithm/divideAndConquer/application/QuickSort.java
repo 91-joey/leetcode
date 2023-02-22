@@ -1,9 +1,9 @@
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.application;
+package _2_algorithm.divideAndConquer.application;
 
 import java.util.Random;
 
-import static org.example.leetcode.problems._3_common.tool.Tools.sortHard;
-import static org.example.leetcode.problems._3_common.tool.Tools.swap;
+import static _3_common.tool.Tools.sortHard;
+import static _3_common.tool.Tools.swap;
 
 public class QuickSort {
   public static void main(String[] args) {

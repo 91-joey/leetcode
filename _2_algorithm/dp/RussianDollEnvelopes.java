@@ -31,9 +31,9 @@
 //</ul>
 //
 //<div><li>👍 834</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.Arrays;
 import java.util.Comparator;

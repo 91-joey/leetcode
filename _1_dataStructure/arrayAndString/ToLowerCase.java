@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 220</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 709.转换成小写字母
 // 开题时间：2022-12-09 10:31:59

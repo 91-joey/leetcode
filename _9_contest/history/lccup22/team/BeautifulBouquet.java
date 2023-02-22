@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.lccup22.team;
+package _9_contest.history.lccup22.team;
 
 // LCP 68. 美观的花束
 public class BeautifulBouquet {

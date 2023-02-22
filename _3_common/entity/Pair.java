@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.entity;
+package _3_common.entity;
 
 /*
  * Copyright (c) 2010, 2015, Oracle and/or its affiliates. All rights reserved.

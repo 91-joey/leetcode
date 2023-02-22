@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><li>👍 16</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 import java.util.Arrays;
 

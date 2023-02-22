@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 420</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 801.使序列递增的最小交换次数
 // 开题时间：2022-12-07 12:17:09

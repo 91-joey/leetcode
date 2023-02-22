@@ -56,9 +56,9 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>链表</li></div></div><br><div><li>👍 978</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.LinkedList;
+package _1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.Node;
+import _3_common.entity.linkedlist.Node;
 
 import java.util.ArrayList;
 import java.util.HashMap;

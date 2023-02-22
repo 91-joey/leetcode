@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>哈希表</li><li>字符串</li><li>滑动窗口</li></div></div><br><div><li>👍 8239</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 3.无重复字符的最长子串
 // 开题时间：2022-10-06 08:39:41

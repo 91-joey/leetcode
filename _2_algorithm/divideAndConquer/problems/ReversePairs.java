@@ -24,7 +24,7 @@
 //</ol>
 //
 //<div><li>👍 383</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 493.翻转对
 // 开题时间：2022-11-11 17:09:47

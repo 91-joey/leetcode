@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 /**
  * 2319.判断矩阵是否是一个 X 矩阵 <br>

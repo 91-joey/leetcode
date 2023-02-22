@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.lccup22.team;
+package _9_contest.history.lccup22.team;
 
 import java.util.Arrays;
 import java.util.HashMap;

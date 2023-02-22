@@ -39,7 +39,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>字符串</li><li>字符串匹配</li></div></div><br><div><li>👍 63</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1668.最大重复子字符串
 // 开题时间：2022-11-03 10:31:16

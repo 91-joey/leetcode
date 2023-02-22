@@ -34,10 +34,10 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>设计</li><li>链表</li></div></div><br><div><li>👍 539</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.LinkedList;
+package _1_dataStructure.LinkedList;
 
-import org.example.leetcode.problems._3_common.entity.linkedlist.DoublyListNode;
-import org.example.leetcode.problems._3_common.entity.linkedlist.ListNode;
+import _3_common.entity.linkedlist.DoublyListNode;
+import _3_common.entity.linkedlist.ListNode;
 
 // 707.设计链表
 // 开题时间：2022-08-26 12:21:24

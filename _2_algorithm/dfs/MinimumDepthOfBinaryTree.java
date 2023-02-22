@@ -1,7 +1,7 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.entity.tree.TreeNode;
+import _3_common.tool.Tools;
 
 /**
  * 111.二叉树的最小深度 <br>

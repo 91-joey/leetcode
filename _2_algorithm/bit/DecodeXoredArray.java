@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 106</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 1720.解码异或后的数组
 // 开题时间：2022-11-05 08:51:32

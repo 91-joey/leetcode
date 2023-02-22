@@ -34,7 +34,7 @@
 //<p>注意：本题与主站 154 题相同：<a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/">https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/</a></p>
 //
 //<div><li>👍 734</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 剑指 Offer 11.旋转数组的最小数字
 // 开题时间：2022-12-30 09:31:36

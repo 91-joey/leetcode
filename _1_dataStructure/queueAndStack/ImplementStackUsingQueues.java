@@ -53,7 +53,7 @@
 //<p><strong>进阶：</strong>你能否仅用一个队列来实现栈。</p>
 //
 //<div><div>Related Topics</div><div><li>栈</li><li>设计</li><li>队列</li></div></div><br><div><li>👍 569</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
 import java.util.ArrayDeque;
 import java.util.Queue;

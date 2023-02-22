@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 153</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 1310.子数组异或查询
 // 开题时间：2022-12-19 20:36:18

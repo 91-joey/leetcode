@@ -57,9 +57,9 @@
 //</ul>
 //
 //<div><li>👍 45</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.heap;
+package _1_dataStructure.heap;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 import java.util.Comparator;
 import java.util.List;

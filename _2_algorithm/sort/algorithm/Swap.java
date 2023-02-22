@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.sort.algorithm;
+package _2_algorithm.sort.algorithm;
 
 public class Swap {
   

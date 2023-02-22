@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 86</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 import java.util.Arrays;
 

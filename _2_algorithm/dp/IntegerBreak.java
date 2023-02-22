@@ -27,7 +27,7 @@
 //</ul>
 //
 //<div><li>👍 1000</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 343.整数拆分
 // 开题时间：2022-12-16 11:49:13

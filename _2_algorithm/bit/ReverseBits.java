@@ -38,7 +38,7 @@
 //<p><strong>进阶</strong>: 如果多次调用这个函数，你将如何优化你的算法？</p>
 //
 //<div><li>👍 588</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.bit;
+package _2_algorithm.bit;
 
 // 190.颠倒二进制位
 // 开题时间：2023-01-05 17:16:44

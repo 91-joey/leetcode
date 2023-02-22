@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.biweek96;
+package _9_contest.history.biweek96;
 
 // 2543. Check if Point Is Reachable
 public class T4 {

@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><li>👍 65</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1678.设计 Goal 解析器
 // 开题时间：2022-11-06 17:51:37

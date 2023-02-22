@@ -53,7 +53,7 @@
 //</ul>
 //
 //<div><li>👍 84</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 1450.在既定时间做作业的学生人数
 // 开题时间：2023-01-07 17:56:56

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week305;
+package _9_contest.history.week305;
 
 // 6136. 算术三元组的数目 (第 305 场周赛_题1)
 public class ArithmeticTriplets {

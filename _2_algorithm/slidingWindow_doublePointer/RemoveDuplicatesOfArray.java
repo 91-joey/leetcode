@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 26. 删除有序数组中的重复项
 public class RemoveDuplicatesOfArray {

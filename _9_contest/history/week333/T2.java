@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week333;
+package _9_contest.history.week333;
 
 // 2571. Minimum Operations to Reduce an Integer to 0
 public class T2 {

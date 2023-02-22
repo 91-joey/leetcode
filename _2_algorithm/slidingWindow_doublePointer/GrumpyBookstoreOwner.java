@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>滑动窗口</li></div></div><br><div><li>👍 238</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1052.爱生气的书店老板
 // 开题时间：2022-10-02 17:33:40

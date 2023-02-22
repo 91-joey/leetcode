@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._3_common.entity.tree.nAryTree;
+package _3_common.entity.tree.nAryTree;
 
 import java.util.List;
 

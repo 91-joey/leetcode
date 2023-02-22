@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.sort.algorithm.nn;
+package _2_algorithm.sort.algorithm.nn;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 // 不稳定
 public class Selection {

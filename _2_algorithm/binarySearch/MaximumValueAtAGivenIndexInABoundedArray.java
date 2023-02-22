@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><li>👍 122</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 1802.有界数组中指定下标处的最大值
 // 开题时间：2023-01-04 17:36:39

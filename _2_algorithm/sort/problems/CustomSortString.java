@@ -34,7 +34,7 @@
 //</ul>
 //
 //<div><li>👍 128</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort.problems;
+package _2_algorithm.sort.problems;
 
 import java.util.ArrayList;
 import java.util.Arrays;

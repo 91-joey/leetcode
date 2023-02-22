@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>递归</li><li>数学</li></div></div><br><div><li>👍 1067</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 50.Pow(x, n)
 // 开题时间：2022-11-02 13:34:24

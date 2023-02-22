@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 1037</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 647.回文子串
 // 开题时间：2022-12-20 14:33:11

@@ -1,6 +1,4 @@
-package org.example.leetcode.problems;
-
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.List;

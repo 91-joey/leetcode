@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><li>👍 111</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.maths;
+package _2_algorithm.maths;
 
 // 1227.飞机座位分配概率
 // 开题时间：2023-01-16 10:31:37

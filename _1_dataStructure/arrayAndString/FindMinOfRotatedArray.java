@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.arrayAndString;
+package _1_dataStructure.arrayAndString;
 
 // 153. 寻找旋转排序数组中的最小值
 public class FindMinOfRotatedArray {

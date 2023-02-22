@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 32</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1813.句子相似性 III
 // 开题时间：2023-01-16 08:20:24

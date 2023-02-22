@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
 /**
  * 529.扫雷游戏 <br>

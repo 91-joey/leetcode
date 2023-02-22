@@ -29,7 +29,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li><li>前缀和</li><li>滑动窗口</li></div></div><br><div><li>👍 477</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1004.最大连续1的个数 III
 // 开题时间：2022-10-07 11:52:00

@@ -45,7 +45,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>位运算</li><li>队列</li><li>数组</li><li>前缀和</li><li>滑动窗口</li></div></div><br><div><li>👍 252</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 import java.util.LinkedList;
 

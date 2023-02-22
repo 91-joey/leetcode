@@ -28,7 +28,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>滑动窗口</li></div></div><br><div><li>👍 611</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 713.乘积小于 K 的子数组
 // 开题时间：2022-10-14 17:38:56

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._2_algorithm.dfs;
+package _2_algorithm.dfs;
 
 import java.util.ArrayList;
 import java.util.Arrays;

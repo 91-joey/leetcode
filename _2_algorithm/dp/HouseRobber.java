@@ -31,7 +31,7 @@
 //</ul>
 //
 //<div><li>👍 2357</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 198.打家劫舍
 // 开题时间：2022-11-24 18:41:16

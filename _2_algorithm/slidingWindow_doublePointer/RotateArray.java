@@ -48,7 +48,7 @@
 //</ul>
 //
 //<div><li>👍 1691</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 189.轮转数组
 // 开题时间：2023-01-20 09:29:36

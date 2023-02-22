@@ -42,7 +42,7 @@
 //</ul>
 //
 //<div><li>👍 36</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.greedy;
+package _2_algorithm.greedy;
 
 // 1827.最少操作使数组递增
 // 开题时间：2022-12-11 09:06:14

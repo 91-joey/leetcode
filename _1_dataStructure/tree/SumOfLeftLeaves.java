@@ -31,9 +31,9 @@
 //<p>&nbsp;</p>
 //
 //<div><li>👍 527</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.tree;
+package _1_dataStructure.tree;
 
-import org.example.leetcode.problems._3_common.entity.tree.TreeNode;
+import _3_common.entity.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.Queue;

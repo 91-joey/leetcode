@@ -44,7 +44,7 @@
 //</ul>
 //
 //<div><li>👍 1177</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 1143.最长公共子序列
 // 开题时间：2022-12-06 16:23:26

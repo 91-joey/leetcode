@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.graph.leetbook.unionfind;
+package _1_dataStructure.graph.leetbook.unionfind;
 
 // 优化的「QuickUnion并查集」
 public class QuickUnionOpt extends QuickUnion {

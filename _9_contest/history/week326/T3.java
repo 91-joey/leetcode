@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week326;
+package _9_contest.history.week326;
 
 // 6196. Partition String Into Substrings With Values at Most K
 public class T3 {

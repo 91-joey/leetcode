@@ -33,7 +33,7 @@
 //</ul>
 //
 //<div><li>👍 304</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.dp;
+package _2_algorithm.dp;
 
 // 712.两个字符串的最小ASCII删除和
 // 开题时间：2022-12-12 08:36:19

@@ -52,7 +52,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>双指针</li></div></div><br><div><li>👍 730</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 80.删除有序数组中的重复项 II
 // 开题时间：2022-10-01 14:02:59

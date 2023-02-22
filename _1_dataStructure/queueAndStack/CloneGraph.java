@@ -69,9 +69,9 @@
 //</ol>
 //
 //<div><div>Related Topics</div><div><li>深度优先搜索</li><li>广度优先搜索</li><li>图</li><li>哈希表</li></div></div><br><div><li>👍 530</li><li>👎 0</li></div>
-package org.example.leetcode.problems._1_dataStructure.queueAndStack;
+package _1_dataStructure.queueAndStack;
 
-import org.example.leetcode.problems._3_common.entity.graph.Node;
+import _3_common.entity.graph.Node;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;

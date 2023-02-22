@@ -35,7 +35,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>二分查找</li></div></div><br><div><li>👍 920</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.binarySearch;
+package _2_algorithm.binarySearch;
 
 // 162.寻找峰值
 // 开题时间：2022-10-29 12:11:28

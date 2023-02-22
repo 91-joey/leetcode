@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week330;
+package _9_contest.history.week330;
 
 // 2552. Count Increasing Quadruplets
 public class T4 {

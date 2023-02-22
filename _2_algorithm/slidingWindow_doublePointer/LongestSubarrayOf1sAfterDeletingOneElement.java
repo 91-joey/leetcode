@@ -37,7 +37,7 @@
 //</ul>
 //
 //<div><div>Related Topics</div><div><li>数组</li><li>动态规划</li><li>滑动窗口</li></div></div><br><div><li>👍 65</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.slidingWindow_doublePointer;
+package _2_algorithm.slidingWindow_doublePointer;
 
 // 1493.删掉一个元素以后全为 1 的最长子数组
 // 开题时间：2022-10-09 08:58:38

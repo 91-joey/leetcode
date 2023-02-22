@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._1_dataStructure.graph.leetbook.storage_of_graph;
+package _1_dataStructure.graph.leetbook.storage_of_graph;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.example.leetcode.problems._9_contest.history.week322;
+package _9_contest.history.week322;
 
 // 6253. Circular Sentence
 public class T1 {

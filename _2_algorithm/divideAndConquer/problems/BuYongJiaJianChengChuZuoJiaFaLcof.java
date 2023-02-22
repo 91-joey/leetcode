@@ -17,7 +17,7 @@
 //</ul>
 //
 //<div><li>👍 358</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.divideAndConquer.problems;
+package _2_algorithm.divideAndConquer.problems;
 
 // 剑指 Offer 65.不用加减乘除做加法
 // 开题时间：2022-11-10 14:37:46

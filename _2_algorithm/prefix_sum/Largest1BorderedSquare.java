@@ -1,6 +1,6 @@
-package org.example.leetcode.problems._2_algorithm.prefix_sum;
+package _2_algorithm.prefix_sum;
 
-import org.example.leetcode.problems._3_common.tool.Tools;
+import _3_common.tool.Tools;
 
 /**
  * 1139.最大的以 1 为边界的正方形 <br>

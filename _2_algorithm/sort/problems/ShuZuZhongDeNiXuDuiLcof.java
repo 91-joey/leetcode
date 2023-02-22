@@ -14,7 +14,7 @@
 //<p><code>0 &lt;= 数组长度 &lt;= 50000</code></p>
 //
 //<div><div>Related Topics</div><div><li>树状数组</li><li>线段树</li><li>数组</li><li>二分查找</li><li>分治</li><li>有序集合</li><li>归并排序</li></div></div><br><div><li>👍 853</li><li>👎 0</li></div>
-package org.example.leetcode.problems._2_algorithm.sort.problems;
+package _2_algorithm.sort.problems;
 
 // 剑指 Offer 51.数组中的逆序对
 // 开题时间：2022-09-26 06:42:46
