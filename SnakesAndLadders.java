@@ -15,6 +15,7 @@ public class SnakesAndLadders {
     System.out.println(solution.snakesAndLadders(Tools.to2DIntArray("[[-1,11,6,-1],[-1,15,16,-1],[-1,7,-1,8],[-1,-1,-1,8]]")));
     // System.out.println(solution.snakesAndLadders(Tools.to2DIntArray("[[1,1,-1],[1,1,1],[-1,1,1]]")));
     // System.out.println(solution.snakesAndLadders(Tools.to2DIntArray("[[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,-1,-1,-1,-1,-1],[-1,35,-1,-1,13,-1],[-1,-1,-1,-1,-1,-1],[-1,15,-1,-1,-1,-1]]")));
+    // test git config
   }
   
   // leetcode submit region begin(Prohibit modification and deletion)
