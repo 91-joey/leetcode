@@ -30,6 +30,7 @@
 package org.example.leetcode.problems._2_algorithm.dp;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
@@ -45,7 +46,7 @@ public class PerfectSquares {
   class Solution {
     // 1.自解（BFS）   n   sqrt(n)
     public int numSquares10(int n) {
-      //            求出<=n的最大完全平方数
+      // 求出<=n的最大完全平方数
       int start = (int) Math.sqrt(n);
       int cnt = 1;
       if (start * start == n) {
@@ -55,11 +56,11 @@ public class PerfectSquares {
       Queue<int[]> queue = new LinkedList<>();
       List<Integer> sqs = new ArrayList<>(start);
       for (int i = start; i >= 1; i--) {
-        int i2 = i * i;
-        //                存放<=最大完全平方数的平方数
-        sqs.add(i2);
-        //                存放<=最大完全平方数的平方数、初始总和
-        queue.offer(new int[]{i2, i2});
+        int sq = i * i;
+        // 存放<=最大完全平方数的平方数
+        sqs.add(sq);
+        // 存放<=最大完全平方数的平方数、初始总和
+        queue.offer(new int[]{sq, sq});
       }
       while (!queue.isEmpty()) {
         cnt++;
@@ -97,11 +98,69 @@ public class PerfectSquares {
       }
       return f[n];
     }
+  
+    public static final int[] f = new int[10001];
+  
+    static {
+      Arrays.fill(f, Integer.MAX_VALUE);
+      f[0] = 0;
+      for (int i = 1; i < 10001; i++) {
+        double sqrt = Math.sqrt(i);
+        if (sqrt == (int) sqrt) {
+          f[i] = 1;
+          continue;
+        }
+        for (int j = 1; ; j++) {
+          int pre = i - j * j;
+          if (pre < 0) {
+            break;
+          }
+          f[i] = Math.min(f[i], f[pre]);
+        }
+        f[i]++;
+      }
+    }
+  
+    // ☆☆☆☆ 静态 dp
+    public int numSquares8(int n) {
+      return f[n];
+    }
+  
+    // ☆☆☆ bfs
+    public int numSquares7(int n) {
+      LinkedList<int[]> q = new LinkedList<>();
+      boolean[] vis = new boolean[n + 1];
+      q.offer(new int[]{0, 1});
+      vis[0] = true;
     
+      int step = 0;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          int[] cur = q.poll();
+          int x = cur[0];
+          int last = cur[1];
+        
+          if (x == n) {
+            return step;
+          }
+        
+          for (int j = last; x + j * j <= n; j++) {
+            if (!vis[x + j * j]) {
+              q.offer(new int[]{x + j * j, j});
+              vis[x + j * j] = true;
+            }
+          }
+        }
+        step++;
+      }
+    
+      return -1;
+    }
+  
     /*
      * ☆☆☆☆☆ 数学（四平方和定理）
-     * 答案为 4 ：n = 4^k * (8m+7)
      * 答案为 1 ：n 为完全平方数
+     * 答案为 4 ：n = 4^k * (8m+7)
      * 答案为 2 ：n 为两个完全平方数之和
      * 答案为 3 ：其余情况
      */
@@ -109,17 +168,17 @@ public class PerfectSquares {
       // O(1)
       if (isPerfectSquare(n))
         return 1;
-      
+    
       // O(log n)
       if (checkAnswer4(n))
         return 4;
-      
-      // O(sqrt(n))
-      int sqrt = (int) Math.sqrt(n);
+    
+      // O(sqrt(n/2))
+      int sqrt = (int) Math.sqrt(n / 2.0);
       for (int i = 1; i <= sqrt; i++)
         if (isPerfectSquare(n - i * i))
           return 2;
-      
+    
       return 3;
     }
     
