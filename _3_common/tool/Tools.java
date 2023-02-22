@@ -327,6 +327,7 @@ public class Tools {
   }
   
   public static int[][] to2DIntArray(String s) {
+    // .replace("\n", "")
     return Arrays.stream(s.substring(1, s.length() - 1).split("(?<=]),")).map(Tools::toIntArray).toArray(int[][]::new);
   }
   
