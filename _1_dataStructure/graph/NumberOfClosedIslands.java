@@ -58,8 +58,9 @@ public class NumberOfClosedIslands {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     public static final int[] DIRS = {1, 0, -1, 0, 1};
-    
-    public int closedIsland(int[][] grid) {
+  
+    // 单 dfs
+    public int closedIsland9(int[][] grid) {
       int cnt = 0;
       for (int i = 1; i < grid.length - 1; i++)
         for (int j = 1; j < grid[0].length - 1; j++)
@@ -67,7 +68,7 @@ public class NumberOfClosedIslands {
             cnt++;
       return cnt;
     }
-    
+  
     private boolean dfs(int[][] arr, int r, int c) {
       boolean ans = r != 0 && r != arr.length - 1 && c != 0 && c != arr[0].length - 1;
       arr[r][c] = 1;
@@ -79,6 +80,45 @@ public class NumberOfClosedIslands {
           ans = ans & dfs(arr, newI, newJ);
       }
       return ans;
+    }
+  
+    // 双 dfs
+    public int closedIsland(int[][] grid) {
+      int n = grid.length;
+      int m = grid[0].length;
+      boolean[][] vis = new boolean[n][m];
+    
+      for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+          if ((i == 0 || j == 0 || i == n - 1 || j == m - 1) && !vis[i][j] && grid[i][j] == 0) {
+            dfs(grid, i, j, vis);
+          }
+        }
+      }
+    
+      int cnt = 0;
+      for (int i = 1; i < n - 1; i++) {
+        for (int j = 1; j < m - 1; j++) {
+          if (!vis[i][j] && grid[i][j] == 0) {
+            dfs(grid, i, j, vis);
+            cnt++;
+          }
+        }
+      }
+    
+      return cnt;
+    }
+  
+    private void dfs(int[][] arr, int r, int c, boolean[][] vis) {
+      vis[r][c] = true;
+    
+      for (int i = 0; i < 4; i++) {
+        int nr = r + DIRS[i];
+        int nc = c + DIRS[i + 1];
+        if (0 <= nr && nr < arr.length && 0 <= nc && nc < arr[0].length &&
+            !vis[nr][nc] && arr[nr][nc] == 0)
+          dfs(arr, nr, nc, vis);
+      }
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)

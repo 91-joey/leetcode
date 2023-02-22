@@ -57,9 +57,9 @@ public class JiQiRenDeYunDongFanWeiLcof {
       }
       return sum;
     }
-    
+  
     /*
-     * ☆☆☆☆☆ dfs优化
+     * ☆☆☆☆ dfs优化
      * 1. 起点为坐标 [0,0]，因此只需搜索 右、下 两个方向
      * 2. 不需要每次到达一个坐标就计算一次数位和，可以由上一个坐标递推出来，设：
      *     x 的数位和为 s_x
@@ -68,32 +68,59 @@ public class JiQiRenDeYunDongFanWeiLcof {
      * 则有数位和增量公式：s_{x+1} = s_x + 1 - cnt * 9 , (x+1)%10==0
      *                          = s_x + 1 ,           (x+1)%10!=0
      */
+    public int movingCount8(int m, int n, int k) {
+      this.m = m;
+      this.n = n;
+      this.k = k;
+      vis = new boolean[m][n];
+    
+      return dfs8(0, 0, 0, 0);
+    }
+  
+    private int dfs8(int r, int c, int sr, int sc) {
+      if (r >= m || c >= n || vis[r][c] || k < sr + sc) {
+        return 0;
+      }
+    
+      vis[r][c] = true;
+    
+      return 1 +
+          dfs8(r + 1, c, sr + getIncr(r), sc) +
+          dfs8(r, c + 1, sr, sc + getIncr(c));
+    }
+  
+    // 数位和增量
+    private int getIncr(int r) {
+      return (r + 1) % 10 == 0 ? -8 : 1;
+    }
+  
+    // ☆☆☆☆☆ dfs 函数无返回值版
     public int movingCount(int m, int n, int k) {
       this.m = m;
       this.n = n;
       this.k = k;
       vis = new boolean[m][n];
-      
-      return dfs(0, 0, 0, 0);
-    }
     
-    private int dfs(int r, int c, int sr, int sc) {
-      if (r >= m || c >= n || vis[r][c] || k < sr + sc) {
-        return 0;
+      dfs(0, 0, 0, 0);
+    
+      return ans;
+    }
+  
+    private void dfs(int r, int c, int sr, int sc) {
+      if (r >= m || c >= n || vis[r][c] || sr + sc > k) {
+        return;
       }
-      
+    
+      ans++;
       vis[r][c] = true;
-      
-      return 1 +
-          dfs(r + 1, c, sr + getIncr(r), sc) +
-          dfs(r, c + 1, sr, sc + getIncr(c));
-    }
     
-    // 数位和增量
-    private int getIncr(int r) {
-      return (r + 1) % 10 == 0 ? -8 : 1;
+      dfs(r + 1, c, getDigitSum(r, sr), sc);
+      dfs(r, c + 1, sr, getDigitSum(c, sc));
     }
-    
+  
+    private int getDigitSum(int i, int s) {
+      return i % 10 == 9 ? s - 8 : s + 1;
+    }
   }
   // leetcode submit region end(Prohibit modification and deletion)
 }
