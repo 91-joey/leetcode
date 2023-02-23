@@ -15,12 +15,17 @@ public class GenerateParentheses {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    List<String> ans = new ArrayList<>();
-    
+    List<String> ans ;
+    private int n;
+  
     public List<String> generateParenthesis(int n) {
-      backtrack(ans, "", n, 0, 0);
+      ans = new ArrayList<>();
+      this.n = n;
+      
+      dfs("", 0, 0);
       // backtrack(ans, new char[2 * n], n, 0, 0);
       // backtrack(ans, new StringBuilder(), n, 0, n, n);
+      
       return ans;
     }
     
@@ -79,16 +84,17 @@ public class GenerateParentheses {
      * @param l 已用的左括号数
      * @param r 已用的右括号数
      */
-    private void backtrack(List<String> ans, String s, int n, int l, int r) {
+    private void dfs(String s, int l, int r) {
       if (r == n) {
         ans.add(s);
         return;
       }
+      
       if (l < n) {
-        backtrack(ans, s + "(", n, l + 1, r);
+        dfs(s + "(", l + 1, r);
       }
       if (l > r) {
-        backtrack(ans, s + ")", n, l, r + 1);
+        dfs(s + ")", l, r + 1);
       }
     }
   }
