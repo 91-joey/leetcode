@@ -1,21 +1,23 @@
+package _2_algorithm.bfs;
+
 import _3_common.entity.tree.TreeNode;
 
 import java.util.LinkedList;
 import java.util.List;
 
 /**
- * 剑指 Offer 32 - II.从上到下打印二叉树 II <br>
- * 开题时间：2023-02-21 17:36:33
+ * 107.二叉树的层序遍历 II <br>
+ * 开题时间：2023-02-21 15:40:34
  */
-public class CongShangDaoXiaDaYinErChaShuIiLcof {
+public class BinaryTreeLevelOrderTraversalIi {
   public static void main(String[] args) {
-    Solution solution = new CongShangDaoXiaDaYinErChaShuIiLcof().new Solution();
+    Solution solution = new BinaryTreeLevelOrderTraversalIi().new Solution();
     System.out.println(solution);
   }
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    public List<List<Integer>> levelOrder(TreeNode root) {
+    public List<List<Integer>> levelOrderBottom(TreeNode root) {
       LinkedList<List<Integer>> ans = new LinkedList<>();
       if (root == null) {
         return ans;
@@ -27,9 +29,7 @@ public class CongShangDaoXiaDaYinErChaShuIiLcof {
         LinkedList<Integer> level = new LinkedList<>();
         for (int i = q.size(); i > 0; i--) {
           TreeNode node = q.poll();
-          
-          level.offer(node.val);
-          
+          level.add(node.val);
           if (node.left != null) {
             q.offer(node.left);
           }
@@ -37,9 +37,8 @@ public class CongShangDaoXiaDaYinErChaShuIiLcof {
             q.offer(node.right);
           }
         }
-        ans.offer(level);
+        ans.push(level);
       }
-      
       return ans;
     }
   }

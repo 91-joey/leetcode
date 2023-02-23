@@ -1,3 +1,5 @@
+package _2_algorithm.bfs;
+
 import _3_common.tool.Tools;
 
 import java.util.LinkedList;
@@ -19,7 +21,7 @@ public class SnakesAndLadders {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     // 数组扁平化预处理 + bfs
-    public int snakesAndLadders(int[][] board) {
+    public int snakesAndLadders9(int[][] board) {
       int n = board.length;
       int[] arr = new int[n * n + 1];
       for (int i = n - 1, idx = 1; i >= 0; i--) {
@@ -64,6 +66,52 @@ public class SnakesAndLadders {
         step++;
       }
       
+      return -1;
+    }
+    
+    // bfs(优化)
+    public int snakesAndLadders(int[][] board) {
+      int n = board.length;
+      int[] arr = new int[n * n + 1];
+      for (int i = n - 1, idx = 1; i >= 0; i--) {
+        for (int j = 0; j < n; j++) {
+          arr[idx++] = board[i][j];
+        }
+      
+        if (--i < 0) {
+          break;
+        }
+      
+        for (int j = n - 1; j >= 0; j--) {
+          arr[idx++] = board[i][j];
+        }
+      }
+    
+      LinkedList<Integer> q = new LinkedList<Integer>();
+      boolean[] vis = new boolean[n * n + 1];
+      q.offer(1);
+      vis[1] = true;
+    
+      int step = 1;
+      while (!q.isEmpty()) {
+        for (int i = q.size(); i > 0; i--) {
+          Integer pos = q.poll();
+          for (int np = Math.min(pos + 6, n * n); np > pos; np--) {
+            // 优化1：真正的目标方格（有蛇或梯子时，传送到蛇或梯子的尾部）
+            int npTrue = arr[np] == -1 ? np : arr[np];
+            if (!vis[npTrue]) {
+              // 优化2：直接在入队列就判断是否能到达终点
+              if (npTrue == n * n) {
+                return step;
+              }
+              q.offer(npTrue);
+              vis[npTrue] = true;
+            }
+          }
+        }
+        step++;
+      }
+    
       return -1;
     }
   }

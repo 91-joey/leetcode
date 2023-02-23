@@ -1,3 +1,5 @@
+package _2_algorithm.bfs;
+
 import _3_common.entity.Pair;
 import _3_common.entity.tree.TreeNode;
 
