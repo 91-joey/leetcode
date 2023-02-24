@@ -4,7 +4,7 @@ import _3_common.entity.linkedlist.ListNode;
 
 import java.util.LinkedList;
 
-// 6247. Remove Nodes From Linked List
+// 2487. Remove Nodes From Linked List
 public class T3 {
   public static void main(String[] args) {
     System.out.println(removeNodes(
@@ -18,17 +18,14 @@ public class T3 {
     );
   }
   
-  // 递归
+  // ☆☆☆☆☆ 递归
   public ListNode removeNodes8(ListNode head) {
-    if (head.next == null)
+    if (head.next == null) {
       return head;
-    
-    ListNode node = removeNodes(head.next);
-    
-    if (head.val < node.val)
-      return node;
-    head.next = node;
-    return head;
+    }
+  
+    head.next = removeNodes8(head.next);
+    return head.val < head.next.val ? head.next : head;
   }
   
   // 栈
@@ -55,7 +52,26 @@ public class T3 {
     return dummy.next;
   }
   
-  //☆☆☆☆☆ 反转+迭代+反转
+  // 单调栈
+  public ListNode removeNodes7(ListNode head) {
+    LinkedList<ListNode> stack = new LinkedList<>();
+    for (ListNode node = head; node != null; node = node.next) {
+      stack.push(node);
+    }
+    
+    ListNode next = null;
+    while (!stack.isEmpty()) {
+      ListNode cur = stack.pop();
+      if (next == null || cur.val >= next.val) {
+        cur.next = next;
+        next = cur;
+      }
+    }
+    
+    return next;
+  }
+  
+  //☆☆☆☆ 反转+迭代+反转
   public static ListNode removeNodes(ListNode head) {
     head = reverseList(head);
     for (ListNode cur = head; cur.next != null; ) {
