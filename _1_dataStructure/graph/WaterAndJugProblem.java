@@ -45,7 +45,7 @@
 package _1_dataStructure.graph;
 
 import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
 
 // 365.水壶问题
 // 开题时间：2023-01-11 13:38:48
@@ -60,9 +60,11 @@ public class WaterAndJugProblem {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
+  
     //☆☆☆☆☆ 数学（贝祖定理）
-    public boolean canMeasureWater9(int jug1Capacity, int jug2Capacity, int targetCapacity) {
-      return targetCapacity <= jug1Capacity + jug2Capacity && targetCapacity % gcd(jug1Capacity, jug2Capacity) == 0;
+    public boolean canMeasureWater9(int X, int Y, int Z) {
+      return Z <= X + Y &&
+          Z % gcd(X, Y) == 0;
     }
     
     public static int gcd(int a, int b) {
@@ -70,31 +72,97 @@ public class WaterAndJugProblem {
           gcd(b, a % b) :
           a;
     }
+  
+    // bfs + 哈希表
+    public boolean canMeasureWater8(int X, int Y, int Z) {
+      if (X + Y < Z) {
+        return false;
+      }
+    
+      LinkedList<int[]> q = new LinkedList<>();
+      HashSet<Long> vis = new HashSet<>();
+      q.offer(new int[]{0, 0});
+      vis.add(0L);
+    
+      while (!q.isEmpty()) {
+        int[] poll = q.poll();
+        int x = poll[0];
+        int y = poll[1];
+      
+        // 罗列bfs树的子节点
+        int literX2Y = Math.min(x, Y - y);
+        int literY2X = Math.min(y, X - x);
+        int[][] states = {
+            {X, y},
+            {x, Y},
+            {0, y},
+            {x, 0},
+            {x - literX2Y, y + literX2Y},
+            {x + literY2X, y - literY2X}
+        };
+      
+        for (int[] state : states) {
+          if (vis.add(hash(state[0], state[1]))) {
+            // 判断是否达到目标
+            if (state[0] + state[1] == Z) {
+              return true;
+            }
+            q.offer(state);
+          }
+        }
+      }
+    
+      return false;
+    }
+  
+    private int X;
+    private int Y;
+    private int Z;
+    HashSet<Long> vis;
     
     // dfs + 哈希表
-    public boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity) {
-      return canMeasureWater(jug1Capacity, jug2Capacity, targetCapacity, 0, 0, new HashSet<>());
-    }
-    
-    private boolean canMeasureWater(int jug1Capacity, int jug2Capacity, int targetCapacity, int i, int j, Set<Long> vis) {
-      if (i + j == targetCapacity)
-        return true;
-      vis.add(((long) i << 20) | j);
+    public boolean canMeasureWater(int X, int Y, int Z) {
+      this.X = X;
+      this.Y = Y;
+      this.Z = Z;
+      vis = new HashSet<>();
       
+      return canMeasureWater(0, 0);
+    }
+  
+    /**
+     * @param x 水壶一中的当前水量
+     * @param y 水壶二中的当前水量
+     */
+    private boolean canMeasureWater(int x, int y) {
+      if (x + y == Z)
+        return true;
+  
       boolean ans = false;
-      int[][] operations = {
-          {jug1Capacity, j},
-          {i, jug2Capacity},
-          {0, j},
-          {i, 0},
-          {i - Math.min(i, jug2Capacity - j), j + Math.min(i, jug2Capacity - j)},
-          {i + Math.min(j, jug1Capacity - i), j - Math.min(j, jug1Capacity - i)}
+      vis.add(hash(x, y));
+      
+      // 罗列dfs树的子节点
+      int literX2Y = Math.min(x, Y - y);
+      int literY2X = Math.min(y, X - x);
+      int[][] states = {
+          {X, y},
+          {x, Y},
+          {0, y},
+          {x, 0},
+          {x - literX2Y, y + literX2Y},
+          {x + literY2X, y - literY2X}
       };
-      for (int[] jugs : operations)
-        if (!vis.contains(((long) jugs[0] << 20) | jugs[1]))
-          ans = ans || canMeasureWater(jug1Capacity, jug2Capacity, targetCapacity, jugs[0], jugs[1], vis);
+      
+      // 递归dfs
+      for (int[] state : states)
+        if (!vis.contains(hash(state[0], state[1])))
+          ans = ans || canMeasureWater(state[0], state[1]);
       
       return ans;
+    }
+    
+    private long hash(int x, int y) {
+      return ((long) x << 20) | y;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
