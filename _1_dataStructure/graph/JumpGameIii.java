@@ -59,65 +59,56 @@ public class JumpGameIii {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
+  
+    private int[] arr;
+    boolean[] vis;
+  
+    // ☆☆☆☆☆ dfs
     public boolean canReach9(int[] arr, int start) {
-      boolean[] vis = new boolean[arr.length];
-      vis[start] = true;
-      return dfs(arr, start, vis);
-    }
+      this.arr = arr;
+      vis = new boolean[arr.length];
     
-    private boolean dfs(int[] arr, int start, boolean[] vis) {
-      boolean ans = arr[start] == 0;
-      int to = start + arr[start];
-      if (0 <= to && to < arr.length && !vis[to]) {
-        vis[to] = true;
-        ans = ans || dfs(arr, to, vis);
-      }
-      to = start - arr[start];
-      if (0 <= to && to < arr.length && !vis[to]) {
-        vis[to] = true;
-        ans = ans || dfs(arr, to, vis);
-      }
-      return ans;
+      return dfs(start);
     }
-    
-    // dfs（优化）
-    public boolean canReach8(int[] arr, int start) {
-      return dfs2(arr, start, new boolean[arr.length]);
-    }
-    
-    private boolean dfs2(int[] arr, int start, boolean[] vis) {
-      if (0 > start || start >= arr.length || vis[start]) return false;
-      vis[start] = true;
-      if (arr[start] == 0) return true;
-      return dfs2(arr, start + arr[start], vis) || dfs2(arr, start - arr[start], vis);
-    }
-    
+  
     // bfs
     public boolean canReach(int[] arr, int start) {
-      Queue<Integer> q = new LinkedList<>();
+      this.arr = arr;
+      vis = new boolean[arr.length];
+    
+      LinkedList<Integer> q = new LinkedList<>();
       q.offer(start);
-      int n = arr.length;
-      boolean[] vis = new boolean[n];
       vis[start] = true;
-      
+    
       while (!q.isEmpty()) {
-        int poll = q.poll();
-        if (arr[poll] == 0)
+        int cur = q.poll();
+      
+        if (arr[cur] == 0) {
           return true;
-        
-        int to = poll + arr[poll];
-        if (to < n && !vis[to]) {
-          q.offer(to);
-          vis[to] = true;
         }
-        to = poll - arr[poll];
-        if (0 <= to && !vis[to]) {
-          q.offer(to);
-          vis[to] = true;
+      
+        for (int next : new int[]{cur + arr[cur], cur - arr[cur]}) {
+          if (0 <= next && next < arr.length && !vis[next]) {
+            q.offer(next);
+            vis[next] = true;
+          }
         }
       }
-      
+    
       return false;
+    }
+  
+    private boolean dfs(int start) {
+      if (start < 0 || start >= arr.length || vis[start]) {
+        return false;
+      }
+    
+      if (arr[start] == 0) {
+        return true;
+      }
+      vis[start] = true;
+    
+      return dfs(start + arr[start]) || dfs(start - arr[start]);
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
