@@ -17,38 +17,38 @@ public class ParallelCourses {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    // 拓扑排序
-    public int minimumSemesters(int n, int[][] prerequisites) {
+    // 拓扑排序（bfs）
+    public int minimumSemesters(int n, int[][] relations) {
       ArrayList<Integer>[] g = new ArrayList[n + 1];
       Arrays.setAll(g, i -> new ArrayList<>());
-      int[] inDeg = new int[n + 1];
-      for (int[] edge : prerequisites) {
+      int[] deg = new int[n + 1];
+      for (int[] edge : relations) {
+        deg[edge[1]]++;
         g[edge[0]].add(edge[1]);
-        inDeg[edge[1]]++;
       }
-      
-      Queue<Integer> q = new LinkedList<>();
+    
+      LinkedList<Integer> q = new LinkedList<>();
       for (int i = 1; i < n + 1; i++) {
-        if (inDeg[i] == 0) {
-          q.offer(i);
+        if (deg[i] == 0) {
+          q.add(i);
         }
       }
-      
-      int idx = 0;
-      int semester = 0;
+    
+      int semesters = 0;
+      int courses = 0;
       while (!q.isEmpty()) {
+        courses += q.size();
         for (int i = q.size(); i > 0; i--) {
-          idx++;
-          for (int v : g[q.poll()]) {
-            if (--inDeg[v] == 0) {
-              q.offer(v);
+          for (Integer v : g[q.poll()]) {
+            if (--deg[v] == 0) {
+              q.add(v);
             }
           }
         }
-        semester++;
+        semesters++;
       }
-      
-      return idx == n ? semester : -1;
+    
+      return courses == n ? semesters : -1;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
