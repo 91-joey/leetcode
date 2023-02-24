@@ -24,8 +24,8 @@ public class CoinChange {
       Arrays.sort(coins);
       
       for (int i = 1; i < amount + 1; i++) {
-        for (int j = 0; j < coins.length; j++) {
-          int pre = i - coins[j];
+        for (int coin : coins) {
+          int pre = i - coin;
           if (pre < 0) {
             break;
           }
