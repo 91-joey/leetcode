@@ -59,7 +59,7 @@ public class MinimumSwapsToMakeStringsEqual {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     /*
-     * 贪心
+     * 贪心（初版）
      * 求使俩字符串相同的最小交换次数，那么原来相同的字符尽量不动、一次交换尽量消除更多的不同字符对
      * （最多消除 2 对，发生在不同字符对的「不同态」相同时，即 ① s1[i]=s1[j]=x,s2[i]=s2[j]=y 或 ② s1[i]=s1[j]=y,s2[i]=s2[j]=x）
      *
@@ -84,7 +84,26 @@ public class MinimumSwapsToMakeStringsEqual {
      *
      * 代码实现时，我们可以统一式子、多用位运算，这里就不再详细展开了，代码见吧！！
      */
-    public int minimumSwap(String s1, String s2) {
+    public int minimumSwap9(String s1, String s2) {
+      int xy = 0;
+      int yx = 0;
+      for (int i = 0; i < s1.length(); i++) {
+        char c1 = s1.charAt(i);
+        char c2 = s2.charAt(i);
+        if (c1 == 'x' && c2 == 'y') {
+          xy++;
+        } else if (c1 == 'y' && c2 == 'x') {
+          yx++;
+        }
+      }
+      
+      int xyRemain = xy % 2;
+      int yxRemain = yx % 2;
+      return xyRemain == yxRemain ? xy / 2 + yx / 2 + xyRemain + yxRemain : -1;
+    }
+  
+    // ☆☆☆ 贪心（位运算优化）
+    public int minimumSwap8(String s1, String s2) {
       int cntXY = 0, cntYX = 0;
       for (int i = 0; i < s1.length(); i++) {
         char c1 = s1.charAt(i);
@@ -97,6 +116,19 @@ public class MinimumSwapsToMakeStringsEqual {
       return ((cntXY ^ cntYX) & 1) != 0 ?
           -1 :
           (cntXY + cntYX) / 2 + (cntXY & 1);
+    }
+    
+    // ☆☆☆☆☆ 贪心（优化）（利用 x、y ASCII 值的二进制最低位不同的性质）
+    public int minimumSwap(String s1, String s2) {
+      int[] cnt = new int[2];
+      for (int i = 0; i < s1.length(); i++) {
+        char c = s1.charAt(i);
+        if (c != s2.charAt(i)) {
+          cnt[c & 1]++;
+        }
+      }
+      int d = cnt[0] + cnt[1];
+      return d % 2 == 0 ? d / 2 + cnt[0] % 2 : -1;
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
