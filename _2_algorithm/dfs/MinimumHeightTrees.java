@@ -116,7 +116,7 @@ public class MinimumHeightTrees {
         }
       }
       
-      return new ArrayList<>(q);
+      return q;
     }
     
     // ☆☆☆☆☆ 树形dp
