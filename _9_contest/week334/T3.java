@@ -44,7 +44,7 @@ public class T3 {
       return true;
     }
     
-    // ☆☆☆☆☆ 排序 + 贪心 + 双指针
+    // ☆☆☆☆☆ 排序 + 贪心 + 双指针：右指针的起点为$\lceil n/2 \rceil$，若取$\lfloor n/2 \rfloor$，则可能会导致 $nums[n/2]$ 作为 `j` 匹配了一次，作为 `i` 又匹配了一次。
     public int maxNumOfMarkedIndices(int[] nums) {
       Arrays.sort(nums);
       int n = nums.length;
