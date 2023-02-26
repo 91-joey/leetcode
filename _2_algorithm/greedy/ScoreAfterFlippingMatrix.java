@@ -60,7 +60,8 @@ public class ScoreAfterFlippingMatrix {
       for (int j = 1; j < n; j++) {
         int cnt1 = 0;
         for (int i = 0; i < m; i++) {
-          cnt1 += grid[i][j] ^ 1 ^ grid[i][0];
+          cnt1 += grid[i][j] ^ grid[i][0];
+          // cnt1 += grid[i][j] ^ 1 ^ grid[i][0];
         }
         ans += Math.max(cnt1, m - cnt1) * (1 << (n - 1 - j));
       }
