@@ -41,6 +41,33 @@ public class T4 {
      */
     public long countQuadruplets9(int[] nums) {
       int n = nums.length;
+      int[][] pre = new int[n + 1][n + 1];
+      for (int x = 1; x < n + 1; x++) {
+        for (int j = 0; j < n; j++) {
+          pre[x][j + 1] = pre[x][j] + (nums[j] < x ? 1 : 0);
+        }
+      }
+      int[][] suf = new int[n + 1][n + 1];
+      for (int x = 1; x < n + 1; x++) {
+        for (int j = n - 1; j >= 0; j--) {
+          suf[x][j] = suf[x][j + 1] + (nums[j] > x ? 1 : 0);
+        }
+      }
+  
+      long ans = 0;
+      for (int j = 0; j < n; j++) {
+        for (int k = j + 1; k < n; k++) {
+          if (nums[j] > nums[k]) {
+            ans += (long) pre[nums[k]][j] * suf[nums[j]][k + 1];
+          }
+        }
+      }
+  
+      return ans;
+    }
+  
+    public long countQuadruplets8(int[] nums) {
+      int n = nums.length;
       
       int[][] great = new int[n][n + 1]; // 在 k 右边、比 nums[j] 大的 l 的个数
       for (int k = n - 2; k >= 2; k--) {
