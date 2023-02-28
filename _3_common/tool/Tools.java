@@ -329,6 +329,14 @@ public class Tools {
     return Arrays.stream(substring.split(",")).map(String::strip).mapToInt(Integer::parseInt).toArray();
   }
   
+  public static List<List<Integer>> to2DIntList(String s) {
+    return Arrays.stream(to2DIntArray(s))
+        .map(arr1 -> Arrays.stream(arr1)
+            .boxed()
+            .toList())
+        .toList();
+  }
+  
   public static int[][] to2DIntArray(String s) {
     // .replace("\n", "")
     return Arrays.stream(s.substring(1, s.length() - 1).split("(?<=]),")).map(Tools::toIntArray).toArray(int[][]::new);
@@ -719,7 +727,7 @@ public class Tools {
     if (input.length() == 0) {
       return new int[0];
     }
-  
+    
     String[] parts = input.split(",");
     int[] output = new int[parts.length];
     for (int index = 0; index < parts.length; index++) {
@@ -953,5 +961,27 @@ public class Tools {
     
     sb.setCharAt(sb.length() - 1, ']');
     return sb.toString();
+  }
+  
+  public static List<Integer> getTopologicalSort(Collection<Integer>[] g, int[] deg, int n) {
+    LinkedList<Integer> q = new LinkedList<>();
+    for (int i = 0; i < deg.length; i++) {
+      if (deg[i] == 0) {
+        q.offer(i);
+      }
+    }
+    
+    List<Integer> ans = new ArrayList<>();
+    while (!q.isEmpty()) {
+      int u = q.poll();
+      ans.add(u);
+      for (int v : g[u]) {
+        if (--deg[v] == 0) {
+          q.offer(v);
+        }
+      }
+    }
+    
+    return ans.size() == n ? ans : null;
   }
 }
