@@ -150,27 +150,24 @@ public class FindEventualSafeStates {
       int n = graph.length;
       // 存反向图，记录节点入度（原图的出度）
       ArrayList<Integer>[] g = new ArrayList[n];
-      int[] outDeg = new int[n];
-      Arrays.setAll(g, i -> new ArrayList<>());
-      for (int i = 0; i < n; i++) {
-        for (int j : graph[i]) {
-          g[j].add(i);
-        }
-        outDeg[i] = graph[i].length;
-      }
-      
-      // 队列初始化
+      int[] deg = new int[n];
       Queue<Integer> q = new LinkedList<>();
-      for (int i = 0; i < n; i++) {
-        if (outDeg[i] == 0) {
-          q.offer(i);
+      Arrays.setAll(g, i -> new ArrayList<>());
+      for (int u = 0; u < n; u++) {
+        for (int v : graph[u]) {
+          g[v].add(u);
+        }
+        deg[u] = graph[u].length;
+        // 队列初始化
+        if (deg[u] == 0) {
+          q.add(u);
         }
       }
       
       // 拓扑排序，更新节点入度
       while (!q.isEmpty()) {
         for (int v : g[q.poll()]) {
-          if (--outDeg[v] == 0) {
+          if (--deg[v] == 0) {
             q.offer(v);
           }
         }
@@ -178,9 +175,9 @@ public class FindEventualSafeStates {
       
       // 最后入度为 0 的节点即为安全节点
       ArrayList<Integer> ans = new ArrayList<>();
-      for (int i = 0; i < n; i++) {
-        if (outDeg[i] == 0) {
-          ans.add(i);
+      for (int u = 0; u < n; u++) {
+        if (deg[u] == 0) {
+          ans.add(u);
         }
       }
       return ans;
