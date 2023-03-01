@@ -64,6 +64,7 @@ public class WordLadder {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
+    // bfs（检查词典中的每个单词是否和当前单词只有一个字母的差别）
     public int ladderLength9(String beginWord, String endWord, List<String> wordList) {
       HashSet<String> set = new HashSet<>(wordList);
       if (!set.contains(endWord))
@@ -94,18 +95,6 @@ public class WordLadder {
       return 0;
     }
     
-    HashSet<String> set1;
-    HashSet<String> set2;
-    
-    public int ladderLength8(String beginWord, String endWord, List<String> wordList) {
-      set1 = new HashSet<>(wordList);
-      set2 = new HashSet<>(wordList);
-      if (!set1.contains(endWord))
-        return 0;
-      
-      return doubleBfs(beginWord, endWord, -1) + 1;
-    }
-    
     private boolean isSinglyDiff(String s1, String s2) {
       int diff = 0;
       for (int i = 0; i < s1.length(); i++)
@@ -113,6 +102,20 @@ public class WordLadder {
           if (++diff > 1)
             return false;
       return diff == 1;
+    }
+    
+    HashSet<String> set1;
+    HashSet<String> set2;
+  
+    // 双向bfs（检查词典中的每个单词是否和当前单词只有一个字母的差别）
+    public int ladderLength8(String beginWord, String endWord, List<String> wordList) {
+      set1 = new HashSet<>(wordList);
+      if (!set1.contains(endWord)) {
+        return 0;
+      }
+      set2 = new HashSet<>(wordList);
+      
+      return doubleBfs(beginWord, endWord, -1) + 1;
     }
     
     public <T> int doubleBfs(T source, T target, int notFound) {
@@ -125,18 +128,17 @@ public class WordLadder {
       vis1.add(source);
       q2.offer(target);
       vis2.add(target);
-      int step1 = 0, step2 = 0;
+      int step = 0;
       while (!q1.isEmpty() && !q2.isEmpty()) {
         boolean reachTarget;
         if (q1.size() <= q2.size()) {
           reachTarget = bfs(q1, vis1, vis2, set1);
-          step1++;
         } else {
           reachTarget = bfs(q2, vis2, vis1, set2);
-          step2++;
         }
+        step++;
         if (reachTarget)
-          return step1 + step2;
+          return step;
       }
       
       return notFound;
@@ -175,37 +177,43 @@ public class WordLadder {
     // bfs优化（枚举单词的每一种可能变换  26*wordLen）
     public int ladderLength7(String beginWord, String endWord, List<String> wordList) {
       HashSet<String> set = new HashSet<>(wordList);
-      if (!set.contains(endWord))
+      boolean a = true;
+      if (!set.contains(endWord)) {
         return 0;
-      
-      Queue<String> q = new LinkedList<>();
-      q.offer(beginWord);
+      }
+  
+      LinkedList<String> q = new LinkedList<>();
       HashSet<String> vis = new HashSet<>();
+      q.add(beginWord);
       vis.add(beginWord);
-      int step = 1;
+  
+      int ans = 1;
       while (!q.isEmpty()) {
-        for (int i = q.size(); i > 0; i--) {
-          String s = q.poll();
-          
-          if (s.equals(endWord))
-            return step;
-          
-          for (int j = 0; j < s.length(); j++) {
+        int size = q.size();
+        ans++;
+        for (int i = 0; i < size; i++) {
+          String cur = q.poll();
+          char[] arr = cur.toCharArray();
+          for (int j = 0; j < arr.length; j++) {
+            char old = arr[j];
             for (char c = 'a'; c <= 'z'; c++) {
-              if (c == s.charAt(j)) continue;
-              char[] cs = s.toCharArray();
-              cs[j] = c;
-              String next = new String(cs);
-              if (set.contains(next) && !vis.contains(next)) {
-                q.offer(next);
-                vis.add(next);
+              if (old != c) {
+                arr[j] = c;
+                String next = new String(arr);
+                if (set.contains(next) && !vis.contains(next)) {
+                  if (next.equals(endWord)) {
+                    return ans;
+                  }
+                  q.add(next);
+                  vis.add(next);
+                }
               }
             }
+            arr[j] = old;
           }
         }
-        step++;
       }
-      
+  
       return 0;
     }
     
@@ -232,18 +240,19 @@ public class WordLadder {
       vis1.add(source);
       q2.offer(target);
       vis2.add(target);
-      int step1 = 0, step2 = 0;
+      int step = 0;
+      
       while (!q1.isEmpty() && !q2.isEmpty()) {
         boolean reachTarget;
         if (q1.size() <= q2.size()) {
           reachTarget = bfs(q1, vis1, vis2);
-          step1++;
         } else {
           reachTarget = bfs(q2, vis2, vis1);
-          step2++;
         }
-        if (reachTarget)
-          return step1 + step2;
+        step++;
+        if (reachTarget) {
+          return step;
+        }
       }
       
       return notFound;
@@ -254,9 +263,9 @@ public class WordLadder {
         T poll = q.poll();
         
         for (T next : getNexts2(poll, cur)) {
-          if (other.contains(next))
+          if (other.contains(next)) {
             return true;
-          else {
+          } else {
             q.offer(next);
             cur.add(next);
           }
@@ -268,15 +277,17 @@ public class WordLadder {
     private <T> List<T> getNexts2(T poll, Set<T> cur) {
       ArrayList<T> ans = new ArrayList<>();
       String s = (String) poll;
+      char[] cs = s.toCharArray();
       for (int j = 0; j < s.length(); j++) {
+        char old = s.charAt(j);
         for (char c = 'a'; c <= 'z'; c++) {
-          if (c == s.charAt(j)) continue;
-          char[] cs = s.toCharArray();
+          if (c == old) continue;
           cs[j] = c;
           String next = new String(cs);
           if (set.contains(next) && !cur.contains(next))
             ans.add((T) next);
         }
+        cs[j] = old;
       }
       return ans;
     }
