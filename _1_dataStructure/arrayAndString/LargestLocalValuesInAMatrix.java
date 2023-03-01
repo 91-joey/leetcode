@@ -118,19 +118,19 @@ public class LargestLocalValuesInAMatrix {
     
     public int[][] largestLocal9(int[][] grid) {
       int n = grid.length;
-      int[][] maxLocal = new int[n - 2][n - 2];
+      int[][] ans = new int[n - 2][n - 2];
       
       for (int i = 0; i < n - 2; i++) {
         for (int j = 0; j < n - 2; j++) {
-          int max = 0;
-          for (int x = i; x <= i + 2; x++)
-            for (int y = j; y <= j + 2; y++)
-              max = Math.max(max, grid[x][y]);
-          maxLocal[i][j] = max;
+          for (int r = i; r <= i + 2; r++) {
+            for (int c = j; c <= j + 2; c++) {
+              ans[i][j] = Math.max(ans[i][j], grid[r][c]);
+            }
+          }
         }
       }
       
-      return maxLocal;
+      return ans;
     }
     
   }
