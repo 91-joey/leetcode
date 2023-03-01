@@ -15,18 +15,14 @@ public class T3 {
   }
   
   class Solution {
-    private int[] nums;
-  
-    // ☆☆☆ 排序 + 贪心 + 二分
+    // ☆☆☆ 排序 + 贪心（贪大心） + 二分
     public int maxNumOfMarkedIndices9(int[] nums) {
       Arrays.sort(nums);
-      this.nums = nums;
-      int n = nums.length;
       int l = 0;
-      int r = n / 2;
+      int r = nums.length / 2;
       while (l < r) {
         int mid = ((r - l + 1) >> 1) + l;
-        if (canMarkPairs(mid)) {
+        if (canMarkPairs(nums, mid)) {
           l = mid;
         } else {
           r = mid - 1;
@@ -35,7 +31,7 @@ public class T3 {
       return r * 2;
     }
     
-    private boolean canMarkPairs(int k) {
+    private boolean canMarkPairs(int[] nums, int k) {
       for (int i = 0; i < k; i++) {
         if (nums[i] * 2 > nums[nums.length - k + i]) {
           return false;
@@ -44,12 +40,11 @@ public class T3 {
       return true;
     }
     
-    // ☆☆☆☆☆ 排序 + 贪心 + 双指针：右指针的起点为$\lceil n/2 \rceil$，若取$\lfloor n/2 \rfloor$，则可能会导致 $nums[n/2]$ 作为 `j` 匹配了一次，作为 `i` 又匹配了一次。
+    // ☆☆☆☆☆ 排序 + 贪心（贪小心） + 双指针：右指针的起点为$\lceil n/2 \rceil$，若取$\lfloor n/2 \rfloor$，则可能会导致 $nums[n/2]$ 作为 `j` 匹配了一次，作为 `i` 又匹配了一次。
     public int maxNumOfMarkedIndices(int[] nums) {
       Arrays.sort(nums);
-      int n = nums.length;
       int l = 0;
-      for (int r = (n + 1) / 2; r < n; r++) {
+      for (int n = nums.length, r = (n + 1) / 2; r < n; r++) {
         if (nums[l] * 2 <= nums[r]) {
           l++;
         }
