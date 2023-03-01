@@ -426,12 +426,13 @@ public class Tools {
   }
   
   
-  public static int bfs(int[][] arr, int[] entrance) {
-    int m = arr.length;
-    int n = arr[0].length;
+  // public static final int[] DIRS = {1, 0, -1, 0, 1};
+  public int bfs(int[][] arr, int[] entrance, int notFound) {
+    int n = arr.length;
+    int m = arr[0].length;
     Queue<int[]> q = new LinkedList<>();
     q.offer(entrance);
-    boolean[][] vis = new boolean[m][n];
+    boolean[][] vis = new boolean[n][m];
     vis[entrance[0]][entrance[1]] = true;
     
     int step = 1;
@@ -444,9 +445,13 @@ public class Tools {
         for (int j = 0; j < 4; j++) {
           int nr = r + DIRS[j];
           int nc = c + DIRS[j + 1];
-          if (0 <= nr && nr < m && 0 <= nc && nc < n
-              && !vis[nr][nc]) {
-            if (arr[nr][nc] == 666) {
+          if (0 <= nr && nr < n && 0 <= nc && nc < m
+              && !vis[nr][nc]
+              // todo 额外条件
+              && arr[nr][nc] == 1
+          ) {
+            // todo 达到目标
+            if (arr[nr][nc] == 9) {
               return step;
             }
             vis[nr][nc] = true;
@@ -457,17 +462,57 @@ public class Tools {
       step++;
     }
     
-    return -1;
+    return notFound;
+  }
+  
+  // public static final int[] DIRS = {1, 0, -1, 0, 1};
+  public int bfs(int[][] arr, Queue<int[]> q, int notFound) {
+    int n = arr.length;
+    int m = arr[0].length;
+    boolean[][] vis = new boolean[n][m];
+    for (int[] entrance : q) {
+      vis[entrance[0]][entrance[1]] = true;
+    }
+    
+    int step = 0;
+    while (!q.isEmpty()) {
+      for (int i = q.size(); i > 0; i--) {
+        int[] poll = q.poll();
+        int r = poll[0];
+        int c = poll[1];
+        // todo 达到目标
+        if (arr[r][c] == 9) {
+          return step;
+        }
+        
+        for (int j = 0; j < 4; j++) {
+          int nr = r + DIRS[j];
+          int nc = c + DIRS[j + 1];
+          if (0 <= nr && nr < n && 0 <= nc && nc < m
+              && !vis[nr][nc]
+              // todo 额外条件
+              && arr[nr][nc] == 1
+          ) {
+            q.offer(new int[]{nr, nc});
+            vis[nr][nc] = true;
+          }
+        }
+      }
+      step++;
+    }
+    
+    return notFound;
   }
   
   /**
    * 求起点到终点的最短路径长度，用双向bfs实现
+   *
    * @param notFound 找不到路径时的返回值，通常为 -1
    */
   public <T> int doubleBfs(T source, T target, int notFound) {
     if (target.equals(source))
       return 0;
-  
+    
     Queue<T> q1 = new LinkedList<>(), q2 = new LinkedList<>();
     Set<T> vis1 = new HashSet<>(), vis2 = new HashSet<>();
     q1.offer(source);
@@ -475,7 +520,7 @@ public class Tools {
     q2.offer(target);
     vis2.add(target);
     int step = 0;
-  
+    
     while (!q1.isEmpty() && !q2.isEmpty()) {
       boolean reachTarget;
       if (q1.size() <= q2.size()) {
@@ -488,13 +533,13 @@ public class Tools {
         return step;
       }
     }
-  
+    
     return notFound;
   }
   
   /**
-   * @param q 当前方向bfs的队列
-   * @param cur 当前方向bfs的访问标记哈希表
+   * @param q     当前方向bfs的队列
+   * @param cur   当前方向bfs的访问标记哈希表
    * @param other 对立方向bfs的访问标记哈希表
    * @return 两个方向的bfs是否相撞（重叠）
    */
