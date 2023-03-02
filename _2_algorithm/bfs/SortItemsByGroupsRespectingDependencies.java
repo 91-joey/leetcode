@@ -1,3 +1,5 @@
+package _2_algorithm.bfs;
+
 import _3_common.tool.Tools;
 
 import java.util.ArrayList;

@@ -1,3 +1,5 @@
+package _2_algorithm.bfs;
+
 import _3_common.entity.Employee;
 
 import java.util.HashMap;
