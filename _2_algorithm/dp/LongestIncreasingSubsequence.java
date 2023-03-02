@@ -55,7 +55,7 @@ public class LongestIncreasingSubsequence {
   
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
-    public int lengthOfLIS(int[] nums) {
+    public int lengthOfLIS9(int[] nums) {
       int max = 1;
       int n = nums.length;
       int[] dp = new int[n];
@@ -68,6 +68,57 @@ public class LongestIncreasingSubsequence {
       }
       return max;
     }
+    
+    /*
+     * ☆☆☆☆☆ 贪心 + 二分
+     *
+     * 设 tails[k] 表示长度为 k + 1 的严格上升子序列的「当前」最小尾部元素值，则数组亦是严格单调递增
+     * 设 ans 为 tails 当前长度：
+     *
+     * 线性遍历输入数组 nums 的元素 x{
+     *  每轮在 [0,ans) 区间上二分查找第一个 >= x 的 tails 数组的索引 j{
+     *    - 若 j < ans ，说明找到了这样的一个索引。
+     *        - 贪心得将 tails[j] 设为 x （尾部元素值更小，更容易得到上升子序列）
+     *    - 若 j = ans ，说明找不到这样的一个索引，x 大于所有尾部元素值。
+     *        - 贪心得将 x 接续在当前最长上升子序列尾部，即将 tails[j(ans)] 设为 x
+     *        - 同时更新 ans 为 ans + 1
+     *  }
+     * }
+     *
+     * 最后答案即为 ans
+     *
+     * eg:
+     * input: {6,7,8,1,2,3,4,5}
+     * workflow:
+     * {6}
+     * {6,7}
+     * {6,7,8}
+     * {1,7,8}
+     * {1,2,8}
+     * {1,2,3}
+     * {1,2,3,4}
+     * {1,2,3,4,5}
+     */
+    public int lengthOfLIS(int[] nums) {
+      int[] tails = new int[nums.length];
+      int ans = 0;
+      for (int x : nums) {
+        int l = 0;
+        int r = ans;
+        while (l < r) {
+          int mid = ((r - l) >> 1) + l;
+          if (x <= nums[mid])
+            r = mid;
+          else
+            l = mid + 1;
+        }
+        nums[l] = x;
+        if (l == ans) {
+          ans++;
+        }
+      }
+      return ans;
+    }
   }
-  // leetcode submit region end(Prohibit modification and deletion)
+// leetcode submit region end(Prohibit modification and deletion)
 }
