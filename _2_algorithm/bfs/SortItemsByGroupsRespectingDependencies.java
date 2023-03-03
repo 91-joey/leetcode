@@ -42,10 +42,9 @@ public class SortItemsByGroupsRespectingDependencies {
         for (Integer u : beforeItems.get(v)) {
           gItem[u].add(v);
           degItem[v]++;
-          if (group[u] != group[v]) {
-            if (gGroup[group[u]].add(group[v])) {
-              degGroup[group[v]]++;
-            }
+          // 不考虑自边（若考虑自边，将得不到正确拓扑序）和重复边（减少复杂度）
+          if (group[u] != group[v] && gGroup[group[u]].add(group[v])) {
+            degGroup[group[v]]++;
           }
         }
       }

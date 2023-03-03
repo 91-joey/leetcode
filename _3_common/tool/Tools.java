@@ -1021,6 +1021,7 @@ public class Tools {
     return sb.toString();
   }
   
+  // import java.util.Collection;
   public List<Integer> getTopologicalSort(Collection<Integer>[] g, int[] deg, int n) {
     LinkedList<Integer> q = new LinkedList<>();
     for (int i = 0; i < deg.length; i++) {
