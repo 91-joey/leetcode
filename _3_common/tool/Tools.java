@@ -1043,4 +1043,19 @@ public class Tools {
     
     return ans.size() == n ? ans : null;
   }
+  
+  /**
+   * 枚举二进制数 s ，使得 s & x = 0 ，并消费 s
+   * @param u 全集
+   * @param x 当前集合
+   * @param consumer 当前集合的补集的子集的消费者函数
+   */
+  public void forEachSubset(int u, int x, Consumer<Integer> consumer) {
+    int m = u ^ x; // 求补集
+    int s = m;
+    do {
+      consumer.accept(s);
+      s = (s - 1) & m; // 求补集的子集
+    } while (s != m);
+  }
 }
