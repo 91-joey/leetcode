@@ -1,18 +1,69 @@
 package _9_contest.week335;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 
-//
+// 6309. Split the Array to Make Coprime Products
 public class T3 {
   public static void main(String[] args) {
     Solution solution = new T3().new Solution();
-    System.out.println(solution);
+    System.out.println(solution.findValidSplit(new int[]{4, 7, 15, 8, 3, 5}));
   }
   
   // import java.math.BigInteger;
   class Solution {
-    
+    /*
+     * ☆☆☆☆☆ 质因数分解 + 贪心（跳跃问题）
+     * 对于一个质因子 p，设它在数组中的最左和最右的位置为 left 和 right。
+     * 那么答案是不能在区间 [left,right) 中的。注意区间右端点可能为答案。
+     * 因此这题本质上和 55. 跳跃游戏 是类似的，找从 0 出发，最远遇到的区间右端点，即为答案。
+     */
     public int findValidSplit(int[] arr) {
+      int n = arr.length; // length of array
+      
+      int[] left = new int[1000000]; // 质因数第一次出现的位置
+      Arrays.fill(left, -1);
+      int[] right = new int[n]; // 左端点为 i 的区间（可能有多个不同的质因子的第一次出现的位置相同）的右端点的最大值
+      
+      for (int i = 0; i < n; i++) {
+        int x = arr[i];
+        // 质因数分解
+        for (int d = 2; d * d <= x; d++) {
+          if (x % d == 0) {
+            // 更新区间端点
+            updateEnds(left, right, i, d);
+            
+            do {
+              x /= d;
+            } while (x % d == 0);
+          }
+        }
+        
+        if (x > 1) {
+          updateEnds(left, right, i, x);
+        }
+      }
+      
+      // maxI 表示当且能走到的最远距离
+      for (int i = 0, maxI = 0; i < n; i++) {
+        if (i > maxI) {
+          return maxI;
+        }
+        maxI = Math.max(maxI, right[i]);
+      }
+      
+      return -1;
+    }
+    
+    private void updateEnds(int[] left, int[] right, int i, int d) {
+      if (left[d] == -1) {
+        left[d] = i;
+      } else {
+        right[left[d]] = i;
+      }
+    }
+    
+    public int findValidSplitX(int[] arr) {
       int n = arr.length; // length of array
       if (n < 2) return -1; // no valid split for single element array
       
