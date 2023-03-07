@@ -86,8 +86,8 @@ public class TriplesWithBitwiseAndEqualToZero {
       return ans;
     }
   
-    // ☆☆☆☆☆ 有技巧的枚举 + 数组计数 + 子集优化 + 常数优化  n*(n+u)
-    public int countTriplets(int[] nums) {
+    // ☆☆☆☆☆ （预处理 cnt[x & y] ，枚举 i,j）有技巧的枚举 + 数组计数 + 子集优化 + 常数优化  n*(n+u)
+    public int countTriplets6(int[] nums) {
       // 计算 cnt 的实际大小 u，相应的全集就是 u−1
       int u = 1;
       for (int x : nums) {
@@ -112,6 +112,39 @@ public class TriplesWithBitwiseAndEqualToZero {
         }
       }
       
+      return ans;
+    }
+    
+    // ☆☆☆☆☆ （预处理 cnt[s] ，枚举 i）有技巧的枚举 + 数组计数 + 子集优化 + 常数优化  n*(n+u)
+    public int countTriplets(int[] nums) {
+      int u = 1;
+      for (int x : nums) {
+        while (x >= u) {
+          u <<= 1;
+        }
+      }
+    
+      int[] cnt = new int[u];
+      for (int x : nums) {
+        for (int y : nums) {
+          cnt[x & y]++;
+        }
+      }
+    
+      int ans = 0;
+      for (int x : nums) {
+        ans += cnt[0];
+        for (int m = x ^ (u - 1), s = m; s > 0; s = (s - 1) & m) {
+          ans += cnt[s];
+        }
+        // int m = x ^ (u - 1);
+        // int s = m;
+        // do {
+        //   ans += cnt[s];
+        //   s = (s - 1) & m;
+        // } while (s != m);
+      }
+    
       return ans;
     }
   }
