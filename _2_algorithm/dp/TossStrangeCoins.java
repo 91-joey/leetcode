@@ -43,25 +43,29 @@ public class TossStrangeCoins {
   // leetcode submit region begin(Prohibit modification and deletion)
   class Solution {
     /*
-     * dp[i][j]:前 i 枚硬币，(j - 1)枚硬币正面朝上的概率
+     * 概率dp
+     * 状态定义：dp[i][j]:前 i 枚硬币，(j - 1)枚硬币正面朝上的概率(i>=j-1)
+     * 状态转移：
      *      i == 1时，特殊考虑：
-     *          j == 0时，f[i][j] =               0 * prob[i - 1] +           1 * (1 - prob[i - 1])
-     *          j == 1时，f[i][j] =               1 * prob[i - 1] +           0 * (1 - prob[i - 1])
+     *          j == 1时，f[i][j] =      f[0][0](0) * prob[i - 1] +  f[0][1](1) * (1 - prob[i - 1])
+     *          j == 2时，f[i][j] =      f[0][1](1) * prob[i - 1] +  f[0][2](0) * (1 - prob[i - 1])
      *      i >  1时，    f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1])
-     * 故，不失一般性的，我们初始化 f[0][1] = 1.0，则 `i == 1` 和 `i >  1` 两种情况可以合并为一种考虑
+     * 初始化　：f[0][1] = 1.0，则 `i == 1` 和 `i >  1` 两种情况可以合并为一种考虑
+     * 答案　　：f[n][target + 1]
      */
     public double probabilityOfHeads9(double[] prob, int target) {
-      int n = prob.length + 1;
-      double[][] f = new double[n][target + 2];
+      int n = prob.length;
+      double[][] f = new double[n + 1][target + 2];
       f[0][1] = 1.0;
       
-      for (int i = 1; i < n; i++)
+      for (int i = 1; i < n + 1; i++)
         for (int j = 1; j < Math.min(target + 2, i + 2); j++)
           f[i][j] = f[i - 1][j - 1] * prob[i - 1] + f[i - 1][j] * (1 - prob[i - 1]);
       
-      return f[n - 1][target + 1];
+      return f[n][target + 1];
     }
-    
+  
+    // ☆☆☆☆☆ 概率dp（一维优化）
     public double probabilityOfHeads(double[] prob, int target) {
       double[] f = new double[target + 2];
       f[1] = 1.0;
