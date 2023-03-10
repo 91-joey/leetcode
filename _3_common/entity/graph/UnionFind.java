@@ -7,27 +7,31 @@ public class UnionFind {
   public UnionFind(int size) {
     root = new int[size];
     rank = new int[size];
-    for (int i = 0; i < size; i++)
+    for (int i = 0; i < size; i++) {
       root[i] = i;
+    }
   }
   
   public int find(int x) {
-    if (x == root[x])
+    if (x == root[x]) {
       return x;
+    }
     return root[x] = find(root[x]);
   }
   
   public void union(int x, int y) {
     int rootX = find(x);
     int rootY = find(y);
-    if (rootX != rootY)
+    if (rootX != rootY) {
       if (rank[rootX] == rank[rootY]) {
         root[rootX] = rootY;
         rank[rootY]++;
-      } else if (rank[rootX] < rank[rootY])
+      } else if (rank[rootX] < rank[rootY]) {
         root[rootX] = rootY;
-      else
+      } else {
         root[rootY] = rootX;
+      }
+    }
   }
   
   public boolean connected(int x, int y) {

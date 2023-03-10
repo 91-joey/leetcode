@@ -33,6 +33,8 @@ public class Tools {
   public static final int INF = 0x3f3f3f3f;
   public static final int[] DIRS = {1, 0, -1, 0, 1};
   public static final int[] DIRS8 = {1, 0, -1, 0, 1, 1, -1, -1, 1};
+  public static final int[] DIRS_NW = {-1, 0, -1};
+  public static final int[] DIRS_SE = {1, 0, 1};
   public static final char EMPTY = '.';
   public static final char WALL = '+';
   
@@ -412,7 +414,7 @@ public class Tools {
   }
   
   public void dfs(char[][] arr, int r, int c) {
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < DIRS.length - 1; i++) {
       int nr = r + DIRS[i];
       int nc = c + DIRS[i + 1];
       if (0 <= nr && nr < arr.length && 0 <= nc && nc < arr[0].length &&
@@ -1046,8 +1048,9 @@ public class Tools {
   
   /**
    * 枚举二进制数 s ，使得 s & x = 0 ，并消费 s
-   * @param u 全集
-   * @param x 当前集合
+   *
+   * @param u        全集
+   * @param x        当前集合
    * @param consumer 当前集合的补集的子集的消费者函数
    */
   public void forEachSubset(int u, int x, Consumer<Integer> consumer) {
