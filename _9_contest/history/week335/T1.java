@@ -1,4 +1,4 @@
-package _9_contest.week335;
+package _9_contest.history.week335;
 
 // 6307. Pass the Pillow
 public class T1 {

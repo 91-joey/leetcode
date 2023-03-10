@@ -1,4 +1,4 @@
-package _9_contest.week335;
+package _9_contest.history.week335;
 
 import java.math.BigInteger;
 import java.util.Arrays;
