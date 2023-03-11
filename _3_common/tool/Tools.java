@@ -39,8 +39,8 @@ public class Tools {
   public static final char WALL = '+';
   
   public static void main(String[] args) {
-    prettyPrintTree(stringToTreeNode("[5,1,4,null,null,3,6]"));
-    prettyPrintLinkedList(stringToListNode("[2,4,3]"));
+    // prettyPrintTree(stringToTreeNode("[5,1,4,null,null,3,6]"));
+    // prettyPrintLinkedList(stringToListNode("[2,4,3]"));
   }
   
   public static List<Integer> toList(int[] ints) {
@@ -1047,18 +1047,44 @@ public class Tools {
   }
   
   /**
-   * 枚举二进制数 s ，使得 s & x = 0 ，并消费 s
+   * 求补集的子集 s（枚举二进制数 s ，使得 s & x = 0） ，并消费 s
    *
    * @param u        全集
    * @param x        当前集合
    * @param consumer 当前集合的补集的子集的消费者函数
    */
-  public void forEachSubset(int u, int x, Consumer<Integer> consumer) {
+  public void forEachSubsetOfComplementaryset(int u, int x, Consumer<Integer> consumer) {
     int m = u ^ x; // 求补集
     int s = m;
     do {
       consumer.accept(s);
       s = (s - 1) & m; // 求补集的子集
     } while (s != m);
+  }
+  
+  /**
+   * 求子集 s（不包括当前集合） ，并消费 s
+   *
+   * @param x        当前集合
+   * @param consumer 当前集合的补集的子集的消费者函数
+   */
+  public void forEachSubsetExcludeX(int x, Consumer<Integer> consumer) {
+    for (int s = (x - 1) & x; s != x; s = (s - 1) & x) {
+      consumer.accept(s);
+    }
+  }
+  
+  /**
+   * 求子集 s（不包括当前集合） ，并消费 s
+   *
+   * @param x        当前集合
+   * @param consumer 当前集合的补集的子集的消费者函数
+   */
+  public void forEachSubsetIncludeX(int x, Consumer<Integer> consumer) {
+    int s = x;
+    do {
+      consumer.accept(s);
+      s = (s - 1) & x;
+    } while (s != x);
   }
 }
