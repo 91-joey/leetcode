@@ -44,12 +44,12 @@ public class T3 {
         }
       }
       
-      // maxI 表示当且能走到的最远距离
-      for (int i = 0, maxI = 0; i < n; i++) {
-        if (i > maxI) {
-          return maxI;
+      // rightmost 表示当且能走到的最远距离
+      for (int i = 0, rightmost = 0; i < n; i++) {
+        if (i > rightmost) {
+          return rightmost;
         }
-        maxI = Math.max(maxI, right[i]);
+        rightmost = Math.max(rightmost, right[i]);
       }
       
       return -1;
