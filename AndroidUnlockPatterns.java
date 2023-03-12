@@ -21,7 +21,7 @@ public class AndroidUnlockPatterns {
     ArrayList<Integer> list = new ArrayList<>();
     
     // 回溯
-    public int numberOfPatterns(int m, int n) {
+    public int numberOfPatterns9(int m, int n) {
       
       this.m = m;
       this.n = n;
@@ -89,7 +89,7 @@ public class AndroidUnlockPatterns {
     
     private boolean used[] = new boolean[9];
     
-    public int numberOfPatterns9(int m, int n) {
+    public int numberOfPatterns8(int m, int n) {
       int res = 0;
       for (int len = m; len <= n; len++) {
         res += calcPatterns(-1, len);
@@ -141,6 +141,66 @@ public class AndroidUnlockPatterns {
         }
       }
       return sum;
+    }
+    
+    public static final int[][] DICT = new int[9][9];
+    
+    static {
+      // 横
+      DICT[0][2] = DICT[2][0] = (1 << 1);
+      DICT[3][5] = DICT[5][3] = (1 << 4);
+      DICT[6][8] = DICT[8][6] = (1 << 7);
+      // 竖
+      DICT[0][6] = DICT[6][0] = (1 << 3);
+      DICT[1][7] = DICT[7][1] = (1 << 4);
+      DICT[2][8] = DICT[8][2] = (1 << 5);
+      // 对角
+      DICT[0][8] = DICT[8][0] = (1 << 4);
+      DICT[2][6] = DICT[6][2] = (1 << 4);
+    }
+    
+    /*
+     * 状压dp
+     * 状态定义：f[len][i][s] := len+1 个点、最后一个点位 i+1、数字的选中状态为 s 的解锁模式的个数
+     * 状态转移：f[len][i][s | (1 << i)] += f[len - 1][j][s] if 状态 s 选中 j 、未选中 i
+     * 初始化　：f[0][i][1 << i] for 0 <= i < 9
+     * 答案　　：∑ f[len][i][s] for m - 1 <= len <= n - 1
+     */
+    public int numberOfPatterns(int m, int n) {
+      int[][][] f = new int[n][9][1 << 9];
+      for (int i = 0; i < 9; i++) {
+        f[0][i][1 << i] = 1;
+      }
+      
+      for (int len = 1; len < n; len++) {
+        for (int i = 0; i < 9; i++) {
+          for (int j = 0; j < 9; j++) {
+            for (int s = 0; s < 1 << 9; s++) {
+              if (f[len - 1][j][s] == 0 || (s & (1 << i)) != 0) {
+                continue;
+              }
+              if (isValid(i, j, s)) {
+                f[len][i][s | (1 << i)] += f[len - 1][j][s];
+              }
+            }
+          }
+        }
+      }
+      
+      int ans = 0;
+      for (int len = m - 1; len <= n - 1; len++) {
+        for (int i = 0; i < 9; i++) {
+          for (int s = 0; s < 1 << 9; s++) {
+            ans += f[len][i][s];
+          }
+        }
+      }
+      return ans;
+    }
+    
+    private boolean isValid(int i, int j, int s) {
+      return DICT[i][j] == 0 || // 未经过其他点的中心
+          (DICT[i][j] & s) != 0; // 经过其他点的中心、且状态 s 已经选中该中心点
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
