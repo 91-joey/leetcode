@@ -18,10 +18,9 @@ public class AndroidUnlockPatterns {
     private int n;
     int ans = 0;
     boolean[] vis;
-    ArrayList<Integer> list = new ArrayList<>();
-    
-    // 回溯
-    public int numberOfPatterns9(int m, int n) {
+  
+    // ☆☆☆☆ 回溯
+    public int numberOfPatterns(int m, int n) {
       
       this.m = m;
       this.n = n;
@@ -32,13 +31,18 @@ public class AndroidUnlockPatterns {
       return ans;
     }
     
+    /**
+     * @param i   当前点（初始为 -1，表示没有点）
+     * @param fa  上一个点（初始为 -1，表示没有上一个点）
+     * @param cnt 点的数量（初始为 0，表示没有点）
+     */
     private void backtrack(int i, int fa, int cnt) {
       if (cnt > n) {
         return;
       }
       
       // WA点：当前序列无效，则继续dfs后的序列仍是无效的
-      if (!isValid2(i, fa)) {
+      if (!isValid9(i, fa)) {
         return;
       }
       
@@ -46,7 +50,7 @@ public class AndroidUnlockPatterns {
         ans++;
       }
       
-      for (int j = 1; j < 10; j++) {
+      for (int j = 1; j <= 9; j++) {
         if (!vis[j]) {
           vis[j] = true;
           backtrack(j, i, cnt + 1);
@@ -55,7 +59,31 @@ public class AndroidUnlockPatterns {
       }
     }
     
-    private boolean isValid2(int a, int b) {
+    
+    public static final int[][] CENTER = new int[10][10];
+    
+    // 两点经过的其他点的中心（不经过则为 0）
+    static {
+      CENTER[1][3] = 2;
+      CENTER[1][7] = 4;
+      CENTER[3][9] = 6;
+      CENTER[7][9] = 8;
+      CENTER[1][9] = CENTER[2][8] = CENTER[3][7] = CENTER[4][6] = 5;
+    }
+    
+    private boolean isValid9(int a, int b) {
+      if (a > b) {
+        int tmp = a;
+        a = b;
+        b = tmp;
+      }
+      
+      return a == -1 || // <= 1 个点
+          CENTER[a][b] == 0 || // 不经过其他点的中心
+          vis[CENTER[a][b]]; // 经过其他点的中心，且这个点已经提前经过
+    }
+    
+    private boolean isValid99(int a, int b) {
       if (a > b) {
         int tmp = a;
         a = b;
@@ -89,18 +117,16 @@ public class AndroidUnlockPatterns {
     
     private boolean used[] = new boolean[9];
     
+    // 回溯（官解）
     public int numberOfPatterns8(int m, int n) {
       int res = 0;
       for (int len = m; len <= n; len++) {
         res += calcPatterns(-1, len);
-        for (int i = 0; i < 9; i++) {
-          used[i] = false;
-        }
-        list.clear();
       }
       return res;
     }
     
+    // 仅供参考，效率不高
     private boolean isValid(int index, int last) {
       if (used[index])
         return false;
@@ -124,20 +150,14 @@ public class AndroidUnlockPatterns {
     
     private int calcPatterns(int last, int len) {
       if (len == 0) {
-        list.forEach(v -> {
-          System.out.print(v + ", ");
-        });
-        System.out.println();
         return 1;
       }
       int sum = 0;
       for (int i = 0; i < 9; i++) {
         if (isValid(i, last)) {
           used[i] = true;
-          list.add(i + 1);
           sum += calcPatterns(i, len - 1);
           used[i] = false;
-          list.remove(list.size() - 1);
         }
       }
       return sum;
@@ -160,7 +180,7 @@ public class AndroidUnlockPatterns {
     }
     
     /*
-     * 状压dp
+     * ☆☆☆☆☆ 状压dp
      * 状态定义：f[len][i][s] := len+1 个点、最后一个点位 i+1、数字的选中状态为 s 的解锁模式的个数
      * 状态转移：f[len][i][s | (1 << i)] += f[len - 1][j][s] if 状态 s 选中 j 、未选中 i
      * 初始化　：f[0][i][1 << i] for 0 <= i < 9
@@ -197,9 +217,9 @@ public class AndroidUnlockPatterns {
       }
       return ans;
     }
-  
-    // 状压dp2
-    public int numberOfPatterns(int m, int n) {
+    
+    // 状压dp2（效率较低）
+    public int numberOfPatterns6(int m, int n) {
       int[][][] f = new int[n][9][1 << 9];
       for (int i = 0; i < 9; i++) {
         f[0][i][1 << i] = 1;
