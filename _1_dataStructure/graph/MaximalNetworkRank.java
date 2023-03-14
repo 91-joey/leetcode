@@ -73,20 +73,22 @@ public class MaximalNetworkRank {
   class Solution {
     // 暴力枚举  m+n^2   n^2
     public int maximalNetworkRank9(int n, int[][] roads) {
-      int[] inDeg = new int[n];
+      int[] deg = new int[n];
       boolean[][] g = new boolean[n][n];
       for (int[] road : roads) {
-        inDeg[road[0]]++;
-        inDeg[road[1]]++;
+        deg[road[0]]++;
+        deg[road[1]]++;
         g[road[0]][road[1]] = g[road[1]][road[0]] = true;
       }
       
-      int max = 0;
-      for (int i = 0; i < n - 1; i++)
-        for (int j = i + 1; j < n; j++)
-          max = Math.max(max, inDeg[i] + inDeg[j] - (g[i][j] ? 1 : 0));
+      int ans = 0;
+      for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+          ans = Math.max(ans, deg[i] + deg[j] - (g[i][j] ? 1 : 0));
+        }
+      }
       
-      return max;
+      return ans;
     }
     
     // 枚举优化（统计最大次大入度值的顶点集合）  m + n
