@@ -76,13 +76,14 @@ public class FindValidMatrixGivenRowAndColumnSums {
   }
   
   // leetcode submit region begin(Prohibit modification and deletion)
+  // 做不出来的时候，可以从某个元素（比如左上角）开始，填入各种值（最小值：0，最大值：min(rowSum[i],colSum[j])）试一试
   class Solution {
     /*
      * 贪心
      * 双重循环：将 ans[i][j] 设为 min(rowSum[i], colSum[j])，并更新 rowSum[i]、colSum[j]
      * 最后总能保证 rowSum[i] = colSum[j] = 0，即该矩阵满足要求
      */
-    public int[][] restoreMatrix(int[] rowSum, int[] colSum) {
+    public int[][] restoreMatrix9(int[] rowSum, int[] colSum) {
       int m = rowSum.length;
       int n = colSum.length;
       int[][] ans = new int[m][n];
@@ -93,6 +94,25 @@ public class FindValidMatrixGivenRowAndColumnSums {
           colSum[j] -= ans[i][j];
         }
       }
+      return ans;
+    }
+    
+    // ☆☆☆☆☆ 贪心优化：从左上角出发，每次要么去掉一行，要么去掉一列。
+    public int[][] restoreMatrix(int[] rowSum, int[] colSum) {
+      int n = rowSum.length;
+      int m = colSum.length;
+      int[][] ans = new int[n][m];
+      
+      for (int i = 0, j = 0; i < n && j < m; ) {
+        if (rowSum[i] > colSum[j]) {
+          rowSum[i] -= colSum[j];
+          ans[i][j] = colSum[j++];
+        } else {
+          colSum[j] -= rowSum[i];
+          ans[i][j] = rowSum[i++];
+        }
+      }
+      
       return ans;
     }
   }
