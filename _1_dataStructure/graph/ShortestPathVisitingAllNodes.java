@@ -126,11 +126,11 @@ public class ShortestPathVisitingAllNodes {
     }
     
     /*
-     * ☆☆☆☆☆ bfs + 状压   2^n * n^2   2^n * n
+     * ☆☆☆☆☆ 多源bfs + 状压   2^n * n^2   2^n * n
      * 状态定义：0b(state) 某位为 1，表示某节点已访问
      * 关键：以同一状态到达同一个节点，是多余、重复的搜索路径。
      */
-    public int shortestPathLength(int[][] graph) {
+    public int shortestPathLength9(int[][] graph) {
       int n = graph.length;
       Queue<int[]> q = new LinkedList<>();
       boolean[][] vis = new boolean[1 << n][n];
@@ -161,6 +161,95 @@ public class ShortestPathVisitingAllNodes {
       }
       
       return step;
+    }
+    
+    public int shortestPathLengthXXX(int[][] graph) {
+      int n = graph.length;
+      boolean[][] g = new boolean[n][n];
+      for (int u = 0; u < n; u++) {
+        for (int v : graph[u]) {
+          g[u][v] = g[v][u] = true;
+        }
+      }
+      
+      int[][] f = new int[1 << n][n];
+      for (int s = 0; s < 1 << n; s++) {
+        Arrays.fill(f[s], 0x3f3f3f3f);
+      }
+      for (int i = 0; i < n; i++) {
+        f[1 << i][i] = 0;
+      }
+      
+      for (int s = 1; s < 1 << n; s++) {
+        for (int i = 0; i < n; i++) {
+          if ((s & (1 << i)) == 0) {
+            continue;
+          }
+          for (int j = 0; j < n; j++) {
+            if ((s & (1 << j)) == 0 || !g[i][j]) {
+              continue;
+            }
+            f[s][i] = Math.min(f[s][i], f[s ^ (1 << i)][j] + 1);
+          }
+        }
+      }
+      
+      return Arrays.stream(f[(1 << n) - 1]).min().getAsInt();
+    }
+    
+    /*
+     * 预处理点对最短路(n^3) + 状压动规(n^2*2^n)
+     *
+     * 状态定义：f[s][u]表示访问了状态 s 表示的点、以点 u 结尾的最短路径（注意：可能会访问状态 s 表示以外的点）
+     * 状态转移：f[s][u] = Math.min(f[s][u], f[s ^ (1 << u)][v] + d[u][v]) if u ∈ s && v ∈ s && u != v
+     *         d[u][v]为点 u、v 间的最短距离，用 Floyd 算法预处理求得
+     * 初始化　：f[1 << i][i] = 0 for 0 <= i < n
+     *         f[s][u] = 0x3f3f3f3f for others
+     * 答案　　：min(f[(1 << n) - 1]))
+     */
+    public int shortestPathLength(int[][] graph) {
+      int n = graph.length;
+      // 使用 floyd 算法预处理出所有点对之间的最短路径长度
+      int[][] d = new int[n][n];
+      for (int i = 0; i < n; ++i) {
+        Arrays.fill(d[i], n);
+      }
+      for (int i = 0; i < n; ++i) {
+        for (int j : graph[i]) {
+          d[i][j] = 1;
+        }
+      }
+      for (int k = 0; k < n; ++k) {
+        for (int i = 0; i < n; ++i) {
+          for (int j = 0; j < n; ++j) {
+            d[i][j] = Math.min(d[i][j], d[i][k] + d[k][j]);
+          }
+        }
+      }
+      
+      int[][] f = new int[1 << n][n];
+      for (int s = 0; s < 1 << n; s++) {
+        Arrays.fill(f[s], 0x3f3f3f3f);
+      }
+      for (int i = 0; i < n; i++) {
+        f[1 << i][i] = 0;
+      }
+      
+      for (int s = 1; s < 1 << n; s++) {
+        for (int u = 0; u < n; u++) {
+          if ((s & (1 << u)) == 0) {
+            continue;
+          }
+          for (int v = 0; v < n; v++) {
+            if ((s & (1 << v)) == 0 || u == v) {
+              continue;
+            }
+            f[s][u] = Math.min(f[s][u], f[s ^ (1 << u)][v] + d[u][v]);
+          }
+        }
+      }
+      
+      return Arrays.stream(f[(1 << n) - 1]).min().getAsInt();
     }
     
     private boolean isAllVisited(int[] vis) {
