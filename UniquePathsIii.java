@@ -74,8 +74,8 @@ public class UniquePathsIii {
         }
       }
     }
-  
-    // 标记数组 + 回溯（优化：引入 togo 变量，记录待行走方格数）
+    
+    // ☆☆☆☆ 标记数组 + 回溯（优化：引入 togo 变量，记录待行走方格数）
     public int uniquePathsIII8(int[][] grid) {
       this.grid = grid;
       n = grid.length;
@@ -124,55 +124,62 @@ public class UniquePathsIii {
       }
     }
     
-    // 状压 + 记搜
+    // ☆☆☆☆ 状压 + 记搜
     public int uniquePathsIII(int[][] grid) {
       this.grid = grid;
       n = grid.length;
       m = grid[0].length;
       memo = new Integer[n][m][1 << n * m];
-      t = (1 << n * m) - 1;
       
-      int r = 0;
-      int c = 0;
-      int s = 0;
+      int r = 0; // 起始方格的行号
+      int c = 0; // 起始方格的列号
+      int togo = 0; // 待通过方格（以二进制表示，包括空方格和结束方格）
       for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
+          // 记录起始方格的行列号
           if (grid[i][j] == 1) {
             r = i;
             c = j;
-            s |= 1 << i * m + j;
-          } else if (grid[i][j] == -1) {
-            s |= 1 << i * m + j;
+            // 空方格为 0，结束方格为 2
+          } else if (grid[i][j] % 2 == 0) {
+            togo |= 1 << i * m + j;
           }
         }
       }
       
-      return dfs(r, c, s);
+      return dfs(r, c, togo);
     }
-    
-    private int dfs(int r, int c, int s) {
-      if (memo[r][c][s] != null) {
-        return memo[r][c][s];
+  
+    /**
+     * 记忆化搜索
+     * @param r 当前方格的行号
+     * @param c 当前方格的列号
+     * @param togo 待通过方格（以二进制表示，包括空方格和结束方格）
+     * @return 以行号 r、列号 c 作为起始方格的路径数
+     */
+    private int dfs(int r, int c, int togo) {
+      if (memo[r][c][togo] != null) {
+        return memo[r][c][togo];
       }
       
       if (grid[r][c] == 2) {
-        if (s == t) {
-          return memo[r][c][s] = 1;
+        if (togo == 0) {
+          return memo[r][c][togo] = 1;
         }
-        return memo[r][c][s] = 0;
+        return memo[r][c][togo] = 0;
       }
       
-      memo[r][c][s] = 0;
+      memo[r][c][togo] = 0;
       for (int i = 0; i < DIRS.length - 1; i++) {
         int nr = r + DIRS[i];
         int nc = c + DIRS[i + 1];
         if (0 <= nr && nr < n && 0 <= nc && nc < m &&
-            (s & (1 << nr * m + nc)) == 0) {
-          memo[r][c][s] += dfs(nr, nc, s | (1 << nr * m + nc));
+            (togo & (1 << nr * m + nc)) != 0) { // 「待通过」方格
+          memo[r][c][togo] += dfs(nr, nc, togo ^ (1 << nr * m + nc)); // 标记该方格为「已通过」
         }
       }
       
-      return memo[r][c][s];
+      return memo[r][c][togo];
     }
   }
   // leetcode submit region end(Prohibit modification and deletion)
