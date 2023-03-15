@@ -6,7 +6,9 @@
 public class CanIWin {
   public static void main(String[] args) {
     Solution solution = new CanIWin().new Solution();
-    System.out.println(solution);
+    for (int i = 0; i <= 300; i++) {
+      System.out.println(i + " : " + solution.canIWin(10, i));
+    }
   }
   
   // leetcode submit region begin(Prohibit modification and deletion)

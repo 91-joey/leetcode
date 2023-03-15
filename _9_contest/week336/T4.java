@@ -11,8 +11,8 @@ public class T4 {
   }
   
   class Solution {
-    // 排序 + 贪心 + 暴力
-    public int findMinimumTime(int[][] tasks) {
+    // 排序 + 贪心 + 暴力（按右端点自然排序，贪后缀）
+    public int findMinimumTime9(int[][] tasks) {
       // 按右端点排序
       Arrays.sort(tasks, Comparator.comparingInt(o -> o[1]));
       // 某个整数时间点的电脑状态：运行（true）、关闭（false）
@@ -22,7 +22,7 @@ public class T4 {
         int start = task[0];
         int end = task[1];
         int duration = task[2];
-  
+        
         // 根据区间内的已有的电脑运行时间点，求待新增时间点
         for (int i = start; i <= end; i++) {
           if (run[i]) {
@@ -39,6 +39,31 @@ public class T4 {
         }
       }
       
+      return ans;
+    }
+  
+    // 排序 + 贪心 + 暴力（按左端点逆序排序，贪前缀）
+    public int findMinimumTime(int[][] tasks) {
+      Arrays.sort(tasks, Comparator.<int[]>comparingInt(o -> o[0]).reversed());
+      boolean[] run = new boolean[2001];
+      int ans = 0;
+      for (int[] task : tasks) {
+        int start = task[0];
+        int end = task[1];
+        int duration = task[2];
+        for (int i = start; i <= end; i++) {
+          if (run[i]) {
+            duration--;
+          }
+        }
+        for (int i = start; duration > 0; i++) {
+          if (!run[i]) {
+            run[i] = true;
+            duration--;
+            ans++;
+          }
+        }
+      }
       return ans;
     }
     
